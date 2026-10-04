@@ -17,7 +17,7 @@ import yaml
 from ..normalize import detect_type, host_from_url
 
 UUID_NS = uuid.uuid5(uuid.NAMESPACE_URL, "threat-intel-pipeline")
-_REPO_URL = "https://github.com/Enendugodwin/threat-intel-pipeline"
+_REPO_URL = "https://github.com/Enendugodwin/Threat-Intelligence-Platform"
 
 _SIGMA_KINDS = ("domain", "ipv4", "ipv6", "sha256", "sha1", "md5")
 _HASH_KINDS = ("sha256", "sha1", "md5")

@@ -12,7 +12,7 @@ from .store import Store, utcnow
 
 log = logging.getLogger("tip.pipeline")
 
-_USER_AGENT = "threat-intel-pipeline/0.1 (+https://github.com/Enendugodwin/threat-intel-pipeline)"
+_USER_AGENT = "threat-intel-pipeline/0.1 (+https://github.com/Enendugodwin/Threat-Intelligence-Platform)"
 
 
 def load_config(path: str | pathlib.Path) -> dict:

@@ -1,6 +1,6 @@
 # threat-intel-pipeline
 
-[![tests](https://github.com/Enendugodwin/threat-intel-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/Enendugodwin/threat-intel-pipeline/actions/workflows/tests.yml)
+[![tests](https://github.com/Enendugodwin/Threat-Intelligence-Platform/actions/workflows/tests.yml/badge.svg)](https://github.com/Enendugodwin/Threat-Intelligence-Platform/actions/workflows/tests.yml)
 
 A small, serverless threat-intel pipeline for blue-team work. It pulls public
 CTI feeds on a schedule, normalizes and dedupes indicators, maps them to MITRE
