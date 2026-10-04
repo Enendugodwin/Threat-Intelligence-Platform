@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T17:01:53Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T17:04:36Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 14857 |
-| New in window | 14857 |
+| Indicators tracked | 14856 |
+| New in window | 14856 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -15,13 +15,13 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11196 | ok |
+| threatfox | 11195 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 4759 | 4759 |
+| url | 4758 | 4758 |
 | domain | 4349 | 4349 |
 | sha256 | 3255 | 3255 |
 | ipv4 | 2380 | 2380 |
@@ -40,9 +40,9 @@
 | IClickFix | 329 | 329 | — |
 | PureRAT | 326 | 326 | — |
 | AdaptixC2 | 237 | 237 | — |
-| ClearFake | 195 | 195 | — |
+| ClearFake | 196 | 196 | — |
 | Unknown Stealer | 166 | 166 | — |
-| Vidar | 155 | 155 | T1555, T1071.001, T1567 |
+| Vidar | 153 | 153 | T1555, T1071.001, T1567 |
 | Unknown RAT | 132 | 132 | — |
 | DCRat | 96 | 96 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 91 | 91 | — |
@@ -57,9 +57,9 @@
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 12945 |
+| T1071.001 | Web Protocols | command-and-control | 12949 |
 | T1105 | Ingress Tool Transfer | command-and-control | 5959 |
-| T1498 | Network Denial of Service | impact | 4992 |
+| T1498 | Network Denial of Service | impact | 4997 |
 | T1573 | Encrypted Channel | command-and-control | 3467 |
 | T1056.001 | Keylogging | collection, credential-access | 1861 |
 | T1566.001 | Spearphishing Attachment | initial-access | 1559 |
@@ -68,8 +68,8 @@
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 1340 |
 | T1090 | Proxy | command-and-control | 1252 |
 | T1059.001 | PowerShell | execution | 1237 |
-| T1555 | Credentials from Password Stores | credential-access | 492 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 430 |
+| T1555 | Credentials from Password Stores | credential-access | 490 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 428 |
 | T1552.001 | Credentials In Files | credential-access | 307 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 270 |
 | T1204.002 | Malicious File | execution | 270 |
