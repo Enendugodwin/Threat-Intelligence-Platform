@@ -67,8 +67,8 @@ Copy `.env.example` to `.env` if you want to enable OTX or connectors.
    select **Read and write permissions** (the sync job commits reports).
 3. Repo → *Settings → Pages → Source*: **GitHub Actions**.
 4. Optional: *Settings → Secrets and variables → Actions* → add `OTX_API_KEY`.
-5. Either wait for the schedule (`23 */6 * * *` UTC) or run *Actions → sync →
-   Run workflow*.
+5. The pipeline runs automatically: on every push to `main`, on the 6-hourly
+   schedule (`23 */6 * * *` UTC), and on demand via *Actions → sync → Run workflow*.
 
 The job fetches feeds, commits `reports/` + `site/` + `data/counters.json`,
 uploads `dist/` and `reports/` as the `threat-intel-output` artifact, and
