@@ -1,0 +1,43 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}{{ browse_heading }} &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">{{ browse_heading }}</h1>
+<p class="muted">
+  {{ browse_subtitle }}
+  {%- if browse_truncated %} &middot; showing the top {{ browse_rows | length }} by confidence{% endif %}
+  {%- if browse_external %} &middot; <a href="{{ browse_external }}" rel="noopener" target="_blank">definition on attack.mitre.org</a>{% endif %}
+</p>
+
+<section>
+  {% if browse_rows %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for i in browse_rows %}
+        <tr>
+          <td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td>
+          <td>{{ i.type }}</td>
+          <td>{{ i.malware if i.malware else "—" }}</td>
+          <td>{{ i.sources | join(", ") }}</td>
+          <td>{{ i.first_seen if i.first_seen else "—" }}</td>
+          <td class="num-cell">{{ i.confidence }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+  {% else %}
+  <p class="muted">No indicators in this group yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

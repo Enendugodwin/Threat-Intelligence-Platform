@@ -142,6 +142,20 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "45.61.136.10" in (site_dir / "map.html").read_text(encoding="utf-8")
     assert "virustotal.com" in index  # notable indicators are clickable lookups
 
+    # drill-down pages: dashboard charts link to per-group IOC lists
+    assert "iocs-url.html" in index
+    assert "family-" in index
+    assert "technique-T" in index
+    assert (site_dir / "iocs-url.html").is_file()
+    assert list(site_dir.glob("family-*.html"))
+    assert list(site_dir.glob("technique-T*.html"))
+    assert "virustotal.com/gui" in (site_dir / "iocs-url.html").read_text(encoding="utf-8")
+
+    # KEV rows: NVD links everywhere + cross-links back to reports
+    kev_html = (site_dir / "kev.html").read_text(encoding="utf-8")
+    assert "nvd.nist.gov/vuln/search/results" in kev_html
+    assert "report-abc123def4567890.html" in kev_html
+
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0
     assert sigma_mod.build_rules(rows, attack)

@@ -37,19 +37,21 @@
           <th scope="col">CVE</th><th scope="col">Vendor</th><th scope="col">Product</th>
           <th scope="col">Vulnerability</th><th scope="col">Added</th><th scope="col">Due</th>
           <th scope="col">Ransom</th><th scope="col" class="num-col">EPSS</th>
+          <th scope="col">Reports</th>
         </tr>
       </thead>
       <tbody>
       {% for e in kev.entries %}
         <tr>
-          <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" rel="noopener"><code>{{ e.cve }}</code></a></td>
-          <td>{{ e.vendor }}</td>
-          <td>{{ e.product }}</td>
-          <td>{{ e.name }}</td>
+          <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" target="_blank" rel="noopener"><code>{{ e.cve }}</code></a></td>
+          <td><a href="https://nvd.nist.gov/vuln/search/results?query={{ e.vendor | urlencode }}&amp;search_type=all" target="_blank" rel="noopener">{{ e.vendor }}</a></td>
+          <td><a href="https://nvd.nist.gov/vuln/search/results?query={{ e.product | urlencode }}&amp;search_type=all" target="_blank" rel="noopener">{{ e.product }}</a></td>
+          <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" target="_blank" rel="noopener">{{ e.name }}</a></td>
           <td>{{ e.date_added }}</td>
           <td>{{ e.due_date }}</td>
           <td>{% if e.ransomware %}<span class="pill err">known</span>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
           <td class="num-cell">{% if e.epss is not none %}{{ "%.1f%%" | format(e.epss * 100) }}{% else %}&mdash;{% endif %}</td>
+          <td>{% if e.reports %}<a href="report-{{ e.reports[0].id }}.html" title="{{ e.reports[0].title }}">{{ e.reports | length }} report(s)</a>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>

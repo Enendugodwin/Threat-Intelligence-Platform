@@ -18,6 +18,8 @@ __all__ = [
     "make_ioc",
     "norm_ts",
     "virustotal_url",
+    "slugify",
+    "attack_url",
 ]
 
 _URL_RE = re.compile(r"^[a-z][a-z0-9+.-]*://", re.IGNORECASE)
@@ -271,3 +273,15 @@ def virustotal_url(ioc_type: str, value: str) -> str:
     if ioc_type == "domain":
         return f"https://www.virustotal.com/gui/domain/{quote(real, safe='')}"
     return f"https://www.virustotal.com/gui/search/{quote(real, safe='')}"
+
+
+def slugify(value: str) -> str:
+    """Lowercase kebab-case slug for page/file names."""
+    slug = re.sub(r"[^a-z0-9]+", "-", str(value or "").lower()).strip("-")
+    return slug[:60] or "unknown"
+
+
+def attack_url(technique_id: str) -> str:
+    """Link to a MITRE ATT&CK technique page."""
+    base, _, sub = str(technique_id or "").upper().partition(".")
+    return f"https://attack.mitre.org/techniques/{base}/" + (f"{sub}/" if sub else "")

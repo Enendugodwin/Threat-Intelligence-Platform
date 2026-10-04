@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: DCRat &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: DCRat</h1>
+<p class="muted">
+  96 indicator(s) attributed to DCRat</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/107.173.180.64" target="_blank" rel="noopener"><code>107[.]173[.]180[.]64</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-04T10:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/181.206.158.190" target="_blank" rel="noopener"><code>181[.]206[.]158[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2025-04-26T20:01:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/191.93.113.119" target="_blank" rel="noopener"><code>191[.]93[.]113[.]119</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-11T13:38:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.74.34.32" target="_blank" rel="noopener"><code>45[.]74[.]34[.]32</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2024-09-27T16:02:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/64.89.160.44" target="_blank" rel="noopener"><code>64[.]89[.]160[.]44</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-05-31T06:48:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/102.188.200.238" target="_blank" rel="noopener"><code>102[.]188[.]200[.]238</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-17T09:43:06Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/102.220.160.117" target="_blank" rel="noopener"><code>102[.]220[.]160[.]117</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-03T19:43:05Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.223.98.68" target="_blank" rel="noopener"><code>104[.]223[.]98[.]68</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-04T09:43:11Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.250.167.93" target="_blank" rel="noopener"><code>104[.]250[.]167[.]93</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-23T09:43:17Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.42.60.122" target="_blank" rel="noopener"><code>115[.]42[.]60[.]122</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-05-01T02:43:04Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.213.43.169" target="_blank" rel="noopener"><code>116[.]213[.]43[.]169</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-30T09:43:17Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.213.43.239" target="_blank" rel="noopener"><code>116[.]213[.]43[.]239</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-25T09:43:27Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/121.127.233.190" target="_blank" rel="noopener"><code>121[.]127[.]233[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-23T09:43:27Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.241.244.3" target="_blank" rel="noopener"><code>128[.]241[.]244[.]3</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T09:43:28Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.241.244.7" target="_blank" rel="noopener"><code>128[.]241[.]244[.]7</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T09:43:28Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.105.123" target="_blank" rel="noopener"><code>128[.]90[.]105[.]123</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-17T09:43:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.105.161" target="_blank" rel="noopener"><code>128[.]90[.]105[.]161</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T09:43:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.105.231" target="_blank" rel="noopener"><code>128[.]90[.]105[.]231</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-10T19:43:32Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.105.59" target="_blank" rel="noopener"><code>128[.]90[.]105[.]59</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-15T09:43:30Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.105.61" target="_blank" rel="noopener"><code>128[.]90[.]105[.]61</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-08T19:43:33Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.106.56" target="_blank" rel="noopener"><code>128[.]90[.]106[.]56</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-29T09:43:22Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.112.200" target="_blank" rel="noopener"><code>128[.]90[.]112[.]200</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T19:43:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.112.54" target="_blank" rel="noopener"><code>128[.]90[.]112[.]54</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-13T09:43:32Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/13.143.247.125" target="_blank" rel="noopener"><code>13[.]143[.]247[.]125</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-23T09:43:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/130.12.181.96" target="_blank" rel="noopener"><code>130[.]12[.]181[.]96</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-05T19:43:28Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/141.94.121.162" target="_blank" rel="noopener"><code>141[.]94[.]121[.]162</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-07-02T09:43:24Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/143.92.61.144" target="_blank" rel="noopener"><code>143[.]92[.]61[.]144</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-03T19:43:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/143.92.61.231" target="_blank" rel="noopener"><code>143[.]92[.]61[.]231</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-03T19:43:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/143.92.61.232" target="_blank" rel="noopener"><code>143[.]92[.]61[.]232</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-03T19:43:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/146.70.51.74" target="_blank" rel="noopener"><code>146[.]70[.]51[.]74</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T09:43:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.18.238.18" target="_blank" rel="noopener"><code>154[.]18[.]238[.]18</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-05-06T18:43:14Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.238.120.12" target="_blank" rel="noopener"><code>156[.]238[.]120[.]12</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-04T19:43:57Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.247.40.190" target="_blank" rel="noopener"><code>156[.]247[.]40[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-06-03T09:43:30Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.247.62.115" target="_blank" rel="noopener"><code>156[.]247[.]62[.]115</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-06T08:20:29Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/172.111.139.65" target="_blank" rel="noopener"><code>172[.]111[.]139[.]65</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-17T09:44:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/172.111.201.220" target="_blank" rel="noopener"><code>172[.]111[.]201[.]220</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-07T19:44:09Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/172.174.128.128" target="_blank" rel="noopener"><code>172[.]174[.]128[.]128</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-30T09:44:14Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/172.94.58.29" target="_blank" rel="noopener"><code>172[.]94[.]58[.]29</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-03T19:44:15Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/178.16.54.35" target="_blank" rel="noopener"><code>178[.]16[.]54[.]35</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-23T09:44:20Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/181.206.118.219" target="_blank" rel="noopener"><code>181[.]206[.]118[.]219</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T09:44:23Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/190.255.80.136" target="_blank" rel="noopener"><code>190[.]255[.]80[.]136</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-03T09:44:04Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.238.177.14" target="_blank" rel="noopener"><code>192[.]238[.]177[.]14</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-13T09:44:53Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.238.177.18" target="_blank" rel="noopener"><code>192[.]238[.]177[.]18</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T19:44:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.143.1.247" target="_blank" rel="noopener"><code>193[.]143[.]1[.]247</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-22T09:44:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.233.131.97" target="_blank" rel="noopener"><code>193[.]233[.]131[.]97</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-10T19:44:56Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.24.123.206" target="_blank" rel="noopener"><code>193[.]24[.]123[.]206</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-02T09:44:12Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/194.110.172.193" target="_blank" rel="noopener"><code>194[.]110[.]172[.]193</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T09:45:12Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/194.58.47.81" target="_blank" rel="noopener"><code>194[.]58[.]47[.]81</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-01T09:45:07Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/206.123.132.166" target="_blank" rel="noopener"><code>206[.]123[.]132[.]166</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-10T09:45:29Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/207.56.7.37" target="_blank" rel="noopener"><code>207[.]56[.]7[.]37</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-01T09:45:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/207.56.7.53" target="_blank" rel="noopener"><code>207[.]56[.]7[.]53</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-01T09:45:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/207.57.162.48" target="_blank" rel="noopener"><code>207[.]57[.]162[.]48</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-01T19:44:25Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/207.57.163.104" target="_blank" rel="noopener"><code>207[.]57[.]163[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-02T09:44:24Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/223.130.11.38" target="_blank" rel="noopener"><code>223[.]130[.]11[.]38</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-11T09:46:14Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.226.57.95" target="_blank" rel="noopener"><code>23[.]226[.]57[.]95</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T19:45:56Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.94.197.128" target="_blank" rel="noopener"><code>23[.]94[.]197[.]128</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-17T19:46:05Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.94.197.13" target="_blank" rel="noopener"><code>23[.]94[.]197[.]13</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-18T19:45:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/31.56.19.40" target="_blank" rel="noopener"><code>31[.]56[.]19[.]40</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-10-02T09:44:55Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/31.57.51.110" target="_blank" rel="noopener"><code>31[.]57[.]51[.]110</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T19:46:05Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/31.59.118.107" target="_blank" rel="noopener"><code>31[.]59[.]118[.]107</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-05T19:45:54Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/41.68.226.249" target="_blank" rel="noopener"><code>41[.]68[.]226[.]249</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-22T09:46:27Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.142.30.100" target="_blank" rel="noopener"><code>45[.]142[.]30[.]100</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-08T09:46:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.146.90.210" target="_blank" rel="noopener"><code>45[.]146[.]90[.]210</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-29T19:45:24Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.146.91.83" target="_blank" rel="noopener"><code>45[.]146[.]91[.]83</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-30T19:45:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.192.169.186" target="_blank" rel="noopener"><code>45[.]192[.]169[.]186</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T19:46:24Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.192.169.254" target="_blank" rel="noopener"><code>45[.]192[.]169[.]254</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-29T19:46:25Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.111" target="_blank" rel="noopener"><code>45[.]202[.]0[.]111</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-16T09:47:19Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.116" target="_blank" rel="noopener"><code>45[.]202[.]0[.]116</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-15T19:46:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.24" target="_blank" rel="noopener"><code>45[.]202[.]0[.]24</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-10T19:46:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.25" target="_blank" rel="noopener"><code>45[.]202[.]0[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-11T09:46:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.48" target="_blank" rel="noopener"><code>45[.]202[.]0[.]48</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-18T09:56:59Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.202.0.55" target="_blank" rel="noopener"><code>45[.]202[.]0[.]55</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-18T09:56:59Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.207.241.27" target="_blank" rel="noopener"><code>45[.]207[.]241[.]27</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-14T09:46:52Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.207.241.47" target="_blank" rel="noopener"><code>45[.]207[.]241[.]47</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-15T09:46:26Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.59.120.82" target="_blank" rel="noopener"><code>45[.]59[.]120[.]82</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-05T19:46:26Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.81.115.197" target="_blank" rel="noopener"><code>45[.]81[.]115[.]197</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-05T19:46:18Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.88.91.165" target="_blank" rel="noopener"><code>45[.]88[.]91[.]165</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-19T19:47:21Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.243" target="_blank" rel="noopener"><code>46[.]151[.]182[.]243</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-06-06T19:44:30Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.12.27" target="_blank" rel="noopener"><code>46[.]246[.]12[.]27</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-01T19:46:10Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.4.10" target="_blank" rel="noopener"><code>46[.]246[.]4[.]10</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-12T09:47:08Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.6.15" target="_blank" rel="noopener"><code>46[.]246[.]6[.]15</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-29T09:45:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.6.18" target="_blank" rel="noopener"><code>46[.]246[.]6[.]18</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-18T09:57:09Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.84.6" target="_blank" rel="noopener"><code>46[.]246[.]84[.]6</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-22T09:46:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.84.8" target="_blank" rel="noopener"><code>46[.]246[.]84[.]8</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-09T09:47:20Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/5.175.169.212" target="_blank" rel="noopener"><code>5[.]175[.]169[.]212</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-24T19:46:57Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/5.230.201.242" target="_blank" rel="noopener"><code>5[.]230[.]201[.]242</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-07-09T09:46:09Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/61.158.61.184" target="_blank" rel="noopener"><code>61[.]158[.]61[.]184</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-11T09:47:08Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/62.60.155.33" target="_blank" rel="noopener"><code>62[.]60[.]155[.]33</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-04T09:48:16Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/64.89.161.196" target="_blank" rel="noopener"><code>64[.]89[.]161[.]196</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-14T19:46:22Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/82.23.246.148" target="_blank" rel="noopener"><code>82[.]23[.]246[.]148</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-09-04T19:47:07Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/82.23.246.160" target="_blank" rel="noopener"><code>82[.]23[.]246[.]160</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-06-03T09:45:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/91.92.241.38" target="_blank" rel="noopener"><code>91[.]92[.]241[.]38</code></a></td>
+          <td>ipv4</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2026-08-28T19:46:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5432086daa9ec74b311002f8cf2d9c110414b342366941fda6732a7a264562c0" target="_blank" rel="noopener"><code>5432086daa9ec74b311002f8cf2d9c110414b342366941fda6732a7a264562c0</code></a></td>
+          <td>sha256</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2023-02-02T22:55:14Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5481ef1f75fb814f444ae24669f2b20848ef88e5be7998939b43e18982a8d1fb" target="_blank" rel="noopener"><code>5481ef1f75fb814f444ae24669f2b20848ef88e5be7998939b43e18982a8d1fb</code></a></td>
+          <td>sha256</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2022-10-27T21:49:10Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5d7cd06f61d27d5b9820b0b9ce74f0d69a7eac63aebfc928e0fda7528b609877" target="_blank" rel="noopener"><code>5d7cd06f61d27d5b9820b0b9ce74f0d69a7eac63aebfc928e0fda7528b609877</code></a></td>
+          <td>sha256</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2022-10-27T21:49:12Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/627b7c9576e2d1b6316438f80ed8f6da58a0f48fb5b09361510a2e29b95e1a22" target="_blank" rel="noopener"><code>627b7c9576e2d1b6316438f80ed8f6da58a0f48fb5b09361510a2e29b95e1a22</code></a></td>
+          <td>sha256</td>
+          <td>DCRat</td>
+          <td></td>
+          <td>2022-10-27T21:48:54Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

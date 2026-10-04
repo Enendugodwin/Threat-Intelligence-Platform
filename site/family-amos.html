@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: AMOS &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: AMOS</h1>
+<p class="muted">
+  83 indicator(s) attributed to AMOS</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/019d8c23df11ffa6e0bc810f6b3363199b8b751f07898fc9b564a64dd6d2e8cd" target="_blank" rel="noopener"><code>019d8c23df11ffa6e0bc810f6b3363199b8b751f07898fc9b564a64dd6d2e8cd</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/01cbe5441aa7fee7009781ab466048d25dafd085a7846bd935d15ccc9f5da574" target="_blank" rel="noopener"><code>01cbe5441aa7fee7009781ab466048d25dafd085a7846bd935d15ccc9f5da574</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/04531fd7a4f20b31612f398f9cbf7b5c5eb1155cb2574e3d1bf0c26c19367d73" target="_blank" rel="noopener"><code>04531fd7a4f20b31612f398f9cbf7b5c5eb1155cb2574e3d1bf0c26c19367d73</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0570441fac0187878def0a69f20ca5a03c4717d9a303cc9a73dbf03772387024" target="_blank" rel="noopener"><code>0570441fac0187878def0a69f20ca5a03c4717d9a303cc9a73dbf03772387024</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T10:41:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/071479208b99692697fcf44218bd87a2571f16778b77742adce761a252d289da" target="_blank" rel="noopener"><code>071479208b99692697fcf44218bd87a2571f16778b77742adce761a252d289da</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/084a17e95f09e16e444f0a1be7a999d6de1e1c847ebc4909c0878e6bb5905e3f" target="_blank" rel="noopener"><code>084a17e95f09e16e444f0a1be7a999d6de1e1c847ebc4909c0878e6bb5905e3f</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/099db2b63d103e42ae3f69417dbfdddb1540960b1bb2da777e7b4e3d99a7e444" target="_blank" rel="noopener"><code>099db2b63d103e42ae3f69417dbfdddb1540960b1bb2da777e7b4e3d99a7e444</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/19754734aa0efb895d329cc9de17db37c966298926c7ecb3f621ec7e04bf8ea6" target="_blank" rel="noopener"><code>19754734aa0efb895d329cc9de17db37c966298926c7ecb3f621ec7e04bf8ea6</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T13:27:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/197ba4662f1af883205fbb62f3935ba51f7de2df43381fcda865fddbc4506a87" target="_blank" rel="noopener"><code>197ba4662f1af883205fbb62f3935ba51f7de2df43381fcda865fddbc4506a87</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1a5c465608ecd6e570c48d6c9ac28dc34d9973b734e0027d46dadf9d3e21033e" target="_blank" rel="noopener"><code>1a5c465608ecd6e570c48d6c9ac28dc34d9973b734e0027d46dadf9d3e21033e</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:31:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1b602dfba0ae028d6917c4ca7d66a9d3f3a56efca4f4551501ffa40bdf9aad5a" target="_blank" rel="noopener"><code>1b602dfba0ae028d6917c4ca7d66a9d3f3a56efca4f4551501ffa40bdf9aad5a</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1b823f040519acfc56fba55f537ac5a794e4fa0729e91c093b954091740bbc5c" target="_blank" rel="noopener"><code>1b823f040519acfc56fba55f537ac5a794e4fa0729e91c093b954091740bbc5c</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1cf1ba96702df3884e39b1ea5802f9e9a584f307729cff596c61c37104525b6b" target="_blank" rel="noopener"><code>1cf1ba96702df3884e39b1ea5802f9e9a584f307729cff596c61c37104525b6b</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1e9f8f2dc2abd5e4d7b243d249235da87d5c676ab22160b54681ae0414242815" target="_blank" rel="noopener"><code>1e9f8f2dc2abd5e4d7b243d249235da87d5c676ab22160b54681ae0414242815</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/22de2538ee2253b2210e2ca50df4c7c41da74576cc2b22e90ec1f8e97e60e9fc" target="_blank" rel="noopener"><code>22de2538ee2253b2210e2ca50df4c7c41da74576cc2b22e90ec1f8e97e60e9fc</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/271a32a5c821fa28ccb19dc7042c0cee51bdc10201d291eb6c1b1d9d267b29b6" target="_blank" rel="noopener"><code>271a32a5c821fa28ccb19dc7042c0cee51bdc10201d291eb6c1b1d9d267b29b6</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2aab920a903332f258deaf5c6b572af0e08142e2b690a10d2e59600b1b9c7ad3" target="_blank" rel="noopener"><code>2aab920a903332f258deaf5c6b572af0e08142e2b690a10d2e59600b1b9c7ad3</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2e0062a81b67c89b9c09e8714a64219c8b9d2842657ecfafc9c8ca4987298079" target="_blank" rel="noopener"><code>2e0062a81b67c89b9c09e8714a64219c8b9d2842657ecfafc9c8ca4987298079</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/31275278d814286082558c6db575872275fcc00f6342844bbeaf3a3227c98ae1" target="_blank" rel="noopener"><code>31275278d814286082558c6db575872275fcc00f6342844bbeaf3a3227c98ae1</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T21:24:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/38091c12e82987345d0cbfb6c71b609356eddb2ad9db9f1a177c21ca415a98b1" target="_blank" rel="noopener"><code>38091c12e82987345d0cbfb6c71b609356eddb2ad9db9f1a177c21ca415a98b1</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3eb2c8040e2b6a1745f1630fc4066223edb002d9de4a85c0d9290e10de9d8d8b" target="_blank" rel="noopener"><code>3eb2c8040e2b6a1745f1630fc4066223edb002d9de4a85c0d9290e10de9d8d8b</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3f71836497ad7bddd510e7ce10dfae4f27e879d5338c3fca6bdfc2c2ed3ebe15" target="_blank" rel="noopener"><code>3f71836497ad7bddd510e7ce10dfae4f27e879d5338c3fca6bdfc2c2ed3ebe15</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/412560c86fa72b083728f04982bd9998d1e5ef2819d72e1ef38ecaaf177d3c69" target="_blank" rel="noopener"><code>412560c86fa72b083728f04982bd9998d1e5ef2819d72e1ef38ecaaf177d3c69</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4453988952adb25eb10050cd363c8c2652f49e91d7bed9505033ed1076aab354" target="_blank" rel="noopener"><code>4453988952adb25eb10050cd363c8c2652f49e91d7bed9505033ed1076aab354</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T08:32:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4458ab2eb26c8c155cf530136e0a7cf1ddee41f26547a56bc093d61a83c0a382" target="_blank" rel="noopener"><code>4458ab2eb26c8c155cf530136e0a7cf1ddee41f26547a56bc093d61a83c0a382</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4b7a336edbd43624e55ac2e48829e7544f4f33cc79fdc44cde56d82feb6b36af" target="_blank" rel="noopener"><code>4b7a336edbd43624e55ac2e48829e7544f4f33cc79fdc44cde56d82feb6b36af</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T08:32:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4e2c0396e96e3e5d763fdcba313ace876ca45333c7683a087698768ff2ea277f" target="_blank" rel="noopener"><code>4e2c0396e96e3e5d763fdcba313ace876ca45333c7683a087698768ff2ea277f</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T23:46:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/500a7b1e245ffc9445f8f123ad7b64d4c5110e0ca541a5baf75c47174f06f4cd" target="_blank" rel="noopener"><code>500a7b1e245ffc9445f8f123ad7b64d4c5110e0ca541a5baf75c47174f06f4cd</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/53a4760da094c67d4c1131452a8c50e619d8c9f1573904df118681b3638fece8" target="_blank" rel="noopener"><code>53a4760da094c67d4c1131452a8c50e619d8c9f1573904df118681b3638fece8</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:14:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/54f754f5514792597fcdbeddc20ceb9901573a855a6eb2e06a7f28c19c32bfc3" target="_blank" rel="noopener"><code>54f754f5514792597fcdbeddc20ceb9901573a855a6eb2e06a7f28c19c32bfc3</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5b95e5ba6aae7c0f14a6f319d92886379107a9e5ab198cdd38b077bd0faf77e6" target="_blank" rel="noopener"><code>5b95e5ba6aae7c0f14a6f319d92886379107a9e5ab198cdd38b077bd0faf77e6</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5e40447b206a908081f75e175362e8804aa7a62e7d9b4d90f3539a854998c371" target="_blank" rel="noopener"><code>5e40447b206a908081f75e175362e8804aa7a62e7d9b4d90f3539a854998c371</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T18:44:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/60f1e2e27a8673fb9df35c8b3e5d1ab1adfd9c6ba7fb0b8c174312f4b5b3fa85" target="_blank" rel="noopener"><code>60f1e2e27a8673fb9df35c8b3e5d1ab1adfd9c6ba7fb0b8c174312f4b5b3fa85</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:54Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/630a1981d41c83fb56574730ca7f45b60170f34d01503136c8e52a32fb4433d5" target="_blank" rel="noopener"><code>630a1981d41c83fb56574730ca7f45b60170f34d01503136c8e52a32fb4433d5</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:01Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6691c116edc162de50d32ff81a5a994980fbabb06d6763d4d8c279996ea97662" target="_blank" rel="noopener"><code>6691c116edc162de50d32ff81a5a994980fbabb06d6763d4d8c279996ea97662</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/723f9c6f4d9451e4ce581cdabf4d033b46d780856ab2e16a70d6b4963029f95a" target="_blank" rel="noopener"><code>723f9c6f4d9451e4ce581cdabf4d033b46d780856ab2e16a70d6b4963029f95a</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/752e72d6e61bfa4dcd55c6e82d429e09e798f96ca2415e2b852321edf7807b52" target="_blank" rel="noopener"><code>752e72d6e61bfa4dcd55c6e82d429e09e798f96ca2415e2b852321edf7807b52</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/76c85f330a73d160e5d4a81b22273e375d83861254c2d4241887f8d1f9c39942" target="_blank" rel="noopener"><code>76c85f330a73d160e5d4a81b22273e375d83861254c2d4241887f8d1f9c39942</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7d94f28dd5f180b9160052ab60fc6caf6709a4e07383c0f8fe441cdcf977326f" target="_blank" rel="noopener"><code>7d94f28dd5f180b9160052ab60fc6caf6709a4e07383c0f8fe441cdcf977326f</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T13:27:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8026d885bbbcec177f5fd8b257ca9483dee9c15e9c4ac3189d94fe70175c2c07" target="_blank" rel="noopener"><code>8026d885bbbcec177f5fd8b257ca9483dee9c15e9c4ac3189d94fe70175c2c07</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/87628449837f593339b85a759140b7de5a37310ed6053b2b0fcb109b422644d3" target="_blank" rel="noopener"><code>87628449837f593339b85a759140b7de5a37310ed6053b2b0fcb109b422644d3</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8f392ba225cc18d406e50b4ba85a27843123eb4d6d2bebe7a0bc4e7dad6e451b" target="_blank" rel="noopener"><code>8f392ba225cc18d406e50b4ba85a27843123eb4d6d2bebe7a0bc4e7dad6e451b</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8f9b6ad40044c1a5ee56de83c78254bc5a8a374268c5010e3132b2b285022e4d" target="_blank" rel="noopener"><code>8f9b6ad40044c1a5ee56de83c78254bc5a8a374268c5010e3132b2b285022e4d</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T07:33:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8fc704565fcac625157c3e17839bc60839345271953bf11f8038a0503d053e51" target="_blank" rel="noopener"><code>8fc704565fcac625157c3e17839bc60839345271953bf11f8038a0503d053e51</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9481366073d7b44c96bc7d72dfcd6d1c1409c0d52b5b8518d3c0dcd8515a920d" target="_blank" rel="noopener"><code>9481366073d7b44c96bc7d72dfcd6d1c1409c0d52b5b8518d3c0dcd8515a920d</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-02T20:44:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/98abe82e5d5720b518f3b066dd6d4116520827ae5c3c2c853ced5c3373e63e0c" target="_blank" rel="noopener"><code>98abe82e5d5720b518f3b066dd6d4116520827ae5c3c2c853ced5c3373e63e0c</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9e2e68af47145f57f9b82c5cc5ca3e2ecde647283e010850d8bf33613391c7c9" target="_blank" rel="noopener"><code>9e2e68af47145f57f9b82c5cc5ca3e2ecde647283e010850d8bf33613391c7c9</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a15002c3a3e03145f920c609116f53bbb6648348f037ce93b5abfcf88ecd1b47" target="_blank" rel="noopener"><code>a15002c3a3e03145f920c609116f53bbb6648348f037ce93b5abfcf88ecd1b47</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:23:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ac7c46a6bda5d1d6486f48b33acba0911ad3ba0dba95c95278a133da3be91aa5" target="_blank" rel="noopener"><code>ac7c46a6bda5d1d6486f48b33acba0911ad3ba0dba95c95278a133da3be91aa5</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b0ef915a1a0068e20d52e0c9ed943a419c5dbff563b2a1f6b2e5154c9b98e79b" target="_blank" rel="noopener"><code>b0ef915a1a0068e20d52e0c9ed943a419c5dbff563b2a1f6b2e5154c9b98e79b</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T18:44:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b12b322b29405a3843bf5bdb9be949f03b191d0fa2789cefdaa2f07e1f4be8d2" target="_blank" rel="noopener"><code>b12b322b29405a3843bf5bdb9be949f03b191d0fa2789cefdaa2f07e1f4be8d2</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b29e05e2b67f61eef7c626fbaa74feca8aeea9e452c4e1d78bab6c87640d2599" target="_blank" rel="noopener"><code>b29e05e2b67f61eef7c626fbaa74feca8aeea9e452c4e1d78bab6c87640d2599</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T10:41:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b3f992d3a24399d30a125869a40ff23443c97d79b0198ae7234c72780b86039a" target="_blank" rel="noopener"><code>b3f992d3a24399d30a125869a40ff23443c97d79b0198ae7234c72780b86039a</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b44478e3ff6ded069485afe3d20976cb5449e36f0f8299ff08a73ae78f5575a4" target="_blank" rel="noopener"><code>b44478e3ff6ded069485afe3d20976cb5449e36f0f8299ff08a73ae78f5575a4</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b5844e29254d9831c81598b5d951438a6cc1e3c019975ca1e2078e5164438d3d" target="_blank" rel="noopener"><code>b5844e29254d9831c81598b5d951438a6cc1e3c019975ca1e2078e5164438d3d</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b824e8f5fbd6b2875daeea68036c712fad754d3ff38d3fe62223022c066ab568" target="_blank" rel="noopener"><code>b824e8f5fbd6b2875daeea68036c712fad754d3ff38d3fe62223022c066ab568</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b897a834bc10307df86c20f9c77aee38da0db1276cd85b0f03319f13abc66d2b" target="_blank" rel="noopener"><code>b897a834bc10307df86c20f9c77aee38da0db1276cd85b0f03319f13abc66d2b</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bae01c4e6f9fbea0f166d0f96c20abc2ef2f864974baf79bc7e13c89cbf4318c" target="_blank" rel="noopener"><code>bae01c4e6f9fbea0f166d0f96c20abc2ef2f864974baf79bc7e13c89cbf4318c</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c33a437526a565103fe8148160130546fc73896148be7726d35795914395d6bf" target="_blank" rel="noopener"><code>c33a437526a565103fe8148160130546fc73896148be7726d35795914395d6bf</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T08:32:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c391947400542bb6e3ae856d074771deca1f00ee62acec6adedc806812c70423" target="_blank" rel="noopener"><code>c391947400542bb6e3ae856d074771deca1f00ee62acec6adedc806812c70423</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:31:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d102ef1443c555253b71de42d001251da9b364ed6017850f3dba07db33800037" target="_blank" rel="noopener"><code>d102ef1443c555253b71de42d001251da9b364ed6017850f3dba07db33800037</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:03:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d39857fb92a0b6dc3c5da29dceb2cd92adf5b32da2d601893f0200adae7cc1e8" target="_blank" rel="noopener"><code>d39857fb92a0b6dc3c5da29dceb2cd92adf5b32da2d601893f0200adae7cc1e8</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d5308a8ef81cfa41d03116c745fa932bbeb205393d9688cbcf4dcba73f17966e" target="_blank" rel="noopener"><code>d5308a8ef81cfa41d03116c745fa932bbeb205393d9688cbcf4dcba73f17966e</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d96c32faa2499a06687c3ba7f5be2b67bdabce98d8b62ed6bb5294905a730c80" target="_blank" rel="noopener"><code>d96c32faa2499a06687c3ba7f5be2b67bdabce98d8b62ed6bb5294905a730c80</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dbaca8171d60356528efc98df5973fe1451e8034b7ed5ef11250bec4625cd453" target="_blank" rel="noopener"><code>dbaca8171d60356528efc98df5973fe1451e8034b7ed5ef11250bec4625cd453</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dc4f2d231061b28e24d4c7a85ea4904f6704059d271587f0f0c1951993be7775" target="_blank" rel="noopener"><code>dc4f2d231061b28e24d4c7a85ea4904f6704059d271587f0f0c1951993be7775</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:04:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e082c2830a483e333c6b73c85caaa66c06b7b397effabf5c40d9ff7f1ae485fc" target="_blank" rel="noopener"><code>e082c2830a483e333c6b73c85caaa66c06b7b397effabf5c40d9ff7f1ae485fc</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e10705e7ddfbde63e300721b7b64971892df82bee595a3327f39c637557cac76" target="_blank" rel="noopener"><code>e10705e7ddfbde63e300721b7b64971892df82bee595a3327f39c637557cac76</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T12:13:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e46343d8d655ef167dc73c4b78b9b52d522f4d07b5558271b0097ff4fdc80502" target="_blank" rel="noopener"><code>e46343d8d655ef167dc73c4b78b9b52d522f4d07b5558271b0097ff4fdc80502</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T06:14:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ee268aeb513501ab2147ff1963910e3279c2e794e542ae257a740ddf7e4431a0" target="_blank" rel="noopener"><code>ee268aeb513501ab2147ff1963910e3279c2e794e542ae257a740ddf7e4431a0</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f34d710806afa48402934964c15d381991bb386280a6b84889282e68f2b14ff1" target="_blank" rel="noopener"><code>f34d710806afa48402934964c15d381991bb386280a6b84889282e68f2b14ff1</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T17:28:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f7118d6757f0f2cd73e12bff727c7204e233f976d4deef7815ad5af8a56a6531" target="_blank" rel="noopener"><code>f7118d6757f0f2cd73e12bff727c7204e233f976d4deef7815ad5af8a56a6531</code></a></td>
+          <td>sha256</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T07:33:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jrxciw2.xyz" target="_blank" rel="noopener"><code>jrxciw2[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-03T07:31:54Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sj98xe4.xyz" target="_blank" rel="noopener"><code>sj98xe4[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-06-25T11:54:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bagueie.xyz" target="_blank" rel="noopener"><code>bagueie[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:43Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/couhe79.xyz" target="_blank" rel="noopener"><code>couhe79[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:41Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/d9mjs.sbs" target="_blank" rel="noopener"><code>d9mjs[.]sbs</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:43Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hahah1101.mom" target="_blank" rel="noopener"><code>hahah1101[.]mom</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:42Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hugg1ngvx.top" target="_blank" rel="noopener"><code>hugg1ngvx[.]top</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:42Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/johncon.my" target="_blank" rel="noopener"><code>johncon[.]my</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:44Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nomaiei.sbs" target="_blank" rel="noopener"><code>nomaiei[.]sbs</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:41Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nsi8kw1r.lol" target="_blank" rel="noopener"><code>nsi8kw1r[.]lol</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:44Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/xynero.xyz" target="_blank" rel="noopener"><code>xynero[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-04T06:54:43Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

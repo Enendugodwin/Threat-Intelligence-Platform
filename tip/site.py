@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
-from .normalize import virustotal_url
+from .normalize import attack_url, virustotal_url
 
 _TYPE_LABELS = {
     "sha256": "hash",
@@ -32,11 +32,6 @@ def _ioc_summary(iocs) -> str:
     return " · ".join(parts)
 
 
-def _attack_url(technique_id: str) -> str:
-    base, _, sub = technique_id.partition(".")
-    return f"https://attack.mitre.org/techniques/{base}/" + (f"{sub}/" if sub else "")
-
-
 def _reports_view(doc: dict) -> dict:
     """View-model for the report feed templates."""
     items = []
@@ -52,7 +47,7 @@ def _reports_view(doc: dict) -> dict:
             for ioc in (item.get("iocs") or [])
         ]
         item["technique_links"] = [
-            {"id": tid, "url": _attack_url(tid)} for tid in (item.get("techniques") or [])[:4]
+            {"id": tid, "url": attack_url(tid)} for tid in (item.get("techniques") or [])[:4]
         ]
         items.append(item)
         counts[category] = counts.get(category, 0) + 1
@@ -68,8 +63,20 @@ def _reports_view(doc: dict) -> dict:
     }
 
 
-def _kev_view(doc: dict) -> dict:
-    entries = [entry for entry in (doc.get("entries") or []) if isinstance(entry, dict)]
+def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
+    reports_by_cve: dict[str, list] = {}
+    for report in (reports_doc or {}).get("reports") or []:
+        for cve in report.get("cves") or []:
+            reports_by_cve.setdefault(str(cve).upper(), []).append(
+                {"id": str(report.get("id") or ""), "title": str(report.get("title") or "")[:120]}
+            )
+    entries = []
+    for raw in doc.get("entries") or []:
+        if not isinstance(raw, dict):
+            continue
+        entry = dict(raw)
+        entry["reports"] = reports_by_cve.get(str(entry.get("cve") or "").upper(), [])[:3]
+        entries.append(entry)
     cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%d")
     return {
         "entries": entries,
@@ -144,7 +151,7 @@ def build_site(
 
     kev_cves: set[str] = set()
     if kev:
-        kev_view = _kev_view(kev)
+        kev_view = _kev_view(kev, reports)
         kev_cves = {str(entry.get("cve") or "") for entry in kev_view["entries"] if entry.get("cve")}
         kev_html = env.get_template("kev.html.j2").render(**context, kev=kev_view)
         kev_file = out_dir / "kev.html"
@@ -164,6 +171,46 @@ def build_site(
             detail_path = out_dir / f"report-{item['id']}.html"
             detail_path.write_text(page, encoding="utf-8")
             written.append(detail_path)
+
+    browse = context.get("browse") or {}
+    if browse:
+        browse_template = env.get_template("browse.html.j2")
+        for item in browse.get("types") or []:
+            page = browse_template.render(
+                **context,
+                browse_heading=f"Indicators by type: {item['id']}",
+                browse_subtitle=f"{item['total']} indicator(s) with type {item['id']}",
+                browse_rows=item["rows"],
+                browse_truncated=item["truncated"],
+                browse_external=None,
+            )
+            path = out_dir / f"iocs-{item['id']}.html"
+            path.write_text(page, encoding="utf-8")
+            written.append(path)
+        for item in browse.get("families") or []:
+            page = browse_template.render(
+                **context,
+                browse_heading=f"Malware family: {item['name']}",
+                browse_subtitle=f"{item['total']} indicator(s) attributed to {item['name']}",
+                browse_rows=item["rows"],
+                browse_truncated=item["truncated"],
+                browse_external=None,
+            )
+            path = out_dir / f"family-{item['id']}.html"
+            path.write_text(page, encoding="utf-8")
+            written.append(path)
+        for item in browse.get("techniques") or []:
+            page = browse_template.render(
+                **context,
+                browse_heading=f"ATT&CK {item['id']}: {item['name']}",
+                browse_subtitle=f"{item['total']} indicator(s) mapped to this technique (heuristic mapping)",
+                browse_rows=item["rows"],
+                browse_truncated=item["truncated"],
+                browse_external=item.get("external"),
+            )
+            path = out_dir / f"technique-{item['id']}.html"
+            path.write_text(page, encoding="utf-8")
+            written.append(path)
 
     if geo:
         geo_view = _geo_view(geo)

@@ -1,0 +1,2622 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: Cobalt Strike &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: Cobalt Strike</h1>
+<p class="muted">
+  1226 indicator(s) attributed to Cobalt Strike &middot; showing the top 300 by confidence</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/1.14.76.111" target="_blank" rel="noopener"><code>1[.]14[.]76[.]111</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-24T10:56:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/1.15.248.225" target="_blank" rel="noopener"><code>1[.]15[.]248[.]225</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-06-28T22:51:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/1.15.76.39" target="_blank" rel="noopener"><code>1[.]15[.]76[.]39</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-04-07T07:17:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.126.10.34" target="_blank" rel="noopener"><code>101[.]126[.]10[.]34</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-05-23T14:56:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.200.193.211" target="_blank" rel="noopener"><code>101[.]200[.]193[.]211</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-02-14T15:11:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.201.54.74" target="_blank" rel="noopener"><code>101[.]201[.]54[.]74</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-23T18:05:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.32.109.112" target="_blank" rel="noopener"><code>101[.]32[.]109[.]112</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-10T20:01:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.32.204.81" target="_blank" rel="noopener"><code>101[.]32[.]204[.]81</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-12-13T10:06:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.34.182.130" target="_blank" rel="noopener"><code>101[.]34[.]182[.]130</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-29T22:33:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.34.208.175" target="_blank" rel="noopener"><code>101[.]34[.]208[.]175</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-19T09:19:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.37.236.20" target="_blank" rel="noopener"><code>101[.]37[.]236[.]20</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-27T16:54:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.42.255.92" target="_blank" rel="noopener"><code>101[.]42[.]255[.]92</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-10T10:05:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/101.43.32.212" target="_blank" rel="noopener"><code>101[.]43[.]32[.]212</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-31T12:57:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/103.149.93.146" target="_blank" rel="noopener"><code>103[.]149[.]93[.]146</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-30T04:00:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.128.92.144" target="_blank" rel="noopener"><code>104[.]128[.]92[.]144</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-10-31T17:43:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.168.102.116" target="_blank" rel="noopener"><code>104[.]168[.]102[.]116</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-30T21:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/106.12.111.209" target="_blank" rel="noopener"><code>106[.]12[.]111[.]209</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-11T06:43:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/106.54.209.36" target="_blank" rel="noopener"><code>106[.]54[.]209[.]36</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-01-02T14:31:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/106.54.61.188" target="_blank" rel="noopener"><code>106[.]54[.]61[.]188</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-20T06:37:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/106.55.253.229" target="_blank" rel="noopener"><code>106[.]55[.]253[.]229</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-04T08:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/107.150.105.91" target="_blank" rel="noopener"><code>107[.]150[.]105[.]91</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-30T16:04:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/107.172.217.220" target="_blank" rel="noopener"><code>107[.]172[.]217[.]220</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-02-20T11:00:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/107.172.219.129" target="_blank" rel="noopener"><code>107[.]172[.]219[.]129</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-22T22:25:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/107.173.89.148" target="_blank" rel="noopener"><code>107[.]173[.]89[.]148</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-11-04T17:48:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/109.236.50.145" target="_blank" rel="noopener"><code>109[.]236[.]50[.]145</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-30T20:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.228.55.96" target="_blank" rel="noopener"><code>111[.]228[.]55[.]96</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-07T23:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.229.248.198" target="_blank" rel="noopener"><code>111[.]229[.]248[.]198</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-05T13:33:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.230.12.238" target="_blank" rel="noopener"><code>111[.]230[.]12[.]238</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-07T07:48:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.230.196.200" target="_blank" rel="noopener"><code>111[.]230[.]196[.]200</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-10-22T12:07:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.230.37.219" target="_blank" rel="noopener"><code>111[.]230[.]37[.]219</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-22T08:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.92.243.236" target="_blank" rel="noopener"><code>111[.]92[.]243[.]236</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-01-09T08:45:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/111.92.243.40" target="_blank" rel="noopener"><code>111[.]92[.]243[.]40</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-30T08:04:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/113.31.105.33" target="_blank" rel="noopener"><code>113[.]31[.]105[.]33</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-11T22:47:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/113.31.106.106" target="_blank" rel="noopener"><code>113[.]31[.]106[.]106</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-07T10:14:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/113.45.253.80" target="_blank" rel="noopener"><code>113[.]45[.]253[.]80</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-04-16T16:01:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/114.215.184.158" target="_blank" rel="noopener"><code>114[.]215[.]184[.]158</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-27T14:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/114.55.133.151" target="_blank" rel="noopener"><code>114[.]55[.]133[.]151</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-01-27T14:31:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/114.66.27.110" target="_blank" rel="noopener"><code>114[.]66[.]27[.]110</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-01T19:05:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.120.245.134" target="_blank" rel="noopener"><code>115[.]120[.]245[.]134</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-25T20:00:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.190.160.206" target="_blank" rel="noopener"><code>115[.]190[.]160[.]206</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-23T20:01:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.190.161.178" target="_blank" rel="noopener"><code>115[.]190[.]161[.]178</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-03T20:01:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.190.233.79" target="_blank" rel="noopener"><code>115[.]190[.]233[.]79</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-06T08:02:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.190.250.28" target="_blank" rel="noopener"><code>115[.]190[.]250[.]28</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-02-25T19:01:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/115.29.171.175" target="_blank" rel="noopener"><code>115[.]29[.]171[.]175</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-19T13:44:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.198.233.179" target="_blank" rel="noopener"><code>116[.]198[.]233[.]179</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-12T20:01:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.203.31.207" target="_blank" rel="noopener"><code>116[.]203[.]31[.]207</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-18T20:01:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.62.174.16" target="_blank" rel="noopener"><code>116[.]62[.]174[.]16</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-20T08:29:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.62.185.223" target="_blank" rel="noopener"><code>116[.]62[.]185[.]223</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-30T19:45:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/116.62.34.159" target="_blank" rel="noopener"><code>116[.]62[.]34[.]159</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-03-30T07:11:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.178.246" target="_blank" rel="noopener"><code>117[.]72[.]178[.]246</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-08T23:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.181.104" target="_blank" rel="noopener"><code>117[.]72[.]181[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-07-27T16:00:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.184.172" target="_blank" rel="noopener"><code>117[.]72[.]184[.]172</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-15T06:21:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.202.154" target="_blank" rel="noopener"><code>117[.]72[.]202[.]154</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-17T08:14:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.206.39" target="_blank" rel="noopener"><code>117[.]72[.]206[.]39</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-21T08:00:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.242.9" target="_blank" rel="noopener"><code>117[.]72[.]242[.]9</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-03T09:03:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.8.192" target="_blank" rel="noopener"><code>117[.]72[.]8[.]192</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-10-11T12:59:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/118.25.10.65" target="_blank" rel="noopener"><code>118[.]25[.]10[.]65</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-11T04:00:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/118.25.148.25" target="_blank" rel="noopener"><code>118[.]25[.]148[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-09-25T08:00:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/118.25.85.198" target="_blank" rel="noopener"><code>118[.]25[.]85[.]198</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-15T15:33:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/118.31.116.9" target="_blank" rel="noopener"><code>118[.]31[.]116[.]9</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-26T12:59:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/118.89.88.183" target="_blank" rel="noopener"><code>118[.]89[.]88[.]183</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-28T20:01:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.28.83.149" target="_blank" rel="noopener"><code>119[.]28[.]83[.]149</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-22T11:06:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.29.122.42" target="_blank" rel="noopener"><code>119[.]29[.]122[.]42</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-13T11:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.29.231.118" target="_blank" rel="noopener"><code>119[.]29[.]231[.]118</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-16T08:01:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.45.160.160" target="_blank" rel="noopener"><code>119[.]45[.]160[.]160</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-16T06:49:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.45.29.172" target="_blank" rel="noopener"><code>119[.]45[.]29[.]172</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-08T20:01:01Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.91.208.190" target="_blank" rel="noopener"><code>119[.]91[.]208[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-06-02T08:38:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/119.91.243.238" target="_blank" rel="noopener"><code>119[.]91[.]243[.]238</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-01T08:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/120.26.240.21" target="_blank" rel="noopener"><code>120[.]26[.]240[.]21</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-25T12:31:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/120.55.3.157" target="_blank" rel="noopener"><code>120[.]55[.]3[.]157</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-11T06:43:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/121.37.255.60" target="_blank" rel="noopener"><code>121[.]37[.]255[.]60</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-10-09T23:36:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/121.4.38.18" target="_blank" rel="noopener"><code>121[.]4[.]38[.]18</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-25T08:52:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/121.43.55.149" target="_blank" rel="noopener"><code>121[.]43[.]55[.]149</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-02-21T22:13:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/123.57.146.34" target="_blank" rel="noopener"><code>123[.]57[.]146[.]34</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-19T09:18:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/123.58.198.236" target="_blank" rel="noopener"><code>123[.]58[.]198[.]236</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-19T07:56:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/124.222.145.172" target="_blank" rel="noopener"><code>124[.]222[.]145[.]172</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-01T02:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/124.223.114.203" target="_blank" rel="noopener"><code>124[.]223[.]114[.]203</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-18T15:34:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/124.223.41.181" target="_blank" rel="noopener"><code>124[.]223[.]41[.]181</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-29T12:52:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/124.71.106.234" target="_blank" rel="noopener"><code>124[.]71[.]106[.]234</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-28T17:59:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/129.204.11.247" target="_blank" rel="noopener"><code>129[.]204[.]11[.]247</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-17T10:41:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/129.28.85.210" target="_blank" rel="noopener"><code>129[.]28[.]85[.]210</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-30T08:00:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/13.55.118.253" target="_blank" rel="noopener"><code>13[.]55[.]118[.]253</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-06T22:59:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/134.122.130.181" target="_blank" rel="noopener"><code>134[.]122[.]130[.]181</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-29T12:51:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/134.122.130.186" target="_blank" rel="noopener"><code>134[.]122[.]130[.]186</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-06T12:49:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/137.184.42.85" target="_blank" rel="noopener"><code>137[.]184[.]42[.]85</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-15T22:57:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/137.220.151.95" target="_blank" rel="noopener"><code>137[.]220[.]151[.]95</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-26T14:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/138.68.110.227" target="_blank" rel="noopener"><code>138[.]68[.]110[.]227</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-10T17:05:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/138.68.227.71" target="_blank" rel="noopener"><code>138[.]68[.]227[.]71</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:57:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.155.148.131" target="_blank" rel="noopener"><code>139[.]155[.]148[.]131</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-10-24T10:39:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.159.203.44" target="_blank" rel="noopener"><code>139[.]159[.]203[.]44</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-21T12:53:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.196.111.118" target="_blank" rel="noopener"><code>139[.]196[.]111[.]118</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-06T07:26:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.196.126.161" target="_blank" rel="noopener"><code>139[.]196[.]126[.]161</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-12-06T07:36:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.196.174.152" target="_blank" rel="noopener"><code>139[.]196[.]174[.]152</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-14T12:05:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.196.223.82" target="_blank" rel="noopener"><code>139[.]196[.]223[.]82</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-25T07:52:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.198.183.44" target="_blank" rel="noopener"><code>139[.]198[.]183[.]44</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-10-11T23:27:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.60.160.8" target="_blank" rel="noopener"><code>139[.]60[.]160[.]8</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-23T20:44:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/139.9.62.19" target="_blank" rel="noopener"><code>139[.]9[.]62[.]19</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-01-05T21:31:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/14.29.160.181" target="_blank" rel="noopener"><code>14[.]29[.]160[.]181</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-16T04:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/140.143.194.253" target="_blank" rel="noopener"><code>140[.]143[.]194[.]253</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-24T16:00:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/141.255.166.178" target="_blank" rel="noopener"><code>141[.]255[.]166[.]178</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-02T13:46:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/143.198.110.248" target="_blank" rel="noopener"><code>143[.]198[.]110[.]248</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:54:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/144.172.68.200" target="_blank" rel="noopener"><code>144[.]172[.]68[.]200</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-03T13:45:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/146.70.29.233" target="_blank" rel="noopener"><code>146[.]70[.]29[.]233</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-25T22:29:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/149.255.35.131" target="_blank" rel="noopener"><code>149[.]255[.]35[.]131</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-14T22:28:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/149.88.73.83" target="_blank" rel="noopener"><code>149[.]88[.]73[.]83</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-22T06:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/150.158.102.111" target="_blank" rel="noopener"><code>150[.]158[.]102[.]111</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-30T23:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/150.158.170.241" target="_blank" rel="noopener"><code>150[.]158[.]170[.]241</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-11T20:01:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/150.187.25.242" target="_blank" rel="noopener"><code>150[.]187[.]25[.]242</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-17T20:01:54Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/151.244.228.91" target="_blank" rel="noopener"><code>151[.]244[.]228[.]91</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-03T06:04:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/152.136.178.142" target="_blank" rel="noopener"><code>152[.]136[.]178[.]142</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-17T22:47:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/152.136.253.101" target="_blank" rel="noopener"><code>152[.]136[.]253[.]101</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-21T12:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/152.32.132.177" target="_blank" rel="noopener"><code>152[.]32[.]132[.]177</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-30T09:54:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/153.80.242.105" target="_blank" rel="noopener"><code>153[.]80[.]242[.]105</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-29T08:21:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.12.94.16" target="_blank" rel="noopener"><code>154[.]12[.]94[.]16</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-29T07:32:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.22.117.31" target="_blank" rel="noopener"><code>154[.]22[.]117[.]31</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-09-17T21:24:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.221.17.44" target="_blank" rel="noopener"><code>154[.]221[.]17[.]44</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-09-01T12:00:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.221.25.38" target="_blank" rel="noopener"><code>154[.]221[.]25[.]38</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-06T07:24:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.227.233.153" target="_blank" rel="noopener"><code>156[.]227[.]233[.]153</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-25T04:00:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.239.252.191" target="_blank" rel="noopener"><code>156[.]239[.]252[.]191</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-22T18:02:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/156.254.20.47" target="_blank" rel="noopener"><code>156[.]254[.]20[.]47</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-24T03:47:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/159.65.246.188" target="_blank" rel="noopener"><code>159[.]65[.]246[.]188</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-22T16:42:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/159.75.176.189" target="_blank" rel="noopener"><code>159[.]75[.]176[.]189</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-17T08:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/161.35.137.163" target="_blank" rel="noopener"><code>161[.]35[.]137[.]163</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:52:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/165.227.108.186" target="_blank" rel="noopener"><code>165[.]227[.]108[.]186</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-24T13:08:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/165.227.180.6" target="_blank" rel="noopener"><code>165[.]227[.]180[.]6</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-29T19:30:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/165.227.219.211" target="_blank" rel="noopener"><code>165[.]227[.]219[.]211</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:56:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/165.227.23.218" target="_blank" rel="noopener"><code>165[.]227[.]23[.]218</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:53:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/165.232.154.73" target="_blank" rel="noopener"><code>165[.]232[.]154[.]73</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:55:44Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/168.61.180.98" target="_blank" rel="noopener"><code>168[.]61[.]180[.]98</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-09T22:36:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/169.239.128.43" target="_blank" rel="noopener"><code>169[.]239[.]128[.]43</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-25T08:08:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/175.124.145.102" target="_blank" rel="noopener"><code>175[.]124[.]145[.]102</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-22T13:48:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/175.41.16.98" target="_blank" rel="noopener"><code>175[.]41[.]16[.]98</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-12T16:50:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/175.41.21.29" target="_blank" rel="noopener"><code>175[.]41[.]21[.]29</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-13T16:57:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/178.128.171.206" target="_blank" rel="noopener"><code>178[.]128[.]171[.]206</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:54:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/178.16.55.53" target="_blank" rel="noopener"><code>178[.]16[.]55[.]53</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-20T08:02:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/179.43.186.214" target="_blank" rel="noopener"><code>179[.]43[.]186[.]214</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-29T09:23:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/18.117.254.165" target="_blank" rel="noopener"><code>18[.]117[.]254[.]165</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-06-28T08:57:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/180.76.141.175" target="_blank" rel="noopener"><code>180[.]76[.]141[.]175</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-12-07T16:01:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/182.254.155.23" target="_blank" rel="noopener"><code>182[.]254[.]155[.]23</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-28T04:00:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/182.255.91.104" target="_blank" rel="noopener"><code>182[.]255[.]91[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-23T13:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/182.92.117.223" target="_blank" rel="noopener"><code>182[.]92[.]117[.]223</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-01T07:01:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/185.186.143.111" target="_blank" rel="noopener"><code>185[.]186[.]143[.]111</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-05T22:55:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/185.196.10.121" target="_blank" rel="noopener"><code>185[.]196[.]10[.]121</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-02T10:17:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/185.196.8.18" target="_blank" rel="noopener"><code>185[.]196[.]8[.]18</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-11T22:47:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/191.124.5.229" target="_blank" rel="noopener"><code>191[.]124[.]5[.]229</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-03T07:57:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/191.124.5.50" target="_blank" rel="noopener"><code>191[.]124[.]5[.]50</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-02T07:41:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.227.155.185" target="_blank" rel="noopener"><code>192[.]227[.]155[.]185</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-25T22:30:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.241.133.130" target="_blank" rel="noopener"><code>192[.]241[.]133[.]130</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-22T16:44:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.252.179.24" target="_blank" rel="noopener"><code>192[.]252[.]179[.]24</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-10T19:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/192.252.185.78" target="_blank" rel="noopener"><code>192[.]252[.]185[.]78</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-10T20:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.160.32.138" target="_blank" rel="noopener"><code>193[.]160[.]32[.]138</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-26T07:05:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.201.9.229" target="_blank" rel="noopener"><code>193[.]201[.]9[.]229</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-18T22:32:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.29.13.216" target="_blank" rel="noopener"><code>193[.]29[.]13[.]216</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-23T16:42:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/194.165.16.55" target="_blank" rel="noopener"><code>194[.]165[.]16[.]55</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-03-06T20:55:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/194.37.97.153" target="_blank" rel="noopener"><code>194[.]37[.]97[.]153</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-05T16:53:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/195.178.110.135" target="_blank" rel="noopener"><code>195[.]178[.]110[.]135</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-11T20:01:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/196.251.83.89" target="_blank" rel="noopener"><code>196[.]251[.]83[.]89</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-26T07:39:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/198.98.53.34" target="_blank" rel="noopener"><code>198[.]98[.]53[.]34</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-09-14T22:07:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/20.187.120.42" target="_blank" rel="noopener"><code>20[.]187[.]120[.]42</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-14T06:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/209.38.82.85" target="_blank" rel="noopener"><code>209[.]38[.]82[.]85</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-24T13:48:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/217.154.212.25" target="_blank" rel="noopener"><code>217[.]154[.]212[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-05-28T08:01:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/217.79.243.148" target="_blank" rel="noopener"><code>217[.]79[.]243[.]148</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-15T10:32:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.148.212.176" target="_blank" rel="noopener"><code>23[.]148[.]212[.]176</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-01T13:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.224.152.139" target="_blank" rel="noopener"><code>23[.]224[.]152[.]139</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-10-13T17:43:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/23.227.198.246" target="_blank" rel="noopener"><code>23[.]227[.]198[.]246</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-15T22:26:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/31.70.103.174" target="_blank" rel="noopener"><code>31[.]70[.]103[.]174</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-12T07:55:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/34.92.128.98" target="_blank" rel="noopener"><code>34[.]92[.]128[.]98</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-10T07:18:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/34.92.131.12" target="_blank" rel="noopener"><code>34[.]92[.]131[.]12</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-09-22T11:26:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/35.213.187.40" target="_blank" rel="noopener"><code>35[.]213[.]187[.]40</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-23T15:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/360safeupdate.com" target="_blank" rel="noopener"><code>360safeupdate[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-11-24T11:50:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/37.72.172.110" target="_blank" rel="noopener"><code>37[.]72[.]172[.]110</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-24T22:55:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/38.49.57.15" target="_blank" rel="noopener"><code>38[.]49[.]57[.]15</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-07T20:02:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/38.76.183.197" target="_blank" rel="noopener"><code>38[.]76[.]183[.]197</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-18T07:05:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/38.76.190.209" target="_blank" rel="noopener"><code>38[.]76[.]190[.]209</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-10T13:48:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/39.104.25.164" target="_blank" rel="noopener"><code>39[.]104[.]25[.]164</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-07T10:30:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/39.104.78.25" target="_blank" rel="noopener"><code>39[.]104[.]78[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-12T08:56:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/39.106.205.6" target="_blank" rel="noopener"><code>39[.]106[.]205[.]6</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-16T11:00:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/39.107.242.130" target="_blank" rel="noopener"><code>39[.]107[.]242[.]130</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-08T11:00:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/39.98.48.153" target="_blank" rel="noopener"><code>39[.]98[.]48[.]153</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-10T16:24:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/42.192.21.181" target="_blank" rel="noopener"><code>42[.]192[.]21[.]181</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-07-02T13:06:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.108.51.124" target="_blank" rel="noopener"><code>43[.]108[.]51[.]124</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-05T06:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.136.38.59" target="_blank" rel="noopener"><code>43[.]136[.]38[.]59</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-09-05T21:52:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.138.0.179" target="_blank" rel="noopener"><code>43[.]138[.]0[.]179</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-07-09T19:05:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.138.116.60" target="_blank" rel="noopener"><code>43[.]138[.]116[.]60</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-07T13:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.139.108.161" target="_blank" rel="noopener"><code>43[.]139[.]108[.]161</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-04-06T18:49:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.140.219.182" target="_blank" rel="noopener"><code>43[.]140[.]219[.]182</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-24T05:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.143.229.126" target="_blank" rel="noopener"><code>43[.]143[.]229[.]126</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-04-01T10:24:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.144.19.224" target="_blank" rel="noopener"><code>43[.]144[.]19[.]224</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-07-01T07:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.153.222.28" target="_blank" rel="noopener"><code>43[.]153[.]222[.]28</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-08-23T11:56:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.155.169.245" target="_blank" rel="noopener"><code>43[.]155[.]169[.]245</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-16T12:00:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.155.9.112" target="_blank" rel="noopener"><code>43[.]155[.]9[.]112</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-03T11:48:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.156.63.124" target="_blank" rel="noopener"><code>43[.]156[.]63[.]124</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-19T23:00:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.163.112.217" target="_blank" rel="noopener"><code>43[.]163[.]112[.]217</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-25T00:00:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.12.1.24" target="_blank" rel="noopener"><code>45[.]12[.]1[.]24</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-06T16:43:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.12.1.25" target="_blank" rel="noopener"><code>45[.]12[.]1[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-05T16:45:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.12.1.26" target="_blank" rel="noopener"><code>45[.]12[.]1[.]26</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-05T16:43:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.203.213.168" target="_blank" rel="noopener"><code>45[.]203[.]213[.]168</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-22T15:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.204.216.24" target="_blank" rel="noopener"><code>45[.]204[.]216[.]24</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-08-11T08:01:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.55.36.143" target="_blank" rel="noopener"><code>45[.]55[.]36[.]143</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-20T16:42:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.8.158.25" target="_blank" rel="noopener"><code>45[.]8[.]158[.]25</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-21T16:54:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.87.53.6" target="_blank" rel="noopener"><code>45[.]87[.]53[.]6</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-09T20:00:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.190" target="_blank" rel="noopener"><code>46[.]151[.]182[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-03T15:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.19.140.50" target="_blank" rel="noopener"><code>46[.]19[.]140[.]50</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-29T08:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.250.228.119" target="_blank" rel="noopener"><code>46[.]250[.]228[.]119</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-26T08:05:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.100.87.177" target="_blank" rel="noopener"><code>47[.]100[.]87[.]177</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-03-09T20:54:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.104.248.7" target="_blank" rel="noopener"><code>47[.]104[.]248[.]7</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-04-12T06:34:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.105.69.34" target="_blank" rel="noopener"><code>47[.]105[.]69[.]34</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-03-27T07:57:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.108.180.121" target="_blank" rel="noopener"><code>47[.]108[.]180[.]121</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-08-16T11:38:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.109.23.77" target="_blank" rel="noopener"><code>47[.]109[.]23[.]77</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-04-16T06:43:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.109.48.57" target="_blank" rel="noopener"><code>47[.]109[.]48[.]57</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-13T20:01:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.109.69.135" target="_blank" rel="noopener"><code>47[.]109[.]69[.]135</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-06-01T13:08:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.110.67.64" target="_blank" rel="noopener"><code>47[.]110[.]67[.]64</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-21T20:01:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.113.186.138" target="_blank" rel="noopener"><code>47[.]113[.]186[.]138</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-24T20:00:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.114.83.19" target="_blank" rel="noopener"><code>47[.]114[.]83[.]19</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-22T08:35:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.116.130.234" target="_blank" rel="noopener"><code>47[.]116[.]130[.]234</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-20T08:29:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.116.208.81" target="_blank" rel="noopener"><code>47[.]116[.]208[.]81</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-03-20T12:01:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.120.32.72" target="_blank" rel="noopener"><code>47[.]120[.]32[.]72</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-23T08:04:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.120.46.230" target="_blank" rel="noopener"><code>47[.]120[.]46[.]230</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-01-26T23:00:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.121.135.201" target="_blank" rel="noopener"><code>47[.]121[.]135[.]201</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-10-25T04:00:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.236.149.142" target="_blank" rel="noopener"><code>47[.]236[.]149[.]142</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-17T23:00:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.236.56.15" target="_blank" rel="noopener"><code>47[.]236[.]56[.]15</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-29T12:00:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.90.142.15" target="_blank" rel="noopener"><code>47[.]90[.]142[.]15</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-11-27T19:47:54Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.92.127.53" target="_blank" rel="noopener"><code>47[.]92[.]127[.]53</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-24T13:15:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.92.208.27" target="_blank" rel="noopener"><code>47[.]92[.]208[.]27</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-24T12:00:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.95.207.79" target="_blank" rel="noopener"><code>47[.]95[.]207[.]79</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-09-18T17:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/59.110.28.230" target="_blank" rel="noopener"><code>59[.]110[.]28[.]230</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-11-04T20:01:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/60.247.206.23" target="_blank" rel="noopener"><code>60[.]247[.]206[.]23</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-03-11T07:03:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/62.113.255.12" target="_blank" rel="noopener"><code>62[.]113[.]255[.]12</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-11-22T16:01:01Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/62.204.41.11" target="_blank" rel="noopener"><code>62[.]204[.]41[.]11</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-21T15:09:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/64.227.0.177" target="_blank" rel="noopener"><code>64[.]227[.]0[.]177</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:51:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/64.7.198.58" target="_blank" rel="noopener"><code>64[.]7[.]198[.]58</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-14T10:14:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/68.183.200.63" target="_blank" rel="noopener"><code>68[.]183[.]200[.]63</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-21T16:58:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/68.64.176.42" target="_blank" rel="noopener"><code>68[.]64[.]176[.]42</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-06T16:00:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/77.242.250.36" target="_blank" rel="noopener"><code>77[.]242[.]250[.]36</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-04-15T12:28:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/77.83.36.54" target="_blank" rel="noopener"><code>77[.]83[.]36[.]54</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2021-12-16T10:42:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.134.11.7" target="_blank" rel="noopener"><code>8[.]134[.]11[.]7</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-25T22:12:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.137.114.210" target="_blank" rel="noopener"><code>8[.]137[.]114[.]210</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-11-27T19:47:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.138.222.215" target="_blank" rel="noopener"><code>8[.]138[.]222[.]215</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-09-06T20:01:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.146.227.247" target="_blank" rel="noopener"><code>8[.]146[.]227[.]247</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-15T17:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.152.212.104" target="_blank" rel="noopener"><code>8[.]152[.]212[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-27T07:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.152.99.85" target="_blank" rel="noopener"><code>8[.]152[.]99[.]85</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-07-06T20:00:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.153.97.202" target="_blank" rel="noopener"><code>8[.]153[.]97[.]202</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-12-24T08:00:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.155.0.238" target="_blank" rel="noopener"><code>8[.]155[.]0[.]238</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-10T16:01:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.163.59.20" target="_blank" rel="noopener"><code>8[.]163[.]59[.]20</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-06-10T06:00:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.163.98.217" target="_blank" rel="noopener"><code>8[.]163[.]98[.]217</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-08-26T19:05:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.210.9.201" target="_blank" rel="noopener"><code>8[.]210[.]9[.]201</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-29T10:17:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.212.49.116" target="_blank" rel="noopener"><code>8[.]212[.]49[.]116</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-12-13T11:43:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/80.66.75.9" target="_blank" rel="noopener"><code>80[.]66[.]75[.]9</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-04-23T18:05:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/81.68.225.136" target="_blank" rel="noopener"><code>81[.]68[.]225[.]136</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-01-13T22:28:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/81.70.21.163" target="_blank" rel="noopener"><code>81[.]70[.]21[.]163</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-18T08:03:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/82.156.156.160" target="_blank" rel="noopener"><code>82[.]156[.]156[.]160</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2025-06-20T06:01:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/84.32.188.104" target="_blank" rel="noopener"><code>84[.]32[.]188[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-14T16:59:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/84.32.188.190" target="_blank" rel="noopener"><code>84[.]32[.]188[.]190</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-04-18T18:01:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/85.11.182.104" target="_blank" rel="noopener"><code>85[.]11[.]182[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-09-24T07:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/85.175.101.203" target="_blank" rel="noopener"><code>85[.]175[.]101[.]203</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-06-15T20:53:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/91.238.181.235" target="_blank" rel="noopener"><code>91[.]238[.]181[.]235</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-15T22:13:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/93.185.165.104" target="_blank" rel="noopener"><code>93[.]185[.]165[.]104</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-01T10:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/95.102.34.46" target="_blank" rel="noopener"><code>95[.]102[.]34[.]46</code></a></td>
+          <td>ipv4</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2026-10-03T07:57:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/acroserver.com" target="_blank" rel="noopener"><code>acroserver[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-03-17T22:40:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/action-winds.cfd" target="_blank" rel="noopener"><code>action-winds[.]cfd</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-11T22:47:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/activeservers.net" target="_blank" rel="noopener"><code>activeservers[.]net</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-13T21:13:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/afluix.com" target="_blank" rel="noopener"><code>afluix[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-06-23T17:11:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/agazud.com" target="_blank" rel="noopener"><code>agazud[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-29T10:12:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aginij.com" target="_blank" rel="noopener"><code>aginij[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-06-22T18:35:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/airlinesapp.net" target="_blank" rel="noopener"><code>airlinesapp[.]net</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-10-16T08:49:32Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aksaholdings.com" target="_blank" rel="noopener"><code>aksaholdings[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-11-20T10:32:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alfuhin.com" target="_blank" rel="noopener"><code>alfuhin[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-29T09:56:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/allowedcloud.com" target="_blank" rel="noopener"><code>allowedcloud[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-01-11T10:59:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alojun.com" target="_blank" rel="noopener"><code>alojun[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-08-31T16:32:01Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/amaladin.com" target="_blank" rel="noopener"><code>amaladin[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-27T23:43:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ams-prd-cob.nl" target="_blank" rel="noopener"><code>ams-prd-cob[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-13T19:51:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/anbush.com" target="_blank" rel="noopener"><code>anbush[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-09-29T08:45:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/anushl.com" target="_blank" rel="noopener"><code>anushl[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-05T18:54:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apacheorg.wiki" target="_blank" rel="noopener"><code>apacheorg[.]wiki</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-12-28T02:22:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apeduze.com" target="_blank" rel="noopener"><code>apeduze[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-23T16:44:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/api.office-updates.org" target="_blank" rel="noopener"><code>api[.]office-updates[.]org</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-08-03T10:24:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/appdevtechnology.com" target="_blank" rel="noopener"><code>appdevtechnology[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-02-01T02:21:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/artidomain.com" target="_blank" rel="noopener"><code>artidomain[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-05-08T16:20:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/as.regcssv.com" target="_blank" rel="noopener"><code>as[.]regcssv[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-02-07T10:12:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/asasyz.com" target="_blank" rel="noopener"><code>asasyz[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-29T10:14:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/asdder.com" target="_blank" rel="noopener"><code>asdder[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-08-31T16:32:01Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aspnetcenter.com" target="_blank" rel="noopener"><code>aspnetcenter[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-02-04T19:39:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/asterchildrenshoes.com" target="_blank" rel="noopener"><code>asterchildrenshoes[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-29T12:53:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/astra4512.startdedicated.com" target="_blank" rel="noopener"><code>astra4512[.]startdedicated[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-12-30T11:33:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atechniques.com" target="_blank" rel="noopener"><code>atechniques[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-03-17T19:45:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ateliernow.net" target="_blank" rel="noopener"><code>ateliernow[.]net</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-09-05T19:10:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aualadin.com" target="_blank" rel="noopener"><code>aualadin[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-26T10:09:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/australiansuper.xyz" target="_blank" rel="noopener"><code>australiansuper[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-05-23T12:37:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/avdev.net" target="_blank" rel="noopener"><code>avdev[.]net</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-01-20T11:23:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/azurecloudfire.com" target="_blank" rel="noopener"><code>azurecloudfire[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-01-19T14:15:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/barabezo.com" target="_blank" rel="noopener"><code>barabezo[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-08-31T18:29:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blackandwhiteshoose.com" target="_blank" rel="noopener"><code>blackandwhiteshoose[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2023-01-12T21:56:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blinkij.com" target="_blank" rel="noopener"><code>blinkij[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-22T10:51:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blinkinuf.com" target="_blank" rel="noopener"><code>blinkinuf[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-06-26T10:56:33Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blmdiscount.com" target="_blank" rel="noopener"><code>blmdiscount[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2024-05-15T22:13:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blopik.com" target="_blank" rel="noopener"><code>blopik[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-30T09:51:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/borizhog.com" target="_blank" rel="noopener"><code>borizhog[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-29T08:36:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bornometa.com" target="_blank" rel="noopener"><code>bornometa[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-02-01T10:45:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/brikeb.com" target="_blank" rel="noopener"><code>brikeb[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-03-09T17:18:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bthserv.com" target="_blank" rel="noopener"><code>bthserv[.]com</code></a></td>
+          <td>domain</td>
+          <td>Cobalt Strike</td>
+          <td></td>
+          <td>2022-10-23T13:42:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: VShell &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: VShell</h1>
+<p class="muted">
+  83 indicator(s) attributed to VShell</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/103.115.49.124" target="_blank" rel="noopener"><code>103[.]115[.]49[.]124</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T07:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/117.72.175.125" target="_blank" rel="noopener"><code>117[.]72[.]175[.]125</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2025-11-03T12:08:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/120.53.84.98" target="_blank" rel="noopener"><code>120[.]53[.]84[.]98</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T17:05:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/120.79.22.70" target="_blank" rel="noopener"><code>120[.]79[.]22[.]70</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T07:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/124.221.179.152" target="_blank" rel="noopener"><code>124[.]221[.]179[.]152</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T17:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/148.66.17.126" target="_blank" rel="noopener"><code>148[.]66[.]17[.]126</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T23:05:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/154.89.152.200" target="_blank" rel="noopener"><code>154[.]89[.]152[.]200</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T20:15:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/158.94.209.99" target="_blank" rel="noopener"><code>158[.]94[.]209[.]99</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T23:05:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/207.57.121.71" target="_blank" rel="noopener"><code>207[.]57[.]121[.]71</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T07:05:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.242.128.150" target="_blank" rel="noopener"><code>43[.]242[.]128[.]150</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T07:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.192.213.15" target="_blank" rel="noopener"><code>45[.]192[.]213[.]15</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T07:05:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.42.40.55" target="_blank" rel="noopener"><code>45[.]42[.]40[.]55</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T05:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.111.118.251" target="_blank" rel="noopener"><code>47[.]111[.]118[.]251</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T05:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/49.235.134.179" target="_blank" rel="noopener"><code>49[.]235[.]134[.]179</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T18:10:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/49.235.158.141" target="_blank" rel="noopener"><code>49[.]235[.]158[.]141</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T15:05:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/8.137.35.137" target="_blank" rel="noopener"><code>8[.]137[.]35[.]137</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T18:05:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/03db2418a467c819bc6077359aba04b5ba6cd4cb" target="_blank" rel="noopener"><code>03db2418a467c819bc6077359aba04b5ba6cd4cb</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/071d10ae47c1f2b8622577937d2beca3" target="_blank" rel="noopener"><code>071d10ae47c1f2b8622577937d2beca3</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:21Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0f33cc2ca158f916e0f6e4f1e020f05e" target="_blank" rel="noopener"><code>0f33cc2ca158f916e0f6e4f1e020f05e</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:13Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/137413a0ab6691e6ad52963e078f17a1f7817148ccdf7fa4ce462f49a5fcde25" target="_blank" rel="noopener"><code>137413a0ab6691e6ad52963e078f17a1f7817148ccdf7fa4ce462f49a5fcde25</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T02:46:10Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/164e0a5cd3e348b678c30a0f1f28c331d3744cce" target="_blank" rel="noopener"><code>164e0a5cd3e348b678c30a0f1f28c331d3744cce</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:38:59Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/194382ff3461ff609cbc721c18349ecb" target="_blank" rel="noopener"><code>194382ff3461ff609cbc721c18349ecb</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:00Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1a751cf6fdd0cda9148b2db6be136616" target="_blank" rel="noopener"><code>1a751cf6fdd0cda9148b2db6be136616</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:26Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1f870a310834f3389d87b9ad5f20b07545629e0e" target="_blank" rel="noopener"><code>1f870a310834f3389d87b9ad5f20b07545629e0e</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:15Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2351f5744b77f7cff494b42dea0bfe4193b35bd8" target="_blank" rel="noopener"><code>2351f5744b77f7cff494b42dea0bfe4193b35bd8</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/236ed5d47571a5e9857e88e995ca3186" target="_blank" rel="noopener"><code>236ed5d47571a5e9857e88e995ca3186</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2530c7d2c59b8b12e27d8a2d4ff382659c5d5f14" target="_blank" rel="noopener"><code>2530c7d2c59b8b12e27d8a2d4ff382659c5d5f14</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:28Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2c29a982d9e31dde74fb0268a07ca3f0daef3485" target="_blank" rel="noopener"><code>2c29a982d9e31dde74fb0268a07ca3f0daef3485</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:01Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3643e7b7d3f8c293f419a3ebeba6d5c1786618f8" target="_blank" rel="noopener"><code>3643e7b7d3f8c293f419a3ebeba6d5c1786618f8</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-09-29T20:56:52Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/399ef79f1146f1f96c589d061b4c6d7b1b5bdba9b7bd679abd9b5a2653e52abf" target="_blank" rel="noopener"><code>399ef79f1146f1f96c589d061b4c6d7b1b5bdba9b7bd679abd9b5a2653e52abf</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T08:46:34Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3a91a3a45a3f8bd79e42b9c9b1c90f7d" target="_blank" rel="noopener"><code>3a91a3a45a3f8bd79e42b9c9b1c90f7d</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:59:47Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/43a31b73270709158e38ddaeee51f84b2a0e67f7" target="_blank" rel="noopener"><code>43a31b73270709158e38ddaeee51f84b2a0e67f7</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:21Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/44b68a5dc489e38bcca704342c60eaa3" target="_blank" rel="noopener"><code>44b68a5dc489e38bcca704342c60eaa3</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:19Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/468fd4821b88c4236276a5b9a1ab37d7c51fe131" target="_blank" rel="noopener"><code>468fd4821b88c4236276a5b9a1ab37d7c51fe131</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:26Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4ddaff017607c53607551d6d328c08aa" target="_blank" rel="noopener"><code>4ddaff017607c53607551d6d328c08aa</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:14Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4fbf96d20382328011ac362e5f2f60a825a3c456" target="_blank" rel="noopener"><code>4fbf96d20382328011ac362e5f2f60a825a3c456</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:30Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/58d2efc9e8dc3c9764e58ce3fe5f0e65d67d49b5" target="_blank" rel="noopener"><code>58d2efc9e8dc3c9764e58ce3fe5f0e65d67d49b5</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:29Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5aec4cf6d50b41c6c3477ff429184fe90d65a5c328ea3ea0ac29c6bed029cf83" target="_blank" rel="noopener"><code>5aec4cf6d50b41c6c3477ff429184fe90d65a5c328ea3ea0ac29c6bed029cf83</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T02:46:11Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/602c47adbca46b1ad2127e2bfebb1280756f65af" target="_blank" rel="noopener"><code>602c47adbca46b1ad2127e2bfebb1280756f65af</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/629bcd0d42d9d3fdcd6176700332c43b5c704f97" target="_blank" rel="noopener"><code>629bcd0d42d9d3fdcd6176700332c43b5c704f97</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:14Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/634c771e7cca5a60e98def6c1827dfac" target="_blank" rel="noopener"><code>634c771e7cca5a60e98def6c1827dfac</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:15Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/653ff40b9c10e44b5a4238d82d0ec0a6" target="_blank" rel="noopener"><code>653ff40b9c10e44b5a4238d82d0ec0a6</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-09-29T20:56:53Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6fe69e1d0ca60ffa633c86374f962c74" target="_blank" rel="noopener"><code>6fe69e1d0ca60ffa633c86374f962c74</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:27Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/723ef6c0cfe1bba47ffea59beb16d14d" target="_blank" rel="noopener"><code>723ef6c0cfe1bba47ffea59beb16d14d</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:30Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/77ba073872144434b057a0b827b4adfaf8e0ca63" target="_blank" rel="noopener"><code>77ba073872144434b057a0b827b4adfaf8e0ca63</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:38:57Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7d7792af4bc247d434a2a743e0d61dba" target="_blank" rel="noopener"><code>7d7792af4bc247d434a2a743e0d61dba</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:06Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7eab214c8f45ffba3e38ca12da1f3903" target="_blank" rel="noopener"><code>7eab214c8f45ffba3e38ca12da1f3903</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:02Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8234427b6af938569449c28a97e7e4ba" target="_blank" rel="noopener"><code>8234427b6af938569449c28a97e7e4ba</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/855e1ea9659ace7554831848784718574b46bcda" target="_blank" rel="noopener"><code>855e1ea9659ace7554831848784718574b46bcda</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:00Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/899da62728f6d0dfd3fe7f0dd6cee595" target="_blank" rel="noopener"><code>899da62728f6d0dfd3fe7f0dd6cee595</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:18Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8ce80aaa7f59f63a115a0bd99c2a7796" target="_blank" rel="noopener"><code>8ce80aaa7f59f63a115a0bd99c2a7796</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:12Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/91ade8fc3cead6276f054d564b5a321d" target="_blank" rel="noopener"><code>91ade8fc3cead6276f054d564b5a321d</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:28Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9a1f1c5918d3a99ca97d75f01730cbf1" target="_blank" rel="noopener"><code>9a1f1c5918d3a99ca97d75f01730cbf1</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:01Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9d16ab90057bb4de193680a306b967305d42fdc9" target="_blank" rel="noopener"><code>9d16ab90057bb4de193680a306b967305d42fdc9</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a373126d412c277c86735cb62649c5ecd28a5181" target="_blank" rel="noopener"><code>a373126d412c277c86735cb62649c5ecd28a5181</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:14Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a664ac390da1349e3596d58e4e7a94080ee73663" target="_blank" rel="noopener"><code>a664ac390da1349e3596d58e4e7a94080ee73663</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:30Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ab42877d03155a4b5a5cc662e1d86df4c00201281b357fae9d2463827bf0de61" target="_blank" rel="noopener"><code>ab42877d03155a4b5a5cc662e1d86df4c00201281b357fae9d2463827bf0de61</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-03T19:46:41Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b295cdcdd65caf39f3a9bb72f0b7acf6" target="_blank" rel="noopener"><code>b295cdcdd65caf39f3a9bb72f0b7acf6</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:25Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bdea1cf2773e57edee7aa289cebed3fca5fffaa3" target="_blank" rel="noopener"><code>bdea1cf2773e57edee7aa289cebed3fca5fffaa3</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/beba98e5200d0580e7085436b270f536" target="_blank" rel="noopener"><code>beba98e5200d0580e7085436b270f536</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:15Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c102a2e3889784f08640daede2cacc03" target="_blank" rel="noopener"><code>c102a2e3889784f08640daede2cacc03</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:38:59Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c2c1c6849bab13d78bc6780f11ccb2afd39299e0" target="_blank" rel="noopener"><code>c2c1c6849bab13d78bc6780f11ccb2afd39299e0</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:39:00Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c3c9eeb02eba86801f64f666cd2f73c163c5e4bc65f9dc05d8d03ec5aa3e7245" target="_blank" rel="noopener"><code>c3c9eeb02eba86801f64f666cd2f73c163c5e4bc65f9dc05d8d03ec5aa3e7245</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-09-30T05:50:26Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c70c574562708a7cf41df894f10d2516" target="_blank" rel="noopener"><code>c70c574562708a7cf41df894f10d2516</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:31Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ce54add58a79f1effff1485edbfe410676d08c9d" target="_blank" rel="noopener"><code>ce54add58a79f1effff1485edbfe410676d08c9d</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:25Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/cf2eae73377cb2fba1d99dd5832909faf9046750" target="_blank" rel="noopener"><code>cf2eae73377cb2fba1d99dd5832909faf9046750</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:19Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d20506ee2979bc603ee21f68605626f8" target="_blank" rel="noopener"><code>d20506ee2979bc603ee21f68605626f8</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-01T16:38:58Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d71f57b91933c06ff11a14762b17794ee7caa934" target="_blank" rel="noopener"><code>d71f57b91933c06ff11a14762b17794ee7caa934</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:13Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/df61d42258401d0116e4054b9c1c2d4c28fd1b39" target="_blank" rel="noopener"><code>df61d42258401d0116e4054b9c1c2d4c28fd1b39</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:27Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dfa7cdfec52eef50a722413820c63042" target="_blank" rel="noopener"><code>dfa7cdfec52eef50a722413820c63042</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e1b346ce4ac2bae7148be12926e6b990c236b1ae" target="_blank" rel="noopener"><code>e1b346ce4ac2bae7148be12926e6b990c236b1ae</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:31Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e453dd92671fb00bdedbd35b4c82dbf100125b8388a97b47e83acf7816f6ca86" target="_blank" rel="noopener"><code>e453dd92671fb00bdedbd35b4c82dbf100125b8388a97b47e83acf7816f6ca86</code></a></td>
+          <td>sha256</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T20:46:12Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e5259c119b460f9d55d01978a01e428f" target="_blank" rel="noopener"><code>e5259c119b460f9d55d01978a01e428f</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:29Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/efb12cd936ab6f1499ff20a9fcca122f8af7081d" target="_blank" rel="noopener"><code>efb12cd936ab6f1499ff20a9fcca122f8af7081d</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:12Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f67951d7458c0dfb220d17d61890a9f0" target="_blank" rel="noopener"><code>f67951d7458c0dfb220d17d61890a9f0</code></a></td>
+          <td>md5</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fb71d2e81eba80cd7b235ba20182500ac25d4ad4" target="_blank" rel="noopener"><code>fb71d2e81eba80cd7b235ba20182500ac25d4ad4</code></a></td>
+          <td>sha1</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T14:50:18Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F149.88.73.99%3A2222%2F%3Fh%3D149.88.73.99%26p%3D2222%26t%3Dws%26a%3Dw32%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://149[.]88[.]73[.]99:2222/?h=149[.]88[.]73[.]99&amp;p=2222&amp;t=ws&amp;a=w32&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T05:44:58Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F192.255.236.156%3A8084%2F%3Fh%3D192.255.236.156%26p%3D8084%26t%3Dtcp%26a%3Dw64%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://192[.]255[.]236[.]156:8084/?h=192[.]255[.]236[.]156&amp;p=8084&amp;t=tcp&amp;a=w64&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T23:41:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F45.125.32.79%3A6699%2F%3Fh%3D45.125.32.79%26p%3D6699%26t%3Dtcp%26a%3Dw32%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://45[.]125[.]32[.]79:6699/?h=45[.]125[.]32[.]79&amp;p=6699&amp;t=tcp&amp;a=w32&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T17:41:04Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F45.125.32.79%3A6699%2F%3Fh%3D45.125.32.79%26p%3D6699%26t%3Dws%26a%3Dw64%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://45[.]125[.]32[.]79:6699/?h=45[.]125[.]32[.]79&amp;p=6699&amp;t=ws&amp;a=w64&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-02T17:41:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F8.218.2.176%3A8084%2F%3Fh%3D8.218.2.176%26p%3D8084%26t%3Dtcp%26a%3Dw32%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://8[.]218[.]2[.]176:8084/?h=8[.]218[.]2[.]176&amp;p=8084&amp;t=tcp&amp;a=w32&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T02:39:43Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F8.218.2.176%3A8084%2F%3Fh%3D8.218.2.176%26p%3D8084%26t%3Dtcp%26a%3Dw64%26stage%3Dtrue" target="_blank" rel="noopener"><code>hxxp://8[.]218[.]2[.]176:8084/?h=8[.]218[.]2[.]176&amp;p=8084&amp;t=tcp&amp;a=w64&amp;stage=true</code></a></td>
+          <td>url</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-10-04T02:39:56Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/47.94.108.209" target="_blank" rel="noopener"><code>47[.]94[.]108[.]209</code></a></td>
+          <td>ipv4</td>
+          <td>VShell</td>
+          <td></td>
+          <td>2026-06-03T05:55:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

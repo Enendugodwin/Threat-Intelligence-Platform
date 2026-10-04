@@ -1,0 +1,1550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: Unknown Stealer &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: Unknown Stealer</h1>
+<p class="muted">
+  166 indicator(s) attributed to Unknown Stealer</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/8jdjpwka.baby" target="_blank" rel="noopener"><code>8jdjpwka[.]baby</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-04T22:03:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apdhlhs3.xyz" target="_blank" rel="noopener"><code>apdhlhs3[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-04T22:03:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bduwih8.pro" target="_blank" rel="noopener"><code>bduwih8[.]pro</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-04T22:03:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/electronic72.pro" target="_blank" rel="noopener"><code>electronic72[.]pro</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-23T06:34:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fbuytf67.click" target="_blank" rel="noopener"><code>fbuytf67[.]click</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-04T22:03:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fporziolandscaping.com" target="_blank" rel="noopener"><code>fporziolandscaping[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-07-09T15:33:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsderfjs42.com%2F" target="_blank" rel="noopener"><code>hxxps://sderfjs42[.]com/</code></a></td>
+          <td>url</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-02T20:44:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/iqglobalsolutions.co.ke" target="_blank" rel="noopener"><code>iqglobalsolutions[.]co[.]ke</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-07-09T15:33:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/myticket.kwirs.xyz" target="_blank" rel="noopener"><code>myticket[.]kwirs[.]xyz</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2025-12-08T11:34:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/okekjaiw.click" target="_blank" rel="noopener"><code>okekjaiw[.]click</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-04T22:03:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sderfjs42.com" target="_blank" rel="noopener"><code>sderfjs42[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-02T20:44:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsamiksha.com.sg%2Fdata%2Fzoom%2FWindows%2Fdownload.php%2F" target="_blank" rel="noopener"><code>hxxps://samiksha[.]com[.]sg/data/zoom/Windows/download[.]php/</code></a></td>
+          <td>url</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-04T08:39:15Z</td>
+          <td class="num-cell">90</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/1connect-software.de" target="_blank" rel="noopener"><code>1connect-software[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/1connect.pl" target="_blank" rel="noopener"><code>1connect[.]pl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/420zm3.org" target="_blank" rel="noopener"><code>420zm3[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-02T21:24:12Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/7raaz.com" target="_blank" rel="noopener"><code>7raaz[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alchemybeauty.ca" target="_blank" rel="noopener"><code>alchemybeauty[.]ca</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alfabit.hr" target="_blank" rel="noopener"><code>alfabit[.]hr</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alorisk.com" target="_blank" rel="noopener"><code>alorisk[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/americandreamsfoundation.org" target="_blank" rel="noopener"><code>americandreamsfoundation[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/amoysupply.com" target="_blank" rel="noopener"><code>amoysupply[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/anoesh.nl" target="_blank" rel="noopener"><code>anoesh[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apparthub.com" target="_blank" rel="noopener"><code>apparthub[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:34Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/arvanstore.com" target="_blank" rel="noopener"><code>arvanstore[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aryadigitalmarketing.com" target="_blank" rel="noopener"><code>aryadigitalmarketing[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/astutecopyblogging.com" target="_blank" rel="noopener"><code>astutecopyblogging[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bonas.nl" target="_blank" rel="noopener"><code>bonas[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/brainstorm-events.de" target="_blank" rel="noopener"><code>brainstorm-events[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/brittner.net" target="_blank" rel="noopener"><code>brittner[.]net</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bsv-dinslaken.de" target="_blank" rel="noopener"><code>bsv-dinslaken[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bvvaladares.com" target="_blank" rel="noopener"><code>bvvaladares[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/caitlinandcamera.com" target="_blank" rel="noopener"><code>caitlinandcamera[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/care-more-plus.de" target="_blank" rel="noopener"><code>care-more-plus[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cazari-brasov.ro" target="_blank" rel="noopener"><code>cazari-brasov[.]ro</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:35Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/celler-spiesser.de" target="_blank" rel="noopener"><code>celler-spiesser[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ceylonictravels.com" target="_blank" rel="noopener"><code>ceylonictravels[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/chadoichi.com" target="_blank" rel="noopener"><code>chadoichi[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/chateauneuf-du-faou.com" target="_blank" rel="noopener"><code>chateauneuf-du-faou[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/christophburgstedt.de" target="_blank" rel="noopener"><code>christophburgstedt[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/classicalexcursions.com" target="_blank" rel="noopener"><code>classicalexcursions[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cne.paris" target="_blank" rel="noopener"><code>cne[.]paris</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/conceptalk.com" target="_blank" rel="noopener"><code>conceptalk[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:36Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/crustandcream.com" target="_blank" rel="noopener"><code>crustandcream[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ctsignworks.com" target="_blank" rel="noopener"><code>ctsignworks[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/databound.co" target="_blank" rel="noopener"><code>databound[.]co</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dentalmora.com" target="_blank" rel="noopener"><code>dentalmora[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/digitaltigerbd.com" target="_blank" rel="noopener"><code>digitaltigerbd[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dimveterana.com" target="_blank" rel="noopener"><code>dimveterana[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dirtywork.media" target="_blank" rel="noopener"><code>dirtywork[.]media</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dr-melanie-horstmann.de" target="_blank" rel="noopener"><code>dr-melanie-horstmann[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:37Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/drumfluence.com" target="_blank" rel="noopener"><code>drumfluence[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/edeka-kutsche.de" target="_blank" rel="noopener"><code>edeka-kutsche[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/eft-azione.it" target="_blank" rel="noopener"><code>eft-azione[.]it</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/equestrasian.org" target="_blank" rel="noopener"><code>equestrasian[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/esrataskinadiyaman.com" target="_blank" rel="noopener"><code>esrataskinadiyaman[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/estevezmichelena.com" target="_blank" rel="noopener"><code>estevezmichelena[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/etlglobal.co.uk" target="_blank" rel="noopener"><code>etlglobal[.]co[.]uk</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/etta-textservice.de" target="_blank" rel="noopener"><code>etta-textservice[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fdp-telgte.de" target="_blank" rel="noopener"><code>fdp-telgte[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:38Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fiy.cz" target="_blank" rel="noopener"><code>fiy[.]cz</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/funkenwind.de" target="_blank" rel="noopener"><code>funkenwind[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gabfixhomesolutions.com" target="_blank" rel="noopener"><code>gabfixhomesolutions[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gasstationgourmet.com" target="_blank" rel="noopener"><code>gasstationgourmet[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gentlemensmechanical.com" target="_blank" rel="noopener"><code>gentlemensmechanical[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/glasreinigung-melle.de" target="_blank" rel="noopener"><code>glasreinigung-melle[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/globalfoodsafetyresource.com" target="_blank" rel="noopener"><code>globalfoodsafetyresource[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/goinstudios.com" target="_blank" rel="noopener"><code>goinstudios[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/greensite.org" target="_blank" rel="noopener"><code>greensite[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gsimvogelgesang.de" target="_blank" rel="noopener"><code>gsimvogelgesang[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/guanacaste.info" target="_blank" rel="noopener"><code>guanacaste[.]info</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:39Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/halcyonresource.com" target="_blank" rel="noopener"><code>halcyonresource[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hubusontour.de" target="_blank" rel="noopener"><code>hubusontour[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/iac-dueren.de" target="_blank" rel="noopener"><code>iac-dueren[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/imstil.de" target="_blank" rel="noopener"><code>imstil[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jdnsquare.com" target="_blank" rel="noopener"><code>jdnsquare[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/justhr.be" target="_blank" rel="noopener"><code>justhr[.]be</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/k-heck.de" target="_blank" rel="noopener"><code>k-heck[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/katarijewelry.com" target="_blank" rel="noopener"><code>katarijewelry[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kesaria.com" target="_blank" rel="noopener"><code>kesaria[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kgv-eintracht.de" target="_blank" rel="noopener"><code>kgv-eintracht[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/khtshop.com" target="_blank" rel="noopener"><code>khtshop[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kinderopvangdopey.com" target="_blank" rel="noopener"><code>kinderopvangdopey[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/knoxvol.com" target="_blank" rel="noopener"><code>knoxvol[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/konshenglass.com" target="_blank" rel="noopener"><code>konshenglass[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:41Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/krbookstore.com" target="_blank" rel="noopener"><code>krbookstore[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kronebo.dk" target="_blank" rel="noopener"><code>kronebo[.]dk</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/largebreedpuppiesreadyfornowhome.com" target="_blank" rel="noopener"><code>largebreedpuppiesreadyfornowhome[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/laststopsolar.com" target="_blank" rel="noopener"><code>laststopsolar[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lebenslaudatio.de" target="_blank" rel="noopener"><code>lebenslaudatio[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lianacosmetic.com" target="_blank" rel="noopener"><code>lianacosmetic[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/loewenpudel.de" target="_blank" rel="noopener"><code>loewenpudel[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lot204.com" target="_blank" rel="noopener"><code>lot204[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/luxestorebd.com" target="_blank" rel="noopener"><code>luxestorebd[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/maasleather.com" target="_blank" rel="noopener"><code>maasleather[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/magaleria.com" target="_blank" rel="noopener"><code>magaleria[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/marinacolerato.com.br" target="_blank" rel="noopener"><code>marinacolerato[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/marketzest.com" target="_blank" rel="noopener"><code>marketzest[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/midlandsbuggyhire.co.uk" target="_blank" rel="noopener"><code>midlandsbuggyhire[.]co[.]uk</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mindful-karrierecoaching.de" target="_blank" rel="noopener"><code>mindful-karrierecoaching[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mobinnova.com" target="_blank" rel="noopener"><code>mobinnova[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:43Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/moitruongbacninh24h.com" target="_blank" rel="noopener"><code>moitruongbacninh24h[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mossycupfarm.com" target="_blank" rel="noopener"><code>mossycupfarm[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/muehldorf-simbach.de" target="_blank" rel="noopener"><code>muehldorf-simbach[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ndmcorporatesolutions.com" target="_blank" rel="noopener"><code>ndmcorporatesolutions[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nettwark.org" target="_blank" rel="noopener"><code>nettwark[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/newstonerealtygroup.com" target="_blank" rel="noopener"><code>newstonerealtygroup[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nguyenthanhluong.com" target="_blank" rel="noopener"><code>nguyenthanhluong[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nicole.wedler.nl" target="_blank" rel="noopener"><code>nicole[.]wedler[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nukewatch.org" target="_blank" rel="noopener"><code>nukewatch[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:44Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nutritionsecureindy.com" target="_blank" rel="noopener"><code>nutritionsecureindy[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/onthewingsoffood.com" target="_blank" rel="noopener"><code>onthewingsoffood[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ortho-delfzijl.nl" target="_blank" rel="noopener"><code>ortho-delfzijl[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/osmeuspes.pt" target="_blank" rel="noopener"><code>osmeuspes[.]pt</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/otticamoderna.eu" target="_blank" rel="noopener"><code>otticamoderna[.]eu</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/outreachfarmproject.org" target="_blank" rel="noopener"><code>outreachfarmproject[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ozilver.nl" target="_blank" rel="noopener"><code>ozilver[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ozsuteknik.com" target="_blank" rel="noopener"><code>ozsuteknik[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pacifictowers.com" target="_blank" rel="noopener"><code>pacifictowers[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:45Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/paulusgemeinde-raunheim.de" target="_blank" rel="noopener"><code>paulusgemeinde-raunheim[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/payangel.info" target="_blank" rel="noopener"><code>payangel[.]info</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/paystubsetc.com" target="_blank" rel="noopener"><code>paystubsetc[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/praxis-siegeris.de" target="_blank" rel="noopener"><code>praxis-siegeris[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pytacie.pl" target="_blank" rel="noopener"><code>pytacie[.]pl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/restauration-galaxy-tapis.com" target="_blank" rel="noopener"><code>restauration-galaxy-tapis[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rijschoolpegasus.nl" target="_blank" rel="noopener"><code>rijschoolpegasus[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/romancingthebean.com" target="_blank" rel="noopener"><code>romancingthebean[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/runningwithj.com" target="_blank" rel="noopener"><code>runningwithj[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/saigont-shirt.com" target="_blank" rel="noopener"><code>saigont-shirt[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/savingdogsandcats.com" target="_blank" rel="noopener"><code>savingdogsandcats[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/schmidt-russnak.de" target="_blank" rel="noopener"><code>schmidt-russnak[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/seiden-collagen-faden-lifting.com" target="_blank" rel="noopener"><code>seiden-collagen-faden-lifting[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/simenyi.hu" target="_blank" rel="noopener"><code>simenyi[.]hu</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/skraddarnshus.se" target="_blank" rel="noopener"><code>skraddarnshus[.]se</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/smartmedservices.net" target="_blank" rel="noopener"><code>smartmedservices[.]net</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/soundtrk.com" target="_blank" rel="noopener"><code>soundtrk[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sprzataniegrobow.krakow.pl" target="_blank" rel="noopener"><code>sprzataniegrobow[.]krakow[.]pl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:47Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/szendryk-partner.de" target="_blank" rel="noopener"><code>szendryk-partner[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/talentclinics.com" target="_blank" rel="noopener"><code>talentclinics[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/tc-donauwoerth.de" target="_blank" rel="noopener"><code>tc-donauwoerth[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thegrimeguys.com" target="_blank" rel="noopener"><code>thegrimeguys[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thehappycoders.com" target="_blank" rel="noopener"><code>thehappycoders[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/theluxurycruiseadvisors.com" target="_blank" rel="noopener"><code>theluxurycruiseadvisors[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/themilkminimalist.com" target="_blank" rel="noopener"><code>themilkminimalist[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/theplumberinc.com" target="_blank" rel="noopener"><code>theplumberinc[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:48Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/toorangostar.com" target="_blank" rel="noopener"><code>toorangostar[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/topset-coaching.de" target="_blank" rel="noopener"><code>topset-coaching[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/underthebooth.com" target="_blank" rel="noopener"><code>underthebooth[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/undoism.org" target="_blank" rel="noopener"><code>undoism[.]org</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/unser-dorf-lietzow.de" target="_blank" rel="noopener"><code>unser-dorf-lietzow[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/upsolutservice.de" target="_blank" rel="noopener"><code>upsolutservice[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/urlaubsdomizil-binz.de" target="_blank" rel="noopener"><code>urlaubsdomizil-binz[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/verifiedstats.net" target="_blank" rel="noopener"><code>verifiedstats[.]net</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/visco-foam.com" target="_blank" rel="noopener"><code>visco-foam[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vivasicurezza.com" target="_blank" rel="noopener"><code>vivasicurezza[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wagahattourist.com" target="_blank" rel="noopener"><code>wagahattourist[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wahlplakate-archiv.de" target="_blank" rel="noopener"><code>wahlplakate-archiv[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wakeeup.com" target="_blank" rel="noopener"><code>wakeeup[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wcpot.net" target="_blank" rel="noopener"><code>wcpot[.]net</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/xn--12ct4ap8bj4eva5b4gxe.com" target="_blank" rel="noopener"><code>xn--12ct4ap8bj4eva5b4gxe[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/yildirimotoaksesuar.com" target="_blank" rel="noopener"><code>yildirimotoaksesuar[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:50Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/yoga-fuer-maenner.de" target="_blank" rel="noopener"><code>yoga-fuer-maenner[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/youhityourgoal.com" target="_blank" rel="noopener"><code>youhityourgoal[.]com</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zahnschirm.de" target="_blank" rel="noopener"><code>zahnschirm[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zekerzit.nl" target="_blank" rel="noopener"><code>zekerzit[.]nl</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zhang-ramen.de" target="_blank" rel="noopener"><code>zhang-ramen[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zwergennest-ulm.de" target="_blank" rel="noopener"><code>zwergennest-ulm[.]de</code></a></td>
+          <td>domain</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-09-17T09:42:51Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

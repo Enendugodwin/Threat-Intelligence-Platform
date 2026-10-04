@@ -1,4 +1,15 @@
-from tip.normalize import defang, detect_type, host_from_url, is_public, make_ioc, norm_ts, refang, virustotal_url
+from tip.normalize import (
+    attack_url,
+    defang,
+    detect_type,
+    host_from_url,
+    is_public,
+    make_ioc,
+    norm_ts,
+    refang,
+    slugify,
+    virustotal_url,
+)
 
 
 def test_refang_and_defang():
@@ -64,3 +75,10 @@ def test_virustotal_url():
     url_link = virustotal_url("url", "hxxp://evil[.]com/a b")
     assert url_link.startswith("https://www.virustotal.com/gui/search/")
     assert " " not in url_link
+
+
+def test_slugify_and_attack_url():
+    assert slugify("RedLine Stealer!") == "redline-stealer"
+    assert slugify("") == "unknown"
+    assert attack_url("T1071.001") == "https://attack.mitre.org/techniques/T1071/001/"
+    assert attack_url("T1055") == "https://attack.mitre.org/techniques/T1055/"

@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: Vidar &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:55:35Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: Vidar</h1>
+<p class="muted">
+  155 indicator(s) attributed to Vidar</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/188.245.231.9" target="_blank" rel="noopener"><code>188[.]245[.]231[.]9</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/217.60.102.236" target="_blank" rel="noopener"><code>217[.]60[.]102[.]236</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/217.60.103.200" target="_blank" rel="noopener"><code>217[.]60[.]103[.]200</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/37.27.146.241" target="_blank" rel="noopener"><code>37[.]27[.]146[.]241</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/37.27.157.157" target="_blank" rel="noopener"><code>37[.]27[.]157[.]157</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/46.224.172.14" target="_blank" rel="noopener"><code>46[.]224[.]172[.]14</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/91.92.243.218" target="_blank" rel="noopener"><code>91[.]92[.]243[.]218</code></a></td>
+          <td>ipv4</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:23:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/al.333pwk.org" target="_blank" rel="noopener"><code>al[.]333pwk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/al.396zk.net" target="_blank" rel="noopener"><code>al[.]396zk[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cyy.turbo88ml.top" target="_blank" rel="noopener"><code>cyy[.]turbo88ml[.]top</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-23T22:00:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dzdi.serendipityhub.space" target="_blank" rel="noopener"><code>dzdi[.]serendipityhub[.]space</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-07T07:46:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/frr.ambil-disini.web.id" target="_blank" rel="noopener"><code>frr[.]ambil-disini[.]web[.]id</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-01T14:30:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gl.333pwk.org" target="_blank" rel="noopener"><code>gl[.]333pwk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gl.396zk.net" target="_blank" rel="noopener"><code>gl[.]396zk[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gor.emiraride.com" target="_blank" rel="noopener"><code>gor[.]emiraride[.]com</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-02-13T14:01:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hor.kaitorinihon.jp" target="_blank" rel="noopener"><code>hor[.]kaitorinihon[.]jp</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-03T16:13:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F104.105.28.52" target="_blank" rel="noopener"><code>hxxps://104[.]105[.]28[.]52</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T06:03:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F104.105.9.5" target="_blank" rel="noopener"><code>hxxps://104[.]105[.]9[.]5</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T20:44:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F139.162.175.187" target="_blank" rel="noopener"><code>hxxps://139[.]162[.]175[.]187</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T16:47:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F188.245.231.9%2F" target="_blank" rel="noopener"><code>hxxps://188[.]245[.]231[.]9/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F192.142.37.129" target="_blank" rel="noopener"><code>hxxps://192[.]142[.]37[.]129</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-19T05:52:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F2.29.15.189" target="_blank" rel="noopener"><code>hxxps://2[.]29[.]15[.]189</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F2.29.7.186" target="_blank" rel="noopener"><code>hxxps://2[.]29[.]7[.]186</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.102.185" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]102[.]185</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T17:28:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.102.236" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]102[.]236</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T08:27:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.102.236%2F" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]102[.]236/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.103.158" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]103[.]158</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-27T06:38:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.103.200" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]103[.]200</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T09:38:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F217.60.103.200%2F" target="_blank" rel="noopener"><code>hxxps://217[.]60[.]103[.]200/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F31.15.17.99" target="_blank" rel="noopener"><code>hxxps://31[.]15[.]17[.]99</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T05:17:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F31.58.181.194" target="_blank" rel="noopener"><code>hxxps://31[.]58[.]181[.]194</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-28T14:20:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F37.27.146.241%2F" target="_blank" rel="noopener"><code>hxxps://37[.]27[.]146[.]241/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F37.27.157.157%2F" target="_blank" rel="noopener"><code>hxxps://37[.]27[.]157[.]157/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F46.224.172.14%2F" target="_blank" rel="noopener"><code>hxxps://46[.]224[.]172[.]14/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F62.238.126.31" target="_blank" rel="noopener"><code>hxxps://62[.]238[.]126[.]31</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T15:30:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F62.238.98.77" target="_blank" rel="noopener"><code>hxxps://62[.]238[.]98[.]77</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-29T16:36:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F65.108.13.120" target="_blank" rel="noopener"><code>hxxps://65[.]108[.]13[.]120</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F91.92.243.218%2F" target="_blank" rel="noopener"><code>hxxps://91[.]92[.]243[.]218/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F95.216.174.89" target="_blank" rel="noopener"><code>hxxps://95[.]216[.]174[.]89</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Faf.332toto.net" target="_blank" rel="noopener"><code>hxxps://af[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T08:14:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Faf.369jk.org" target="_blank" rel="noopener"><code>hxxps://af[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T08:14:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fal.333pwk.org" target="_blank" rel="noopener"><code>hxxps://al[.]333pwk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T07:17:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fal.333pwk.org%2F" target="_blank" rel="noopener"><code>hxxps://al[.]333pwk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fal.396zk.net" target="_blank" rel="noopener"><code>hxxps://al[.]396zk[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:00:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fal.396zk.net%2F" target="_blank" rel="noopener"><code>hxxps://al[.]396zk[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Faz.hg77.org" target="_blank" rel="noopener"><code>hxxps://az[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbg.177betwin.org" target="_blank" rel="noopener"><code>hxxps://bg[.]177betwin[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbh.32naga.net" target="_blank" rel="noopener"><code>hxxps://bh[.]32naga[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-29T06:28:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbh.5-rt.org" target="_blank" rel="noopener"><code>hxxps://bh[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T06:01:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbw.32naga.net" target="_blank" rel="noopener"><code>hxxps://bw[.]32naga[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T05:49:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbw.5-rt.org" target="_blank" rel="noopener"><code>hxxps://bw[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T08:15:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcyy.turbo88ml.top%2F" target="_blank" rel="noopener"><code>hxxps://cyy[.]turbo88ml[.]top/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-23T22:00:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fed.32naga.net" target="_blank" rel="noopener"><code>hxxps://ed[.]32naga[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-29T12:10:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fed.5-rt.org" target="_blank" rel="noopener"><code>hxxps://ed[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-29T06:28:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffrr.ambil-disini.web.id%2F" target="_blank" rel="noopener"><code>hxxps://frr[.]ambil-disini[.]web[.]id/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-01T14:30:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fge.hg77.org" target="_blank" rel="noopener"><code>hxxps://ge[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgl.333pwk.org%2F" target="_blank" rel="noopener"><code>hxxps://gl[.]333pwk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgl.396zk.net%2F" target="_blank" rel="noopener"><code>hxxps://gl[.]396zk[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgor.emiraride.com%2F" target="_blank" rel="noopener"><code>hxxps://gor[.]emiraride[.]com/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-02-13T14:01:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgt.234-e.com" target="_blank" rel="noopener"><code>hxxps://gt[.]234-e[.]com</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-24T08:07:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhj.234-e.com" target="_blank" rel="noopener"><code>hxxps://hj[.]234-e[.]com</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T15:06:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhor.kaitorinihon.jp%2F" target="_blank" rel="noopener"><code>hxxps://hor[.]kaitorinihon[.]jp/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-03T16:12:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fip.333pwk.org%2F" target="_blank" rel="noopener"><code>hxxps://ip[.]333pwk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fip.396zk.net" target="_blank" rel="noopener"><code>hxxps://ip[.]396zk[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T10:41:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fip.396zk.net%2F" target="_blank" rel="noopener"><code>hxxps://ip[.]396zk[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T10:25:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fji.27trans.org" target="_blank" rel="noopener"><code>hxxps://ji[.]27trans[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-27T06:43:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fji.5-rt.org" target="_blank" rel="noopener"><code>hxxps://ji[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-28T18:39:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fk3.zk89.net" target="_blank" rel="noopener"><code>hxxps://k3[.]zk89[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-16T16:43:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkh.333pwk.org%2F" target="_blank" rel="noopener"><code>hxxps://kh[.]333pwk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T12:55:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkh.396zk.net" target="_blank" rel="noopener"><code>hxxps://kh[.]396zk[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T13:27:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkh.396zk.net%2F" target="_blank" rel="noopener"><code>hxxps://kh[.]396zk[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T12:55:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fku.16dewaslot.org" target="_blank" rel="noopener"><code>hxxps://ku[.]16dewaslot[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:20:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Flb.334v.org" target="_blank" rel="noopener"><code>hxxps://lb[.]334v[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Flo.332toto.net" target="_blank" rel="noopener"><code>hxxps://lo[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T05:17:44Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Flo.369jk.org" target="_blank" rel="noopener"><code>hxxps://lo[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T05:17:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fma.1hoki.org" target="_blank" rel="noopener"><code>hxxps://ma[.]1hoki[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-19T06:25:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fma.zk89.net" target="_blank" rel="noopener"><code>hxxps://ma[.]zk89[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-18T17:23:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmpd.pegasus-77.biz.id%2F" target="_blank" rel="noopener"><code>hxxps://mpd[.]pegasus-77[.]biz[.]id/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-11T23:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fms.hg77.org" target="_blank" rel="noopener"><code>hxxps://ms[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnu.234-e.com" target="_blank" rel="noopener"><code>hxxps://nu[.]234-e[.]com</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnw.hg77.org" target="_blank" rel="noopener"><code>hxxps://nw[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:11Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnx.hg77.org" target="_blank" rel="noopener"><code>hxxps://nx[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:10Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Foi.hg77.org" target="_blank" rel="noopener"><code>hxxps://oi[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-20T14:52:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpgo.fatherchrismas.com%2F" target="_blank" rel="noopener"><code>hxxps://pgo[.]fatherchrismas[.]com/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-15T16:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpre.hifive.net.au%2F" target="_blank" rel="noopener"><code>hxxps://pre[.]hifive[.]net[.]au/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-13T07:46:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpz.32naga.net" target="_blank" rel="noopener"><code>hxxps://pz[.]32naga[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-29T06:28:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpz.5-rt.org" target="_blank" rel="noopener"><code>hxxps://pz[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T05:49:44Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frx.fabiankorte.net%2F" target="_blank" rel="noopener"><code>hxxps://rx[.]fabiankorte[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2025-11-12T09:18:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frz.333pwk.org" target="_blank" rel="noopener"><code>hxxps://rz[.]333pwk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T06:04:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frz.333pwk.org%2F" target="_blank" rel="noopener"><code>hxxps://rz[.]333pwk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T06:04:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frz.396zk.net" target="_blank" rel="noopener"><code>hxxps://rz[.]396zk[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T06:04:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frz.396zk.net%2F" target="_blank" rel="noopener"><code>hxxps://rz[.]396zk[.]net/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:21:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsm.27trans.org" target="_blank" rel="noopener"><code>hxxps://sm[.]27trans[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-27T18:16:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsm.5-rt.org" target="_blank" rel="noopener"><code>hxxps://sm[.]5-rt[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-28T06:08:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsm.hg77.org" target="_blank" rel="noopener"><code>hxxps://sm[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fst.332toto.net" target="_blank" rel="noopener"><code>hxxps://st[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T06:30:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fst.369jk.org" target="_blank" rel="noopener"><code>hxxps://st[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T06:30:52Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fti.332toto.net" target="_blank" rel="noopener"><code>hxxps://ti[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T20:44:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fti.369jk.org" target="_blank" rel="noopener"><code>hxxps://ti[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T20:44:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fti.369jk.org%2F" target="_blank" rel="noopener"><code>hxxps://ti[.]369jk[.]org/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T16:50:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fup.332toto.net" target="_blank" rel="noopener"><code>hxxps://up[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T05:17:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fup.369jk.org" target="_blank" rel="noopener"><code>hxxps://up[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T05:17:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fx2.332toto.net" target="_blank" rel="noopener"><code>hxxps://x2[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T14:49:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fx2.369jk.org" target="_blank" rel="noopener"><code>hxxps://x2[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-30T17:06:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fxd.hg77.org" target="_blank" rel="noopener"><code>hxxps://xd[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-20T16:36:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fxx.234-e.com" target="_blank" rel="noopener"><code>hxxps://xx[.]234-e[.]com</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T15:32:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fxx.hg77.org" target="_blank" rel="noopener"><code>hxxps://xx[.]hg77[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fze.zk89.net" target="_blank" rel="noopener"><code>hxxps://ze[.]zk89[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T12:13:08Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzi.332toto.net" target="_blank" rel="noopener"><code>hxxps://zi[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T11:03:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzi.369jk.org" target="_blank" rel="noopener"><code>hxxps://zi[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T11:03:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzu.332toto.net" target="_blank" rel="noopener"><code>hxxps://zu[.]332toto[.]net</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T08:27:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzu.369jk.org" target="_blank" rel="noopener"><code>hxxps://zu[.]369jk[.]org</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T06:31:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ip.333pwk.org" target="_blank" rel="noopener"><code>ip[.]333pwk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ip.396zk.net" target="_blank" rel="noopener"><code>ip[.]396zk[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T10:25:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kh.333pwk.org" target="_blank" rel="noopener"><code>kh[.]333pwk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T12:55:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kh.396zk.net" target="_blank" rel="noopener"><code>kh[.]396zk[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T12:55:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mpd.pegasus-77.biz.id" target="_blank" rel="noopener"><code>mpd[.]pegasus-77[.]biz[.]id</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-11T23:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pgo.fatherchrismas.com" target="_blank" rel="noopener"><code>pgo[.]fatherchrismas[.]com</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-15T16:00:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pillow.riverbridge.site" target="_blank" rel="noopener"><code>pillow[.]riverbridge[.]site</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-26T18:19:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pizzadoughrollers.ca" target="_blank" rel="noopener"><code>pizzadoughrollers[.]ca</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-05-23T14:56:41Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pre.hifive.net.au" target="_blank" rel="noopener"><code>pre[.]hifive[.]net[.]au</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-13T07:47:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rx.fabiankorte.net" target="_blank" rel="noopener"><code>rx[.]fabiankorte[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2025-11-12T09:18:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rz.333pwk.org" target="_blank" rel="noopener"><code>rz[.]333pwk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rz.396zk.net" target="_blank" rel="noopener"><code>rz[.]396zk[.]net</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T08:22:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ti.369jk.org" target="_blank" rel="noopener"><code>ti[.]369jk[.]org</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T16:50:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/44bdbca84c5f19a0ffb8de604e8e1a8955df0f63ad51857ffcb221b08d8a8c31" target="_blank" rel="noopener"><code>44bdbca84c5f19a0ffb8de604e8e1a8955df0f63ad51857ffcb221b08d8a8c31</code></a></td>
+          <td>sha256</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T16:38:54Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b86bf1bc0b338393dd215feca2f3cf46955740ea" target="_blank" rel="noopener"><code>b86bf1bc0b338393dd215feca2f3cf46955740ea</code></a></td>
+          <td>sha1</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T16:38:55Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d0da9dbfb87faa44f1c30c146bf845bb" target="_blank" rel="noopener"><code>d0da9dbfb87faa44f1c30c146bf845bb</code></a></td>
+          <td>md5</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-01T16:38:55Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/17.aa.4t.com" target="_blank" rel="noopener"><code>17[.]aa[.]4t[.]com</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2025-06-30T07:56:18Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ask.shurimaster.com" target="_blank" rel="noopener"><code>ask[.]shurimaster[.]com</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-17T17:13:27Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dzodu.sparklingideas.space" target="_blank" rel="noopener"><code>dzodu[.]sparklingideas[.]space</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-14T14:11:23Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gusto.brothbridge.space" target="_blank" rel="noopener"><code>gusto[.]brothbridge[.]space</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-16T11:16:20Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdzdi.serendipityhub.space" target="_blank" rel="noopener"><code>hxxp://dzdi[.]serendipityhub[.]space</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T10:18:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdzodu.sparklingideas.space" target="_blank" rel="noopener"><code>hxxp://dzodu[.]sparklingideas[.]space</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-14T14:11:18Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fgusto.brothbridge.space" target="_blank" rel="noopener"><code>hxxp://gusto[.]brothbridge[.]space</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-16T11:16:17Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fpillow.riverbridge.site" target="_blank" rel="noopener"><code>hxxp://pillow[.]riverbridge[.]site</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-26T19:14:08Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fvenom.summertunnel.shop" target="_blank" rel="noopener"><code>hxxp://venom[.]summertunnel[.]shop</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-15T08:15:13Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwrath.bottlevacuum.shop" target="_blank" rel="noopener"><code>hxxp://wrath[.]bottlevacuum[.]shop</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-22T11:17:09Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F104.105.28.246" target="_blank" rel="noopener"><code>hxxps://104[.]105[.]28[.]246</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T19:05:20Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F17.aa.4t.com" target="_blank" rel="noopener"><code>hxxps://17[.]aa[.]4t[.]com</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2025-06-30T07:56:18Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F172.239.247.200" target="_blank" rel="noopener"><code>hxxps://172[.]239[.]247[.]200</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-04T16:15:28Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F79.133.42.171" target="_blank" rel="noopener"><code>hxxps://79[.]133[.]42[.]171</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-03T20:00:33Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F95.217.241.133" target="_blank" rel="noopener"><code>hxxps://95[.]217[.]241[.]133</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-09-26T10:16:15Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fask.shurimaster.com%2F" target="_blank" rel="noopener"><code>hxxps://ask[.]shurimaster[.]com/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-17T17:13:25Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcommunity.fandom.com%2Fwikia.php%3Fcontroller%3DUserProfile%26method%3DgetUserData%26format%3Djson%26userId%3D64444700" target="_blank" rel="noopener"><code>hxxps://community[.]fandom[.]com/wikia[.]php?controller=UserProfile&amp;method=getUserData&amp;format=json&amp;userId=64444700</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T19:05:23Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fk1h.hopesm188.top%2F" target="_blank" rel="noopener"><code>hxxps://k1h[.]hopesm188[.]top/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-06-26T12:25:15Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpas.sm188star.top%2F" target="_blank" rel="noopener"><code>hxxps://pas[.]sm188star[.]top/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-06-06T05:24:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpsy.flise-mesteren.dk%2F" target="_blank" rel="noopener"><code>hxxps://psy[.]flise-mesteren[.]dk/</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-24T15:18:01Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsteamcommunity.com%2Fprofiles%2F76561198630398488" target="_blank" rel="noopener"><code>hxxps://steamcommunity[.]com/profiles/76561198630398488</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T19:05:24Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftelegram.me%2Fbj00tyr" target="_blank" rel="noopener"><code>hxxps://telegram[.]me/bj00tyr</code></a></td>
+          <td>url</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-02T19:05:21Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/k1h.hopesm188.top" target="_blank" rel="noopener"><code>k1h[.]hopesm188[.]top</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-06-26T12:25:15Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pas.sm188star.top" target="_blank" rel="noopener"><code>pas[.]sm188star[.]top</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-06-06T05:24:31Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/psy.flise-mesteren.dk" target="_blank" rel="noopener"><code>psy[.]flise-mesteren[.]dk</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-24T15:18:06Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/venom.summertunnel.shop" target="_blank" rel="noopener"><code>venom[.]summertunnel[.]shop</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-15T08:15:17Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wrath.bottlevacuum.shop" target="_blank" rel="noopener"><code>wrath[.]bottlevacuum[.]shop</code></a></td>
+          <td>domain</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-04-22T11:17:13Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:55:35Z UTC</span></p>
+</footer>
+</body>
+</html>

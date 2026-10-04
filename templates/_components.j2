@@ -30,8 +30,8 @@
 {% set max_total = (by_type | map(attribute='total') | max) or 1 %}
 <div class="bars">
   {% for t in by_type %}
-  <div class="bar-row" role="img" aria-label="{{ t.type }}: {{ t.total }} indicators, {{ t.new }} new in the last {{ window_days }} days">
-    <span class="bar-label">{{ t.type }}</span>
+  <div class="bar-row">
+    <span class="bar-label"><a href="iocs-{{ t.type }}.html">{{ t.type }}</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: {{ (t.total / max_total * 100) | round(1) }}%"></span></span>
     <span class="bar-value">{{ t.total }}{% if t.new %} <span class="new">+{{ t.new }}</span>{% endif %}</span>
   </div>
@@ -169,7 +169,7 @@
       <tbody>
       {% for f in families %}
         <tr>
-          <td>{{ f.name }}</td>
+          <td><a href="family-{{ f.slug }}.html">{{ f.name }}</a></td>
           <td class="num-cell">{{ f.total }}</td>
           <td class="num-cell">{{ f.new }}</td>
           <td>{% if f.techniques %}<span class="chip-list">{% for t in f.techniques %}<span class="chip">{{ t }}</span>{% endfor %}</span>{% else %}—{% endif %}</td>
@@ -196,7 +196,7 @@
       <tbody>
       {% for t in coverage %}
         <tr>
-          <td><a href="https://attack.mitre.org/techniques/{{ t.id.split('.')[0] }}/{{ (t.id.split('.')[1] + '/') if '.' in t.id else '' }}" rel="noopener"><code>{{ t.id }}</code></a></td>
+          <td><a href="technique-{{ t.id }}.html"><code>{{ t.id }}</code></a></td>
           <td>{{ t.name }}</td>
           <td>{{ t.tactics | join(", ") }}</td>
           <td class="num-cell">{{ t.count }}</td>

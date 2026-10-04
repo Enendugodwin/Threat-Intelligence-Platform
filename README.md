@@ -142,7 +142,10 @@ report page shows its **Report ID** so operator recommendations can be pinned
 to it. Cards surface extracted tags (families, actors, themes) and linked
 ATT&CK techniques; CVEs that appear in the KEV catalog are badged on report
 pages. The category filter is CSS-only (radio inputs) and works without
-JavaScript.
+JavaScript. Dashboard charts drill down: type bars, family rows and ATT&CK
+techniques open per-group indicator pages, every indicator clicks through to a
+VirusTotal lookup, and KEV rows link to NVD plus the reports that reference
+them.
 
 ## Adding a feed
 

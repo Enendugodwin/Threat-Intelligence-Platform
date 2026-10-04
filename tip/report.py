@@ -8,8 +8,7 @@ from datetime import datetime, timezone
 from jinja2 import Environment, FileSystemLoader
 
 from .attack import AttackMap
-from .normalize import defang
-from .normalize import virustotal_url
+from .normalize import attack_url, defang, slugify, virustotal_url
 from .store import Store
 
 
@@ -59,10 +58,19 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     ]
 
     families = []
+    used_slugs: set[str] = set()
     for name, total in store.top_malware(limit=20):
+        slug = slugify(name)
+        base_slug = slug
+        counter = 2
+        while slug in used_slugs:
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        used_slugs.add(slug)
         families.append(
             {
                 "name": name,
+                "slug": slug,
                 "total": total,
                 "new": new_by_family.get(name.lower(), 0),
                 "techniques": attack.family_techniques(name),
@@ -104,6 +112,73 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         "source": "Tor Project Onionoo",
     }
 
+    # drill-down pages: per-type / per-family / per-technique IOC lists
+    browse_cap = 300
+    type_rows: dict[str, list] = {}
+    family_rows_by_name: dict[str, list] = {}
+    technique_rows: dict[str, list] = {}
+    family_name_set = {f["name"] for f in families}
+    for row in all_rows:
+        type_rows.setdefault(row["type"], []).append(row)
+        if row["malware"] and str(row["malware"]) in family_name_set:
+            family_rows_by_name.setdefault(str(row["malware"]), []).append(row)
+        try:
+            row_tags = json.loads(row["tags"] or "[]")
+        except (TypeError, ValueError):
+            row_tags = []
+        for technique in attack.techniques_for(row["malware"], row_tags, row["type"]):
+            technique_rows.setdefault(technique, []).append(row)
+
+    def _browse_entry(row) -> dict:
+        return {
+            "value": defang(row["value"]),
+            "href": virustotal_url(row["type"], row["value"]),
+            "type": row["type"],
+            "malware": row["malware"] or "",
+            "sources": _sources(row),
+            "confidence": row["confidence"],
+            "first_seen": row["first_seen"] or "",
+        }
+
+    def _browse_rows(rows: list) -> tuple[list, int]:
+        ordered = sorted(rows, key=lambda r: (-(r["confidence"] or 0), str(r["value"])))
+        return [_browse_entry(r) for r in ordered[:browse_cap]], len(rows)
+
+    browse_types = []
+    for type_id, total in store.counts_by_type():
+        rows, count = _browse_rows(type_rows.get(type_id, []))
+        browse_types.append(
+            {"id": type_id, "total": count, "rows": rows, "truncated": count > browse_cap}
+        )
+
+    browse_families = []
+    for family in families:
+        rows, count = _browse_rows(family_rows_by_name.get(family["name"], []))
+        browse_families.append(
+            {
+                "id": family["slug"],
+                "name": family["name"],
+                "total": count,
+                "rows": rows,
+                "truncated": count > browse_cap,
+            }
+        )
+
+    browse_techniques = []
+    for item in coverage:
+        rows, count = _browse_rows(technique_rows.get(item["id"], []))
+        browse_techniques.append(
+            {
+                "id": item["id"],
+                "name": item["name"],
+                "tactics": item["tactics"],
+                "total": count,
+                "rows": rows,
+                "truncated": count > browse_cap,
+                "external": attack_url(item["id"]),
+            }
+        )
+
     last_run = store.last_run()
     return {
         "generated_at": now,
@@ -123,6 +198,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         "coverage": coverage,
         "notable": notable,
         "tor": tor,
+        "browse": {"types": browse_types, "families": browse_families, "techniques": browse_techniques},
         "last_run": last_run,
     }
 
