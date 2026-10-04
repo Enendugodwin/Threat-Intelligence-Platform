@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Report 2026-10-04 &mdash; Threat Intel Pipeline</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--good:#3fb950;--bad:#f85149}
+*{box-sizing:border-box}
+body{margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--bg);color:var(--text);line-height:1.5}
+header{padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
+header h1{margin:0 0 .25rem;font-size:1.4rem}
+header h1 a{color:var(--text);text-decoration:none}
+header p{margin:0;color:var(--muted);font-size:.85rem}
+nav{margin-top:.5rem;font-size:.85rem}
+nav a{color:var(--accent);text-decoration:none;margin-right:1rem}
+main{padding:2rem;max-width:1200px;margin:0 auto}
+section{margin-bottom:2rem}
+h2{font-size:1rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:.4rem}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th,td{text-align:left;padding:.4rem .6rem;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.card .num{display:block;font-size:1.6rem;color:var(--accent)}
+.card .lbl{color:var(--muted);font-size:.8rem;text-transform:uppercase}
+.ok{color:var(--good)}.err{color:var(--bad)}
+code{color:var(--text)}
+footer{padding:1rem 2rem 2rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+footer a,main a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="index.html">Threat Intel Pipeline</a></h1>
+  <p>14857 indicators tracked &middot; 14857 new in the last 7 days &middot; generated 2026-10-04T16:55:20Z UTC</p>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="report.html">Latest report</a>
+<a href="https://github.com/Enendugodwin/threat-intel-pipeline" rel="noopener">GitHub</a>  </nav>
+</header>
+<main>
+<p><strong>Window:</strong> last 7 days &middot; <strong>Generated:</strong> 2026-10-04T16:55:20Z UTC</p>
+
+<section>
+  <h2>Summary</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Indicators tracked</td><td>14857</td></tr>
+    <tr><td>New in window</td><td>14857</td></tr>
+    <tr><td>Malware families (annotated)</td><td>20</td></tr>
+    <tr><td>ATT&amp;CK techniques (heuristic)</td><td>27</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Feed health</h2>
+  <table>
+    <tr><th>Feed</th><th>Indicators this run</th><th>Status</th></tr>
+    <tr>
+      <td>urlhaus</td>
+      <td>5000</td>
+      <td><span class="ok">ok</span></td>
+    </tr>
+    <tr>
+      <td>feodo</td>
+      <td>5</td>
+      <td><span class="ok">ok</span></td>
+    </tr>
+    <tr>
+      <td>threatfox</td>
+      <td>11196</td>
+      <td><span class="ok">ok</span></td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Indicators by type</h2>
+  <table>
+    <tr><th>Type</th><th>Total</th><th>New</th></tr>
+    <tr><td>url</td><td>4759</td><td>4759</td></tr>
+    <tr><td>domain</td><td>4349</td><td>4349</td></tr>
+    <tr><td>sha256</td><td>3255</td><td>3255</td></tr>
+    <tr><td>ipv4</td><td>2380</td><td>2380</td></tr>
+    <tr><td>md5</td><td>57</td><td>57</td></tr>
+    <tr><td>sha1</td><td>57</td><td>57</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Indicators by source</h2>
+  <table>
+    <tr><th>Source</th><th>Indicators</th></tr>
+    <tr><td>threatfox</td><td>10335</td></tr>
+    <tr><td>urlhaus</td><td>4533</td></tr>
+    <tr><td>feodo</td><td>5</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Top malware families</h2>
+  <table>
+    <tr><th>Family</th><th>Indicators</th><th>New</th><th>ATT&amp;CK (heuristic)</th></tr>
+    <tr>
+      <td>Unknown Loader</td><td>2644</td><td>2644</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Mirai</td><td>1939</td><td>1939</td>
+      <td>T1498, T1071.001</td>
+    </tr>
+    <tr>
+      <td>Cobalt Strike</td><td>1225</td><td>1225</td>
+      <td>T1071.001, T1573, T1055, T1059.001, T1105, T1090</td>
+    </tr>
+    <tr>
+      <td>AsyncRAT</td><td>1189</td><td>1189</td>
+      <td>T1566.001, T1547.001, T1056.001, T1113, T1071.001</td>
+    </tr>
+    <tr>
+      <td>Unknown malware</td><td>432</td><td>432</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>IClickFix</td><td>329</td><td>329</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>PureRAT</td><td>326</td><td>326</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>AdaptixC2</td><td>237</td><td>237</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>ClearFake</td><td>195</td><td>195</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Unknown Stealer</td><td>166</td><td>166</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Vidar</td><td>155</td><td>155</td>
+      <td>T1555, T1071.001, T1567</td>
+    </tr>
+    <tr>
+      <td>Unknown RAT</td><td>132</td><td>132</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>DCRat</td><td>96</td><td>96</td>
+      <td>T1566.001, T1547.001, T1056.001, T1113, T1071.001</td>
+    </tr>
+    <tr>
+      <td>Evilginx</td><td>91</td><td>91</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Remcos</td><td>90</td><td>90</td>
+      <td>T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573</td>
+    </tr>
+    <tr>
+      <td>AMOS</td><td>83</td><td>83</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Havoc</td><td>83</td><td>83</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>VShell</td><td>83</td><td>83</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Remus</td><td>78</td><td>78</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>DanaBot</td><td>62</td><td>62</td>
+      <td>T1566.001, T1071.001, T1555, T1041</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>ATT&amp;CK coverage (heuristic)</h2>
+  <table>
+    <tr><th>Technique</th><th>Name</th><th>Tactics</th><th>Indicators</th></tr>
+    <tr><td>T1071.001</td><td>Web Protocols</td><td>command-and-control</td><td>12945</td></tr>
+    <tr><td>T1105</td><td>Ingress Tool Transfer</td><td>command-and-control</td><td>5959</td></tr>
+    <tr><td>T1498</td><td>Network Denial of Service</td><td>impact</td><td>4992</td></tr>
+    <tr><td>T1573</td><td>Encrypted Channel</td><td>command-and-control</td><td>3467</td></tr>
+    <tr><td>T1056.001</td><td>Keylogging</td><td>collection, credential-access</td><td>1861</td></tr>
+    <tr><td>T1566.001</td><td>Spearphishing Attachment</td><td>initial-access</td><td>1559</td></tr>
+    <tr><td>T1547.001</td><td>Registry Run Keys / Startup Folder</td><td>persistence, privilege-escalation</td><td>1422</td></tr>
+    <tr><td>T1113</td><td>Screen Capture</td><td>collection</td><td>1403</td></tr>
+    <tr><td>T1055</td><td>Process Injection</td><td>defense-evasion, privilege-escalation</td><td>1340</td></tr>
+    <tr><td>T1090</td><td>Proxy</td><td>command-and-control</td><td>1252</td></tr>
+    <tr><td>T1059.001</td><td>PowerShell</td><td>execution</td><td>1237</td></tr>
+    <tr><td>T1555</td><td>Credentials from Password Stores</td><td>credential-access</td><td>492</td></tr>
+    <tr><td>T1567</td><td>Exfiltration Over Web Service</td><td>exfiltration</td><td>430</td></tr>
+    <tr><td>T1552.001</td><td>Credentials In Files</td><td>credential-access</td><td>307</td></tr>
+    <tr><td>T1027</td><td>Obfuscated Files or Information</td><td>defense-evasion</td><td>270</td></tr>
+    <tr><td>T1204.002</td><td>Malicious File</td><td>execution</td><td>270</td></tr>
+    <tr><td>T1041</td><td>Exfiltration Over C2 Channel</td><td>exfiltration</td><td>115</td></tr>
+    <tr><td>T1059.005</td><td>Visual Basic</td><td>execution</td><td>41</td></tr>
+    <tr><td>T1566</td><td>Phishing</td><td>initial-access</td><td>7</td></tr>
+    <tr><td>T1566.002</td><td>Spearphishing Link</td><td>initial-access</td><td>7</td></tr>
+    <tr><td>T1189</td><td>Drive-by Compromise</td><td>initial-access</td><td>5</td></tr>
+    <tr><td>T1218</td><td>System Binary Proxy Execution</td><td>defense-evasion</td><td>5</td></tr>
+    <tr><td>T1021.001</td><td>Remote Desktop Protocol</td><td>lateral-movement</td><td>2</td></tr>
+    <tr><td>T1486</td><td>Data Encrypted for Impact</td><td>impact</td><td>2</td></tr>
+    <tr><td>T1490</td><td>Inhibit System Recovery</td><td>impact</td><td>2</td></tr>
+    <tr><td>T1562.001</td><td>Disable or Modify Tools</td><td>defense-evasion</td><td>2</td></tr>
+    <tr><td>T1003</td><td>OS Credential Dumping</td><td>credential-access</td><td>1</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Notable new indicators</h2>
+  <table>
+    <tr><th>Indicator (defanged)</th><th>Type</th><th>Family</th><th>Sources</th><th>First seen</th><th>Conf.</th></tr>
+    <tr>
+      <td><code>772da74caf28a60eac05e19bba793d81d9d9a91e3ff14166fc13958264ee2eb3</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:47:05Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>b5651950e650267884e0797d2871ff52c44fa5a965ab134f6815cfaeb2981a6d</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:59Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>3ff45f0989e79e14152380f9d7dc77dbbbb0045a7e929aece34dfa7e82fa86da</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:57Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>4d04a95bbc8dd80f6cf431519c0f408adbdfa6b548405148c97c1b1ded46a295</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:56Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>5f6abef21d17243af8a2c2e8172e225b2f161790b937ac20e998a47a68b606db</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:55Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>1753a6655047fa98523d11ee29b22035be78dde8c12c2bf7f0c832936ca4ec73</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:54Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>0424c93f0368bb41cdcf6aa577262a9155ddf0f13dc0dfaddc2bdc810719d804</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:53Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>8a9a141f0f9651ff636f1082bd09177a77cca705dc49ea8e52bce2ea0915a91a</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:52Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>d98073aff0574ff563679d1dfa2c3b81c7c7e92eed337a83f78eeceadfc7d8cd</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:51Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>d08c7e654cc02a64d08ef113e7141c55a27e143c1ad0c5493e35f204de2b2561</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:50Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>32c87d6a1bd9fd87e9ea33bcd6d41ecc8145741b718bd11ce97bd38a0d54d0c4</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:49Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>55a5a6c52925d59621dadd70a5a80f54e24e54f99e4d587a19a16dcf992fdf85</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:48Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>91065c82c2db1ee6fcb0aca51b6fbf189913d4082f9be6cf97422010633b7cd6</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:47Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>564f1ed135185a33839ce1bce39fe409fc0219b313ab4e007ac6b4ff0608e7e6</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:39Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>8ea5fe9dba1fc6f845f8ee1b5697733b04d96d638b79ed5f275d8d47bfbd591d</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:38Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>31edb8dedf393ccf149f508a7031da33d21ce8b7bc9cd8865e6948738bb92151</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:37Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>806385c4d1ce5fb675357095cb07a81e0a0aebe4962b66e5422e0000945c149d</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:36Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>672fc7c9c852ff6678604d09ff94c763f1256eeb16d9c0e2e676ecbd28a67e32</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:34Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>decd05faa551bbe6233cc69704a8d9b71dac11f373fe38b6b39bd31612dc13df</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:33Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>ab72c44f7871d30726e85477e4a692a6ad5f0a428582a89e22fc107fef9f2b25</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:32Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>0d639f3022035a5da5081074b2f19f1d6bac7b16a73bffa691c59fb0440c15c8</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:30Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>dfba50b6cba1167e2720b9efff27b352730d85981154d685c27456bb51e71a78</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:29Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>1ef61d490483af2715af8889cca733804be3cfae351a6170a36a827e4046207e</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:28Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>6c325dd1fd740fbbbc566ad1a21d1bbb2be46e1ec5f2b4e7539fd5a5760e22b4</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:27Z</td><td>100</td>
+    </tr>
+    <tr>
+      <td><code>fb1feb800d84d34cb1a3b1bf9980320bb56c175be3d0f347415072c4d3cfefe1</code></td><td>sha256</td><td>Mirai</td>
+      <td>threatfox</td><td>2026-10-04T16:46:25Z</td><td>100</td>
+    </tr>
+  </table>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; AlienVault OTX. Indicators are defanged for safe display.</p>
+  <p>Generated by <a href="https://github.com/Enendugodwin/threat-intel-pipeline" rel="noopener">threat-intel-pipeline</a> at 2026-10-04T16:55:20Z UTC.</p>
+</footer>
+</body>
+</html>

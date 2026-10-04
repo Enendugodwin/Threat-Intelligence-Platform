@@ -1,0 +1,15 @@
+{
+    "results": [
+        {
+            "id": "pulse-abc123",
+            "name": "Test Pulse",
+            "tags": ["malware", "ransomware"],
+            "malware_families": [{"id": "fam-1", "display_name": "LockBit"}],
+            "indicators": [
+                {"indicator": "ransom-note-host.com", "type": "domain", "created": "2026-10-01T12:00:00"},
+                {"indicator": "188.114.96.5", "type": "IPv4", "created": "2026-10-01T12:05:00.123456"},
+                {"indicator": "/some/path", "type": "URI", "created": "2026-10-01T12:06:00"}
+            ]
+        }
+    ]
+}

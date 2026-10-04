@@ -1,0 +1,21 @@
+# local environments
+.venv/
+venv/
+env/
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# secrets
+.env
+
+# local data (CI publishes data/counters.json and caches the sqlite db)
+data/*
+!data/counters.json
+*.sqlite
+*.sqlite-*
+
+# generated exports (uploaded as workflow artifacts instead)
+dist/

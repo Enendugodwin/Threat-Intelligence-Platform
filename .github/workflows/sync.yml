@@ -1,0 +1,96 @@
+name: sync
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: sync-and-pages
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Restore indicator database
+        uses: actions/cache/restore@v4
+        with:
+          path: data/iocs.sqlite
+          key: tip-db-${{ github.run_id }}
+          restore-keys: |
+            tip-db-
+
+      - name: Sync feeds
+        run: python -m tip sync
+
+      - name: Save indicator database
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/iocs.sqlite
+          key: tip-db-${{ github.run_id }}
+
+      - name: Build report
+        run: python -m tip report
+
+      - name: Export STIX / Sigma / Suricata / CSV
+        run: python -m tip export
+
+      - name: Build dashboard
+        run: python -m tip site
+
+      - name: Upload outputs (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: threat-intel-output
+          path: |
+            dist/
+            reports/
+          retention-days: 7
+
+      - name: Commit generated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports site data/counters.json
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: threat intel sync $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase --autostash
+          git push
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4

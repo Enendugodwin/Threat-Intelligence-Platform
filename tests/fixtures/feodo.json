@@ -1,0 +1,26 @@
+[
+    {
+        "ip_address": "91.92.240.11",
+        "port": 443,
+        "status": "online",
+        "hostname": "srv-01.bad-c2.com",
+        "as_number": 64500,
+        "as_name": "EXAMPLE-AS",
+        "country": "NL",
+        "first_seen": "2025-11-02 08:15:00",
+        "last_online": "2026-10-03",
+        "malware": "Emotet"
+    },
+    {
+        "ip_address": "45.61.136.22",
+        "port": 8080,
+        "status": "offline",
+        "hostname": null,
+        "as_number": 64501,
+        "as_name": "ANOTHER-AS",
+        "country": "US",
+        "first_seen": "2024-05-01 10:00:00",
+        "last_online": "2026-06-01",
+        "malware": "QakBot"
+    }
+]

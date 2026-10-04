@@ -1,0 +1,66 @@
+{% extends "base.html.j2" %}
+{% block title %}Dashboard &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<section class="cards">
+  <div class="card"><span class="num">{{ totals.total }}</span><span class="lbl">indicators</span></div>
+  <div class="card"><span class="num">{{ totals.new }}</span><span class="lbl">new in window</span></div>
+  <div class="card"><span class="num">{{ totals.families }}</span><span class="lbl">families</span></div>
+  <div class="card"><span class="num">{{ feed_health.ok }}/{{ feed_health.total }}</span><span class="lbl">feeds ok</span></div>
+</section>
+
+<section>
+  <h2>Feed health</h2>
+  <table>
+    <tr><th>Feed</th><th>Indicators this run</th><th>Status</th></tr>
+    {% for f in feed_health.feeds %}
+    <tr>
+      <td>{{ f.name }}</td>
+      <td>{{ f.count if f.count is not none else "—" }}</td>
+      <td>{% if f.error %}<span class="err">{{ f.error }}</span>{% else %}<span class="ok">ok</span>{% endif %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</section>
+
+<section>
+  <h2>Top malware families</h2>
+  {% if families %}
+  <table>
+    <tr><th>Family</th><th>Indicators</th><th>New</th><th>ATT&amp;CK (heuristic)</th></tr>
+    {% for f in families %}
+    <tr>
+      <td>{{ f.name }}</td><td>{{ f.total }}</td><td>{{ f.new }}</td>
+      <td>{{ f.techniques | join(", ") if f.techniques else "—" }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}<p>No malware-family annotations yet.</p>{% endif %}
+</section>
+
+<section>
+  <h2>ATT&amp;CK coverage (heuristic)</h2>
+  {% if coverage %}
+  <table>
+    <tr><th>Technique</th><th>Name</th><th>Tactics</th><th>Indicators</th></tr>
+    {% for t in coverage %}
+    <tr><td>{{ t.id }}</td><td>{{ t.name }}</td><td>{{ t.tactics | join(", ") }}</td><td>{{ t.count }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<p>No technique mapping yet.</p>{% endif %}
+</section>
+
+<section>
+  <h2>Notable new indicators</h2>
+  {% if notable %}
+  <table>
+    <tr><th>Indicator (defanged)</th><th>Type</th><th>Family</th><th>Sources</th><th>First seen</th><th>Conf.</th></tr>
+    {% for i in notable %}
+    <tr>
+      <td><code>{{ i.value }}</code></td><td>{{ i.type }}</td><td>{{ i.malware }}</td>
+      <td>{{ i.sources | join(", ") }}</td><td>{{ i.first_seen }}</td><td>{{ i.confidence }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}<p>No new indicators in the window.</p>{% endif %}
+</section>
+{% endblock %}

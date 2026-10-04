@@ -1,0 +1,10 @@
+####################################################################
+# abuse.ch URLhaus Database Dump (CSV - recent URLs only)          #
+# Last updated: 2026-10-04 16:32:20 (UTC)                          #
+# Terms Of Use: https://urlhaus.abuse.ch/api/                      #
+####################################################################
+#
+# id,dateadded,url,url_status,last_online,threat,tags,urlhaus_link,reporter
+"1001","2026-10-04 16:32:20","http://malware-cdn-one.com/bin.sh","online","2026-10-04 16:32:20","malware_download","Mozi","https://urlhaus.abuse.ch/url/1001/","tester"
+"1002","2026-10-04 15:00:00","http://payload-drop-two.net/dropper.exe","offline","2026-10-03 12:00:00","malware_download","None","https://urlhaus.abuse.ch/url/1002/","tester"
+"1003","2026-10-03 10:00:00","http://45.61.136.10:8080/x","online","2026-10-04 09:00:00","malware_download","Emotet","https://urlhaus.abuse.ch/url/1003/","tester"

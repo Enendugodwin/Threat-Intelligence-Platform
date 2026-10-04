@@ -1,0 +1,126 @@
+# Heuristic MITRE ATT&CK mapping for IOC attribution.
+#
+# Resolution order (see tip/attack.py):
+#   1. malware family name -> families
+#   2. alias: a tag that matches a family key
+#   3. tag_rules (regex over all tags)
+#   4. default_techniques for network-type IOCs with no other signal
+#
+# This is a reporting heuristic for coverage trends - not attribution truth.
+# Extend freely; keys are matched case-insensitively.
+
+techniques:
+  T1003: {name: OS Credential Dumping, tactics: [credential-access]}
+  T1005: {name: Data from Local System, tactics: [collection]}
+  T1021.001: {name: Remote Desktop Protocol, tactics: [lateral-movement]}
+  T1027: {name: Obfuscated Files or Information, tactics: [defense-evasion]}
+  T1041: {name: Exfiltration Over C2 Channel, tactics: [exfiltration]}
+  T1055: {name: Process Injection, tactics: [defense-evasion, privilege-escalation]}
+  T1056.001: {name: Keylogging, tactics: [collection, credential-access]}
+  T1059: {name: Command and Scripting Interpreter, tactics: [execution]}
+  T1059.001: {name: PowerShell, tactics: [execution]}
+  T1059.003: {name: Windows Command Shell, tactics: [execution]}
+  T1059.005: {name: Visual Basic, tactics: [execution]}
+  T1071: {name: Application Layer Protocol, tactics: [command-and-control]}
+  T1071.001: {name: Web Protocols, tactics: [command-and-control]}
+  T1071.004: {name: DNS, tactics: [command-and-control]}
+  T1083: {name: File and Directory Discovery, tactics: [discovery]}
+  T1090: {name: Proxy, tactics: [command-and-control]}
+  T1105: {name: Ingress Tool Transfer, tactics: [command-and-control]}
+  T1112: {name: Modify Registry, tactics: [defense-evasion]}
+  T1113: {name: Screen Capture, tactics: [collection]}
+  T1119: {name: Automated Collection, tactics: [collection]}
+  T1189: {name: Drive-by Compromise, tactics: [initial-access]}
+  T1190: {name: Exploit Public-Facing Application, tactics: [initial-access]}
+  T1204.002: {name: Malicious File, tactics: [execution]}
+  T1218: {name: System Binary Proxy Execution, tactics: [defense-evasion]}
+  T1219: {name: Remote Access Software, tactics: [command-and-control]}
+  T1486: {name: Data Encrypted for Impact, tactics: [impact]}
+  T1490: {name: Inhibit System Recovery, tactics: [impact]}
+  T1498: {name: Network Denial of Service, tactics: [impact]}
+  T1499: {name: Endpoint Denial of Service, tactics: [impact]}
+  T1547.001: {name: Registry Run Keys / Startup Folder, tactics: [persistence, privilege-escalation]}
+  T1552.001: {name: Credentials In Files, tactics: [credential-access]}
+  T1555: {name: Credentials from Password Stores, tactics: [credential-access]}
+  T1562.001: {name: Disable or Modify Tools, tactics: [defense-evasion]}
+  T1566: {name: Phishing, tactics: [initial-access]}
+  T1566.001: {name: Spearphishing Attachment, tactics: [initial-access]}
+  T1566.002: {name: Spearphishing Link, tactics: [initial-access]}
+  T1567: {name: Exfiltration Over Web Service, tactics: [exfiltration]}
+  T1568.002: {name: Domain Generation Algorithms, tactics: [command-and-control]}
+  T1571: {name: Non-Standard Port, tactics: [command-and-control]}
+  T1573: {name: Encrypted Channel, tactics: [command-and-control]}
+
+families:
+  # loaders / initial access
+  emotet: [T1566.001, T1204.002, T1059.005, T1547.001, T1071.001, T1105, T1027]
+  qakbot: [T1566.001, T1204.002, T1055, T1071.001, T1105, T1027, T1041]
+  qbot: [T1566.001, T1204.002, T1055, T1071.001, T1105, T1027, T1041]
+  icedid: [T1566.002, T1204.002, T1071.001, T1055, T1105, T1218]
+  pikabot: [T1566.001, T1204.002, T1055, T1071.001, T1027]
+  darkgate: [T1566.001, T1204.002, T1059.005, T1071.001, T1055]
+  bazarloader: [T1566.001, T1218, T1071.001, T1105]
+  bazar: [T1566.001, T1218, T1071.001, T1105]
+  amadey: [T1566.001, T1071.001, T1105, T1547.001]
+  smokeloader: [T1027, T1055, T1105, T1071.001]
+  guloader: [T1027, T1059.005, T1055, T1105]
+  socgholish: [T1189, T1204.002, T1218, T1071.001]
+  fakeupdates: [T1189, T1204.002, T1218, T1071.001]
+  gootloader: [T1218, T1059.001, T1204.002, T1071.001]
+  # banking trojans
+  dridex: [T1566.001, T1204.002, T1055, T1071.001, T1555, T1041]
+  trickbot: [T1566.001, T1105, T1071.001, T1055, T1555, T1112, T1041]
+  ursnif: [T1566.001, T1204.002, T1055, T1071.001, T1555, T1041]
+  gozi: [T1566.001, T1204.002, T1055, T1071.001, T1555, T1041]
+  danabot: [T1566.001, T1071.001, T1555, T1041]
+  # stealers
+  redline: [T1555, T1552.001, T1071.001, T1041, T1567]
+  raccoon: [T1555, T1071.001, T1567]
+  vidar: [T1555, T1071.001, T1567]
+  lumma: [T1555, T1547.001, T1071.001, T1567]
+  stealc: [T1555, T1071.001, T1567]
+  agenttesla: [T1566.001, T1555, T1552.001, T1041, T1567]
+  formbook: [T1566.001, T1056.001, T1555, T1071.001, T1567]
+  xloader: [T1566.001, T1056.001, T1555, T1071.001, T1567]
+  lokibot: [T1566.001, T1555, T1552.001, T1041]
+  # RATs
+  remcos: [T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573]
+  asyncrat: [T1566.001, T1547.001, T1056.001, T1113, T1071.001]
+  njrat: [T1566.001, T1547.001, T1056.001, T1113, T1071.001]
+  quasar: [T1566.001, T1547.001, T1056.001, T1113, T1071.001]
+  dcrat: [T1566.001, T1547.001, T1056.001, T1113, T1071.001]
+  # offensive frameworks
+  cobalt strike: [T1071.001, T1573, T1055, T1059.001, T1105, T1090]
+  metasploit: [T1071.001, T1055, T1105, T1571]
+  meterpreter: [T1071.001, T1055, T1105]
+  sliver: [T1071.001, T1573, T1090, T1055]
+  bruteratel: [T1071.001, T1573, T1090, T1055, T1059.001]
+  # botnets
+  mirai: [T1498, T1071.001]
+  mozi: [T1071.001, T1498]
+  gafgyt: [T1498, T1071.001]
+  androxgh0st: [T1071.001, T1190]
+  # ransomware
+  lockbit: [T1486, T1490, T1562.001, T1021.001, T1071.001]
+  akira: [T1486, T1490, T1021.001, T1071.001, T1562.001]
+  blackcat: [T1486, T1490, T1021.001, T1071.001, T1562.001]
+  phobos: [T1486, T1490, T1021.001, T1071.001]
+  # tooling
+  mimikatz: [T1003]
+
+tag_rules:
+  - {match: ransomware, techniques: [T1486, T1490, T1562.001]}
+  - {match: stealer, techniques: [T1555, T1552.001, T1567]}
+  - {match: loader, techniques: [T1105, T1204.002, T1027]}
+  - {match: "\\brat\\b", techniques: [T1071.001, T1573, T1056.001]}
+  - {match: botnet, techniques: [T1071.001, T1498]}
+  - {match: phishing, techniques: [T1566, T1566.002]}
+  - {match: "c&c|c2|command and control", techniques: [T1071.001, T1573]}
+  - {match: payload_delivery, techniques: [T1105, T1204.002]}
+  - {match: malware_download, techniques: [T1105]}
+  - {match: dnsc, techniques: [T1071.004]}
+  - {match: exploit, techniques: [T1190]}
+  - {match: credential, techniques: [T1555]}
+
+# Applied to network-type IOCs with no family/tag signal (most feed IOCs are C2).
+default_techniques: [T1071.001]

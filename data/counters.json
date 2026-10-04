@@ -1,0 +1,54 @@
+{
+  "by_malware": {
+    "AMOS": 83,
+    "AdaptixC2": 237,
+    "AsyncRAT": 1189,
+    "ClearFake": 195,
+    "Cobalt Strike": 1225,
+    "DCRat": 96,
+    "DanaBot": 62,
+    "Evilginx": 91,
+    "Havoc": 83,
+    "IClickFix": 329,
+    "Mirai": 1939,
+    "PureRAT": 326,
+    "Remcos": 90,
+    "Remus": 78,
+    "Unknown Loader": 2644,
+    "Unknown RAT": 132,
+    "Unknown Stealer": 166,
+    "Unknown malware": 432,
+    "VShell": 83,
+    "Vidar": 155
+  },
+  "by_source": {
+    "feodo": 5,
+    "threatfox": 10335,
+    "urlhaus": 4533
+  },
+  "by_type": {
+    "domain": 4349,
+    "ipv4": 2380,
+    "md5": 57,
+    "sha1": 57,
+    "sha256": 3255,
+    "url": 4759
+  },
+  "generated_at": "2026-10-04T16:53:35Z",
+  "latest_run": {
+    "errors": {},
+    "feeds": {
+      "feodo": 5,
+      "threatfox": 11196,
+      "urlhaus": 5000
+    },
+    "fetched": 16201,
+    "finished_at": "2026-10-04T16:53:35Z",
+    "new": 14857,
+    "pruned": 0,
+    "started_at": "2026-10-04T16:53:29Z",
+    "total": 14857,
+    "updated": 0
+  },
+  "total": 14857
+}

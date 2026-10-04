@@ -1,0 +1,65 @@
+import pathlib
+
+from tip.attack import load_attack_map
+from tip.exports import sigma as sigma_mod
+from tip.exports import stix as stix_mod
+from tip.exports import suricata as suricata_mod
+from tip.pipeline import run_sync
+from tip.report import build_context, write_report
+from tip.site import build_site
+from tip.store import Store
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+FIXTURES = ROOT / "tests" / "fixtures"
+
+
+def _config():
+    return {
+        "feeds": {
+            "urlhaus": {"enabled": True, "local_file": str(FIXTURES / "urlhaus.csv")},
+            "feodo": {"enabled": True, "local_file": str(FIXTURES / "feodo.json")},
+            "threatfox": {"enabled": True, "local_file": str(FIXTURES / "threatfox.json")},
+            "otx": {"enabled": False},
+        },
+        "storage": {"prune_after_days": 45},
+        "exports": {},
+        "report": {"window_days": 7, "top_n": 10, "repo_url": "https://example.invalid/repo"},
+    }
+
+
+def test_offline_pipeline_end_to_end(tmp_path):
+    config = _config()
+    data_dir = tmp_path / "data"
+
+    stats = run_sync(config, data_dir)
+    assert not stats.get("fatal")
+    assert stats["new"] > 0
+    assert stats["fetched"] >= stats["new"]
+    assert (data_dir / "counters.json").is_file()
+
+    # second run: everything already known -> nothing new, but rows updated
+    again = run_sync(config, data_dir)
+    assert again["new"] == 0
+    assert again["updated"] > 0
+
+    attack = load_attack_map(ROOT / "config" / "attack_map.yaml")
+    with Store(data_dir / "iocs.sqlite") as store:
+        context = build_context(store, config, attack)
+        rows = store.rows_for_export(30, 1000, 0)
+
+    assert context["totals"]["total"] == again["total"]
+    assert context["notable"]
+
+    report_paths = write_report(context, tmp_path / "reports", ROOT / "templates")
+    text = report_paths[0].read_text(encoding="utf-8")
+    assert "Threat Intel Pulse" in text
+    assert "[.]" in text  # indicators are defanged in reports
+
+    site_paths = build_site(context, tmp_path / "site", ROOT / "templates")
+    index = site_paths[0].read_text(encoding="utf-8")
+    assert "Threat Intel Pipeline" in index
+
+    bundle = stix_mod.build_bundle(rows)
+    assert bundle["_meta"]["indicator_count"] > 0
+    assert sigma_mod.build_rules(rows, attack)
+    assert suricata_mod.build_rules(rows)

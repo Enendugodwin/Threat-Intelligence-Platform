@@ -1,0 +1,66 @@
+{
+    "2900001": [
+        {
+            "ioc_value": "https://payload-drop-two.net/gate.php",
+            "ioc_type": "url",
+            "threat_type": "payload_delivery",
+            "malware": "js.fakeupdates",
+            "malware_alias": "FakeUpdate,GhoLoader,SocGholish",
+            "malware_printable": "FAKEUPDATES",
+            "first_seen_utc": "2026-10-04 16:28:22",
+            "last_seen_utc": null,
+            "confidence_level": 100,
+            "reference": "",
+            "tags": "SocGholish",
+            "reporter": "tester"
+        }
+    ],
+    "2900002": [
+        {
+            "ioc_value": "c2-steady-host.com",
+            "ioc_type": "domain",
+            "threat_type": "cc_communication",
+            "malware": "win.redline",
+            "malware_alias": null,
+            "malware_printable": "RedLine Stealer",
+            "first_seen_utc": "2026-10-02 09:00:00",
+            "last_seen_utc": "2026-10-04 09:00:00",
+            "confidence_level": 75,
+            "reference": "",
+            "tags": "",
+            "reporter": "tester"
+        }
+    ],
+    "2900003": [
+        {
+            "ioc_value": "aa11bb22cc33dd44ee55ff66aa77bb88cc99dd00ee11ff22aa33bb44cc55dd66",
+            "ioc_type": "sha256_hash",
+            "threat_type": "payload_delivery",
+            "malware": "win.emotet",
+            "malware_alias": "Heodo",
+            "malware_printable": "Emotet",
+            "first_seen_utc": "2026-10-01 11:00:00",
+            "last_seen_utc": null,
+            "confidence_level": 90,
+            "reference": "",
+            "tags": "",
+            "reporter": "tester"
+        }
+    ],
+    "2900004": [
+        {
+            "ioc_value": "45.61.136.77:4444",
+            "ioc_type": "ip:port",
+            "threat_type": "cc_communication",
+            "malware": "win.cobaltstrike",
+            "malware_alias": "Beacon",
+            "malware_printable": "Cobalt Strike",
+            "first_seen_utc": "2026-10-03 10:00:00",
+            "last_seen_utc": null,
+            "confidence_level": 85,
+            "reference": "",
+            "tags": "",
+            "reporter": "tester"
+        }
+    ]
+}

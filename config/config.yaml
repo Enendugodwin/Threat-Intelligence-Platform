@@ -1,0 +1,33 @@
+# threat-intel-pipeline configuration
+
+feeds:
+  urlhaus:
+    enabled: true
+    derive_domains: true   # also track the host domain of each malicious URL
+    max_records: 5000      # newest N CSV rows per run (keeps exports and DB sane)
+  feodo:
+    enabled: true
+  threatfox:
+    enabled: true
+  otx:
+    enabled: false         # set true and export OTX_API_KEY to use
+    modified_since_days: 2
+    max_pulses: 20
+
+storage:
+  prune_after_days: 45     # drop indicators not re-seen in this many days
+
+exports:
+  window_days: 30          # export lookback window
+  max_rows: 30000          # hard cap for STIX/CSV/Sigma/Suricata exports
+  min_confidence: 0
+  sigma:
+    max_values_per_rule: 200
+  suricata:
+    max_rules: 1500
+    sid_base: 9100000
+
+report:
+  window_days: 7
+  top_n: 25
+  repo_url: "https://github.com/Enendugodwin/threat-intel-pipeline"
