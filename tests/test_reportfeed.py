@@ -106,6 +106,19 @@ def test_classify_rules():
     assert _classify("Cisco IOS XE advisory", "also mentions windows", "cisco", rules) == "cisco"
 
 
+def test_classify_broader_categories():
+    rules = {
+        "hypervisors": ["vmware", "esxi"],
+        "network": ["netscaler", "firewall"],
+        "cisco": ["cisco"],
+        "paloalto": ["pan-os"],
+    }
+    assert _classify("VMware ESXi guest escape", "", "general", rules) == "hypervisors"
+    assert _classify("NetScaler zero-day exploited", "", "general", rules) == "network"
+    assert _classify("Cisco ASA firewall flaw", "", "general", rules) == "cisco"
+    assert _classify("PAN-OS GlobalProtect bug", "", "general", rules) == "paloalto"
+
+
 # -- fetch / merge / prune ---------------------------------------------------
 
 

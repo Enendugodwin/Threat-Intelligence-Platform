@@ -121,6 +121,19 @@ td code{background:transparent;border:none;padding:0}
 .explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
 .explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
 .explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -187,10 +200,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>0 new / 25576 updated last run &middot; 25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T19:05:41Z</span>
+      <span>sync 2026-10-04T19:17:56Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -1588,6 +1601,15 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">80</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F107.173.227.126%2F59%2Fimage_00040404.jpg.hta" target="_blank" rel="noopener"><code>hxxp://107[.]173[.]227[.]126/59/image_00040404[.]jpg[.]hta</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-medium">medium 66</span></td>
+          <td>—</td>
+          <td></td>
+          <td>2026-09-29T08:19:16Z</td>
+          <td class="num-cell">80</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F192.3.47.188%2F135%2Fimages_95858005050050.JPG.hta" target="_blank" rel="noopener"><code>hxxp://192[.]3[.]47[.]188/135/images_95858005050050[.]JPG[.]hta</code></a></td>
           <td>url</td>
           <td><span class="risk risk-medium">medium 66</span></td>
@@ -2910,15 +2932,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-09-14T09:43:48Z</td>
           <td class="num-cell">75</td>
         </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/149.88.76.74" target="_blank" rel="noopener"><code>149[.]88[.]76[.]74</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td>PureRAT</td>
-          <td></td>
-          <td>2026-09-17T19:43:49Z</td>
-          <td class="num-cell">75</td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -2927,7 +2940,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:05:41Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:17:56Z UTC</span></p>
 </footer>
 </body>
 </html>

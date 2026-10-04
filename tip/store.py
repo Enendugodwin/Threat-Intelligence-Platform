@@ -23,8 +23,11 @@ CREATE TABLE IF NOT EXISTS iocs (
     reference   TEXT
 );
 CREATE TABLE IF NOT EXISTS ioc_sources (
-    key    TEXT NOT NULL,
-    source TEXT NOT NULL,
+    key        TEXT NOT NULL,
+    source     TEXT NOT NULL,
+    confidence INTEGER,
+    first_seen TEXT,
+    last_seen  TEXT,
     PRIMARY KEY (key, source)
 );
 CREATE TABLE IF NOT EXISTS runs (
@@ -111,6 +114,11 @@ class Store:
         if "seen_at" not in columns:
             self.conn.execute("ALTER TABLE iocs ADD COLUMN seen_at TEXT")
             self.conn.execute("UPDATE iocs SET seen_at = ingested_at WHERE seen_at IS NULL")
+        source_columns = {row[1] for row in self.conn.execute("PRAGMA table_info(ioc_sources)")}
+        if source_columns and "confidence" not in source_columns:
+            self.conn.execute("ALTER TABLE ioc_sources ADD COLUMN confidence INTEGER")
+            self.conn.execute("ALTER TABLE ioc_sources ADD COLUMN first_seen TEXT")
+            self.conn.execute("ALTER TABLE ioc_sources ADD COLUMN last_seen TEXT")
 
     # -- lifecycle ---------------------------------------------------------
     def close(self) -> None:
@@ -184,9 +192,33 @@ class Store:
                 )
 
             for source in sources:
-                self.conn.execute(
-                    "INSERT OR IGNORE INTO ioc_sources (key, source) VALUES (?, ?)", (key, source)
-                )
+                members_of_source = [m for m in members if m.source == source]
+                confidence = max((m.confidence or 0) for m in members_of_source)
+                first_seen = _min_ts(*(m.first_seen for m in members_of_source))
+                last_seen = _max_ts(*(m.last_seen for m in members_of_source))
+                evidence = self.conn.execute(
+                    "SELECT confidence, first_seen, last_seen FROM ioc_sources"
+                    " WHERE key = ? AND source = ?",
+                    (key, source),
+                ).fetchone()
+                if evidence is None:
+                    self.conn.execute(
+                        "INSERT INTO ioc_sources (key, source, confidence, first_seen, last_seen)"
+                        " VALUES (?,?,?,?,?)",
+                        (key, source, confidence, first_seen, last_seen),
+                    )
+                else:
+                    self.conn.execute(
+                        "UPDATE ioc_sources SET confidence=?, first_seen=?, last_seen=?"
+                        " WHERE key=? AND source=?",
+                        (
+                            max(int(evidence["confidence"] or 0), confidence),
+                            _min_ts(evidence["first_seen"], first_seen),
+                            _max_ts(evidence["last_seen"], last_seen),
+                            key,
+                            source,
+                        ),
+                    )
 
         self.conn.commit()
         return new, updated
@@ -250,6 +282,24 @@ class Store:
                 "SELECT source, COUNT(*) FROM ioc_sources GROUP BY source ORDER BY 2 DESC"
             )
         )
+
+    def sources_map(self) -> dict[str, list[dict]]:
+        """key -> evidence list [{source, confidence, first_seen, last_seen}]."""
+        out: dict[str, list[dict]] = {}
+        rows = self.conn.execute(
+            "SELECT key, source, confidence, first_seen, last_seen FROM ioc_sources"
+            " ORDER BY confidence DESC, source"
+        ).fetchall()
+        for row in rows:
+            out.setdefault(row["key"], []).append(
+                {
+                    "source": row["source"],
+                    "confidence": int(row["confidence"] or 0),
+                    "first_seen": row["first_seen"] or "",
+                    "last_seen": row["last_seen"] or "",
+                }
+            )
+        return out
 
     def top_malware(self, limit: int = 20) -> list[tuple[str, int]]:
         return _pairs(

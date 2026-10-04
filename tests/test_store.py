@@ -68,3 +68,11 @@ def test_run_history(tmp_path):
     assert last is not None
     assert last["stats"]["new"] == 3
     store.close()
+
+
+def test_per_source_evidence(tmp_path):
+    store = Store(tmp_path / "iocs.sqlite")
+    store.upsert_many([_ioc(source="feed-a", confidence=60), _ioc(source="feed-b", confidence=90)])
+    evidence = store.sources_map()["domain:evil.com"]
+    assert {item["source"]: item["confidence"] for item in evidence} == {"feed-a": 60, "feed-b": 90}
+    store.close()

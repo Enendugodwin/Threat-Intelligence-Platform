@@ -9,7 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from .attack import AttackMap
 from .normalize import attack_url, defang, slugify, virustotal_url
-from .scoring import ioc_risk
+from .scoring import ioc_risk, org_profile
 from .store import Store
 
 _FEED_LABELS = {
@@ -68,6 +68,11 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     last_run = store.last_run()
     run_stats = (last_run or {}).get("stats") or {}
     activity = store.activity(window_days)
+    org = org_profile(config)
+    evidence_map = store.sources_map()
+
+    def _evidence(key: str) -> list[dict]:
+        return evidence_map.get(str(key), [])
 
     def _risk(row, sources: list[str]) -> dict:
         last_seen = row["last_seen"] or None
@@ -124,6 +129,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
             "risk": _risk(row, _sources(row)),
+            "evidence": _evidence(row["key"])[:4],
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": _sources(row),
@@ -176,6 +182,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
             "risk": _risk(row, sources),
+            "evidence": _evidence(row["key"])[:4],
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": sources,
@@ -239,6 +246,10 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "c": row["confidence"],
             "m": row["malware"] or "",
             "s": ", ".join(sources),
+            "e": " · ".join(
+                f"{ev['source']}:{ev['confidence']}" if ev["confidence"] else ev["source"]
+                for ev in _evidence(row["key"])[:4]
+            ),
             "f": (row["first_seen"] or "")[:10],
         }
         for score, level, row, sources in scored[:explorer_cap]
@@ -264,6 +275,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "activity_runs": activity["runs"],
         },
         "activity": activity,
+        "org": org,
         "feed_health": _feed_health(config, last_run),
         "by_type": by_type,
         "by_source": [{"source": s, "count": c} for s, c in store.counts_by_source()],

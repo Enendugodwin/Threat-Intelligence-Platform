@@ -121,6 +121,19 @@ td code{background:transparent;border:none;padding:0}
 .explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
 .explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
 .explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -187,10 +200,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>0 new / 25576 updated last run &middot; 25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T19:05:41Z</span>
+      <span>sync 2026-10-04T19:17:56Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -246,7 +259,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr id="CVE-2026-102490">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102490" target="_blank" rel="noopener"><code>CVE-2026-102490</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zammad%20GmbH&amp;search_type=all" target="_blank" rel="noopener">Zammad GmbH</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zammad&amp;search_type=all" target="_blank" rel="noopener">Zammad</a></td>
@@ -257,7 +270,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-102489">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102489" target="_blank" rel="noopener"><code>CVE-2026-102489</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zammad%20GmbH&amp;search_type=all" target="_blank" rel="noopener">Zammad GmbH</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zammad&amp;search_type=all" target="_blank" rel="noopener">Zammad</a></td>
@@ -268,7 +281,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-104286">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-104286" target="_blank" rel="noopener"><code>CVE-2026-104286</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiMail&amp;search_type=all" target="_blank" rel="noopener">FortiMail</a></td>
@@ -279,7 +292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-76504">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76504" target="_blank" rel="noopener"><code>CVE-2026-76504</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manager&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manager</a></td>
@@ -290,7 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-86950">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86950" target="_blank" rel="noopener"><code>CVE-2026-86950</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -301,7 +314,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.2%</td>
           <td><a href="report-d21608339f34d5a8.html" title="Apple Emergency Patch for iOS 26, macOS26, macOS15 (CVE-2026-86950), (Mon, Sep 28th)">1 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-88772">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88772" target="_blank" rel="noopener"><code>CVE-2026-88772</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Citrix&amp;search_type=all" target="_blank" rel="noopener">Citrix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NetScaler&amp;search_type=all" target="_blank" rel="noopener">NetScaler</a></td>
@@ -312,7 +325,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.3%</td>
           <td><a href="report-2649de53cd92a5de.html" title="Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)">1 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-88771">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88771" target="_blank" rel="noopener"><code>CVE-2026-88771</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Citrix&amp;search_type=all" target="_blank" rel="noopener">Citrix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NetScaler&amp;search_type=all" target="_blank" rel="noopener">NetScaler</a></td>
@@ -323,7 +336,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.1%</td>
           <td><a href="report-2649de53cd92a5de.html" title="Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)">1 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-67279">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-67279" target="_blank" rel="noopener"><code>CVE-2026-67279</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MikroTik&amp;search_type=all" target="_blank" rel="noopener">MikroTik</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=RouterOS&amp;search_type=all" target="_blank" rel="noopener">RouterOS</a></td>
@@ -334,7 +347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-65660">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65660" target="_blank" rel="noopener"><code>CVE-2026-65660</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint&amp;search_type=all" target="_blank" rel="noopener">SharePoint</a></td>
@@ -345,7 +358,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-87902">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87902" target="_blank" rel="noopener"><code>CVE-2026-87902</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WordPress&amp;search_type=all" target="_blank" rel="noopener">WordPress</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Core&amp;search_type=all" target="_blank" rel="noopener">Core</a></td>
@@ -356,7 +369,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">45.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-5430">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-5430" target="_blank" rel="noopener"><code>CVE-2026-5430</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WSO2&amp;search_type=all" target="_blank" rel="noopener">WSO2</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -367,7 +380,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-71362">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-71362" target="_blank" rel="noopener"><code>CVE-2026-71362</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Commerce%20and%20Magento%20&amp;search_type=all" target="_blank" rel="noopener">Commerce and Magento </a></td>
@@ -378,7 +391,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">87.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-93952">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93952" target="_blank" rel="noopener"><code>CVE-2026-93952</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Arista&amp;search_type=all" target="_blank" rel="noopener">Arista</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=VeloCloud%20Orchestrator&amp;search_type=all" target="_blank" rel="noopener">VeloCloud Orchestrator</a></td>
@@ -389,7 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-94127">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-94127" target="_blank" rel="noopener"><code>CVE-2026-94127</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=F5&amp;search_type=all" target="_blank" rel="noopener">F5</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=BIG-IP%20APM&amp;search_type=all" target="_blank" rel="noopener">BIG-IP APM</a></td>
@@ -400,7 +413,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-93616">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93616" target="_blank" rel="noopener"><code>CVE-2026-93616</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Check%20Point&amp;search_type=all" target="_blank" rel="noopener">Check Point</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -411,7 +424,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">19.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-85102">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85102" target="_blank" rel="noopener"><code>CVE-2026-85102</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Check%20Point&amp;search_type=all" target="_blank" rel="noopener">Check Point</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -422,7 +435,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">7.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-7273">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-7273" target="_blank" rel="noopener"><code>CVE-2026-7273</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zyxel&amp;search_type=all" target="_blank" rel="noopener">Zyxel</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=GS1900%20Series%20Switches&amp;search_type=all" target="_blank" rel="noopener">GS1900 Series Switches</a></td>
@@ -433,7 +446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-39964">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-39964" target="_blank" rel="noopener"><code>CVE-2025-39964</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -444,7 +457,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-53266">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-53266" target="_blank" rel="noopener"><code>CVE-2026-53266</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -455,7 +468,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-39682">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-39682" target="_blank" rel="noopener"><code>CVE-2025-39682</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -466,7 +479,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-58704">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58704" target="_blank" rel="noopener"><code>CVE-2026-58704</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Pixel&amp;search_type=all" target="_blank" rel="noopener">Pixel</a></td>
@@ -477,7 +490,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-76460">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76460" target="_blank" rel="noopener"><code>CVE-2026-76460</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Identity%20Services%20Engine&amp;search_type=all" target="_blank" rel="noopener">Identity Services Engine</a></td>
@@ -488,7 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">14.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-87886">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87886" target="_blank" rel="noopener"><code>CVE-2026-87886</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Acronis&amp;search_type=all" target="_blank" rel="noopener">Acronis</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Backup&amp;search_type=all" target="_blank" rel="noopener">Backup</a></td>
@@ -499,7 +512,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-76461">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76461" target="_blank" rel="noopener"><code>CVE-2026-76461</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Secure%20Email%20Gateway&amp;search_type=all" target="_blank" rel="noopener">Secure Email Gateway</a></td>
@@ -510,7 +523,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">28.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-84869">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-84869" target="_blank" rel="noopener"><code>CVE-2026-84869</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ConnectWise&amp;search_type=all" target="_blank" rel="noopener">ConnectWise</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ScreenConnect&amp;search_type=all" target="_blank" rel="noopener">ScreenConnect</a></td>
@@ -521,7 +534,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-42016">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42016" target="_blank" rel="noopener"><code>CVE-2026-42016</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JFrog&amp;search_type=all" target="_blank" rel="noopener">JFrog</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Artifactory&amp;search_type=all" target="_blank" rel="noopener">Artifactory</a></td>
@@ -532,7 +545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">8.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-42018">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42018" target="_blank" rel="noopener"><code>CVE-2026-42018</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JFrog&amp;search_type=all" target="_blank" rel="noopener">JFrog</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Artifactory&amp;search_type=all" target="_blank" rel="noopener">Artifactory</a></td>
@@ -543,7 +556,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">9.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-85706">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85706" target="_blank" rel="noopener"><code>CVE-2026-85706</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=GitLab&amp;search_type=all" target="_blank" rel="noopener">GitLab</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Community%20Edition%20and%20Enterprise%20Edition&amp;search_type=all" target="_blank" rel="noopener">Community Edition and Enterprise Edition</a></td>
@@ -554,7 +567,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">93.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-86060">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86060" target="_blank" rel="noopener"><code>CVE-2026-86060</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MikroTik&amp;search_type=all" target="_blank" rel="noopener">MikroTik</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=RouterOS&amp;search_type=all" target="_blank" rel="noopener">RouterOS</a></td>
@@ -565,7 +578,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">6.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-67277">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-67277" target="_blank" rel="noopener"><code>CVE-2026-67277</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MikroTik&amp;search_type=all" target="_blank" rel="noopener">MikroTik</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=RouterOS&amp;search_type=all" target="_blank" rel="noopener">RouterOS</a></td>
@@ -576,7 +589,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-19490">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19490" target="_blank" rel="noopener"><code>CVE-2026-19490</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Citrix&amp;search_type=all" target="_blank" rel="noopener">Citrix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NetScaler&amp;search_type=all" target="_blank" rel="noopener">NetScaler</a></td>
@@ -587,7 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">23.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-25249">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-25249" target="_blank" rel="noopener"><code>CVE-2025-25249</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -598,7 +611,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-87491">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87491" target="_blank" rel="noopener"><code>CVE-2026-87491</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Chromium%20V8&amp;search_type=all" target="_blank" rel="noopener">Chromium V8</a></td>
@@ -609,7 +622,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20079">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20079" target="_blank" rel="noopener"><code>CVE-2026-20079</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Secure%20Firewall%20Management%20Center%20%28FMC%29%20and%20Security%20Cloud%20Control%20%28SCC%29%20Firewall%20Management&amp;search_type=all" target="_blank" rel="noopener">Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management</a></td>
@@ -620,7 +633,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">88.2%</td>
           <td><a href="report-5f8e7dcba8fcada4.html" title="We&#39;ve got one word for it, and it&#39;s usually the wrong one">2 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-75650">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-75650" target="_blank" rel="noopener"><code>CVE-2026-75650</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Commerce%20and%20Magento&amp;search_type=all" target="_blank" rel="noopener">Commerce and Magento</a></td>
@@ -631,7 +644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-81963">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-81963" target="_blank" rel="noopener"><code>CVE-2026-81963</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -642,7 +655,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-86218">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86218" target="_blank" rel="noopener"><code>CVE-2026-86218</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-able&amp;search_type=all" target="_blank" rel="noopener">N-able</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-central&amp;search_type=all" target="_blank" rel="noopener">N-central</a></td>
@@ -653,7 +666,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">12.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-85880">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85880" target="_blank" rel="noopener"><code>CVE-2026-85880</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -664,7 +677,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-85046">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85046" target="_blank" rel="noopener"><code>CVE-2026-85046</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Chromium%20V8&amp;search_type=all" target="_blank" rel="noopener">Chromium V8</a></td>
@@ -675,7 +688,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">48.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-59822">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59822" target="_blank" rel="noopener"><code>CVE-2026-59822</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=BerriAI&amp;search_type=all" target="_blank" rel="noopener">BerriAI</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LiteLLM&amp;search_type=all" target="_blank" rel="noopener">LiteLLM</a></td>
@@ -686,7 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48710">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48710" target="_blank" rel="noopener"><code>CVE-2026-48710</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kludex&amp;search_type=all" target="_blank" rel="noopener">Kludex</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Starlette&amp;search_type=all" target="_blank" rel="noopener">Starlette</a></td>
@@ -697,7 +710,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">7.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-49869">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-49869" target="_blank" rel="noopener"><code>CVE-2026-49869</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kestra&amp;search_type=all" target="_blank" rel="noopener">Kestra</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kestra%20OSS&amp;search_type=all" target="_blank" rel="noopener">Kestra OSS</a></td>
@@ -708,7 +721,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-82329">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-82329" target="_blank" rel="noopener"><code>CVE-2026-82329</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JFrog&amp;search_type=all" target="_blank" rel="noopener">JFrog</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Artifactory&amp;search_type=all" target="_blank" rel="noopener">Artifactory</a></td>
@@ -719,7 +732,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">14.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-9586">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9586" target="_blank" rel="noopener"><code>CVE-2026-9586</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Sangoma&amp;search_type=all" target="_blank" rel="noopener">Sangoma</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Switchvox&amp;search_type=all" target="_blank" rel="noopener">Switchvox</a></td>
@@ -730,7 +743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">19.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-83548">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83548" target="_blank" rel="noopener"><code>CVE-2026-83548</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SonicWall&amp;search_type=all" target="_blank" rel="noopener">SonicWall</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SMA1000%20Appliances&amp;search_type=all" target="_blank" rel="noopener">SMA1000 Appliances</a></td>
@@ -741,7 +754,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">8.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-83549">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83549" target="_blank" rel="noopener"><code>CVE-2026-83549</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SonicWall&amp;search_type=all" target="_blank" rel="noopener">SonicWall</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SMA1000%20Appliances&amp;search_type=all" target="_blank" rel="noopener">SMA1000 Appliances</a></td>
@@ -752,7 +765,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">10.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-82078">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-82078" target="_blank" rel="noopener"><code>CVE-2026-82078</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PaperCut&amp;search_type=all" target="_blank" rel="noopener">PaperCut</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NG/MF&amp;search_type=all" target="_blank" rel="noopener">NG/MF</a></td>
@@ -763,7 +776,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">61.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-81578">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-81578" target="_blank" rel="noopener"><code>CVE-2026-81578</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PaperCut&amp;search_type=all" target="_blank" rel="noopener">PaperCut</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NG/MF&amp;search_type=all" target="_blank" rel="noopener">NG/MF</a></td>
@@ -774,7 +787,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">85.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-49105">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-49105" target="_blank" rel="noopener"><code>CVE-2023-49105</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ownCloud&amp;search_type=all" target="_blank" rel="noopener">ownCloud</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ownCloud&amp;search_type=all" target="_blank" rel="noopener">ownCloud</a></td>
@@ -785,7 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">42.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-53362">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-53362" target="_blank" rel="noopener"><code>CVE-2026-53362</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -796,7 +809,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-66384">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-66384" target="_blank" rel="noopener"><code>CVE-2026-66384</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JFrog&amp;search_type=all" target="_blank" rel="noopener">JFrog</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Artifactory&amp;search_type=all" target="_blank" rel="noopener">Artifactory</a></td>
@@ -807,7 +820,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2021-23758">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-23758" target="_blank" rel="noopener"><code>CVE-2021-23758</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ajax.NET%20Professional&amp;search_type=all" target="_blank" rel="noopener">Ajax.NET Professional</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ajax.NET%20Professional&amp;search_type=all" target="_blank" rel="noopener">Ajax.NET Professional</a></td>
@@ -818,7 +831,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">82.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2015-3246">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-3246" target="_blank" rel="noopener"><code>CVE-2015-3246</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Red%20Hat&amp;search_type=all" target="_blank" rel="noopener">Red Hat</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Libuser&amp;search_type=all" target="_blank" rel="noopener">Libuser</a></td>
@@ -829,7 +842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">8.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2015-5287">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5287" target="_blank" rel="noopener"><code>CVE-2015-5287</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Red%20Hat&amp;search_type=all" target="_blank" rel="noopener">Red Hat</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Automatic%20Bug%20Reporting%20Tool&amp;search_type=all" target="_blank" rel="noopener">Automatic Bug Reporting Tool</a></td>
@@ -840,7 +853,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">5.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2022-0995">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0995" target="_blank" rel="noopener"><code>CVE-2022-0995</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -851,7 +864,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">8.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-8452">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8452" target="_blank" rel="noopener"><code>CVE-2026-8452</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Citrix&amp;search_type=all" target="_blank" rel="noopener">Citrix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NetScaler%20ADC%20and%20NetScaler%20Gateway&amp;search_type=all" target="_blank" rel="noopener">NetScaler ADC and NetScaler Gateway</a></td>
@@ -862,7 +875,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2019-1068">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-1068" target="_blank" rel="noopener"><code>CVE-2019-1068</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SQL%20Server&amp;search_type=all" target="_blank" rel="noopener">SQL Server</a></td>
@@ -873,7 +886,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">57.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-60004">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-60004" target="_blank" rel="noopener"><code>CVE-2026-60004</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Gitea&amp;search_type=all" target="_blank" rel="noopener">Gitea</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Gitea&amp;search_type=all" target="_blank" rel="noopener">Gitea</a></td>
@@ -884,7 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">24.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-21962">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21962" target="_blank" rel="noopener"><code>CVE-2026-21962</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Oracle&amp;search_type=all" target="_blank" rel="noopener">Oracle</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=HTTP%20Server%20and%20Oracle%20Weblogic%20Server%20Proxy%20Plug-in&amp;search_type=all" target="_blank" rel="noopener">HTTP Server and Oracle Weblogic Server Proxy Plug-in</a></td>
@@ -895,7 +908,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">73.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-73570">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-73570" target="_blank" rel="noopener"><code>CVE-2026-73570</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Synacor&amp;search_type=all" target="_blank" rel="noopener">Synacor</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zimbra%20Collaboration%20Suite%20%28ZCS%29&amp;search_type=all" target="_blank" rel="noopener">Zimbra Collaboration Suite (ZCS)</a></td>
@@ -906,7 +919,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">11.7%</td>
           <td><a href="report-a8c7a9dcbf05cdce.html" title="Unauthenticated command injection on internet-facing mail servers: tracking CVE-2026-73570">1 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-72530">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72530" target="_blank" rel="noopener"><code>CVE-2026-72530</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TrueConf&amp;search_type=all" target="_blank" rel="noopener">TrueConf</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Server&amp;search_type=all" target="_blank" rel="noopener">Server</a></td>
@@ -917,7 +930,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-72529">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72529" target="_blank" rel="noopener"><code>CVE-2026-72529</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TrueConf&amp;search_type=all" target="_blank" rel="noopener">TrueConf</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Server&amp;search_type=all" target="_blank" rel="noopener">Server</a></td>
@@ -928,7 +941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-64849">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-64849" target="_blank" rel="noopener"><code>CVE-2026-64849</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MLflow&amp;search_type=all" target="_blank" rel="noopener">MLflow</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MLflow&amp;search_type=all" target="_blank" rel="noopener">MLflow</a></td>
@@ -939,7 +952,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">9.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-33824">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33824" target="_blank" rel="noopener"><code>CVE-2026-33824</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Internet%20Key%20Exchange%20%28IKE%29%20Service%20Extensions&amp;search_type=all" target="_blank" rel="noopener">Internet Key Exchange (IKE) Service Extensions</a></td>
@@ -950,7 +963,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-59310">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59310" target="_blank" rel="noopener"><code>CVE-2026-59310</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Broadcom&amp;search_type=all" target="_blank" rel="noopener">Broadcom</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=VMware%20vCenter&amp;search_type=all" target="_blank" rel="noopener">VMware vCenter</a></td>
@@ -961,7 +974,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-55040">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55040" target="_blank" rel="noopener"><code>CVE-2026-55040</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint&amp;search_type=all" target="_blank" rel="noopener">SharePoint</a></td>
@@ -972,7 +985,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">17.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-65400">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65400" target="_blank" rel="noopener"><code>CVE-2026-65400</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=macOS&amp;search_type=all" target="_blank" rel="noopener">macOS</a></td>
@@ -983,7 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-62593">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62593" target="_blank" rel="noopener"><code>CVE-2025-62593</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ray-Project&amp;search_type=all" target="_blank" rel="noopener">Ray-Project</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ray&amp;search_type=all" target="_blank" rel="noopener">Ray</a></td>
@@ -994,7 +1007,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">62.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20349">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20349" target="_blank" rel="noopener"><code>CVE-2026-20349</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Secure%20Firewall%20Adaptive%20Security%20Appliance%20%28ASA%29%20and%20Secure%20Firewall%20Threat%20Defense%20%28FTD%29%20&amp;search_type=all" target="_blank" rel="noopener">Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) </a></td>
@@ -1005,7 +1018,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-68820">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-68820" target="_blank" rel="noopener"><code>CVE-2026-68820</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows%20Ancillary%20Function%20Driver%20for%20WinSock%20&amp;search_type=all" target="_blank" rel="noopener">Windows Ancillary Function Driver for WinSock </a></td>
@@ -1016,7 +1029,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-72898">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72898" target="_blank" rel="noopener"><code>CVE-2026-72898</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Metabase&amp;search_type=all" target="_blank" rel="noopener">Metabase</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Metabase&amp;search_type=all" target="_blank" rel="noopener">Metabase</a></td>
@@ -1027,7 +1040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">19.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-8037">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8037" target="_blank" rel="noopener"><code>CVE-2026-8037</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Progress&amp;search_type=all" target="_blank" rel="noopener">Progress</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LoadMaster&amp;search_type=all" target="_blank" rel="noopener">LoadMaster</a></td>
@@ -1038,7 +1051,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">77.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-63077">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63077" target="_blank" rel="noopener"><code>CVE-2026-63077</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JetBrains&amp;search_type=all" target="_blank" rel="noopener">JetBrains</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TeamCity&amp;search_type=all" target="_blank" rel="noopener">TeamCity</a></td>
@@ -1049,7 +1062,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">89.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-18556">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18556" target="_blank" rel="noopener"><code>CVE-2026-18556</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-able&amp;search_type=all" target="_blank" rel="noopener">N-able</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-central&amp;search_type=all" target="_blank" rel="noopener">N-central</a></td>
@@ -1060,7 +1073,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">7.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34486">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34486" target="_blank" rel="noopener"><code>CVE-2026-34486</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apache&amp;search_type=all" target="_blank" rel="noopener">Apache</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Tomcat&amp;search_type=all" target="_blank" rel="noopener">Tomcat</a></td>
@@ -1071,7 +1084,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">6.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-9198">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9198" target="_blank" rel="noopener"><code>CVE-2026-9198</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=IBM&amp;search_type=all" target="_blank" rel="noopener">IBM</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
@@ -1082,7 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">28.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-18577">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18577" target="_blank" rel="noopener"><code>CVE-2026-18577</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-able&amp;search_type=all" target="_blank" rel="noopener">N-able</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=N-central&amp;search_type=all" target="_blank" rel="noopener">N-central</a></td>
@@ -1093,7 +1106,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">14.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20316">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20316" target="_blank" rel="noopener"><code>CVE-2026-20316</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Secure%20Firewall%20Management%20Center%20%28FMC%29&amp;search_type=all" target="_blank" rel="noopener">Secure Firewall Management Center (FMC)</a></td>
@@ -1104,7 +1117,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">35.1%</td>
           <td><a href="report-5f8e7dcba8fcada4.html" title="We&#39;ve got one word for it, and it&#39;s usually the wrong one">2 report(s)</a></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-68686">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68686" target="_blank" rel="noopener"><code>CVE-2025-68686</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiOS&amp;search_type=all" target="_blank" rel="noopener">FortiOS</a></td>
@@ -1115,7 +1128,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">29.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-16812">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16812" target="_blank" rel="noopener"><code>CVE-2026-16812</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Arista&amp;search_type=all" target="_blank" rel="noopener">Arista</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=VeloCloud%20Orchestrator&amp;search_type=all" target="_blank" rel="noopener">VeloCloud Orchestrator</a></td>
@@ -1126,7 +1139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-16232">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16232" target="_blank" rel="noopener"><code>CVE-2026-16232</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Check%20Point&amp;search_type=all" target="_blank" rel="noopener">Check Point</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SmartConsole&amp;search_type=all" target="_blank" rel="noopener">SmartConsole</a></td>
@@ -1137,7 +1150,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">78.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-50522">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50522" target="_blank" rel="noopener"><code>CVE-2026-50522</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint&amp;search_type=all" target="_blank" rel="noopener">SharePoint</a></td>
@@ -1148,7 +1161,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-60137">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-60137" target="_blank" rel="noopener"><code>CVE-2026-60137</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WordPress&amp;search_type=all" target="_blank" rel="noopener">WordPress</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Core&amp;search_type=all" target="_blank" rel="noopener">Core</a></td>
@@ -1159,7 +1172,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">5.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-63030">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63030" target="_blank" rel="noopener"><code>CVE-2026-63030</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WordPress&amp;search_type=all" target="_blank" rel="noopener">WordPress</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Core&amp;search_type=all" target="_blank" rel="noopener">Core</a></td>
@@ -1170,7 +1183,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">10.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-0770">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0770" target="_blank" rel="noopener"><code>CVE-2026-0770</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
@@ -1181,7 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">63.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2021-27137">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27137" target="_blank" rel="noopener"><code>CVE-2021-27137</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=DD-WRT&amp;search_type=all" target="_blank" rel="noopener">DD-WRT</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=DD-WRT&amp;search_type=all" target="_blank" rel="noopener">DD-WRT</a></td>
@@ -1192,7 +1205,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">4.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-58644">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58644" target="_blank" rel="noopener"><code>CVE-2026-58644</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint&amp;search_type=all" target="_blank" rel="noopener">SharePoint</a></td>
@@ -1203,7 +1216,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">15.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-25089">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25089" target="_blank" rel="noopener"><code>CVE-2026-25089</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiSandbox&amp;search_type=all" target="_blank" rel="noopener">FortiSandbox</a></td>
@@ -1214,7 +1227,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">76.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-39808">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39808" target="_blank" rel="noopener"><code>CVE-2026-39808</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiSandbox&amp;search_type=all" target="_blank" rel="noopener">FortiSandbox</a></td>
@@ -1225,7 +1238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">47.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-46817">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-46817" target="_blank" rel="noopener"><code>CVE-2026-46817</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Oracle&amp;search_type=all" target="_blank" rel="noopener">Oracle</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=E-Business%20Suite&amp;search_type=all" target="_blank" rel="noopener">E-Business Suite</a></td>
@@ -1236,7 +1249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-4346">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4346" target="_blank" rel="noopener"><code>CVE-2023-4346</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=KNX%20Association&amp;search_type=all" target="_blank" rel="noopener">KNX Association</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=KNX%20Protocol%20Connection%20Authorization%20Option%201&amp;search_type=all" target="_blank" rel="noopener">KNX Protocol Connection Authorization Option 1</a></td>
@@ -1247,7 +1260,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-56155">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56155" target="_blank" rel="noopener"><code>CVE-2026-56155</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Active%20Directory%20Federation%20Services&amp;search_type=all" target="_blank" rel="noopener">Active Directory Federation Services</a></td>
@@ -1258,7 +1271,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-56164">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56164" target="_blank" rel="noopener"><code>CVE-2026-56164</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint%20Server&amp;search_type=all" target="_blank" rel="noopener">SharePoint Server</a></td>
@@ -1269,7 +1282,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-15409">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15409" target="_blank" rel="noopener"><code>CVE-2026-15409</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SonicWall&amp;search_type=all" target="_blank" rel="noopener">SonicWall</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SMA1000%20Appliances&amp;search_type=all" target="_blank" rel="noopener">SMA1000 Appliances</a></td>
@@ -1280,7 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">6.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-15410">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15410" target="_blank" rel="noopener"><code>CVE-2026-15410</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SonicWall&amp;search_type=all" target="_blank" rel="noopener">SonicWall</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SMA1000%20Appliances&amp;search_type=all" target="_blank" rel="noopener">SMA1000 Appliances</a></td>
@@ -1291,7 +1304,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">11.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2008-4128">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128" target="_blank" rel="noopener"><code>CVE-2008-4128</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=IOS&amp;search_type=all" target="_blank" rel="noopener">IOS</a></td>
@@ -1302,7 +1315,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">33.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-56291">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56291" target="_blank" rel="noopener"><code>CVE-2026-56291</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Balbooa&amp;search_type=all" target="_blank" rel="noopener">Balbooa</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Forms&amp;search_type=all" target="_blank" rel="noopener">Forms</a></td>
@@ -1313,7 +1326,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">14.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48939">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48939" target="_blank" rel="noopener"><code>CVE-2026-48939</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=iCagenda&amp;search_type=all" target="_blank" rel="noopener">iCagenda</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=iCagenda&amp;search_type=all" target="_blank" rel="noopener">iCagenda</a></td>
@@ -1324,7 +1337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">20.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48908">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908" target="_blank" rel="noopener"><code>CVE-2026-48908</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JoomShaper&amp;search_type=all" target="_blank" rel="noopener">JoomShaper</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SP%20Page%20Builder&amp;search_type=all" target="_blank" rel="noopener">SP Page Builder</a></td>
@@ -1335,7 +1348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">88.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-55255">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55255" target="_blank" rel="noopener"><code>CVE-2026-55255</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
@@ -1346,7 +1359,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-56290">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56290" target="_blank" rel="noopener"><code>CVE-2026-56290</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Joomlack&amp;search_type=all" target="_blank" rel="noopener">Joomlack</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Page%20Builder&amp;search_type=all" target="_blank" rel="noopener">Page Builder</a></td>
@@ -1357,7 +1370,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">30.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48282">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48282" target="_blank" rel="noopener"><code>CVE-2026-48282</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ColdFusion&amp;search_type=all" target="_blank" rel="noopener">ColdFusion</a></td>
@@ -1368,7 +1381,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">42.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-45659">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45659" target="_blank" rel="noopener"><code>CVE-2026-45659</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint%20Server&amp;search_type=all" target="_blank" rel="noopener">SharePoint Server</a></td>
@@ -1379,7 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48558">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48558" target="_blank" rel="noopener"><code>CVE-2026-48558</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp%20&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp </a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp</a></td>
@@ -1390,7 +1403,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">5.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-12569">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12569" target="_blank" rel="noopener"><code>CVE-2026-12569</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PTC&amp;search_type=all" target="_blank" rel="noopener">PTC</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windchill%20and%20FlexPLM&amp;search_type=all" target="_blank" rel="noopener">Windchill and FlexPLM</a></td>
@@ -1401,7 +1414,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">46.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20230">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20230" target="_blank" rel="noopener"><code>CVE-2026-20230</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Unified%20Communications%20Manager&amp;search_type=all" target="_blank" rel="noopener">Unified Communications Manager</a></td>
@@ -1412,7 +1425,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">88.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-67038">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-67038" target="_blank" rel="noopener"><code>CVE-2025-67038</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Lantronix&amp;search_type=all" target="_blank" rel="noopener">Lantronix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=EDS5000&amp;search_type=all" target="_blank" rel="noopener">EDS5000</a></td>
@@ -1423,7 +1436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">19.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34910">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34910" target="_blank" rel="noopener"><code>CVE-2026-34910</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ubiquiti&amp;search_type=all" target="_blank" rel="noopener">Ubiquiti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=UniFi%20OS&amp;search_type=all" target="_blank" rel="noopener">UniFi OS</a></td>
@@ -1434,7 +1447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">45.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34909">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34909" target="_blank" rel="noopener"><code>CVE-2026-34909</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ubiquiti&amp;search_type=all" target="_blank" rel="noopener">Ubiquiti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=UniFi%20OS&amp;search_type=all" target="_blank" rel="noopener">UniFi OS</a></td>
@@ -1445,7 +1458,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34908">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34908" target="_blank" rel="noopener"><code>CVE-2026-34908</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ubiquiti&amp;search_type=all" target="_blank" rel="noopener">Ubiquiti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=UniFi%20OS&amp;search_type=all" target="_blank" rel="noopener">UniFi OS</a></td>
@@ -1456,7 +1469,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">15.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20253">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20253" target="_blank" rel="noopener"><code>CVE-2026-20253</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Splunk&amp;search_type=all" target="_blank" rel="noopener">Splunk</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Enterprise&amp;search_type=all" target="_blank" rel="noopener">Enterprise</a></td>
@@ -1467,7 +1480,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">96.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48907">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48907" target="_blank" rel="noopener"><code>CVE-2026-48907</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Widget%20Factory&amp;search_type=all" target="_blank" rel="noopener">Widget Factory</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Joomla%20Content%20Editor%20&amp;search_type=all" target="_blank" rel="noopener">Joomla Content Editor </a></td>
@@ -1478,7 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">16.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-54420">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-54420" target="_blank" rel="noopener"><code>CVE-2026-54420</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LiteSpeed&amp;search_type=all" target="_blank" rel="noopener">LiteSpeed</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=cPanel%20Plugin&amp;search_type=all" target="_blank" rel="noopener">cPanel Plugin</a></td>
@@ -1489,7 +1502,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20262">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20262" target="_blank" rel="noopener"><code>CVE-2026-20262</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manager&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manager</a></td>
@@ -1500,7 +1513,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">28.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-35273">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35273" target="_blank" rel="noopener"><code>CVE-2026-35273</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Oracle&amp;search_type=all" target="_blank" rel="noopener">Oracle</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=%20PeopleSoft%20Enterprise%20PeopleTools&amp;search_type=all" target="_blank" rel="noopener"> PeopleSoft Enterprise PeopleTools</a></td>
@@ -1511,7 +1524,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">9.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-10520">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-10520" target="_blank" rel="noopener"><code>CVE-2026-10520</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ivanti&amp;search_type=all" target="_blank" rel="noopener">Ivanti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Sentry&amp;search_type=all" target="_blank" rel="noopener">Sentry</a></td>
@@ -1522,7 +1535,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">99.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-11645">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-11645" target="_blank" rel="noopener"><code>CVE-2026-11645</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Chromium%20V8&amp;search_type=all" target="_blank" rel="noopener">Chromium V8</a></td>
@@ -1533,7 +1546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-7473">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-7473" target="_blank" rel="noopener"><code>CVE-2026-7473</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Arista&amp;search_type=all" target="_blank" rel="noopener">Arista</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Extensible%20Operating%20System&amp;search_type=all" target="_blank" rel="noopener">Extensible Operating System</a></td>
@@ -1544,7 +1557,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20245">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20245" target="_blank" rel="noopener"><code>CVE-2026-20245</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manager&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manager</a></td>
@@ -1555,7 +1568,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">25.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-42271">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" target="_blank" rel="noopener"><code>CVE-2026-42271</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=BerriAI&amp;search_type=all" target="_blank" rel="noopener">BerriAI</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LiteLLM&amp;search_type=all" target="_blank" rel="noopener">LiteLLM</a></td>
@@ -1566,7 +1579,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">92.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-50751">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50751" target="_blank" rel="noopener"><code>CVE-2026-50751</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Check%20Point&amp;search_type=all" target="_blank" rel="noopener">Check Point</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Security%20Gateway&amp;search_type=all" target="_blank" rel="noopener">Security Gateway</a></td>
@@ -1577,7 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">6.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-28318">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28318" target="_blank" rel="noopener"><code>CVE-2026-28318</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SolarWinds&amp;search_type=all" target="_blank" rel="noopener">SolarWinds</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Serv-U&amp;search_type=all" target="_blank" rel="noopener">Serv-U</a></td>
@@ -1588,7 +1601,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-45247">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45247" target="_blank" rel="noopener"><code>CVE-2026-45247</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Mirasvit&amp;search_type=all" target="_blank" rel="noopener">Mirasvit</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Mirasvit%20Full%20Page%20Cache%20Warmer&amp;search_type=all" target="_blank" rel="noopener">Mirasvit Full Page Cache Warmer</a></td>
@@ -1599,7 +1612,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2022-0492">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0492" target="_blank" rel="noopener"><code>CVE-2022-0492</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -1610,7 +1623,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">5.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-48595">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48595" target="_blank" rel="noopener"><code>CVE-2025-48595</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Android&amp;search_type=all" target="_blank" rel="noopener">Android</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Framework&amp;search_type=all" target="_blank" rel="noopener">Framework</a></td>
@@ -1621,7 +1634,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-21182">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-21182" target="_blank" rel="noopener"><code>CVE-2024-21182</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Oracle&amp;search_type=all" target="_blank" rel="noopener">Oracle</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WebLogic%20Server&amp;search_type=all" target="_blank" rel="noopener">WebLogic Server</a></td>
@@ -1632,7 +1645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">74.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-0257">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0257" target="_blank" rel="noopener"><code>CVE-2026-0257</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Palo%20Alto%20Networks&amp;search_type=all" target="_blank" rel="noopener">Palo Alto Networks</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PAN-OS&amp;search_type=all" target="_blank" rel="noopener">PAN-OS</a></td>
@@ -1643,7 +1656,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">96.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48027">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48027" target="_blank" rel="noopener"><code>CVE-2026-48027</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Nx&amp;search_type=all" target="_blank" rel="noopener">Nx</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Nx%20Console&amp;search_type=all" target="_blank" rel="noopener">Nx Console</a></td>
@@ -1654,7 +1667,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-45321">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45321" target="_blank" rel="noopener"><code>CVE-2026-45321</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TanStack&amp;search_type=all" target="_blank" rel="noopener">TanStack</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TanStack&amp;search_type=all" target="_blank" rel="noopener">TanStack</a></td>
@@ -1665,7 +1678,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-8398">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8398" target="_blank" rel="noopener"><code>CVE-2026-8398</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Daemon&amp;search_type=all" target="_blank" rel="noopener">Daemon</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Daemon%20Tools%20Lite&amp;search_type=all" target="_blank" rel="noopener">Daemon Tools Lite</a></td>
@@ -1676,7 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-48172">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48172" target="_blank" rel="noopener"><code>CVE-2026-48172</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LiteSpeed&amp;search_type=all" target="_blank" rel="noopener">LiteSpeed</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=cPanel%20Plugin&amp;search_type=all" target="_blank" rel="noopener">cPanel Plugin</a></td>
@@ -1687,7 +1700,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-9082">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9082" target="_blank" rel="noopener"><code>CVE-2026-9082</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Drupal&amp;search_type=all" target="_blank" rel="noopener">Drupal</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Core&amp;search_type=all" target="_blank" rel="noopener">Core</a></td>
@@ -1698,7 +1711,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">15.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-34291">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34291" target="_blank" rel="noopener"><code>CVE-2025-34291</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
@@ -1709,7 +1722,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">92.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34926">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34926" target="_blank" rel="noopener"><code>CVE-2026-34926</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Trend%20Micro&amp;search_type=all" target="_blank" rel="noopener">Trend Micro</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apex%20One&amp;search_type=all" target="_blank" rel="noopener">Apex One</a></td>
@@ -1720,7 +1733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2008-4250">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4250" target="_blank" rel="noopener"><code>CVE-2008-4250</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -1731,7 +1744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">98.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2009-1537">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-1537" target="_blank" rel="noopener"><code>CVE-2009-1537</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=DirectX&amp;search_type=all" target="_blank" rel="noopener">DirectX</a></td>
@@ -1742,7 +1755,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">51.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2009-3459">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-3459" target="_blank" rel="noopener"><code>CVE-2009-3459</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Acrobat%20and%20Reader&amp;search_type=all" target="_blank" rel="noopener">Acrobat and Reader</a></td>
@@ -1753,7 +1766,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">86.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2010-0249">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0249" target="_blank" rel="noopener"><code>CVE-2010-0249</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Internet%20Explorer&amp;search_type=all" target="_blank" rel="noopener">Internet Explorer</a></td>
@@ -1764,7 +1777,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">91.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2010-0806">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0806" target="_blank" rel="noopener"><code>CVE-2010-0806</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Internet%20Explorer&amp;search_type=all" target="_blank" rel="noopener">Internet Explorer</a></td>
@@ -1775,7 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">82.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-41091">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-41091" target="_blank" rel="noopener"><code>CVE-2026-41091</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Defender&amp;search_type=all" target="_blank" rel="noopener">Defender</a></td>
@@ -1786,7 +1799,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-45498">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45498" target="_blank" rel="noopener"><code>CVE-2026-45498</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Defender&amp;search_type=all" target="_blank" rel="noopener">Defender</a></td>
@@ -1797,7 +1810,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-42897">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42897" target="_blank" rel="noopener"><code>CVE-2026-42897</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
@@ -1808,7 +1821,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20182">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20182" target="_blank" rel="noopener"><code>CVE-2026-20182</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN</a></td>
@@ -1819,7 +1832,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">91.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-42208">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42208" target="_blank" rel="noopener"><code>CVE-2026-42208</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=BerriAI&amp;search_type=all" target="_blank" rel="noopener">BerriAI</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=LiteLLM&amp;search_type=all" target="_blank" rel="noopener">LiteLLM</a></td>
@@ -1830,7 +1843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">5.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-6973">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-6973" target="_blank" rel="noopener"><code>CVE-2026-6973</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ivanti&amp;search_type=all" target="_blank" rel="noopener">Ivanti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Endpoint%20Manager%20Mobile%20%28EPMM%29&amp;search_type=all" target="_blank" rel="noopener">Endpoint Manager Mobile (EPMM)</a></td>
@@ -1841,7 +1854,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-0300">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0300" target="_blank" rel="noopener"><code>CVE-2026-0300</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Palo%20Alto%20Networks&amp;search_type=all" target="_blank" rel="noopener">Palo Alto Networks</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PAN-OS&amp;search_type=all" target="_blank" rel="noopener">PAN-OS</a></td>
@@ -1852,7 +1865,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">31.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-31431">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-31431" target="_blank" rel="noopener"><code>CVE-2026-31431</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Linux&amp;search_type=all" target="_blank" rel="noopener">Linux</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kernel&amp;search_type=all" target="_blank" rel="noopener">Kernel</a></td>
@@ -1863,7 +1876,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">3.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-41940">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-41940" target="_blank" rel="noopener"><code>CVE-2026-41940</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=WebPros&amp;search_type=all" target="_blank" rel="noopener">WebPros</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=cPanel%20%26%20WHM%20and%20WP2%20%28WordPress%20Squared%29&amp;search_type=all" target="_blank" rel="noopener">cPanel &amp; WHM and WP2 (WordPress Squared)</a></td>
@@ -1874,7 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">98.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-1708">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-1708" target="_blank" rel="noopener"><code>CVE-2024-1708</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ConnectWise&amp;search_type=all" target="_blank" rel="noopener">ConnectWise</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ScreenConnect&amp;search_type=all" target="_blank" rel="noopener">ScreenConnect</a></td>
@@ -1885,7 +1898,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-32202">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32202" target="_blank" rel="noopener"><code>CVE-2026-32202</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -1896,7 +1909,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">4.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-29635">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-29635" target="_blank" rel="noopener"><code>CVE-2025-29635</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=D-Link&amp;search_type=all" target="_blank" rel="noopener">D-Link</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=DIR-823X&amp;search_type=all" target="_blank" rel="noopener">DIR-823X</a></td>
@@ -1907,7 +1920,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">87.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-7399">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-7399" target="_blank" rel="noopener"><code>CVE-2024-7399</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Samsung&amp;search_type=all" target="_blank" rel="noopener">Samsung</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=MagicINFO%209%20Server&amp;search_type=all" target="_blank" rel="noopener">MagicINFO 9 Server</a></td>
@@ -1918,7 +1931,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">91.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-57728">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57728" target="_blank" rel="noopener"><code>CVE-2024-57728</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp%20&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp </a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp</a></td>
@@ -1929,7 +1942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">64.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-57726">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57726" target="_blank" rel="noopener"><code>CVE-2024-57726</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp%20&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp </a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SimpleHelp&amp;search_type=all" target="_blank" rel="noopener">SimpleHelp</a></td>
@@ -1940,7 +1953,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">66.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-39987">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39987" target="_blank" rel="noopener"><code>CVE-2026-39987</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Marimo&amp;search_type=all" target="_blank" rel="noopener">Marimo</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Marimo&amp;search_type=all" target="_blank" rel="noopener">Marimo</a></td>
@@ -1951,7 +1964,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">37.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-33825">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33825" target="_blank" rel="noopener"><code>CVE-2026-33825</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Defender&amp;search_type=all" target="_blank" rel="noopener">Defender</a></td>
@@ -1962,7 +1975,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20122">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20122" target="_blank" rel="noopener"><code>CVE-2026-20122</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manger&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manger</a></td>
@@ -1973,7 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">25.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20133">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20133" target="_blank" rel="noopener"><code>CVE-2026-20133</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manager&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manager</a></td>
@@ -1984,7 +1997,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">31.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-2749">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-2749" target="_blank" rel="noopener"><code>CVE-2025-2749</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kentico&amp;search_type=all" target="_blank" rel="noopener">Kentico</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Kentico%20Xperience&amp;search_type=all" target="_blank" rel="noopener">Kentico Xperience</a></td>
@@ -1995,7 +2008,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">4.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-27351">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27351" target="_blank" rel="noopener"><code>CVE-2023-27351</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=PaperCut&amp;search_type=all" target="_blank" rel="noopener">PaperCut</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NG/MF&amp;search_type=all" target="_blank" rel="noopener">NG/MF</a></td>
@@ -2006,7 +2019,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">78.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-48700">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48700" target="_blank" rel="noopener"><code>CVE-2025-48700</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Synacor&amp;search_type=all" target="_blank" rel="noopener">Synacor</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zimbra%20Collaboration%20Suite%20%28ZCS%29&amp;search_type=all" target="_blank" rel="noopener">Zimbra Collaboration Suite (ZCS)</a></td>
@@ -2017,7 +2030,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20128">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20128" target="_blank" rel="noopener"><code>CVE-2026-20128</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Catalyst%20SD-WAN%20Manager&amp;search_type=all" target="_blank" rel="noopener">Catalyst SD-WAN Manager</a></td>
@@ -2028,7 +2041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">7.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-32975">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32975" target="_blank" rel="noopener"><code>CVE-2025-32975</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Quest&amp;search_type=all" target="_blank" rel="noopener">Quest</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=KACE%20Systems%20Management%20Appliance%20%28SMA%29&amp;search_type=all" target="_blank" rel="noopener">KACE Systems Management Appliance (SMA)</a></td>
@@ -2039,7 +2052,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2024-27199">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-27199" target="_blank" rel="noopener"><code>CVE-2024-27199</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=JetBrains&amp;search_type=all" target="_blank" rel="noopener">JetBrains</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TeamCity&amp;search_type=all" target="_blank" rel="noopener">TeamCity</a></td>
@@ -2050,7 +2063,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34197">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34197" target="_blank" rel="noopener"><code>CVE-2026-34197</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apache&amp;search_type=all" target="_blank" rel="noopener">Apache</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=ActiveMQ&amp;search_type=all" target="_blank" rel="noopener">ActiveMQ</a></td>
@@ -2061,7 +2074,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">15.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2009-0238">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-0238" target="_blank" rel="noopener"><code>CVE-2009-0238</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Office&amp;search_type=all" target="_blank" rel="noopener">Office</a></td>
@@ -2072,7 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">43.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-32201">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32201" target="_blank" rel="noopener"><code>CVE-2026-32201</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint%20Server&amp;search_type=all" target="_blank" rel="noopener">SharePoint Server</a></td>
@@ -2083,7 +2096,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">43.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2012-1854">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1854" target="_blank" rel="noopener"><code>CVE-2012-1854</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Visual%20Basic%20for%20Applications%20%28VBA%29&amp;search_type=all" target="_blank" rel="noopener">Visual Basic for Applications (VBA)</a></td>
@@ -2094,7 +2107,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">21.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-60710">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-60710" target="_blank" rel="noopener"><code>CVE-2025-60710</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -2105,7 +2118,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">4.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-21529">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21529" target="_blank" rel="noopener"><code>CVE-2023-21529</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Exchange%20Server&amp;search_type=all" target="_blank" rel="noopener">Exchange Server</a></td>
@@ -2116,7 +2129,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">59.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-36424">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36424" target="_blank" rel="noopener"><code>CVE-2023-36424</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Windows&amp;search_type=all" target="_blank" rel="noopener">Windows</a></td>
@@ -2127,7 +2140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">12.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2020-9715">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-9715" target="_blank" rel="noopener"><code>CVE-2020-9715</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Acrobat&amp;search_type=all" target="_blank" rel="noopener">Acrobat</a></td>
@@ -2138,7 +2151,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">48.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-21643">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21643" target="_blank" rel="noopener"><code>CVE-2026-21643</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiClient%20EMS&amp;search_type=all" target="_blank" rel="noopener">FortiClient EMS</a></td>
@@ -2149,7 +2162,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">93.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-34621">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34621" target="_blank" rel="noopener"><code>CVE-2026-34621</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Adobe&amp;search_type=all" target="_blank" rel="noopener">Adobe</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Acrobat%20and%20Reader&amp;search_type=all" target="_blank" rel="noopener">Acrobat and Reader</a></td>
@@ -2160,7 +2173,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-1340">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1340" target="_blank" rel="noopener"><code>CVE-2026-1340</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ivanti&amp;search_type=all" target="_blank" rel="noopener">Ivanti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Endpoint%20Manager%20Mobile%20%28EPMM%29&amp;search_type=all" target="_blank" rel="noopener">Endpoint Manager Mobile (EPMM)</a></td>
@@ -2171,7 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">98.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-35616">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35616" target="_blank" rel="noopener"><code>CVE-2026-35616</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Fortinet&amp;search_type=all" target="_blank" rel="noopener">Fortinet</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=FortiClient%20EMS&amp;search_type=all" target="_blank" rel="noopener">FortiClient EMS</a></td>
@@ -2182,7 +2195,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">9.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-3502">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3502" target="_blank" rel="noopener"><code>CVE-2026-3502</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=TrueConf&amp;search_type=all" target="_blank" rel="noopener">TrueConf</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Client&amp;search_type=all" target="_blank" rel="noopener">Client</a></td>
@@ -2193,7 +2206,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-5281">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-5281" target="_blank" rel="noopener"><code>CVE-2026-5281</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Dawn&amp;search_type=all" target="_blank" rel="noopener">Dawn</a></td>
@@ -2204,7 +2217,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-3055">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3055" target="_blank" rel="noopener"><code>CVE-2026-3055</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Citrix&amp;search_type=all" target="_blank" rel="noopener">Citrix</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=NetScaler&amp;search_type=all" target="_blank" rel="noopener">NetScaler</a></td>
@@ -2215,7 +2228,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">4.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-53521">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" target="_blank" rel="noopener"><code>CVE-2025-53521</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=F5&amp;search_type=all" target="_blank" rel="noopener">F5</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=BIG-IP&amp;search_type=all" target="_blank" rel="noopener">BIG-IP</a></td>
@@ -2226,7 +2239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-33634">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33634" target="_blank" rel="noopener"><code>CVE-2026-33634</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Aquasecurity&amp;search_type=all" target="_blank" rel="noopener">Aquasecurity</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Trivy&amp;search_type=all" target="_blank" rel="noopener">Trivy</a></td>
@@ -2237,7 +2250,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-33017">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33017" target="_blank" rel="noopener"><code>CVE-2026-33017</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Langflow&amp;search_type=all" target="_blank" rel="noopener">Langflow</a></td>
@@ -2248,7 +2261,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">24.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-32432">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32432" target="_blank" rel="noopener"><code>CVE-2025-32432</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Craft%20CMS&amp;search_type=all" target="_blank" rel="noopener">Craft CMS</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Craft%20CMS&amp;search_type=all" target="_blank" rel="noopener">Craft CMS</a></td>
@@ -2259,7 +2272,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">99.8%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-54068">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54068" target="_blank" rel="noopener"><code>CVE-2025-54068</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Laravel&amp;search_type=all" target="_blank" rel="noopener">Laravel</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Livewire&amp;search_type=all" target="_blank" rel="noopener">Livewire</a></td>
@@ -2270,7 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">97.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-43510">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43510" target="_blank" rel="noopener"><code>CVE-2025-43510</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2281,7 +2294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-43520">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43520" target="_blank" rel="noopener"><code>CVE-2025-43520</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2292,7 +2305,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">0.4%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-31277">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31277" target="_blank" rel="noopener"><code>CVE-2025-31277</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2303,7 +2316,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20131">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20131" target="_blank" rel="noopener"><code>CVE-2026-20131</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Cisco&amp;search_type=all" target="_blank" rel="noopener">Cisco</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Secure%20Firewall%20Management%20Center%20%28FMC%29&amp;search_type=all" target="_blank" rel="noopener">Secure Firewall Management Center (FMC)</a></td>
@@ -2314,7 +2327,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">43.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-66376">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-66376" target="_blank" rel="noopener"><code>CVE-2025-66376</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Synacor&amp;search_type=all" target="_blank" rel="noopener">Synacor</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Zimbra%20Collaboration%20Suite%20%28ZCS%29&amp;search_type=all" target="_blank" rel="noopener">Zimbra Collaboration Suite (ZCS)</a></td>
@@ -2325,7 +2338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">20.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-20963">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20963" target="_blank" rel="noopener"><code>CVE-2026-20963</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint&amp;search_type=all" target="_blank" rel="noopener">SharePoint</a></td>
@@ -2336,7 +2349,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">29.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-47813">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-47813" target="_blank" rel="noopener"><code>CVE-2025-47813</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Wing%20FTP%20Server&amp;search_type=all" target="_blank" rel="noopener">Wing FTP Server</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Wing%20FTP%20Server&amp;search_type=all" target="_blank" rel="noopener">Wing FTP Server</a></td>
@@ -2347,7 +2360,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">63.1%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-3910">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3910" target="_blank" rel="noopener"><code>CVE-2026-3910</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Chromium%20V8&amp;search_type=all" target="_blank" rel="noopener">Chromium V8</a></td>
@@ -2358,7 +2371,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-3909">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3909" target="_blank" rel="noopener"><code>CVE-2026-3909</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Google&amp;search_type=all" target="_blank" rel="noopener">Google</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Skia&amp;search_type=all" target="_blank" rel="noopener">Skia</a></td>
@@ -2369,7 +2382,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">2.3%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-68613">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68613" target="_blank" rel="noopener"><code>CVE-2025-68613</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=n8n&amp;search_type=all" target="_blank" rel="noopener">n8n</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=n8n&amp;search_type=all" target="_blank" rel="noopener">n8n</a></td>
@@ -2380,7 +2393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">99.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2021-22054">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-22054" target="_blank" rel="noopener"><code>CVE-2021-22054</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Omnissa&amp;search_type=all" target="_blank" rel="noopener">Omnissa</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Workspace%20One%20UEM&amp;search_type=all" target="_blank" rel="noopener">Workspace One UEM</a></td>
@@ -2391,7 +2404,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">99.7%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2025-26399">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-26399" target="_blank" rel="noopener"><code>CVE-2025-26399</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=SolarWinds&amp;search_type=all" target="_blank" rel="noopener">SolarWinds</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Web%20Help%20Desk&amp;search_type=all" target="_blank" rel="noopener">Web Help Desk</a></td>
@@ -2402,7 +2415,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">89.5%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2026-1603">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1603" target="_blank" rel="noopener"><code>CVE-2026-1603</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ivanti&amp;search_type=all" target="_blank" rel="noopener">Ivanti</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=%20Endpoint%20Manager%20%28EPM%29&amp;search_type=all" target="_blank" rel="noopener"> Endpoint Manager (EPM)</a></td>
@@ -2413,7 +2426,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">87.9%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2017-7921">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-7921" target="_blank" rel="noopener"><code>CVE-2017-7921</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Hikvision&amp;search_type=all" target="_blank" rel="noopener">Hikvision</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2424,7 +2437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100.0%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2021-22681">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-22681" target="_blank" rel="noopener"><code>CVE-2021-22681</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Rockwell&amp;search_type=all" target="_blank" rel="noopener">Rockwell</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2435,7 +2448,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">63.6%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr>
+        <tr id="CVE-2023-43000">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-43000" target="_blank" rel="noopener"><code>CVE-2023-43000</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Apple&amp;search_type=all" target="_blank" rel="noopener">Apple</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Multiple%20Products&amp;search_type=all" target="_blank" rel="noopener">Multiple Products</a></td>
@@ -2454,7 +2467,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:05:41Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:17:56Z UTC</span></p>
 </footer>
 </body>
 </html>

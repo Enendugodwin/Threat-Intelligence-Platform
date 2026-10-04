@@ -30,6 +30,13 @@
     <span class="num">{{ kev.epss_high }}</span>
     <span class="card-sub">high exploit probability</span>
   </div>
+  {% if kev.org.enabled %}
+  <div class="card">
+    <div class="card-head">{{ ui.icon("shield") }}In your stack</div>
+    <span class="num">{{ kev.matches }}</span>
+    <span class="card-sub">KEV entries matching your technologies</span>
+  </div>
+  {% endif %}
 </section>
 
 <section>
@@ -42,12 +49,13 @@
           <th scope="col">CVE</th><th scope="col">Vendor</th><th scope="col">Product</th>
           <th scope="col">Vulnerability</th><th scope="col">Added</th><th scope="col">Due</th>
           <th scope="col">Ransom</th><th scope="col" class="num-col">EPSS</th>
+          {% if kev.org.enabled %}<th scope="col">Environment</th>{% endif %}
           <th scope="col">Reports</th>
         </tr>
       </thead>
       <tbody>
       {% for e in kev.entries %}
-        <tr>
+        <tr id="{{ e.cve }}">
           <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" target="_blank" rel="noopener"><code>{{ e.cve }}</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query={{ e.vendor | urlencode }}&amp;search_type=all" target="_blank" rel="noopener">{{ e.vendor }}</a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query={{ e.product | urlencode }}&amp;search_type=all" target="_blank" rel="noopener">{{ e.product }}</a></td>
@@ -56,6 +64,9 @@
           <td>{{ e.due_date }}{% if e.overdue %} <span class="pill err">overdue</span>{% endif %}</td>
           <td>{% if e.ransomware %}<span class="pill err">known</span>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
           <td class="num-cell">{% if e.epss is not none %}{{ "%.1f%%" | format(e.epss * 100) }}{% else %}&mdash;{% endif %}</td>
+          {% if kev.org.enabled %}
+          <td>{% if e.matched %}<span class="pill ok" title="{{ e.matched | join(', ') }}">matched</span>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
+          {% endif %}
           <td>{% if e.reports %}<a href="report-{{ e.reports[0].id }}.html" title="{{ e.reports[0].title }}">{{ e.reports | length }} report(s)</a>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
         </tr>
       {% endfor %}

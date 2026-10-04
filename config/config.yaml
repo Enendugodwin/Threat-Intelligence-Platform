@@ -103,9 +103,11 @@ reports:
       category: general
   # Category shown for a report: title keywords win, then the source default.
   category_rules:
-    windows: ["windows", "microsoft", "active directory", "kerberos", "ntlm", "powershell", "winrm", "lsass", "smb", "rdp", "exchange server", "sharepoint", "hyper-v"]
+    windows: ["windows", "microsoft", "active directory", "kerberos", "ntlm", "powershell", "winrm", "lsass", "smb", "rdp", "exchange server", "sharepoint", "hyper-v", "windows server"]
     linux: ["linux", "ubuntu", "debian", "red hat", "rhel", "centos", "fedora", "suse", "systemd", "kernel vulnerability", "openssh", "glibc", "container escape"]
-    cisco: ["cisco", "ios xe", "ios xr", "firepower", "nexus", "talos", "webex", "anyconnect", "catalyst", "meraki", "sd-wan", "unified communications"]
+    hypervisors: ["hypervisor", "vmware", "esxi", "vcenter", "vsphere", "proxmox", "xen", "xenserver", "nutanix", "virtualbox", "kvm", "ahv", "citrix hypervisor", "virtual machine escape", "guest escape"]
+    network: ["network device", "router", "switch", "firewall", "vpn appliance", "load balancer", "juniper", "fortinet", "fortigate", "fortios", "f5", "big-ip", "checkpoint", "sonicwall", "pfsense", "opnsense", "netscaler", "citrix adc", "zyxel", "mikrotik", "ubiquiti", "netgear", "draytek", "haproxy", "sd-wan", "wireless access point"]
+    cisco: ["cisco", "ios xe", "ios xr", "firepower", "nexus", "talos", "webex", "anyconnect", "catalyst", "meraki", "unified communications"]
     paloalto: ["palo alto", "paloalto", "pan-os", "panos", "unit 42", "unit42", "globalprotect", "panorama", "prisma access", "cortex xdr", "next-generation firewall"]
 
 # Vulnerability intelligence (CISA KEV + FIRST EPSS scoring)
@@ -118,3 +120,10 @@ geo:
   enabled: true
   max_ips: 400            # lookups per run; cached after first lookup
   include_sources: ["threatfox", "feodo"]   # report-extracted IPs are always included
+
+# Environment profile: matched against KEV entries and report content to flag
+# "affects your stack" items. Leave enabled: false for a generic feed.
+organization:
+  enabled: false
+  name: ""                # e.g. "Example Bank"
+  technologies: []        # e.g. ["vmware esxi", "windows server", "cisco asa", "pan-os", "fortinet", "f5 big-ip"]

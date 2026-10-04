@@ -16,25 +16,29 @@
 <h1 class="page-title">Threat intelligence report feed</h1>
 <p class="muted">
   Advisories and vendor research from multiple sources. Indicators per report are extracted
-  automatically and defanged &mdash; validate before blocking. Last updated {{ reports.generated_at }} UTC.
+  automatically and defanged &mdash; validate before blocking. Filter by category or search across
+  titles, summaries, tags and sources. Last updated {{ reports.generated_at }} UTC.
 </p>
 
 <section>
   {% for c in ([{'id': 'all'}] + reports.categories) -%}
-  <input type="radio" name="cat" id="f-{{ c.id }}" class="vh"{% if c.id == 'all' %} checked{% endif %}>
+  <input type="radio" name="cat" id="f-{{ c.id }}" class="vh report-filter"{% if c.id == 'all' %} checked{% endif %}>
   {% endfor -%}
   <div class="filterbar" role="group" aria-label="Filter reports by category">
     <label for="f-all">All ({{ reports.total }})</label>
     {% for c in reports.categories %}<label for="f-{{ c.id }}">{{ c.label }} ({{ c.count }})</label>{% endfor %}
+    <input id="rsearch" type="search" placeholder="Search reports (title, summary, tags, source)&hellip;" aria-label="Search reports">
+    <span class="report-count" id="rcount" aria-live="polite"></span>
   </div>
 
   {% if reports.entries %}
   <div class="report-grid">
     {% for r in reports.entries %}
-    <article class="report-card cat-{{ r.category }}">
+    <article class="report-card cat-{{ r.category }}" data-search="{{ (r.title ~ ' ' ~ (r.summary or '') ~ ' ' ~ r.source_name ~ ' ' ~ r.label ~ ' ' ~ ((r.tags or []) | join(' ')))|lower }}">
       <div class="badges">
         <span class="badge badge-cat">{{ r.label }}</span>
         <span class="badge">{{ r.source_name }}</span>
+        {% if r.org_matches %}<span class="badge badge-env">in your stack</span>{% endif %}
         {% if r.curated %}<span class="badge badge-curated">curated</span>{% endif %}
       </div>
       <h3><a href="report-{{ r.id }}.html">{{ r.title }}</a></h3>
@@ -56,8 +60,38 @@
     </article>
     {% endfor %}
   </div>
+  <p class="muted" id="rnoresults" style="display:none">No reports match your search.</p>
   {% else %}
   <p class="muted">No reports yet &mdash; the next sync will populate the feed.</p>
   {% endif %}
 </section>
+
+<script>
+(function () {
+  var input = document.getElementById("rsearch");
+  var grid = document.querySelector(".report-grid");
+  if (!input || !grid) { return; }
+  var cards = Array.prototype.slice.call(grid.querySelectorAll(".report-card"));
+  var count = document.getElementById("rcount");
+  var empty = document.getElementById("rnoresults");
+
+  function apply() {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var text = card.getAttribute("data-search") || "";
+      card.style.display = (!query || text.indexOf(query) >= 0) ? "" : "none";
+    });
+    var visible = cards.filter(function (card) { return card.offsetParent !== null; }).length;
+    if (count) { count.textContent = visible + " of " + cards.length + " reports"; }
+    if (empty) { empty.style.display = visible === 0 ? "" : "none"; }
+  }
+
+  var timer;
+  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(apply, 120); });
+  Array.prototype.forEach.call(document.querySelectorAll(".report-filter"), function (radio) {
+    radio.addEventListener("change", apply);
+  });
+  apply();
+})();
+</script>
 {% endblock %}

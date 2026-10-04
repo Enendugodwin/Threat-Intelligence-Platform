@@ -15,6 +15,9 @@
   {% for t in report.tags %}<span class="chip">{{ t }}</span>{% endfor %}
 </div>
 {% endif %}
+{% if report.org_matches %}
+<p class="env-banner">Environment: this report references <strong>{{ report.org_matches | join(", ") }}</strong> from your technology profile.</p>
+{% endif %}
 
 <section>
   <h2>{{ ui.icon("list") }}Details</h2>

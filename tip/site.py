@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
 from .normalize import attack_url, virustotal_url
+from .scoring import technology_matches
 from .vulnintel import summarize as summarize_kev
 
 _TYPE_LABELS = {
@@ -33,8 +34,9 @@ def _ioc_summary(iocs) -> str:
     return " · ".join(parts)
 
 
-def _reports_view(doc: dict) -> dict:
+def _reports_view(doc: dict, org: dict | None = None) -> dict:
     """View-model for the report feed templates."""
+    org = org or {"enabled": False, "terms": []}
     items = []
     counts = {category: 0 for category in CATEGORY_ORDER}
     for raw in doc.get("reports") or []:
@@ -42,6 +44,15 @@ def _reports_view(doc: dict) -> dict:
         item = dict(raw)
         item["category"] = category
         item["label"] = CATEGORY_LABELS[category]
+        if org.get("enabled"):
+            item["org_matches"] = technology_matches(
+                org.get("terms"),
+                item.get("title"),
+                item.get("summary"),
+                " ".join(item.get("tags") or []),
+            )
+        else:
+            item["org_matches"] = []
         item["ioc_summary"] = _ioc_summary(item.get("iocs"))
         item["iocs"] = [
             {**ioc, "href": virustotal_url(str(ioc.get("type") or ""), str(ioc.get("value") or ""))}
@@ -64,7 +75,8 @@ def _reports_view(doc: dict) -> dict:
     }
 
 
-def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
+def _kev_view(doc: dict, reports_doc: dict | None = None, org: dict | None = None) -> dict:
+    org = org or {"enabled": False, "terms": []}
     summary = summarize_kev(doc)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     reports_by_cve: dict[str, list] = {}
@@ -80,6 +92,12 @@ def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
         entry = dict(raw)
         entry["reports"] = reports_by_cve.get(str(entry.get("cve") or "").upper(), [])[:3]
         entry["overdue"] = bool(entry.get("due_date")) and str(entry.get("due_date")) < today
+        if org.get("enabled"):
+            entry["matched"] = technology_matches(
+                org.get("terms"), entry.get("vendor"), entry.get("product"), entry.get("name")
+            )
+        else:
+            entry["matched"] = []
         entries.append(entry)
     cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%d")
     return {
@@ -89,6 +107,8 @@ def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
         "ransomware": summary["ransomware"],
         "overdue": summary["overdue"],
         "epss_high": summary["epss_high"],
+        "matches": sum(1 for entry in entries if entry.get("matched")),
+        "org": {"enabled": bool(org.get("enabled")), "name": org.get("name") or ""},
         "recent": sum(1 for entry in entries if str(entry.get("date_added") or "") >= cutoff),
         "generated_at": doc.get("generated_at") or "",
     }
@@ -130,6 +150,90 @@ def _geo_view(doc: dict) -> dict:
     }
 
 
+def _action_queue(
+    context: dict,
+    kev_view: dict | None,
+    reports_view: dict | None,
+    org: dict,
+) -> list[dict]:
+    """Rank what to look at first: vulns, then indicators, then reports."""
+    queue: list[dict] = []
+
+    vuln_items = []
+    for entry in (kev_view or {}).get("entries") or []:
+        if not entry.get("overdue"):
+            continue
+        ransomware = bool(entry.get("ransomware"))
+        epss = entry.get("epss") or 0.0
+        if not (ransomware or epss >= 0.5):
+            continue
+        bits = ["known exploited", "overdue"]
+        if ransomware:
+            bits.append("ransomware-linked")
+        if epss >= 0.5:
+            bits.append(f"EPSS {epss * 100:.0f}%")
+        matched = entry.get("matched") or []
+        if matched:
+            bits.append("affects your stack")
+        vuln_items.append(
+            {
+                "kind": "vulnerability",
+                "level": "critical" if (ransomware or matched) else "high",
+                "title": f"{entry.get('cve')} — {entry.get('vendor')} {entry.get('product')}".strip(" —"),
+                "why": " · ".join(bits),
+                "href": f"kev.html#{entry.get('cve')}",
+                "external": f"https://nvd.nist.gov/vuln/detail/{entry.get('cve')}",
+            }
+        )
+    vuln_items.sort(key=lambda item: 0 if item["level"] == "critical" else 1)
+    queue.extend(vuln_items[:3])
+
+    indicator_count = 0
+    for row in context.get("ioc_index") or []:
+        if indicator_count >= 3:
+            break
+        if not (row.get("m") or "," in (row.get("s") or "")):
+            continue
+        indicator_count += 1
+        queue.append(
+            {
+                "kind": "indicator",
+                "level": row.get("l") or "high",
+                "title": row.get("v") or "",
+                "why": " · ".join(part for part in (row.get("m"), row.get("s"), row.get("e")) if part),
+                "href": "explorer.html",
+                "external": virustotal_url(str(row.get("t") or ""), str(row.get("v") or "")),
+            }
+        )
+
+    kev_cves = {str(entry.get("cve")) for entry in (kev_view or {}).get("entries") or []}
+    for report in (reports_view or {}).get("entries") or []:
+        cves = [str(cve) for cve in (report.get("cves") or []) if str(cve) in kev_cves]
+        tags = [str(tag).lower() for tag in (report.get("tags") or [])]
+        if not (cves or "ransomware" in tags or report.get("org_matches")):
+            continue
+        bits = []
+        if cves:
+            bits.append("references " + ", ".join(cves[:2]))
+        if "ransomware" in tags:
+            bits.append("ransomware-related")
+        if report.get("org_matches"):
+            bits.append("affects your stack")
+        queue.append(
+            {
+                "kind": "report",
+                "level": "high" if (cves or report.get("org_matches")) else "medium",
+                "title": str(report.get("title") or "")[:120],
+                "why": " · ".join(bits),
+                "href": f"report-{report.get('id')}.html",
+                "external": report.get("url"),
+            }
+        )
+        break  # one representative report is enough
+
+    return queue[:6]
+
+
 def build_site(
     context: dict,
     out_dir: str | pathlib.Path,
@@ -149,7 +253,12 @@ def build_site(
     )
 
     written: list[pathlib.Path] = []
-    index_html = env.get_template("index.html.j2").render(**context)
+    org = context.get("org") or {"enabled": False, "terms": []}
+    kev_view = _kev_view(kev, reports, org) if kev else None
+    reports_view = _reports_view(reports, org) if reports else None
+    action_queue = _action_queue(context, kev_view, reports_view, org)
+
+    index_html = env.get_template("index.html.j2").render(**context, action_queue=action_queue)
     report_html = env.get_template("report.html.j2").render(**context)
     (out_dir / "index.html").write_text(index_html, encoding="utf-8")
     (out_dir / "report.html").write_text(report_html, encoding="utf-8")
@@ -162,16 +271,15 @@ def build_site(
         written.append(explorer_file)
 
     kev_cves: set[str] = set()
-    if kev:
-        kev_view = _kev_view(kev, reports)
+    if kev_view:
         kev_cves = {str(entry.get("cve") or "") for entry in kev_view["entries"] if entry.get("cve")}
         kev_html = env.get_template("kev.html.j2").render(**context, kev=kev_view)
         kev_file = out_dir / "kev.html"
         kev_file.write_text(kev_html, encoding="utf-8")
         written.append(kev_file)
 
-    if reports:
-        view = _reports_view(reports)
+    if reports_view:
+        view = reports_view
         feed_html = env.get_template("reports.html.j2").render(**context, reports=view)
         feed_path = out_dir / "reports.html"
         feed_path.write_text(feed_html, encoding="utf-8")

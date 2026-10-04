@@ -121,6 +121,19 @@ td code{background:transparent;border:none;padding:0}
 .explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
 .explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
 .explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -187,10 +200,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>0 new / 25576 updated last run &middot; 25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T19:05:41Z</span>
+      <span>sync 2026-10-04T19:17:56Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -206,7 +219,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">ATT&amp;CK T1552.001: Credentials In Files</h1>
 <p class="muted">
-  309 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1552/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
+  307 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1552/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
 
 <section>
   <div class="table-wrap">
@@ -406,15 +419,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-02T21:24:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/32ead15908ca61088701ec6ee4c692658585746bafb52cce23c047d035fc91a5" target="_blank" rel="noopener"><code>32ead15908ca61088701ec6ee4c692658585746bafb52cce23c047d035fc91a5</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td>PureLogs Stealer</td>
-          <td></td>
-          <td>2026-10-04T18:47:04Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1653,7 +1657,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzi.369jk.org" target="_blank" rel="noopener"><code>hxxps://zi[.]369jk[.]org</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Vidar</td>
           <td></td>
           <td>2026-10-01T11:03:49Z</td>
@@ -1775,15 +1779,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td></td>
           <td>2026-10-01T15:39:13Z</td>
           <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/202c71cccc63a9bad0c94b898a6447c2723724c7c534bfb7f2143eb6a50a2196" target="_blank" rel="noopener"><code>202c71cccc63a9bad0c94b898a6447c2723724c7c534bfb7f2143eb6a50a2196</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td>Agent Tesla</td>
-          <td></td>
-          <td>2026-10-04T18:46:59Z</td>
-          <td class="num-cell">90</td>
         </tr>
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/ae5a7b4d6ac001e41a49833ea03abba64f33d49ea46d3e4875d18331c52eb6a8" target="_blank" rel="noopener"><code>ae5a7b4d6ac001e41a49833ea03abba64f33d49ea46d3e4875d18331c52eb6a8</code></a></td>
@@ -2919,6 +2914,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2025-04-02T14:47:55Z</td>
           <td class="num-cell">50</td>
         </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/59355cf275435ce5ca86700202c32e7cfa1a850b11686374638982c686f63dd8" target="_blank" rel="noopener"><code>59355cf275435ce5ca86700202c32e7cfa1a850b11686374638982c686f63dd8</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-medium">medium 69</span></td>
+          <td>Lumma Stealer</td>
+          <td></td>
+          <td>2025-04-02T14:48:13Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/606c0c66cd11ceb3ed565d05c73dad6c0798bb93518172225a6df003320fbb46" target="_blank" rel="noopener"><code>606c0c66cd11ceb3ed565d05c73dad6c0798bb93518172225a6df003320fbb46</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td>Lumma Stealer</td>
+          <td></td>
+          <td>2025-04-02T14:48:52Z</td>
+          <td class="num-cell">50</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -2927,7 +2940,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:05:41Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:17:56Z UTC</span></p>
 </footer>
 </body>
 </html>

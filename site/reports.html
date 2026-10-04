@@ -121,6 +121,19 @@ td code{background:transparent;border:none;padding:0}
 .explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
 .explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
 .explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -178,6 +191,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <style>
 #f-windows:checked ~ .report-grid .report-card:not(.cat-windows){display:none}
 #f-linux:checked ~ .report-grid .report-card:not(.cat-linux){display:none}
+#f-hypervisors:checked ~ .report-grid .report-card:not(.cat-hypervisors){display:none}
+#f-network:checked ~ .report-grid .report-card:not(.cat-network){display:none}
 #f-cisco:checked ~ .report-grid .report-card:not(.cat-cisco){display:none}
 #f-paloalto:checked ~ .report-grid .report-card:not(.cat-paloalto){display:none}
 #f-general:checked ~ .report-grid .report-card:not(.cat-general){display:none}
@@ -187,6 +202,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 #f-windows:focus-visible ~ .filterbar label[for="f-windows"]{outline:2px solid var(--color-ring);outline-offset:2px}
 #f-linux:checked ~ .filterbar label[for="f-linux"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
 #f-linux:focus-visible ~ .filterbar label[for="f-linux"]{outline:2px solid var(--color-ring);outline-offset:2px}
+#f-hypervisors:checked ~ .filterbar label[for="f-hypervisors"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+#f-hypervisors:focus-visible ~ .filterbar label[for="f-hypervisors"]{outline:2px solid var(--color-ring);outline-offset:2px}
+#f-network:checked ~ .filterbar label[for="f-network"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+#f-network:focus-visible ~ .filterbar label[for="f-network"]{outline:2px solid var(--color-ring);outline-offset:2px}
 #f-cisco:checked ~ .filterbar label[for="f-cisco"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
 #f-cisco:focus-visible ~ .filterbar label[for="f-cisco"]{outline:2px solid var(--color-ring);outline-offset:2px}
 #f-paloalto:checked ~ .filterbar label[for="f-paloalto"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
@@ -206,10 +225,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>0 new / 25576 updated last run &middot; 25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T19:05:41Z</span>
+      <span>sync 2026-10-04T19:17:56Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -225,22 +244,27 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <h1 class="page-title">Threat intelligence report feed</h1>
 <p class="muted">
   Advisories and vendor research from multiple sources. Indicators per report are extracted
-  automatically and defanged &mdash; validate before blocking. Last updated 2026-10-04T19:05:35Z UTC.
+  automatically and defanged &mdash; validate before blocking. Filter by category or search across
+  titles, summaries, tags and sources. Last updated 2026-10-04T19:17:32Z UTC.
 </p>
 
 <section>
-<input type="radio" name="cat" id="f-all" class="vh" checked>
-<input type="radio" name="cat" id="f-windows" class="vh">
-<input type="radio" name="cat" id="f-linux" class="vh">
-<input type="radio" name="cat" id="f-cisco" class="vh">
-<input type="radio" name="cat" id="f-paloalto" class="vh">
-<input type="radio" name="cat" id="f-general" class="vh">
+<input type="radio" name="cat" id="f-all" class="vh report-filter" checked>
+<input type="radio" name="cat" id="f-windows" class="vh report-filter">
+<input type="radio" name="cat" id="f-linux" class="vh report-filter">
+<input type="radio" name="cat" id="f-hypervisors" class="vh report-filter">
+<input type="radio" name="cat" id="f-network" class="vh report-filter">
+<input type="radio" name="cat" id="f-cisco" class="vh report-filter">
+<input type="radio" name="cat" id="f-paloalto" class="vh report-filter">
+<input type="radio" name="cat" id="f-general" class="vh report-filter">
 <div class="filterbar" role="group" aria-label="Filter reports by category">
     <label for="f-all">All (70)</label>
-<label for="f-windows">Windows (22)</label><label for="f-linux">Linux (10)</label><label for="f-cisco">Cisco (14)</label><label for="f-paloalto">Palo Alto (14)</label><label for="f-general">General (10)</label>  </div>
+<label for="f-windows">Windows (22)</label><label for="f-linux">Linux (10)</label><label for="f-hypervisors">Hypervisors (0)</label><label for="f-network">Network Devices (1)</label><label for="f-cisco">Cisco (14)</label><label for="f-paloalto">Palo Alto (13)</label><label for="f-general">General (10)</label>    <input id="rsearch" type="search" placeholder="Search reports (title, summary, tags, source)&hellip;" aria-label="Search reports">
+    <span class="report-count" id="rcount" aria-live="polite"></span>
+  </div>
 
   <div class="report-grid">
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="user agent strings curiosities, (sun, oct 4th) sometimes i have to smile, or my interest is triggered, when i review new user agent strings in the honeypot logs. sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -252,7 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-c45b408e21ef0dad.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="yara-x 1.21.0 release, (sat, oct 3rd) yara-x&#39;s 1.21.0 release brings 5 improvements and 4 bugfixes. sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -264,7 +288,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-2b6adb625a29b35c.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8864-1: linux kernel vulnerabilities an attacker could possibly use these to compromise the system. this update corrects flaws in the following subsystems: - network file system (nfs) server daemon; - ipv6 networking; - netfilter; (cve-2025-38724, cve-2026-53131, cve-2026-53221) ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -276,7 +300,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-e42551bb99a8b84b.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8816-4: linux kernel (gke) vulnerabilities an attacker could possibly use these to compromise the system. meshing protocol; - networking core; - ife protocol; - rxrpc session sockets; - network traffic control; - sctp protocol; - smc sockets; - tipc protocol; - xfrm subsystem; (cve-2026-64530, cve-2026-64534, cve-2026-64535, cve-2026-64541, ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -288,7 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-cefccfb04e8b2966.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8818-6: linux kernel (fips) vulnerabilities a local attacker could possibly use this to write to memory after permission to do so had been revoked, bypassing memory protections or escalating privileges. (cve-2025-10263) several security issues were discovered in the linux kernel. an attacker could possibly use these to compromise the system. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -300,7 +324,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-eae91ef6e46001e7.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8851-2: linux kernel (raspberry pi) vulnerabilities an attacker could possibly use these to compromise the system. this update corrects flaws in the following subsystems: - network file system (nfs) server daemon; - ipv6 networking; - netfilter; (cve-2025-38724, cve-2026-53131, cve-2026-53221) ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -312,7 +336,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-39a1b7c048021806.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="isc stormcast for friday, october 2nd, 2026 https://isc.sans.edu/podcastdetail/10120, (fri, oct 2nd)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -324,7 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-c2df698e7e73d64a.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="give yourself room to be human the one big thing for cybersecurity awareness month, talos is sharing crowdsourced strategies from our researchers to help you master “the fine art of frustrating the adversary.” by deploying deception techniques, behavioral detections, and strict controls over legitimate tools, defenders can strip cisco talos cisco antino ransomware backdoor">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -338,7 +362,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-d079a17148dbe51c.html#iocs">16 URLs · 10 hashes · 1 domain</a> &middot; <a href="report-d079a17148dbe51c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8863-1: gstreamer good plugins vulnerabilities an attacker could possibly use this issue to obtain sensitive information. (cve-2026-17072) seonwook kim discovered that gstreamer good plugins incorrectly parsed certain avi files. an attacker could possibly use this issue to cause a denial of service or obtain sensitive information. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -350,7 +374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-af6c8c62243506d5.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="preparing governments for an era of interconnected cyber risk dwell time, the period between when an attacker gains access and when defenders detect and stop them, also increased this year across multiple sectors. attackers increasingly gain access through techniques that mimic legitimate activity, making malicious behavior harder to spot. for example, phishin microsoft security blog windows ransomware phishing">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -364,7 +388,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-03612a48c44051e9.html#recommendations">3 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="insights from the 2026 microsoft digital defense report ai in the threat landscape threat actors are incorporating ai into reconnaissance, social engineering, malware and exploit development, and post-compromise activity. ai can give threat actors greater speed, scale, and ability to tailor activity more efficiently. read the executive summary of the 202 microsoft security blog windows ">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -376,7 +400,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-143a7ccff4778ff1.html#iocs">4 URLs</a> &middot; <a href="report-143a7ccff4778ff1.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8862-1: libxpm vulnerability a local attacker could possibly use this issue to cause libxpm to use excessive resources, leading to a denial of service. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -388,7 +412,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-9a5776ef3d334b28.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8861-1: openssl vulnerabilities a remote attacker could possibly use this issue to cause openssl to use excessive cpu resources, leading to a denial of service. (cve-2026-42772) it was discovered that openssl did not properly limit memory allocated for quic packet buffers. a remote attacker could possibly use this issue to cause o ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -400,7 +424,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-84ff584988a33e1a.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8860-1: openstack designate vulnerability an authenticated user could possibly use this issue to redirect dns traffic to attacker-controlled systems or cause a denial of service. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -412,7 +436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-7f5f7bb5f0e8a697.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8857-1: kcoreaddons vulnerability an attacker could possibly use this issue to execute arbitrary commands in applications that relied on this method to handle user input. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -424,7 +448,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-414ece142d9457b3.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="the fine art of frustrating the adversary years ago, cisco talos blocked an adversary’s command-and-control (c2) traffic. different credentials or authentication methods can be required for particularly sensitive systems, while protected enclaves can provide increased monitoring around critical infrastructure. “false servers, shares, user a cisco talos cisco amatera ransomware">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -438,7 +462,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-4d43b6c7b064be13.html#iocs">1 URL · 1 domain</a> &middot; <a href="report-4d43b6c7b064be13.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="screenconnect client (ab)used by attackers, (thu, oct 1st) threat actors do not always use top-notch techniques or very complex malware to perform their attacks. sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -450,7 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-66ce984e8054fd0d.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="isc stormcast for thursday, october 1st, 2026 https://isc.sans.edu/podcastdetail/10118, (thu, oct 1st)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -462,19 +486,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-3882f4a25a083812.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-network" data-search="threat brief: netscaler zero days cve-2026-88771 and cve-2026-88772 exploited in the wild (updated september 30) unit 42 is aware of possible 0-day activity against netscaler devices. citrix reports cve-2026-88771, cve-2026-88772 have been exploited in the wild. the post threat brief: netscaler zero days cve-2026-88771 and cve-2026-88772 exploited in the wild (updated september 30) appeared first on unit 42 . palo alto unit 42 network devices ">
       <div class="badges">
-        <span class="badge badge-cat">Palo Alto</span>
+        <span class="badge badge-cat">Network Devices</span>
         <span class="badge">Palo Alto Unit 42</span>
       </div>
       <h3><a href="report-2649de53cd92a5de.html">Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30)</a></h3>
 <p class="excerpt">Unit 42 is aware of possible 0-day activity against NetScaler devices. Citrix reports CVE-2026-88771, CVE-2026-88772 have been exploited in the wild. The post Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30) appeared first on Unit 42 .</p>      <div class="report-meta">
         <span>2026-09-30</span>
         <span>
-<a href="report-2649de53cd92a5de.html#recommendations">5 recs</a>        </span>
+<a href="report-2649de53cd92a5de.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="​​secure what’s next: your guide to microsoft security at microsoft ignite 2026 , a pair on the state of phishing-resistant authentication. microsoft security blog windows phishing">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -488,7 +512,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-786d26f6dd45febd.html#iocs">1 URL</a> &middot; <a href="report-786d26f6dd45febd.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-linux">
+    <article class="report-card cat-linux" data-search="usn-8858-1: authen::sasl vulnerability an attacker could possibly use this issue to gain unauthorized access. ubuntu security notices linux ">
       <div class="badges">
         <span class="badge badge-cat">Linux</span>
         <span class="badge">Ubuntu Security Notices</span>
@@ -500,7 +524,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-3900bdf6d5701e39.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="unauthenticated command injection on internet-facing mail servers: tracking cve-2026-73570 exploitation can be triggered by a specially crafted email against internet-facing zimbra servers when the optional zimbra-snmp package is installed and snmp notifications are enabled, without requiring authentication or user interaction. following successful exploitation, observed activity included microsoft security blog windows backdoor">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -514,7 +538,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-a8c7a9dcbf05cdce.html#iocs">9 domains · 8 hashes · 7 URLs · 5 IPs</a> &middot; <a href="report-a8c7a9dcbf05cdce.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="china-nexus uat-11587 targets government and policy organizations across asia with antino backdoor cisco talos uncovered a cluster of activity we track as uat-11587 targeting government and policy organizations across asia, including in taiwan, india, the philippines, and cambodia, to deliver a previously undocumented backdoor referred to as “antino” in developer artifacts. antino is a rust-compi cisco talos cisco antino phishing backdoor uat-11587">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -528,7 +552,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-b4bc5adc38d7024c.html#iocs">65 hashes · 35 URLs</a> &middot; <a href="report-b4bc5adc38d7024c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="isc stormcast for wednesday, september 30th, 2026 https://isc.sans.edu/podcastdetail/10116, (wed, sep 30th)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -540,7 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-fbc1fddb91718282.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="phishing abuses rmm tools for persistent access once executed, the legitimate msp360 installer, distributed under a deceptive file name established remote management access on affected devices and enabled threat actors to gain an initial foothold using trusted administrative software. microsoft did not observe exploitation of screenconnect softwa microsoft security blog windows ransomware phishing">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -554,7 +578,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-28594b2bec10c628.html#iocs">31 hashes · 4 URLs · 4 domains</a> &middot; <a href="report-28594b2bec10c628.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="​​beyond source code: a path to the keys to the kingdom in our latest cyberattack series report, we examine how the microsoft detection and response team (dart)—the team that delivers microsoft defender experts cybersecurity incident response —investigated activity by storm-3068 , a threat actor that turned a successful self-service password reset into a microsoft security blog windows phishing storm-3068">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -568,7 +592,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-517682da12648448.html#recommendations">3 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="star blizzard refines phishing and malware delivery with the redflick technique as part of this evolution, star blizzard adopted redflick, a malware delivery technique that helps evade detection by initiating a set of scheduled tasks to deploy the actor’s custom backdoor, cosmicpulse. combined with the actor’s shift toward large-scale phishing operations during the same period, microsoft security blog windows phishing backdoor">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -582,7 +606,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-2be2e79555e5a2f7.html#iocs">14 domains · 6 IPs · 5 hashes · 4 URLs</a> &middot; <a href="report-2be2e79555e5a2f7.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="scans for wordfence protected websites, (tue, sep 29th) starting yesterday, our sensors picked up a small number of scans for &#34;wordfence-waf.php&#34;. this particular script is used by wordfence, a solution to protect wordpress sites. during the wordfence install, the wordpress-waf.php file will be created in the site&#39;s root directory [1]. sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -594,7 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-eefc3c7ca9157917.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="opertraitors: how kubernetes operators betray your security posture the post opertraitors: how kubernetes operators betray your security posture appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -606,7 +630,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-b297d2b311175806.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="securing the keys to the kingdom: announcing executive threat detection attackers are using greater sophistication to gain access to high-yield targets like executives, and company-wide security measures can easily miss these subtle, personal attacks. the executive vulnerability gap for a sophisticated threat actor, an executive is not only a high-ranking employee, but cisco talos cisco phishing">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -620,7 +644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-ae45e879c52a933d.html#iocs">1 URL</a> &middot; <a href="report-ae45e879c52a933d.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="isc stormcast for tuesday, september 29th, 2026 https://isc.sans.edu/podcastdetail/10114, (tue, sep 29th)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -632,7 +656,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-c3c75025d3d708fa.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="apple emergency patch for ios 26, macos26, macos15 (cve-2026-86950), (mon, sep 28th) apple today released patches for all of its operating systems. the vulnerability being addressed in ios 26, macos 26 and macos 15 is already being exploited. sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -644,7 +668,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-d21608339f34d5a8.html#recommendations">3 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="needymantis: unpacking a post-compromise malware family used in targeted operations based on observed activity, needymantis is typically deployed after a threat actor has already established access to a target environment, indicating that the malware is used to maintain long-term access and support follow-on operations. observed activity involving needymantis has thus far aligned w microsoft security blog windows phishing backdoor">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -658,7 +682,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-024cb7e46717c211.html#iocs">6 URLs · 4 domains · 3 hashes</a> &middot; <a href="report-024cb7e46717c211.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-general">
+    <article class="report-card cat-general" data-search="isc stormcast for monday, september 28th, 2026 https://isc.sans.edu/podcastdetail/10112, (mon, sep 28th)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
         <span class="badge">SANS ISC</span>
@@ -670,7 +694,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-bf9408c361073a02.html#recommendations">2 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="3 consulting myths debunked by unit 42 experts unit 42 security experts address critical cybersecurity misconceptions, offering practical insights to help your organization reinforce its enterprise defenses. the post 3 consulting myths debunked by unit 42 experts appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -682,7 +706,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-e9160c0adae68644.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="storm-3168: agentic-driven cloud attacks using compromised service principals these findings expand the publicly documented activity associated with jadepuffer, tracked by microsoft as storm-3168, demonstrating an evolution in the threat actor’s cloud operations and providing the first detailed view into its azure activity. publicly exposed credentials remain usable until rev microsoft security blog windows ransomware storm-3168">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -696,7 +720,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-74ab0bc29886016a.html#iocs">5 URLs · 3 IPs</a> &middot; <a href="report-74ab0bc29886016a.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="trust and the enticing consultancy offer every practitioner carries the implicit trust not to abuse privileged access or knowledge of vulnerabilities in each employment or engagement. this trust is valued by those who require our services, but also by threat actors. clumsy phishing attacks may be easy to identify, but be wary of unsolicite cisco talos cisco ransomware infostealer phishing">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -710,7 +734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-d5374ac44466d0dd.html#iocs">16 URLs · 10 hashes · 1 domain</a> &middot; <a href="report-d5374ac44466d0dd.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="beyond the ransomware: tracking storm-2570’s consistent tradecraft across deployments storm-2570 attack chain: from initial foothold to impact what storm-2570 activity means for defenders mitigation and protection guidance microsoft defender detections hunting queries activity associated with storm-2570, a ransomware affiliate linked to multiple ransomware payloads, illustrates how t microsoft security blog windows ransomware phishing storm-2570">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Microsoft Security Blog</span>
@@ -724,7 +748,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-b0071db721a96058.html#iocs">3 URLs</a> &middot; <a href="report-b0071db721a96058.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="the closed quorum: inside the first reported autonomous ai c2 implant closedquorum, a malware binary discovered through cisco talos’ cairn project , exhibits fully autonomous command and control (c2). this malware is a useful reference example of how attackers can collapse the decision space of a particular attack phase into a constrained set of choices, allowing ai m cisco talos cisco phishing">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -738,7 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-4c4cb6380811cfc6.html#iocs">6 hashes · 4 domains</a> &middot; <a href="report-4c4cb6380811cfc6.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="introducing cairn: frontier tracking for ai-integrated malware attackers building ai-integrated malware unintentionally (and inevitably) leave behind markers of their own: prompt templates, provider endpoints, api keys, jailbreak terms, and other artifacts embedded throughout their tooling. when we consider these strings as cognitive artifacts , or vestiges lef cisco talos cisco ">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -750,7 +774,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-851affdd497a2b7c.html#iocs">4 domains · 1 URL</a> &middot; <a href="report-851affdd497a2b7c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="from exposure to lockdown: how aws neutralizes compromised iam credentials through managed policies the post from exposure to lockdown: how aws neutralizes compromised iam credentials through managed policies appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -762,7 +786,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-5e7190318dbce365.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="a vault with a heap-view: the uncomfortable space between agentcore harness and identity analysis of how default configurations in aws agentcore harness allow prompt injection to exfiltrate credentials, and key steps to secure your agents. palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -774,7 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-e153090477bae189.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="inside the modern soc: defending the cross-environment pivot cross-environment attacks demand a new approach to security operations. learn how unit 42 managed xsiam helps soc teams investigate complete attack paths. the post inside the modern soc: defending the cross-environment pivot appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -786,7 +810,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-c9c87b84069c0472.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="should you care about an “ai slowdown?” on the offensive side, practically every recent model is already able to mine decades of tech debt to uncover an uncomfortable number of vulnerabilities. the one big thing cisco talos is sharing new insights into japan&#39;s ransomware landscape, where incidents rose nearly 5 percent in the first half o cisco talos cisco ransomware">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -800,7 +824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-692ee407bfd06c50.html#iocs">17 URLs · 10 hashes · 1 domain</a> &middot; <a href="report-692ee407bfd06c50.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="ransomware incidents in japan in the first half of 2026: investigation of the gentlemen’s infrastructure and evidence of qilin&#39;s ai use compared with the same period last year, ransomware incidents in japan increased slightly by approximately 4.7%, indicating that ransomware continues to pose a significant threat. in japan, the gentlemen was the most active ransomware group in the first half of 2026. attackers continue to primarily cisco talos cisco lockbit ransomware">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -814,7 +838,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-73645a02bd834719.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="securing the unpatchable in an age of ai-driven vulnerabilities ai is accelerating vulnerability discovery, leaving unpatchable operational technology (ot) systems at risk. hoping for the best is not a viable anti-exploitation strategy. deploying next-generation firewalls directly upstream allows for virtual patching through deep packet inspection. cisco talos cisco ">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -826,7 +850,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-9cbd7faaaa2e8a65.html#recommendations">3 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="atomic macos (amos) stealer activity modern macos malware uses deceptive setup guides to steal credentials and sensitive user data. palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -838,7 +862,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-9b75cf997b79ba92.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="unmasking cloud identities: from behavioral clustering to automated detection the post unmasking cloud identities: from behavioral clustering to automated detection appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -850,7 +874,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-a08438a7ab1a57d4.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="we&#39;ve got one word for it, and it&#39;s usually the wrong one attributed to a russian threat actor tracked as uat-10820, the campaign delivers the amatera stealer alongside secondary payloads like zigcryptostealer and netsupport manager. despite the high-profile initial victim, we assess with moderate confidence that this is an opportunistic, broad-based crypt cisco talos cisco amatera phishing backdoor">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -864,7 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-5f8e7dcba8fcada4.html#iocs">14 URLs · 10 hashes · 1 domain</a> &middot; <a href="report-5f8e7dcba8fcada4.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="the machine with many faces: post-exploitation identity misuse in spiffe/spire learn how root access on a compromised k8s node allows attackers to utilize spiffe/spire metadata to spoof and harvest co-located workload identities. the post the machine with many faces: post-exploitation identity misuse in spiffe/spire appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -876,7 +900,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-88b1b3c0bd98be58.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="active exploitation of cisco secure firewall management center vulnerabilities cisco talos is actively tracking the exploitation of two vulnerabilities in cisco’s secure firewall management center (fmc) software. first, cve-2026-20079 is an authentication bypass vulnerability in unpatched instances of cisco’s secure fmc software, which allows an unauthenticated, remote attacke cisco talos cisco ransomware uat-12197 uat-11823">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -890,7 +914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-df020bc56450618a.html#iocs">5 IPs · 3 hashes · 2 URLs · 1 domain</a> &middot; <a href="report-df020bc56450618a.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="untracked nightmares: the threats hiding behind commodity infrastructure an investigation into how cybercriminals used youtube gaming lures and seo poisoning to deliver multi-payload malware to enterprise networks. palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -902,7 +926,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-2bf8d15a64be1f35.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="microsoft patch tuesday for september 2026 — snort rules and prominent vulnerabilities microsoft has released its monthly security update for september 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that microsoft marked as &#34;critical.&#34; microsoft notes that 2 of the vulnerabilities disclosed this month have been exploited in the wild: cve-2026-819 cisco talos windows ">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Cisco Talos</span>
@@ -914,7 +938,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-3e2eca92f4abf5aa.html#iocs">1 URL · 1 domain</a> &middot; <a href="report-3e2eca92f4abf5aa.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="clearfake webdav infection chain delivers amatera stealer, zigcryptostealer, and netsupport manager pivoting around the similar webdav behavior led to a second loader named &#34;pf.ch&#34; and allowed us to reconstruct its earlier delivery stages. the chain uses a cloudflare worker to inject javascript code stored on bnb smart chain and a clickfix prompt impersonating google captcha, leading to download a cisco talos cisco clearfake amatera backdoor uat-10820">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -928,7 +952,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-942fd8aac49f2655.html#iocs">16 domains · 12 URLs · 4 hashes · 3 IPs</a> &middot; <a href="report-942fd8aac49f2655.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-cisco">
+    <article class="report-card cat-cisco" data-search="clickfix moves into the browser: cryptocurrency theft with google-hosted c2 cisco talos is tracking a cryptocurrency-stealing campaign that abuses the google visualization api for command and control (c2), retrieving obfuscated javascript from a publicly published google sheets document and injecting it into the victim&#39;s browser session. instead of convincing targets to run cisco talos cisco phishing">
       <div class="badges">
         <span class="badge badge-cat">Cisco</span>
         <span class="badge">Cisco Talos</span>
@@ -942,7 +966,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-f5dd07be5515ca9c.html#iocs">5 URLs · 4 domains</a> &middot; <a href="report-f5dd07be5515ca9c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="attackers expose ongoing ai tool use targeting organizations in latin america explore how attackers targeting latin american entities use ai for data exfiltration and how basic opsec errors allow defenders to disrupt operations. the post attackers expose ongoing ai tool use targeting organizations in latin america appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -954,7 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-62f727b9ef19525c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="an ai-assisted cyber attack: inside a unit 42 investigation using autonomous ai agents, an attacker breached an enterprise network in a matter of hours. palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -966,7 +990,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-de365fb63a0d4e88.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="spring ring: an inside look at voice phishing campaigns in microsoft teams learn how the spring ring campaign abuses microsoft teams and voice phishing to deploy malware and target enterprise domain controllers. the post spring ring: an inside look at voice phishing campaigns in microsoft teams appeared first on unit 42 . palo alto unit 42 windows phishing">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -980,7 +1004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-8a40d60c17283603.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="perturbation probing: a new diagnostic for the fragility of llm safety new research reveals that ai safety refusal lives in a thin neural layer, highlighting the critical need for external, multi-layered security. the post perturbation probing: a new diagnostic for the fragility of llm safety appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -992,7 +1016,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-b42a17df415c3014.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-paloalto">
+    <article class="report-card cat-paloalto" data-search="the state of ai-enabled malware august 2026: from brand abuse to agentic execution explore unit 42 research on ai-enabled malware. the post the state of ai-enabled malware august 2026: from brand abuse to agentic execution appeared first on unit 42 . palo alto unit 42 palo alto ">
       <div class="badges">
         <span class="badge badge-cat">Palo Alto</span>
         <span class="badge">Palo Alto Unit 42</span>
@@ -1004,7 +1028,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-d86b26a2d2ba2d22.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="bengalseo part 1: anatomy of the operation case summary in march 2026, our team identified an seo poisoning campaign leading to malware deployment […] the post bengalseo part 1: anatomy of the operation appeared first on the dfir report . the dfir report windows operation key">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1018,7 +1042,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-3a78fef4e958c36e.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="from bing search to ransomware: bumblebee and adaptixc2 deliver akira this report contains data from both intrusions. the dfir report windows akira ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1032,7 +1056,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-71aeecc01452f3ca.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="flash alert: etherrat and tuktuk c2 end in the gentleman ransomware the etherrat malware family was first reported by sysdig back in december 2025. at that time, the initial access vector was exploitation of cve-2025-55182 (react2shell) targeting linux servers. in march 2026, a windows variant campaign was reported by atos, with their investigation showing evidence the dfir report windows ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1046,7 +1070,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-5d98c447a2c976d0.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="bissa scanner exposed: ai-assisted mass exploitation and credential harvesting this ai-assisted workflow resulted in the modular platform bissa scanner […] the post bissa scanner exposed: ai-assisted mass exploitation and credential harvesting appeared first on the dfir report . the dfir report windows ">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1058,7 +1082,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-cc92fce80231127b.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="apache activemq exploit leads to lockbit ransomware this intrusion began in mid-february 2024 after a threat actor exploited a vulnerability (cve-2023-46604) on an exposed apache activemq server. the threat actor was able to perform remote code execution (rce) by using a java spring class and a custom java spring […] the post apache activemq exploit the dfir report windows lockbit ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1072,7 +1096,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-f13f00869256020a.html#recommendations">5 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="cat’s got your files: lynx ransomware the intrusion began in early march 2025 with a single successful remote desktop protocol (rdp) logon to an internet-exposed system. the dfir report windows ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1086,7 +1110,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-28ded129684d6aa8.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="from a single click: how lunar spider enabled a near two-month intrusion table of contents: case summary analysts initial access execution persistence privilege escalation defense evasion credential access discovery lateral movement command and control exfiltration impact timeline diamond model indicators detections mitre att&amp;ck case summary the intrusion […] the post fr the dfir report windows ">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1098,7 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-845ecca46fde6e7c.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="blurring the lines: intrusion shows connection with three major ransomware gangs table of contents: case summary analysts initial access execution persistence privilege escalation defense evasion credential access discovery lateral movement collection command and control exfiltration impact timeline diamond model indicators detections mitre att&amp;ck case summary the intrusion bega the dfir report windows ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1112,7 +1136,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-6cda1ca9a0b57498.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="flash alert: from bing search to ransomware: bumblebee and adaptixc2 deliver akira overview bumblebee malware has been an initial access tool used by threat actors since late 2021. in 2023 the malware was first reported as using seo poisoning as a delivery mechanism. recently in may of 2025 cyjax reported on a campaign using this method again, impersonating various it tools. the dfir report windows akira ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1126,7 +1150,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a href="report-c359f7ed7754ba73.html#recommendations">4 recs</a>        </span>
       </div>
     </article>
-    <article class="report-card cat-windows">
+    <article class="report-card cat-windows" data-search="kongtuke filefix leads to new interlock rat variant researchers from the dfir report, in partnership with proofpoint, have identified a new and resilient variant of the interlock ransomware group’s remote access trojan (rat). this new malware, a shift from the previously identified javascript-based interlock rat (aka nodesnake), uses php and is being the dfir report windows ransomware">
       <div class="badges">
         <span class="badge badge-cat">Windows</span>
         <span class="badge">The DFIR Report</span>
@@ -1141,11 +1165,41 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </div>
     </article>
   </div>
+  <p class="muted" id="rnoresults" style="display:none">No reports match your search.</p>
 </section>
+
+<script>
+(function () {
+  var input = document.getElementById("rsearch");
+  var grid = document.querySelector(".report-grid");
+  if (!input || !grid) { return; }
+  var cards = Array.prototype.slice.call(grid.querySelectorAll(".report-card"));
+  var count = document.getElementById("rcount");
+  var empty = document.getElementById("rnoresults");
+
+  function apply() {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var text = card.getAttribute("data-search") || "";
+      card.style.display = (!query || text.indexOf(query) >= 0) ? "" : "none";
+    });
+    var visible = cards.filter(function (card) { return card.offsetParent !== null; }).length;
+    if (count) { count.textContent = visible + " of " + cards.length + " reports"; }
+    if (empty) { empty.style.display = visible === 0 ? "" : "none"; }
+  }
+
+  var timer;
+  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(apply, 120); });
+  Array.prototype.forEach.call(document.querySelectorAll(".report-filter"), function (radio) {
+    radio.addEventListener("change", apply);
+  });
+  apply();
+})();
+</script>
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:05:41Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:17:56Z UTC</span></p>
 </footer>
 </body>
 </html>

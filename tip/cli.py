@@ -194,7 +194,20 @@ def main(argv=None) -> int:
         kev_doc = load_kev(data_dir)
         geo_doc = load_geo(data_dir)
         if kev_doc:
-            context["kev_summary"] = summarize_kev(kev_doc)
+            summary = summarize_kev(kev_doc)
+            org = context.get("org") or {}
+            if org.get("enabled"):
+                from .scoring import technology_matches
+
+                summary["matches"] = sum(
+                    1
+                    for entry in kev_doc.get("entries") or []
+                    if isinstance(entry, dict)
+                    and technology_matches(
+                        org.get("terms"), entry.get("vendor"), entry.get("product"), entry.get("name")
+                    )
+                )
+            context["kev_summary"] = summary
         paths = site_mod.build_site(
             context,
             args.out,

@@ -73,3 +73,25 @@ def ioc_risk(
     )
     level = next(level for threshold, level in _LEVELS if score >= threshold)
     return {"score": int(score), "level": level}
+
+
+def technology_matches(terms, *fields) -> list[str]:
+    """Case-insensitive substring matches of organization technology terms."""
+    blob = " ".join(str(field or "") for field in fields).lower()
+    matches: list[str] = []
+    for term in terms or []:
+        term = str(term).strip()
+        if term and term.lower() in blob and term not in matches:
+            matches.append(term)
+    return matches
+
+
+def org_profile(config: dict) -> dict:
+    """Organization/asset profile used for environment matching."""
+    org = (config or {}).get("organization") or {}
+    terms = [str(term) for term in (org.get("technologies") or []) if str(term).strip()]
+    return {
+        "enabled": bool(org.get("enabled", False)) and bool(terms),
+        "name": str(org.get("name") or ""),
+        "terms": terms,
+    }

@@ -38,11 +38,12 @@ OTX ─────────┘   refang                              ├─�
 ```
 
 A parallel **report feed** ingests vendor advisories (RSS/Atom) into
-`data/reports.json` and renders `site/reports.html` - filterable by Windows /
-Linux / Cisco / Palo Alto / General - with a per-report IOC list and
-recommendations. Vulnerability intelligence (CISA KEV + FIRST EPSS) renders
-`site/kev.html`, and high-signal C2 IPs are geolocated (cached in
-`data/geo.json`) for the `site/map.html` attack-origins map.
+`data/reports.json` and renders `site/reports.html` - filterable by category
+(Windows / Linux / Hypervisors / Network Devices / Cisco / Palo Alto / General)
+and searchable - with a per-report IOC list and recommendations. Vulnerability
+intelligence (CISA KEV + FIRST EPSS) renders `site/kev.html`, and high-signal
+C2 IPs are geolocated (cached in `data/geo.json`) for the `site/map.html`
+infrastructure-geolocation map.
 
 - **Feeds** (keyless by default): URLhaus, Feodo Tracker C2 blocklist, ThreatFox,
   MalwareBazaar (sample hashes), OpenPhish (phishing URLs), the CIRCL MISP OSINT
@@ -120,8 +121,9 @@ care about.
 ## Report feed
 
 `site/reports.html` is a bank of vendor advisories and research, filterable by
-category (Windows / Linux / Cisco / Palo Alto / General) and refreshed on every
-sync. Each report gets its own page with:
+category (Windows / Linux / Hypervisors / Network Devices / Cisco / Palo Alto /
+General) and searchable across titles, summaries, tags and sources; refreshed on
+every sync. Each report gets its own page with:
 
 - **Extracted indicators** - best-effort IOC extraction (URLs, domains, IPv4,
   hashes) from the advisory text, refanged first and shown defanged. Extraction
@@ -161,6 +163,21 @@ Dashboard metrics show **actual run deltas** - new/updated/pruned *this run* plu
 believable. The ATT&CK coverage table separates **family/tag evidence from the
 default heuristic** (`config/attack_map.yaml` -> `default_techniques`); heuristic
 mappings are shown as "+N heuristic" and excluded from the headline count.
+
+## Environment matching, evidence & action queue
+
+- `organization:` in `config.yaml` describes your technology stack (for example
+  `["vmware esxi", "pan-os", "cisco asa", "f5 big-ip"]`). With it enabled, KEV
+  rows gain an **Environment** column (MATCHED / not detected), report cards are
+  badged "in your stack", report pages show an exposure banner, and the
+  dashboard and KEV cards count affected entries.
+- **Per-source evidence**: every source keeps its own confidence and first/last
+  seen per indicator (the `ioc_sources` table), surfaced in the explorer, the
+  notable table and all drill-down pages as `source:confidence` values.
+- **Action queue** on the Overview ranks what to review first: overdue
+  ransomware-linked / high-EPSS KEV entries (environment matches first),
+  high-risk multi-source or malware-associated indicators, and reports that
+  reference KEV CVEs - each with Investigate and Lookup links.
 
 ## Adding a feed
 
@@ -243,6 +260,7 @@ tests/              fixture-based suite (offline, no network)
 - [x] Report feed: vendor advisories with IOC extraction, categories and recommendations
 - [x] Attack-origins map, CISA KEV + EPSS page, extra sources (MalwareBazaar / OpenPhish / CIRCL)
 - [x] Run-delta metrics, risk scoring, IOC Explorer, ATT&CK evidence split, dynamic source list
+- [x] Phase 3: environment matching, per-source evidence, action queue; broader categories + report search
 - [ ] VT / AbuseIPDB enrichment for top indicators
 - [ ] Weekly digest issue (GitHub Issues bot)
 - [ ] YARA rule export for payload hashes

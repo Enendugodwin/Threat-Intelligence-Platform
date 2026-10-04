@@ -67,7 +67,7 @@
   <div class="card">
     <div class="card-head">{{ icon("shield") }}KEV tracked</div>
     <span class="num">{{ kev_summary.total if kev_summary is defined and kev_summary else "—" }}</span>
-    <span class="card-sub">{% if kev_summary is defined and kev_summary %}{{ kev_summary.ransomware }} ransomware &middot; {{ kev_summary.overdue }} overdue{% else %}see Vulnerabilities{% endif %}</span>
+    <span class="card-sub">{% if kev_summary is defined and kev_summary %}{{ kev_summary.ransomware }} ransomware &middot; {{ kev_summary.overdue }} overdue{% if kev_summary.matches is defined and kev_summary.matches %} &middot; {{ kev_summary.matches }} in your stack{% endif %}{% else %}see Vulnerabilities{% endif %}</span>
   </div>
   <div class="card">
     <div class="card-head">{{ icon("eye-off") }}Tor nodes</div>
@@ -190,8 +190,7 @@
 </section>
 {%- endmacro %}
 
-{% macro attack_section(coverage) -%}
-<section>
+{% macro attack_section(coverage) -%}<section>
   <h2>{{ icon("target") }}ATT&amp;CK coverage<span class="count">&nbsp;({{ coverage | length }} techniques)</span></h2>
   {% if coverage %}
   <div class="table-wrap">
@@ -216,4 +215,27 @@
   <p class="muted">No technique mapping yet.</p>
   {% endif %}
 </section>
+{%- endmacro %}
+
+{% macro action_queue(items) -%}
+{% if items %}
+<section>
+  <h2>{{ icon("alert") }}Action queue<span class="count">&nbsp;({{ items | length }} priorities)</span></h2>
+  <div class="queue">
+    {% for item in items %}
+    <article class="queue-item">
+      <span class="risk risk-{{ item.level }}">{{ item.level }}</span>
+      <div class="queue-body">
+        <strong class="queue-title">{{ item.title }}</strong>
+        <span class="queue-why">{{ item.why }}</span>
+      </div>
+      <span class="queue-actions">
+        <a href="{{ item.href }}">Investigate</a>
+        {% if item.external %}<a href="{{ item.external }}" target="_blank" rel="noopener">Lookup</a>{% endif %}
+      </span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 {%- endmacro %}

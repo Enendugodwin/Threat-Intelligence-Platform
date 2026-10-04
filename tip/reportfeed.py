@@ -27,14 +27,19 @@ from .normalize import defang, make_ioc, refang
 
 log = logging.getLogger("tip.reportfeed")
 
-CATEGORY_ORDER = ("windows", "linux", "cisco", "paloalto", "general")
+CATEGORY_ORDER = ("windows", "linux", "hypervisors", "network", "cisco", "paloalto", "general")
 CATEGORY_LABELS = {
     "windows": "Windows",
     "linux": "Linux",
+    "hypervisors": "Hypervisors",
+    "network": "Network Devices",
     "cisco": "Cisco",
     "paloalto": "Palo Alto",
     "general": "General",
 }
+# Keyword scan order for classification: specific vendors first, generic
+# platform terms last, so "Cisco ASA firewall" stays Cisco and not Network.
+CLASSIFY_PRIORITY = ("hypervisors", "cisco", "paloalto", "network", "windows", "linux")
 
 _USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -179,7 +184,7 @@ def _classify(title: str, text: str, default: str, rules: dict) -> str:
     """Title keywords win, then the source default, then body keywords."""
 
     def first_match(blob: str) -> str | None:
-        for category in CATEGORY_ORDER:
+        for category in CLASSIFY_PRIORITY:
             for keyword in (rules.get(category) or []):
                 keyword = str(keyword).strip().lower()
                 if keyword and re.search(r"\b" + re.escape(keyword) + r"\b", blob):

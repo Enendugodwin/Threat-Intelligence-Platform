@@ -26,6 +26,7 @@ def _config():
         "storage": {"prune_after_days": 45},
         "exports": {},
         "report": {"window_days": 7, "top_n": 10, "repo_url": "https://example.invalid/repo"},
+        "organization": {"enabled": True, "name": "TestCorp", "technologies": ["vpn"]},
     }
 
 
@@ -164,6 +165,13 @@ def test_offline_pipeline_end_to_end(tmp_path):
     explorer = (site_dir / "explorer.html").read_text(encoding="utf-8")
     assert "IOC Explorer" in explorer and "ioc-index" in explorer
     assert "risk-" in explorer
+
+    # environment matching + action queue + report search
+    assert "Action queue" in index
+    assert "affects your stack" in index  # KEV fixture product "VPN" matches the org profile
+    assert "matched" in kev_html
+    assert 'id="rsearch"' in feed
+    assert "data-search=" in feed
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0
