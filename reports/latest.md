@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T19:27:40Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T21:40:48Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 26047 |
-| New in window | 26047 |
+| Indicators tracked | 26331 |
+| New in window | 26331 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -15,21 +15,21 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11127 | ok |
-| malwarebazaar | 1056 | ok |
+| threatfox | 11040 | ok |
+| malwarebazaar | 999 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8519 | ok |
+| tor | 8604 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 8404 | 8404 |
-| domain | 5335 | 5335 |
-| url | 5097 | 5097 |
-| sha256 | 4408 | 4408 |
-| ipv6 | 2689 | 2689 |
+| ipv4 | 8514 | 8514 |
+| domain | 5359 | 5359 |
+| url | 5132 | 5132 |
+| sha256 | 4494 | 4494 |
+| ipv6 | 2718 | 2718 |
 | md5 | 57 | 57 |
 | sha1 | 57 | 57 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 8679 |
-| Exit nodes | 2061 |
-| Other relays | 6618 |
-| New in window | 8679 |
+| Nodes tracked | 8806 |
+| Exit nodes | 2073 |
+| Other relays | 6733 |
+| New in window | 8806 |
 
-Sample (20 of 8679, source: Tor Project Onionoo):
+Sample (20 of 8806, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `100[.]1[.]157[.]56`
 - `100[.]2[.]63[.]41`
@@ -69,50 +69,50 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Unknown Loader | 2661 | 2661 | — |
-| Mirai | 2018 | 2018 | T1498, T1071.001 |
+| Unknown Loader | 2663 | 2663 | — |
+| Mirai | 2100 | 2100 | T1498, T1071.001 |
 | Cobalt Strike | 1226 | 1226 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AsyncRAT | 1190 | 1190 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| Unknown malware | 433 | 433 | — |
-| IClickFix | 332 | 332 | — |
-| PureRAT | 326 | 326 | — |
-| ClearFake | 272 | 272 | — |
-| AdaptixC2 | 238 | 238 | — |
+| AsyncRAT | 1193 | 1193 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Unknown malware | 435 | 435 | — |
+| IClickFix | 333 | 333 | — |
+| PureRAT | 329 | 329 | — |
+| ClearFake | 291 | 291 | — |
+| AdaptixC2 | 240 | 240 | — |
 | Unknown Stealer | 166 | 166 | — |
 | Vidar | 154 | 154 | T1555, T1071.001, T1567 |
 | Unknown RAT | 132 | 132 | — |
-| DCRat | 96 | 96 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| Evilginx | 91 | 91 | — |
-| Remcos | 90 | 90 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| DCRat | 97 | 97 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Evilginx | 92 | 92 | — |
+| Remcos | 91 | 91 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | VShell | 86 | 86 | — |
 | Havoc | 84 | 84 | — |
 | AMOS | 83 | 83 | — |
 | Remus | 78 | 78 | — |
-| DanaBot | 62 | 62 | T1566.001, T1071.001, T1555, T1041 |
+| DanaBot | 63 | 63 | T1566.001, T1071.001, T1555, T1041 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 22754 |
-| T1105 | Ingress Tool Transfer | command-and-control | 6000 |
-| T1498 | Network Denial of Service | impact | 5101 |
-| T1573 | Encrypted Channel | command-and-control | 3469 |
-| T1056.001 | Keylogging | collection, credential-access | 1863 |
-| T1566.001 | Spearphishing Attachment | initial-access | 1562 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 1423 |
-| T1113 | Screen Capture | collection | 1404 |
+| T1071.001 | Web Protocols | command-and-control | 23018 |
+| T1105 | Ingress Tool Transfer | command-and-control | 6034 |
+| T1498 | Network Denial of Service | impact | 5200 |
+| T1573 | Encrypted Channel | command-and-control | 3479 |
+| T1056.001 | Keylogging | collection, credential-access | 1871 |
+| T1566.001 | Spearphishing Attachment | initial-access | 1568 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 1428 |
+| T1113 | Screen Capture | collection | 1409 |
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 1341 |
 | T1090 | Proxy | command-and-control | 1253 |
 | T1059.001 | PowerShell | execution | 1238 |
-| T1555 | Credentials from Password Stores | credential-access | 494 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 432 |
+| T1555 | Credentials from Password Stores | credential-access | 496 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 433 |
 | T1552.001 | Credentials In Files | credential-access | 309 |
 | T1566 | Phishing | initial-access | 307 |
 | T1566.002 | Spearphishing Link | initial-access | 307 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 271 |
 | T1204.002 | Malicious File | execution | 271 |
-| T1041 | Exfiltration Over C2 Channel | exfiltration | 116 |
+| T1041 | Exfiltration Over C2 Channel | exfiltration | 117 |
 | T1059.005 | Visual Basic | execution | 41 |
 | T1189 | Drive-by Compromise | initial-access | 5 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 5 |
@@ -126,31 +126,31 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
-| [`8[.]145[.]54[.]119`](https://www.virustotal.com/gui/ip-address/8.145.54.119) | ipv4 | VShell | threatfox | 2026-10-04T19:05:07Z | 100 |
-| [`124[.]221[.]195[.]107`](https://www.virustotal.com/gui/ip-address/124.221.195.107) | ipv4 | VShell | threatfox | 2026-10-04T19:05:06Z | 100 |
-| [`47[.]95[.]255[.]0`](https://www.virustotal.com/gui/ip-address/47.95.255.0) | ipv4 | VShell | threatfox | 2026-10-04T19:05:06Z | 100 |
-| [`193[.]160[.]32[.]191`](https://www.virustotal.com/gui/ip-address/193.160.32.191) | ipv4 | Havoc | threatfox | 2026-10-04T19:05:05Z | 100 |
-| [`bb39866f5148a58eb55efc7a54d87a859900f85fb5cc42213fa5a94fd4c76a1e`](https://www.virustotal.com/gui/file/bb39866f5148a58eb55efc7a54d87a859900f85fb5cc42213fa5a94fd4c76a1e) | sha256 | Mirai | threatfox | 2026-10-04T18:47:11Z | 100 |
-| [`295ccac6f1eb2f3dac004467539cd7d0b9554890f6ee1d9b01d6b85873683710`](https://www.virustotal.com/gui/file/295ccac6f1eb2f3dac004467539cd7d0b9554890f6ee1d9b01d6b85873683710) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T18:47:10Z | 100 |
-| [`2f877ed3668559199e8571be72392d9fffe75d2a4788ae56b9f9b74bfa4bf7f7`](https://www.virustotal.com/gui/file/2f877ed3668559199e8571be72392d9fffe75d2a4788ae56b9f9b74bfa4bf7f7) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T18:47:09Z | 100 |
-| [`675e38b86871fcde9f0b75e1a0df9e973e6928ffec3e017c643369650e6eab2c`](https://www.virustotal.com/gui/file/675e38b86871fcde9f0b75e1a0df9e973e6928ffec3e017c643369650e6eab2c) | sha256 | Mirai | threatfox | 2026-10-04T18:47:06Z | 100 |
-| [`210edf2fb2b4cc1f9cc73b05858cd5524d402a00e4700e583aa1a746fae3b717`](https://www.virustotal.com/gui/file/210edf2fb2b4cc1f9cc73b05858cd5524d402a00e4700e583aa1a746fae3b717) | sha256 | Mirai | threatfox | 2026-10-04T18:47:05Z | 100 |
-| [`32ead15908ca61088701ec6ee4c692658585746bafb52cce23c047d035fc91a5`](https://www.virustotal.com/gui/file/32ead15908ca61088701ec6ee4c692658585746bafb52cce23c047d035fc91a5) | sha256 | PureLogs Stealer | threatfox | 2026-10-04T18:47:04Z | 100 |
-| [`edfa292a63fa4b57855d2caae989243189435f4ee043ddbc5ee14c0652ed3694`](https://www.virustotal.com/gui/file/edfa292a63fa4b57855d2caae989243189435f4ee043ddbc5ee14c0652ed3694) | sha256 | Mirai | threatfox | 2026-10-04T18:47:03Z | 100 |
-| [`05e1003e63865a41fd2955642be8e217ee7b4e8500d673d87fd15ad93b6ec296`](https://www.virustotal.com/gui/file/05e1003e63865a41fd2955642be8e217ee7b4e8500d673d87fd15ad93b6ec296) | sha256 | Mirai | threatfox | 2026-10-04T18:47:02Z | 100 |
-| [`28c0fd06d5941385aa22510ec520ad04f19a7cfd8c583e676d6113d1e00e5611`](https://www.virustotal.com/gui/file/28c0fd06d5941385aa22510ec520ad04f19a7cfd8c583e676d6113d1e00e5611) | sha256 | Mirai | threatfox | 2026-10-04T18:46:59Z | 100 |
-| [`bc94f10c4b7da185b319cf4b6195321d4d456ff877324d905867df810880c22c`](https://www.virustotal.com/gui/file/bc94f10c4b7da185b319cf4b6195321d4d456ff877324d905867df810880c22c) | sha256 | Mirai | threatfox | 2026-10-04T18:46:57Z | 100 |
-| [`c9ccc5a26c2226dc4ff595af21db15018d6cb02f663df845ca3a498e6346e1e8`](https://www.virustotal.com/gui/file/c9ccc5a26c2226dc4ff595af21db15018d6cb02f663df845ca3a498e6346e1e8) | sha256 | Mirai | threatfox | 2026-10-04T18:46:56Z | 100 |
-| [`5314592786ad4bfb70a5b35cc9a1b68a92f790badabf4a4755d1ca77eb35d27e`](https://www.virustotal.com/gui/file/5314592786ad4bfb70a5b35cc9a1b68a92f790badabf4a4755d1ca77eb35d27e) | sha256 | Mirai | threatfox | 2026-10-04T18:46:55Z | 100 |
-| [`18433cf591844ace03783e15903e84b6e97812824c50f4b2f5aafc33cb0b0f25`](https://www.virustotal.com/gui/file/18433cf591844ace03783e15903e84b6e97812824c50f4b2f5aafc33cb0b0f25) | sha256 | Mirai | threatfox | 2026-10-04T18:46:54Z | 100 |
-| [`ef0d94d552e13da04d16d0a78c170fc443c06e4534a555c2f594b1bcf55f96c8`](https://www.virustotal.com/gui/file/ef0d94d552e13da04d16d0a78c170fc443c06e4534a555c2f594b1bcf55f96c8) | sha256 | Mirai | threatfox | 2026-10-04T18:46:52Z | 100 |
-| [`51d2fe42168aea37cbf45483b27c87bd82bff31ec092be890990f10fbdd69fbf`](https://www.virustotal.com/gui/file/51d2fe42168aea37cbf45483b27c87bd82bff31ec092be890990f10fbdd69fbf) | sha256 | Mirai | threatfox | 2026-10-04T18:46:51Z | 100 |
-| [`56b5dad237eac47f1ccc062e740ec9e7c38ed9001fda0ef61b254637f7a10d8d`](https://www.virustotal.com/gui/file/56b5dad237eac47f1ccc062e740ec9e7c38ed9001fda0ef61b254637f7a10d8d) | sha256 | Mirai | threatfox | 2026-10-04T18:46:45Z | 100 |
-| [`f367633134cf14d9bfa393bdbf246833d90268dc1ffade89051fb3023fa2e6c0`](https://www.virustotal.com/gui/file/f367633134cf14d9bfa393bdbf246833d90268dc1ffade89051fb3023fa2e6c0) | sha256 | Mirai | threatfox | 2026-10-04T18:46:44Z | 100 |
-| [`1cf79a8a0d11841719fd64486731338bee22e34f0d40e0cf21fb90d503c8c50b`](https://www.virustotal.com/gui/file/1cf79a8a0d11841719fd64486731338bee22e34f0d40e0cf21fb90d503c8c50b) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T18:46:42Z | 100 |
-| [`178f533ef8e1a2515dc4bb1f3ba6a8ee13ca02184475fbfce38137025afe4dc1`](https://www.virustotal.com/gui/file/178f533ef8e1a2515dc4bb1f3ba6a8ee13ca02184475fbfce38137025afe4dc1) | sha256 | Mirai | threatfox | 2026-10-04T18:46:41Z | 100 |
-| [`c10abe0caa9c62fb247b0641beaa5577b63e5c08eae6a23989c1c7a0586300c3`](https://www.virustotal.com/gui/file/c10abe0caa9c62fb247b0641beaa5577b63e5c08eae6a23989c1c7a0586300c3) | sha256 | Mirai | threatfox | 2026-10-04T18:46:40Z | 100 |
-| [`19e1a79e5b5992999d75deee9c22ae3ecb5142a6714e76a284a9ae829737da3a`](https://www.virustotal.com/gui/file/19e1a79e5b5992999d75deee9c22ae3ecb5142a6714e76a284a9ae829737da3a) | sha256 | Mirai | threatfox | 2026-10-04T18:46:39Z | 100 |
+| [`95b4e74af25fbe652b36c394e69c5c6c29d9f803f8a81b5ca37021a569910d96`](https://www.virustotal.com/gui/file/95b4e74af25fbe652b36c394e69c5c6c29d9f803f8a81b5ca37021a569910d96) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T20:47:03Z | 100 |
+| [`50eba3c916db0f1a0892ed2651cbaab89965b628a618c095de4473fd5d15e536`](https://www.virustotal.com/gui/file/50eba3c916db0f1a0892ed2651cbaab89965b628a618c095de4473fd5d15e536) | sha256 | Mirai | threatfox | 2026-10-04T20:47:02Z | 100 |
+| [`22d787cc8ee9319b6e1147f55f7204d846efda4a3a0b1b40fc92d2bfd7345ff5`](https://www.virustotal.com/gui/file/22d787cc8ee9319b6e1147f55f7204d846efda4a3a0b1b40fc92d2bfd7345ff5) | sha256 | Mirai | threatfox | 2026-10-04T20:47:00Z | 100 |
+| [`28fa4489e716e5c7928271d86ce8d20593f90c44d6ceac01b16f1edbcaf89a36`](https://www.virustotal.com/gui/file/28fa4489e716e5c7928271d86ce8d20593f90c44d6ceac01b16f1edbcaf89a36) | sha256 | Mirai | threatfox | 2026-10-04T20:46:59Z | 100 |
+| [`6e454eff70e386c82120434900dc8c4d9b38ed6ad347580496a71633e5d93896`](https://www.virustotal.com/gui/file/6e454eff70e386c82120434900dc8c4d9b38ed6ad347580496a71633e5d93896) | sha256 | Mirai | threatfox | 2026-10-04T20:46:58Z | 100 |
+| [`4d520c344f984fbf9fa08032c13a34ceedcf0293ac6ccb2884845e53b04038d6`](https://www.virustotal.com/gui/file/4d520c344f984fbf9fa08032c13a34ceedcf0293ac6ccb2884845e53b04038d6) | sha256 | Mirai | threatfox | 2026-10-04T20:46:56Z | 100 |
+| [`73e128c6ebfa6f0b7f117dc8eae4dd31fc587905f67ce97fac991c4e413008a8`](https://www.virustotal.com/gui/file/73e128c6ebfa6f0b7f117dc8eae4dd31fc587905f67ce97fac991c4e413008a8) | sha256 | Mirai | threatfox | 2026-10-04T20:46:56Z | 100 |
+| [`b2a4e3f3c4ee656fed9f7a245c7142e851a4a969287582004616c2ed8f5f299d`](https://www.virustotal.com/gui/file/b2a4e3f3c4ee656fed9f7a245c7142e851a4a969287582004616c2ed8f5f299d) | sha256 | Mirai | threatfox | 2026-10-04T20:46:48Z | 100 |
+| [`b3dbae44369975b6711b4a73be8b3995c19b4c7d5f228e641c0bac883ab10721`](https://www.virustotal.com/gui/file/b3dbae44369975b6711b4a73be8b3995c19b4c7d5f228e641c0bac883ab10721) | sha256 | Mirai | threatfox | 2026-10-04T20:46:47Z | 100 |
+| [`0b210aa601f12bc1f75ce3fec740c5c1e60d2598733b54d74f1d3efd38d04c19`](https://www.virustotal.com/gui/file/0b210aa601f12bc1f75ce3fec740c5c1e60d2598733b54d74f1d3efd38d04c19) | sha256 | Mirai | threatfox | 2026-10-04T20:46:45Z | 100 |
+| [`fccafdc4d3ef4c49dd52b7a1194eb7d132b01da1e4c74bad5920198f968d004c`](https://www.virustotal.com/gui/file/fccafdc4d3ef4c49dd52b7a1194eb7d132b01da1e4c74bad5920198f968d004c) | sha256 | Mirai | threatfox | 2026-10-04T20:46:44Z | 100 |
+| [`c82a61264f2bbb1006ff150747b860411cbfac1809b021819622835b431532f4`](https://www.virustotal.com/gui/file/c82a61264f2bbb1006ff150747b860411cbfac1809b021819622835b431532f4) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T20:46:42Z | 100 |
+| [`ccc23682bd4ebb03464e44619a735ed0a8cf36c5d4f60134785f8f198223318c`](https://www.virustotal.com/gui/file/ccc23682bd4ebb03464e44619a735ed0a8cf36c5d4f60134785f8f198223318c) | sha256 | Mirai | threatfox | 2026-10-04T20:46:41Z | 100 |
+| [`93c4256f51574692dc96f47cac3a3587707dd7edc023c3704f781a25afbe609f`](https://www.virustotal.com/gui/file/93c4256f51574692dc96f47cac3a3587707dd7edc023c3704f781a25afbe609f) | sha256 | Mirai | threatfox | 2026-10-04T20:46:40Z | 100 |
+| [`769bd770366308fa1f6edbb235da42b5a6296ab0d3c5d672f291ae1cc566106d`](https://www.virustotal.com/gui/file/769bd770366308fa1f6edbb235da42b5a6296ab0d3c5d672f291ae1cc566106d) | sha256 | Mirai | threatfox | 2026-10-04T20:46:39Z | 100 |
+| [`d03ef8fdb39302e0bff56f9ed088e6aa1775b6979ba540ff801bbc7047d97c09`](https://www.virustotal.com/gui/file/d03ef8fdb39302e0bff56f9ed088e6aa1775b6979ba540ff801bbc7047d97c09) | sha256 | Mirai | threatfox | 2026-10-04T20:46:38Z | 100 |
+| [`c49ef0b295c49f964a1dbd5f7ac74edae1445398ee1ed619e497b77eded82680`](https://www.virustotal.com/gui/file/c49ef0b295c49f964a1dbd5f7ac74edae1445398ee1ed619e497b77eded82680) | sha256 | Mirai | threatfox | 2026-10-04T20:46:37Z | 100 |
+| [`d6b0e46b0d957aac65e1989bd97e1a36f4e0b17ac1fe579272df0deff0c2cd2f`](https://www.virustotal.com/gui/file/d6b0e46b0d957aac65e1989bd97e1a36f4e0b17ac1fe579272df0deff0c2cd2f) | sha256 | Mirai | threatfox | 2026-10-04T20:46:35Z | 100 |
+| [`98fd9a8f28856d66e5d45e26749edec79ce1841c0f73b0d2244e1628527fec44`](https://www.virustotal.com/gui/file/98fd9a8f28856d66e5d45e26749edec79ce1841c0f73b0d2244e1628527fec44) | sha256 | Mirai | threatfox | 2026-10-04T20:46:34Z | 100 |
+| [`6272cc2ee363eff4577eebc7473a91e178dd97ecc733ff2dbdc21945dca8e6fa`](https://www.virustotal.com/gui/file/6272cc2ee363eff4577eebc7473a91e178dd97ecc733ff2dbdc21945dca8e6fa) | sha256 | Mirai | threatfox | 2026-10-04T20:46:30Z | 100 |
+| [`08347e4debb51bc5933356d8288afed66568c3ccf8303955418e9ebc3011d25b`](https://www.virustotal.com/gui/file/08347e4debb51bc5933356d8288afed66568c3ccf8303955418e9ebc3011d25b) | sha256 | Mirai | threatfox | 2026-10-04T20:46:27Z | 100 |
+| [`2debeb696ed96e13d480eaa7519175d43c9582eef567ad9b61a32d8acf21d560`](https://www.virustotal.com/gui/file/2debeb696ed96e13d480eaa7519175d43c9582eef567ad9b61a32d8acf21d560) | sha256 | Mirai | threatfox | 2026-10-04T20:46:26Z | 100 |
+| [`a4a24d9f15a9998be9ee3515e800090bef248d830c4bbbd97eb5ecf1cd41629c`](https://www.virustotal.com/gui/file/a4a24d9f15a9998be9ee3515e800090bef248d830c4bbbd97eb5ecf1cd41629c) | sha256 | Mirai | threatfox | 2026-10-04T20:46:24Z | 100 |
+| [`208b8c2b2ee2e299351427acf7e7c85598efc805ec26f21335535b70d6059c6b`](https://www.virustotal.com/gui/file/208b8c2b2ee2e299351427acf7e7c85598efc805ec26f21335535b70d6059c6b) | sha256 | Mirai | threatfox | 2026-10-04T20:46:23Z | 100 |
+| [`d4305895d867b0906826b7ce89957f5b95d019093e2794786c8c07a24c9694d0`](https://www.virustotal.com/gui/file/d4305895d867b0906826b7ce89957f5b95d019093e2794786c8c07a24c9694d0) | sha256 | Mirai | threatfox | 2026-10-04T20:46:22Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
