@@ -25,6 +25,7 @@ th{color:var(--muted);font-weight:600}
 .card .num{display:block;font-size:1.6rem;color:var(--accent)}
 .card .lbl{color:var(--muted);font-size:.8rem;text-transform:uppercase}
 .ok{color:var(--good)}.err{color:var(--bad)}
+.muted{color:var(--muted);font-size:.85rem}
 code{color:var(--text)}
 footer{padding:1rem 2rem 2rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
 footer a,main a{color:var(--accent)}
@@ -33,23 +34,24 @@ footer a,main a{color:var(--accent)}
 <body>
 <header>
   <h1><a href="index.html">Threat Intel Pipeline</a></h1>
-  <p>14858 indicators tracked &middot; 14858 new in the last 7 days &middot; generated 2026-10-04T17:10:48Z UTC</p>
+  <p>23408 indicators tracked &middot; 23408 new in the last 7 days &middot; generated 2026-10-04T17:20:30Z UTC</p>
   <nav>
     <a href="index.html">Dashboard</a>
     <a href="report.html">Latest report</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>  </nav>
 </header>
 <main>
-<p><strong>Window:</strong> last 7 days &middot; <strong>Generated:</strong> 2026-10-04T17:10:48Z UTC</p>
+<p><strong>Window:</strong> last 7 days &middot; <strong>Generated:</strong> 2026-10-04T17:20:30Z UTC</p>
 
 <section>
   <h2>Summary</h2>
   <table>
     <tr><th>Metric</th><th>Value</th></tr>
-    <tr><td>Indicators tracked</td><td>14858</td></tr>
-    <tr><td>New in window</td><td>14858</td></tr>
+    <tr><td>Indicators tracked</td><td>23408</td></tr>
+    <tr><td>New in window</td><td>23408</td></tr>
     <tr><td>Malware families (annotated)</td><td>20</td></tr>
     <tr><td>ATT&amp;CK techniques (heuristic)</td><td>27</td></tr>
+    <tr><td>Tor nodes tracked</td><td>8536 (2033 exits / 6503 relays)</td></tr>
   </table>
 </section>
 
@@ -69,20 +71,40 @@ footer a,main a{color:var(--accent)}
     </tr>
     <tr>
       <td>threatfox</td>
-      <td>11192</td>
+      <td>11197</td>
+      <td><span class="ok">ok</span></td>
+    </tr>
+    <tr>
+      <td>tor</td>
+      <td>8536</td>
       <td><span class="ok">ok</span></td>
     </tr>
   </table>
 </section>
 
 <section>
+  <h2>Tor relay / exit nodes</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Nodes tracked</td><td>8536</td></tr>
+    <tr><td>Exit nodes</td><td>2033</td></tr>
+    <tr><td>Other relays</td><td>6503</td></tr>
+    <tr><td>New in window</td><td>8536</td></tr>
+  </table>
+  <p class="muted">Sample (20 of 8536, source Tor Project Onionoo):</p>
+  <p><code>1[.]201[.]176[.]176</code> &middot; <code>100[.]2[.]63[.]41</code> &middot; <code>101[.]55[.]125[.]10</code> &middot; <code>102[.]130[.]113[.]29</code> &middot; <code>102[.]130[.]113[.]30</code> &middot; <code>102[.]130[.]113[.]42</code> &middot; <code>102[.]130[.]113[.]9</code> &middot; <code>102[.]130[.]115[.]59</code> &middot; <code>102[.]130[.]117[.]167</code> &middot; <code>102[.]130[.]119[.]48</code> &middot; <code>102[.]130[.]127[.]117</code> &middot; <code>102[.]205[.]44[.]36</code> &middot; <code>102[.]205[.]44[.]5</code> &middot; <code>102[.]211[.]56[.]20</code> &middot; <code>102[.]211[.]56[.]25</code> &middot; <code>102[.]68[.]99[.]63</code> &middot; <code>103[.]105[.]21[.]2</code> &middot; <code>103[.]109[.]100[.]207</code> &middot; <code>103[.]109[.]101[.]105</code> &middot; <code>103[.]109[.]187[.]71</code></p>
+  <p class="muted">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
+</section>
+
+<section>
   <h2>Indicators by type</h2>
   <table>
     <tr><th>Type</th><th>Total</th><th>New</th></tr>
-    <tr><td>url</td><td>4760</td><td>4760</td></tr>
-    <tr><td>domain</td><td>4349</td><td>4349</td></tr>
+    <tr><td>ipv4</td><td>8270</td><td>8270</td></tr>
+    <tr><td>url</td><td>4761</td><td>4761</td></tr>
+    <tr><td>domain</td><td>4362</td><td>4362</td></tr>
     <tr><td>sha256</td><td>3255</td><td>3255</td></tr>
-    <tr><td>ipv4</td><td>2380</td><td>2380</td></tr>
+    <tr><td>ipv6</td><td>2646</td><td>2646</td></tr>
     <tr><td>md5</td><td>57</td><td>57</td></tr>
     <tr><td>sha1</td><td>57</td><td>57</td></tr>
   </table>
@@ -92,7 +114,8 @@ footer a,main a{color:var(--accent)}
   <h2>Indicators by source</h2>
   <table>
     <tr><th>Source</th><th>Indicators</th></tr>
-    <tr><td>threatfox</td><td>10334</td></tr>
+    <tr><td>threatfox</td><td>10348</td></tr>
+    <tr><td>tor</td><td>8536</td></tr>
     <tr><td>urlhaus</td><td>4535</td></tr>
     <tr><td>feodo</td><td>5</td></tr>
   </table>
@@ -115,7 +138,7 @@ footer a,main a{color:var(--accent)}
       <td>T1071.001, T1573, T1055, T1059.001, T1105, T1090</td>
     </tr>
     <tr>
-      <td>AsyncRAT</td><td>1189</td><td>1189</td>
+      <td>AsyncRAT</td><td>1190</td><td>1190</td>
       <td>T1566.001, T1547.001, T1056.001, T1113, T1071.001</td>
     </tr>
     <tr>
@@ -135,7 +158,7 @@ footer a,main a{color:var(--accent)}
       <td>—</td>
     </tr>
     <tr>
-      <td>ClearFake</td><td>196</td><td>196</td>
+      <td>ClearFake</td><td>207</td><td>207</td>
       <td>—</td>
     </tr>
     <tr>
@@ -143,7 +166,7 @@ footer a,main a{color:var(--accent)}
       <td>—</td>
     </tr>
     <tr>
-      <td>Vidar</td><td>153</td><td>153</td>
+      <td>Vidar</td><td>155</td><td>155</td>
       <td>T1555, T1071.001, T1567</td>
     </tr>
     <tr>
@@ -189,19 +212,19 @@ footer a,main a{color:var(--accent)}
   <h2>ATT&amp;CK coverage (heuristic)</h2>
   <table>
     <tr><th>Technique</th><th>Name</th><th>Tactics</th><th>Indicators</th></tr>
-    <tr><td>T1071.001</td><td>Web Protocols</td><td>command-and-control</td><td>12949</td></tr>
+    <tr><td>T1071.001</td><td>Web Protocols</td><td>command-and-control</td><td>21500</td></tr>
     <tr><td>T1105</td><td>Ingress Tool Transfer</td><td>command-and-control</td><td>5961</td></tr>
-    <tr><td>T1498</td><td>Network Denial of Service</td><td>impact</td><td>4997</td></tr>
+    <tr><td>T1498</td><td>Network Denial of Service</td><td>impact</td><td>4998</td></tr>
     <tr><td>T1573</td><td>Encrypted Channel</td><td>command-and-control</td><td>3467</td></tr>
-    <tr><td>T1056.001</td><td>Keylogging</td><td>collection, credential-access</td><td>1861</td></tr>
-    <tr><td>T1566.001</td><td>Spearphishing Attachment</td><td>initial-access</td><td>1559</td></tr>
-    <tr><td>T1547.001</td><td>Registry Run Keys / Startup Folder</td><td>persistence, privilege-escalation</td><td>1422</td></tr>
-    <tr><td>T1113</td><td>Screen Capture</td><td>collection</td><td>1403</td></tr>
+    <tr><td>T1056.001</td><td>Keylogging</td><td>collection, credential-access</td><td>1862</td></tr>
+    <tr><td>T1566.001</td><td>Spearphishing Attachment</td><td>initial-access</td><td>1560</td></tr>
+    <tr><td>T1547.001</td><td>Registry Run Keys / Startup Folder</td><td>persistence, privilege-escalation</td><td>1423</td></tr>
+    <tr><td>T1113</td><td>Screen Capture</td><td>collection</td><td>1404</td></tr>
     <tr><td>T1055</td><td>Process Injection</td><td>defense-evasion, privilege-escalation</td><td>1340</td></tr>
     <tr><td>T1090</td><td>Proxy</td><td>command-and-control</td><td>1252</td></tr>
     <tr><td>T1059.001</td><td>PowerShell</td><td>execution</td><td>1237</td></tr>
-    <tr><td>T1555</td><td>Credentials from Password Stores</td><td>credential-access</td><td>490</td></tr>
-    <tr><td>T1567</td><td>Exfiltration Over Web Service</td><td>exfiltration</td><td>428</td></tr>
+    <tr><td>T1555</td><td>Credentials from Password Stores</td><td>credential-access</td><td>492</td></tr>
+    <tr><td>T1567</td><td>Exfiltration Over Web Service</td><td>exfiltration</td><td>430</td></tr>
     <tr><td>T1552.001</td><td>Credentials In Files</td><td>credential-access</td><td>307</td></tr>
     <tr><td>T1027</td><td>Obfuscated Files or Information</td><td>defense-evasion</td><td>270</td></tr>
     <tr><td>T1204.002</td><td>Malicious File</td><td>execution</td><td>270</td></tr>
@@ -328,7 +351,7 @@ footer a,main a{color:var(--accent)}
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; AlienVault OTX. Indicators are defanged for safe display.</p>
-  <p>Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at 2026-10-04T17:10:48Z UTC.</p>
+  <p>Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at 2026-10-04T17:20:30Z UTC.</p>
 </footer>
 </body>
 </html>

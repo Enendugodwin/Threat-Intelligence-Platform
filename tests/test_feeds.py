@@ -3,6 +3,7 @@ import pathlib
 from tip.feeds.feodo import FeodoFeed
 from tip.feeds.otx import OTXFeed
 from tip.feeds.threatfox import ThreatFoxFeed
+from tip.feeds.tor import TorFeed
 from tip.feeds.urlhaus import URLhausFeed
 
 FIXTURES = pathlib.Path(__file__).parent / "fixtures"
@@ -10,6 +11,7 @@ _FILES = {
     "urlhaus": "urlhaus.csv",
     "feodo": "feodo.json",
     "threatfox": "threatfox.json",
+    "tor": "tor.json",
     "otx": "otx.json",
 }
 
@@ -54,3 +56,16 @@ def test_otx_parse():
     assert len(iocs) == 2  # the URI-type indicator is skipped
     lockbit = next(i for i in iocs if i.malware == "LockBit")
     assert "ransomware" in lockbit.tags
+
+
+def test_tor_parse():
+    iocs = _fetch(TorFeed)
+    assert len(iocs) == 3
+    exit_v4 = next(i for i in iocs if i.value == "204.8.96.141")
+    assert "tor-exit" in exit_v4.tags
+    assert exit_v4.confidence == 25
+    ipv6 = next(i for i in iocs if i.type == "ipv6")
+    assert ipv6.value == "2606:4700:4700::141"
+    plain_relay = next(i for i in iocs if i.value == "45.61.136.55")
+    assert "tor-relay" in plain_relay.tags
+    assert "tor-exit" not in plain_relay.tags

@@ -12,6 +12,7 @@ ATT&CK (heuristically), and publishes finished products:
 | Sigma rules (IOC watchlists) | `dist/sigma/*.yml` | convert with sigma-cli, load into your SIEM |
 | Suricata rules | `dist/suricata/ti.rules` | network detection |
 | CSV indicator set | `dist/iocs.csv` | quick lookups / watchlists |
+| Tor node list | `dist/tor/tor_nodes.txt` | firewall / proxy context (relays + exits) |
 | Markdown report | `reports/latest.md` | intel pulse for the week |
 | HTML dashboard | `site/index.html` | published to GitHub Pages |
 
@@ -22,18 +23,19 @@ in the box for when you later point it at a VPS (see `deploy/README.md`).
 ## How it works
 
 ```
-URLhaus ─┐
-Feodo ───┤   normalize     SQLite     ATT&CK        exports
-ThreatFox┼─► validate ───► store ───► mapping ──┬─► STIX 2.1 bundle
-OTX ─────┘   dedupe       (cached)   heuristics  ├─► Sigma watchlists
-             refang                              ├─► Suricata rules
-                                                 ├─► CSV
-                                                 ├─► Markdown report
-                                                 └─► HTML dashboard (Pages)
+URLhaus ─────┐
+Feodo ───────┤   normalize     SQLite     ATT&CK        exports
+ThreatFox ───┼─► validate ───► store ───► mapping ──┬─► STIX 2.1 / CSV
+Tor Onionoo ─┤   dedupe       (cached)   heuristics  ├─► Sigma watchlists
+OTX ─────────┘   refang                              ├─► Suricata rules
+                                                     ├─► Tor node list
+                                                     ├─► Markdown report
+                                                     └─► HTML dashboard (Pages)
 ```
 
-- **Feeds** (keyless by default): URLhaus, Feodo Tracker C2 blocklist, ThreatFox.
-  AlienVault OTX is supported with a free API key.
+- **Feeds** (keyless by default): URLhaus, Feodo Tracker C2 blocklist, ThreatFox,
+  and Tor Project Onionoo (relay/exit node context - kept out of detections by
+  default). AlienVault OTX is supported with a free API key.
 - **Normalization**: refang/defang handling, type detection, private/reserved
   address rejection, dedupe across feeds with source tracking.
 - **ATT&CK mapping**: family table + tag heuristics in `config/attack_map.yaml`.
@@ -88,7 +90,12 @@ deploys the dashboard to `https://<user>.github.io/threat-intel-pipeline/`.
 - `storage.prune_after_days` - indicators not re-seen in N days are dropped.
 - `exports.window_days` / `exports.max_rows` / `exports.min_confidence` - what
   goes into STIX/Sigma/Suricata/CSV.
-- `report.window_days` / `report.top_n` - reporting window and notable-IOC cap.
+- `exports.exclude_sources` - sources kept out of those exports (default `tor`;
+  Tor nodes are context, not malware, and would only add detection noise - the
+  dedicated list still ships as `dist/tor/tor_nodes.txt`).
+- `feeds.tor.exits_only` - restrict the Tor section to exit nodes.
+- `report.window_days` / `report.top_n` / `report.tor_sample` - reporting window,
+  notable-IOC cap, and Tor sample size.
 
 `config/attack_map.yaml` - ATT&CK techniques, malware family → technique
 mapping, regex tag rules, and default techniques. Extend it for families you
@@ -129,6 +136,7 @@ MISP/OpenCTI on a VPS later.
 - [URLhaus](https://urlhaus.abuse.ch/) (abuse.ch) - malware URLs
 - [Feodo Tracker](https://feodotracker.abuse.ch/) (abuse.ch) - botnet C2 blocklist
 - [ThreatFox](https://threatfox.abuse.ch/) (abuse.ch) - IOCs
+- [Tor Project Onionoo](https://onionoo.torproject.org/) - Tor relay/exit node addresses (context data)
 - [AlienVault OTX](https://otx.alienvault.com/) - pulses (optional key)
 
 Review each provider's terms of use before commercial deployment; feeds are
@@ -144,7 +152,7 @@ tip/
   normalize.py      refang/defang, type detection, validation
   store.py          SQLite: dedupe/merge, source tracking, run history
   attack.py         heuristic ATT&CK mapping (config/attack_map.yaml)
-  exports/          stix.py, sigma.py, suricata.py, csv_export.py
+  exports/          stix.py, sigma.py, suricata.py, csv_export.py, tor.py
   connectors/       misp.py, opencti.py (optional)
   report.py/site.py context building + Jinja rendering
 templates/          report.md.j2, base/index/report HTML

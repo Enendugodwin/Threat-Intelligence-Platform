@@ -100,6 +100,7 @@ def main(argv=None) -> int:
         from .exports import sigma as sigma_mod
         from .exports import stix as stix_mod
         from .exports import suricata as suricata_mod
+        from .exports import tor as tor_export
 
         config = load_config(args.config)
         attack = load_attack_map(args.attack_map)
@@ -108,8 +109,13 @@ def main(argv=None) -> int:
         max_rows = int(exports_cfg.get("max_rows", 30000))
         min_confidence = int(exports_cfg.get("min_confidence", 0))
 
+        exclude_sources = [str(s) for s in (exports_cfg.get("exclude_sources") or [])]
+
         with Store(data_dir / "iocs.sqlite") as store:
-            rows = store.rows_for_export(window_days, max_rows, min_confidence)
+            rows = store.rows_for_export(
+                window_days, max_rows, min_confidence, exclude_sources=exclude_sources
+            )
+            tor_rows = store.source_rows("tor")
 
         out = pathlib.Path(args.out)
         bundle = stix_mod.build_bundle(rows)
@@ -133,10 +139,12 @@ def main(argv=None) -> int:
             min_confidence=min_confidence,
         )
         suricata_path = suricata_mod.write_rules(suricata_lines, out / "suricata" / "ti.rules")
+        tor_path, tor_count = tor_export.write_nodes(tor_rows, out / "tor" / "tor_nodes.txt")
 
         print(
             f"wrote {stix_path} ({bundle['_meta']['indicator_count']} indicators), {csv_path}, "
-            f"{len(sigma_rules)} sigma rule(s), {suricata_path} ({len(suricata_lines)} rule(s))"
+            f"{len(sigma_rules)} sigma rule(s), {suricata_path} ({len(suricata_lines)} rule(s)), "
+            f"{tor_path} ({tor_count} Tor nodes)"
         )
         return 0
 

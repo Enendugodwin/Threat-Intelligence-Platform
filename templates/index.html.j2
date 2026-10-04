@@ -23,6 +23,24 @@
 </section>
 
 <section>
+  <h2>Tor relay / exit nodes</h2>
+  {% if tor.total %}
+  <table>
+    <tr><th>Metric</th><th>Value</th></tr>
+    <tr><td>Nodes tracked</td><td>{{ tor.total }}</td></tr>
+    <tr><td>Exit nodes</td><td>{{ tor.exits }}</td></tr>
+    <tr><td>Other relays</td><td>{{ tor.relays }}</td></tr>
+    <tr><td>New in window</td><td>{{ tor.new }}</td></tr>
+  </table>
+  <p class="muted">Sample ({{ tor.sample | length }} of {{ tor.total }}, source {{ tor.source }}):</p>
+  <p>{% for ip in tor.sample %}<code>{{ ip }}</code>{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+  <p class="muted">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
+  {% else %}
+  <p>No Tor node data this run.</p>
+  {% endif %}
+</section>
+
+<section>
   <h2>Top malware families</h2>
   {% if families %}
   <table>

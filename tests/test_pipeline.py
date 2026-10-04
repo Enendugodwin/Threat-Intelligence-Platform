@@ -4,6 +4,7 @@ from tip.attack import load_attack_map
 from tip.exports import sigma as sigma_mod
 from tip.exports import stix as stix_mod
 from tip.exports import suricata as suricata_mod
+from tip.exports import tor as tor_export
 from tip.pipeline import run_sync
 from tip.report import build_context, write_report
 from tip.site import build_site
@@ -19,6 +20,7 @@ def _config():
             "urlhaus": {"enabled": True, "local_file": str(FIXTURES / "urlhaus.csv")},
             "feodo": {"enabled": True, "local_file": str(FIXTURES / "feodo.json")},
             "threatfox": {"enabled": True, "local_file": str(FIXTURES / "threatfox.json")},
+            "tor": {"enabled": True, "local_file": str(FIXTURES / "tor.json")},
             "otx": {"enabled": False},
         },
         "storage": {"prune_after_days": 45},
@@ -45,10 +47,14 @@ def test_offline_pipeline_end_to_end(tmp_path):
     attack = load_attack_map(ROOT / "config" / "attack_map.yaml")
     with Store(data_dir / "iocs.sqlite") as store:
         context = build_context(store, config, attack)
-        rows = store.rows_for_export(30, 1000, 0)
+        rows = store.rows_for_export(30, 1000, 0, exclude_sources=["tor"])
+        tor_rows = store.source_rows("tor")
 
     assert context["totals"]["total"] == again["total"]
     assert context["notable"]
+    assert context["tor"]["total"] == 3
+    assert context["tor"]["exits"] == 2
+    assert all("tor" not in str(row["sources"] or "").split(",") for row in rows)
 
     report_paths = write_report(context, tmp_path / "reports", ROOT / "templates")
     text = report_paths[0].read_text(encoding="utf-8")
@@ -63,3 +69,7 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert bundle["_meta"]["indicator_count"] > 0
     assert sigma_mod.build_rules(rows, attack)
     assert suricata_mod.build_rules(rows)
+
+    tor_path, tor_count = tor_export.write_nodes(tor_rows, tmp_path / "dist" / "tor" / "tor_nodes.txt")
+    assert tor_count == 3
+    assert tor_path.exists()

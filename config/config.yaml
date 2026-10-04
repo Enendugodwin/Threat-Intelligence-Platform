@@ -9,6 +9,10 @@ feeds:
     enabled: true
   threatfox:
     enabled: true
+  tor:
+    enabled: true
+    exits_only: false   # true = keep only relays carrying the Exit flag
+    max_records: 20000  # safety cap across paginated Onionoo requests
   otx:
     enabled: false         # set true and export OTX_API_KEY to use
     modified_since_days: 2
@@ -21,6 +25,10 @@ exports:
   window_days: 30          # export lookback window
   max_rows: 30000          # hard cap for STIX/CSV/Sigma/Suricata exports
   min_confidence: 0
+  # Sources kept out of STIX/Sigma/Suricata/CSV exports. Tor nodes are context,
+  # not malware - they would only add noise to detections. The dedicated Tor
+  # list is always written to dist/tor/tor_nodes.txt.
+  exclude_sources: ["tor"]
   sigma:
     max_values_per_rule: 200
   suricata:
@@ -30,4 +38,5 @@ exports:
 report:
   window_days: 7
   top_n: 25
+  tor_sample: 20
   repo_url: "https://github.com/Enendugodwin/Threat-Intelligence-Platform"

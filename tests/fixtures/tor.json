@@ -1,0 +1,25 @@
+{
+    "relays_published": "2026-10-04 16:00:00",
+    "relays": [
+        {
+            "fingerprint": "0008D9640FE4947F73E355F67E20C2D290BBC72C",
+            "or_addresses": ["204.8.96.141:444", "[2606:4700:4700::141]:81"],
+            "exit_addresses": ["204.8.96.141"],
+            "flags": ["Exit", "Fast", "Guard", "Running", "Stable", "V2Dir", "Valid"],
+            "last_seen": "2026-10-04 16:00:00",
+            "first_seen": "2026-07-03 01:00:00",
+            "country": "us",
+            "as_name": "Quintex Alliance Consulting"
+        },
+        {
+            "fingerprint": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "or_addresses": ["45.61.136.55:9001"],
+            "exit_addresses": [],
+            "flags": ["Fast", "Running", "Stable", "Valid"],
+            "last_seen": "2026-10-04 16:00:00",
+            "first_seen": "2026-02-01 00:00:00",
+            "country": "nl",
+            "as_name": "Example Tor Hosting"
+        }
+    ]
+}

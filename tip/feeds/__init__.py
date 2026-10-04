@@ -3,12 +3,14 @@ from .base import Feed, FeedError
 from .feodo import FeodoFeed
 from .otx import OTXFeed
 from .threatfox import ThreatFoxFeed
+from .tor import TorFeed
 from .urlhaus import URLhausFeed
 
 FEED_CLASSES: dict[str, type[Feed]] = {
     "urlhaus": URLhausFeed,
     "feodo": FeodoFeed,
     "threatfox": ThreatFoxFeed,
+    "tor": TorFeed,
     "otx": OTXFeed,
 }
 

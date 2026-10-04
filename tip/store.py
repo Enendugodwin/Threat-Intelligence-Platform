@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS iocs (
     first_seen  TEXT,
     last_seen   TEXT,
     ingested_at TEXT NOT NULL,
+    seen_at     TEXT,
     malware     TEXT,
     tags        TEXT NOT NULL DEFAULT '[]',
     confidence  INTEGER NOT NULL DEFAULT 50,
@@ -101,7 +102,15 @@ class Store:
         self.conn = sqlite3.connect(str(self.path))
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
         self.conn.commit()
+
+    def _migrate(self) -> None:
+        """Add columns introduced after the first release (idempotent)."""
+        columns = {row[1] for row in self.conn.execute("PRAGMA table_info(iocs)")}
+        if "seen_at" not in columns:
+            self.conn.execute("ALTER TABLE iocs ADD COLUMN seen_at TEXT")
+            self.conn.execute("UPDATE iocs SET seen_at = ingested_at WHERE seen_at IS NULL")
 
     # -- lifecycle ---------------------------------------------------------
     def close(self) -> None:
@@ -135,13 +144,14 @@ class Store:
                 new += 1
                 self.conn.execute(
                     "INSERT INTO iocs (key, value, type, first_seen, last_seen, ingested_at,"
-                    " malware, tags, confidence, reference) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                    " seen_at, malware, tags, confidence, reference) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                     (
                         key,
                         merged.value,
                         merged.type,
                         merged.first_seen,
                         merged.last_seen,
+                        now,
                         now,
                         merged.malware,
                         json.dumps(merged.tags, ensure_ascii=False),
@@ -159,7 +169,7 @@ class Store:
                 merged.reference = row["reference"] or merged.reference
                 self.conn.execute(
                     "UPDATE iocs SET value=?, first_seen=?, last_seen=?, malware=?, tags=?,"
-                    " confidence=?, reference=? WHERE key=?",
+                    " confidence=?, reference=?, seen_at=? WHERE key=?",
                     (
                         merged.value,
                         merged.first_seen,
@@ -168,6 +178,7 @@ class Store:
                         json.dumps(merged.tags, ensure_ascii=False),
                         merged.confidence,
                         merged.reference,
+                        now,
                         key,
                     ),
                 )
@@ -183,7 +194,9 @@ class Store:
     def prune(self, days: int) -> int:
         """Drop IOCs that have been in the database longer than ``days``."""
         cutoff = _cutoff(days)
-        cur = self.conn.execute("DELETE FROM iocs WHERE ingested_at < ?", (cutoff,))
+        cur = self.conn.execute(
+            "DELETE FROM iocs WHERE COALESCE(seen_at, ingested_at) < ?", (cutoff,)
+        )
         removed = cur.rowcount
         self.conn.execute("DELETE FROM ioc_sources WHERE key NOT IN (SELECT key FROM iocs)")
         self.conn.commit()
@@ -245,18 +258,43 @@ class Store:
         return self.conn.execute(sql, params).fetchall()
 
     def rows_for_export(
-        self, days: int, limit: int, min_confidence: int = 0
+        self,
+        days: int,
+        limit: int,
+        min_confidence: int = 0,
+        exclude_sources: list[str] | None = None,
     ) -> list[sqlite3.Row]:
         cutoff = _cutoff(days)
+        clauses = [
+            "(i.ingested_at >= ? OR COALESCE(i.last_seen, i.ingested_at) >= ?)",
+            "i.confidence >= ?",
+        ]
+        params: list = [cutoff, cutoff, min_confidence]
+        for source in exclude_sources or []:
+            clauses.append("i.key NOT IN (SELECT key FROM ioc_sources WHERE source = ?)")
+            params.append(source)
         sql = (
             "SELECT i.*, COALESCE((SELECT GROUP_CONCAT(s.source) FROM ioc_sources s"
             " WHERE s.key = i.key), '') AS sources"
-            " FROM iocs i"
-            " WHERE (i.ingested_at >= ? OR COALESCE(i.last_seen, i.ingested_at) >= ?)"
-            " AND i.confidence >= ?"
-            " ORDER BY i.confidence DESC, i.first_seen DESC LIMIT ?"
+            " FROM iocs i WHERE " + " AND ".join(clauses)
+            + " ORDER BY i.confidence DESC, i.first_seen DESC LIMIT ?"
         )
-        return self.conn.execute(sql, (cutoff, cutoff, min_confidence, int(limit))).fetchall()
+        params.append(int(limit))
+        return self.conn.execute(sql, params).fetchall()
+
+    def source_rows(self, source: str, limit: int | None = None) -> list[sqlite3.Row]:
+        """Rows reported by one source (e.g. the Tor context list)."""
+        sql = (
+            "SELECT i.*, COALESCE((SELECT GROUP_CONCAT(s.source) FROM ioc_sources s"
+            " WHERE s.key = i.key), '') AS sources"
+            " FROM iocs i JOIN ioc_sources src ON src.key = i.key AND src.source = ?"
+            " ORDER BY i.value"
+        )
+        params: list = [source]
+        if limit:
+            sql += " LIMIT ?"
+            params.append(int(limit))
+        return self.conn.execute(sql, params).fetchall()
 
     def last_run(self) -> dict | None:
         row = self.conn.execute("SELECT * FROM runs ORDER BY id DESC LIMIT 1").fetchone()

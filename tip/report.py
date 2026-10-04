@@ -1,6 +1,7 @@
 """Build the report context and render Markdown reports."""
 from __future__ import annotations
 
+import json
 import pathlib
 from datetime import datetime, timezone
 
@@ -81,6 +82,26 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         for row in new_rows[:top_n]
     ]
 
+    tor_rows = store.source_rows("tor")
+    tor_exits = 0
+    for row in tor_rows:
+        try:
+            tags = json.loads(row["tags"] or "[]")
+        except (TypeError, ValueError):
+            tags = []
+        if "tor-exit" in tags:
+            tor_exits += 1
+    tor_new = sum(1 for row in new_rows if "tor" in str(row["sources"] or "").split(","))
+    tor_sample_size = int(report_cfg.get("tor_sample", 20))
+    tor = {
+        "total": len(tor_rows),
+        "exits": tor_exits,
+        "relays": len(tor_rows) - tor_exits,
+        "new": tor_new,
+        "sample": [defang(row["value"]) for row in tor_rows[:tor_sample_size]],
+        "source": "Tor Project Onionoo",
+    }
+
     last_run = store.last_run()
     return {
         "generated_at": now,
@@ -99,6 +120,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         "families": families,
         "coverage": coverage,
         "notable": notable,
+        "tor": tor,
         "last_run": last_run,
     }
 
