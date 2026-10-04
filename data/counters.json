@@ -3,61 +3,70 @@
     "AMOS": 83,
     "AdaptixC2": 238,
     "AsyncRAT": 1190,
-    "ClearFake": 262,
+    "ClearFake": 272,
     "Cobalt Strike": 1226,
     "DCRat": 96,
     "DanaBot": 62,
     "Evilginx": 91,
     "Havoc": 84,
-    "IClickFix": 329,
+    "IClickFix": 332,
     "Mirai": 2018,
     "PureRAT": 326,
     "Remcos": 90,
     "Remus": 78,
-    "Unknown Loader": 2644,
+    "Unknown Loader": 2661,
     "Unknown RAT": 132,
     "Unknown Stealer": 166,
     "Unknown malware": 433,
     "VShell": 86,
-    "Vidar": 153
+    "Vidar": 154
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 1098,
+    "malwarebazaar": 1106,
     "openphish": 300,
-    "threatfox": 10493,
+    "threatfox": 10524,
     "tor": 8679,
-    "urlhaus": 4569
+    "urlhaus": 4572
   },
   "by_type": {
-    "domain": 5304,
+    "domain": 5335,
     "ipv4": 8404,
     "ipv6": 2689,
     "md5": 57,
     "sha1": 57,
-    "sha256": 4400,
-    "url": 5094
+    "sha256": 4408,
+    "url": 5097
   },
-  "generated_at": "2026-10-04T19:19:04Z",
+  "generated_at": "2026-10-04T19:27:31Z",
   "latest_run": {
+    "durations": {
+      "circl": 14.3,
+      "feodo": 0.1,
+      "malwarebazaar": 0.3,
+      "openphish": 0.0,
+      "threatfox": 0.6,
+      "tor": 1.9,
+      "urlhaus": 0.5
+    },
     "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1085,
+      "malwarebazaar": 1056,
       "openphish": 300,
-      "threatfox": 11096,
+      "threatfox": 11127,
       "tor": 8519,
       "urlhaus": 5000
     },
-    "fetched": 26919,
-    "finished_at": "2026-10-04T19:19:04Z",
-    "new": 80,
+    "fetched": 26921,
+    "finished_at": "2026-10-04T19:27:31Z",
+    "new": 42,
     "pruned": 0,
-    "started_at": "2026-10-04T19:18:50Z",
-    "total": 26005,
-    "updated": 25478
+    "started_at": "2026-10-04T19:27:12Z",
+    "total": 26047,
+    "updated": 25518
   },
-  "total": 26005
+  "total": 26047
 }

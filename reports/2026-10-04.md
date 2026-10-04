@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T19:19:09Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T19:27:40Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 26005 |
-| New in window | 26005 |
+| Indicators tracked | 26047 |
+| New in window | 26047 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -15,8 +15,8 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11096 | ok |
-| malwarebazaar | 1085 | ok |
+| threatfox | 11127 | ok |
+| malwarebazaar | 1056 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
 | tor | 8519 | ok |
@@ -26,9 +26,9 @@
 | Type | Total | New |
 | --- | --- | --- |
 | ipv4 | 8404 | 8404 |
-| domain | 5304 | 5304 |
-| url | 5094 | 5094 |
-| sha256 | 4400 | 4400 |
+| domain | 5335 | 5335 |
+| url | 5097 | 5097 |
+| sha256 | 4408 | 4408 |
 | ipv6 | 2689 | 2689 |
 | md5 | 57 | 57 |
 | sha1 | 57 | 57 |
@@ -69,17 +69,17 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Unknown Loader | 2644 | 2644 | — |
+| Unknown Loader | 2661 | 2661 | — |
 | Mirai | 2018 | 2018 | T1498, T1071.001 |
 | Cobalt Strike | 1226 | 1226 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
 | AsyncRAT | 1190 | 1190 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Unknown malware | 433 | 433 | — |
-| IClickFix | 329 | 329 | — |
+| IClickFix | 332 | 332 | — |
 | PureRAT | 326 | 326 | — |
-| ClearFake | 262 | 262 | — |
+| ClearFake | 272 | 272 | — |
 | AdaptixC2 | 238 | 238 | — |
 | Unknown Stealer | 166 | 166 | — |
-| Vidar | 153 | 153 | T1555, T1071.001, T1567 |
+| Vidar | 154 | 154 | T1555, T1071.001, T1567 |
 | Unknown RAT | 132 | 132 | — |
 | DCRat | 96 | 96 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 91 | 91 | — |
@@ -94,9 +94,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 22721 |
-| T1105 | Ingress Tool Transfer | command-and-control | 5997 |
-| T1498 | Network Denial of Service | impact | 5099 |
+| T1071.001 | Web Protocols | command-and-control | 22754 |
+| T1105 | Ingress Tool Transfer | command-and-control | 6000 |
+| T1498 | Network Denial of Service | impact | 5101 |
 | T1573 | Encrypted Channel | command-and-control | 3469 |
 | T1056.001 | Keylogging | collection, credential-access | 1863 |
 | T1566.001 | Spearphishing Attachment | initial-access | 1562 |
@@ -105,8 +105,8 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 1341 |
 | T1090 | Proxy | command-and-control | 1253 |
 | T1059.001 | PowerShell | execution | 1238 |
-| T1555 | Credentials from Password Stores | credential-access | 493 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 431 |
+| T1555 | Credentials from Password Stores | credential-access | 494 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 432 |
 | T1552.001 | Credentials In Files | credential-access | 309 |
 | T1566 | Phishing | initial-access | 307 |
 | T1566.002 | Spearphishing Link | initial-access | 307 |
