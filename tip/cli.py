@@ -73,7 +73,9 @@ def main(argv=None) -> int:
     data_dir = pathlib.Path(args.data_dir)
 
     if args.command == "sync":
+        from .geo import build_geo
         from .reportfeed import fetch_reports
+        from .vulnintel import fetch_kev
 
         config = load_config(args.config)
         stats = run_sync(config, data_dir)
@@ -86,6 +88,23 @@ def main(argv=None) -> int:
             )
             if report_stats.get("errors"):
                 print(f"report feed errors: {report_stats['errors']}", file=sys.stderr)
+        kev_stats = fetch_kev(config, data_dir)
+        if kev_stats.get("enabled"):
+            print(
+                f"kev: {kev_stats['total']} entries "
+                f"(catalog {kev_stats.get('catalog_version', '?')}, "
+                f"{kev_stats['epss_fetched']} EPSS lookups)"
+            )
+            if kev_stats.get("errors"):
+                print(f"kev errors: {kev_stats['errors']}", file=sys.stderr)
+        geo_stats = build_geo(config, data_dir)
+        if geo_stats.get("enabled"):
+            print(
+                f"geo: {geo_stats['selected']} IPs selected, {geo_stats['looked_up']} looked up, "
+                f"{geo_stats['cached']} cached"
+            )
+            if geo_stats.get("errors"):
+                print(f"geo errors: {geo_stats['errors']}", file=sys.stderr)
         if stats.get("fatal"):
             print("all feeds failed - see log above", file=sys.stderr)
             return 1
@@ -163,17 +182,32 @@ def main(argv=None) -> int:
     if args.command == "site":
         from . import report as report_mod
         from . import site as site_mod
+        from .geo import load_geo
         from .reportfeed import load_reports
+        from .vulnintel import load_kev
 
         config = load_config(args.config)
         attack = load_attack_map(args.attack_map)
         with Store(data_dir / "iocs.sqlite") as store:
             context = report_mod.build_context(store, config, attack)
         reports_doc = load_reports(data_dir)
-        paths = site_mod.build_site(context, args.out, args.templates, reports=reports_doc or None)
+        kev_doc = load_kev(data_dir)
+        geo_doc = load_geo(data_dir)
+        paths = site_mod.build_site(
+            context,
+            args.out,
+            args.templates,
+            reports=reports_doc or None,
+            kev=kev_doc or None,
+            geo=geo_doc or None,
+        )
         print(f"wrote {paths[0]}")
         if reports_doc:
             print(f"wrote report feed + {len(reports_doc.get('reports') or [])} report page(s)")
+        if kev_doc:
+            print(f"wrote kev.html ({len(kev_doc.get('entries') or [])} vulnerabilities)")
+        if geo_doc:
+            print("wrote map.html (attack origins)")
         return 0
 
     if args.command == "push":

@@ -1,6 +1,17 @@
 {% extends "base.html.j2" %}
 {% import "_components.j2" as ui %}
 {% block title %}Report feed &mdash; Threat Intel Pipeline{% endblock %}
+{% block head_extra %}
+<style>
+{% for c in reports.categories -%}
+#f-{{ c.id }}:checked ~ .report-grid .report-card:not(.cat-{{ c.id }}){display:none}
+{% endfor -%}
+{% for c in ([{'id': 'all'}] + reports.categories) -%}
+#f-{{ c.id }}:checked ~ .filterbar label[for="f-{{ c.id }}"]{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+#f-{{ c.id }}:focus-visible ~ .filterbar label[for="f-{{ c.id }}"]{outline:2px solid var(--color-ring);outline-offset:2px}
+{% endfor -%}
+</style>
+{% endblock %}
 {% block content %}
 <h1 class="page-title">Threat intelligence report feed</h1>
 <p class="muted">
@@ -9,13 +20,12 @@
 </p>
 
 <section>
+  {% for c in ([{'id': 'all'}] + reports.categories) -%}
+  <input type="radio" name="cat" id="f-{{ c.id }}" class="vh"{% if c.id == 'all' %} checked{% endif %}>
+  {% endfor -%}
   <div class="filterbar" role="group" aria-label="Filter reports by category">
-    <input type="radio" name="cat" id="f-all" class="vh" checked>
     <label for="f-all">All ({{ reports.total }})</label>
-    {% for c in reports.categories %}
-    <input type="radio" name="cat" id="f-{{ c.id }}" class="vh">
-    <label for="f-{{ c.id }}">{{ c.label }} ({{ c.count }})</label>
-    {% endfor %}
+    {% for c in reports.categories %}<label for="f-{{ c.id }}">{{ c.label }} ({{ c.count }})</label>{% endfor %}
   </div>
 
   {% if reports.entries %}
@@ -29,9 +39,15 @@
       </div>
       <h3><a href="report-{{ r.id }}.html">{{ r.title }}</a></h3>
       {% if r.summary %}<p class="excerpt">{{ r.summary }}</p>{% endif %}
+      {% if r.tags or r.technique_links %}
+      <div class="chip-list small">
+        {% for t in r.tags %}<span class="chip">{{ t }}</span>{% endfor %}
+        {% for t in r.technique_links %}<span class="chip"><a href="{{ t.url }}" rel="noopener">{{ t.id }}</a></span>{% endfor %}
+      </div>
+      {% endif %}
       <div class="report-meta">
         <span>{{ r.published[:10] if r.published else (r.fetched[:10] if r.fetched else "") }}</span>
-        <span>{{ r.iocs | length }} IOCs &middot; {{ r.recommendations | length }} recs</span>
+        <span>{% if r.ioc_summary %}{{ r.ioc_summary }} &middot; {% endif %}{{ r.recommendations | length }} recs</span>
       </div>
     </article>
     {% endfor %}

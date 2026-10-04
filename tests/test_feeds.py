@@ -1,6 +1,9 @@
 import pathlib
 
+from tip.feeds.circl import CIRCLFeed
 from tip.feeds.feodo import FeodoFeed
+from tip.feeds.malwarebazaar import MalwareBazaarFeed
+from tip.feeds.openphish import OpenPhishFeed
 from tip.feeds.otx import OTXFeed
 from tip.feeds.threatfox import ThreatFoxFeed
 from tip.feeds.tor import TorFeed
@@ -11,6 +14,9 @@ _FILES = {
     "urlhaus": "urlhaus.csv",
     "feodo": "feodo.json",
     "threatfox": "threatfox.json",
+    "malwarebazaar": "malwarebazaar.txt",
+    "openphish": "openphish.txt",
+    "circl": "circl_feed.json",
     "tor": "tor.json",
     "otx": "otx.json",
 }
@@ -69,3 +75,28 @@ def test_tor_parse():
     plain_relay = next(i for i in iocs if i.value == "45.61.136.55")
     assert "tor-relay" in plain_relay.tags
     assert "tor-exit" not in plain_relay.tags
+
+
+def test_malwarebazaar_parse():
+    iocs = _fetch(MalwareBazaarFeed)
+    assert len(iocs) == 2
+    assert all(i.type == "sha256" for i in iocs)
+    assert "malware-sample" in iocs[0].tags
+
+
+def test_openphish_parse():
+    iocs = _fetch(OpenPhishFeed)
+    assert len(iocs) == 3
+    assert all(i.type == "url" for i in iocs)
+    assert "phishing" in iocs[0].tags
+
+
+def test_circl_parse():
+    iocs = _fetch(CIRCLFeed)
+    assert len(iocs) == 6  # 5 from the newer event + 1 from the older event
+    kinds = {i.type for i in iocs}
+    assert {"domain", "ipv4", "url", "sha256"} <= kinds
+    values = {i.value for i in iocs}
+    assert "circl-bad.net" in values
+    assert not any("should-not-import" in v for v in values)  # to_ids=false excluded
+    assert all("circl-osint" in i.tags for i in iocs)

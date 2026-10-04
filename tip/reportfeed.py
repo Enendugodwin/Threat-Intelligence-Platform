@@ -58,6 +58,26 @@ _DOMAIN_RE = re.compile(
     re.IGNORECASE,
 )
 
+_TECHNIQUE_RE = re.compile(r"\bT\d{4}(?:\.\d{3})?\b")
+_ACTOR_RE = re.compile(
+    r"\b(?:APT\d{1,2}|UNC\d{3,6}|UAT-\d{4,5}|Storm-\d{4,5}|FIN\d{1,2}|TA\d{2,4}|G\d{4}|"
+    r"Operation\s+[A-Z][A-Za-z0-9-]+)\b"
+)
+_BOILERPLATE_RE = re.compile(
+    r"(?i)\b(subscribe|newsletter|follow us|key takeaways|in this article|read more|click here|"
+    r"learn more about|share this|copyright|all rights reserved|sign up|register now|webinar|"
+    r"the post .{0,40} appeared first|check out|want a demo|contact us|terms of service)\b"
+)
+_WEAK_START_RE = re.compile(
+    r"(?i)^(that is why|that's why|however|but\b|and\b|so\b|also\b|meanwhile|you can|we\b|our\b|"
+    r"welcome|hello|happy|this week|this month|in this (article|post|blog)|for more|last week)"
+)
+_SECURITY_TERM_RE = re.compile(
+    r"(?i)\b(exploit\w*|malware|attacker\w*|threat actor\w*|campaign|backdoor|ransom\w*|phishing|"
+    r"stealer|infostealer|vulnerab\w*|cve-\d{4}-\d+|zero-day|0-day|command-and-control|"
+    r"c2\b|ioc\b|patch\w*|mitigat\w*|persistence|credential\w*|credential|botnet|loader)\b"
+)
+
 _ASSET_EXTENSIONS = (
     ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico", ".css", ".js",
     ".woff", ".woff2", ".ttf", ".mp4", ".pdf",
@@ -220,13 +240,73 @@ def _extract_cves(text: str, limit: int = 10) -> list[str]:
     return sorted({m.upper() for m in _CVE_RE.findall(text or "")})[:limit]
 
 
+def _summarize(text: str, limit: int = 300, keywords=None) -> str:
+    """Pick the most useful sentences, skipping boilerplate and weak openers."""
+    text = (text or "").strip()
+    if not text:
+        return ""
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    candidates: list[str] = []
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if len(sentence) < 45:
+            continue
+        if _BOILERPLATE_RE.search(sentence) or _WEAK_START_RE.search(sentence):
+            continue
+        candidates.append(sentence)
+
+    keyword_list = [str(k).lower() for k in (keywords or [])]
+
+    def is_relevant(sentence: str) -> bool:
+        if _SECURITY_TERM_RE.search(sentence):
+            return True
+        lowered = sentence.lower()
+        return any(keyword in lowered for keyword in keyword_list)
+
+    relevant = [s for s in candidates if is_relevant(s)]
+    picked: list[str] = []
+    total = 0
+    for sentence in (relevant or candidates)[:3]:
+        picked.append(sentence)
+        total += len(sentence) + 1
+        if total >= limit:
+            break
+    out = " ".join(picked) if picked else text
+    return out[:limit].rstrip()
+
+
+def _extract_tags(title: str, text: str, keywords) -> list[str]:
+    """Surface interesting keywords (threat actors, families, themes) as tags."""
+    blob = f"{title or ''} {text or ''}"
+    tags: list[str] = []
+    lowered: set[str] = set()
+    for keyword in keywords or []:
+        keyword = str(keyword).strip()
+        if not keyword or keyword.lower() in lowered:
+            continue
+        if re.search(r"\b" + re.escape(keyword) + r"\b", blob, re.IGNORECASE):
+            lowered.add(keyword.lower())
+            tags.append(keyword)
+    for match in _ACTOR_RE.finditer(f"{title or ''} {str(text or '')[:2000]}"):
+        value = match.group(0).strip()
+        if value.lower() not in lowered and len(tags) < 6:
+            lowered.add(value.lower())
+            tags.append(value)
+    return tags[:6]
+
+
+def _extract_techniques(text: str) -> list[str]:
+    return sorted({m.group(0).upper() for m in _TECHNIQUE_RE.finditer(text or "")})[:8]
+
+
 # ---------------------------------------------------------------------------
 # report building
 # ---------------------------------------------------------------------------
 
 
 def _build_report(entry, source_id: str, source_cfg: dict, rules: dict,
-                  max_iocs: int, detail_chars: int, now: str) -> dict | None:
+                  max_iocs: int, detail_chars: int, now: str,
+                  keywords=None) -> dict | None:
     url = str(entry.get("link") or entry.get("id") or "").strip()
     if not url:
         return None
@@ -244,10 +324,12 @@ def _build_report(entry, source_id: str, source_cfg: dict, rules: dict,
         "category": category,
         "published": _entry_date(entry),
         "fetched": now,
-        "summary": plain[:300],
+        "summary": _summarize(plain, 300, keywords),
         "content": plain[:detail_chars],
         "iocs": _extract_iocs(raw_html, plain, blocked, max_iocs),
         "cves": _extract_cves(f"{title} {plain}"),
+        "tags": _extract_tags(title, plain, keywords),
+        "techniques": _extract_techniques(f"{title} {plain}"),
         "recommendations": [],
         "curated": False,
     }
@@ -294,6 +376,15 @@ def _merge_curated(by_id: dict[str, dict], curated_file: str | pathlib.Path, now
             "content": str(item.get("content") or item.get("summary") or existing.get("content") or "")[:4000],
             "iocs": _normalize_curated_iocs(item.get("iocs") or []),
             "cves": [str(c).upper() for c in (item.get("cves") or [])],
+            "tags": [str(x) for x in (item.get("tags") or existing.get("tags") or [])][:6],
+            "techniques": [
+                str(x).upper()
+                for x in (
+                    item.get("techniques")
+                    or existing.get("techniques")
+                    or _extract_techniques(str(item.get("content") or item.get("summary") or ""))
+                )
+            ][:8],
             "recommendations": [str(x) for x in (item.get("recommendations") or []) if str(x).strip()],
             "curated": True,
         }
@@ -392,6 +483,7 @@ def fetch_reports(config: dict, data_dir: str | pathlib.Path) -> dict:
     max_iocs = int(cfg.get("max_iocs_per_report", 100))
     detail_chars = int(cfg.get("detail_chars", 2500))
     max_reports = int(cfg.get("max_reports", 150))
+    keywords = cfg.get("keywords") or []
 
     for source_id, source_cfg in (cfg.get("sources") or {}).items():
         source_cfg = source_cfg or {}
@@ -407,7 +499,7 @@ def fetch_reports(config: dict, data_dir: str | pathlib.Path) -> dict:
                 raise RuntimeError(f"no entries ({reason})")
             count = 0
             for entry in parsed.entries[:max_entries]:
-                report = _build_report(entry, source_id, source_cfg, rules, max_iocs, detail_chars, now)
+                report = _build_report(entry, source_id, source_cfg, rules, max_iocs, detail_chars, now, keywords)
                 if report is None:
                     continue
                 old = by_id.get(report["id"]) or {}

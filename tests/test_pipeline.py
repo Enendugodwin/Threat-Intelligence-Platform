@@ -84,7 +84,46 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "Threat Intel Pulse" in text
     assert "[.]" in text  # indicators are defanged in reports
 
-    site_paths = build_site(context, tmp_path / "site", ROOT / "templates", reports=reports_doc)
+    kev_doc = {
+        "catalog_version": "2026.10.02",
+        "catalog_count": 1,
+        "entries": [
+            {
+                "cve": "CVE-2026-0001",
+                "vendor": "Acme",
+                "product": "VPN",
+                "name": "Bug",
+                "date_added": "2026-08-01",
+                "due_date": "2026-08-22",
+                "ransomware": False,
+                "description": "d",
+                "required_action": "p",
+                "epss": 0.5,
+                "epss_percentile": 0.9,
+            }
+        ],
+    }
+    geo_doc = {
+        "provider": "ip-api.com",
+        "sources": ["feodo", "report"],
+        "ips": {
+            "45.61.136.10": {
+                "cc": "nl",
+                "country": "Netherlands",
+                "city": "Amsterdam",
+                "lat": 52.37,
+                "lon": 4.89,
+            }
+        },
+    }
+    site_paths = build_site(
+        context,
+        tmp_path / "site",
+        ROOT / "templates",
+        reports=reports_doc,
+        kev=kev_doc,
+        geo=geo_doc,
+    )
     index = site_paths[0].read_text(encoding="utf-8")
     assert "Threat Intel Pipeline" in index
     assert 'href="reports.html"' in index
@@ -95,6 +134,9 @@ def test_offline_pipeline_end_to_end(tmp_path):
     detail = (site_dir / "report-abc123def4567890.html").read_text(encoding="utf-8")
     assert "Do the thing" in detail
     assert "bad[.]example-bad[.]net" in detail
+    assert "chip chip-kev" in detail  # CVE-2026-0001 is in the KEV set
+    assert "CVE-2026-0001" in (site_dir / "kev.html").read_text(encoding="utf-8")
+    assert "45.61.136.10" in (site_dir / "map.html").read_text(encoding="utf-8")
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0

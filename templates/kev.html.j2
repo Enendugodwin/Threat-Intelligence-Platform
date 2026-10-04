@@ -1,0 +1,63 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}Known exploited vulnerabilities &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<h1 class="page-title">Known exploited vulnerabilities</h1>
+<p class="muted">
+  CISA's KEV catalog (vulnerabilities confirmed exploited in the wild), enriched with FIRST EPSS
+  exploit-probability scores. Catalog {{ kev.catalog_version }} &middot; updated {{ kev.generated_at }} UTC.
+  EPSS data may lag by a day.
+</p>
+
+<section class="cards" aria-label="KEV summary">
+  <div class="card">
+    <div class="card-head">{{ ui.icon("shield") }}Tracked</div>
+    <span class="num">{{ kev.entries | length }}</span>
+    <span class="card-sub">of {{ kev.catalog_count }} in the catalog</span>
+  </div>
+  <div class="card{% if kev.ransomware %} card-bad{% endif %}">
+    <div class="card-head">{{ ui.icon("alert") }}Ransomware</div>
+    <span class="num">{{ kev.ransomware }}</span>
+    <span class="card-sub">known ransomware campaigns</span>
+  </div>
+  <div class="card">
+    <div class="card-head">{{ ui.icon("arrow-up") }}Last 30 days</div>
+    <span class="num">{{ kev.recent }}</span>
+    <span class="card-sub">newly added entries</span>
+  </div>
+</section>
+
+<section>
+  <h2>{{ ui.icon("list") }}Vulnerabilities (newest first)</h2>
+  {% if kev.entries %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">CVE</th><th scope="col">Vendor</th><th scope="col">Product</th>
+          <th scope="col">Vulnerability</th><th scope="col">Added</th><th scope="col">Due</th>
+          <th scope="col">Ransom</th><th scope="col" class="num-col">EPSS</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for e in kev.entries %}
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" rel="noopener"><code>{{ e.cve }}</code></a></td>
+          <td>{{ e.vendor }}</td>
+          <td>{{ e.product }}</td>
+          <td>{{ e.name }}</td>
+          <td>{{ e.date_added }}</td>
+          <td>{{ e.due_date }}</td>
+          <td>{% if e.ransomware %}<span class="pill err">known</span>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
+          <td class="num-cell">{% if e.epss is not none %}{{ "%.1f%%" | format(e.epss * 100) }}{% else %}&mdash;{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">EPSS = probability of exploitation activity in the next 30 days (0&ndash;100%); see first.org/epss.</p>
+  {% else %}
+  <p class="muted">No KEV data yet &mdash; the next sync will populate this page.</p>
+  {% endif %}
+</section>
+{% endblock %}

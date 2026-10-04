@@ -195,7 +195,7 @@
       <tbody>
       {% for t in coverage %}
         <tr>
-          <td><code>{{ t.id }}</code></td>
+          <td><a href="https://attack.mitre.org/techniques/{{ t.id.split('.')[0] }}/{{ (t.id.split('.')[1] + '/') if '.' in t.id else '' }}" rel="noopener"><code>{{ t.id }}</code></a></td>
           <td>{{ t.name }}</td>
           <td>{{ t.tactics | join(", ") }}</td>
           <td class="num-cell">{{ t.count }}</td>

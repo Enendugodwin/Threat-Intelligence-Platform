@@ -9,6 +9,16 @@ feeds:
     enabled: true
   threatfox:
     enabled: true
+  malwarebazaar:
+    enabled: true
+    max_records: 2000      # recent sample hashes
+  openphish:
+    enabled: true
+    max_records: 1000      # current phishing URLs
+  circl:
+    enabled: true          # CIRCL MISP OSINT feed (public, keyless)
+    max_events: 8
+    max_attributes_per_event: 300
   tor:
     enabled: true
     exits_only: false   # true = keep only relays carrying the Exit flag
@@ -48,6 +58,8 @@ reports:
   max_reports: 150          # newest feed reports kept; curated reports are always kept
   max_iocs_per_report: 100
   detail_chars: 2500
+  # Keywords surfaced as tags on report cards (matched case-insensitively).
+  keywords: ["LockBit", "Akira", "RansomHub", "QakBot", "Emotet", "IcedID", "Pikabot", "DarkGate", "Latrodectus", "ClearFake", "Gootloader", "SocGholish", "Lumma", "RedLine", "Remcos", "AsyncRAT", "Cobalt Strike", "Metasploit", "Amatera", "Antino", "StealC", "Vidar", "Raccoon", "Mirai", "Androxgh0st", "Ransomware", "Infostealer", "Phishing", "Backdoor", "Botnet"]
   curated_file: intel/curated_reports.yaml
   recommendations_file: intel/recommendations.yaml
   sources:
@@ -95,3 +107,14 @@ reports:
     linux: ["linux", "ubuntu", "debian", "red hat", "rhel", "centos", "fedora", "suse", "systemd", "kernel vulnerability", "openssh", "glibc", "container escape"]
     cisco: ["cisco", "ios xe", "ios xr", "firepower", "nexus", "talos", "webex", "anyconnect", "catalyst", "meraki", "sd-wan", "unified communications"]
     paloalto: ["palo alto", "paloalto", "pan-os", "panos", "unit 42", "unit42", "globalprotect", "panorama", "prisma access", "cortex xdr", "next-generation firewall"]
+
+# Vulnerability intelligence (CISA KEV + FIRST EPSS scoring)
+vulnintel:
+  enabled: true
+  max_entries: 200        # newest KEV entries kept and rendered
+
+# Attack-origin geolocation (map page; ip-api.com, cached forever)
+geo:
+  enabled: true
+  max_ips: 400            # lookups per run; cached after first lookup
+  include_sources: ["threatfox", "feodo"]   # report-extracted IPs are always included

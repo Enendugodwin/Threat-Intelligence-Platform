@@ -1,0 +1,2243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Known exploited vulnerabilities &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>25853 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-04T18:32:58Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Dashboard</a>
+      <a href="reports.html">Report feed</a>
+      <a href="map.html">Attack origins</a>
+      <a href="kev.html">KEV</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<h1 class="page-title">Known exploited vulnerabilities</h1>
+<p class="muted">
+  CISA's KEV catalog (vulnerabilities confirmed exploited in the wild), enriched with FIRST EPSS
+  exploit-probability scores. Catalog 2026.10.02 &middot; updated 2026-10-04T18:28:55Z UTC.
+  EPSS data may lag by a day.
+</p>
+
+<section class="cards" aria-label="KEV summary">
+  <div class="card">
+    <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Tracked</div>
+    <span class="num">200</span>
+    <span class="card-sub">of 1733 in the catalog</span>
+  </div>
+  <div class="card card-bad">
+    <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Ransomware</div>
+    <span class="num">23</span>
+    <span class="card-sub">known ransomware campaigns</span>
+  </div>
+  <div class="card">
+    <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>Last 30 days</div>
+    <span class="num">39</span>
+    <span class="card-sub">newly added entries</span>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Vulnerabilities (newest first)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">CVE</th><th scope="col">Vendor</th><th scope="col">Product</th>
+          <th scope="col">Vulnerability</th><th scope="col">Added</th><th scope="col">Due</th>
+          <th scope="col">Ransom</th><th scope="col" class="num-col">EPSS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102490" rel="noopener"><code>CVE-2026-102490</code></a></td>
+          <td>Zammad GmbH</td>
+          <td>Zammad</td>
+          <td>Zammad GmbH Zammad Improper Privilege Management Vulnerability</td>
+          <td>2026-10-02</td>
+          <td>2026-10-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-102489" rel="noopener"><code>CVE-2026-102489</code></a></td>
+          <td>Zammad GmbH</td>
+          <td>Zammad</td>
+          <td>Zammad GmbH Zammad Session Fixation Vulnerability</td>
+          <td>2026-10-02</td>
+          <td>2026-10-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-104286" rel="noopener"><code>CVE-2026-104286</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiMail</td>
+          <td>Fortinet FortiMail Path Traversal Vulnerability</td>
+          <td>2026-10-01</td>
+          <td>2026-10-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76504" rel="noopener"><code>CVE-2026-76504</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manager</td>
+          <td>Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability</td>
+          <td>2026-09-30</td>
+          <td>2026-10-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86950" rel="noopener"><code>CVE-2026-86950</code></a></td>
+          <td>Apple</td>
+          <td>Multiple Products</td>
+          <td>Apple Multiple Products Out-of-Bounds Write Vulnerability</td>
+          <td>2026-09-29</td>
+          <td>2026-10-02</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88772" rel="noopener"><code>CVE-2026-88772</code></a></td>
+          <td>Citrix</td>
+          <td>NetScaler</td>
+          <td>Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability</td>
+          <td>2026-09-27</td>
+          <td>2026-09-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-88771" rel="noopener"><code>CVE-2026-88771</code></a></td>
+          <td>Citrix</td>
+          <td>NetScaler</td>
+          <td>Citrix NetScaler Improper Input Validation Vulnerability</td>
+          <td>2026-09-27</td>
+          <td>2026-09-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-67279" rel="noopener"><code>CVE-2026-67279</code></a></td>
+          <td>MikroTik</td>
+          <td>RouterOS</td>
+          <td>Mikrotik RouterOS Improper Enforcement of Behavioral Workflow Vulnerability</td>
+          <td>2026-09-25</td>
+          <td>2026-09-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65660" rel="noopener"><code>CVE-2026-65660</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint</td>
+          <td>Microsoft SharePoint Code Injection Vulnerability</td>
+          <td>2026-09-25</td>
+          <td>2026-09-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87902" rel="noopener"><code>CVE-2026-87902</code></a></td>
+          <td>WordPress</td>
+          <td>Core</td>
+          <td>WordPress Core Remote File Inclusion Vulnerability</td>
+          <td>2026-09-25</td>
+          <td>2026-09-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">45.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-5430" rel="noopener"><code>CVE-2026-5430</code></a></td>
+          <td>WSO2</td>
+          <td>Multiple Products</td>
+          <td>WSO2 Multiple Products Path Traversal Vulnerability </td>
+          <td>2026-09-24</td>
+          <td>2026-09-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-71362" rel="noopener"><code>CVE-2026-71362</code></a></td>
+          <td>Adobe</td>
+          <td>Commerce and Magento </td>
+          <td>Adobe Commerce and Magento Incorrect Authorization Vulnerability </td>
+          <td>2026-09-24</td>
+          <td>2026-09-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">87.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93952" rel="noopener"><code>CVE-2026-93952</code></a></td>
+          <td>Arista</td>
+          <td>VeloCloud Orchestrator</td>
+          <td>Arista VeloCloud Orchestrator Improper Input Validation Vulnerability</td>
+          <td>2026-09-22</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-94127" rel="noopener"><code>CVE-2026-94127</code></a></td>
+          <td>F5</td>
+          <td>BIG-IP APM</td>
+          <td>F5 BIG-IP APM Heap-based Buffer Overflow Vulnerability</td>
+          <td>2026-09-22</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-93616" rel="noopener"><code>CVE-2026-93616</code></a></td>
+          <td>Check Point</td>
+          <td>Multiple Products</td>
+          <td>Check Point Multiple Products Path Traversal Vulnerability</td>
+          <td>2026-09-22</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">19.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85102" rel="noopener"><code>CVE-2026-85102</code></a></td>
+          <td>Check Point</td>
+          <td>Multiple Products</td>
+          <td>Check Point Multiple Products Improper Certificate Validation Vulnerability</td>
+          <td>2026-09-22</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">7.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-7273" rel="noopener"><code>CVE-2026-7273</code></a></td>
+          <td>Zyxel</td>
+          <td>GS1900 Series Switches</td>
+          <td>Zyxel GS1900 Series Switches Stack-Based Buffer Overflow Vulnerability</td>
+          <td>2026-09-21</td>
+          <td>2026-09-24</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-39964" rel="noopener"><code>CVE-2025-39964</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Race Condition Vulnerability</td>
+          <td>2026-09-18</td>
+          <td>2026-09-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-53266" rel="noopener"><code>CVE-2026-53266</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Out-of-Bounds Write Vulnerability</td>
+          <td>2026-09-18</td>
+          <td>2026-09-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-39682" rel="noopener"><code>CVE-2025-39682</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Improper Check for Unusual or Exceptional Conditions Vulnerability</td>
+          <td>2026-09-18</td>
+          <td>2026-09-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58704" rel="noopener"><code>CVE-2026-58704</code></a></td>
+          <td>Google</td>
+          <td>Pixel</td>
+          <td>Google Pixel Improper Authorization Vulnerability</td>
+          <td>2026-09-16</td>
+          <td>2026-09-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76460" rel="noopener"><code>CVE-2026-76460</code></a></td>
+          <td>Cisco</td>
+          <td>Identity Services Engine</td>
+          <td>Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability</td>
+          <td>2026-09-16</td>
+          <td>2026-09-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">14.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87886" rel="noopener"><code>CVE-2026-87886</code></a></td>
+          <td>Acronis</td>
+          <td>Backup</td>
+          <td>Acronis Backup Incorrect Default Permissions Vulnerability</td>
+          <td>2026-09-16</td>
+          <td>2026-09-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76461" rel="noopener"><code>CVE-2026-76461</code></a></td>
+          <td>Cisco</td>
+          <td>Secure Email Gateway</td>
+          <td>Cisco Secure Email Gateway SQL Injection Vulnerability</td>
+          <td>2026-09-14</td>
+          <td>2026-09-17</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">28.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-84869" rel="noopener"><code>CVE-2026-84869</code></a></td>
+          <td>ConnectWise</td>
+          <td>ScreenConnect</td>
+          <td>ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability</td>
+          <td>2026-09-11</td>
+          <td>2026-09-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42016" rel="noopener"><code>CVE-2026-42016</code></a></td>
+          <td>JFrog</td>
+          <td>Artifactory</td>
+          <td>JFrog Artifactory Incorrect Authorization Vulnerability</td>
+          <td>2026-09-11</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">8.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42018" rel="noopener"><code>CVE-2026-42018</code></a></td>
+          <td>JFrog</td>
+          <td>Artifactory</td>
+          <td>JFrog Artifactory Improper Authentication Vulnerability</td>
+          <td>2026-09-11</td>
+          <td>2026-09-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">9.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85706" rel="noopener"><code>CVE-2026-85706</code></a></td>
+          <td>GitLab</td>
+          <td>Community Edition and Enterprise Edition</td>
+          <td>GitLab Community Edition and Enterprise Edition Path Traversal Vulnerability</td>
+          <td>2026-09-11</td>
+          <td>2026-09-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">93.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86060" rel="noopener"><code>CVE-2026-86060</code></a></td>
+          <td>MikroTik</td>
+          <td>RouterOS</td>
+          <td>MikroTik RouterOS Improper Neutralization of Argument Delimiters in a Command Vulnerability</td>
+          <td>2026-09-10</td>
+          <td>2026-09-13</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">6.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-67277" rel="noopener"><code>CVE-2026-67277</code></a></td>
+          <td>MikroTik</td>
+          <td>RouterOS</td>
+          <td>MikroTik RouterOS Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-09-10</td>
+          <td>2026-09-13</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-19490" rel="noopener"><code>CVE-2026-19490</code></a></td>
+          <td>Citrix</td>
+          <td>NetScaler</td>
+          <td>Citrix NetScaler Authentication Bypass Using an Alternate Path or Channel Vulnerability</td>
+          <td>2026-09-09</td>
+          <td>2026-09-12</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">23.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-25249" rel="noopener"><code>CVE-2025-25249</code></a></td>
+          <td>Fortinet</td>
+          <td>Multiple Products</td>
+          <td>Fortinet Multiple Products Heap-based Buffer Overflow Vulnerability</td>
+          <td>2026-09-09</td>
+          <td>2026-09-12</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-87491" rel="noopener"><code>CVE-2026-87491</code></a></td>
+          <td>Google</td>
+          <td>Chromium V8</td>
+          <td>Google Chromium V8 Out of Bounds Write Vulnerability</td>
+          <td>2026-09-09</td>
+          <td>2026-09-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20079" rel="noopener"><code>CVE-2026-20079</code></a></td>
+          <td>Cisco</td>
+          <td>Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management</td>
+          <td>Cisco Firewall Management Center Authentication Bypass Using an Alternate Path or Channel Vulnerability</td>
+          <td>2026-09-09</td>
+          <td>2026-09-12</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">88.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-75650" rel="noopener"><code>CVE-2026-75650</code></a></td>
+          <td>Adobe</td>
+          <td>Commerce and Magento</td>
+          <td>Adobe Commerce and Magento Improper Neutralization of Special Elements Used in a Template Engine Vulnerability</td>
+          <td>2026-09-08</td>
+          <td>2026-09-11</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-81963" rel="noopener"><code>CVE-2026-81963</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Link Following Vulnerability</td>
+          <td>2026-09-08</td>
+          <td>2026-09-22</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-86218" rel="noopener"><code>CVE-2026-86218</code></a></td>
+          <td>N-able</td>
+          <td>N-central</td>
+          <td>N-able N-central Static Code Injection Vulnerability</td>
+          <td>2026-09-08</td>
+          <td>2026-09-11</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">12.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85880" rel="noopener"><code>CVE-2026-85880</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Heap-Based Buffer Overflow Vulnerability</td>
+          <td>2026-09-08</td>
+          <td>2026-09-22</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-85046" rel="noopener"><code>CVE-2026-85046</code></a></td>
+          <td>Google</td>
+          <td>Chromium V8</td>
+          <td>Google Chromium V8 Type Confusion Vulnerability</td>
+          <td>2026-09-04</td>
+          <td>2026-09-18</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">48.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59822" rel="noopener"><code>CVE-2026-59822</code></a></td>
+          <td>BerriAI</td>
+          <td>LiteLLM</td>
+          <td>BerriAI LiteLLM Improper Authentication Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-16</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48710" rel="noopener"><code>CVE-2026-48710</code></a></td>
+          <td>Kludex</td>
+          <td>Starlette</td>
+          <td>Kludex Starlette HTTP Request/Response Smuggling Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-16</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">7.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-49869" rel="noopener"><code>CVE-2026-49869</code></a></td>
+          <td>Kestra</td>
+          <td>Kestra OSS</td>
+          <td>Kestra OSS OS Command Injection Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-82329" rel="noopener"><code>CVE-2026-82329</code></a></td>
+          <td>JFrog</td>
+          <td>Artifactory</td>
+          <td>JFrog Artifactory Improper Authentication Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">14.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9586" rel="noopener"><code>CVE-2026-9586</code></a></td>
+          <td>Sangoma</td>
+          <td>Switchvox</td>
+          <td>Sangoma Switchvox SQL Injection Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">19.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83548" rel="noopener"><code>CVE-2026-83548</code></a></td>
+          <td>SonicWall</td>
+          <td>SMA1000 Appliances</td>
+          <td>SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">8.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-83549" rel="noopener"><code>CVE-2026-83549</code></a></td>
+          <td>SonicWall</td>
+          <td>SMA1000 Appliances</td>
+          <td>SonicWall SMA1000 Appliances OS Command Injection Vulnerability</td>
+          <td>2026-09-02</td>
+          <td>2026-09-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">10.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-82078" rel="noopener"><code>CVE-2026-82078</code></a></td>
+          <td>PaperCut</td>
+          <td>NG/MF</td>
+          <td>PaperCut NG/MF Unsafe Reflection Vulnerability</td>
+          <td>2026-08-31</td>
+          <td>2026-09-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">61.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-81578" rel="noopener"><code>CVE-2026-81578</code></a></td>
+          <td>PaperCut</td>
+          <td>NG/MF</td>
+          <td>PaperCut NG/MF Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-08-31</td>
+          <td>2026-09-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">85.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-49105" rel="noopener"><code>CVE-2023-49105</code></a></td>
+          <td>ownCloud</td>
+          <td>ownCloud</td>
+          <td>ownCloud Improper Authentication Vulnerability</td>
+          <td>2026-08-27</td>
+          <td>2026-08-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">42.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-53362" rel="noopener"><code>CVE-2026-53362</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Unspecified Vulnerability</td>
+          <td>2026-08-27</td>
+          <td>2026-08-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-66384" rel="noopener"><code>CVE-2026-66384</code></a></td>
+          <td>JFrog</td>
+          <td>Artifactory</td>
+          <td>JFrog Artifactory Improper Limitation of a Pathname to a Restricted Directory Vulnerability</td>
+          <td>2026-08-27</td>
+          <td>2026-09-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-23758" rel="noopener"><code>CVE-2021-23758</code></a></td>
+          <td>Ajax.NET Professional</td>
+          <td>Ajax.NET Professional</td>
+          <td>Ajax.NET Professional Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-09-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">82.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-3246" rel="noopener"><code>CVE-2015-3246</code></a></td>
+          <td>Red Hat</td>
+          <td>Libuser</td>
+          <td>Red Hat Libuser Race Condition Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-09-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">8.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2015-5287" rel="noopener"><code>CVE-2015-5287</code></a></td>
+          <td>Red Hat</td>
+          <td>Automatic Bug Reporting Tool</td>
+          <td>Red Hat Automatic Bug Reporting Tool Privilege Escalation Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-09-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">5.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0995" rel="noopener"><code>CVE-2022-0995</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Out-of-Bounds Write Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-09-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">8.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8452" rel="noopener"><code>CVE-2026-8452</code></a></td>
+          <td>Citrix</td>
+          <td>NetScaler ADC and NetScaler Gateway</td>
+          <td>Citrix NetScaler ADC and NetScaler Gateway Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-08-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2019-1068" rel="noopener"><code>CVE-2019-1068</code></a></td>
+          <td>Microsoft</td>
+          <td>SQL Server</td>
+          <td>Microsoft SQL Server Remote Code Execution Vulnerability</td>
+          <td>2026-08-26</td>
+          <td>2026-08-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">57.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-60004" rel="noopener"><code>CVE-2026-60004</code></a></td>
+          <td>Gitea</td>
+          <td>Gitea</td>
+          <td>Gitea Code Injection Vulnerability</td>
+          <td>2026-08-25</td>
+          <td>2026-08-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">24.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21962" rel="noopener"><code>CVE-2026-21962</code></a></td>
+          <td>Oracle</td>
+          <td>HTTP Server and Oracle Weblogic Server Proxy Plug-in</td>
+          <td>Oracle HTTP Server and Oracle Weblogic Server Proxy Plug-in Improper Access Control Vulnerability</td>
+          <td>2026-08-24</td>
+          <td>2026-08-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">73.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-73570" rel="noopener"><code>CVE-2026-73570</code></a></td>
+          <td>Synacor</td>
+          <td>Zimbra Collaboration Suite (ZCS)</td>
+          <td>Zimbra Collaboration Suite (ZCS) OS Command Injection Vulnerability</td>
+          <td>2026-08-21</td>
+          <td>2026-08-24</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">11.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72530" rel="noopener"><code>CVE-2026-72530</code></a></td>
+          <td>TrueConf</td>
+          <td>Server</td>
+          <td>TrueConf Server Code Injection Vulnerability</td>
+          <td>2026-08-20</td>
+          <td>2026-09-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72529" rel="noopener"><code>CVE-2026-72529</code></a></td>
+          <td>TrueConf</td>
+          <td>Server</td>
+          <td>TrueConf Server Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-08-20</td>
+          <td>2026-08-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-64849" rel="noopener"><code>CVE-2026-64849</code></a></td>
+          <td>MLflow</td>
+          <td>MLflow</td>
+          <td>MLflow Server-Side Request Forgery Vulnerability</td>
+          <td>2026-08-19</td>
+          <td>2026-09-02</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">9.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33824" rel="noopener"><code>CVE-2026-33824</code></a></td>
+          <td>Microsoft</td>
+          <td>Internet Key Exchange (IKE) Service Extensions</td>
+          <td>Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability</td>
+          <td>2026-08-18</td>
+          <td>2026-08-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-59310" rel="noopener"><code>CVE-2026-59310</code></a></td>
+          <td>Broadcom</td>
+          <td>VMware vCenter</td>
+          <td>Broadcom VMware vCenter Path Traversal Vulnerability</td>
+          <td>2026-08-18</td>
+          <td>2026-08-21</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">2.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55040" rel="noopener"><code>CVE-2026-55040</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint</td>
+          <td>Microsoft SharePoint Weak Authentication Vulnerability</td>
+          <td>2026-08-18</td>
+          <td>2026-08-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">17.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65400" rel="noopener"><code>CVE-2026-65400</code></a></td>
+          <td>Apple</td>
+          <td>macOS</td>
+          <td>Apple macOS Improper Authentication Vulnerability</td>
+          <td>2026-08-18</td>
+          <td>2026-08-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-62593" rel="noopener"><code>CVE-2025-62593</code></a></td>
+          <td>Ray-Project</td>
+          <td>Ray</td>
+          <td>Ray-Project Ray Code Injection Vulnerability</td>
+          <td>2026-08-17</td>
+          <td>2026-08-20</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">62.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20349" rel="noopener"><code>CVE-2026-20349</code></a></td>
+          <td>Cisco</td>
+          <td>Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) </td>
+          <td>Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability</td>
+          <td>2026-08-11</td>
+          <td>2026-08-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-68820" rel="noopener"><code>CVE-2026-68820</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows Ancillary Function Driver for WinSock </td>
+          <td>Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability</td>
+          <td>2026-08-11</td>
+          <td>2026-08-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-72898" rel="noopener"><code>CVE-2026-72898</code></a></td>
+          <td>Metabase</td>
+          <td>Metabase</td>
+          <td>Metabase SQL Injection Vulnerability</td>
+          <td>2026-08-11</td>
+          <td>2026-08-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">19.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8037" rel="noopener"><code>CVE-2026-8037</code></a></td>
+          <td>Progress</td>
+          <td>LoadMaster</td>
+          <td>Progress LoadMaster Command Injection Vulnerability</td>
+          <td>2026-08-07</td>
+          <td>2026-08-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">77.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63077" rel="noopener"><code>CVE-2026-63077</code></a></td>
+          <td>JetBrains</td>
+          <td>TeamCity</td>
+          <td>JetBrains TeamCity Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-08-05</td>
+          <td>2026-08-08</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">89.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18556" rel="noopener"><code>CVE-2026-18556</code></a></td>
+          <td>N-able</td>
+          <td>N-central</td>
+          <td>N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability</td>
+          <td>2026-08-04</td>
+          <td>2026-08-07</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">7.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34486" rel="noopener"><code>CVE-2026-34486</code></a></td>
+          <td>Apache</td>
+          <td>Tomcat</td>
+          <td>Apache Tomcat Missing Encryption of Sensitive Data Vulnerability</td>
+          <td>2026-08-04</td>
+          <td>2026-08-07</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">6.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9198" rel="noopener"><code>CVE-2026-9198</code></a></td>
+          <td>IBM</td>
+          <td>Langflow</td>
+          <td>IBM Langflow Code Injection Vulnerability</td>
+          <td>2026-08-04</td>
+          <td>2026-08-07</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">28.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-18577" rel="noopener"><code>CVE-2026-18577</code></a></td>
+          <td>N-able</td>
+          <td>N-central</td>
+          <td>N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability</td>
+          <td>2026-08-03</td>
+          <td>2026-08-06</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">14.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20316" rel="noopener"><code>CVE-2026-20316</code></a></td>
+          <td>Cisco</td>
+          <td>Secure Firewall Management Center (FMC)</td>
+          <td>Cisco Secure Firewall Management Center Use of Hard-coded Password Vulnerability</td>
+          <td>2026-07-29</td>
+          <td>2026-08-01</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">35.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68686" rel="noopener"><code>CVE-2025-68686</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiOS</td>
+          <td>Fortinet FortiOS Exposure of Sensitive Information to an Unauthorized Actor Vulnerability</td>
+          <td>2026-07-27</td>
+          <td>2026-08-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">29.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16812" rel="noopener"><code>CVE-2026-16812</code></a></td>
+          <td>Arista</td>
+          <td>VeloCloud Orchestrator</td>
+          <td>Arista VeloCloud Orchestrator On-Prem OS Command Injection Vulnerability</td>
+          <td>2026-07-27</td>
+          <td>2026-07-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-16232" rel="noopener"><code>CVE-2026-16232</code></a></td>
+          <td>Check Point</td>
+          <td>SmartConsole</td>
+          <td>Check Point SmartConsole Improper Authentication Vulnerability</td>
+          <td>2026-07-22</td>
+          <td>2026-07-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">78.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50522" rel="noopener"><code>CVE-2026-50522</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint</td>
+          <td>Microsoft SharePoint Deserialization of Untrusted Data Vulnerability </td>
+          <td>2026-07-22</td>
+          <td>2026-07-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-60137" rel="noopener"><code>CVE-2026-60137</code></a></td>
+          <td>WordPress</td>
+          <td>Core</td>
+          <td>WordPress Core SQL Injection Vulnerability</td>
+          <td>2026-07-21</td>
+          <td>2026-08-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">5.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-63030" rel="noopener"><code>CVE-2026-63030</code></a></td>
+          <td>WordPress</td>
+          <td>Core</td>
+          <td>WordPress Core Interpretation Conflict Vulnerability</td>
+          <td>2026-07-21</td>
+          <td>2026-07-24</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">10.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0770" rel="noopener"><code>CVE-2026-0770</code></a></td>
+          <td>Langflow</td>
+          <td>Langflow</td>
+          <td>Langflow Inclusion of Functionality from Untrusted Control Sphere Vulnerability</td>
+          <td>2026-07-21</td>
+          <td>2026-07-24</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">63.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-27137" rel="noopener"><code>CVE-2021-27137</code></a></td>
+          <td>DD-WRT</td>
+          <td>DD-WRT</td>
+          <td>DD-WRT Stack-Based Buffer Overflow Vulnerability</td>
+          <td>2026-07-21</td>
+          <td>2026-07-24</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">4.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58644" rel="noopener"><code>CVE-2026-58644</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint</td>
+          <td>Microsoft SharePoint Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-07-16</td>
+          <td>2026-07-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">15.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25089" rel="noopener"><code>CVE-2026-25089</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiSandbox</td>
+          <td>Fortinet FortiSandbox OS Command Injection Vulnerability</td>
+          <td>2026-07-16</td>
+          <td>2026-07-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">76.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39808" rel="noopener"><code>CVE-2026-39808</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiSandbox</td>
+          <td>Fortinet FortiSandbox OS Command Injection Vulnerability</td>
+          <td>2026-07-16</td>
+          <td>2026-07-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">47.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-46817" rel="noopener"><code>CVE-2026-46817</code></a></td>
+          <td>Oracle</td>
+          <td>E-Business Suite</td>
+          <td>Oracle E-Business Suite Improper Privilege Management Vulnerability</td>
+          <td>2026-07-15</td>
+          <td>2026-07-18</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4346" rel="noopener"><code>CVE-2023-4346</code></a></td>
+          <td>KNX Association</td>
+          <td>KNX Protocol Connection Authorization Option 1</td>
+          <td>KNX Association KNX Protocol Connection Authorization Option 1 Overly Restrictive Account Lockout Mechanism Vulnerability</td>
+          <td>2026-07-15</td>
+          <td>2026-07-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56155" rel="noopener"><code>CVE-2026-56155</code></a></td>
+          <td>Microsoft</td>
+          <td>Active Directory Federation Services</td>
+          <td>Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability </td>
+          <td>2026-07-14</td>
+          <td>2026-07-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56164" rel="noopener"><code>CVE-2026-56164</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint Server</td>
+          <td>Microsoft SharePoint Server Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-07-14</td>
+          <td>2026-07-17</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15409" rel="noopener"><code>CVE-2026-15409</code></a></td>
+          <td>SonicWall</td>
+          <td>SMA1000 Appliances</td>
+          <td>SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability</td>
+          <td>2026-07-14</td>
+          <td>2026-07-17</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">6.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15410" rel="noopener"><code>CVE-2026-15410</code></a></td>
+          <td>SonicWall</td>
+          <td>SMA1000 Appliances</td>
+          <td>SonicWall SMA1000 Appliances Code Injection Vulnerability</td>
+          <td>2026-07-14</td>
+          <td>2026-07-17</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">11.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128" rel="noopener"><code>CVE-2008-4128</code></a></td>
+          <td>Cisco</td>
+          <td>IOS</td>
+          <td>Cisco IOS Cross-Site Request Forgery Vulnerability</td>
+          <td>2026-07-13</td>
+          <td>2026-07-16</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">33.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56291" rel="noopener"><code>CVE-2026-56291</code></a></td>
+          <td>Balbooa</td>
+          <td>Forms</td>
+          <td>Balbooa Forms Unrestricted Upload of File with Dangerous Type Vulnerability</td>
+          <td>2026-07-10</td>
+          <td>2026-07-13</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">14.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48939" rel="noopener"><code>CVE-2026-48939</code></a></td>
+          <td>iCagenda</td>
+          <td>iCagenda</td>
+          <td>iCagenda Unrestricted Upload of File with Dangerous Type Vulnerability</td>
+          <td>2026-07-10</td>
+          <td>2026-07-13</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">20.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908" rel="noopener"><code>CVE-2026-48908</code></a></td>
+          <td>JoomShaper</td>
+          <td>SP Page Builder</td>
+          <td>JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability</td>
+          <td>2026-07-07</td>
+          <td>2026-07-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">88.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55255" rel="noopener"><code>CVE-2026-55255</code></a></td>
+          <td>Langflow</td>
+          <td>Langflow</td>
+          <td>Langflow Authorization Bypass Through User-Controlled Key Vulnerability</td>
+          <td>2026-07-07</td>
+          <td>2026-07-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56290" rel="noopener"><code>CVE-2026-56290</code></a></td>
+          <td>Joomlack</td>
+          <td>Page Builder</td>
+          <td>Joomlack Page Builder Improper Access Control Vulnerability</td>
+          <td>2026-07-07</td>
+          <td>2026-07-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">30.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48282" rel="noopener"><code>CVE-2026-48282</code></a></td>
+          <td>Adobe</td>
+          <td>ColdFusion</td>
+          <td>Adobe ColdFusion Path Traversal Vulnerability</td>
+          <td>2026-07-07</td>
+          <td>2026-07-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">42.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45659" rel="noopener"><code>CVE-2026-45659</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint Server</td>
+          <td>Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-07-01</td>
+          <td>2026-07-04</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">2.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48558" rel="noopener"><code>CVE-2026-48558</code></a></td>
+          <td>SimpleHelp </td>
+          <td>SimpleHelp</td>
+          <td>SimpleHelp Authentication Bypass Vulnerability</td>
+          <td>2026-06-29</td>
+          <td>2026-07-02</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">5.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12569" rel="noopener"><code>CVE-2026-12569</code></a></td>
+          <td>PTC</td>
+          <td>Windchill and FlexPLM</td>
+          <td>PTC Windchill and FlexPLM Improper Input Validation Vulnerability</td>
+          <td>2026-06-25</td>
+          <td>2026-06-28</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">46.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20230" rel="noopener"><code>CVE-2026-20230</code></a></td>
+          <td>Cisco</td>
+          <td>Unified Communications Manager</td>
+          <td>Cisco Unified Communications Manager Server-Side Request Forgery (SSRF) Vulnerability</td>
+          <td>2026-06-25</td>
+          <td>2026-06-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">88.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-67038" rel="noopener"><code>CVE-2025-67038</code></a></td>
+          <td>Lantronix</td>
+          <td>EDS5000</td>
+          <td>Lantronix EDS5000 Code Injection Vulnerability</td>
+          <td>2026-06-23</td>
+          <td>2026-06-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">19.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34910" rel="noopener"><code>CVE-2026-34910</code></a></td>
+          <td>Ubiquiti</td>
+          <td>UniFi OS</td>
+          <td>Ubiquiti UniFi OS Improper Input Validation Vulnerability</td>
+          <td>2026-06-23</td>
+          <td>2026-06-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">45.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34909" rel="noopener"><code>CVE-2026-34909</code></a></td>
+          <td>Ubiquiti</td>
+          <td>UniFi OS</td>
+          <td>Ubiquiti UniFi OS Path Traversal Vulnerability</td>
+          <td>2026-06-23</td>
+          <td>2026-06-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34908" rel="noopener"><code>CVE-2026-34908</code></a></td>
+          <td>Ubiquiti</td>
+          <td>UniFi OS</td>
+          <td>Ubiquiti UniFi OS Improper Access Control Vulnerability</td>
+          <td>2026-06-23</td>
+          <td>2026-06-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">15.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20253" rel="noopener"><code>CVE-2026-20253</code></a></td>
+          <td>Splunk</td>
+          <td>Enterprise</td>
+          <td>Splunk Enterprise Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-06-18</td>
+          <td>2026-06-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">96.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48907" rel="noopener"><code>CVE-2026-48907</code></a></td>
+          <td>Widget Factory</td>
+          <td>Joomla Content Editor </td>
+          <td>Widget Factory Joomla Content Editor Improper Access Control Vulnerability</td>
+          <td>2026-06-16</td>
+          <td>2026-06-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">16.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-54420" rel="noopener"><code>CVE-2026-54420</code></a></td>
+          <td>LiteSpeed</td>
+          <td>cPanel Plugin</td>
+          <td>LiteSpeed cPanel Plugin UNIX Symbolic Link (Symlink) Following Vulnerability</td>
+          <td>2026-06-15</td>
+          <td>2026-06-18</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20262" rel="noopener"><code>CVE-2026-20262</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manager</td>
+          <td>Cisco Catalyst SD-WAN Manager Directory or Path Traversal Vulnerability</td>
+          <td>2026-06-15</td>
+          <td>2026-06-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">28.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35273" rel="noopener"><code>CVE-2026-35273</code></a></td>
+          <td>Oracle</td>
+          <td> PeopleSoft Enterprise PeopleTools</td>
+          <td>Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-06-12</td>
+          <td>2026-06-15</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">9.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-10520" rel="noopener"><code>CVE-2026-10520</code></a></td>
+          <td>Ivanti</td>
+          <td>Sentry</td>
+          <td>Ivanti Sentry OS Command Injection Vulnerability</td>
+          <td>2026-06-11</td>
+          <td>2026-06-14</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">99.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-11645" rel="noopener"><code>CVE-2026-11645</code></a></td>
+          <td>Google</td>
+          <td>Chromium V8</td>
+          <td>Google Chromium V8 Out-of-Bounds Read and Write Vulnerability</td>
+          <td>2026-06-09</td>
+          <td>2026-06-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-7473" rel="noopener"><code>CVE-2026-7473</code></a></td>
+          <td>Arista</td>
+          <td>Extensible Operating System</td>
+          <td>Arista Extensible Operating System Incomplete Comparison with Missing Factors Vulnerability</td>
+          <td>2026-06-09</td>
+          <td>2026-06-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20245" rel="noopener"><code>CVE-2026-20245</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manager</td>
+          <td>Cisco Catalyst SD-WAN Manager Improper Encoding or Escaping of Output Vulnerability</td>
+          <td>2026-06-09</td>
+          <td>2026-06-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">25.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42271" rel="noopener"><code>CVE-2026-42271</code></a></td>
+          <td>BerriAI</td>
+          <td>LiteLLM</td>
+          <td>BerriAI LiteLLM Command Injection Vulnerability</td>
+          <td>2026-06-08</td>
+          <td>2026-06-22</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">92.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-50751" rel="noopener"><code>CVE-2026-50751</code></a></td>
+          <td>Check Point</td>
+          <td>Security Gateway</td>
+          <td>Check Point Security Gateway Improper Authentication Vulnerability</td>
+          <td>2026-06-08</td>
+          <td>2026-06-11</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">6.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-28318" rel="noopener"><code>CVE-2026-28318</code></a></td>
+          <td>SolarWinds</td>
+          <td>Serv-U</td>
+          <td>SolarWinds Serv-U Uncontrolled Resource Consumption Vulnerability</td>
+          <td>2026-06-05</td>
+          <td>2026-06-19</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45247" rel="noopener"><code>CVE-2026-45247</code></a></td>
+          <td>Mirasvit</td>
+          <td>Mirasvit Full Page Cache Warmer</td>
+          <td>Mirasvit Full Page Cache Warmer Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-06-03</td>
+          <td>2026-06-06</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2022-0492" rel="noopener"><code>CVE-2022-0492</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Improper Authentication Vulnerability</td>
+          <td>2026-06-02</td>
+          <td>2026-06-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">5.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48595" rel="noopener"><code>CVE-2025-48595</code></a></td>
+          <td>Android</td>
+          <td>Framework</td>
+          <td>Android Framework Integer Overflow Vulnerability</td>
+          <td>2026-06-02</td>
+          <td>2026-06-05</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-21182" rel="noopener"><code>CVE-2024-21182</code></a></td>
+          <td>Oracle</td>
+          <td>WebLogic Server</td>
+          <td>Oracle WebLogic Server Unspecified Vulnerability</td>
+          <td>2026-06-01</td>
+          <td>2026-06-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">74.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0257" rel="noopener"><code>CVE-2026-0257</code></a></td>
+          <td>Palo Alto Networks</td>
+          <td>PAN-OS</td>
+          <td>Palo Alto Networks PAN-OS Authentication Bypass Vulnerability</td>
+          <td>2026-05-29</td>
+          <td>2026-06-01</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">96.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48027" rel="noopener"><code>CVE-2026-48027</code></a></td>
+          <td>Nx</td>
+          <td>Nx Console</td>
+          <td>Nx Console Embedded Malicious Code Vulnerability</td>
+          <td>2026-05-27</td>
+          <td>2026-06-10</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">1.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45321" rel="noopener"><code>CVE-2026-45321</code></a></td>
+          <td>TanStack</td>
+          <td>TanStack</td>
+          <td>TanStack Unspecified Vulnerability</td>
+          <td>2026-05-27</td>
+          <td>2026-06-10</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">1.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-8398" rel="noopener"><code>CVE-2026-8398</code></a></td>
+          <td>Daemon</td>
+          <td>Daemon Tools Lite</td>
+          <td>Daemon Tools Lite Embedded Malicious Code Vulnerability</td>
+          <td>2026-05-27</td>
+          <td>2026-05-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48172" rel="noopener"><code>CVE-2026-48172</code></a></td>
+          <td>LiteSpeed</td>
+          <td>cPanel Plugin</td>
+          <td>LiteSpeed cPanel Plugin Privilege Escalation Vulnerability</td>
+          <td>2026-05-26</td>
+          <td>2026-05-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-9082" rel="noopener"><code>CVE-2026-9082</code></a></td>
+          <td>Drupal</td>
+          <td>Core</td>
+          <td>Drupal Core SQL Injection Vulnerability</td>
+          <td>2026-05-22</td>
+          <td>2026-05-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">15.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-34291" rel="noopener"><code>CVE-2025-34291</code></a></td>
+          <td>Langflow</td>
+          <td>Langflow</td>
+          <td>Langflow Origin Validation Error Vulnerability</td>
+          <td>2026-05-21</td>
+          <td>2026-06-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">92.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34926" rel="noopener"><code>CVE-2026-34926</code></a></td>
+          <td>Trend Micro</td>
+          <td>Apex One</td>
+          <td>Trend Micro Apex One (On-Premise) Directory Traversal Vulnerability</td>
+          <td>2026-05-21</td>
+          <td>2026-06-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4250" rel="noopener"><code>CVE-2008-4250</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Buffer Overflow Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">98.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-1537" rel="noopener"><code>CVE-2009-1537</code></a></td>
+          <td>Microsoft</td>
+          <td>DirectX</td>
+          <td>Microsoft DirectX NULL Byte Overwrite Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">51.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-3459" rel="noopener"><code>CVE-2009-3459</code></a></td>
+          <td>Adobe</td>
+          <td>Acrobat and Reader</td>
+          <td>Adobe Acrobat and Reader Heap-Based Buffer Overflow Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">86.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0249" rel="noopener"><code>CVE-2010-0249</code></a></td>
+          <td>Microsoft</td>
+          <td>Internet Explorer</td>
+          <td>Microsoft Internet Explorer Use-After-Free Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">91.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2010-0806" rel="noopener"><code>CVE-2010-0806</code></a></td>
+          <td>Microsoft</td>
+          <td>Internet Explorer</td>
+          <td>Microsoft Internet Explorer Use-After-Free Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">82.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-41091" rel="noopener"><code>CVE-2026-41091</code></a></td>
+          <td>Microsoft</td>
+          <td>Defender</td>
+          <td>Microsoft Defender Link Following Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45498" rel="noopener"><code>CVE-2026-45498</code></a></td>
+          <td>Microsoft</td>
+          <td>Defender</td>
+          <td>Microsoft Defender Denial of Service Vulnerability</td>
+          <td>2026-05-20</td>
+          <td>2026-06-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42897" rel="noopener"><code>CVE-2026-42897</code></a></td>
+          <td>Microsoft</td>
+          <td>Microsoft</td>
+          <td>Microsoft Exchange Server Cross-Site Scripting Vulnerability</td>
+          <td>2026-05-15</td>
+          <td>2026-05-29</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20182" rel="noopener"><code>CVE-2026-20182</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN</td>
+          <td>Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability</td>
+          <td>2026-05-14</td>
+          <td>2026-05-17</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">91.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-42208" rel="noopener"><code>CVE-2026-42208</code></a></td>
+          <td>BerriAI</td>
+          <td>LiteLLM</td>
+          <td>BerriAI LiteLLM SQL Injection Vulnerability</td>
+          <td>2026-05-08</td>
+          <td>2026-05-11</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">5.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-6973" rel="noopener"><code>CVE-2026-6973</code></a></td>
+          <td>Ivanti</td>
+          <td>Endpoint Manager Mobile (EPMM)</td>
+          <td>Ivanti Endpoint Manager Mobile (EPMM) Improper Input Validation Vulnerability</td>
+          <td>2026-05-07</td>
+          <td>2026-05-10</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-0300" rel="noopener"><code>CVE-2026-0300</code></a></td>
+          <td>Palo Alto Networks</td>
+          <td>PAN-OS</td>
+          <td>Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability</td>
+          <td>2026-05-06</td>
+          <td>2026-05-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">31.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-31431" rel="noopener"><code>CVE-2026-31431</code></a></td>
+          <td>Linux</td>
+          <td>Kernel</td>
+          <td>Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability</td>
+          <td>2026-05-01</td>
+          <td>2026-05-15</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-41940" rel="noopener"><code>CVE-2026-41940</code></a></td>
+          <td>WebPros</td>
+          <td>cPanel &amp; WHM and WP2 (WordPress Squared)</td>
+          <td>WebPros cPanel &amp; WHM and WP2 (WordPress Squared) Missing Authentication for Critical Function Vulnerability</td>
+          <td>2026-04-30</td>
+          <td>2026-05-03</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">98.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-1708" rel="noopener"><code>CVE-2024-1708</code></a></td>
+          <td>ConnectWise</td>
+          <td>ScreenConnect</td>
+          <td>ConnectWise ScreenConnect Path Traversal Vulnerability</td>
+          <td>2026-04-28</td>
+          <td>2026-05-12</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">95.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32202" rel="noopener"><code>CVE-2026-32202</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Protection Mechanism Failure Vulnerability</td>
+          <td>2026-04-28</td>
+          <td>2026-05-12</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">4.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-29635" rel="noopener"><code>CVE-2025-29635</code></a></td>
+          <td>D-Link</td>
+          <td>DIR-823X</td>
+          <td>D-Link DIR-823X Command Injection Vulnerability</td>
+          <td>2026-04-24</td>
+          <td>2026-05-08</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">87.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-7399" rel="noopener"><code>CVE-2024-7399</code></a></td>
+          <td>Samsung</td>
+          <td>MagicINFO 9 Server</td>
+          <td>Samsung MagicINFO 9 Server Path Traversal Vulnerability</td>
+          <td>2026-04-24</td>
+          <td>2026-05-08</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">91.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57728" rel="noopener"><code>CVE-2024-57728</code></a></td>
+          <td>SimpleHelp </td>
+          <td>SimpleHelp</td>
+          <td>SimpleHelp Path Traversal Vulnerability</td>
+          <td>2026-04-24</td>
+          <td>2026-05-08</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">64.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-57726" rel="noopener"><code>CVE-2024-57726</code></a></td>
+          <td>SimpleHelp </td>
+          <td>SimpleHelp</td>
+          <td>SimpleHelp Missing Authorization Vulnerability</td>
+          <td>2026-04-24</td>
+          <td>2026-05-08</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">66.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39987" rel="noopener"><code>CVE-2026-39987</code></a></td>
+          <td>Marimo</td>
+          <td>Marimo</td>
+          <td>Marimo Remote Code Execution Vulnerability</td>
+          <td>2026-04-23</td>
+          <td>2026-05-07</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">37.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33825" rel="noopener"><code>CVE-2026-33825</code></a></td>
+          <td>Microsoft</td>
+          <td>Defender</td>
+          <td>Microsoft Defender Insufficient Granularity of Access Control Vulnerability</td>
+          <td>2026-04-22</td>
+          <td>2026-05-06</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">0.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20122" rel="noopener"><code>CVE-2026-20122</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manger</td>
+          <td>Cisco Catalyst SD-WAN Manager Incorrect Use of Privileged APIs Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-04-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">25.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20133" rel="noopener"><code>CVE-2026-20133</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manager</td>
+          <td>Cisco Catalyst SD-WAN Manager Exposure of Sensitive Information to an Unauthorized Actor Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-04-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">31.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-2749" rel="noopener"><code>CVE-2025-2749</code></a></td>
+          <td>Kentico</td>
+          <td>Kentico Xperience</td>
+          <td>Kentico Xperience Path Traversal Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-05-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">4.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-27351" rel="noopener"><code>CVE-2023-27351</code></a></td>
+          <td>PaperCut</td>
+          <td>NG/MF</td>
+          <td>PaperCut NG/MF Improper Authentication Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-05-04</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">78.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-48700" rel="noopener"><code>CVE-2025-48700</code></a></td>
+          <td>Synacor</td>
+          <td>Zimbra Collaboration Suite (ZCS)</td>
+          <td>Synacor Zimbra Collaboration Suite (ZCS) Cross-site Scripting Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-04-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20128" rel="noopener"><code>CVE-2026-20128</code></a></td>
+          <td>Cisco</td>
+          <td>Catalyst SD-WAN Manager</td>
+          <td>Cisco Catalyst SD-WAN Manager Storing Passwords in a Recoverable Format Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-04-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">7.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32975" rel="noopener"><code>CVE-2025-32975</code></a></td>
+          <td>Quest</td>
+          <td>KACE Systems Management Appliance (SMA)</td>
+          <td>Quest KACE Systems Management Appliance (SMA) Improper Authentication Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-05-04</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-27199" rel="noopener"><code>CVE-2024-27199</code></a></td>
+          <td>JetBrains</td>
+          <td>TeamCity</td>
+          <td>JetBrains TeamCity Relative Path Traversal Vulnerability</td>
+          <td>2026-04-20</td>
+          <td>2026-05-04</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">100.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34197" rel="noopener"><code>CVE-2026-34197</code></a></td>
+          <td>Apache</td>
+          <td>ActiveMQ</td>
+          <td>Apache ActiveMQ Improper Input Validation Vulnerability</td>
+          <td>2026-04-16</td>
+          <td>2026-04-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">15.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2009-0238" rel="noopener"><code>CVE-2009-0238</code></a></td>
+          <td>Microsoft</td>
+          <td>Office</td>
+          <td>Microsoft Office Remote Code Execution</td>
+          <td>2026-04-14</td>
+          <td>2026-04-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">43.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32201" rel="noopener"><code>CVE-2026-32201</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint Server</td>
+          <td>Microsoft SharePoint Server Improper Input Validation Vulnerability</td>
+          <td>2026-04-14</td>
+          <td>2026-04-28</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">43.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2012-1854" rel="noopener"><code>CVE-2012-1854</code></a></td>
+          <td>Microsoft</td>
+          <td>Visual Basic for Applications (VBA)</td>
+          <td>Microsoft Visual Basic for Applications Insecure Library Loading Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">21.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-60710" rel="noopener"><code>CVE-2025-60710</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Link Following Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">4.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-21529" rel="noopener"><code>CVE-2023-21529</code></a></td>
+          <td>Microsoft</td>
+          <td>Exchange Server</td>
+          <td>Microsoft Exchange Server Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">59.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-36424" rel="noopener"><code>CVE-2023-36424</code></a></td>
+          <td>Microsoft</td>
+          <td>Windows</td>
+          <td>Microsoft Windows Out-of-Bounds Read Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">12.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2020-9715" rel="noopener"><code>CVE-2020-9715</code></a></td>
+          <td>Adobe</td>
+          <td>Acrobat</td>
+          <td>Adobe Acrobat Use-After-Free Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">48.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-21643" rel="noopener"><code>CVE-2026-21643</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiClient EMS</td>
+          <td>Fortinet FortiClient EMS SQL Injection Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-16</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">93.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34621" rel="noopener"><code>CVE-2026-34621</code></a></td>
+          <td>Adobe</td>
+          <td>Acrobat and Reader</td>
+          <td>Adobe Acrobat and Reader Prototype Pollution Vulnerability</td>
+          <td>2026-04-13</td>
+          <td>2026-04-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1340" rel="noopener"><code>CVE-2026-1340</code></a></td>
+          <td>Ivanti</td>
+          <td>Endpoint Manager Mobile (EPMM)</td>
+          <td>Ivanti Endpoint Manager Mobile (EPMM) Code Injection Vulnerability</td>
+          <td>2026-04-08</td>
+          <td>2026-04-11</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">98.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35616" rel="noopener"><code>CVE-2026-35616</code></a></td>
+          <td>Fortinet</td>
+          <td>FortiClient EMS</td>
+          <td>Fortinet FortiClient EMS Improper Access Control Vulnerability</td>
+          <td>2026-04-06</td>
+          <td>2026-04-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">9.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3502" rel="noopener"><code>CVE-2026-3502</code></a></td>
+          <td>TrueConf</td>
+          <td>Client</td>
+          <td>TrueConf Client Download of Code Without Integrity Check Vulnerability</td>
+          <td>2026-04-02</td>
+          <td>2026-04-16</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-5281" rel="noopener"><code>CVE-2026-5281</code></a></td>
+          <td>Google</td>
+          <td>Dawn</td>
+          <td>Google Dawn Use-After-Free Vulnerability</td>
+          <td>2026-04-01</td>
+          <td>2026-04-15</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3055" rel="noopener"><code>CVE-2026-3055</code></a></td>
+          <td>Citrix</td>
+          <td>NetScaler</td>
+          <td>Citrix NetScaler Out-of-Bounds Read Vulnerability</td>
+          <td>2026-03-30</td>
+          <td>2026-04-02</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">4.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-53521" rel="noopener"><code>CVE-2025-53521</code></a></td>
+          <td>F5</td>
+          <td>BIG-IP</td>
+          <td>F5 BIG-IP Stack-Based Buffer Overflow Vulnerability</td>
+          <td>2026-03-27</td>
+          <td>2026-03-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33634" rel="noopener"><code>CVE-2026-33634</code></a></td>
+          <td>Aquasecurity</td>
+          <td>Trivy</td>
+          <td>Aquasecurity Trivy Embedded Malicious Code Vulnerability</td>
+          <td>2026-03-26</td>
+          <td>2026-04-09</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-33017" rel="noopener"><code>CVE-2026-33017</code></a></td>
+          <td>Langflow</td>
+          <td>Langflow</td>
+          <td>Langflow Code Injection Vulnerability</td>
+          <td>2026-03-25</td>
+          <td>2026-04-08</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">24.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-32432" rel="noopener"><code>CVE-2025-32432</code></a></td>
+          <td>Craft CMS</td>
+          <td>Craft CMS</td>
+          <td>Craft CMS Code Injection Vulnerability</td>
+          <td>2026-03-20</td>
+          <td>2026-04-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">99.8%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-54068" rel="noopener"><code>CVE-2025-54068</code></a></td>
+          <td>Laravel</td>
+          <td>Livewire</td>
+          <td>Laravel Livewire Code Injection Vulnerability</td>
+          <td>2026-03-20</td>
+          <td>2026-04-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">97.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43510" rel="noopener"><code>CVE-2025-43510</code></a></td>
+          <td>Apple</td>
+          <td>Multiple Products</td>
+          <td>Apple Multiple Products Improper Locking Vulnerability</td>
+          <td>2026-03-20</td>
+          <td>2026-04-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-43520" rel="noopener"><code>CVE-2025-43520</code></a></td>
+          <td>Apple</td>
+          <td>Multiple Products</td>
+          <td>Apple Multiple Products Classic Buffer Overflow Vulnerability</td>
+          <td>2026-03-20</td>
+          <td>2026-04-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.4%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-31277" rel="noopener"><code>CVE-2025-31277</code></a></td>
+          <td>Apple</td>
+          <td>Multiple Products</td>
+          <td>Apple Multiple Products Buffer Overflow Vulnerability</td>
+          <td>2026-03-20</td>
+          <td>2026-04-03</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20131" rel="noopener"><code>CVE-2026-20131</code></a></td>
+          <td>Cisco</td>
+          <td>Secure Firewall Management Center (FMC)</td>
+          <td>Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-03-19</td>
+          <td>2026-03-22</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">43.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-66376" rel="noopener"><code>CVE-2025-66376</code></a></td>
+          <td>Synacor</td>
+          <td>Zimbra Collaboration Suite (ZCS)</td>
+          <td>Synacor Zimbra Collaboration Suite (ZCS) Cross-Site Scripting Vulnerability</td>
+          <td>2026-03-18</td>
+          <td>2026-04-01</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">20.2%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20963" rel="noopener"><code>CVE-2026-20963</code></a></td>
+          <td>Microsoft</td>
+          <td>SharePoint</td>
+          <td>Microsoft SharePoint Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-03-18</td>
+          <td>2026-03-21</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">29.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-47813" rel="noopener"><code>CVE-2025-47813</code></a></td>
+          <td>Wing FTP Server</td>
+          <td>Wing FTP Server</td>
+          <td>Wing FTP Server Information Disclosure Vulnerability</td>
+          <td>2026-03-16</td>
+          <td>2026-03-30</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">63.1%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3910" rel="noopener"><code>CVE-2026-3910</code></a></td>
+          <td>Google</td>
+          <td>Chromium V8</td>
+          <td>Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability</td>
+          <td>2026-03-13</td>
+          <td>2026-03-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">1.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-3909" rel="noopener"><code>CVE-2026-3909</code></a></td>
+          <td>Google</td>
+          <td>Skia</td>
+          <td>Google Skia Out-of-Bounds Write Vulnerability</td>
+          <td>2026-03-13</td>
+          <td>2026-03-27</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">2.3%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-68613" rel="noopener"><code>CVE-2025-68613</code></a></td>
+          <td>n8n</td>
+          <td>n8n</td>
+          <td>n8n Improper Control of Dynamically-Managed Code Resources Vulnerability</td>
+          <td>2026-03-11</td>
+          <td>2026-03-25</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">99.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-22054" rel="noopener"><code>CVE-2021-22054</code></a></td>
+          <td>Omnissa</td>
+          <td>Workspace One UEM</td>
+          <td>Omnissa Workspace ONE Server-Side Request Forgery</td>
+          <td>2026-03-09</td>
+          <td>2026-03-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">99.7%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-26399" rel="noopener"><code>CVE-2025-26399</code></a></td>
+          <td>SolarWinds</td>
+          <td>Web Help Desk</td>
+          <td>SolarWinds Web Help Desk Deserialization of Untrusted Data Vulnerability</td>
+          <td>2026-03-09</td>
+          <td>2026-03-12</td>
+          <td><span class="pill err">known</span></td>
+          <td class="num-cell">89.5%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-1603" rel="noopener"><code>CVE-2026-1603</code></a></td>
+          <td>Ivanti</td>
+          <td> Endpoint Manager (EPM)</td>
+          <td>Ivanti Endpoint Manager (EPM) Authentication Bypass Vulnerability</td>
+          <td>2026-03-09</td>
+          <td>2026-03-23</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">87.9%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2017-7921" rel="noopener"><code>CVE-2017-7921</code></a></td>
+          <td>Hikvision</td>
+          <td>Multiple Products</td>
+          <td>Hikvision Multiple Products Improper Authentication Vulnerability</td>
+          <td>2026-03-05</td>
+          <td>2026-03-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">100.0%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2021-22681" rel="noopener"><code>CVE-2021-22681</code></a></td>
+          <td>Rockwell</td>
+          <td>Multiple Products</td>
+          <td>Rockwell Multiple Products Insufficient Protected Credentials Vulnerability</td>
+          <td>2026-03-05</td>
+          <td>2026-03-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">63.6%</td>
+        </tr>
+        <tr>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-43000" rel="noopener"><code>CVE-2023-43000</code></a></td>
+          <td>Apple</td>
+          <td>Multiple Products</td>
+          <td>Apple Multiple products Use-After-Free Vulnerability</td>
+          <td>2026-03-05</td>
+          <td>2026-03-26</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">3.9%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">EPSS = probability of exploitation activity in the next 30 days (0&ndash;100%); see first.org/epss.</p>
+</section>
+</main>
+<footer>
+  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:32:58Z UTC</span></p>
+</footer>
+</body>
+</html>

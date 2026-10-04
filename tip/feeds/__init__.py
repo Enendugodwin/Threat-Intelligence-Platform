@@ -1,6 +1,9 @@
 """Feed connectors."""
 from .base import Feed, FeedError
+from .circl import CIRCLFeed
 from .feodo import FeodoFeed
+from .malwarebazaar import MalwareBazaarFeed
+from .openphish import OpenPhishFeed
 from .otx import OTXFeed
 from .threatfox import ThreatFoxFeed
 from .tor import TorFeed
@@ -10,6 +13,9 @@ FEED_CLASSES: dict[str, type[Feed]] = {
     "urlhaus": URLhausFeed,
     "feodo": FeodoFeed,
     "threatfox": ThreatFoxFeed,
+    "malwarebazaar": MalwareBazaarFeed,
+    "openphish": OpenPhishFeed,
+    "circl": CIRCLFeed,
     "tor": TorFeed,
     "otx": OTXFeed,
 }

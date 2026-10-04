@@ -5,6 +5,9 @@ from tip.reportfeed import (
     _classify,
     _extract_cves,
     _extract_iocs,
+    _extract_tags,
+    _extract_techniques,
+    _summarize,
     fetch_reports,
     load_reports,
 )
@@ -54,6 +57,39 @@ def test_private_ips_and_asset_urls_filtered():
 def test_extract_cves():
     text = "see CVE-2026-1234 and cve-2025-11111 and CVE-2026-1234"
     assert _extract_cves(text) == ["CVE-2025-11111", "CVE-2026-1234"]
+
+
+def test_summarize_skips_boilerplate():
+    text = (
+        "Welcome to this week's edition of the Threat Source newsletter. Sign up here. "
+        "Threat actors abused RMM tools to persist in victim networks. "
+        "The campaign targeted finance teams across multiple regions."
+    )
+    out = _summarize(text)
+    assert "RMM tools" in out
+    assert "newsletter" not in out.lower()
+
+
+def test_summarize_prefers_security_content():
+    text = (
+        "Fall is officially here in Maryland and the temperature dropped. "
+        "That is why we love autumn. "
+        "The actors exploited CVE-2026-1234 to deploy a backdoor on Zimbra servers."
+    )
+    out = _summarize(text)
+    assert "CVE-2026-1234" in out
+    assert "Maryland" not in out
+
+
+def test_extract_tags_and_techniques():
+    tags = _extract_tags(
+        "UAT-11587 targets governments across Asia",
+        "The actor used T1566.001 phishing and deployed Cobalt Strike.",
+        ["Cobalt Strike", "LockBit"],
+    )
+    assert "Cobalt Strike" in tags
+    assert any(t.startswith("UAT") for t in tags)
+    assert _extract_techniques("uses T1071.001 and T1055 here") == ["T1055", "T1071.001"]
 
 
 def test_classify_rules():

@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "aaaaaaaa-1111-2222-3333-444444444444": {
+      "Orgc": {"name": "TestOrg"},
+      "Tag": [{"name": "tlp:white"}],
+      "info": "OSINT test event about ExampleThing",
+      "date": "2026-09-30",
+      "timestamp": "1750000000"
+    },
+    "bbbbbbbb-1111-2222-3333-444444444444": {
+      "Orgc": {"name": "TestOrg"},
+      "info": "Older event",
+      "date": "2026-08-01",
+      "timestamp": "1740000000"
+    }
+  },
+  "events": {
+    "aaaaaaaa-1111-2222-3333-444444444444": {
+      "Event": {
+        "Attribute": [
+          {"type": "domain", "value": "circl-bad[.]net", "to_ids": true},
+          {"type": "hostname", "value": "host.circl-bad.net", "to_ids": true},
+          {"type": "ip-dst", "value": "45.61.136.44", "to_ids": true},
+          {"type": "url", "value": "http://circl-c2.bad-example.net/path", "to_ids": true},
+          {"type": "sha256", "value": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f", "to_ids": true},
+          {"type": "url", "value": "http://should-not-import.example/", "to_ids": false},
+          {"type": "text", "value": "just a note", "to_ids": true}
+        ]
+      }
+    },
+    "bbbbbbbb-1111-2222-3333-444444444444": {
+      "Event": {
+        "Attribute": [
+          {"type": "domain", "value": "older-event.bad-example.net", "to_ids": true}
+        ]
+      }
+    }
+  }
+}

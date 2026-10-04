@@ -10,6 +10,11 @@
   {% if report.curated %}<span class="badge badge-curated">curated</span>{% endif %}
   {% if report.cves %}<span class="badge">{{ report.cves | length }} CVE(s)</span>{% endif %}
 </div>
+{% if report.tags %}
+<div class="chip-list small" style="margin-bottom: var(--space-xl)">
+  {% for t in report.tags %}<span class="chip">{{ t }}</span>{% endfor %}
+</div>
+{% endif %}
 
 <section>
   <h2>{{ ui.icon("list") }}Details</h2>
@@ -55,12 +60,14 @@
   {% endif %}
 </section>
 
-{% if report.cves %}
+{% if report.cves or report.technique_links %}
 <section>
-  <h2>{{ ui.icon("shield") }}Referenced CVEs</h2>
+  <h2>{{ ui.icon("shield") }}References</h2>
   <div class="chip-list">
-    {% for c in report.cves %}<span class="chip">{{ c }}</span>{% endfor %}
+    {% for c in report.cves %}<span class="chip{% if c in kev_cves %} chip-kev{% endif %}">{{ c }}{% if c in kev_cves %} &middot; KEV{% endif %}</span>{% endfor %}
+    {% for t in report.technique_links %}<span class="chip"><a href="{{ t.url }}" rel="noopener">{{ t.id }}</a></span>{% endfor %}
   </div>
+  <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
 </section>
 {% endif %}
 
