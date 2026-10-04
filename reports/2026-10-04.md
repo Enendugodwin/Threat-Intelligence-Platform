@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T17:04:36Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T17:10:47Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 14856 |
-| New in window | 14856 |
+| Indicators tracked | 14858 |
+| New in window | 14858 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -15,13 +15,13 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11195 | ok |
+| threatfox | 11192 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 4758 | 4758 |
+| url | 4760 | 4760 |
 | domain | 4349 | 4349 |
 | sha256 | 3255 | 3255 |
 | ipv4 | 2380 | 2380 |
@@ -58,7 +58,7 @@
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
 | T1071.001 | Web Protocols | command-and-control | 12949 |
-| T1105 | Ingress Tool Transfer | command-and-control | 5959 |
+| T1105 | Ingress Tool Transfer | command-and-control | 5961 |
 | T1498 | Network Denial of Service | impact | 4997 |
 | T1573 | Encrypted Channel | command-and-control | 3467 |
 | T1056.001 | Keylogging | collection, credential-access | 1861 |
