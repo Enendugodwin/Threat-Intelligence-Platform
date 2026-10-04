@@ -8,7 +8,7 @@
     "DCRat": 96,
     "DanaBot": 62,
     "Evilginx": 91,
-    "Havoc": 83,
+    "Havoc": 84,
     "IClickFix": 329,
     "Mirai": 2018,
     "PureRAT": 326,
@@ -18,7 +18,7 @@
     "Unknown RAT": 132,
     "Unknown Stealer": 166,
     "Unknown malware": 433,
-    "VShell": 83,
+    "VShell": 86,
     "Vidar": 153
   },
   "by_source": {
@@ -26,20 +26,20 @@
     "feodo": 5,
     "malwarebazaar": 1098,
     "openphish": 300,
-    "threatfox": 10489,
-    "tor": 8606,
-    "urlhaus": 4566
+    "threatfox": 10493,
+    "tor": 8679,
+    "urlhaus": 4569
   },
   "by_type": {
     "domain": 5304,
-    "ipv4": 8348,
-    "ipv6": 2668,
+    "ipv4": 8404,
+    "ipv6": 2689,
     "md5": 57,
     "sha1": 57,
     "sha256": 4400,
-    "url": 5091
+    "url": 5094
   },
-  "generated_at": "2026-10-04T19:05:35Z",
+  "generated_at": "2026-10-04T19:19:04Z",
   "latest_run": {
     "errors": {},
     "feeds": {
@@ -48,16 +48,16 @@
       "malwarebazaar": 1085,
       "openphish": 300,
       "threatfox": 11096,
-      "tor": 8538,
+      "tor": 8519,
       "urlhaus": 5000
     },
-    "fetched": 26938,
-    "finished_at": "2026-10-04T19:05:35Z",
-    "new": 0,
+    "fetched": 26919,
+    "finished_at": "2026-10-04T19:19:04Z",
+    "new": 80,
     "pruned": 0,
-    "started_at": "2026-10-04T19:05:17Z",
-    "total": 25925,
-    "updated": 25576
+    "started_at": "2026-10-04T19:18:50Z",
+    "total": 26005,
+    "updated": 25478
   },
-  "total": 25925
+  "total": 26005
 }

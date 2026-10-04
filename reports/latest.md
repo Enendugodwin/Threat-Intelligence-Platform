@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T19:05:39Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T19:19:09Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 25925 |
-| New in window | 25925 |
+| Indicators tracked | 26005 |
+| New in window | 26005 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -19,17 +19,17 @@
 | malwarebazaar | 1085 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8538 | ok |
+| tor | 8519 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 8348 | 8348 |
+| ipv4 | 8404 | 8404 |
 | domain | 5304 | 5304 |
-| url | 5091 | 5091 |
+| url | 5094 | 5094 |
 | sha256 | 4400 | 4400 |
-| ipv6 | 2668 | 2668 |
+| ipv6 | 2689 | 2689 |
 | md5 | 57 | 57 |
 | sha1 | 57 | 57 |
 
@@ -37,13 +37,14 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 8606 |
-| Exit nodes | 2048 |
-| Other relays | 6558 |
-| New in window | 8606 |
+| Nodes tracked | 8679 |
+| Exit nodes | 2061 |
+| Other relays | 6618 |
+| New in window | 8679 |
 
-Sample (20 of 8606, source: Tor Project Onionoo):
+Sample (20 of 8679, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
+- `100[.]1[.]157[.]56`
 - `100[.]2[.]63[.]41`
 - `101[.]55[.]125[.]10`
 - `102[.]130[.]113[.]29`
@@ -62,7 +63,6 @@ Sample (20 of 8606, source: Tor Project Onionoo):
 - `102[.]68[.]99[.]63`
 - `103[.]105[.]21[.]2`
 - `103[.]109[.]100[.]207`
-- `103[.]109[.]101[.]105`
 
 Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artifact).
 ## Top malware families
@@ -84,9 +84,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | DCRat | 96 | 96 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 91 | 91 | — |
 | Remcos | 90 | 90 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| VShell | 86 | 86 | — |
+| Havoc | 84 | 84 | — |
 | AMOS | 83 | 83 | — |
-| Havoc | 83 | 83 | — |
-| VShell | 83 | 83 | — |
 | Remus | 78 | 78 | — |
 | DanaBot | 62 | 62 | T1566.001, T1071.001, T1555, T1041 |
 
@@ -94,9 +94,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 22643 |
-| T1105 | Ingress Tool Transfer | command-and-control | 5994 |
-| T1498 | Network Denial of Service | impact | 5098 |
+| T1071.001 | Web Protocols | command-and-control | 22721 |
+| T1105 | Ingress Tool Transfer | command-and-control | 5997 |
+| T1498 | Network Denial of Service | impact | 5099 |
 | T1573 | Encrypted Channel | command-and-control | 3469 |
 | T1056.001 | Keylogging | collection, credential-access | 1863 |
 | T1566.001 | Spearphishing Attachment | initial-access | 1562 |
@@ -126,6 +126,10 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
+| [`8[.]145[.]54[.]119`](https://www.virustotal.com/gui/ip-address/8.145.54.119) | ipv4 | VShell | threatfox | 2026-10-04T19:05:07Z | 100 |
+| [`124[.]221[.]195[.]107`](https://www.virustotal.com/gui/ip-address/124.221.195.107) | ipv4 | VShell | threatfox | 2026-10-04T19:05:06Z | 100 |
+| [`47[.]95[.]255[.]0`](https://www.virustotal.com/gui/ip-address/47.95.255.0) | ipv4 | VShell | threatfox | 2026-10-04T19:05:06Z | 100 |
+| [`193[.]160[.]32[.]191`](https://www.virustotal.com/gui/ip-address/193.160.32.191) | ipv4 | Havoc | threatfox | 2026-10-04T19:05:05Z | 100 |
 | [`bb39866f5148a58eb55efc7a54d87a859900f85fb5cc42213fa5a94fd4c76a1e`](https://www.virustotal.com/gui/file/bb39866f5148a58eb55efc7a54d87a859900f85fb5cc42213fa5a94fd4c76a1e) | sha256 | Mirai | threatfox | 2026-10-04T18:47:11Z | 100 |
 | [`295ccac6f1eb2f3dac004467539cd7d0b9554890f6ee1d9b01d6b85873683710`](https://www.virustotal.com/gui/file/295ccac6f1eb2f3dac004467539cd7d0b9554890f6ee1d9b01d6b85873683710) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T18:47:10Z | 100 |
 | [`2f877ed3668559199e8571be72392d9fffe75d2a4788ae56b9f9b74bfa4bf7f7`](https://www.virustotal.com/gui/file/2f877ed3668559199e8571be72392d9fffe75d2a4788ae56b9f9b74bfa4bf7f7) | sha256 | Mirai | malwarebazaar, threatfox | 2026-10-04T18:47:09Z | 100 |
@@ -147,10 +151,6 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | [`178f533ef8e1a2515dc4bb1f3ba6a8ee13ca02184475fbfce38137025afe4dc1`](https://www.virustotal.com/gui/file/178f533ef8e1a2515dc4bb1f3ba6a8ee13ca02184475fbfce38137025afe4dc1) | sha256 | Mirai | threatfox | 2026-10-04T18:46:41Z | 100 |
 | [`c10abe0caa9c62fb247b0641beaa5577b63e5c08eae6a23989c1c7a0586300c3`](https://www.virustotal.com/gui/file/c10abe0caa9c62fb247b0641beaa5577b63e5c08eae6a23989c1c7a0586300c3) | sha256 | Mirai | threatfox | 2026-10-04T18:46:40Z | 100 |
 | [`19e1a79e5b5992999d75deee9c22ae3ecb5142a6714e76a284a9ae829737da3a`](https://www.virustotal.com/gui/file/19e1a79e5b5992999d75deee9c22ae3ecb5142a6714e76a284a9ae829737da3a) | sha256 | Mirai | threatfox | 2026-10-04T18:46:39Z | 100 |
-| [`e9d578b368dc85285e4a02fd773fce75b5a8b63364dfeb0405324f9c878b3ce0`](https://www.virustotal.com/gui/file/e9d578b368dc85285e4a02fd773fce75b5a8b63364dfeb0405324f9c878b3ce0) | sha256 | Mirai | threatfox | 2026-10-04T18:46:38Z | 100 |
-| [`1511fb0fd9e2e3cd0366f9a2a871bea1ee926bc93ae9bd90d4c7f328138c36c8`](https://www.virustotal.com/gui/file/1511fb0fd9e2e3cd0366f9a2a871bea1ee926bc93ae9bd90d4c7f328138c36c8) | sha256 | Mirai | threatfox | 2026-10-04T18:46:37Z | 100 |
-| [`405965c18196ba4aec2803c6390e9663e3884e580680be62c09c8b6b9ec162cd`](https://www.virustotal.com/gui/file/405965c18196ba4aec2803c6390e9663e3884e580680be62c09c8b6b9ec162cd) | sha256 | Mirai | threatfox | 2026-10-04T18:46:35Z | 100 |
-| [`60cd4b2b51c75baf6cf8756a894e98d1fa199ceeda0a40cbeab267667ab6c0fc`](https://www.virustotal.com/gui/file/60cd4b2b51c75baf6cf8756a894e98d1fa199ceeda0a40cbeab267667ab6c0fc) | sha256 | Mirai | threatfox | 2026-10-04T18:46:34Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
