@@ -155,7 +155,8 @@ tip/
   exports/          stix.py, sigma.py, suricata.py, csv_export.py, tor.py
   connectors/       misp.py, opencti.py (optional)
   report.py/site.py context building + Jinja rendering
-templates/          report.md.j2, base/index/report HTML
+templates/          Jinja UI (base + components + report.md.j2)
+design-system/      ui-ux-pro-max design system (Cyberpunk UI, MASTER.md)
 config/             config.yaml, attack_map.yaml
 tests/              fixture-based suite (offline, no network)
 ```
@@ -165,6 +166,7 @@ tests/              fixture-based suite (offline, no network)
 - [x] Core: feeds, normalize, store, ATT&CK mapping, reports
 - [x] Serverless deployment: Actions schedule + Pages dashboard + artifacts
 - [x] Optional MISP/OpenCTI connectors
+- [x] Dashboard redesign with the `ui-ux-pro-max` design system (Cyberpunk UI)
 - [ ] VT / AbuseIPDB enrichment for top indicators
 - [ ] Weekly digest issue (GitHub Issues bot)
 - [ ] YARA rule export for payload hashes

@@ -1,111 +1,43 @@
 {% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
 {% block title %}Report {{ generated_date }} &mdash; Threat Intel Pipeline{% endblock %}
 {% block content %}
-<p><strong>Window:</strong> last {{ window_days }} days &middot; <strong>Generated:</strong> {{ generated_at }} UTC</p>
+<p class="muted">Window: last {{ window_days }} days &middot; Generated: {{ generated_at }} UTC</p>
+
+{{ ui.cards(totals, feed_health, tor, window_days) }}
+
+{{ ui.feed_health_section(feed_health) }}
 
 <section>
-  <h2>Summary</h2>
-  <table>
-    <tr><th>Metric</th><th>Value</th></tr>
-    <tr><td>Indicators tracked</td><td>{{ totals.total }}</td></tr>
-    <tr><td>New in window</td><td>{{ totals.new }}</td></tr>
-    <tr><td>Malware families (annotated)</td><td>{{ totals.families }}</td></tr>
-    <tr><td>ATT&amp;CK techniques (heuristic)</td><td>{{ totals.coverage }}</td></tr>
-    <tr><td>Tor nodes tracked</td><td>{{ tor.total }} ({{ tor.exits }} exits / {{ tor.relays }} relays)</td></tr>
-  </table>
+  <h2>{{ ui.icon("database") }}Indicators by type</h2>
+  {{ ui.bars(by_type, window_days) }}
 </section>
 
 <section>
-  <h2>Feed health</h2>
-  <table>
-    <tr><th>Feed</th><th>Indicators this run</th><th>Status</th></tr>
-    {% for f in feed_health.feeds %}
-    <tr>
-      <td>{{ f.name }}</td>
-      <td>{{ f.count if f.count is not none else "—" }}</td>
-      <td>{% if f.error %}<span class="err">{{ f.error }}</span>{% else %}<span class="ok">ok</span>{% endif %}</td>
-    </tr>
-    {% endfor %}
-  </table>
-</section>
-
-<section>
-  <h2>Tor relay / exit nodes</h2>
-  {% if tor.total %}
-  <table>
-    <tr><th>Metric</th><th>Value</th></tr>
-    <tr><td>Nodes tracked</td><td>{{ tor.total }}</td></tr>
-    <tr><td>Exit nodes</td><td>{{ tor.exits }}</td></tr>
-    <tr><td>Other relays</td><td>{{ tor.relays }}</td></tr>
-    <tr><td>New in window</td><td>{{ tor.new }}</td></tr>
-  </table>
-  <p class="muted">Sample ({{ tor.sample | length }} of {{ tor.total }}, source {{ tor.source }}):</p>
-  <p>{% for ip in tor.sample %}<code>{{ ip }}</code>{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
-  <p class="muted">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
+  <h2>{{ ui.icon("list") }}Indicators by source</h2>
+  {% if by_source %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Source</th><th scope="col" class="num-col">Indicators</th></tr>
+      </thead>
+      <tbody>
+      {% for s in by_source %}
+        <tr><td><code>{{ s.source }}</code></td><td class="num-cell">{{ s.count }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
   {% else %}
-  <p>No Tor node data this run.</p>
+  <p class="muted">No source data.</p>
   {% endif %}
 </section>
 
-<section>
-  <h2>Indicators by type</h2>
-  <table>
-    <tr><th>Type</th><th>Total</th><th>New</th></tr>
-    {% for t in by_type %}
-    <tr><td>{{ t.type }}</td><td>{{ t.total }}</td><td>{{ t.new }}</td></tr>
-    {% endfor %}
-  </table>
-</section>
+{{ ui.families_section(families) }}
 
-<section>
-  <h2>Indicators by source</h2>
-  <table>
-    <tr><th>Source</th><th>Indicators</th></tr>
-    {% for s in by_source %}
-    <tr><td>{{ s.source }}</td><td>{{ s.count }}</td></tr>
-    {% endfor %}
-  </table>
-</section>
+{{ ui.attack_section(coverage) }}
 
-<section>
-  <h2>Top malware families</h2>
-  {% if families %}
-  <table>
-    <tr><th>Family</th><th>Indicators</th><th>New</th><th>ATT&amp;CK (heuristic)</th></tr>
-    {% for f in families %}
-    <tr>
-      <td>{{ f.name }}</td><td>{{ f.total }}</td><td>{{ f.new }}</td>
-      <td>{{ f.techniques | join(", ") if f.techniques else "—" }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  {% else %}<p>No malware-family annotations yet.</p>{% endif %}
-</section>
+{{ ui.tor_section(tor) }}
 
-<section>
-  <h2>ATT&amp;CK coverage (heuristic)</h2>
-  {% if coverage %}
-  <table>
-    <tr><th>Technique</th><th>Name</th><th>Tactics</th><th>Indicators</th></tr>
-    {% for t in coverage %}
-    <tr><td>{{ t.id }}</td><td>{{ t.name }}</td><td>{{ t.tactics | join(", ") }}</td><td>{{ t.count }}</td></tr>
-    {% endfor %}
-  </table>
-  {% else %}<p>No technique mapping yet.</p>{% endif %}
-</section>
-
-<section>
-  <h2>Notable new indicators</h2>
-  {% if notable %}
-  <table>
-    <tr><th>Indicator (defanged)</th><th>Type</th><th>Family</th><th>Sources</th><th>First seen</th><th>Conf.</th></tr>
-    {% for i in notable %}
-    <tr>
-      <td><code>{{ i.value }}</code></td><td>{{ i.type }}</td><td>{{ i.malware }}</td>
-      <td>{{ i.sources | join(", ") }}</td><td>{{ i.first_seen }}</td><td>{{ i.confidence }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  {% else %}<p>No new indicators in the window.</p>{% endif %}
-</section>
+{{ ui.notable_section(notable) }}
 {% endblock %}

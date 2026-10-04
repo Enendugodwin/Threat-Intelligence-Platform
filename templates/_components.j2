@@ -1,0 +1,211 @@
+{# Inline SVG icons (Lucide-style, single family, stroke 1.75) - decorative, aria-hidden #}
+{% macro icon(name, size=16) -%}
+<svg class="icon" width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- if name == "shield" -%}
+<path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>
+{%- elif name == "database" -%}
+<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+{%- elif name == "pulse" -%}
+<path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/>
+{%- elif name == "grid" -%}
+<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+{%- elif name == "target" -%}
+<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/>
+{%- elif name == "alert" -%}
+<path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/>
+{%- elif name == "eye-off" -%}
+<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/>
+{%- elif name == "list" -%}
+<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>
+{%- elif name == "dashboard" -%}
+<rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/>
+{%- elif name == "arrow-up" -%}
+<path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+{%- endif -%}
+</svg>
+{%- endmacro %}
+
+{% macro bars(by_type, window_days) -%}
+{% if by_type %}
+{% set max_total = (by_type | map(attribute='total') | max) or 1 %}
+<div class="bars">
+  {% for t in by_type %}
+  <div class="bar-row" role="img" aria-label="{{ t.type }}: {{ t.total }} indicators, {{ t.new }} new in the last {{ window_days }} days">
+    <span class="bar-label">{{ t.type }}</span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: {{ (t.total / max_total * 100) | round(1) }}%"></span></span>
+    <span class="bar-value">{{ t.total }}{% if t.new %} <span class="new">+{{ t.new }}</span>{% endif %}</span>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="muted">No indicators yet.</p>
+{% endif %}
+{%- endmacro %}
+
+{% macro cards(totals, feed_health, tor, window_days) -%}
+<section class="cards" aria-label="Key metrics">
+  <div class="card">
+    <div class="card-head">{{ icon("database") }}Indicators</div>
+    <span class="num">{{ totals.total }}</span>
+    <span class="card-sub">{{ totals.new }} new / {{ window_days }}d</span>
+  </div>
+  <div class="card">
+    <div class="card-head">{{ icon("arrow-up") }}New in window</div>
+    <span class="num">{{ totals.new }}</span>
+    <span class="card-sub">{{ window_days }}-day window</span>
+  </div>
+  <div class="card">
+    <div class="card-head">{{ icon("grid") }}Families</div>
+    <span class="num">{{ totals.families }}</span>
+    <span class="card-sub">{{ totals.coverage }} ATT&amp;CK techniques</span>
+  </div>
+  <div class="card{% if feed_health.ok < feed_health.total %} card-bad{% endif %}">
+    <div class="card-head">{{ icon("pulse") }}Feeds</div>
+    <span class="num">{{ feed_health.ok }}/{{ feed_health.total }}</span>
+    <span class="card-sub">reported this run</span>
+  </div>
+  <div class="card">
+    <div class="card-head">{{ icon("eye-off") }}Tor nodes</div>
+    <span class="num">{{ tor.total }}</span>
+    <span class="card-sub">{{ tor.exits }} exits / {{ tor.relays }} relays</span>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro feed_health_section(feed_health) -%}
+<section>
+  <h2>{{ icon("pulse") }}Feed health</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Feed</th><th scope="col" class="num-col">Indicators this run</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+      {% for f in feed_health.feeds %}
+        <tr>
+          <td><code>{{ f.name }}</code></td>
+          <td class="num-cell">{{ f.count if f.count is not none else "—" }}</td>
+          <td>
+            {% if f.error %}<span class="pill err">error</span> <span class="err-text">{{ f.error }}</span>
+            {% else %}<span class="pill ok">ok</span>{% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{%- endmacro %}
+
+{% macro tor_section(tor) -%}
+<section>
+  <h2>{{ icon("eye-off") }}Tor relay / exit nodes</h2>
+  {% if tor.total %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Metric</th><th scope="col" class="num-col">Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nodes tracked</td><td class="num-cell">{{ tor.total }}</td></tr>
+        <tr><td>Exit nodes</td><td class="num-cell">{{ tor.exits }}</td></tr>
+        <tr><td>Other relays</td><td class="num-cell">{{ tor.relays }}</td></tr>
+        <tr><td>New in window</td><td class="num-cell">{{ tor.new }}</td></tr>
+      </tbody>
+    </table>
+  </div>
+  {% if tor.sample %}
+  <p class="muted" style="margin-top: var(--space-lg)">Sample ({{ tor.sample | length }} of {{ tor.total }}, source {{ tor.source }}):</p>
+  <div class="chip-list">
+    {% for ip in tor.sample %}<span class="chip">{{ ip }}</span>{% endfor %}
+  </div>
+  {% endif %}
+  <p class="muted" style="margin-top: var(--space-lg)">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
+  {% else %}
+  <p class="muted">No Tor node data this run.</p>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro notable_section(notable) -%}
+<section>
+  <h2>{{ icon("alert") }}Notable new indicators</h2>
+  {% if notable %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
+      </thead>
+      <tbody>
+      {% for i in notable %}
+        <tr>
+          <td><code>{{ i.value }}</code></td>
+          <td>{{ i.type }}</td>
+          <td>{{ i.malware if i.malware else "—" }}</td>
+          <td>{{ i.sources | join(", ") }}</td>
+          <td>{{ i.first_seen if i.first_seen else "—" }}</td>
+          <td class="num-cell">{{ i.confidence }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted">No new indicators in the window.</p>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro families_section(families) -%}
+<section>
+  <h2>{{ icon("grid") }}Top malware families</h2>
+  {% if families %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Family</th><th scope="col" class="num-col">Indicators</th><th scope="col" class="num-col">New</th><th scope="col">ATT&amp;CK (heuristic)</th></tr>
+      </thead>
+      <tbody>
+      {% for f in families %}
+        <tr>
+          <td>{{ f.name }}</td>
+          <td class="num-cell">{{ f.total }}</td>
+          <td class="num-cell">{{ f.new }}</td>
+          <td>{% if f.techniques %}<span class="chip-list">{% for t in f.techniques %}<span class="chip">{{ t }}</span>{% endfor %}</span>{% else %}—{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted">No malware-family annotations yet.</p>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{% macro attack_section(coverage) -%}
+<section>
+  <h2>{{ icon("target") }}ATT&amp;CK coverage<span class="count">&nbsp;({{ coverage | length }} techniques)</span></h2>
+  {% if coverage %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Technique</th><th scope="col">Name</th><th scope="col">Tactics</th><th scope="col" class="num-col">Indicators</th></tr>
+      </thead>
+      <tbody>
+      {% for t in coverage %}
+        <tr>
+          <td><code>{{ t.id }}</code></td>
+          <td>{{ t.name }}</td>
+          <td>{{ t.tactics | join(", ") }}</td>
+          <td class="num-cell">{{ t.count }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted">No technique mapping yet.</p>
+  {% endif %}
+</section>
+{%- endmacro %}
