@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T17:20:25Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T17:21:21Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 23408 |
-| New in window | 23408 |
+| Indicators tracked | 23409 |
+| New in window | 23409 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -23,8 +23,8 @@
 | Type | Total | New |
 | --- | --- | --- |
 | ipv4 | 8270 | 8270 |
-| url | 4761 | 4761 |
-| domain | 4362 | 4362 |
+| url | 4766 | 4766 |
+| domain | 4358 | 4358 |
 | sha256 | 3255 | 3255 |
 | ipv6 | 2646 | 2646 |
 | md5 | 57 | 57 |
@@ -74,9 +74,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | IClickFix | 329 | 329 | — |
 | PureRAT | 326 | 326 | — |
 | AdaptixC2 | 237 | 237 | — |
-| ClearFake | 207 | 207 | — |
+| ClearFake | 204 | 204 | — |
 | Unknown Stealer | 166 | 166 | — |
-| Vidar | 155 | 155 | T1555, T1071.001, T1567 |
+| Vidar | 153 | 153 | T1555, T1071.001, T1567 |
 | Unknown RAT | 132 | 132 | — |
 | DCRat | 96 | 96 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 91 | 91 | — |
@@ -91,9 +91,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 21500 |
-| T1105 | Ingress Tool Transfer | command-and-control | 5961 |
-| T1498 | Network Denial of Service | impact | 4998 |
+| T1071.001 | Web Protocols | command-and-control | 21496 |
+| T1105 | Ingress Tool Transfer | command-and-control | 5967 |
+| T1498 | Network Denial of Service | impact | 4999 |
 | T1573 | Encrypted Channel | command-and-control | 3467 |
 | T1056.001 | Keylogging | collection, credential-access | 1862 |
 | T1566.001 | Spearphishing Attachment | initial-access | 1560 |
@@ -102,8 +102,8 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 1340 |
 | T1090 | Proxy | command-and-control | 1252 |
 | T1059.001 | PowerShell | execution | 1237 |
-| T1555 | Credentials from Password Stores | credential-access | 492 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 430 |
+| T1555 | Credentials from Password Stores | credential-access | 490 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 428 |
 | T1552.001 | Credentials In Files | credential-access | 307 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 270 |
 | T1204.002 | Malicious File | execution | 270 |
