@@ -38,6 +38,7 @@
       <div class="badges">
         <span class="badge badge-cat">{{ r.label }}</span>
         <span class="badge">{{ r.source_name }}</span>
+        {% if r.risk %}<span class="risk risk-{{ r.risk.level }}">{{ r.risk.level }}</span>{% endif %}
         {% if r.org_matches %}<span class="badge badge-env">in your stack</span>{% endif %}
         {% if r.curated %}<span class="badge badge-curated">curated</span>{% endif %}
       </div>

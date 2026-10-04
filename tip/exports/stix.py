@@ -57,7 +57,7 @@ def _base_object(spec_type: str, object_id: str, now: str) -> dict:
     }
 
 
-def build_bundle(rows, generated_at: str | None = None) -> dict:
+def build_bundle(rows, generated_at: str | None = None, sightings: dict | None = None) -> dict:
     now = _now(generated_at)
     objects: list[dict] = [
         {
@@ -79,6 +79,7 @@ def build_bundle(rows, generated_at: str | None = None) -> dict:
         },
     ]
     malware_cache: dict[str, str] = {}
+    indicator_ids: dict[str, str] = {}
     indicator_count = 0
 
     for row in rows:
@@ -87,6 +88,7 @@ def build_bundle(rows, generated_at: str | None = None) -> dict:
             continue
         key = row["key"] if "key" in row.keys() else f"{row['type']}:{row['value']}"
         indicator_id = f"indicator--{uuid.uuid5(UUID_NS, f'indicator:{key}')}"
+        indicator_ids[key] = indicator_id
 
         sources = [s for s in str(row["sources"] or "").split(",") if s]
         source_name = sources[0] if sources else "unknown"
@@ -133,11 +135,37 @@ def build_bundle(rows, generated_at: str | None = None) -> dict:
             )
             objects.append(relationship)
 
+    sighting_count = 0
+    for key, data in (sightings or {}).items():
+        indicator_id = indicator_ids.get(key)
+        if not indicator_id:
+            continue
+        sighting_id = f"sighting--{uuid.uuid5(UUID_NS, f'sighting:{key}')}"
+        sighting = _base_object("sighting", sighting_id, now)
+        sensors = ", ".join(str(s) for s in (data.get("sensors") or [])) or "unknown sensors"
+        sighting.update(
+            {
+                "sighting_of_ref": indicator_id,
+                "count": int(data.get("count") or 1),
+                "summary": (
+                    f"Internal sightings: {int(data.get('count') or 1)} hit(s)"
+                    f" from {sensors}"
+                    + (f" across {data.get('assets')} asset(s)" if data.get("assets") else "")
+                ),
+            }
+        )
+        objects.append(sighting)
+        sighting_count += 1
+
     return {
         "type": "bundle",
         "id": f"bundle--{uuid.uuid4()}",
         "objects": objects,
-        "_meta": {"indicator_count": indicator_count, "generated_at": now},
+        "_meta": {
+            "indicator_count": indicator_count,
+            "sighting_count": sighting_count,
+            "generated_at": now,
+        },
     }
 
 

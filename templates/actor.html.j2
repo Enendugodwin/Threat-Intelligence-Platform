@@ -1,0 +1,42 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}{{ actor.name }} &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<a class="back-link" href="threats.html">&larr; Threats</a>
+<h1 class="page-title">Threat actor: {{ actor.name }}</h1>
+<p class="muted">{{ actor.reports_count }} report(s) reference this actor &middot; latest {{ actor.latest or "—" }}.</p>
+
+{% if actor.families %}
+<section>
+  <h2>{{ ui.icon("grid") }}Associated malware families</h2>
+  <div class="chip-list">
+    {% for f in actor.families %}<span class="chip"><a href="family-{{ f.slug }}.html">{{ f.name }}</a></span>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if actor.techniques %}
+<section>
+  <h2>{{ ui.icon("target") }}Referenced ATT&amp;CK techniques</h2>
+  <div class="chip-list">
+    {% for t in actor.techniques %}<span class="chip"><a href="technique-{{ t }}.html">{{ t }}</a></span>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if actor.cves %}
+<section>
+  <h2>{{ ui.icon("shield") }}Referenced CVEs</h2>
+  <div class="chip-list">
+    {% for c in actor.cves %}<span class="chip{% if c in kev_cves %} chip-kev{% endif %}">{{ c }}{% if c in kev_cves %} &middot; KEV{% endif %}</span>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <h2>{{ ui.icon("list") }}Reports</h2>
+  <div class="chip-list">
+    {% for r in actor.reports %}<span class="chip"><a href="report-{{ r.id }}.html">{{ r.title }}</a>{% if r.published %} <span class="muted">{{ r.published[:10] }}</span>{% endif %}</span>{% endfor %}
+  </div>
+</section>
+{% endblock %}

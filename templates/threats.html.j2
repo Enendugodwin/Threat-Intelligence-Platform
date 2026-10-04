@@ -1,0 +1,35 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}Threats &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<h1 class="page-title">Threat actors in the report feed</h1>
+<p class="muted">
+  Actors named across vendor reports (APT / UNC / UAT / Storm / Operation tags).
+  {{ threats.total }} actor(s) tracked &middot; follow one for its reports, TTPs and associated malware families.
+</p>
+
+<section>
+  {% if threats.actors %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Actor</th><th scope="col" class="num-col">Reports</th><th scope="col">Latest</th><th scope="col">Malware</th><th scope="col">ATT&amp;CK</th></tr>
+      </thead>
+      <tbody>
+      {% for a in threats.actors %}
+        <tr>
+          <td><a href="actor-{{ a.slug }}.html"><code>{{ a.name }}</code></a></td>
+          <td class="num-cell">{{ a.reports_count }}</td>
+          <td>{{ a.latest or "—" }}</td>
+          <td>{% for f in a.families[:3] %}<span class="chip"><a href="family-{{ f.slug }}.html">{{ f.name }}</a></span> {% endfor %}{% if not a.families %}<span class="muted">&mdash;</span>{% endif %}</td>
+          <td>{% for t in a.techniques[:3] %}<span class="chip"><a href="technique-{{ t }}.html">{{ t }}</a></span> {% endfor %}{% if not a.techniques %}<span class="muted">&mdash;</span>{% endif %}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="muted">No actor tags in the current reports &mdash; the next sync may surface some.</p>
+  {% endif %}
+</section>
+{% endblock %}

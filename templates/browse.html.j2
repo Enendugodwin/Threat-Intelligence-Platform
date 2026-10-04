@@ -17,7 +17,7 @@
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -27,6 +27,7 @@
           <td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td>
           <td>{{ i.type }}</td>
           <td><span class="risk risk-{{ i.risk.level }}">{{ i.risk.level }} {{ i.risk.score }}</span></td>
+          <td class="num-cell">{% if i.hits %}<span class="pill err">{{ i.hits.count }}</span>{% else %}&mdash;{% endif %}</td>
           <td>{{ i.malware if i.malware else "—" }}</td>
           <td>{{ i.sources | join(", ") }}</td>
           <td>{{ i.first_seen if i.first_seen else "—" }}</td>
@@ -41,4 +42,13 @@
   <p class="muted">No indicators in this group yet.</p>
   {% endif %}
 </section>
+
+{% if browse_related %}
+<section>
+  <h2>Related reports</h2>
+  <div class="chip-list">
+    {% for rep in browse_related %}<span class="chip"><a href="report-{{ rep.id }}.html">{{ rep.title }}</a>{% if rep.published %} <span class="muted">{{ rep.published }}</span>{% endif %}</span>{% endfor %}
+  </div>
+</section>
+{% endif %}
 {% endblock %}

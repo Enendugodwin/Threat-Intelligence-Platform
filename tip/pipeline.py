@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import pathlib
+import time
 
 import yaml
 
@@ -56,10 +57,12 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
     started = utcnow()
     collected = []
     feed_counts: dict[str, int] = {}
+    feed_durations: dict[str, float] = {}
     errors: dict[str, str] = {}
 
     try:
         for feed in feeds:
+            feed_start = time.monotonic()
             try:
                 got = feed.fetch(session)
                 collected.extend(got)
@@ -68,6 +71,8 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
             except Exception as exc:  # noqa: BLE001 - isolate per-feed failures
                 errors[feed.name] = f"{type(exc).__name__}: {exc}"
                 log.warning("feed %s failed: %s", feed.name, exc)
+            finally:
+                feed_durations[feed.name] = round(time.monotonic() - feed_start, 1)
 
         new, updated = store.upsert_many(collected)
         prune_days = int((config.get("storage") or {}).get("prune_after_days", 45))
@@ -77,6 +82,7 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
             "started_at": started,
             "finished_at": utcnow(),
             "feeds": feed_counts,
+            "durations": feed_durations,
             "errors": errors,
             "fetched": len(collected),
             "new": new,

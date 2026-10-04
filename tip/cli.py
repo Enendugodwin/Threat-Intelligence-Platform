@@ -49,6 +49,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("export", "write STIX, Sigma, Suricata and CSV exports"),
         ("site", "build the static dashboard"),
         ("stats", "print database statistics"),
+        ("sightings", "import internal sighting telemetry (CSV/JSON) or show stats"),
         ("push", "push indicators to MISP and/or OpenCTI (optional connectors)"),
     )
     for name, help_text in commands:
@@ -57,6 +58,8 @@ def build_parser() -> argparse.ArgumentParser:
     sub.choices["report"].add_argument("--out", default="reports")
     sub.choices["export"].add_argument("--out", default="dist")
     sub.choices["site"].add_argument("--out", default="site")
+    sub.choices["sightings"].add_argument("file", nargs="?", help="CSV or JSON sightings file")
+    sub.choices["sightings"].add_argument("--stats", action="store_true", help="print sighting summary")
     sub.choices["push"].add_argument("--misp", action="store_true", help="push to MISP")
     sub.choices["push"].add_argument("--opencti", action="store_true", help="push to OpenCTI")
     sub.choices["push"].add_argument("--days", type=int, default=7)
@@ -128,10 +131,12 @@ def main(argv=None) -> int:
 
     if args.command == "export":
         from .exports import csv_export
+        from .exports import reports_stix
         from .exports import sigma as sigma_mod
         from .exports import stix as stix_mod
         from .exports import suricata as suricata_mod
         from .exports import tor as tor_export
+        from .reportfeed import load_reports
 
         config = load_config(args.config)
         attack = load_attack_map(args.attack_map)
@@ -147,9 +152,10 @@ def main(argv=None) -> int:
                 window_days, max_rows, min_confidence, exclude_sources=exclude_sources
             )
             tor_rows = store.source_rows("tor")
+            sighting_data = store.sightings_map()
 
         out = pathlib.Path(args.out)
-        bundle = stix_mod.build_bundle(rows)
+        bundle = stix_mod.build_bundle(rows, sightings=sighting_data)
         stix_path = stix_mod.write_bundle(bundle, out / "stix" / "bundle.json")
         csv_path = csv_export.write_csv(rows, out / "iocs.csv")
 
@@ -172,10 +178,27 @@ def main(argv=None) -> int:
         suricata_path = suricata_mod.write_rules(suricata_lines, out / "suricata" / "ti.rules")
         tor_path, tor_count = tor_export.write_nodes(tor_rows, out / "tor" / "tor_nodes.txt")
 
+        reports_doc = load_reports(data_dir)
+        reports_path = None
+        if reports_doc:
+            reports_bundle = reports_stix.build_reports_bundle(
+                reports_doc, family_names=set(attack.families.keys())
+            )
+            reports_path = stix_mod.write_bundle(
+                reports_bundle, out / "stix" / "reports-bundle.json"
+            )
+
         print(
-            f"wrote {stix_path} ({bundle['_meta']['indicator_count']} indicators), {csv_path}, "
+            f"wrote {stix_path} ({bundle['_meta']['indicator_count']} indicators, "
+            f"{bundle['_meta']['sighting_count']} sightings), {csv_path}, "
             f"{len(sigma_rules)} sigma rule(s), {suricata_path} ({len(suricata_lines)} rule(s)), "
             f"{tor_path} ({tor_count} Tor nodes)"
+            + (
+                f", {reports_path} ({reports_bundle['_meta']['report_count']} reports, "
+                f"{reports_bundle['_meta']['actor_count']} actors)"
+                if reports_path
+                else ""
+            )
         )
         return 0
 
@@ -223,6 +246,17 @@ def main(argv=None) -> int:
             print(f"wrote kev.html ({len(kev_doc.get('entries') or [])} vulnerabilities)")
         if geo_doc:
             print("wrote map.html (attack origins)")
+        return 0
+
+    if args.command == "sightings":
+        from .sightings import import_sightings, sights_summary
+
+        if args.stats or not args.file:
+            print(json.dumps(sights_summary(data_dir), indent=2, sort_keys=True))
+            return 0
+        stats = import_sightings(data_dir, args.file)
+        print(f"sightings: {stats['records']} stored, {stats['skipped']} skipped")
+        print("re-render the dashboard with: python -m tip site")
         return 0
 
     if args.command == "push":

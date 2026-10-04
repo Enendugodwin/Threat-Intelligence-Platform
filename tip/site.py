@@ -2,15 +2,22 @@
 from __future__ import annotations
 
 import pathlib
+import re
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
-from .normalize import attack_url, virustotal_url
+from .normalize import attack_url, refang, slugify, virustotal_url
 from .scoring import technology_matches
 from .vulnintel import summarize as summarize_kev
+
+_ACTOR_TAG_RE = re.compile(
+    r"^(?:APT\d{1,2}|UNC\d{3,6}|UAT-\d{4,5}|Storm-\d{4,5}|FIN\d{1,2}|TA\d{2,4}|G\d{4}"
+    r"|Operation\s+.+)$",
+    re.IGNORECASE,
+)
 
 _TYPE_LABELS = {
     "sha256": "hash",
@@ -150,6 +157,58 @@ def _geo_view(doc: dict) -> dict:
     }
 
 
+def _threats_view(reports_view: dict | None, families) -> dict:
+    """Aggregate actor tags from reports into actor pages (actor -> families, TTPs)."""
+    family_slug = {family["name"]: family["slug"] for family in (families or [])}
+    actors: dict[str, dict] = {}
+    for report in (reports_view or {}).get("entries") or []:
+        tags = [str(tag) for tag in report.get("tags") or []]
+        actor_tags = [tag for tag in tags if _ACTOR_TAG_RE.match(tag)]
+        if not actor_tags:
+            continue
+        families_seen = [
+            {"name": tag, "slug": family_slug.get(tag, slugify(tag))}
+            for tag in tags
+            if tag in family_slug
+        ]
+        for actor in actor_tags:
+            entry = actors.setdefault(
+                actor,
+                {
+                    "name": actor,
+                    "slug": slugify(actor),
+                    "reports": [],
+                    "techniques": set(),
+                    "families": {},
+                    "cves": set(),
+                },
+            )
+            entry["reports"].append(report)
+            entry["techniques"].update(report.get("techniques") or [])
+            for family in families_seen:
+                entry["families"][family["name"]] = family
+            entry["cves"].update(report.get("cves") or [])
+    items = []
+    for entry in actors.values():
+        items.append(
+            {
+                "name": entry["name"],
+                "slug": entry["slug"],
+                "reports_count": len(entry["reports"]),
+                "latest": max(
+                    (str(report.get("published") or "") for report in entry["reports"]),
+                    default="",
+                )[:10],
+                "families": sorted(entry["families"].values(), key=lambda fam: fam["name"]),
+                "techniques": sorted(entry["techniques"])[:10],
+                "cves": sorted(entry["cves"])[:10],
+                "reports": entry["reports"][:10],
+            }
+        )
+    items.sort(key=lambda actor: (-actor["reports_count"], actor["name"]))
+    return {"actors": items, "total": len(items)}
+
+
 def _action_queue(
     context: dict,
     kev_view: dict | None,
@@ -189,18 +248,24 @@ def _action_queue(
     queue.extend(vuln_items[:3])
 
     indicator_count = 0
-    for row in context.get("ioc_index") or []:
+    pool = list(context.get("ioc_index") or [])
+    pool.sort(key=lambda row: (0 if row.get("h") else 1, -int(row.get("r") or 0)))
+    for row in pool:
         if indicator_count >= 3:
             break
-        if not (row.get("m") or "," in (row.get("s") or "")):
+        if not (row.get("m") or "," in (row.get("s") or "") or row.get("h")):
             continue
         indicator_count += 1
+        hits = int(row.get("h") or 0)
+        why_parts = [part for part in (row.get("m"), row.get("s"), row.get("e")) if part]
+        if hits:
+            why_parts.insert(0, f"{hits} internal sighting(s)")
         queue.append(
             {
                 "kind": "indicator",
-                "level": row.get("l") or "high",
+                "level": "critical" if hits else (row.get("l") or "high"),
                 "title": row.get("v") or "",
-                "why": " · ".join(part for part in (row.get("m"), row.get("s"), row.get("e")) if part),
+                "why": " · ".join(why_parts),
                 "href": "explorer.html",
                 "external": virustotal_url(str(row.get("t") or ""), str(row.get("v") or "")),
             }
@@ -258,6 +323,35 @@ def build_site(
     reports_view = _reports_view(reports, org) if reports else None
     action_queue = _action_queue(context, kev_view, reports_view, org)
 
+    kev_cve_set = {str(entry.get("cve")) for entry in (kev_view or {}).get("entries") or []}
+    reports_entries = (reports_view or {}).get("entries") or []
+    if reports_view:
+        sighting_map = (context.get("sightings") or {}).get("map") or {}
+        for entry in reports_entries:
+            cves = [str(cve) for cve in entry.get("cves") or []]
+            kev_hits = [cve for cve in cves if cve in kev_cve_set]
+            tags_lower = [str(tag).lower() for tag in entry.get("tags") or []]
+            if entry.get("org_matches"):
+                level = "critical"
+            elif kev_hits or "ransomware" in tags_lower:
+                level = "high"
+            elif entry.get("iocs"):
+                level = "medium"
+            else:
+                level = "info"
+            entry["risk"] = {"level": level}
+            entry["kev_hits"] = kev_hits
+            entry["hits_total"] = sum(
+                int(
+                    (
+                        sighting_map.get(f"{ioc.get('type')}:{refang(str(ioc.get('value') or '')).lower()}")
+                        or {}
+                    ).get("count")
+                    or 0
+                )
+                for ioc in entry.get("iocs") or []
+            )
+
     index_html = env.get_template("index.html.j2").render(**context, action_queue=action_queue)
     report_html = env.get_template("report.html.j2").render(**context)
     (out_dir / "index.html").write_text(index_html, encoding="utf-8")
@@ -292,6 +386,37 @@ def build_site(
             detail_path.write_text(page, encoding="utf-8")
             written.append(detail_path)
 
+    if reports_view:
+        # family -> related reports (from tags/titles) for cross-linking
+        fam_map: dict[str, list] = {}
+        for entry in reports_entries:
+            tags_lower = [str(tag).lower() for tag in entry.get("tags") or []]
+            title_lower = str(entry.get("title") or "").lower()
+            for family in context.get("families") or []:
+                name_lower = family["name"].lower()
+                if name_lower in tags_lower or name_lower in title_lower:
+                    fam_map.setdefault(family["slug"], []).append(
+                        {
+                            "id": entry["id"],
+                            "title": str(entry.get("title") or "")[:90],
+                            "published": str(entry.get("published") or "")[:10],
+                        }
+                    )
+        for family in (context.get("browse") or {}).get("families") or []:
+            family["related_reports"] = fam_map.get(family["id"], [])[:6]
+
+        threats_view = _threats_view(reports_view, context.get("families"))
+        threats_html = env.get_template("threats.html.j2").render(**context, threats=threats_view)
+        threats_file = out_dir / "threats.html"
+        threats_file.write_text(threats_html, encoding="utf-8")
+        written.append(threats_file)
+        actor_template = env.get_template("actor.html.j2")
+        for actor in threats_view["actors"]:
+            page = actor_template.render(**context, actor=actor, kev_cves=kev_cve_set)
+            actor_path = out_dir / f"actor-{actor['slug']}.html"
+            actor_path.write_text(page, encoding="utf-8")
+            written.append(actor_path)
+
     browse = context.get("browse") or {}
     if browse:
         browse_template = env.get_template("browse.html.j2")
@@ -303,6 +428,7 @@ def build_site(
                 browse_rows=item["rows"],
                 browse_truncated=item["truncated"],
                 browse_external=None,
+                browse_related=[],
             )
             path = out_dir / f"iocs-{item['id']}.html"
             path.write_text(page, encoding="utf-8")
@@ -315,6 +441,7 @@ def build_site(
                 browse_rows=item["rows"],
                 browse_truncated=item["truncated"],
                 browse_external=None,
+                browse_related=item.get("related_reports") or [],
             )
             path = out_dir / f"family-{item['id']}.html"
             path.write_text(page, encoding="utf-8")
@@ -327,6 +454,7 @@ def build_site(
                 browse_rows=item["rows"],
                 browse_truncated=item["truncated"],
                 browse_external=item.get("external"),
+                browse_related=[],
             )
             path = out_dir / f"technique-{item['id']}.html"
             path.write_text(page, encoding="utf-8")

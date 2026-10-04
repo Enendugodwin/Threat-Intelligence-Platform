@@ -30,6 +30,16 @@ CREATE TABLE IF NOT EXISTS ioc_sources (
     last_seen  TEXT,
     PRIMARY KEY (key, source)
 );
+CREATE TABLE IF NOT EXISTS sightings (
+    key        TEXT NOT NULL,
+    sensor     TEXT NOT NULL,
+    asset      TEXT NOT NULL DEFAULT '',
+    first_seen TEXT,
+    last_seen  TEXT,
+    count      INTEGER NOT NULL DEFAULT 1,
+    note       TEXT,
+    PRIMARY KEY (key, sensor, asset)
+);
 CREATE TABLE IF NOT EXISTS runs (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     started_at  TEXT NOT NULL,
@@ -299,6 +309,82 @@ class Store:
                     "last_seen": row["last_seen"] or "",
                 }
             )
+        return out
+
+    def runs(self, limit: int = 2) -> list[dict]:
+        rows = self.conn.execute(
+            "SELECT * FROM runs ORDER BY id DESC LIMIT ?", (int(limit),)
+        ).fetchall()
+        out = []
+        for row in rows:
+            item = dict(row)
+            try:
+                item["stats"] = json.loads(item["stats"] or "{}")
+            except (TypeError, json.JSONDecodeError):
+                item["stats"] = {}
+            out.append(item)
+        return out
+
+    def upsert_sightings(self, records: list[dict]) -> int:
+        """Merge internal sightings (key, sensor, asset) preserving first/last seen."""
+        stored = 0
+        for record in records:
+            key = str(record.get("key") or "")
+            if not key:
+                continue
+            sensor = str(record.get("sensor") or "unknown")
+            asset = str(record.get("asset") or "")
+            first = record.get("first_seen") or None
+            last = record.get("last_seen") or None
+            count = int(record.get("count") or 1)
+            note = record.get("note") or None
+            row = self.conn.execute(
+                "SELECT count, first_seen, last_seen, note FROM sightings"
+                " WHERE key=? AND sensor=? AND asset=?",
+                (key, sensor, asset),
+            ).fetchone()
+            if row is None:
+                self.conn.execute(
+                    "INSERT INTO sightings (key, sensor, asset, first_seen, last_seen, count, note)"
+                    " VALUES (?,?,?,?,?,?,?)",
+                    (key, sensor, asset, first, last, count, note),
+                )
+            else:
+                self.conn.execute(
+                    "UPDATE sightings SET count=?, first_seen=?, last_seen=?, note=?"
+                    " WHERE key=? AND sensor=? AND asset=?",
+                    (
+                        max(int(row["count"] or 0), count),
+                        _min_ts(row["first_seen"], first),
+                        _max_ts(row["last_seen"], last),
+                        row["note"] or note,
+                        key,
+                        sensor,
+                        asset,
+                    ),
+                )
+            stored += 1
+        self.conn.commit()
+        return stored
+
+    def sightings_map(self) -> dict[str, dict]:
+        """key -> {count, sensors, assets, first_seen, last_seen} aggregated."""
+        out: dict[str, dict] = {}
+        rows = self.conn.execute(
+            "SELECT key, SUM(count) AS total, MIN(first_seen) AS first_seen,"
+            " MAX(last_seen) AS last_seen, GROUP_CONCAT(DISTINCT sensor) AS sensors,"
+            " GROUP_CONCAT(DISTINCT asset) AS assets FROM sightings GROUP BY key"
+        ).fetchall()
+        for row in rows:
+            sensors = [s for s in str(row["sensors"] or "").split(",") if s]
+            assets = [a for a in str(row["assets"] or "").split(",") if a]
+            out[row["key"]] = {
+                "count": int(row["total"] or 0),
+                "sensors": sensors,
+                "assets": len(assets),
+                "first_seen": row["first_seen"] or "",
+                "last_seen": row["last_seen"] or "",
+            }
         return out
 
     def top_malware(self, limit: int = 20) -> list[tuple[str, int]]:

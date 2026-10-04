@@ -179,6 +179,25 @@ mappings are shown as "+N heuristic" and excluded from the headline count.
   high-risk multi-source or malware-associated indicators, and reports that
   reference KEV CVEs - each with Investigate and Lookup links.
 
+## Sightings & threat relationships (Phase 4)
+
+- **Sightings** answer "did we see it?": import internal telemetry with
+  `python -m tip sightings sightings.csv` (columns: value, type, sensor, asset,
+  first_seen, last_seen, count, note; JSON accepted). Hits surface in the
+  Explorer, drill-down pages and the Action queue (sighted indicators are
+  promoted to critical), and become STIX `sighting` objects in
+  `dist/stix/bundle.json`. `python -m tip sightings --stats` summarises.
+- **Threats** page (`site/threats.html`) aggregates actors from report tags
+  (APT / UNC / UAT / Storm / Operation) with per-actor pages showing reports,
+  TTPs, associated families and KEV-flagged CVEs; family pages link their
+  related reports.
+- **STIX reports bundle** - `dist/stix/reports-bundle.json` exports the feed as
+  `report` SDOs whose `object_refs` use the same deterministic indicator IDs as
+  the main bundle, plus `threat-actor`/`malware` objects and `uses`
+  relationships; import both bundles into OpenCTI/MISP.
+- **Feed health** rows now show records, delta versus the previous run, fetch
+  duration and the last run time.
+
 ## Adding a feed
 
 Implement `tip/feeds/base.py::Feed`:
@@ -244,6 +263,7 @@ tip/
   vulnintel.py      CISA KEV catalog + EPSS scoring -> data/kev.json
   geo.py            ip-api.com geolocation (cached) -> data/geo.json
   scoring.py        IOC risk scoring (confidence, corroboration, recency, context)
+  sightings.py      internal sighting telemetry import (CSV/JSON)
 templates/          Jinja UI (base + components + report.md.j2)
 design-system/      ui-ux-pro-max design system (Cyberpunk UI, MASTER.md)
 config/             config.yaml, attack_map.yaml
@@ -261,6 +281,7 @@ tests/              fixture-based suite (offline, no network)
 - [x] Attack-origins map, CISA KEV + EPSS page, extra sources (MalwareBazaar / OpenPhish / CIRCL)
 - [x] Run-delta metrics, risk scoring, IOC Explorer, ATT&CK evidence split, dynamic source list
 - [x] Phase 3: environment matching, per-source evidence, action queue; broader categories + report search
+- [x] Phase 4: sightings ingest, threats/actor pages, STIX reports bundle, feed deltas
 - [ ] VT / AbuseIPDB enrichment for top indicators
 - [ ] Weekly digest issue (GitHub Issues bot)
 - [ ] YARA rule export for payload hashes

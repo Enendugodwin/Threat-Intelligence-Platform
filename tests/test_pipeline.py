@@ -68,6 +68,7 @@ def test_offline_pipeline_end_to_end(tmp_path):
                 "content": "Full excerpt text.",
                 "iocs": [{"type": "domain", "value": "bad[.]example-bad[.]net"}],
                 "cves": ["CVE-2026-0001"],
+                "tags": ["UAT-9999", "Emotet"],
                 "recommendations": ["Do the thing"],
                 "curated": False,
             }
@@ -172,6 +173,18 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "matched" in kev_html
     assert 'id="rsearch"' in feed
     assert "data-search=" in feed
+
+    # phase 4: feed deltas, threats/actor pages, report assessment
+    assert "Duration" in index
+    assert "Hits" in index
+    assert (site_dir / "threats.html").is_file()
+    threats = (site_dir / "threats.html").read_text(encoding="utf-8")
+    assert "UAT-9999" in threats
+    actor_page = site_dir / "actor-uat-9999.html"
+    assert actor_page.is_file()
+    actor_html = actor_page.read_text(encoding="utf-8")
+    assert "UAT-9999" in actor_html and "Emotet" in actor_html
+    assert "Assessment" in detail
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0

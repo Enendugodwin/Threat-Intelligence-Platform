@@ -15,8 +15,19 @@
   {% for t in report.tags %}<span class="chip">{{ t }}</span>{% endfor %}
 </div>
 {% endif %}
-{% if report.org_matches %}
-<p class="env-banner">Environment: this report references <strong>{{ report.org_matches | join(", ") }}</strong> from your technology profile.</p>
+{% if report.risk %}
+<div class="env-banner">
+  <strong>Assessment:</strong> risk <span class="risk risk-{{ report.risk.level }}">{{ report.risk.level }}</span>
+  {%- if report.kev_hits %} &middot; <strong>KEV:</strong> {{ report.kev_hits | join(", ") }}
+  {%- elif report.cves %} &middot; {{ report.cves | length }} CVE(s), none in KEV
+  {%- endif %}
+  {%- if report.iocs %} &middot; {{ report.iocs | length }} indicator(s)
+  {%- endif %}
+  {%- if report.hits_total %} &middot; <strong>{{ report.hits_total }} internal sighting(s)</strong>
+  {%- endif %}
+  {%- if report.org_matches %} &middot; <strong>Environment:</strong> {{ report.org_matches | join(", ") }}
+  {%- endif %}
+</div>
 {% endif %}
 
 <section>

@@ -83,13 +83,15 @@
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Feed</th><th scope="col" class="num-col">Indicators this run</th><th scope="col">Status</th></tr>
+        <tr><th scope="col">Feed</th><th scope="col" class="num-col">Records</th><th scope="col" class="num-col">&Delta;</th><th scope="col" class="num-col">Duration</th><th scope="col">Status</th></tr>
       </thead>
       <tbody>
       {% for f in feed_health.feeds %}
         <tr>
           <td><code>{{ f.label }}</code></td>
           <td class="num-cell">{{ f.count if f.count is not none else "—" }}</td>
+          <td class="num-cell">{% if f.delta is none %}&mdash;{% elif f.delta > 0 %}+{{ f.delta }}{% else %}{{ f.delta }}{% endif %}</td>
+          <td class="num-cell">{% if f.duration is not none %}{{ f.duration }}s{% else %}&mdash;{% endif %}</td>
           <td>
             {% if f.error %}<span class="pill err">error</span> <span class="err-text">{{ f.error }}</span>
             {% else %}<span class="pill ok">ok</span>{% endif %}
@@ -99,6 +101,7 @@
       </tbody>
     </table>
   </div>
+  <p class="muted">Last run {{ feed_health.last_run_at or "—" }} UTC &middot; &Delta; compares with the previous run.</p>
 </section>
 {%- endmacro %}
 
@@ -139,7 +142,7 @@
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
+        <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
       </thead>
       <tbody>
       {% for i in notable %}
@@ -147,6 +150,7 @@
           <td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td>
           <td>{{ i.type }}</td>
           <td><span class="risk risk-{{ i.risk.level }}">{{ i.risk.level }} {{ i.risk.score }}</span></td>
+          <td class="num-cell">{% if i.hits %}<span class="pill err">{{ i.hits.count }}</span>{% else %}&mdash;{% endif %}</td>
           <td>{{ i.malware if i.malware else "—" }}</td>
           <td>{{ i.sources | join(", ") }}</td>
           <td>{{ i.first_seen if i.first_seen else "—" }}</td>

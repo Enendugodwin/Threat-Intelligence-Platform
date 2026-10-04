@@ -31,7 +31,7 @@ def _sources(row) -> list[str]:
         return []
 
 
-def _feed_health(config: dict, last_run: dict | None) -> dict:
+def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None = None) -> dict:
     section = config.get("feeds") or {}
     enabled = [name for name, opts in section.items() if (opts or {}).get("enabled")]
     inactive = [
@@ -40,19 +40,34 @@ def _feed_health(config: dict, last_run: dict | None) -> dict:
         if not (opts or {}).get("enabled")
     ]
     stats = (last_run or {}).get("stats") or {}
+    previous_stats = (previous_run or {}).get("stats") or {}
     counts = stats.get("feeds") or {}
+    previous_counts = previous_stats.get("feeds") or {}
+    durations = stats.get("durations") or {}
     errors = stats.get("errors") or {}
-    feeds = [
-        {
-            "name": name,
-            "label": _FEED_LABELS.get(name, name),
-            "count": counts.get(name),
-            "error": errors.get(name, ""),
-        }
-        for name in enabled
-    ]
+    feeds = []
+    for name in enabled:
+        count = counts.get(name)
+        previous = previous_counts.get(name)
+        delta = None if (count is None or previous is None) else int(count) - int(previous)
+        feeds.append(
+            {
+                "name": name,
+                "label": _FEED_LABELS.get(name, name),
+                "count": count,
+                "delta": delta,
+                "duration": durations.get(name),
+                "error": errors.get(name, ""),
+            }
+        )
     ok = sum(1 for feed in feeds if not feed["error"])
-    return {"total": len(feeds), "ok": ok, "feeds": feeds, "inactive": inactive}
+    return {
+        "total": len(feeds),
+        "ok": ok,
+        "feeds": feeds,
+        "inactive": inactive,
+        "last_run_at": (last_run or {}).get("finished_at") or "",
+    }
 
 
 def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
@@ -65,11 +80,14 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     new_rows = store.new_since(window_days)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    last_run = store.last_run()
+    recent_runs = store.runs(2)
+    last_run = recent_runs[0] if recent_runs else None
+    previous_run = recent_runs[1] if len(recent_runs) > 1 else None
     run_stats = (last_run or {}).get("stats") or {}
     activity = store.activity(window_days)
     org = org_profile(config)
     evidence_map = store.sources_map()
+    sightings = store.sightings_map()
 
     def _evidence(key: str) -> list[dict]:
         return evidence_map.get(str(key), [])
@@ -130,6 +148,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "href": virustotal_url(row["type"], row["value"]),
             "risk": _risk(row, _sources(row)),
             "evidence": _evidence(row["key"])[:4],
+            "hits": sightings.get(str(row["key"])) or None,
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": _sources(row),
@@ -183,6 +202,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             "href": virustotal_url(row["type"], row["value"]),
             "risk": _risk(row, sources),
             "evidence": _evidence(row["key"])[:4],
+            "hits": sightings.get(str(row["key"])) or None,
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": sources,
@@ -250,6 +270,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
                 f"{ev['source']}:{ev['confidence']}" if ev["confidence"] else ev["source"]
                 for ev in _evidence(row["key"])[:4]
             ),
+            "h": int((sightings.get(str(row["key"])) or {}).get("count") or 0),
             "f": (row["first_seen"] or "")[:10],
         }
         for score, level, row, sources in scored[:explorer_cap]
@@ -276,7 +297,15 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         },
         "activity": activity,
         "org": org,
-        "feed_health": _feed_health(config, last_run),
+        "sightings": {
+            "map": sightings,
+            "iocs": len(sightings),
+            "total": sum(entry["count"] for entry in sightings.values()),
+            "sensors": sorted(
+                {sensor for entry in sightings.values() for sensor in entry["sensors"]}
+            ),
+        },
+        "feed_health": _feed_health(config, last_run, previous_run),
         "by_type": by_type,
         "by_source": [{"source": s, "count": c} for s, c in store.counts_by_source()],
         "families": families,

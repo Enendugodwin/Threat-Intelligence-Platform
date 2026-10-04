@@ -32,7 +32,7 @@
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
           <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Malware</th>
-          <th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+          <th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Hits</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
       <tbody id="rows">
@@ -99,6 +99,7 @@
         "<td>" + (it.m ? esc(it.m) : "&mdash;") + "</td>" +
         "<td>" + esc(it.s) + "</td>" +
         "<td>" + (it.f ? esc(it.f) : "&mdash;") + "</td>" +
+        "<td class=\"num-cell\">" + (it.h ? "<span class=\"pill err\">" + esc(it.h) + "</span>" : "&mdash;") + "</td>" +
         "<td class=\"num-cell\">" + esc(it.c) + "</td></tr>";
     }
     rows.innerHTML = html || "<tr><td colspan=\"7\" class=\"muted\">No indicators match.</td></tr>";

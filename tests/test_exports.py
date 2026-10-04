@@ -126,3 +126,44 @@ def test_csv_export(tmp_path):
         rows = list(csv.DictReader(fh))
     assert len(rows) == 4
     assert rows[0]["value"] == "c2-steady-host.com"
+
+
+def test_stix_sightings():
+    sightings = {
+        "domain:c2-steady-host.com": {"count": 7, "sensors": ["firewall", "dns"], "assets": 2}
+    }
+    bundle = stix_mod.build_bundle(ROWS, sightings=sightings)
+    sighting_objects = [o for o in bundle["objects"] if o["type"] == "sighting"]
+    assert len(sighting_objects) == 1
+    assert sighting_objects[0]["count"] == 7
+    indicator_ids = {o["id"] for o in bundle["objects"] if o["type"] == "indicator"}
+    assert sighting_objects[0]["sighting_of_ref"] in indicator_ids
+    assert bundle["_meta"]["sighting_count"] == 1
+
+
+def test_reports_stix_bundle():
+    from tip.exports import reports_stix
+
+    doc = {
+        "reports": [
+            {
+                "id": "abc123",
+                "title": "Test report",
+                "published": "2026-10-01",
+                "summary": "summary",
+                "tags": ["UAT-9999", "Emotet"],
+                "iocs": [{"type": "domain", "value": "evil[.]com"}],
+                "cves": [],
+            }
+        ]
+    }
+    bundle = reports_stix.build_reports_bundle(doc, family_names={"emotet"})
+    types = [o["type"] for o in bundle["objects"]]
+    assert types.count("threat-actor") == 1
+    assert types.count("malware") == 1
+    assert types.count("report") == 1
+    relationships = [o for o in bundle["objects"] if o["type"] == "relationship"]
+    assert relationships and relationships[0]["relationship_type"] == "uses"
+    report_obj = next(o for o in bundle["objects"] if o["type"] == "report")
+    assert any(ref.startswith("indicator--") for ref in report_obj["object_refs"])
+    assert bundle["_meta"]["actor_count"] == 1
