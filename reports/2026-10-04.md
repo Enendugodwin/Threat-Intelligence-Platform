@@ -1,6 +1,6 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T18:56:31Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T19:05:39Z UTC
 
 | Metric | Value |
 | --- | --- |
@@ -15,7 +15,7 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11205 | ok |
+| threatfox | 11096 | ok |
 | malwarebazaar | 1085 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
