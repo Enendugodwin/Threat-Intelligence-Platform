@@ -1,4 +1,4 @@
-from tip.normalize import defang, detect_type, host_from_url, is_public, make_ioc, norm_ts, refang
+from tip.normalize import defang, detect_type, host_from_url, is_public, make_ioc, norm_ts, refang, virustotal_url
 
 
 def test_refang_and_defang():
@@ -55,3 +55,12 @@ def test_norm_ts():
     assert norm_ts("2026-10-04") == "2026-10-04T00:00:00Z"
     assert norm_ts("2026-10-04T16:32:20.123456") == "2026-10-04T16:32:20Z"
     assert norm_ts(None) is None
+
+
+def test_virustotal_url():
+    assert virustotal_url("domain", "evil[.]com") == "https://www.virustotal.com/gui/domain/evil.com"
+    assert virustotal_url("ipv4", "1[.]2[.]3[.]4").endswith("/ip-address/1.2.3.4")
+    assert virustotal_url("sha256", "a" * 64).endswith("/file/" + "a" * 64)
+    url_link = virustotal_url("url", "hxxp://evil[.]com/a b")
+    assert url_link.startswith("https://www.virustotal.com/gui/search/")
+    assert " " not in url_link

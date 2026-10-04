@@ -66,7 +66,7 @@ No Tor node data this run.
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
 {% for i in notable -%}
-| `{{ i.value }}` | {{ i.type }} | {{ i.malware or "—" }} | {{ i.sources | join(", ") }} | {{ i.first_seen or "—" }} | {{ i.confidence }} |
+| [`{{ i.value }}`]({{ i.href }}) | {{ i.type }} | {{ i.malware or "—" }} | {{ i.sources | join(", ") }} | {{ i.first_seen or "—" }} | {{ i.confidence }} |
 {% endfor -%}
 {% else -%}
 No new indicators in the window.

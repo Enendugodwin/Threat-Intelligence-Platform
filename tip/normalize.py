@@ -4,7 +4,7 @@ from __future__ import annotations
 import ipaddress
 import re
 from datetime import datetime, timezone
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import quote, urlsplit, urlunsplit
 
 from .models import IOC
 
@@ -17,6 +17,7 @@ __all__ = [
     "normalize_value",
     "make_ioc",
     "norm_ts",
+    "virustotal_url",
 ]
 
 _URL_RE = re.compile(r"^[a-z][a-z0-9+.-]*://", re.IGNORECASE)
@@ -258,3 +259,15 @@ def norm_ts(ts: str | None) -> str | None:
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def virustotal_url(ioc_type: str, value: str) -> str:
+    """Lookup link for a (possibly defanged) indicator on VirusTotal."""
+    real = refang(value)
+    if ioc_type in ("sha256", "sha1", "md5"):
+        return f"https://www.virustotal.com/gui/file/{quote(real, safe='')}"
+    if ioc_type in ("ipv4", "ipv6"):
+        return f"https://www.virustotal.com/gui/ip-address/{quote(real, safe='')}"
+    if ioc_type == "domain":
+        return f"https://www.virustotal.com/gui/domain/{quote(real, safe='')}"
+    return f"https://www.virustotal.com/gui/search/{quote(real, safe='')}"

@@ -47,7 +47,11 @@
       {% endif %}
       <div class="report-meta">
         <span>{{ r.published[:10] if r.published else (r.fetched[:10] if r.fetched else "") }}</span>
-        <span>{% if r.ioc_summary %}{{ r.ioc_summary }} &middot; {% endif %}{{ r.recommendations | length }} recs</span>
+        <span>
+          {% if r.iocs %}<a href="report-{{ r.id }}.html#iocs">{{ r.ioc_summary or (r.iocs | length ~ " IOCs") }}</a>{% endif %}
+          {% if r.iocs and r.recommendations %} &middot; {% endif %}
+          {% if r.recommendations %}<a href="report-{{ r.id }}.html#recommendations">{{ r.recommendations | length }} recs</a>{% endif %}
+        </span>
       </div>
     </article>
     {% endfor %}

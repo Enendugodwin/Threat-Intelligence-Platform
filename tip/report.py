@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 
 from .attack import AttackMap
 from .normalize import defang
+from .normalize import virustotal_url
 from .store import Store
 
 
@@ -73,6 +74,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     notable = [
         {
             "value": defang(row["value"]),
+            "href": virustotal_url(row["type"], row["value"]),
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": _sources(row),

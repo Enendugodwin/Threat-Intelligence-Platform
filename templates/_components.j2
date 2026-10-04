@@ -139,7 +139,7 @@
       <tbody>
       {% for i in notable %}
         <tr>
-          <td><code>{{ i.value }}</code></td>
+          <td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td>
           <td>{{ i.type }}</td>
           <td>{{ i.malware if i.malware else "—" }}</td>
           <td>{{ i.sources | join(", ") }}</td>
@@ -150,6 +150,7 @@
       </tbody>
     </table>
   </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
   {% else %}
   <p class="muted">No new indicators in the window.</p>
   {% endif %}

@@ -131,12 +131,16 @@ def test_offline_pipeline_end_to_end(tmp_path):
     site_dir = tmp_path / "site"
     feed = (site_dir / "reports.html").read_text(encoding="utf-8")
     assert "filterbar" in feed and "cat-windows" in feed and "Test advisory" in feed
+    assert "report-abc123def4567890.html#iocs" in feed
     detail = (site_dir / "report-abc123def4567890.html").read_text(encoding="utf-8")
     assert "Do the thing" in detail
     assert "bad[.]example-bad[.]net" in detail
+    assert 'id="iocs"' in detail
+    assert "https://www.virustotal.com/gui/domain/bad.example-bad.net" in detail
     assert "chip chip-kev" in detail  # CVE-2026-0001 is in the KEV set
     assert "CVE-2026-0001" in (site_dir / "kev.html").read_text(encoding="utf-8")
     assert "45.61.136.10" in (site_dir / "map.html").read_text(encoding="utf-8")
+    assert "virustotal.com" in index  # notable indicators are clickable lookups
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0

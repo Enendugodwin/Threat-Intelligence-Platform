@@ -39,22 +39,22 @@
 </section>
 {% endif %}
 
-<section>
+<section id="iocs">
   <h2>{{ ui.icon("alert") }}Indicators ({{ report.iocs | length }})</h2>
   {% if report.iocs %}
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
       </thead>
       <tbody>
       {% for i in report.iocs %}
-        <tr><td>{{ i.type }}</td><td><code>{{ i.value }}</code></td></tr>
+        <tr><td>{{ i.type }}</td><td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td></tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
-  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
   {% else %}
   <p class="muted">No indicators were extracted from this report.</p>
   {% endif %}
@@ -71,7 +71,7 @@
 </section>
 {% endif %}
 
-<section>
+<section id="recommendations">
   <h2>{{ ui.icon("target") }}Recommendations</h2>
   {% if report.recommendations %}
   <ol class="rec-list">

@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
+from .normalize import virustotal_url
 
 _TYPE_LABELS = {
     "sha256": "hash",
@@ -46,6 +47,10 @@ def _reports_view(doc: dict) -> dict:
         item["category"] = category
         item["label"] = CATEGORY_LABELS[category]
         item["ioc_summary"] = _ioc_summary(item.get("iocs"))
+        item["iocs"] = [
+            {**ioc, "href": virustotal_url(str(ioc.get("type") or ""), str(ioc.get("value") or ""))}
+            for ioc in (item.get("iocs") or [])
+        ]
         item["technique_links"] = [
             {"id": tid, "url": _attack_url(tid)} for tid in (item.get("techniques") or [])[:4]
         ]
