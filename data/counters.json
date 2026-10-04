@@ -1,7 +1,7 @@
 {
   "by_malware": {
     "AMOS": 83,
-    "AdaptixC2": 237,
+    "AdaptixC2": 238,
     "AsyncRAT": 1190,
     "ClearFake": 262,
     "Cobalt Strike": 1226,
@@ -10,7 +10,7 @@
     "Evilginx": 91,
     "Havoc": 83,
     "IClickFix": 329,
-    "Mirai": 1979,
+    "Mirai": 2018,
     "PureRAT": 326,
     "Remcos": 90,
     "Remus": 78,
@@ -26,9 +26,9 @@
     "feodo": 5,
     "malwarebazaar": 1098,
     "openphish": 300,
-    "threatfox": 10447,
+    "threatfox": 10489,
     "tor": 8606,
-    "urlhaus": 4561
+    "urlhaus": 4566
   },
   "by_type": {
     "domain": 5304,
@@ -36,10 +36,10 @@
     "ipv6": 2668,
     "md5": 57,
     "sha1": 57,
-    "sha256": 4363,
-    "url": 5086
+    "sha256": 4400,
+    "url": 5091
   },
-  "generated_at": "2026-10-04T18:46:36Z",
+  "generated_at": "2026-10-04T18:56:26Z",
   "latest_run": {
     "errors": {},
     "feeds": {
@@ -47,17 +47,17 @@
       "feodo": 5,
       "malwarebazaar": 1085,
       "openphish": 300,
-      "threatfox": 11236,
+      "threatfox": 11205,
       "tor": 8538,
       "urlhaus": 5000
     },
-    "fetched": 27078,
-    "finished_at": "2026-10-04T18:46:36Z",
-    "new": 28,
+    "fetched": 27047,
+    "finished_at": "2026-10-04T18:56:26Z",
+    "new": 42,
     "pruned": 0,
-    "started_at": "2026-10-04T18:46:23Z",
-    "total": 25883,
-    "updated": 25681
+    "started_at": "2026-10-04T18:56:17Z",
+    "total": 25925,
+    "updated": 25643
   },
-  "total": 25883
+  "total": 25925
 }
