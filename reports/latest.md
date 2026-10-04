@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-04
 
-**Window:** last 7 days · **Generated:** 2026-10-04T17:21:21Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-04T17:54:15Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 23409 |
-| New in window | 23409 |
+| Indicators tracked | 23488 |
+| New in window | 23488 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 27 |
 
@@ -15,17 +15,17 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 11197 | ok |
+| threatfox | 11211 | ok |
 | tor | 8536 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 8270 | 8270 |
-| url | 4766 | 4766 |
-| domain | 4358 | 4358 |
-| sha256 | 3255 | 3255 |
+| ipv4 | 8271 | 8271 |
+| url | 4775 | 4775 |
+| domain | 4385 | 4385 |
+| sha256 | 3297 | 3297 |
 | ipv6 | 2646 | 2646 |
 | md5 | 57 | 57 |
 | sha1 | 57 | 57 |
@@ -67,14 +67,14 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
 | Unknown Loader | 2644 | 2644 | — |
-| Mirai | 1939 | 1939 | T1498, T1071.001 |
-| Cobalt Strike | 1225 | 1225 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| Mirai | 1979 | 1979 | T1498, T1071.001 |
+| Cobalt Strike | 1226 | 1226 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
 | AsyncRAT | 1190 | 1190 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Unknown malware | 432 | 432 | — |
 | IClickFix | 329 | 329 | — |
 | PureRAT | 326 | 326 | — |
 | AdaptixC2 | 237 | 237 | — |
-| ClearFake | 204 | 204 | — |
+| ClearFake | 231 | 231 | — |
 | Unknown Stealer | 166 | 166 | — |
 | Vidar | 153 | 153 | T1555, T1071.001, T1567 |
 | Unknown RAT | 132 | 132 | — |
@@ -91,22 +91,22 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 21496 |
-| T1105 | Ingress Tool Transfer | command-and-control | 5967 |
-| T1498 | Network Denial of Service | impact | 4999 |
-| T1573 | Encrypted Channel | command-and-control | 3467 |
-| T1056.001 | Keylogging | collection, credential-access | 1862 |
-| T1566.001 | Spearphishing Attachment | initial-access | 1560 |
+| T1071.001 | Web Protocols | command-and-control | 21570 |
+| T1105 | Ingress Tool Transfer | command-and-control | 5978 |
+| T1498 | Network Denial of Service | impact | 5044 |
+| T1573 | Encrypted Channel | command-and-control | 3468 |
+| T1056.001 | Keylogging | collection, credential-access | 1863 |
+| T1566.001 | Spearphishing Attachment | initial-access | 1561 |
 | T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 1423 |
 | T1113 | Screen Capture | collection | 1404 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1340 |
-| T1090 | Proxy | command-and-control | 1252 |
-| T1059.001 | PowerShell | execution | 1237 |
-| T1555 | Credentials from Password Stores | credential-access | 490 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 428 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1341 |
+| T1090 | Proxy | command-and-control | 1253 |
+| T1059.001 | PowerShell | execution | 1238 |
+| T1555 | Credentials from Password Stores | credential-access | 491 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 429 |
 | T1552.001 | Credentials In Files | credential-access | 307 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 270 |
-| T1204.002 | Malicious File | execution | 270 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 271 |
+| T1204.002 | Malicious File | execution | 271 |
 | T1041 | Exfiltration Over C2 Channel | exfiltration | 115 |
 | T1059.005 | Visual Basic | execution | 41 |
 | T1566 | Phishing | initial-access | 7 |
@@ -123,31 +123,31 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
-| `772da74caf28a60eac05e19bba793d81d9d9a91e3ff14166fc13958264ee2eb3` | sha256 | Mirai | threatfox | 2026-10-04T16:47:05Z | 100 |
-| `b5651950e650267884e0797d2871ff52c44fa5a965ab134f6815cfaeb2981a6d` | sha256 | Mirai | threatfox | 2026-10-04T16:46:59Z | 100 |
-| `3ff45f0989e79e14152380f9d7dc77dbbbb0045a7e929aece34dfa7e82fa86da` | sha256 | Mirai | threatfox | 2026-10-04T16:46:57Z | 100 |
-| `4d04a95bbc8dd80f6cf431519c0f408adbdfa6b548405148c97c1b1ded46a295` | sha256 | Mirai | threatfox | 2026-10-04T16:46:56Z | 100 |
-| `5f6abef21d17243af8a2c2e8172e225b2f161790b937ac20e998a47a68b606db` | sha256 | Mirai | threatfox | 2026-10-04T16:46:55Z | 100 |
-| `1753a6655047fa98523d11ee29b22035be78dde8c12c2bf7f0c832936ca4ec73` | sha256 | Mirai | threatfox | 2026-10-04T16:46:54Z | 100 |
-| `0424c93f0368bb41cdcf6aa577262a9155ddf0f13dc0dfaddc2bdc810719d804` | sha256 | Mirai | threatfox | 2026-10-04T16:46:53Z | 100 |
-| `8a9a141f0f9651ff636f1082bd09177a77cca705dc49ea8e52bce2ea0915a91a` | sha256 | Mirai | threatfox | 2026-10-04T16:46:52Z | 100 |
-| `d98073aff0574ff563679d1dfa2c3b81c7c7e92eed337a83f78eeceadfc7d8cd` | sha256 | Mirai | threatfox | 2026-10-04T16:46:51Z | 100 |
-| `d08c7e654cc02a64d08ef113e7141c55a27e143c1ad0c5493e35f204de2b2561` | sha256 | Mirai | threatfox | 2026-10-04T16:46:50Z | 100 |
-| `32c87d6a1bd9fd87e9ea33bcd6d41ecc8145741b718bd11ce97bd38a0d54d0c4` | sha256 | Mirai | threatfox | 2026-10-04T16:46:49Z | 100 |
-| `55a5a6c52925d59621dadd70a5a80f54e24e54f99e4d587a19a16dcf992fdf85` | sha256 | Mirai | threatfox | 2026-10-04T16:46:48Z | 100 |
-| `91065c82c2db1ee6fcb0aca51b6fbf189913d4082f9be6cf97422010633b7cd6` | sha256 | Mirai | threatfox | 2026-10-04T16:46:47Z | 100 |
-| `564f1ed135185a33839ce1bce39fe409fc0219b313ab4e007ac6b4ff0608e7e6` | sha256 | Mirai | threatfox | 2026-10-04T16:46:39Z | 100 |
-| `8ea5fe9dba1fc6f845f8ee1b5697733b04d96d638b79ed5f275d8d47bfbd591d` | sha256 | Mirai | threatfox | 2026-10-04T16:46:38Z | 100 |
-| `31edb8dedf393ccf149f508a7031da33d21ce8b7bc9cd8865e6948738bb92151` | sha256 | Mirai | threatfox | 2026-10-04T16:46:37Z | 100 |
-| `806385c4d1ce5fb675357095cb07a81e0a0aebe4962b66e5422e0000945c149d` | sha256 | Mirai | threatfox | 2026-10-04T16:46:36Z | 100 |
-| `672fc7c9c852ff6678604d09ff94c763f1256eeb16d9c0e2e676ecbd28a67e32` | sha256 | Mirai | threatfox | 2026-10-04T16:46:34Z | 100 |
-| `decd05faa551bbe6233cc69704a8d9b71dac11f373fe38b6b39bd31612dc13df` | sha256 | Mirai | threatfox | 2026-10-04T16:46:33Z | 100 |
-| `ab72c44f7871d30726e85477e4a692a6ad5f0a428582a89e22fc107fef9f2b25` | sha256 | Mirai | threatfox | 2026-10-04T16:46:32Z | 100 |
-| `0d639f3022035a5da5081074b2f19f1d6bac7b16a73bffa691c59fb0440c15c8` | sha256 | Mirai | threatfox | 2026-10-04T16:46:30Z | 100 |
-| `dfba50b6cba1167e2720b9efff27b352730d85981154d685c27456bb51e71a78` | sha256 | Mirai | threatfox | 2026-10-04T16:46:29Z | 100 |
-| `1ef61d490483af2715af8889cca733804be3cfae351a6170a36a827e4046207e` | sha256 | Mirai | threatfox | 2026-10-04T16:46:28Z | 100 |
-| `6c325dd1fd740fbbbc566ad1a21d1bbb2be46e1ec5f2b4e7539fd5a5760e22b4` | sha256 | Mirai | threatfox | 2026-10-04T16:46:27Z | 100 |
-| `fb1feb800d84d34cb1a3b1bf9980320bb56c175be3d0f347415072c4d3cfefe1` | sha256 | Mirai | threatfox | 2026-10-04T16:46:25Z | 100 |
+| `ecb767b39fd44b5a1d469ef8dd0f5ae4184b517c9a582ad07ba0e10105d21a33` | sha256 | Mirai | threatfox | 2026-10-04T17:46:55Z | 100 |
+| `9709f5f5bd7b670a2a79d309c1110b25ffe81a5b06aaf90dd0a3a3701907a046` | sha256 | Mirai | threatfox | 2026-10-04T17:46:54Z | 100 |
+| `54e5d84aee4855a9439ce57f0785d89d640e4d56976d4890feda43883bfee9c4` | sha256 | Mirai | threatfox | 2026-10-04T17:46:53Z | 100 |
+| `2d468615ebd35f201bf225e52012cffe42266635b30d6dac9eff9e58d633d3cb` | sha256 | Mirai | threatfox | 2026-10-04T17:46:52Z | 100 |
+| `5a8910855f365b70364209bdd4c5071dd3ccc592d6da572d8d326511c0bb123f` | sha256 | Mirai | threatfox | 2026-10-04T17:46:51Z | 100 |
+| `3d8e1ed39045bc2d576496c434f073c43148f658af9e9155a5bafaf473ad0706` | sha256 | Mirai | threatfox | 2026-10-04T17:46:50Z | 100 |
+| `a28a0bae3819a7cdd9bf924db6db8149cec15ed87fc24d6897f5c04efbaa8a75` | sha256 | Mirai | threatfox | 2026-10-04T17:46:49Z | 100 |
+| `eb56b26a4b55e6d0d7405e052861bdbdafa36ada2b73ccbb1f32fe0ff6c8197f` | sha256 | Mirai | threatfox | 2026-10-04T17:46:48Z | 100 |
+| `12f663c66387fd2194d7901bf1598065e63feb5c7ca2f477419405c71188e22c` | sha256 | Mirai | threatfox | 2026-10-04T17:46:47Z | 100 |
+| `acc1de6c1d39dc050935b4eacdb1abdeb3682c54b168f6577056dcd3f963d74b` | sha256 | Mirai | threatfox | 2026-10-04T17:46:46Z | 100 |
+| `3a4cbbddf99f696161b533d410b104f2567b204156b2d61e34218a00ecac5148` | sha256 | Mirai | threatfox | 2026-10-04T17:46:45Z | 100 |
+| `e597fbb056bbea26a8f7f9b73ad104cae3c47915f13011232e6c5113b9010cc1` | sha256 | Mirai | threatfox | 2026-10-04T17:46:38Z | 100 |
+| `2b065c4fb737cb073e50ad11426ee821d2089d63b8b32e13e59192a9a6e18503` | sha256 | Mirai | threatfox | 2026-10-04T17:46:37Z | 100 |
+| `bdaf3c99c0dc9f4a9b75b30f228dd64f168de46da83546f8c3b7d93bc7298bae` | sha256 | Mirai | threatfox | 2026-10-04T17:46:35Z | 100 |
+| `e65e691c50ac86bab852ab28cc0d0fe86df4032e998ceacbbb5e615d45a7f97d` | sha256 | Mirai | threatfox | 2026-10-04T17:46:34Z | 100 |
+| `97a6efe082d0bb8814cbef7516fabf585db0a93fbae7d1ef89ec7cd55f0d794e` | sha256 | Mirai | threatfox | 2026-10-04T17:46:33Z | 100 |
+| `507a91f9c3e06ea1e0c8bdfa2891d2eb433524ca0ff5021988000bbb44639998` | sha256 | Mirai | threatfox | 2026-10-04T17:46:32Z | 100 |
+| `a7879fa112b4b5cf2a19b226e37b60df5e65ddf29ad2597b50164d0e292d7753` | sha256 | Coinminer | threatfox | 2026-10-04T17:46:31Z | 100 |
+| `50d60faa09f5c031e288d26ab6290eee301831f2dd59bb376a43dd74d07e3ad7` | sha256 | Mirai | threatfox | 2026-10-04T17:46:30Z | 100 |
+| `e53bad2278d773789d94a6a199f6ddaac0c99af05b08ce2224d1d52a15f6aa0c` | sha256 | Mirai | threatfox | 2026-10-04T17:46:28Z | 100 |
+| `18547a337812ec93e0a6ae6101811590ecf634e21076436eaea376b65d2c016e` | sha256 | Mirai | threatfox | 2026-10-04T17:46:27Z | 100 |
+| `98d76ee355dc352072c04cdf868e483c9390b01431946c1bab1d25b387ca9caa` | sha256 | Mirai | threatfox | 2026-10-04T17:46:26Z | 100 |
+| `918841b8b06eafc79cbb0dfa8586ad2da02f3e373ba1a86e0a473b518e7e8b99` | sha256 | Mirai | threatfox | 2026-10-04T17:46:25Z | 100 |
+| `c431790e6da4e89eaf62a8a70d73dc953598d787109d8c6c365038c61bcdd586` | sha256 | Mirai | threatfox | 2026-10-04T17:46:24Z | 100 |
+| `99890bb10d0cb653b009770c5fe1aeb24cd394ede9623a1463b46dc01e8d8b9f` | sha256 | Mirai | threatfox | 2026-10-04T17:46:23Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
