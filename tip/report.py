@@ -9,7 +9,19 @@ from jinja2 import Environment, FileSystemLoader
 
 from .attack import AttackMap
 from .normalize import attack_url, defang, slugify, virustotal_url
+from .scoring import ioc_risk
 from .store import Store
+
+_FEED_LABELS = {
+    "urlhaus": "URLhaus",
+    "feodo": "Feodo Tracker",
+    "threatfox": "ThreatFox",
+    "malwarebazaar": "MalwareBazaar",
+    "openphish": "OpenPhish",
+    "circl": "CIRCL MISP",
+    "tor": "Tor Project",
+    "otx": "AlienVault OTX",
+}
 
 
 def _sources(row) -> list[str]:
@@ -20,18 +32,27 @@ def _sources(row) -> list[str]:
 
 
 def _feed_health(config: dict, last_run: dict | None) -> dict:
-    enabled = [
-        name for name, opts in (config.get("feeds") or {}).items() if (opts or {}).get("enabled")
+    section = config.get("feeds") or {}
+    enabled = [name for name, opts in section.items() if (opts or {}).get("enabled")]
+    inactive = [
+        _FEED_LABELS.get(name, name)
+        for name, opts in section.items()
+        if not (opts or {}).get("enabled")
     ]
     stats = (last_run or {}).get("stats") or {}
     counts = stats.get("feeds") or {}
     errors = stats.get("errors") or {}
     feeds = [
-        {"name": name, "count": counts.get(name), "error": errors.get(name, "")}
+        {
+            "name": name,
+            "label": _FEED_LABELS.get(name, name),
+            "count": counts.get(name),
+            "error": errors.get(name, ""),
+        }
         for name in enabled
     ]
     ok = sum(1 for feed in feeds if not feed["error"])
-    return {"total": len(feeds), "ok": ok, "feeds": feeds}
+    return {"total": len(feeds), "ok": ok, "feeds": feeds, "inactive": inactive}
 
 
 def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
@@ -43,6 +64,25 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     all_rows = store.all_rows()
     new_rows = store.new_since(window_days)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    last_run = store.last_run()
+    run_stats = (last_run or {}).get("stats") or {}
+    activity = store.activity(window_days)
+
+    def _risk(row, sources: list[str]) -> dict:
+        last_seen = row["last_seen"] or None
+        if not last_seen:
+            try:
+                last_seen = row["seen_at"]
+            except (IndexError, KeyError):
+                last_seen = None
+        return ioc_risk(
+            confidence=row["confidence"] or 0,
+            sources=len(sources),
+            last_seen=last_seen,
+            has_malware=bool(row["malware"]),
+            ioc_type=row["type"],
+        )
 
     new_by_type: dict[str, int] = {}
     new_by_family: dict[str, int] = {}
@@ -83,6 +123,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         {
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
+            "risk": _risk(row, _sources(row)),
             "type": row["type"],
             "malware": row["malware"] or "",
             "sources": _sources(row),
@@ -130,12 +171,14 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             technique_rows.setdefault(technique, []).append(row)
 
     def _browse_entry(row) -> dict:
+        sources = _sources(row)
         return {
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
+            "risk": _risk(row, sources),
             "type": row["type"],
             "malware": row["malware"] or "",
-            "sources": _sources(row),
+            "sources": sources,
             "confidence": row["confidence"],
             "first_seen": row["first_seen"] or "",
         }
@@ -179,7 +222,28 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             }
         )
 
-    last_run = store.last_run()
+    # IOC explorer index: risk-ranked rows for the client-side search page
+    scored = []
+    for row in all_rows:
+        sources = _sources(row)
+        risk = _risk(row, sources)
+        scored.append((risk["score"], risk["level"], row, sources))
+    scored.sort(key=lambda item: (-item[0], str(item[2]["value"])))
+    explorer_cap = 10000
+    ioc_index = [
+        {
+            "v": defang(row["value"]),
+            "t": row["type"],
+            "r": score,
+            "l": level,
+            "c": row["confidence"],
+            "m": row["malware"] or "",
+            "s": ", ".join(sources),
+            "f": (row["first_seen"] or "")[:10],
+        }
+        for score, level, row, sources in scored[:explorer_cap]
+    ]
+
     return {
         "generated_at": now,
         "generated_date": now[:10],
@@ -188,9 +252,18 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         "totals": {
             "total": store.total(),
             "new": len(new_rows),
+            "new_run": int(run_stats.get("new") or 0),
+            "updated_run": int(run_stats.get("updated") or 0),
+            "pruned_run": int(run_stats.get("pruned") or 0),
+            "high_confidence": store.count_confidence(80),
             "families": len(families),
             "coverage": len(coverage),
+            "activity_new": activity["new"],
+            "activity_updated": activity["updated"],
+            "activity_pruned": activity["pruned"],
+            "activity_runs": activity["runs"],
         },
+        "activity": activity,
         "feed_health": _feed_health(config, last_run),
         "by_type": by_type,
         "by_source": [{"source": s, "count": c} for s, c in store.counts_by_source()],
@@ -199,6 +272,10 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
         "notable": notable,
         "tor": tor,
         "browse": {"types": browse_types, "families": browse_families, "techniques": browse_techniques},
+        "ioc_index": ioc_index,
+        "ioc_index_total": store.total(),
+        "ioc_index_truncated": store.total() > explorer_cap,
+        "explorer_types": [item["type"] for item in by_type],
         "last_run": last_run,
     }
 

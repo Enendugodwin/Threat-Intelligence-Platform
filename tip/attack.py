@@ -55,7 +55,17 @@ class AttackMap:
         return []
 
     def techniques_for(self, malware: str | None, tags, ioc_type: str | None) -> list[str]:
+        return self.classification(malware, tags, ioc_type)[0]
+
+    def classification(self, malware: str | None, tags, ioc_type: str | None) -> tuple[list[str], str]:
+        """Return ``(techniques, basis)`` where basis is family|tag|heuristic|none.
+
+        The basis makes evidence strength visible: family mappings are the
+        strongest signal, regex tag rules are inferred, and the configured
+        ``default_techniques`` are heuristics applied to bare network IOCs.
+        """
         found: set[str] = set(self.family_techniques(malware))
+        basis = "family" if found else ""
         tag_list = [str(t) for t in (tags or [])]
 
         if not found:
@@ -63,16 +73,24 @@ class AttackMap:
                 t = tag.strip().lower()
                 if t in self.families:
                     found.update(self.families[t])
+                    basis = basis or "tag"
 
+        tag_hits = False
         blob = " ".join(tag_list)
         for rx, techniques in self.tag_rules:
             if rx.search(blob):
                 found.update(techniques)
+                tag_hits = True
+        if tag_hits and not basis:
+            basis = "tag"
 
         if not found and ioc_type in ("domain", "url", "ipv4", "ipv6"):
             found.update(self.default_techniques)
+            basis = "heuristic"
 
-        return sorted(found)
+        if not found:
+            basis = "none"
+        return sorted(found), basis
 
     def name(self, technique_id: str) -> str:
         return (self.techniques.get(technique_id) or {}).get("name", technique_id)
@@ -82,17 +100,34 @@ class AttackMap:
 
     # -- aggregation -------------------------------------------------------
     def coverage(self, rows) -> dict[str, dict]:
-        """Count IOCs per technique across the given rows."""
+        """Count IOCs per technique, split by evidence basis.
+
+        Entries carry ``count`` (all), ``primary`` (family + tag evidence) and
+        ``basis`` counts so heuristics can be excluded from the headline number.
+        Sorted by primary evidence first.
+        """
         counts: dict[str, dict] = {}
         for row in rows:
             try:
                 tags = json.loads(row["tags"] or "[]")
             except (TypeError, ValueError):
                 tags = []
-            for technique in self.techniques_for(row["malware"], tags, row["type"]):
+            techniques, basis = self.classification(row["malware"], tags, row["type"])
+            for technique in techniques:
                 entry = counts.setdefault(
                     technique,
-                    {"count": 0, "name": self.name(technique), "tactics": self.tactics(technique)},
+                    {
+                        "count": 0,
+                        "name": self.name(technique),
+                        "tactics": self.tactics(technique),
+                        "basis": {"family": 0, "tag": 0, "heuristic": 0},
+                    },
                 )
                 entry["count"] += 1
-        return dict(sorted(counts.items(), key=lambda kv: -kv[1]["count"]))
+                if basis in entry["basis"]:
+                    entry["basis"][basis] += 1
+        for entry in counts.values():
+            entry["primary"] = entry["basis"].get("family", 0) + entry["basis"].get("tag", 0)
+        return dict(
+            sorted(counts.items(), key=lambda kv: (-kv[1]["primary"], -kv[1]["count"], kv[0]))
+        )

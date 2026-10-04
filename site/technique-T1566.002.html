@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.162.108.133" target="_blank" rel="noopener"><code>43[.]162[.]108[.]133</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-09-21T16:01:22Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.162.114.107" target="_blank" rel="noopener"><code>43[.]162[.]114[.]107</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-09-23T04:00:59Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.162.114.240" target="_blank" rel="noopener"><code>43[.]162[.]114[.]240</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-09-24T08:02:13Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/70.153.18.45" target="_blank" rel="noopener"><code>70[.]153[.]18[.]45</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-03-04T04:01:12Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fplayuno.me%2Fdownload.php" target="_blank" rel="noopener"><code>hxxp://playuno[.]me/download[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 66</span></td>
           <td>—</td>
           <td></td>
           <td>2026-09-30T15:14:39Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F081if-vhn-vzc9-i8pos-06-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://081if-vhn-vzc9-i8pos-06-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F1f7zx-1aw-f2wa-uvk9m-30-09-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://1f7zx-1aw-f2wa-uvk9m-30-09-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F4g1du-nv1-xpyi-kl50r-04-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://4g1du-nv1-xpyi-kl50r-04-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F687649.xyz%2F" target="_blank" rel="noopener"><code>hxxp://687649[.]xyz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fafiyv10sdoqts.brightnovaspains.cfd%2F" target="_blank" rel="noopener"><code>hxxp://afiyv10sdoqts[.]brightnovaspains[.]cfd/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fallegrolokalnie.x940b8a.lat%2Foferta%2Fid-6jluwcg0-Opony-205-55-R16-Debica-Frigo-Hp-2-Nowe---4-szt%2F" target="_blank" rel="noopener"><code>hxxp://allegrolokalnie[.]x940b8a[.]lat/oferta/id-6jluwcg0-Opony-205-55-R16-Debica-Frigo-Hp-2-Nowe---4-szt/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Famar777.net%2F" target="_blank" rel="noopener"><code>hxxp://amar777[.]net/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fapp.spotifylite.online%2F" target="_blank" rel="noopener"><code>hxxp://app[.]spotifylite[.]online/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fapple.views-liveinfo.live%2Flink%2FD4ud" target="_blank" rel="noopener"><code>hxxp://apple[.]views-liveinfo[.]live/link/D4ud</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Farrow-fork.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://arrow-fork[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fashen-badge-wood.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://ashen-badge-wood[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fashen-river3.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://ashen-river3[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fazure.mandarinfranchise.com%2F" target="_blank" rel="noopener"><code>hxxp://azure[.]mandarinfranchise[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fbing-business.getnubloom.com%2F" target="_blank" rel="noopener"><code>hxxp://bing-business[.]getnubloom[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fcoast-wing.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://coast-wing[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fconnect-ledger-login.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://connect-ledger-login[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fcriucar.com%2F" target="_blank" rel="noopener"><code>hxxp://criucar[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fcryptowalletverify.com%2F" target="_blank" rel="noopener"><code>hxxp://cryptowalletverify[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdaqzelo-mpt-felquri-p4x8ka57.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://daqzelo-mpt-felquri-p4x8ka57[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdasktop-live-ladgar.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://dasktop-live-ladgar[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdocs-app-lrdgrio.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://docs-app-lrdgrio[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fdslxo-aj4-n95s-z7s4e-06-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://dslxo-aj4-n95s-z7s4e-06-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fecsjkim.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://ecsjkim[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fefghijkl.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://efghijkl[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fenhancedconfiguration.app%2Fledger.com" target="_blank" rel="noopener"><code>hxxp://enhancedconfiguration[.]app/ledger[.]com</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fenhancedconfiguration.app%2Fledger.com%2F" target="_blank" rel="noopener"><code>hxxp://enhancedconfiguration[.]app/ledger[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Feo-ledgerwllet.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://eo-ledgerwllet[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ffacebook-hack-accounts.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://facebook-hack-accounts[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ffrost-paper57.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://frost-paper57[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fgfvcd93nhwu-klmqwfyn-4d1e7f-yh855a.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://gfvcd93nhwu-klmqwfyn-4d1e7f-yh855a[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fhelp-en-ledgr.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://help-en-ledgr[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fhlp-ldgr-com-strts.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://hlp-ldgr-com-strts[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Finfomx-account-com.help%2Fa.php" target="_blank" rel="noopener"><code>hxxp://infomx-account-com[.]help/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fjen8c-tc0-4g6s-sq3ei-01-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://jen8c-tc0-4g6s-sq3ei-01-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fkemang138.com%2F" target="_blank" rel="noopener"><code>hxxp://kemang138[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fkhangcaovipham.netlify.app%2Flive" target="_blank" rel="noopener"><code>hxxp://khangcaovipham[.]netlify[.]app/live</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fkiwi-park.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://kiwi-park[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fldgrlive-login-app.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://ldgrlive-login-app[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fledgerliveapp--starthelp.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://ledgerliveapp--starthelp[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fledgerlogin-home.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://ledgerlogin-home[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fledgr-io-live-login.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://ledgr-io-live-login[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fledgr-live-legr.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://ledgr-live-legr[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Flive-ledjer-secure.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://live-ledjer-secure[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Flivetrustwalletsnycs.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://livetrustwalletsnycs[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Flocation-gpsmx-satelite.help%2Fa.php" target="_blank" rel="noopener"><code>hxxp://location-gpsmx-satelite[.]help/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Flunar-stream-copper.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://lunar-stream-copper[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fmamaivanaaofc.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxp://mamaivanaaofc[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fmandarinfranchise.com%2F" target="_blank" rel="noopener"><code>hxxp://mandarinfranchise[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fmoon-crystal115.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://moon-crystal115[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fmywhatshappp.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://mywhatshappp[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fpathdust.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://pathdust[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Frakunten-shop.com%2F" target="_blank" rel="noopener"><code>hxxp://rakunten-shop[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -667,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Frbxtrad.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://rbxtrad[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -675,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Froblox.identifcation.com%2F" target="_blank" rel="noopener"><code>hxxp://roblox[.]identifcation[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -683,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsantander.canalpuntosafe.com%2F" target="_blank" rel="noopener"><code>hxxp://santander[.]canalpuntosafe[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -691,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsecure-page-editor--twinwallsranch.replit.app%2F" target="_blank" rel="noopener"><code>hxxp://secure-page-editor--twinwallsranch[.]replit[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -699,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsecure-terezer-bridgge.wasmer.app%2F" target="_blank" rel="noopener"><code>hxxp://secure-terezer-bridgge[.]wasmer[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -707,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsecurity-server-landing-page--d0cdrlve.replit.app%2Fforgotpassword.html" target="_blank" rel="noopener"><code>hxxp://security-server-landing-page--d0cdrlve[.]replit[.]app/forgotpassword[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -715,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsecurity-server-landing-page--esusan870.replit.app%2F" target="_blank" rel="noopener"><code>hxxp://security-server-landing-page--esusan870[.]replit[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -723,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fserver-security-page--salesluchiuan.replit.app%2F" target="_blank" rel="noopener"><code>hxxp://server-security-page--salesluchiuan[.]replit[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -731,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsky.giyohap467.workers.dev%2F" target="_blank" rel="noopener"><code>hxxp://sky[.]giyohap467[.]workers[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -739,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsoporte-app-gps.us%2Fa.php" target="_blank" rel="noopener"><code>hxxp://soporte-app-gps[.]us/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -747,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsp12ct-farsik-biz-kazdor-holdel.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://sp12ct-farsik-biz-kazdor-holdel[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -755,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsp12ct-hansor-biz-fremik-zaldor.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://sp12ct-hansor-biz-fremik-zaldor[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -763,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsp33ct-vareki-biz-zanuto-pumelo.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://sp33ct-vareki-biz-zanuto-pumelo[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -771,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fsrv2013762.hstgr.cloud%2Fgty%2F" target="_blank" rel="noopener"><code>hxxp://srv2013762[.]hstgr[.]cloud/gty/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -779,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftargetavirtualtricolorenlinea-btahd4f4fzcbbqcz.westus3-01.azurewebsites.net%2F" target="_blank" rel="noopener"><code>hxxp://targetavirtualtricolorenlinea-btahd4f4fzcbbqcz[.]westus3-01[.]azurewebsites[.]net/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -787,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftiny.cc%2F8nhb101" target="_blank" rel="noopener"><code>hxxp://tiny[.]cc/8nhb101</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -795,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftokeim-cdn.lol%2Fdownload" target="_blank" rel="noopener"><code>hxxp://tokeim-cdn[.]lol/download</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -803,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftoken-cdn-acd.lol%2F" target="_blank" rel="noopener"><code>hxxp://token-cdn-acd[.]lol/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -811,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftoken-cdn-adn.xyz%2F" target="_blank" rel="noopener"><code>hxxp://token-cdn-adn[.]xyz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -819,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftoken-cdn-sg-im-ace.lol%2F" target="_blank" rel="noopener"><code>hxxp://token-cdn-sg-im-ace[.]lol/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -827,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Ftrezoo-iostt-en.framer.media%2F" target="_blank" rel="noopener"><code>hxxp://trezoo-iostt-en[.]framer[.]media/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -835,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fub2fw-49y-nnis-07urh-05-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://ub2fw-49y-nnis-07urh-05-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -843,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fuspssmartparcellocker.tech%2F" target="_blank" rel="noopener"><code>hxxp://uspssmartparcellocker[.]tech/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -851,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fvelmuri-mpt-belfavo-c9x4me61.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://velmuri-mpt-belfavo-c9x4me61[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -859,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fvonovia-immobilien-house.com%2F" target="_blank" rel="noopener"><code>hxxp://vonovia-immobilien-house[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -867,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwurenzhizuqiuchang.asiaxm.okrate.click%2F" target="_blank" rel="noopener"><code>hxxp://wurenzhizuqiuchang[.]asiaxm[.]okrate[.]click/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -875,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.azure.mandarinfranchise.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]azure[.]mandarinfranchise[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -883,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.chat-group-as-ruby.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://www[.]chat-group-as-ruby[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -891,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.claimusername-r0buxx-here.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]claimusername-r0buxx-here[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -899,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.facebook-auto-liker.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]facebook-auto-liker[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -907,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.facebook-hack-accounts.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]facebook-hack-accounts[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -915,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.facebook-verification-system4.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxp://www[.]facebook-verification-system4[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -923,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.facebook.shopweb.com.vn%2F" target="_blank" rel="noopener"><code>hxxp://www[.]facebook[.]shopweb[.]com[.]vn/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -931,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.instagram-demo.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]instagram-demo[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -939,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.jdbdkdbsosu.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]jdbdkdbsosu[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -947,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.lifestylechangelife.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]lifestylechangelife[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -955,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.livetrustwalletsnycs.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://www[.]livetrustwalletsnycs[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -963,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.mb-facebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]mb-facebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -971,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.paypal-password.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]paypal-password[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -979,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.paypal-transactions.sbs%2F" target="_blank" rel="noopener"><code>hxxp://www[.]paypal-transactions[.]sbs/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -987,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.plotddmf.weebly.com%2F" target="_blank" rel="noopener"><code>hxxp://www[.]plotddmf[.]weebly[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -995,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.roblox.com.am%2Fgames%2F11158043705%2FBaddies%3FprivateServerLinkCode%3D512042377340927045667821741765" target="_blank" rel="noopener"><code>hxxp://www[.]roblox[.]com[.]am/games/11158043705/Baddies?privateServerLinkCode=512042377340927045667821741765</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1003,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.secursalf-a.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://www[.]secursalf-a[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1011,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.slk.me%2Ff383b%2F" target="_blank" rel="noopener"><code>hxxp://www[.]slk[.]me/f383b/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1019,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.trust-wallet-login.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://www[.]trust-wallet-login[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1027,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.yon0sbl.vercel.app%2F" target="_blank" rel="noopener"><code>hxxp://www[.]yon0sbl[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1035,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fxgd0i-mdm-r16h-cvouz-04-10-2026-aa.pages.dev%2F" target="_blank" rel="noopener"><code>hxxp://xgd0i-mdm-r16h-cvouz-04-10-2026-aa[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1043,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F1url.at%2Fwww%2Froblox-users-35861715525-profile" target="_blank" rel="noopener"><code>hxxps://1url[.]at/www/roblox-users-35861715525-profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1051,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F1url.at%2Fwww%2Froblox-users-480257623554-profile" target="_blank" rel="noopener"><code>hxxps://1url[.]at/www/roblox-users-480257623554-profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1059,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F1url.at%2Fwww%2Froblox-users-480257623993-profile" target="_blank" rel="noopener"><code>hxxps://1url[.]at/www/roblox-users-480257623993-profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1067,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F758940.xyz%2F" target="_blank" rel="noopener"><code>hxxps://758940[.]xyz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1075,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Faccesmscloud-appld.us%2Fa.php" target="_blank" rel="noopener"><code>hxxps://accesmscloud-appld[.]us/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1083,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fadeebsmit.github.io%2Ffbloginpag" target="_blank" rel="noopener"><code>hxxps://adeebsmit[.]github[.]io/fbloginpag</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1091,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fadityagarad556-pixel.github.io%2Fjavascript-amazon-project%2Fcheckout.html" target="_blank" rel="noopener"><code>hxxps://adityagarad556-pixel[.]github[.]io/javascript-amazon-project/checkout[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1099,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Faman200528.github.io%2FAmazon-clone-website-using-html-css-javascript" target="_blank" rel="noopener"><code>hxxps://aman200528[.]github[.]io/Amazon-clone-website-using-html-css-javascript</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1107,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Famazonecloneprojects.netlify.app%2F" target="_blank" rel="noopener"><code>hxxps://amazonecloneprojects[.]netlify[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1115,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Farpranindustries.com%2Finternet-banking.dbs.com.sg%2F" target="_blank" rel="noopener"><code>hxxps://arpranindustries[.]com/internet-banking[.]dbs[.]com[.]sg/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1123,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fasantravels.com%2Fjp%2F%3Fnaps" target="_blank" rel="noopener"><code>hxxps://asantravels[.]com/jp/?naps</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1131,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fb6786n.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://b6786n[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1139,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fb71540238-bb74-4850-85fc-735393242525.edgeone.dev%2Faccountquality" target="_blank" rel="noopener"><code>hxxps://b71540238-bb74-4850-85fc-735393242525[.]edgeone[.]dev/accountquality</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1147,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbegin-io-trzzer-web.typedream.app%2F" target="_blank" rel="noopener"><code>hxxps://begin-io-trzzer-web[.]typedream[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1155,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbgtsegr.click%2F" target="_blank" rel="noopener"><code>hxxps://bgtsegr[.]click/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1163,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbhumika09097.github.io%2FStreaming-UI-project-%2F" target="_blank" rel="noopener"><code>hxxps://bhumika09097[.]github[.]io/Streaming-UI-project-/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1171,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbmg-agesundheitsversorgung.ink%2Fl9I4F" target="_blank" rel="noopener"><code>hxxps://bmg-agesundheitsversorgung[.]ink/l9I4F</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1179,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fchannelhub.info%2F7b8a6c73ay0238415f8ab1f9da2ke9202b1b.html" target="_blank" rel="noopener"><code>hxxps://channelhub[.]info/7b8a6c73ay0238415f8ab1f9da2ke9202b1b[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1187,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcommunity-fb1.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://community-fb1[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1195,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcriucar.com%2F__ms%2Fcommon%2Foauth2%2Fv2.0%2Fauthorize%3Fclient_id%3D4765445b-32c6-49b0-83e6-1d93765276ca%26response_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fwww.office.com%252Flandingv2%26scope%3Dopenid%2520profile%2520email%2520offline_access%26response_mode%3Dquery%26prompt%3Dlogin%26sso_reload%3Dtrue" target="_blank" rel="noopener"><code>hxxps://criucar[.]com/__ms/common/oauth2/v2[.]0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&amp;response_type=code&amp;redirect_uri=https%3A%2F%2Fwww[.]office[.]com%2Flandingv2&amp;scope=openid%20profile%20email%20offline_access&amp;response_mode=query&amp;prompt=login&amp;sso_reload=true</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1203,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcrypto-binance-guide.pages.dev%2Fen%2Fterms%2F" target="_blank" rel="noopener"><code>hxxps://crypto-binance-guide[.]pages[.]dev/en/terms/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1211,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcurly-rice-366f.michaeltaylorh5nfsr.workers.dev%2Faccount-support%2F" target="_blank" rel="noopener"><code>hxxps://curly-rice-366f[.]michaeltaylorh5nfsr[.]workers[.]dev/account-support/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1219,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fdavidco564.github.io%2Fr4w2ws2" target="_blank" rel="noopener"><code>hxxps://davidco564[.]github[.]io/r4w2ws2</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1227,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fddap-3658oyte-bancreceronline-sudo.4everland.app%2F" target="_blank" rel="noopener"><code>hxxps://ddap-3658oyte-bancreceronline-sudo[.]4everland[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1235,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fdiscord-nitro-gift-token-6jd84js83hd7.github.io%2Fdiscord.com-gift-48rgf38b46gf847erzh8%2F" target="_blank" rel="noopener"><code>hxxps://discord-nitro-gift-token-6jd84js83hd7[.]github[.]io/discord[.]com-gift-48rgf38b46gf847erzh8/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1243,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fditmeshortenworld.netlify.app%2F" target="_blank" rel="noopener"><code>hxxps://ditmeshortenworld[.]netlify[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1251,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fdroppingsoon01.livinglifeindeed.workers.dev%2F" target="_blank" rel="noopener"><code>hxxps://droppingsoon01[.]livinglifeindeed[.]workers[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1259,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Febay5678.vip%2F" target="_blank" rel="noopener"><code>hxxps://ebay5678[.]vip/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1267,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fep-il-9yju54m13kk7-htcpc7bfbrheauda.z01.azurefd.net%2FMa20cErrfb020%2Findex.html" target="_blank" rel="noopener"><code>hxxps://ep-il-9yju54m13kk7-htcpc7bfbrheauda[.]z01[.]azurefd[.]net/Ma20cErrfb020/index[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1275,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Feubb20joll-h01l.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://eubb20joll-h01l[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1283,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fex1nvo3546.5676hygh5ghg.workers.dev%2F" target="_blank" rel="noopener"><code>hxxps://ex1nvo3546[.]5676hygh5ghg[.]workers[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1291,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ff005.backblazeb2.com%2Fb2api%2Fv1%2Fb2_download_file_by_id%3FfileId%3D4_z66b3ae944e60e9eeaf0e0217_f115656a4f6919af6_d20260929_m180503_c005_v0501037_t0028_u01790705103738%23lanyn9%40d707fbfb5fc8d7fd88602da45e2c720809ec.org" target="_blank" rel="noopener"><code>hxxps://f005[.]backblazeb2[.]com/b2api/v1/b2_download_file_by_id?fileId=4_z66b3ae944e60e9eeaf0e0217_f115656a4f6919af6_d20260929_m180503_c005_v0501037_t0028_u01790705103738#lanyn9@d707fbfb5fc8d7fd88602da45e2c720809ec[.]org</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1299,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebokksecurity.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebokksecurity[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1307,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebook--br.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebook--br[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1315,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebook-247-support.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebook-247-support[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1323,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebook-logo.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebook-logo[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1331,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebook-verification-system4.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebook-verification-system4[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1339,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebook.shopweb.com.vn%2F" target="_blank" rel="noopener"><code>hxxps://facebook[.]shopweb[.]com[.]vn/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1347,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebooklogin1234.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebooklogin1234[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1355,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebooklogin7373.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://facebooklogin7373[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1363,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffacebooksecurityhelp.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://facebooksecurityhelp[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1371,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffb.bluetick-profile.cfd%2F" target="_blank" rel="noopener"><code>hxxps://fb[.]bluetick-profile[.]cfd/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1379,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffls-a2b4850e-378e-4ee9-a191-93d7f8b62727.laravel.cloud%2Findex.html" target="_blank" rel="noopener"><code>hxxps://fls-a2b4850e-378e-4ee9-a191-93d7f8b62727[.]laravel[.]cloud/index[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1387,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffrhz61ctie-h01e.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://frhz61ctie-h01e[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1395,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgaganshivarathri-coder.github.io%2FAmazon-website%2F" target="_blank" rel="noopener"><code>hxxps://gaganshivarathri-coder[.]github[.]io/Amazon-website/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1403,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgemini.anzerio.ddns.net%2F" target="_blank" rel="noopener"><code>hxxps://gemini[.]anzerio[.]ddns[.]net/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1411,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgo-page-5269-b2396a2en-vercel-project-key.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://go-page-5269-b2396a2en-vercel-project-key[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1419,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhttpps-www--roblox.co%2Fusers%2F245197908%2Fprofile" target="_blank" rel="noopener"><code>hxxps://httpps-www--roblox[.]co/users/245197908/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1427,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhttps--www--roblox.com%2Fusers%2F475726061%2Fprofile" target="_blank" rel="noopener"><code>hxxps://https--www--roblox[.]com/users/475726061/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1435,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fidentifcation.com%2F" target="_blank" rel="noopener"><code>hxxps://identifcation[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1443,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fig.fbping.com%2F" target="_blank" rel="noopener"><code>hxxps://ig[.]fbping[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1451,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fikfa48lwtw-h01w.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://ikfa48lwtw-h01w[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1459,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fimtoken.xin%2F" target="_blank" rel="noopener"><code>hxxps://imtoken[.]xin/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1467,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fincandescent-kashata-42dda9.netlify.app%2F" target="_blank" rel="noopener"><code>hxxps://incandescent-kashata-42dda9[.]netlify[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1475,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finfo-satelite-maps.help%2Fa.php" target="_blank" rel="noopener"><code>hxxps://info-satelite-maps[.]help/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1483,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-com-ig.github.io%2Finstagram-com.github.io" target="_blank" rel="noopener"><code>hxxps://instagram-com-ig[.]github[.]io/instagram-com[.]github[.]io</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1491,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-comig.github.io%2F" target="_blank" rel="noopener"><code>hxxps://instagram-comig[.]github[.]io/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1499,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-demo.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://instagram-demo[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1507,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-nu-six.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://instagram-nu-six[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1515,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-users.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://instagram-users[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1523,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fio-ledger-lives.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://io-ledger-lives[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1531,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fiqcj59ikxl-h01l.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://iqcj59ikxl-h01l[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1539,6 +1716,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fjdbdkdbsosu.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://jdbdkdbsosu[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1547,6 +1725,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fjxqx11jsqf-h01f.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://jxqx11jsqf-h01f[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1555,6 +1734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkailash-sarma.github.io%2FSpotify-Clone" target="_blank" rel="noopener"><code>hxxps://kailash-sarma[.]github[.]io/Spotify-Clone</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1563,6 +1743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkanavk-dev.github.io%2Famazon-clone%2F" target="_blank" rel="noopener"><code>hxxps://kanavk-dev[.]github[.]io/amazon-clone/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1571,6 +1752,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkv-cont-blared.pages.dev%2Fhelp%2Fcontact%2F138487865986502" target="_blank" rel="noopener"><code>hxxps://kv-cont-blared[.]pages[.]dev/help/contact/138487865986502</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1579,6 +1761,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkv-cont-blared.pages.dev%2Fhelp%2Fcontact%2F317928204491396%2525252CN%2FA%2525252Chttps%2525253A%2Fopenphis%2F" target="_blank" rel="noopener"><code>hxxps://kv-cont-blared[.]pages[.]dev/help/contact/317928204491396%25252CN/A%25252Chttps%25253A/openphis/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1587,6 +1770,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkv-cont-blared.pages.dev%2Fhelp%2Fcontact%2F317928204491396%25252CN%2FA%25252Chttps%25253A%2Fopenphis%2F" target="_blank" rel="noopener"><code>hxxps://kv-cont-blared[.]pages[.]dev/help/contact/317928204491396%252CN/A%252Chttps%253A/openphis/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1595,6 +1779,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkv-cont-blared.pages.dev%2Fhelp%2Fcontact%2F324427776006730" target="_blank" rel="noopener"><code>hxxps://kv-cont-blared[.]pages[.]dev/help/contact/324427776006730</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1603,6 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkv-cont-blared.pages.dev%2Fhelp%2Fcontact%2F554033170734771" target="_blank" rel="noopener"><code>hxxps://kv-cont-blared[.]pages[.]dev/help/contact/554033170734771</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1611,6 +1797,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fledger-live-cloud-deesktop.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://ledger-live-cloud-deesktop[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1619,6 +1806,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Flegder.desktop-wallet.io%2F%3Fverified%3D1%26src%3Dtoplinecu.com%26ref%3D%2Fledger-live-desktop-app-for-secure-crypto-management-l2509t%2F" target="_blank" rel="noopener"><code>hxxps://legder[.]desktop-wallet[.]io/?verified=1&amp;src=toplinecu[.]com&amp;ref=/ledger-live-desktop-app-for-secure-crypto-management-l2509t/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1627,6 +1815,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Flive-desktop--ledgr.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://live-desktop--ledgr[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1635,6 +1824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fluxazure.luxe%2Fdocx3nfile" target="_blank" rel="noopener"><code>hxxps://luxazure[.]luxe/docx3nfile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1643,6 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmanage-desktop-ledgr.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://manage-desktop-ledgr[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1651,6 +1842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmanikandan-moto.github.io%2Fnetflixwebpage" target="_blank" rel="noopener"><code>hxxps://manikandan-moto[.]github[.]io/netflixwebpage</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1659,6 +1851,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmetasmsckwlt.gitbook.io%2F" target="_blank" rel="noopener"><code>hxxps://metasmsckwlt[.]gitbook[.]io/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1667,6 +1860,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmfxk85hxpz-h01z.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://mfxk85hxpz-h01z[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1675,6 +1869,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmicrosoftword.programgridsoft.com%2F%3Fyclid%3D10483237800588345343" target="_blank" rel="noopener"><code>hxxps://microsoftword[.]programgridsoft[.]com/?yclid=10483237800588345343</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1683,6 +1878,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmtoken-cdn-hk.lol%2Fdownload" target="_blank" rel="noopener"><code>hxxps://mtoken-cdn-hk[.]lol/download</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1691,6 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmtoken-cdn-sg-im.lol%2F" target="_blank" rel="noopener"><code>hxxps://mtoken-cdn-sg-im[.]lol/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1699,6 +1896,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmyexam.thedivinegroup.in%2Fd4b24bcb" target="_blank" rel="noopener"><code>hxxps://myexam[.]thedivinegroup[.]in/d4b24bcb</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1707,6 +1905,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fmymidasbuy.game-en.com%2F" target="_blank" rel="noopener"><code>hxxps://mymidasbuy[.]game-en[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1715,6 +1914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fneda-facebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://neda-facebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1723,6 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnke.pages.dev%2F%2F%2F%2F%2522https%3A%2F%2F%2F%2Ft.myvisualiq.net%2F%2Fimpression_pixel%3Fr%3D739915162%26et%3Di%26ago%3D212%26ao%3D546%26aca%3D" target="_blank" rel="noopener"><code>hxxps://nke[.]pages[.]dev////%22https:////t[.]myvisualiq[.]net//impression_pixel?r=739915162&amp;et=i&amp;ago=212&amp;ao=546&amp;aca=</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1731,6 +1932,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnovafy.buzz%2Fuy0ca%2Findex.html" target="_blank" rel="noopener"><code>hxxps://novafy[.]buzz/uy0ca/index[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1739,6 +1941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fnyih73gfxr-h01r.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://nyih73gfxr-h01r[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1747,6 +1950,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fofficialgangwaranmol.github.io%2Famazone_clone%2F" target="_blank" rel="noopener"><code>hxxps://officialgangwaranmol[.]github[.]io/amazone_clone/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1755,6 +1959,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fohuy34uwgb-h01b.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://ohuy34uwgb-h01b[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1763,6 +1968,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Foo365756.com%2F" target="_blank" rel="noopener"><code>hxxps://oo365756[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1771,6 +1977,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Foyzc84rgsu-h01u.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://oyzc84rgsu-h01u[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1779,6 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpaypal-password.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://paypal-password[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1787,6 +1995,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpichincha--credito2020.replit.app%2F" target="_blank" rel="noopener"><code>hxxps://pichincha--credito2020[.]replit[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1795,6 +2004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fplotddmf.weebly.com%2F" target="_blank" rel="noopener"><code>hxxps://plotddmf[.]weebly[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1803,6 +2013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fqvpo06acya-h01a.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://qvpo06acya-h01a[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1811,6 +2022,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frahil-frontend.github.io%2Fecommerce-ui-demo%2F" target="_blank" rel="noopener"><code>hxxps://rahil-frontend[.]github[.]io/ecommerce-ui-demo/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1819,6 +2031,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frbcode.net%2Fv%2Fe305c0aade4caa1aa177998ddb02d1f0" target="_blank" rel="noopener"><code>hxxps://rbcode[.]net/v/e305c0aade4caa1aa177998ddb02d1f0</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1827,6 +2040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frenuiltr.opik.net%2Fadmin%2FAR24%2F" target="_blank" rel="noopener"><code>hxxps://renuiltr[.]opik[.]net/admin/AR24/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1835,6 +2049,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frobinhoiodlogin.webador.com%2F" target="_blank" rel="noopener"><code>hxxps://robinhoiodlogin[.]webador[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1843,6 +2058,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Froblox.ly%2Fusers%2F7302125765%2Fprofile" target="_blank" rel="noopener"><code>hxxps://roblox[.]ly/users/7302125765/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1851,6 +2067,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frrqp28nzen-h01n.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://rrqp28nzen-h01n[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1859,6 +2076,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frwxm66wmqk-h01k.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://rwxm66wmqk-h01k[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1867,6 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fs.team-s.my%2Fp%2Fahyz-azsw%2Fvepfmwgj" target="_blank" rel="noopener"><code>hxxps://s[.]team-s[.]my/p/ahyz-azsw/vepfmwgj</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1875,6 +2094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fs4w.in%2FqNrlF" target="_blank" rel="noopener"><code>hxxps://s4w[.]in/qNrlF</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1883,6 +2103,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fs4w.in%2Froblox-com-uk-users-8928613773-profile" target="_blank" rel="noopener"><code>hxxps://s4w[.]in/roblox-com-uk-users-8928613773-profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1891,6 +2112,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecurity-server-landing-page--d0cdrlve.replit.app%2Fforgotpasswo" target="_blank" rel="noopener"><code>hxxps://security-server-landing-page--d0cdrlve[.]replit[.]app/forgotpasswo</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1899,6 +2121,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecurity-server-landing-page--d0cdrlve.replit.app%2Fforgotpassword.html%2F" target="_blank" rel="noopener"><code>hxxps://security-server-landing-page--d0cdrlve[.]replit[.]app/forgotpassword[.]html/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1907,6 +2130,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecurity-server-website--resultbox63.replit.app%2F%23tanelx%40776a1fcfc88ca9fd7938a39478fbab114a4e.net" target="_blank" rel="noopener"><code>hxxps://security-server-website--resultbox63[.]replit[.]app/#tanelx@776a1fcfc88ca9fd7938a39478fbab114a4e[.]net</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1915,6 +2139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecursalf-a.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://secursalf-a[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1923,6 +2148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsfw9uhfvw11.zdqttzdqydfdc33.vip%2F" target="_blank" rel="noopener"><code>hxxps://sfw9uhfvw11[.]zdqttzdqydfdc33[.]vip/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1931,6 +2157,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fshoutout.wix.com%2Fso%2F0aQ3JMSK8%2Fc%3Fw%3D2mifGHIwkTCQ7jIay8_OkZyZ71Q5rt3e8tInsDwTqv4.eyJ1IjoiaHR0cHM6Ly9zYWludGdlb3JnZW1hbmFnZW1lbnQuY29tL29ubGluZS5odG1sIiwiciI6ImIxODRmYzEwLTk0ODctNDBmOS1hNTM1LTk2YmEzOGU2NjE5OCIsIm0iOiJtYWlsIiwiYyI6IjRhYmQwZmZkLWQ4MzctNDlhOS1iODA4LTMwNmRlOTFlOTlmMyJ9" target="_blank" rel="noopener"><code>hxxps://shoutout[.]wix[.]com/so/0aQ3JMSK8/c?w=2mifGHIwkTCQ7jIay8_OkZyZ71Q5rt3e8tInsDwTqv4[.]eyJ1IjoiaHR0cHM6Ly9zYWludGdlb3JnZW1hbmFnZW1lbnQuY29tL29ubGluZS5odG1sIiwiciI6ImIxODRmYzEwLTk0ODctNDBmOS1hNTM1LTk2YmEzOGU2NjE5OCIsIm0iOiJtYWlsIiwiYyI6IjRhYmQwZmZkLWQ4MzctNDlhOS1iODA4LTMwNmRlOTFlOTlmMyJ9</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1939,6 +2166,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsketchawesome.github.io%2FInstagram" target="_blank" rel="noopener"><code>hxxps://sketchawesome[.]github[.]io/Instagram</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1947,6 +2175,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsp31ct-veruko-biz-pavri-zemol.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://sp31ct-veruko-biz-pavri-zemol[.]pages[.]dev/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1955,6 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fspotifypremiumz.net%2F" target="_blank" rel="noopener"><code>hxxps://spotifypremiumz[.]net/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1963,6 +2193,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fspppacvxxrirenelsi.flazio.com%2F" target="_blank" rel="noopener"><code>hxxps://spppacvxxrirenelsi[.]flazio[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1971,6 +2202,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsu-facebook.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://su-facebook[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1979,6 +2211,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsupportms-ldcloud.us%2Fa.php" target="_blank" rel="noopener"><code>hxxps://supportms-ldcloud[.]us/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1987,6 +2220,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsurl.li%2Facigbr" target="_blank" rel="noopener"><code>hxxps://surl[.]li/acigbr</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -1995,6 +2229,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftiny-daifuku-f429b1.netlify.app%2F" target="_blank" rel="noopener"><code>hxxps://tiny-daifuku-f429b1[.]netlify[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2003,6 +2238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fto.lk%2FfDBTxu" target="_blank" rel="noopener"><code>hxxps://to[.]lk/fDBTxu</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2011,6 +2247,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fto.lk%2FpcXfuS" target="_blank" rel="noopener"><code>hxxps://to[.]lk/pcXfuS</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2019,6 +2256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftoken-cdn-xgu.xyz%2F" target="_blank" rel="noopener"><code>hxxps://token-cdn-xgu[.]xyz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2027,6 +2265,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftokenim-cdn-vip.lol%2F" target="_blank" rel="noopener"><code>hxxps://tokenim-cdn-vip[.]lol/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2035,6 +2274,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftopshopma.com%2F" target="_blank" rel="noopener"><code>hxxps://topshopma[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2043,6 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2051,6 +2292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2Fassets" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/assets</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2059,6 +2301,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2Fnfts" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/nfts</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2067,6 +2310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2Fsignin" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/signin</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2075,6 +2319,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2Fsignup" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/signup</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2083,6 +2328,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftrust-wallet-login.vercel.app%2Fstaking" target="_blank" rel="noopener"><code>hxxps://trust-wallet-login[.]vercel[.]app/staking</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2091,6 +2337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fu.to%2FXgTYIg" target="_blank" rel="noopener"><code>hxxps://u[.]to/XgTYIg</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2099,6 +2346,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fu.to%2Froblox-com-users-235244352-profile-ynsuig%2FdTPYIg" target="_blank" rel="noopener"><code>hxxps://u[.]to/roblox-com-users-235244352-profile-ynsuig/dTPYIg</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2107,6 +2355,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fuojr70clzl-h01l.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://uojr70clzl-h01l[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2115,6 +2364,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Furlz.li%2F8487cd56" target="_blank" rel="noopener"><code>hxxps://urlz[.]li/8487cd56</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2123,6 +2373,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fvmi3614315.contaboserver.net%2Fvao%2Fstart%2Fnext%2Fmsg.php" target="_blank" rel="noopener"><code>hxxps://vmi3614315[.]contaboserver[.]net/vao/start/next/msg[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2131,6 +2382,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fvxv-securestanadradbankcoza-z7ma1m-10a930-139-59-0-44.sslip.io%2F" target="_blank" rel="noopener"><code>hxxps://vxv-securestanadradbankcoza-z7ma1m-10a930-139-59-0-44[.]sslip[.]io/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2139,6 +2391,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwaplusapks.org%2F" target="_blank" rel="noopener"><code>hxxps://waplusapks[.]org/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2147,6 +2400,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwells99.github.io%2FpageAlunos%2F" target="_blank" rel="noopener"><code>hxxps://wells99[.]github[.]io/pageAlunos/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2155,6 +2409,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwhaak.shop%2F" target="_blank" rel="noopener"><code>hxxps://whaak[.]shop/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2163,6 +2418,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwhatsappwebred.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://whatsappwebred[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2171,6 +2427,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwho125-xcgou-importe-r5uh.bolt.host%2F%23miren1%405d4fbbb2e9510ea5d87f208e81859a465deb.com" target="_blank" rel="noopener"><code>hxxps://who125-xcgou-importe-r5uh[.]bolt[.]host/#miren1@5d4fbbb2e9510ea5d87f208e81859a465deb[.]com</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2179,6 +2436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwpotop.cyou%2F" target="_blank" rel="noopener"><code>hxxps://wpotop[.]cyou/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2187,6 +2445,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwrqd49qxhf-h01f.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://wrqd49qxhf-h01f[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2195,6 +2454,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwwebemd.com%2F" target="_blank" rel="noopener"><code>hxxps://wwebemd[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2203,6 +2463,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww-login-encontrarcol.us%2Fa.php" target="_blank" rel="noopener"><code>hxxps://www-login-encontrarcol[.]us/a[.]php</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2211,6 +2472,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.365securitydevices.com%2FAccountSelection%2Fc%3Fc%3Df8f6ce03-012a-417c-a9ca-e436177ae65a" target="_blank" rel="noopener"><code>hxxps://www[.]365securitydevices[.]com/AccountSelection/c?c=f8f6ce03-012a-417c-a9ca-e436177ae65a</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2219,6 +2481,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.365securitydevices.com%2FAccountSelectionPage%2Fc%3Fc%3Df8f6ce03-012a-417c-a9ca-e436177ae65a-288e990e-8514-499a-b65c-8a78577a1fb6" target="_blank" rel="noopener"><code>hxxps://www[.]365securitydevices[.]com/AccountSelectionPage/c?c=f8f6ce03-012a-417c-a9ca-e436177ae65a-288e990e-8514-499a-b65c-8a78577a1fb6</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2227,6 +2490,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.amzjob.biz%2F" target="_blank" rel="noopener"><code>hxxps://www[.]amzjob[.]biz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2235,6 +2499,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.amzjob.biz%2Findex%2Flogin%2Findex.html" target="_blank" rel="noopener"><code>hxxps://www[.]amzjob[.]biz/index/login/index[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2243,6 +2508,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.brad-facebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]brad-facebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2251,6 +2517,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.facebokksecurity.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]facebokksecurity[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2259,6 +2526,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.facebook--br.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]facebook--br[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2267,6 +2535,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.facebook-247-support.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]facebook-247-support[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2275,6 +2544,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.facebook-logo.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]facebook-logo[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2283,6 +2553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.fakebooklogin.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]fakebooklogin[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2291,6 +2562,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.hentai2read.asia%2F" target="_blank" rel="noopener"><code>hxxps://www[.]hentai2read[.]asia/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2299,6 +2571,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.instagram-nu-six.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://www[.]instagram-nu-six[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2307,6 +2580,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.instagram-users.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://www[.]instagram-users[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2315,6 +2589,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.instagramloginpassword.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]instagramloginpassword[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2323,6 +2598,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.jo-facebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]jo-facebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2331,6 +2607,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.loginmyfacebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]loginmyfacebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2339,6 +2616,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.losmejoresexitosdericardoarjona.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://www[.]losmejoresexitosdericardoarjona[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2347,6 +2625,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.mitrakerjanasional.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]mitrakerjanasional[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2355,6 +2634,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.myallegroshop.cc%2F" target="_blank" rel="noopener"><code>hxxps://www[.]myallegroshop[.]cc/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2363,6 +2643,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.online-facebook-privacy.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]online-facebook-privacy[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2371,6 +2652,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.paypal-transactions.sbs%2Fshop%2Fcheckout.html" target="_blank" rel="noopener"><code>hxxps://www[.]paypal-transactions[.]sbs/shop/checkout[.]html</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2379,6 +2661,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.raifijal.vercel.app%2F" target="_blank" rel="noopener"><code>hxxps://www[.]raifijal[.]vercel[.]app/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2387,6 +2670,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.rbxtrad.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]rbxtrad[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2395,6 +2679,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.robinhoiodlogin.webador.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]robinhoiodlogin[.]webador[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2403,6 +2688,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.robiox.com.gr%2Fgames%2F2753915549%2FBlox-Fruits%3FprivateServerLinkCode%3D81917512188932740109713393981000" target="_blank" rel="noopener"><code>hxxps://www[.]robiox[.]com[.]gr/games/2753915549/Blox-Fruits?privateServerLinkCode=81917512188932740109713393981000</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2411,6 +2697,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.robiox.com.py%2Fgames%2F123706682177619%2FScenery-Experience%3FprivateServerLinkCode%3D976444421440930512775663042602" target="_blank" rel="noopener"><code>hxxps://www[.]robiox[.]com[.]py/games/123706682177619/Scenery-Experience?privateServerLinkCode=976444421440930512775663042602</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2419,6 +2706,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.robiox.com.py%2Fusers%2F370132405543%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]robiox[.]com[.]py/users/370132405543/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2427,6 +2715,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.am%2Fusers%2F117711743550%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]am/users/117711743550/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2435,6 +2724,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.bi%2Fusers%2F410674077343%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]bi/users/410674077343/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2443,6 +2733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.bn%2Fgames%2F76111710810728%2FNEW-Steal-A-Zoo%3FprivateServerLinkCode%3D87969680078065820214840649414941" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]bn/games/76111710810728/NEW-Steal-A-Zoo?privateServerLinkCode=87969680078065820214840649414941</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2451,6 +2742,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.bn%2Fusers%2F619170392353%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]bn/users/619170392353/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2459,6 +2751,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.bn%2Fusers%2F765766805313%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]bn/users/765766805313/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2467,6 +2760,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.do%2Fgames%2F139410450104051%2FChat-with-AI-Emiko%3FprivateServerLinkCode%3D745660741441292497554846389664" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]do/games/139410450104051/Chat-with-AI-Emiko?privateServerLinkCode=745660741441292497554846389664</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2475,6 +2769,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.do%2Fusers%2F345656295142%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]do/users/345656295142/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2483,6 +2778,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.ml%2Fgames%2F102919673732823%2FX5-The-Best-Game%3FprivateServerLinkCode%3D197782667437384434372552155743" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]ml/games/102919673732823/X5-The-Best-Game?privateServerLinkCode=197782667437384434372552155743</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2491,6 +2787,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.ml%2Fgames%2F2753915549%2FBlox-Fruits%3FprivateServerLinkCode%3D356478297142760686281833142632" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]ml/games/2753915549/Blox-Fruits?privateServerLinkCode=356478297142760686281833142632</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2499,6 +2796,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.mu%2Fusers%2F1848864673%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]com[.]mu/users/1848864673/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2507,6 +2805,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.ly%2Fusers%2F2892759210%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]ly/users/2892759210/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2515,6 +2814,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.ly%2Fusers%2F9979254758%2Fprofile" target="_blank" rel="noopener"><code>hxxps://www[.]roblox[.]ly/users/9979254758/profile</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2523,6 +2823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.sena-facebook.blogspot.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]sena-facebook[.]blogspot[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2531,6 +2832,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.spppacvxxrirenelsi.flazio.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]spppacvxxrirenelsi[.]flazio[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2539,6 +2841,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.su-facebook.blogspot.com%2F%3Fm%3D1" target="_blank" rel="noopener"><code>hxxps://www[.]su-facebook[.]blogspot[.]com/?m=1</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2547,6 +2850,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.tapw2ohj.sanpinjia.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]tapw2ohj[.]sanpinjia[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2555,6 +2859,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.tiktokbrasil.co%2Fq%2F21332%2Ftiktok.compt-BR" target="_blank" rel="noopener"><code>hxxps://www[.]tiktokbrasil[.]co/q/21332/tiktok[.]compt-BR</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2563,6 +2868,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.uspssmartpackagelockers.com%2F" target="_blank" rel="noopener"><code>hxxps://www[.]uspssmartpackagelockers[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2571,6 +2877,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.wasapplus.pk%2F" target="_blank" rel="noopener"><code>hxxps://www[.]wasapplus[.]pk/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2579,6 +2886,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.wdwebmanage.xyz%2F" target="_blank" rel="noopener"><code>hxxps://www[.]wdwebmanage[.]xyz/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2587,6 +2895,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.www--roblox.co%2Fcharts" target="_blank" rel="noopener"><code>hxxps://www[.]www--roblox[.]co/charts</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2595,6 +2904,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fxervazo-mpt-qelmuri-r5n8qa27.pages.dev%2Fsend_appeal_request" target="_blank" rel="noopener"><code>hxxps://xervazo-mpt-qelmuri-r5n8qa27[.]pages[.]dev/send_appeal_request</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2603,6 +2913,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fxfinity-maillogin.weebly.com%2Findex" target="_blank" rel="noopener"><code>hxxps://xfinity-maillogin[.]weebly[.]com/index</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-medium">medium 64</span></td>
           <td>—</td>
           <td></td>
           <td>—</td>
@@ -2615,8 +2926,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

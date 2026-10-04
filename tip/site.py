@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
 from .normalize import attack_url, virustotal_url
+from .vulnintel import summarize as summarize_kev
 
 _TYPE_LABELS = {
     "sha256": "hash",
@@ -64,6 +65,8 @@ def _reports_view(doc: dict) -> dict:
 
 
 def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
+    summary = summarize_kev(doc)
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     reports_by_cve: dict[str, list] = {}
     for report in (reports_doc or {}).get("reports") or []:
         for cve in report.get("cves") or []:
@@ -76,13 +79,16 @@ def _kev_view(doc: dict, reports_doc: dict | None = None) -> dict:
             continue
         entry = dict(raw)
         entry["reports"] = reports_by_cve.get(str(entry.get("cve") or "").upper(), [])[:3]
+        entry["overdue"] = bool(entry.get("due_date")) and str(entry.get("due_date")) < today
         entries.append(entry)
     cutoff = (datetime.now(timezone.utc) - timedelta(days=30)).strftime("%Y-%m-%d")
     return {
         "entries": entries,
         "catalog_version": doc.get("catalog_version") or "",
-        "catalog_count": int(doc.get("catalog_count") or len(entries)),
-        "ransomware": sum(1 for entry in entries if entry.get("ransomware")),
+        "catalog_count": summary["catalog_count"],
+        "ransomware": summary["ransomware"],
+        "overdue": summary["overdue"],
+        "epss_high": summary["epss_high"],
         "recent": sum(1 for entry in entries if str(entry.get("date_added") or "") >= cutoff),
         "generated_at": doc.get("generated_at") or "",
     }
@@ -148,6 +154,12 @@ def build_site(
     (out_dir / "index.html").write_text(index_html, encoding="utf-8")
     (out_dir / "report.html").write_text(report_html, encoding="utf-8")
     written += [out_dir / "index.html", out_dir / "report.html"]
+
+    if "ioc_index" in context:
+        explorer_html = env.get_template("explorer.html.j2").render(**context)
+        explorer_file = out_dir / "explorer.html"
+        explorer_file.write_text(explorer_html, encoding="utf-8")
+        written.append(explorer_file)
 
     kev_cves: set[str] = set()
     if kev:

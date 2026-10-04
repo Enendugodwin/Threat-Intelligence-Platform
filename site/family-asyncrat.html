@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/07fe77bfc9a7471d905aa46794dea97ecde0f3b1c167fce78eb79700245d0010" target="_blank" rel="noopener"><code>07fe77bfc9a7471d905aa46794dea97ecde0f3b1c167fce78eb79700245d0010</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T07:46:10Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.160.198" target="_blank" rel="noopener"><code>102[.]220[.]160[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-31T19:43:05Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.161.94" target="_blank" rel="noopener"><code>102[.]220[.]161[.]94</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T02:40:03Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.163.36" target="_blank" rel="noopener"><code>102[.]220[.]163[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T19:43:07Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.55.131.186" target="_blank" rel="noopener"><code>102[.]55[.]131[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T19:43:06Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.48.84.225" target="_blank" rel="noopener"><code>103[.]48[.]84[.]225</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-25T06:05:10Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.219.238.196" target="_blank" rel="noopener"><code>104[.]219[.]238[.]196</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-29T19:05:04Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.243.248.63" target="_blank" rel="noopener"><code>104[.]243[.]248[.]63</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-01-20T08:04:17Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.112.243" target="_blank" rel="noopener"><code>128[.]90[.]112[.]243</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T01:05:04Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.49.42" target="_blank" rel="noopener"><code>146[.]70[.]49[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-02-02T18:00:52Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.179.238.25" target="_blank" rel="noopener"><code>160[.]179[.]238[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T19:43:47Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.94.18.103" target="_blank" rel="noopener"><code>172[.]94[.]18[.]103</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-12-23T22:45:05Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.32" target="_blank" rel="noopener"><code>185[.]34[.]147[.]32</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:39Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.33" target="_blank" rel="noopener"><code>185[.]34[.]147[.]33</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-15T19:44:32Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.35" target="_blank" rel="noopener"><code>185[.]34[.]147[.]35</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:40Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.212.158.203" target="_blank" rel="noopener"><code>188[.]212[.]158[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-30T06:05:05Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/195.177.94.101" target="_blank" rel="noopener"><code>195[.]177[.]94[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-31T19:44:47Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.132.164.72" target="_blank" rel="noopener"><code>23[.]132[.]164[.]72</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T13:05:06Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/34.45.74.63" target="_blank" rel="noopener"><code>34[.]45[.]74[.]63</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-26T12:05:07Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.72.172.58" target="_blank" rel="noopener"><code>37[.]72[.]172[.]58</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-12-27T16:02:33Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.205" target="_blank" rel="noopener"><code>46[.]151[.]182[.]205</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-03-13T04:01:11Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6ad3cc48fe9e71640c1b3b08ae7363271465e126dd412efbd5bf18cc5bbf709c" target="_blank" rel="noopener"><code>6ad3cc48fe9e71640c1b3b08ae7363271465e126dd412efbd5bf18cc5bbf709c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-01-20T14:59:15Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/80.190.77.86" target="_blank" rel="noopener"><code>80[.]190[.]77[.]86</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-20T09:46:39Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.65.19.134" target="_blank" rel="noopener"><code>82[.]65[.]19[.]134</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-01-09T05:30:32Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/91847a5075fd0e938f4aec3a23a4437c6445f4eefc201fa288e0d1513edf0561" target="_blank" rel="noopener"><code>91847a5075fd0e938f4aec3a23a4437c6445f4eefc201fa288e0d1513edf0561</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T23:46:35Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/c40317bafe39ec13bd944009bd6c53e6db8430c488433fdace6a3527b26588bb" target="_blank" rel="noopener"><code>c40317bafe39ec13bd944009bd6c53e6db8430c488433fdace6a3527b26588bb</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T21:46:18Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50ce164844684892d697f16bc194d82841e4c1b951609d12bc26cab8b028192e" target="_blank" rel="noopener"><code>50ce164844684892d697f16bc194d82841e4c1b951609d12bc26cab8b028192e</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-04T20:40:08Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51552a74328121819417b703ca2015a8c0b21b690603824101058aa556d926a1" target="_blank" rel="noopener"><code>51552a74328121819417b703ca2015a8c0b21b690603824101058aa556d926a1</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-09-23T06:31:23Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/56d98688e5aa501787a31e98f9666b80002bb692e793257bb3a6f6f9cace8278" target="_blank" rel="noopener"><code>56d98688e5aa501787a31e98f9666b80002bb692e793257bb3a6f6f9cace8278</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-07T21:56:19Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/579e4bed80ab4cd2e7db5bd545bc4e32a671e64b16256e74597c488c90c31725" target="_blank" rel="noopener"><code>579e4bed80ab4cd2e7db5bd545bc4e32a671e64b16256e74597c488c90c31725</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-04-21T19:54:35Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5d6a67ab649ed8610da623191e8925e4804c9d0eb424b8f50be64b20c098a890" target="_blank" rel="noopener"><code>5d6a67ab649ed8610da623191e8925e4804c9d0eb424b8f50be64b20c098a890</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-04-25T15:22:28Z</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5dc26c504cc3b9c5bf1150e0b6a577ee75ca878f24a47269f72c933697049635" target="_blank" rel="noopener"><code>5dc26c504cc3b9c5bf1150e0b6a577ee75ca878f24a47269f72c933697049635</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-07-29T22:01:13Z</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5eef5607e73cbe3b62c0c4adf6ea924acc471de57e86f3f0b66fe8320d3fcdc9" target="_blank" rel="noopener"><code>5eef5607e73cbe3b62c0c4adf6ea924acc471de57e86f3f0b66fe8320d3fcdc9</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-06-05T15:48:46Z</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/63025373262924d8cf6755fc359fa04b19124e88dc8bd62b191ff8638be9f9fc" target="_blank" rel="noopener"><code>63025373262924d8cf6755fc359fa04b19124e88dc8bd62b191ff8638be9f9fc</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-07-02T03:47:06Z</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/64539c58f1e8babc9f0e58212a8db5ef4242156da46471372e2b86460620e00c" target="_blank" rel="noopener"><code>64539c58f1e8babc9f0e58212a8db5ef4242156da46471372e2b86460620e00c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-02T21:03:21Z</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/64f373211953aa5e294e9d7dee8dee07866ceb7fa944f8c5845792489433afb6" target="_blank" rel="noopener"><code>64f373211953aa5e294e9d7dee8dee07866ceb7fa944f8c5845792489433afb6</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-05-04T17:44:01Z</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/66d815d755886b1ee38e68d899503249768b8dcf9008d35c8fa89fa35e44141d" target="_blank" rel="noopener"><code>66d815d755886b1ee38e68d899503249768b8dcf9008d35c8fa89fa35e44141d</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-21T00:57:39Z</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6727531f7919f61fa1953ffbaf7e4067d4635b8123986c1ae2eeb4214ad99691" target="_blank" rel="noopener"><code>6727531f7919f61fa1953ffbaf7e4067d4635b8123986c1ae2eeb4214ad99691</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-09-03T20:10:09Z</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/69752d14fe08b0affcd7dc893f25b9a2d396b1b39f0b2ff9879bba04cc7ba95c" target="_blank" rel="noopener"><code>69752d14fe08b0affcd7dc893f25b9a2d396b1b39f0b2ff9879bba04cc7ba95c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-04-09T17:48:51Z</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6a455e9b962aa68ed3b1261574b2f341137109b103c01f7efc53946ffd8eeefe" target="_blank" rel="noopener"><code>6a455e9b962aa68ed3b1261574b2f341137109b103c01f7efc53946ffd8eeefe</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-06-15T16:16:18Z</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6bb2386101837fd4e8a32018f2d8ec5bbd646bef9a5513783f782fe2ae1ff3e0" target="_blank" rel="noopener"><code>6bb2386101837fd4e8a32018f2d8ec5bbd646bef9a5513783f782fe2ae1ff3e0</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-26T17:44:38Z</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6df5a6787c28c8d0568d6286ea2723fad317f6f42e796f4ac7f72a6db63925d3" target="_blank" rel="noopener"><code>6df5a6787c28c8d0568d6286ea2723fad317f6f42e796f4ac7f72a6db63925d3</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-04-20T18:30:54Z</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/97d66f6298b0680665a959d7c53b9bfc69bfaabd3ccae17f9d313268513fca60" target="_blank" rel="noopener"><code>97d66f6298b0680665a959d7c53b9bfc69bfaabd3ccae17f9d313268513fca60</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-04T01:46:46Z</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.99.92.134" target="_blank" rel="noopener"><code>101[.]99[.]92[.]134</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-26T09:43:04Z</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.160.250" target="_blank" rel="noopener"><code>102[.]220[.]160[.]250</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-06-22T09:43:03Z</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.108.66.160" target="_blank" rel="noopener"><code>103[.]108[.]66[.]160</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T19:43:09Z</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.237.92.116" target="_blank" rel="noopener"><code>103[.]237[.]92[.]116</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-02T09:43:07Z</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.250.161.126" target="_blank" rel="noopener"><code>104[.]250[.]161[.]126</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-10T09:43:16Z</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/105.101.131.181" target="_blank" rel="noopener"><code>105[.]101[.]131[.]181</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-11T19:43:19Z</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/105.137.170.202" target="_blank" rel="noopener"><code>105[.]137[.]170[.]202</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-01T09:43:13Z</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.133.178" target="_blank" rel="noopener"><code>107[.]172[.]133[.]178</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-01T19:43:13Z</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.47.158" target="_blank" rel="noopener"><code>107[.]173[.]47[.]158</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-25T17:13:00Z</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.59.118" target="_blank" rel="noopener"><code>107[.]173[.]59[.]118</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-25T09:43:22Z</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.175.88.79" target="_blank" rel="noopener"><code>107[.]175[.]88[.]79</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-26T12:03:30Z</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.238.86.106" target="_blank" rel="noopener"><code>109[.]238[.]86[.]106</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T19:43:26Z</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/12.187.175.73" target="_blank" rel="noopener"><code>12[.]187[.]175[.]73</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-22T19:43:21Z</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/12.202.180.13" target="_blank" rel="noopener"><code>12[.]202[.]180[.]13</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-20T19:43:22Z</td>
@@ -667,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.200.216.74" target="_blank" rel="noopener"><code>121[.]200[.]216[.]74</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T19:43:27Z</td>
@@ -675,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.112.84" target="_blank" rel="noopener"><code>128[.]90[.]112[.]84</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T19:43:32Z</td>
@@ -683,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.135.172" target="_blank" rel="noopener"><code>128[.]90[.]135[.]172</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-21T19:43:28Z</td>
@@ -691,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.135.200" target="_blank" rel="noopener"><code>128[.]90[.]135[.]200</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-30T09:43:21Z</td>
@@ -699,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.135.219" target="_blank" rel="noopener"><code>128[.]90[.]135[.]219</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-27T19:43:22Z</td>
@@ -707,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.135.53" target="_blank" rel="noopener"><code>128[.]90[.]135[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T09:43:34Z</td>
@@ -715,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.136.115" target="_blank" rel="noopener"><code>128[.]90[.]136[.]115</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-07T09:43:33Z</td>
@@ -723,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.136.246" target="_blank" rel="noopener"><code>128[.]90[.]136[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-17T19:43:31Z</td>
@@ -731,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.141.49" target="_blank" rel="noopener"><code>128[.]90[.]141[.]49</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-16T19:43:35Z</td>
@@ -739,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.167.136" target="_blank" rel="noopener"><code>128[.]90[.]167[.]136</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T19:43:18Z</td>
@@ -747,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.167.181" target="_blank" rel="noopener"><code>128[.]90[.]167[.]181</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T19:43:33Z</td>
@@ -755,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.169.101" target="_blank" rel="noopener"><code>128[.]90[.]169[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T09:43:31Z</td>
@@ -763,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.59.115" target="_blank" rel="noopener"><code>128[.]90[.]59[.]115</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-20T09:43:33Z</td>
@@ -771,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.59.124" target="_blank" rel="noopener"><code>128[.]90[.]59[.]124</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T19:43:34Z</td>
@@ -779,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.59.225" target="_blank" rel="noopener"><code>128[.]90[.]59[.]225</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-26T12:43:42Z</td>
@@ -787,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.59.90" target="_blank" rel="noopener"><code>128[.]90[.]59[.]90</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T19:43:32Z</td>
@@ -795,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/13.143.247.153" target="_blank" rel="noopener"><code>13[.]143[.]247[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-30T09:43:24Z</td>
@@ -803,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/135.136.147.238" target="_blank" rel="noopener"><code>135[.]136[.]147[.]238</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-14T09:43:36Z</td>
@@ -811,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.16.178.77" target="_blank" rel="noopener"><code>138[.]16[.]178[.]77</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T19:43:43Z</td>
@@ -819,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.246.43.117" target="_blank" rel="noopener"><code>143[.]246[.]43[.]117</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T09:43:41Z</td>
@@ -827,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/145.63.135.23" target="_blank" rel="noopener"><code>145[.]63[.]135[.]23</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-25T09:43:49Z</td>
@@ -835,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/145.63.136.150" target="_blank" rel="noopener"><code>145[.]63[.]136[.]150</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T09:43:28Z</td>
@@ -843,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/147.124.202.216" target="_blank" rel="noopener"><code>147[.]124[.]202[.]216</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-17T09:43:56Z</td>
@@ -851,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/147.93.191.75" target="_blank" rel="noopener"><code>147[.]93[.]191[.]75</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-21T19:43:46Z</td>
@@ -859,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.30.222.243" target="_blank" rel="noopener"><code>149[.]30[.]222[.]243</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-14T09:43:48Z</td>
@@ -867,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/153.75.251.188" target="_blank" rel="noopener"><code>153[.]75[.]251[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-26T12:43:58Z</td>
@@ -875,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.94.150.221" target="_blank" rel="noopener"><code>155[.]94[.]150[.]221</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-15T09:43:45Z</td>
@@ -883,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.94.163.75" target="_blank" rel="noopener"><code>155[.]94[.]163[.]75</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-06-27T19:43:32Z</td>
@@ -891,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/157.20.182.14" target="_blank" rel="noopener"><code>157[.]20[.]182[.]14</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-30T09:43:46Z</td>
@@ -899,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/157.20.182.15" target="_blank" rel="noopener"><code>157[.]20[.]182[.]15</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-30T09:43:46Z</td>
@@ -907,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/157.20.182.21" target="_blank" rel="noopener"><code>157[.]20[.]182[.]21</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-24T09:43:55Z</td>
@@ -915,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/157.20.182.22" target="_blank" rel="noopener"><code>157[.]20[.]182[.]22</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-22T19:43:42Z</td>
@@ -923,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.94.208.152" target="_blank" rel="noopener"><code>158[.]94[.]208[.]152</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-04T09:43:42Z</td>
@@ -931,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.94.209.209" target="_blank" rel="noopener"><code>158[.]94[.]209[.]209</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-04T09:44:24Z</td>
@@ -939,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.94.210.177" target="_blank" rel="noopener"><code>158[.]94[.]210[.]177</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T19:44:09Z</td>
@@ -947,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.119.69.30" target="_blank" rel="noopener"><code>160[.]119[.]69[.]30</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-30T19:43:51Z</td>
@@ -955,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.191.88.70" target="_blank" rel="noopener"><code>160[.]191[.]88[.]70</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-05T19:43:56Z</td>
@@ -963,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/161.248.179.92" target="_blank" rel="noopener"><code>161[.]248[.]179[.]92</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-05-01T02:43:08Z</td>
@@ -971,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.58.180.142" target="_blank" rel="noopener"><code>169[.]58[.]180[.]142</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-17T09:44:22Z</td>
@@ -979,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.58.38.91" target="_blank" rel="noopener"><code>169[.]58[.]38[.]91</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-27T09:43:53Z</td>
@@ -987,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.111.232.18" target="_blank" rel="noopener"><code>172[.]111[.]232[.]18</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-05T09:44:16Z</td>
@@ -995,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.86.112.104" target="_blank" rel="noopener"><code>172[.]86[.]112[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-16T09:44:32Z</td>
@@ -1003,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.86.74.104" target="_blank" rel="noopener"><code>172[.]86[.]74[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T09:44:27Z</td>
@@ -1011,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/176.149.202.136" target="_blank" rel="noopener"><code>176[.]149[.]202[.]136</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-19T19:44:39Z</td>
@@ -1019,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/18.139.36.190" target="_blank" rel="noopener"><code>18[.]139[.]36[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-30T19:44:10Z</td>
@@ -1027,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/18.178.127.205" target="_blank" rel="noopener"><code>18[.]178[.]127[.]205</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-30T19:44:11Z</td>
@@ -1035,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/181.206.158.19" target="_blank" rel="noopener"><code>181[.]206[.]158[.]19</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T09:44:35Z</td>
@@ -1043,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.112.59.102" target="_blank" rel="noopener"><code>185[.]112[.]59[.]102</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T09:44:23Z</td>
@@ -1051,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.157.46.242" target="_blank" rel="noopener"><code>185[.]157[.]46[.]242</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-05T19:44:20Z</td>
@@ -1059,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.241.211.16" target="_blank" rel="noopener"><code>185[.]241[.]211[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T09:43:58Z</td>
@@ -1067,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.241.211.167" target="_blank" rel="noopener"><code>185[.]241[.]211[.]167</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-01T09:44:00Z</td>
@@ -1075,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.242.3.250" target="_blank" rel="noopener"><code>185[.]242[.]3[.]250</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-06T19:44:27Z</td>
@@ -1083,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.249.199.108" target="_blank" rel="noopener"><code>185[.]249[.]199[.]108</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T09:44:34Z</td>
@@ -1091,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.31" target="_blank" rel="noopener"><code>185[.]34[.]147[.]31</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:39Z</td>
@@ -1099,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.34" target="_blank" rel="noopener"><code>185[.]34[.]147[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:40Z</td>
@@ -1107,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/186.169.88.130" target="_blank" rel="noopener"><code>186[.]169[.]88[.]130</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-05T09:44:33Z</td>
@@ -1115,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.137.227.133" target="_blank" rel="noopener"><code>188[.]137[.]227[.]133</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-19T09:44:37Z</td>
@@ -1123,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/190.102.41.198" target="_blank" rel="noopener"><code>190[.]102[.]41[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T19:44:38Z</td>
@@ -1131,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/191.107.92.58" target="_blank" rel="noopener"><code>191[.]107[.]92[.]58</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-18T09:44:29Z</td>
@@ -1139,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/191.93.118.254" target="_blank" rel="noopener"><code>191[.]93[.]118[.]254</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-06-18T07:58:54Z</td>
@@ -1147,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.142.10.165" target="_blank" rel="noopener"><code>192[.]142[.]10[.]165</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-22T09:44:40Z</td>
@@ -1155,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.162.199.179" target="_blank" rel="noopener"><code>192[.]162[.]199[.]179</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-13T19:44:31Z</td>
@@ -1163,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.161.193.99" target="_blank" rel="noopener"><code>193[.]161[.]193[.]99</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-26T12:44:45Z</td>
@@ -1171,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.26.192.153" target="_blank" rel="noopener"><code>194[.]26[.]192[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T09:45:07Z</td>
@@ -1179,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/195.177.94.16" target="_blank" rel="noopener"><code>195[.]177[.]94[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T19:45:06Z</td>
@@ -1187,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/196.81.251.114" target="_blank" rel="noopener"><code>196[.]81[.]251[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-05T09:45:11Z</td>
@@ -1195,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/199.245.176.147" target="_blank" rel="noopener"><code>199[.]245[.]176[.]147</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-26T09:23:04Z</td>
@@ -1203,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.26.30.186" target="_blank" rel="noopener"><code>2[.]26[.]30[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T19:44:10Z</td>
@@ -1211,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/209.145.63.3" target="_blank" rel="noopener"><code>209[.]145[.]63[.]3</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-01-29T18:55:17Z</td>
@@ -1219,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/212.43.153.129" target="_blank" rel="noopener"><code>212[.]43[.]153[.]129</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T19:45:13Z</td>
@@ -1227,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/212.43.153.205" target="_blank" rel="noopener"><code>212[.]43[.]153[.]205</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T19:45:32Z</td>
@@ -1235,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.250.249.97" target="_blank" rel="noopener"><code>216[.]250[.]249[.]97</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T09:46:01Z</td>
@@ -1243,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.250.254.245" target="_blank" rel="noopener"><code>216[.]250[.]254[.]245</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-10T19:45:31Z</td>
@@ -1251,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.102.47" target="_blank" rel="noopener"><code>217[.]60[.]102[.]47</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T19:44:53Z</td>
@@ -1259,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.103.15" target="_blank" rel="noopener"><code>217[.]60[.]103[.]15</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-27T19:44:49Z</td>
@@ -1267,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.184.45" target="_blank" rel="noopener"><code>217[.]60[.]184[.]45</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T09:44:46Z</td>
@@ -1275,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.198.81" target="_blank" rel="noopener"><code>217[.]60[.]198[.]81</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-08T09:46:00Z</td>
@@ -1283,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.76.250" target="_blank" rel="noopener"><code>217[.]60[.]76[.]250</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-14T19:46:31Z</td>
@@ -1291,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.132.164.73" target="_blank" rel="noopener"><code>23[.]132[.]164[.]73</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-01T09:44:48Z</td>
@@ -1299,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/3.113.147.16" target="_blank" rel="noopener"><code>3[.]113[.]147[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-29T19:46:03Z</td>
@@ -1307,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.56.209.82" target="_blank" rel="noopener"><code>31[.]56[.]209[.]82</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T19:45:05Z</td>
@@ -1315,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.6.11.231" target="_blank" rel="noopener"><code>31[.]6[.]11[.]231</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-29T19:45:10Z</td>
@@ -1323,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.6.11.79" target="_blank" rel="noopener"><code>31[.]6[.]11[.]79</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-30T19:45:27Z</td>
@@ -1331,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.70.81.171" target="_blank" rel="noopener"><code>31[.]70[.]81[.]171</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-21T06:05:09Z</td>
@@ -1339,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/34.186.150.169" target="_blank" rel="noopener"><code>34[.]186[.]150[.]169</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-19T19:45:55Z</td>
@@ -1347,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/36.255.97.175" target="_blank" rel="noopener"><code>36[.]255[.]97[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-06T19:46:09Z</td>
@@ -1355,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/36.255.97.47" target="_blank" rel="noopener"><code>36[.]255[.]97[.]47</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-28T10:45:12Z</td>
@@ -1363,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.247.165.127" target="_blank" rel="noopener"><code>38[.]247[.]165[.]127</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-19T07:13:58Z</td>
@@ -1371,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/41.43.184.224" target="_blank" rel="noopener"><code>41[.]43[.]184[.]224</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-01T09:45:03Z</td>
@@ -1379,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.228.157.252" target="_blank" rel="noopener"><code>43[.]228[.]157[.]252</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-22T19:45:15Z</td>
@@ -1387,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.133.180.138" target="_blank" rel="noopener"><code>45[.]133[.]180[.]138</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-05-15T06:10:52Z</td>
@@ -1395,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.141.21.177" target="_blank" rel="noopener"><code>45[.]141[.]21[.]177</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-06T08:20:29Z</td>
@@ -1403,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.154.98.38" target="_blank" rel="noopener"><code>45[.]154[.]98[.]38</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T09:46:39Z</td>
@@ -1411,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.254.246.140" target="_blank" rel="noopener"><code>45[.]254[.]246[.]140</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-25T19:46:32Z</td>
@@ -1419,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.16" target="_blank" rel="noopener"><code>46[.]151[.]182[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-06-09T19:44:51Z</td>
@@ -1427,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.5" target="_blank" rel="noopener"><code>46[.]151[.]182[.]5</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T15:39:53Z</td>
@@ -1435,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.151.182.76" target="_blank" rel="noopener"><code>46[.]151[.]182[.]76</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-28T09:46:09Z</td>
@@ -1443,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.246.84.17" target="_blank" rel="noopener"><code>46[.]246[.]84[.]17</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T19:45:05Z</td>
@@ -1451,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.246.84.19" target="_blank" rel="noopener"><code>46[.]246[.]84[.]19</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T19:45:30Z</td>
@@ -1459,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.40.193.169" target="_blank" rel="noopener"><code>46[.]40[.]193[.]169</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-22T09:46:50Z</td>
@@ -1467,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.40.228.158" target="_blank" rel="noopener"><code>46[.]40[.]228[.]158</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T09:46:33Z</td>
@@ -1475,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/5.21.239.104" target="_blank" rel="noopener"><code>5[.]21[.]239[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-02T09:46:36Z</td>
@@ -1483,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/52.47.77.229" target="_blank" rel="noopener"><code>52[.]47[.]77[.]229</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-20T19:46:49Z</td>
@@ -1491,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/62.171.148.175" target="_blank" rel="noopener"><code>62[.]171[.]148[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T09:47:12Z</td>
@@ -1499,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/64.89.163.114" target="_blank" rel="noopener"><code>64[.]89[.]163[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-05-01T08:43:48Z</td>
@@ -1507,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/67.210.97.40" target="_blank" rel="noopener"><code>67[.]210[.]97[.]40</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-29T09:45:54Z</td>
@@ -1515,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/67.43.56.25" target="_blank" rel="noopener"><code>67[.]43[.]56[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-19T19:47:44Z</td>
@@ -1523,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/69.10.49.136" target="_blank" rel="noopener"><code>69[.]10[.]49[.]136</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-11T09:46:08Z</td>
@@ -1531,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/74.204.158.81" target="_blank" rel="noopener"><code>74[.]204[.]158[.]81</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T19:47:14Z</td>
@@ -1539,6 +1716,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/74.208.146.77" target="_blank" rel="noopener"><code>74[.]208[.]146[.]77</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T19:47:18Z</td>
@@ -1547,6 +1725,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.26.66.136" target="_blank" rel="noopener"><code>82[.]26[.]66[.]136</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T09:46:56Z</td>
@@ -1555,6 +1734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.26.66.179" target="_blank" rel="noopener"><code>82[.]26[.]66[.]179</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-14T09:47:28Z</td>
@@ -1563,6 +1743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.47.101.16" target="_blank" rel="noopener"><code>82[.]47[.]101[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-23T19:47:26Z</td>
@@ -1571,6 +1752,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/83.136.210.2" target="_blank" rel="noopener"><code>83[.]136[.]210[.]2</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-28T10:45:49Z</td>
@@ -1579,6 +1761,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/84.247.187.47" target="_blank" rel="noopener"><code>84[.]247[.]187[.]47</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T19:47:25Z</td>
@@ -1587,6 +1770,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/85.8.149.156" target="_blank" rel="noopener"><code>85[.]8[.]149[.]156</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-13T19:45:28Z</td>
@@ -1595,6 +1779,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/86.48.16.94" target="_blank" rel="noopener"><code>86[.]48[.]16[.]94</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-07-21T19:46:20Z</td>
@@ -1603,6 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.153.179.188" target="_blank" rel="noopener"><code>89[.]153[.]179[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-20T09:47:32Z</td>
@@ -1611,6 +1797,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.42.134.220" target="_blank" rel="noopener"><code>89[.]42[.]134[.]220</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-05-11T09:45:15Z</td>
@@ -1619,6 +1806,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.92.241.149" target="_blank" rel="noopener"><code>91[.]92[.]241[.]149</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-19T09:47:12Z</td>
@@ -1627,6 +1815,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/93.233.109.96" target="_blank" rel="noopener"><code>93[.]233[.]109[.]96</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-03T19:47:07Z</td>
@@ -1635,6 +1824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/93.233.96.34" target="_blank" rel="noopener"><code>93[.]233[.]96[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-04T09:45:44Z</td>
@@ -1643,6 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/94.154.32.104" target="_blank" rel="noopener"><code>94[.]154[.]32[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T09:47:11Z</td>
@@ -1651,6 +1842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/96.9.226.22" target="_blank" rel="noopener"><code>96[.]9[.]226[.]22</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-09T19:47:44Z</td>
@@ -1659,6 +1851,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/casinohouse.co" target="_blank" rel="noopener"><code>casinohouse[.]co</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T21:25:12Z</td>
@@ -1667,6 +1860,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/forsell.tech" target="_blank" rel="noopener"><code>forsell[.]tech</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T18:45:23Z</td>
@@ -1675,6 +1869,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/main-tg88.store" target="_blank" rel="noopener"><code>main-tg88[.]store</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-04T17:05:23Z</td>
@@ -1683,6 +1878,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ryanmorales.me" target="_blank" rel="noopener"><code>ryanmorales[.]me</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T15:05:12Z</td>
@@ -1691,6 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/tg88seru.me" target="_blank" rel="noopener"><code>tg88seru[.]me</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T15:05:13Z</td>
@@ -1699,6 +1896,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/vn789win.top" target="_blank" rel="noopener"><code>vn789win[.]top</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T07:15:27Z</td>
@@ -1707,6 +1905,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/vsbet-official.com" target="_blank" rel="noopener"><code>vsbet-official[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-04T13:15:22Z</td>
@@ -1715,6 +1914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/509607c23436a0d4ef33b21734a19aa129fbcd63bad4cb2965f06fc3f32c2554" target="_blank" rel="noopener"><code>509607c23436a0d4ef33b21734a19aa129fbcd63bad4cb2965f06fc3f32c2554</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1723,6 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5099d4149a56a2cb48e44a6102b1c530c3cfbb1345c1e284ebe97acfeba816bb" target="_blank" rel="noopener"><code>5099d4149a56a2cb48e44a6102b1c530c3cfbb1345c1e284ebe97acfeba816bb</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1731,6 +1932,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/509e3c1c45131f98ebb8e44eda547598327983e1f18af4fcfaf0bad4abbcf819" target="_blank" rel="noopener"><code>509e3c1c45131f98ebb8e44eda547598327983e1f18af4fcfaf0bad4abbcf819</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1739,6 +1941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/509f02b2a6543aab550e12f195272e0189d174ff931f72177126e295d2a96a7c" target="_blank" rel="noopener"><code>509f02b2a6543aab550e12f195272e0189d174ff931f72177126e295d2a96a7c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1747,6 +1950,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50a16971e1979b9fedd35969fb3e0658480d2d18139a935d065f76c002c8a961" target="_blank" rel="noopener"><code>50a16971e1979b9fedd35969fb3e0658480d2d18139a935d065f76c002c8a961</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1755,6 +1959,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50af31821aba0e9e3cc6aba17a3e07123149b52b1312b8f1ce1b3fb96e1f1278" target="_blank" rel="noopener"><code>50af31821aba0e9e3cc6aba17a3e07123149b52b1312b8f1ce1b3fb96e1f1278</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1763,6 +1968,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50afeb6e91800608c1c0bf74d243a593ceb068998f1d96102ef30812b1537781" target="_blank" rel="noopener"><code>50afeb6e91800608c1c0bf74d243a593ceb068998f1d96102ef30812b1537781</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:14Z</td>
@@ -1771,6 +1977,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50b652ccc1549a6a12702a4838f5a8a366c267b34ba57f849f7cd9f8327fe8d2" target="_blank" rel="noopener"><code>50b652ccc1549a6a12702a4838f5a8a366c267b34ba57f849f7cd9f8327fe8d2</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1779,6 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50b886a5ba9ff8d8720f9960c1ac52c992bc0e2ccf11ba2ab955a2a783753613" target="_blank" rel="noopener"><code>50b886a5ba9ff8d8720f9960c1ac52c992bc0e2ccf11ba2ab955a2a783753613</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1787,6 +1995,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50b8d65d58fc68b58d44100a7f00eaa1f44dd7ded6aa0d4fe3cea8cf9a691c76" target="_blank" rel="noopener"><code>50b8d65d58fc68b58d44100a7f00eaa1f44dd7ded6aa0d4fe3cea8cf9a691c76</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1795,6 +2004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50b9fff16f73b30b772d443e019f88fd2402a0beaa5377ec2ee9f2a86c6c0fc0" target="_blank" rel="noopener"><code>50b9fff16f73b30b772d443e019f88fd2402a0beaa5377ec2ee9f2a86c6c0fc0</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1803,6 +2013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50bde48b7037890d318cf123e23a78f734634cff29354fc5852293d5702737b9" target="_blank" rel="noopener"><code>50bde48b7037890d318cf123e23a78f734634cff29354fc5852293d5702737b9</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1811,6 +2022,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50beff79a7de65015be9c1124c6c26b2e912313e31fa7d5831c5ebf6082ca37e" target="_blank" rel="noopener"><code>50beff79a7de65015be9c1124c6c26b2e912313e31fa7d5831c5ebf6082ca37e</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1819,6 +2031,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50c2dba1d961e09cb8df397b71bd3b6a32d0ee6dbe886e7309305dc4ba968f94" target="_blank" rel="noopener"><code>50c2dba1d961e09cb8df397b71bd3b6a32d0ee6dbe886e7309305dc4ba968f94</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1827,6 +2040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50c574224db3983501f9e45103dee5779f9469485b9d0b22e4d5ce09d2b5df2d" target="_blank" rel="noopener"><code>50c574224db3983501f9e45103dee5779f9469485b9d0b22e4d5ce09d2b5df2d</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1835,6 +2049,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50d0d7ddbaeca0765f06901ef050fc76a30153fb804f59d804abf60135fdf0ae" target="_blank" rel="noopener"><code>50d0d7ddbaeca0765f06901ef050fc76a30153fb804f59d804abf60135fdf0ae</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1843,6 +2058,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50d4c980e76fdec603450b0d338db394a694f248a11c01676d193371017a293c" target="_blank" rel="noopener"><code>50d4c980e76fdec603450b0d338db394a694f248a11c01676d193371017a293c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1851,6 +2067,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50d4fc366de45e92acb593fd0929cf7ce06b2b3f1b437ea9245989fdfa1a4c22" target="_blank" rel="noopener"><code>50d4fc366de45e92acb593fd0929cf7ce06b2b3f1b437ea9245989fdfa1a4c22</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1859,6 +2076,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50d9d47d0cbefb79de4f5814407951aaf77754caeec121cfa130260b4c2eb22a" target="_blank" rel="noopener"><code>50d9d47d0cbefb79de4f5814407951aaf77754caeec121cfa130260b4c2eb22a</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1867,6 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50dec92fbf4aeff0ee0b537a8d94532a0565c79d966d2b726da134691dc05721" target="_blank" rel="noopener"><code>50dec92fbf4aeff0ee0b537a8d94532a0565c79d966d2b726da134691dc05721</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1875,6 +2094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50f0b3f5225a125f3e74ecd7da7bd4beda5597d82b15d99ff2e729b8fec4ae7a" target="_blank" rel="noopener"><code>50f0b3f5225a125f3e74ecd7da7bd4beda5597d82b15d99ff2e729b8fec4ae7a</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1883,6 +2103,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50f3b84ac434ebba364e1a0fab752cb15101ae4c63ac3cfee04341e17b6dbb4b" target="_blank" rel="noopener"><code>50f3b84ac434ebba364e1a0fab752cb15101ae4c63ac3cfee04341e17b6dbb4b</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1891,6 +2112,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50fa3d0d3878e8ebfe864ad367bd817568c726fb4282ef10e110b23dba22b2fd" target="_blank" rel="noopener"><code>50fa3d0d3878e8ebfe864ad367bd817568c726fb4282ef10e110b23dba22b2fd</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1899,6 +2121,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/50ff04adb871c1bcf46bb5443aa53395fb16ad472c5041ae78a4b5de175adeba" target="_blank" rel="noopener"><code>50ff04adb871c1bcf46bb5443aa53395fb16ad472c5041ae78a4b5de175adeba</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1907,6 +2130,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5105b316b149ff001f6ebf7d64aff03e912f37dc8321221252238cbdbd768fdf" target="_blank" rel="noopener"><code>5105b316b149ff001f6ebf7d64aff03e912f37dc8321221252238cbdbd768fdf</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1915,6 +2139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5111624119a7adb096dffe411fd8c44d7ca928f93dbc8689c21af993a20493c7" target="_blank" rel="noopener"><code>5111624119a7adb096dffe411fd8c44d7ca928f93dbc8689c21af993a20493c7</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1923,6 +2148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51149751e3155e4255792407b0d6b7b448db25719f52a6a9008a1bf38d153f00" target="_blank" rel="noopener"><code>51149751e3155e4255792407b0d6b7b448db25719f52a6a9008a1bf38d153f00</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:15Z</td>
@@ -1931,6 +2157,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5118a2474186a2b702e3daa0315501eb400aa40594a7444133abe9edee6f94e1" target="_blank" rel="noopener"><code>5118a2474186a2b702e3daa0315501eb400aa40594a7444133abe9edee6f94e1</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1939,6 +2166,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/511a99c70f3a3aaad381b3bf626e411b3b41f7a7cf3e040068a8cdddc6224296" target="_blank" rel="noopener"><code>511a99c70f3a3aaad381b3bf626e411b3b41f7a7cf3e040068a8cdddc6224296</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1947,6 +2175,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/511bb1fd35188c8885e398b5c1ebb8ce6ead615be163da8d0255aab3154c499b" target="_blank" rel="noopener"><code>511bb1fd35188c8885e398b5c1ebb8ce6ead615be163da8d0255aab3154c499b</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1955,6 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51258ae7245e0f0fbb60a065b5252a66c2eb0beb0fd387cdbafbdd3e2851c97d" target="_blank" rel="noopener"><code>51258ae7245e0f0fbb60a065b5252a66c2eb0beb0fd387cdbafbdd3e2851c97d</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1963,6 +2193,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/512a77e230628aa015d502800cf98b5744c667dcffab9c1a5d6cc15e0634d8e8" target="_blank" rel="noopener"><code>512a77e230628aa015d502800cf98b5744c667dcffab9c1a5d6cc15e0634d8e8</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1971,6 +2202,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/512ccadbdc0c2eea3c81921870bd3813662507123b040d8bff95a53730548b1c" target="_blank" rel="noopener"><code>512ccadbdc0c2eea3c81921870bd3813662507123b040d8bff95a53730548b1c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1979,6 +2211,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/513105f291a41960b5e08f5e94dee377eae8f6b483e012cc835869b639e1fc5b" target="_blank" rel="noopener"><code>513105f291a41960b5e08f5e94dee377eae8f6b483e012cc835869b639e1fc5b</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1987,6 +2220,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/513484fa49c694d885bd47a1640f2f78b1427a56b03df03b030acaa8557f1eb9" target="_blank" rel="noopener"><code>513484fa49c694d885bd47a1640f2f78b1427a56b03df03b030acaa8557f1eb9</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -1995,6 +2229,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51372225b02547e2cd887b11133dc3c0f18f4e49e15ba85b402d81ab85571e9b" target="_blank" rel="noopener"><code>51372225b02547e2cd887b11133dc3c0f18f4e49e15ba85b402d81ab85571e9b</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2003,6 +2238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51410601516d6164b1d859fe1d39a9ed8f66a4994f8fda10f2d67af779e95bfe" target="_blank" rel="noopener"><code>51410601516d6164b1d859fe1d39a9ed8f66a4994f8fda10f2d67af779e95bfe</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2011,6 +2247,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/514e616e306a303bc6239c10b2b841466082130a9c0321f36c06df217c4ff9b2" target="_blank" rel="noopener"><code>514e616e306a303bc6239c10b2b841466082130a9c0321f36c06df217c4ff9b2</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2019,6 +2256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51505fab78a7b318bcae9d3005fd3035517141abed16054541c29c03bb9af4ea" target="_blank" rel="noopener"><code>51505fab78a7b318bcae9d3005fd3035517141abed16054541c29c03bb9af4ea</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2027,6 +2265,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5153a4d8ee131d9edb35829e1326f08c19d718c572a9274eacb7430896ec5112" target="_blank" rel="noopener"><code>5153a4d8ee131d9edb35829e1326f08c19d718c572a9274eacb7430896ec5112</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2035,6 +2274,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5157d8d5c583eea41772fb99793e13f9d7e3c3c2b0eb2cd876c65d1835cc8d8f" target="_blank" rel="noopener"><code>5157d8d5c583eea41772fb99793e13f9d7e3c3c2b0eb2cd876c65d1835cc8d8f</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2043,6 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/515b9527c2526fe2414360e00324b07376190ff465826b4fe5b7b56d166963fa" target="_blank" rel="noopener"><code>515b9527c2526fe2414360e00324b07376190ff465826b4fe5b7b56d166963fa</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2051,6 +2292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/515e5105f1bda9207f1342220ecaddc6dc04b8aa54149e7cc7ccb38225845d03" target="_blank" rel="noopener"><code>515e5105f1bda9207f1342220ecaddc6dc04b8aa54149e7cc7ccb38225845d03</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2059,6 +2301,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/515f4a1c7e4490a059624939fb259dd18817d9637c7e159e27322ee6e60a33f8" target="_blank" rel="noopener"><code>515f4a1c7e4490a059624939fb259dd18817d9637c7e159e27322ee6e60a33f8</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2067,6 +2310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/516908fc95c6c31806a19b5a9108c0a99fff52371426fb77a10e1d75d1ae8a79" target="_blank" rel="noopener"><code>516908fc95c6c31806a19b5a9108c0a99fff52371426fb77a10e1d75d1ae8a79</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2075,6 +2319,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/516ba3437e6cadf0110bbe37215579be16ca9309bfd32764af28a73129b800b2" target="_blank" rel="noopener"><code>516ba3437e6cadf0110bbe37215579be16ca9309bfd32764af28a73129b800b2</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2083,6 +2328,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5175edb336720619547d45255a0e9c9c72a6774ae73729236188c79a4cb264e1" target="_blank" rel="noopener"><code>5175edb336720619547d45255a0e9c9c72a6774ae73729236188c79a4cb264e1</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2091,6 +2337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5177f4016e4e616d5dd750c1b84f7021fd2802aefc9cce55ae0c2691c2052ab6" target="_blank" rel="noopener"><code>5177f4016e4e616d5dd750c1b84f7021fd2802aefc9cce55ae0c2691c2052ab6</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:16Z</td>
@@ -2099,6 +2346,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/517806ff3610aa22bd44547ebcc2a84797c927478aac3e24611fbe7747093a99" target="_blank" rel="noopener"><code>517806ff3610aa22bd44547ebcc2a84797c927478aac3e24611fbe7747093a99</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2107,6 +2355,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51780a91bc216ba6305031733f3d2a95a0165baba51f3c6657d3cdc4a9d91b61" target="_blank" rel="noopener"><code>51780a91bc216ba6305031733f3d2a95a0165baba51f3c6657d3cdc4a9d91b61</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2115,6 +2364,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/517aa4a798cd785cae7bd9722bd79a0f85eadc7a3e9dbfa24440348df4ef7c7c" target="_blank" rel="noopener"><code>517aa4a798cd785cae7bd9722bd79a0f85eadc7a3e9dbfa24440348df4ef7c7c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-medium">medium 69</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2021-05-29T13:00:34Z</td>
@@ -2123,6 +2373,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/517d641dad9471b535955fcf15ab628b58c78084f2239f6846b64c36f9411c93" target="_blank" rel="noopener"><code>517d641dad9471b535955fcf15ab628b58c78084f2239f6846b64c36f9411c93</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2131,6 +2382,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/518b5e25b23dfcef7e0ed60cd284bf2dda7f2d87ace3d5c505e0642e08b08f99" target="_blank" rel="noopener"><code>518b5e25b23dfcef7e0ed60cd284bf2dda7f2d87ace3d5c505e0642e08b08f99</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2139,6 +2391,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51909c6510b001521d4513d595649f76a2ba6fb2593dbfd330953921827ddfc6" target="_blank" rel="noopener"><code>51909c6510b001521d4513d595649f76a2ba6fb2593dbfd330953921827ddfc6</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2147,6 +2400,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5192b1aaa8f755f0a0dd96836ec80d4f208b0403ff3d755e9a112e7efb1ce68f" target="_blank" rel="noopener"><code>5192b1aaa8f755f0a0dd96836ec80d4f208b0403ff3d755e9a112e7efb1ce68f</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2155,6 +2409,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5197452d82a73c73869815238015b1cd592210c6780ac637f7dc278698ad1fb7" target="_blank" rel="noopener"><code>5197452d82a73c73869815238015b1cd592210c6780ac637f7dc278698ad1fb7</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2163,6 +2418,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/519bc7a61ddcbdf60b356d3437c101571d8f2ef0cf50858d12c1c2c40ffd1c44" target="_blank" rel="noopener"><code>519bc7a61ddcbdf60b356d3437c101571d8f2ef0cf50858d12c1c2c40ffd1c44</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2171,6 +2427,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/519c1b37131814f0784fda8b58ebfc8590fe35ba0cac1f33533170f7610f6995" target="_blank" rel="noopener"><code>519c1b37131814f0784fda8b58ebfc8590fe35ba0cac1f33533170f7610f6995</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2179,6 +2436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/519eed760480272f7f591524d94c76e5429abbccd351cf41e11a85258f1ddb98" target="_blank" rel="noopener"><code>519eed760480272f7f591524d94c76e5429abbccd351cf41e11a85258f1ddb98</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2187,6 +2445,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/519f3ceedba4471f3d5178451c1007911145fb6eaf4e259a2c29b8e3483dabb1" target="_blank" rel="noopener"><code>519f3ceedba4471f3d5178451c1007911145fb6eaf4e259a2c29b8e3483dabb1</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2195,6 +2454,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51a4040b5a34697ed83cd29662b0195713257b8e64499fec53da25cc83581c91" target="_blank" rel="noopener"><code>51a4040b5a34697ed83cd29662b0195713257b8e64499fec53da25cc83581c91</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-medium">medium 69</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2021-08-31T10:15:32Z</td>
@@ -2203,6 +2463,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51a64dcb64db7eafac0c26b588a14864aa99ec0d18fa96b5899dbff7fd32f1ed" target="_blank" rel="noopener"><code>51a64dcb64db7eafac0c26b588a14864aa99ec0d18fa96b5899dbff7fd32f1ed</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2211,6 +2472,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51a9d59ededfb0b1bb87b2de0477849b76e29621c0cc01e3c4a4a4e0e3b73054" target="_blank" rel="noopener"><code>51a9d59ededfb0b1bb87b2de0477849b76e29621c0cc01e3c4a4a4e0e3b73054</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2219,6 +2481,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51a9ec00920e2f5b63dd9b86f7ed6930e75e6e33dad3079645da55e81306b58c" target="_blank" rel="noopener"><code>51a9ec00920e2f5b63dd9b86f7ed6930e75e6e33dad3079645da55e81306b58c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-medium">medium 69</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2021-06-28T03:00:26Z</td>
@@ -2227,6 +2490,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51aa51b9495f16e39ff8e072e3027e77b34a9ed6410abde7350f415396ce9042" target="_blank" rel="noopener"><code>51aa51b9495f16e39ff8e072e3027e77b34a9ed6410abde7350f415396ce9042</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2235,6 +2499,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51ad998f3a847685ef42e7f85f11852d3a90939cb4d7166d7bc002f0ec87fce3" target="_blank" rel="noopener"><code>51ad998f3a847685ef42e7f85f11852d3a90939cb4d7166d7bc002f0ec87fce3</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2243,6 +2508,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51b5dde2fc847c795bb2c2c797d2ac860ffcb4814b1746000505d3b0bb03c7c2" target="_blank" rel="noopener"><code>51b5dde2fc847c795bb2c2c797d2ac860ffcb4814b1746000505d3b0bb03c7c2</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2251,6 +2517,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51c0cfc7539dc3bb883969d384a7389373a144f65ce6d1b5ec39bff2f616510a" target="_blank" rel="noopener"><code>51c0cfc7539dc3bb883969d384a7389373a144f65ce6d1b5ec39bff2f616510a</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2259,6 +2526,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51c23c9fee47972db699d6fbefcf75f1f841e2a72efff842b34d38f9faf89a34" target="_blank" rel="noopener"><code>51c23c9fee47972db699d6fbefcf75f1f841e2a72efff842b34d38f9faf89a34</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2267,6 +2535,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51c2ce9149de3db70b215296b809528da5b3adbf79d8dcbd67d24e7f4cbbf28f" target="_blank" rel="noopener"><code>51c2ce9149de3db70b215296b809528da5b3adbf79d8dcbd67d24e7f4cbbf28f</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2275,6 +2544,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51c3239dd5c9207516bbfec8fba85622f50c059f32143876972ea14426d827c9" target="_blank" rel="noopener"><code>51c3239dd5c9207516bbfec8fba85622f50c059f32143876972ea14426d827c9</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2283,6 +2553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51c4d441a14fa3ff0b2da86e4ebbbb3ea0cade5d296a4244845ea87e4b5e7380" target="_blank" rel="noopener"><code>51c4d441a14fa3ff0b2da86e4ebbbb3ea0cade5d296a4244845ea87e4b5e7380</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:17Z</td>
@@ -2291,6 +2562,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51ca27e723a121f9b290e8245e0658b33db5ec9e809715fcd00539518574bcc9" target="_blank" rel="noopener"><code>51ca27e723a121f9b290e8245e0658b33db5ec9e809715fcd00539518574bcc9</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2299,6 +2571,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51cab8f177eb68f04615b33c39ca1491b29f0ee89f712b41070389204699fd40" target="_blank" rel="noopener"><code>51cab8f177eb68f04615b33c39ca1491b29f0ee89f712b41070389204699fd40</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2307,6 +2580,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51d9057e770560cea7c5678d579351b7f2e908bb839a6e16238d74dd5373c4f5" target="_blank" rel="noopener"><code>51d9057e770560cea7c5678d579351b7f2e908bb839a6e16238d74dd5373c4f5</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2315,6 +2589,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51db4d2c54e299ae26b3085633aa79476560f9a2f5cc4328683cdee5fb6591fe" target="_blank" rel="noopener"><code>51db4d2c54e299ae26b3085633aa79476560f9a2f5cc4328683cdee5fb6591fe</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2323,6 +2598,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51dbd69bcfac286f661596ff039d50be797c0b850543f609f1a0564dfb45b4a4" target="_blank" rel="noopener"><code>51dbd69bcfac286f661596ff039d50be797c0b850543f609f1a0564dfb45b4a4</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2331,6 +2607,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51dd17b0ea4169e58b72ce70495999eb72d81031fced1b1315eca962915dfa58" target="_blank" rel="noopener"><code>51dd17b0ea4169e58b72ce70495999eb72d81031fced1b1315eca962915dfa58</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2339,6 +2616,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51df4904006bdfa3f8e334af7762e4b98e428edc7f2f9d2c3f9cddb7b6f76418" target="_blank" rel="noopener"><code>51df4904006bdfa3f8e334af7762e4b98e428edc7f2f9d2c3f9cddb7b6f76418</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2347,6 +2625,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51e4092cc2b507c07cc5b5dd34ac507ef02302fd2b3ad60912d9719a46ec7228" target="_blank" rel="noopener"><code>51e4092cc2b507c07cc5b5dd34ac507ef02302fd2b3ad60912d9719a46ec7228</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2355,6 +2634,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51e4dce11e58aa2be5d3c73056bf45652de5032dcb29636b28f2c1659df135db" target="_blank" rel="noopener"><code>51e4dce11e58aa2be5d3c73056bf45652de5032dcb29636b28f2c1659df135db</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2363,6 +2643,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51e6527daa5a10028c434c7ceaed1570ddd95e1de0eafa702f77860cec3d0b7c" target="_blank" rel="noopener"><code>51e6527daa5a10028c434c7ceaed1570ddd95e1de0eafa702f77860cec3d0b7c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2371,6 +2652,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51ecbaefb0c7b17ea97e6c220edea153b3a787b97ba1000c43dfc7af9e3c785f" target="_blank" rel="noopener"><code>51ecbaefb0c7b17ea97e6c220edea153b3a787b97ba1000c43dfc7af9e3c785f</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2379,6 +2661,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51ef0339aa89d46ad9b5131f17e54a45c12a653a0e530a1fb6b381ce465f9ca2" target="_blank" rel="noopener"><code>51ef0339aa89d46ad9b5131f17e54a45c12a653a0e530a1fb6b381ce465f9ca2</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2387,6 +2670,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51f2211c860f9a23173d9c2533343e5386599846b32468922926239c62b2aecf" target="_blank" rel="noopener"><code>51f2211c860f9a23173d9c2533343e5386599846b32468922926239c62b2aecf</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2395,6 +2679,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51f3f7d8ac847527e0652b7841b3f37844b24f1e5b206af23debd479b8aa6a86" target="_blank" rel="noopener"><code>51f3f7d8ac847527e0652b7841b3f37844b24f1e5b206af23debd479b8aa6a86</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2403,6 +2688,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51f4fd4b792fe850919ba26123a12a05c7d711f174243688cbba43ddc9c479fa" target="_blank" rel="noopener"><code>51f4fd4b792fe850919ba26123a12a05c7d711f174243688cbba43ddc9c479fa</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2411,6 +2697,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/51f9008cc714bc2c9d8349ddd249daa5b78dfe593cc86d047760daf0aee1bdf8" target="_blank" rel="noopener"><code>51f9008cc714bc2c9d8349ddd249daa5b78dfe593cc86d047760daf0aee1bdf8</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2419,6 +2706,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/52037b1dc98944493fc6ac41ab7fbc62c7eef79238c2b7f8d9242284e08f8a3b" target="_blank" rel="noopener"><code>52037b1dc98944493fc6ac41ab7fbc62c7eef79238c2b7f8d9242284e08f8a3b</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2427,6 +2715,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/520ac8627622243d245e44af86961d43dd5bf4887295af246a35e9e354bc4b55" target="_blank" rel="noopener"><code>520ac8627622243d245e44af86961d43dd5bf4887295af246a35e9e354bc4b55</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2435,6 +2724,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/520beb909a622e4a50bcbae7a43194deda3478a4fe2c4e4c81d939761076e23f" target="_blank" rel="noopener"><code>520beb909a622e4a50bcbae7a43194deda3478a4fe2c4e4c81d939761076e23f</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2443,6 +2733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/520d36cc5206f727a878d748e7255b922a835c5dae068498139dc0b90b078a61" target="_blank" rel="noopener"><code>520d36cc5206f727a878d748e7255b922a835c5dae068498139dc0b90b078a61</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2451,6 +2742,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/520f74d232bd500790ce8018cc32567c537534e7bf028bffd4fbb225c1713812" target="_blank" rel="noopener"><code>520f74d232bd500790ce8018cc32567c537534e7bf028bffd4fbb225c1713812</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:18Z</td>
@@ -2459,6 +2751,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/521199251b008a9dd6f655d4220ffbe4ed3909c5c51100a9bd09f4760705b509" target="_blank" rel="noopener"><code>521199251b008a9dd6f655d4220ffbe4ed3909c5c51100a9bd09f4760705b509</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2467,6 +2760,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5211d36fe1368832a8fe0ebc8fc1b9b1ce9d72bd4a40853f774be8d5b637d903" target="_blank" rel="noopener"><code>5211d36fe1368832a8fe0ebc8fc1b9b1ce9d72bd4a40853f774be8d5b637d903</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2475,6 +2769,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5212cc66860b127555ca66b7a45f209418ac83dc24e50e80346a4a612268f0b8" target="_blank" rel="noopener"><code>5212cc66860b127555ca66b7a45f209418ac83dc24e50e80346a4a612268f0b8</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2483,6 +2778,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5215d350f917e8f1df09581b835fb5189a00461a1041b898505bd39180203c1d" target="_blank" rel="noopener"><code>5215d350f917e8f1df09581b835fb5189a00461a1041b898505bd39180203c1d</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2491,6 +2787,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/521b4516ed8e30973f02f5749ba800aee5b4271d022ea4c783decb001d14f74d" target="_blank" rel="noopener"><code>521b4516ed8e30973f02f5749ba800aee5b4271d022ea4c783decb001d14f74d</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2499,6 +2796,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/521ee7e46a2da04f3aaf21131a867b9d6ac8228f03b3ea69c4274d0348e9417c" target="_blank" rel="noopener"><code>521ee7e46a2da04f3aaf21131a867b9d6ac8228f03b3ea69c4274d0348e9417c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2507,6 +2805,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5227ed40f5ee2c8d976365582e7550bf43e1cedaca4ffdbf3f6993d78826ac47" target="_blank" rel="noopener"><code>5227ed40f5ee2c8d976365582e7550bf43e1cedaca4ffdbf3f6993d78826ac47</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2515,6 +2814,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/522ee07d2425ec6b9379089652277983e1bf79a1179382ccc5e1f16b254d0e8a" target="_blank" rel="noopener"><code>522ee07d2425ec6b9379089652277983e1bf79a1179382ccc5e1f16b254d0e8a</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2523,6 +2823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/523110e3cb2270e27ac155a73ea6491a46ac6c8ef80f5d0172714298306415b4" target="_blank" rel="noopener"><code>523110e3cb2270e27ac155a73ea6491a46ac6c8ef80f5d0172714298306415b4</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-medium">medium 69</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2021-07-23T08:00:24Z</td>
@@ -2531,6 +2832,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5234f89182c4dc720109d79846f727f40dfd3fb0dfcfd6dd775220b0cf339c2c" target="_blank" rel="noopener"><code>5234f89182c4dc720109d79846f727f40dfd3fb0dfcfd6dd775220b0cf339c2c</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2539,6 +2841,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/523f182f4725f3ab8465671b801bd4ba6837b393b57a5f1f627bd7841ffd0e54" target="_blank" rel="noopener"><code>523f182f4725f3ab8465671b801bd4ba6837b393b57a5f1f627bd7841ffd0e54</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2547,6 +2850,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5241eaee54b34dae636c89c84e85f62c7ed65c8a3c52c6c7248fa66e13841939" target="_blank" rel="noopener"><code>5241eaee54b34dae636c89c84e85f62c7ed65c8a3c52c6c7248fa66e13841939</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2555,6 +2859,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/524b71c4013215761e79452ecd84fecf4ee101bd2011d2d95e604a566db996af" target="_blank" rel="noopener"><code>524b71c4013215761e79452ecd84fecf4ee101bd2011d2d95e604a566db996af</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2563,6 +2868,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/524e5fb5193a1290d902284bbab04e829e6b0a304a09ec146947745d57a9e4ea" target="_blank" rel="noopener"><code>524e5fb5193a1290d902284bbab04e829e6b0a304a09ec146947745d57a9e4ea</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2571,6 +2877,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/525128218910d1c90fdb83ba56ee51c3a6f1193f844b03207086be9e45cc8d74" target="_blank" rel="noopener"><code>525128218910d1c90fdb83ba56ee51c3a6f1193f844b03207086be9e45cc8d74</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2579,6 +2886,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5254ced00e2e4832dfdb2bf138d7085771c9ac6ad3bcb9bffe92ba1922aa5786" target="_blank" rel="noopener"><code>5254ced00e2e4832dfdb2bf138d7085771c9ac6ad3bcb9bffe92ba1922aa5786</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2587,6 +2895,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/525f5c2b3ceb4b68ebc88e41ca39500b737be3e627e33c7ff6f68f1b9a977d74" target="_blank" rel="noopener"><code>525f5c2b3ceb4b68ebc88e41ca39500b737be3e627e33c7ff6f68f1b9a977d74</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2595,6 +2904,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5260ebf385e9bc4fb9e4a69b7c3935b777ab110968d7cf9307ab5905120e1d38" target="_blank" rel="noopener"><code>5260ebf385e9bc4fb9e4a69b7c3935b777ab110968d7cf9307ab5905120e1d38</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2603,6 +2913,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/526126f4b17a0aec340b45293656487d366297c0549c606372b971f02e921bfd" target="_blank" rel="noopener"><code>526126f4b17a0aec340b45293656487d366297c0549c606372b971f02e921bfd</code></a></td>
           <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T04:00:19Z</td>
@@ -2615,8 +2926,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

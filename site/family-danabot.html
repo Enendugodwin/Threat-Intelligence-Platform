@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.227.42.108" target="_blank" rel="noopener"><code>109[.]227[.]42[.]108</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-08T19:43:25Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.227.48.165" target="_blank" rel="noopener"><code>109[.]227[.]48[.]165</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-15T09:43:24Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/129.146.241.3" target="_blank" rel="noopener"><code>129[.]146[.]241[.]3</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-25T09:43:33Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/129.153.57.179" target="_blank" rel="noopener"><code>129[.]153[.]57[.]179</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-10T19:43:34Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/130.61.85.204" target="_blank" rel="noopener"><code>130[.]61[.]85[.]204</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-23T19:43:37Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.0.191.215" target="_blank" rel="noopener"><code>138[.]0[.]191[.]215</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-19T09:43:36Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.202.93.183" target="_blank" rel="noopener"><code>143[.]202[.]93[.]183</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-04T19:43:42Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.202.93.210" target="_blank" rel="noopener"><code>143[.]202[.]93[.]210</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-02T09:43:28Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/147.224.179.31" target="_blank" rel="noopener"><code>147[.]224[.]179[.]31</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-17T19:43:47Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.158.158" target="_blank" rel="noopener"><code>154[.]193[.]158[.]158</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.158.159" target="_blank" rel="noopener"><code>154[.]193[.]158[.]159</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.158.160" target="_blank" rel="noopener"><code>154[.]193[.]158[.]160</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.158.239" target="_blank" rel="noopener"><code>154[.]193[.]158[.]239</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.158.38" target="_blank" rel="noopener"><code>154[.]193[.]158[.]38</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.159.139" target="_blank" rel="noopener"><code>154[.]193[.]159[.]139</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-29T09:43:39Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.160.246" target="_blank" rel="noopener"><code>154[.]193[.]160[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.193.160.247" target="_blank" rel="noopener"><code>154[.]193[.]160[.]247</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T10:43:40Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.205.175.206" target="_blank" rel="noopener"><code>154[.]205[.]175[.]206</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-11T09:43:55Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.214.2.223" target="_blank" rel="noopener"><code>154[.]214[.]2[.]223</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-14T09:43:55Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.216.139.17" target="_blank" rel="noopener"><code>154[.]216[.]139[.]17</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-19T09:43:53Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.86.105.20" target="_blank" rel="noopener"><code>154[.]86[.]105[.]20</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-20T19:43:56Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.86.14.17" target="_blank" rel="noopener"><code>154[.]86[.]14[.]17</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-19T09:43:54Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.86.96.35" target="_blank" rel="noopener"><code>154[.]86[.]96[.]35</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T19:43:53Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.185.139" target="_blank" rel="noopener"><code>156[.]252[.]185[.]139</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:43:41Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.185.204" target="_blank" rel="noopener"><code>156[.]252[.]185[.]204</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:43:41Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.85.206" target="_blank" rel="noopener"><code>156[.]252[.]85[.]206</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:43:41Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.85.207" target="_blank" rel="noopener"><code>156[.]252[.]85[.]207</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:43:41Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.90.169" target="_blank" rel="noopener"><code>156[.]252[.]90[.]169</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-27T19:43:41Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.90.238" target="_blank" rel="noopener"><code>156[.]252[.]90[.]238</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-27T19:43:41Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.91.25" target="_blank" rel="noopener"><code>156[.]252[.]91[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-29T09:43:44Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.91.7" target="_blank" rel="noopener"><code>156[.]252[.]91[.]7</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T19:43:56Z</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.252.92.138" target="_blank" rel="noopener"><code>156[.]252[.]92[.]138</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-30T09:43:46Z</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/162.141.69.37" target="_blank" rel="noopener"><code>162[.]141[.]69[.]37</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-11T09:44:08Z</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/170.78.199.162" target="_blank" rel="noopener"><code>170[.]78[.]199[.]162</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-01T19:43:50Z</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/177.22.116.3" target="_blank" rel="noopener"><code>177[.]22[.]116[.]3</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-25T19:44:20Z</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/177.22.117.0" target="_blank" rel="noopener"><code>177[.]22[.]117[.]0</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T19:44:16Z</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/177.22.117.74" target="_blank" rel="noopener"><code>177[.]22[.]117[.]74</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-23T19:44:28Z</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/177.22.119.68" target="_blank" rel="noopener"><code>177[.]22[.]119[.]68</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-24T19:44:29Z</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.32.114.69" target="_blank" rel="noopener"><code>194[.]32[.]114[.]69</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-19T19:45:19Z</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/198.1.241.175" target="_blank" rel="noopener"><code>198[.]1[.]241[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:44:16Z</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/198.1.241.78" target="_blank" rel="noopener"><code>198[.]1[.]241[.]78</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:44:16Z</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/198.44.167.14" target="_blank" rel="noopener"><code>198[.]44[.]167[.]14</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-14T19:45:31Z</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/207.211.189.214" target="_blank" rel="noopener"><code>207[.]211[.]189[.]214</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-24T19:45:24Z</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.217.197.190" target="_blank" rel="noopener"><code>217[.]217[.]197[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:44:43Z</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.217.197.191" target="_blank" rel="noopener"><code>217[.]217[.]197[.]191</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-10-04T09:44:43Z</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/219.142.15.101" target="_blank" rel="noopener"><code>219[.]142[.]15[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-05-01T02:43:19Z</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/220.231.47.163" target="_blank" rel="noopener"><code>220[.]231[.]47[.]163</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-05-01T02:43:19Z</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/221.130.42.19" target="_blank" rel="noopener"><code>221[.]130[.]42[.]19</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-05-01T02:43:19Z</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.244.231.231" target="_blank" rel="noopener"><code>37[.]244[.]231[.]231</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-05T09:46:29Z</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.244.231.39" target="_blank" rel="noopener"><code>37[.]244[.]231[.]39</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-23T19:46:28Z</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.244.232.113" target="_blank" rel="noopener"><code>37[.]244[.]232[.]113</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-12T09:46:41Z</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.152.242.129" target="_blank" rel="noopener"><code>45[.]152[.]242[.]129</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-21T09:46:23Z</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.152.242.130" target="_blank" rel="noopener"><code>45[.]152[.]242[.]130</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-28T19:46:07Z</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/54.87.15.178" target="_blank" rel="noopener"><code>54[.]87[.]15[.]178</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-02T19:47:25Z</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/62.81.188.1" target="_blank" rel="noopener"><code>62[.]81[.]188[.]1</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-05-01T02:43:26Z</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/64.181.194.179" target="_blank" rel="noopener"><code>64[.]181[.]194[.]179</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-17T09:48:11Z</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/64.84.56.233" target="_blank" rel="noopener"><code>64[.]84[.]56[.]233</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-19T09:46:50Z</td>
@@ -667,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/77.237.102.203" target="_blank" rel="noopener"><code>77[.]237[.]102[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-04T19:46:59Z</td>
@@ -675,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/79.76.35.195" target="_blank" rel="noopener"><code>79[.]76[.]35[.]195</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-09T19:47:17Z</td>
@@ -683,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/88.223.43.216" target="_blank" rel="noopener"><code>88[.]223[.]43[.]216</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-11T09:47:28Z</td>
@@ -691,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/88.223.43.37" target="_blank" rel="noopener"><code>88[.]223[.]43[.]37</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-11T09:47:29Z</td>
@@ -699,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/94.250.191.120" target="_blank" rel="noopener"><code>94[.]250[.]191[.]120</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>DanaBot</td>
           <td></td>
           <td>2026-09-07T19:47:18Z</td>
@@ -711,8 +784,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

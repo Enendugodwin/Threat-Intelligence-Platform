@@ -45,24 +45,29 @@
 {% macro cards(totals, feed_health, tor, window_days) -%}
 <section class="cards" aria-label="Key metrics">
   <div class="card">
-    <div class="card-head">{{ icon("database") }}Indicators</div>
+    <div class="card-head">{{ icon("database") }}Indicators tracked</div>
     <span class="num">{{ totals.total }}</span>
-    <span class="card-sub">{{ totals.new }} new / {{ window_days }}d</span>
+    <span class="card-sub">{{ totals.high_confidence }} at confidence &ge; 80</span>
   </div>
   <div class="card">
-    <div class="card-head">{{ icon("arrow-up") }}New in window</div>
-    <span class="num">{{ totals.new }}</span>
-    <span class="card-sub">{{ window_days }}-day window</span>
+    <div class="card-head">{{ icon("arrow-up") }}New this run</div>
+    <span class="num">{{ totals.new_run }}</span>
+    <span class="card-sub">{{ totals.updated_run }} updated &middot; {{ totals.pruned_run }} pruned</span>
   </div>
   <div class="card">
-    <div class="card-head">{{ icon("grid") }}Families</div>
-    <span class="num">{{ totals.families }}</span>
-    <span class="card-sub">{{ totals.coverage }} ATT&amp;CK techniques</span>
+    <div class="card-head">{{ icon("pulse") }}Last {{ window_days }} days</div>
+    <span class="num">{{ totals.activity_new }}</span>
+    <span class="card-sub">{{ totals.activity_updated }} updated &middot; {{ totals.activity_runs }} sync run(s)</span>
   </div>
   <div class="card{% if feed_health.ok < feed_health.total %} card-bad{% endif %}">
-    <div class="card-head">{{ icon("pulse") }}Feeds</div>
+    <div class="card-head">{{ icon("pulse") }}Feeds healthy</div>
     <span class="num">{{ feed_health.ok }}/{{ feed_health.total }}</span>
-    <span class="card-sub">reported this run</span>
+    <span class="card-sub">last run</span>
+  </div>
+  <div class="card">
+    <div class="card-head">{{ icon("shield") }}KEV tracked</div>
+    <span class="num">{{ kev_summary.total if kev_summary is defined and kev_summary else "—" }}</span>
+    <span class="card-sub">{% if kev_summary is defined and kev_summary %}{{ kev_summary.ransomware }} ransomware &middot; {{ kev_summary.overdue }} overdue{% else %}see Vulnerabilities{% endif %}</span>
   </div>
   <div class="card">
     <div class="card-head">{{ icon("eye-off") }}Tor nodes</div>
@@ -83,7 +88,7 @@
       <tbody>
       {% for f in feed_health.feeds %}
         <tr>
-          <td><code>{{ f.name }}</code></td>
+          <td><code>{{ f.label }}</code></td>
           <td class="num-cell">{{ f.count if f.count is not none else "—" }}</td>
           <td>
             {% if f.error %}<span class="pill err">error</span> <span class="err-text">{{ f.error }}</span>
@@ -134,13 +139,14 @@
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
+        <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
       </thead>
       <tbody>
       {% for i in notable %}
         <tr>
           <td><a href="{{ i.href }}" target="_blank" rel="noopener"><code>{{ i.value }}</code></a></td>
           <td>{{ i.type }}</td>
+          <td><span class="risk risk-{{ i.risk.level }}">{{ i.risk.level }} {{ i.risk.score }}</span></td>
           <td>{{ i.malware if i.malware else "—" }}</td>
           <td>{{ i.sources | join(", ") }}</td>
           <td>{{ i.first_seen if i.first_seen else "—" }}</td>
@@ -199,12 +205,13 @@
           <td><a href="technique-{{ t.id }}.html"><code>{{ t.id }}</code></a></td>
           <td>{{ t.name }}</td>
           <td>{{ t.tactics | join(", ") }}</td>
-          <td class="num-cell">{{ t.count }}</td>
+          <td class="num-cell">{{ t.primary }}{% if t.basis.heuristic %} <span class="muted">+{{ t.basis.heuristic }} heuristic</span>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
+  <p class="muted">Counts show family/tag evidence; "+N heuristic" are bare network indicators mapped by the default heuristic (T1071.001) and are excluded from the headline count.</p>
   {% else %}
   <p class="muted">No technique mapping yet.</p>
   {% endif %}

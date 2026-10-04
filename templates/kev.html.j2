@@ -9,7 +9,7 @@
   EPSS data may lag by a day.
 </p>
 
-<section class="cards" aria-label="KEV summary">
+<section class="cards" aria-label="Vulnerability priority">
   <div class="card">
     <div class="card-head">{{ ui.icon("shield") }}Tracked</div>
     <span class="num">{{ kev.entries | length }}</span>
@@ -20,10 +20,15 @@
     <span class="num">{{ kev.ransomware }}</span>
     <span class="card-sub">known ransomware campaigns</span>
   </div>
+  <div class="card{% if kev.overdue %} card-bad{% endif %}">
+    <div class="card-head">{{ ui.icon("alert") }}Overdue</div>
+    <span class="num">{{ kev.overdue }}</span>
+    <span class="card-sub">past the KEV due date</span>
+  </div>
   <div class="card">
-    <div class="card-head">{{ ui.icon("arrow-up") }}Last 30 days</div>
-    <span class="num">{{ kev.recent }}</span>
-    <span class="card-sub">newly added entries</span>
+    <div class="card-head">{{ ui.icon("arrow-up") }}EPSS &ge; 50%</div>
+    <span class="num">{{ kev.epss_high }}</span>
+    <span class="card-sub">high exploit probability</span>
   </div>
 </section>
 
@@ -48,7 +53,7 @@
           <td><a href="https://nvd.nist.gov/vuln/search/results?query={{ e.product | urlencode }}&amp;search_type=all" target="_blank" rel="noopener">{{ e.product }}</a></td>
           <td><a href="https://nvd.nist.gov/vuln/detail/{{ e.cve }}" target="_blank" rel="noopener">{{ e.name }}</a></td>
           <td>{{ e.date_added }}</td>
-          <td>{{ e.due_date }}</td>
+          <td>{{ e.due_date }}{% if e.overdue %} <span class="pill err">overdue</span>{% endif %}</td>
           <td>{% if e.ransomware %}<span class="pill err">known</span>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>
           <td class="num-cell">{% if e.epss is not none %}{{ "%.1f%%" | format(e.epss * 100) }}{% else %}&mdash;{% endif %}</td>
           <td>{% if e.reports %}<a href="report-{{ e.reports[0].id }}.html" title="{{ e.reports[0].title }}">{{ e.reports | length }} report(s)</a>{% else %}<span class="muted">&mdash;</span>{% endif %}</td>

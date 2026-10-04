@@ -155,6 +155,15 @@ def test_offline_pipeline_end_to_end(tmp_path):
     kev_html = (site_dir / "kev.html").read_text(encoding="utf-8")
     assert "nvd.nist.gov/vuln/search/results" in kev_html
     assert "report-abc123def4567890.html" in kev_html
+    assert "overdue" in kev_html  # fixture due date is in the past
+
+    # run deltas, risk scoring and the IOC explorer
+    assert "New this run" in index
+    assert "heuristic" in index  # ATT&CK evidence split
+    assert (site_dir / "explorer.html").is_file()
+    explorer = (site_dir / "explorer.html").read_text(encoding="utf-8")
+    assert "IOC Explorer" in explorer and "ioc-index" in explorer
+    assert "risk-" in explorer
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0

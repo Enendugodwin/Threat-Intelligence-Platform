@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -195,7 +206,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">Malware family: AdaptixC2</h1>
 <p class="muted">
-  238 indicator(s) attributed to AdaptixC2</p>
+  237 indicator(s) attributed to AdaptixC2</p>
 
 <section>
   <div class="table-wrap">
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.127.253.146" target="_blank" rel="noopener"><code>121[.]127[.]253[.]146</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-21T09:43:27Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/130.49.149.13" target="_blank" rel="noopener"><code>130[.]49[.]149[.]13</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-30T06:02:38Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.226.236.52" target="_blank" rel="noopener"><code>138[.]226[.]236[.]52</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-22T12:01:29Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.237" target="_blank" rel="noopener"><code>146[.]70[.]87[.]237</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-07-01T00:02:11Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.64" target="_blank" rel="noopener"><code>146[.]70[.]87[.]64</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-08T21:18:39Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.96" target="_blank" rel="noopener"><code>146[.]70[.]87[.]96</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-07-02T04:02:12Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.50.135.215" target="_blank" rel="noopener"><code>149[.]50[.]135[.]215</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-09-30T00:02:15Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.92.252.59" target="_blank" rel="noopener"><code>154[.]92[.]252[.]59</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-02T20:05:04Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.92.252.60" target="_blank" rel="noopener"><code>154[.]92[.]252[.]60</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-30T06:02:28Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.92.252.61" target="_blank" rel="noopener"><code>154[.]92[.]252[.]61</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-30T06:02:27Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.94.209.12" target="_blank" rel="noopener"><code>158[.]94[.]209[.]12</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-30T06:02:27Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.17.47.121" target="_blank" rel="noopener"><code>167[.]17[.]47[.]121</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-19T20:02:47Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.40.135.36" target="_blank" rel="noopener"><code>169[.]40[.]135[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-02-24T12:02:30Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.166.244.201" target="_blank" rel="noopener"><code>188[.]166[.]244[.]201</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-02-04T00:02:27Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.36.178.53" target="_blank" rel="noopener"><code>194[.]36[.]178[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-06T00:01:40Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/20.157.116.151" target="_blank" rel="noopener"><code>20[.]157[.]116[.]151</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-12-08T14:58:40Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.191.67.71" target="_blank" rel="noopener"><code>202[.]191[.]67[.]71</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-15T04:01:14Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.199.61" target="_blank" rel="noopener"><code>23[.]227[.]199[.]61</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-16T08:02:52Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.199.67" target="_blank" rel="noopener"><code>23[.]227[.]199[.]67</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-23T04:01:28Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.203.128" target="_blank" rel="noopener"><code>23[.]227[.]203[.]128</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-08T21:18:37Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.203.190" target="_blank" rel="noopener"><code>23[.]227[.]203[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-10T00:02:13Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.203.191" target="_blank" rel="noopener"><code>23[.]227[.]203[.]191</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-08T21:18:37Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.203.246" target="_blank" rel="noopener"><code>23[.]227[.]203[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-14T04:02:35Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.72.168.189" target="_blank" rel="noopener"><code>37[.]72[.]168[.]189</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-01-20T20:05:01Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.132.122.141" target="_blank" rel="noopener"><code>38[.]132[.]122[.]141</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-07-01T04:02:16Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.132.122.145" target="_blank" rel="noopener"><code>38[.]132[.]122[.]145</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-16T20:02:54Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.132.122.161" target="_blank" rel="noopener"><code>38[.]132[.]122[.]161</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-08T21:18:40Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.21.153.146" target="_blank" rel="noopener"><code>46[.]21[.]153[.]146</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-09-23T20:01:59Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.21.153.148" target="_blank" rel="noopener"><code>46[.]21[.]153[.]148</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-09-23T20:01:59Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/47.99.196.178" target="_blank" rel="noopener"><code>47[.]99[.]196[.]178</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-09-02T04:01:38Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/8.136.13.87" target="_blank" rel="noopener"><code>8[.]136[.]13[.]87</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-20T00:02:12Z</td>
@@ -459,22 +501,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/8.210.84.56" target="_blank" rel="noopener"><code>8[.]210[.]84[.]56</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-15T09:45:46Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/file/43c2df8d9d262beec1153288cf47d77a4a0a147f7b24197a9a29bdf662e51d96" target="_blank" rel="noopener"><code>43c2df8d9d262beec1153288cf47d77a4a0a147f7b24197a9a29bdf662e51d96</code></a></td>
-          <td>sha256</td>
-          <td>AdaptixC2</td>
-          <td></td>
-          <td>2026-10-04T18:46:53Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.14.234.68" target="_blank" rel="noopener"><code>1[.]14[.]234[.]68</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-11T19:43:03Z</td>
@@ -483,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.69.201.249" target="_blank" rel="noopener"><code>1[.]69[.]201[.]249</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-29T19:43:02Z</td>
@@ -491,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.69.201.81" target="_blank" rel="noopener"><code>1[.]69[.]201[.]81</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T19:43:02Z</td>
@@ -499,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.92.135.168" target="_blank" rel="noopener"><code>1[.]92[.]135[.]168</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-08T19:43:01Z</td>
@@ -507,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.33.202.134" target="_blank" rel="noopener"><code>101[.]33[.]202[.]134</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-13T09:43:02Z</td>
@@ -515,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.36.123.12" target="_blank" rel="noopener"><code>101[.]36[.]123[.]12</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-01T19:43:03Z</td>
@@ -523,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.42.33.156" target="_blank" rel="noopener"><code>101[.]42[.]33[.]156</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-20T09:43:03Z</td>
@@ -531,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.116.52.203" target="_blank" rel="noopener"><code>103[.]116[.]52[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-29T09:43:05Z</td>
@@ -539,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.140.154.7" target="_blank" rel="noopener"><code>103[.]140[.]154[.]7</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-12T09:43:05Z</td>
@@ -547,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.228.171.113" target="_blank" rel="noopener"><code>103[.]228[.]171[.]113</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-01T09:43:08Z</td>
@@ -555,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.51.145.75" target="_blank" rel="noopener"><code>103[.]51[.]145[.]75</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-14T09:43:07Z</td>
@@ -563,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.53.80.201" target="_blank" rel="noopener"><code>103[.]53[.]80[.]201</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-30T19:43:09Z</td>
@@ -571,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.79.76.207" target="_blank" rel="noopener"><code>103[.]79[.]76[.]207</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T09:43:10Z</td>
@@ -579,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.207.93.167" target="_blank" rel="noopener"><code>104[.]207[.]93[.]167</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-01T09:43:13Z</td>
@@ -587,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/106.53.107.131" target="_blank" rel="noopener"><code>106[.]53[.]107[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-01T19:43:16Z</td>
@@ -595,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.152.42.223" target="_blank" rel="noopener"><code>107[.]152[.]42[.]223</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-01T19:43:16Z</td>
@@ -603,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.140.187" target="_blank" rel="noopener"><code>107[.]172[.]140[.]187</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-24T09:43:12Z</td>
@@ -611,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.90.117" target="_blank" rel="noopener"><code>107[.]172[.]90[.]117</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-12T09:43:18Z</td>
@@ -619,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.160.185" target="_blank" rel="noopener"><code>107[.]173[.]160[.]185</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-17T09:43:20Z</td>
@@ -627,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.175.87.234" target="_blank" rel="noopener"><code>107[.]175[.]87[.]234</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-10T09:43:10Z</td>
@@ -635,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.123.245.205" target="_blank" rel="noopener"><code>109[.]123[.]245[.]205</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T09:43:21Z</td>
@@ -643,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.237.64.48" target="_blank" rel="noopener"><code>109[.]237[.]64[.]48</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-01T09:43:17Z</td>
@@ -651,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.74.144.151" target="_blank" rel="noopener"><code>109[.]74[.]144[.]151</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T19:43:23Z</td>
@@ -659,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.190.247.97" target="_blank" rel="noopener"><code>115[.]190[.]247[.]97</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:03Z</td>
@@ -667,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.55.235.249" target="_blank" rel="noopener"><code>117[.]55[.]235[.]249</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-01T19:43:17Z</td>
@@ -675,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.28.212.86" target="_blank" rel="noopener"><code>119[.]28[.]212[.]86</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-25T09:43:20Z</td>
@@ -683,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.59.118.75" target="_blank" rel="noopener"><code>119[.]59[.]118[.]75</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-16T19:43:12Z</td>
@@ -691,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/120.27.155.171" target="_blank" rel="noopener"><code>120[.]27[.]155[.]171</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-23T09:43:27Z</td>
@@ -699,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.41.70.79" target="_blank" rel="noopener"><code>121[.]41[.]70[.]79</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T09:43:27Z</td>
@@ -707,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/125.75.36.126" target="_blank" rel="noopener"><code>125[.]75[.]36[.]126</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-28T19:43:27Z</td>
@@ -715,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/130.185.82.117" target="_blank" rel="noopener"><code>130[.]185[.]82[.]117</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-13T09:43:18Z</td>
@@ -723,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/130.94.42.202" target="_blank" rel="noopener"><code>130[.]94[.]42[.]202</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-14T09:43:34Z</td>
@@ -731,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/131.143.251.246" target="_blank" rel="noopener"><code>131[.]143[.]251[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-15T09:43:17Z</td>
@@ -739,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/132.226.72.148" target="_blank" rel="noopener"><code>132[.]226[.]72[.]148</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-30T19:43:26Z</td>
@@ -747,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.132.28" target="_blank" rel="noopener"><code>134[.]122[.]132[.]28</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-06T09:43:25Z</td>
@@ -755,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.132.3" target="_blank" rel="noopener"><code>134[.]122[.]132[.]3</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-09T09:43:29Z</td>
@@ -763,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.132.35" target="_blank" rel="noopener"><code>134[.]122[.]132[.]35</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-08T09:43:26Z</td>
@@ -771,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/137.175.107.110" target="_blank" rel="noopener"><code>137[.]175[.]107[.]110</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-05T09:43:39Z</td>
@@ -779,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.124.113.131" target="_blank" rel="noopener"><code>138[.]124[.]113[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:05Z</td>
@@ -787,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.162.113.221" target="_blank" rel="noopener"><code>139[.]162[.]113[.]221</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-09T09:43:33Z</td>
@@ -795,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.246.217.103" target="_blank" rel="noopener"><code>143[.]246[.]217[.]103</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:43:46Z</td>
@@ -803,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.246.223.246" target="_blank" rel="noopener"><code>143[.]246[.]223[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-26T12:43:50Z</td>
@@ -811,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/144.124.234.128" target="_blank" rel="noopener"><code>144[.]124[.]234[.]128</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-15T09:43:37Z</td>
@@ -819,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/144.172.118.114" target="_blank" rel="noopener"><code>144[.]172[.]118[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:43:48Z</td>
@@ -827,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/144.172.65.54" target="_blank" rel="noopener"><code>144[.]172[.]65[.]54</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:43:48Z</td>
@@ -835,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/144.31.51.6" target="_blank" rel="noopener"><code>144[.]31[.]51[.]6</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-03T09:43:43Z</td>
@@ -843,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.218" target="_blank" rel="noopener"><code>146[.]70[.]87[.]218</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T19:43:48Z</td>
@@ -851,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.23" target="_blank" rel="noopener"><code>146[.]70[.]87[.]23</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-25T19:43:34Z</td>
@@ -859,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.104.28.204" target="_blank" rel="noopener"><code>149[.]104[.]28[.]204</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:07Z</td>
@@ -867,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/151.236.20.3" target="_blank" rel="noopener"><code>151[.]236[.]20[.]3</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-23T19:43:35Z</td>
@@ -875,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/153.142.13.183" target="_blank" rel="noopener"><code>153[.]142[.]13[.]183</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:43:56Z</td>
@@ -883,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.13.7.196" target="_blank" rel="noopener"><code>154[.]13[.]7[.]196</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:43:58Z</td>
@@ -891,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.211.89.86" target="_blank" rel="noopener"><code>154[.]211[.]89[.]86</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-04T09:44:14Z</td>
@@ -899,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.37.218.235" target="_blank" rel="noopener"><code>154[.]37[.]218[.]235</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:44:00Z</td>
@@ -907,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.81.34.26" target="_blank" rel="noopener"><code>154[.]81[.]34[.]26</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-26T12:44:00Z</td>
@@ -915,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.92.252.62" target="_blank" rel="noopener"><code>154[.]92[.]252[.]62</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-25T19:43:55Z</td>
@@ -923,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.138.215.87" target="_blank" rel="noopener"><code>155[.]138[.]215[.]87</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-04T19:43:56Z</td>
@@ -931,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.238.233.131" target="_blank" rel="noopener"><code>156[.]238[.]233[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-19T13:48:20Z</td>
@@ -939,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.239.47.147" target="_blank" rel="noopener"><code>156[.]239[.]47[.]147</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-23T19:43:29Z</td>
@@ -947,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.158.17.236" target="_blank" rel="noopener"><code>158[.]158[.]17[.]236</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T19:44:04Z</td>
@@ -955,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.20.109.52" target="_blank" rel="noopener"><code>160[.]20[.]109[.]52</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-05T09:44:00Z</td>
@@ -963,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.250.5.251" target="_blank" rel="noopener"><code>160[.]250[.]5[.]251</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-25T09:44:10Z</td>
@@ -971,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/162.14.124.25" target="_blank" rel="noopener"><code>162[.]14[.]124[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:08Z</td>
@@ -979,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/164.160.187.69" target="_blank" rel="noopener"><code>164[.]160[.]187[.]69</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-17T19:44:00Z</td>
@@ -987,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/164.68.123.50" target="_blank" rel="noopener"><code>164[.]68[.]123[.]50</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-08T19:43:45Z</td>
@@ -995,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/164.90.205.13" target="_blank" rel="noopener"><code>164[.]90[.]205[.]13</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-19T19:43:59Z</td>
@@ -1003,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/166.1.249.50" target="_blank" rel="noopener"><code>166[.]1[.]249[.]50</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-12T09:44:19Z</td>
@@ -1011,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.17.47.118" target="_blank" rel="noopener"><code>167[.]17[.]47[.]118</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-20T19:43:30Z</td>
@@ -1019,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/168.144.89.48" target="_blank" rel="noopener"><code>168[.]144[.]89[.]48</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-09T19:43:24Z</td>
@@ -1027,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.58.249.24" target="_blank" rel="noopener"><code>169[.]58[.]249[.]24</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-03T19:43:44Z</td>
@@ -1035,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/170.168.15.43" target="_blank" rel="noopener"><code>170[.]168[.]15[.]43</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-05T09:43:57Z</td>
@@ -1043,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/171.113.113.19" target="_blank" rel="noopener"><code>171[.]113[.]113[.]19</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T09:44:11Z</td>
@@ -1051,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/171.113.115.5" target="_blank" rel="noopener"><code>171[.]113[.]115[.]5</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:44:19Z</td>
@@ -1059,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.169.251.53" target="_blank" rel="noopener"><code>172[.]169[.]251[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-17T19:44:16Z</td>
@@ -1067,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.252.225.151" target="_blank" rel="noopener"><code>172[.]252[.]225[.]151</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T19:44:13Z</td>
@@ -1075,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.252.225.152" target="_blank" rel="noopener"><code>172[.]252[.]225[.]152</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T19:44:13Z</td>
@@ -1083,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.252.225.153" target="_blank" rel="noopener"><code>172[.]252[.]225[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T19:44:13Z</td>
@@ -1091,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/173.199.70.174" target="_blank" rel="noopener"><code>173[.]199[.]70[.]174</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-30T09:44:06Z</td>
@@ -1099,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/177.5.67.246" target="_blank" rel="noopener"><code>177[.]5[.]67[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-21T19:44:18Z</td>
@@ -1107,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/178.104.186.90" target="_blank" rel="noopener"><code>178[.]104[.]186[.]90</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-08T08:43:13Z</td>
@@ -1115,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/178.16.52.22" target="_blank" rel="noopener"><code>178[.]16[.]52[.]22</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:11Z</td>
@@ -1123,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/178.94.25.230" target="_blank" rel="noopener"><code>178[.]94[.]25[.]230</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-22T19:44:20Z</td>
@@ -1131,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/180.76.97.85" target="_blank" rel="noopener"><code>180[.]76[.]97[.]85</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-02T09:43:56Z</td>
@@ -1139,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/182.255.45.114" target="_blank" rel="noopener"><code>182[.]255[.]45[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:12Z</td>
@@ -1147,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/182.92.227.226" target="_blank" rel="noopener"><code>182[.]92[.]227[.]226</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:44:36Z</td>
@@ -1155,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.147.83.58" target="_blank" rel="noopener"><code>185[.]147[.]83[.]58</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-19T09:44:11Z</td>
@@ -1163,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.147.83.59" target="_blank" rel="noopener"><code>185[.]147[.]83[.]59</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-25T19:44:10Z</td>
@@ -1171,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.164.57.60" target="_blank" rel="noopener"><code>185[.]164[.]57[.]60</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-15T09:44:28Z</td>
@@ -1179,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.193.127.4" target="_blank" rel="noopener"><code>185[.]193[.]127[.]4</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-18T09:44:38Z</td>
@@ -1187,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.207.154.11" target="_blank" rel="noopener"><code>185[.]207[.]154[.]11</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-14T09:43:43Z</td>
@@ -1195,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.213.20.250" target="_blank" rel="noopener"><code>185[.]213[.]20[.]250</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:13Z</td>
@@ -1203,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.227.152.231" target="_blank" rel="noopener"><code>185[.]227[.]152[.]231</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-04T19:44:36Z</td>
@@ -1211,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.242.245.120" target="_blank" rel="noopener"><code>185[.]242[.]245[.]120</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:13Z</td>
@@ -1219,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.242.245.27" target="_blank" rel="noopener"><code>185[.]242[.]245[.]27</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-11T09:43:35Z</td>
@@ -1227,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.33.86.141" target="_blank" rel="noopener"><code>185[.]33[.]86[.]141</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-21T09:44:16Z</td>
@@ -1235,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/186.244.214.231" target="_blank" rel="noopener"><code>186[.]244[.]214[.]231</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-19T19:44:59Z</td>
@@ -1243,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/186.244.227.104" target="_blank" rel="noopener"><code>186[.]244[.]227[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-05T09:44:33Z</td>
@@ -1251,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/186.244.227.27" target="_blank" rel="noopener"><code>186[.]244[.]227[.]27</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-05T09:44:33Z</td>
@@ -1259,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/186.244.227.52" target="_blank" rel="noopener"><code>186[.]244[.]227[.]52</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-05T09:44:34Z</td>
@@ -1267,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.253.226.10" target="_blank" rel="noopener"><code>192[.]253[.]226[.]10</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T09:44:49Z</td>
@@ -1275,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.3.139.18" target="_blank" rel="noopener"><code>192[.]3[.]139[.]18</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-11T19:43:50Z</td>
@@ -1283,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.111.117.26" target="_blank" rel="noopener"><code>193[.]111[.]117[.]26</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-26T19:44:32Z</td>
@@ -1291,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.112.169.214" target="_blank" rel="noopener"><code>193[.]112[.]169[.]214</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-03T09:44:27Z</td>
@@ -1299,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.112.254.32" target="_blank" rel="noopener"><code>193[.]112[.]254[.]32</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-21T19:44:42Z</td>
@@ -1307,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.135.137.240" target="_blank" rel="noopener"><code>193[.]135[.]137[.]240</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-10T19:43:51Z</td>
@@ -1315,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.233.220.65" target="_blank" rel="noopener"><code>193[.]233[.]220[.]65</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-26T09:44:43Z</td>
@@ -1323,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.233.49.79" target="_blank" rel="noopener"><code>193[.]233[.]49[.]79</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-08T09:44:51Z</td>
@@ -1331,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.239.237.120" target="_blank" rel="noopener"><code>193[.]239[.]237[.]120</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-08T09:44:51Z</td>
@@ -1339,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.24.123.160" target="_blank" rel="noopener"><code>193[.]24[.]123[.]160</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-26T09:44:02Z</td>
@@ -1347,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.32.162.108" target="_blank" rel="noopener"><code>193[.]32[.]162[.]108</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-17T09:45:13Z</td>
@@ -1355,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.182.87.116" target="_blank" rel="noopener"><code>194[.]182[.]87[.]116</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-15T09:44:31Z</td>
@@ -1363,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.26.1.177" target="_blank" rel="noopener"><code>2[.]26[.]1[.]177</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-30T17:44:15Z</td>
@@ -1371,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.27.160.141" target="_blank" rel="noopener"><code>2[.]27[.]160[.]141</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-24T09:44:56Z</td>
@@ -1379,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.56.222.17" target="_blank" rel="noopener"><code>2[.]56[.]222[.]17</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-08T19:45:21Z</td>
@@ -1387,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/20.118.221.53" target="_blank" rel="noopener"><code>20[.]118[.]221[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T19:45:00Z</td>
@@ -1395,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.73.4.82" target="_blank" rel="noopener"><code>202[.]73[.]4[.]82</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-13T09:45:08Z</td>
@@ -1403,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.95.8.92" target="_blank" rel="noopener"><code>202[.]95[.]8[.]92</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-25T19:44:05Z</td>
@@ -1411,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.95.8.97" target="_blank" rel="noopener"><code>202[.]95[.]8[.]97</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-28T09:44:19Z</td>
@@ -1419,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.95.8.98" target="_blank" rel="noopener"><code>202[.]95[.]8[.]98</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-28T09:44:19Z</td>
@@ -1427,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/203.161.55.41" target="_blank" rel="noopener"><code>203[.]161[.]55[.]41</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-13T09:45:09Z</td>
@@ -1435,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/203.161.57.75" target="_blank" rel="noopener"><code>203[.]161[.]57[.]75</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-06T09:44:36Z</td>
@@ -1443,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/203.88.118.26" target="_blank" rel="noopener"><code>203[.]88[.]118[.]26</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-05T09:45:24Z</td>
@@ -1451,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/206.206.103.203" target="_blank" rel="noopener"><code>206[.]206[.]103[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-16T09:45:44Z</td>
@@ -1459,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/206.238.123.77" target="_blank" rel="noopener"><code>206[.]238[.]123[.]77</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T19:45:08Z</td>
@@ -1467,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/207.56.26.118" target="_blank" rel="noopener"><code>207[.]56[.]26[.]118</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-14T09:44:42Z</td>
@@ -1475,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/207.57.123.129" target="_blank" rel="noopener"><code>207[.]57[.]123[.]129</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-25T09:44:42Z</td>
@@ -1483,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/209.99.188.193" target="_blank" rel="noopener"><code>209[.]99[.]188[.]193</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-07T09:44:10Z</td>
@@ -1491,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/213.209.159.36" target="_blank" rel="noopener"><code>213[.]209[.]159[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T09:45:23Z</td>
@@ -1499,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.203.20.87" target="_blank" rel="noopener"><code>216[.]203[.]20[.]87</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-02T09:44:45Z</td>
@@ -1507,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.148.212.254" target="_blank" rel="noopener"><code>23[.]148[.]212[.]254</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T09:46:04Z</td>
@@ -1515,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.158.24.65" target="_blank" rel="noopener"><code>23[.]158[.]24[.]65</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-21T09:45:54Z</td>
@@ -1523,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.196.18" target="_blank" rel="noopener"><code>23[.]227[.]196[.]18</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-31T19:45:14Z</td>
@@ -1531,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.203.6" target="_blank" rel="noopener"><code>23[.]227[.]203[.]6</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:20Z</td>
@@ -1539,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.27.52.106" target="_blank" rel="noopener"><code>23[.]27[.]52[.]106</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-13T19:44:48Z</td>
@@ -1547,6 +1716,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.94.212.126" target="_blank" rel="noopener"><code>23[.]94[.]212[.]126</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-01T19:44:54Z</td>
@@ -1555,6 +1725,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.220.93.222" target="_blank" rel="noopener"><code>31[.]220[.]93[.]222</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-05T19:45:18Z</td>
@@ -1563,6 +1734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/31.77.161.250" target="_blank" rel="noopener"><code>31[.]77[.]161[.]250</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-04T09:47:29Z</td>
@@ -1571,6 +1743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/35.212.135.58" target="_blank" rel="noopener"><code>35[.]212[.]135[.]58</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-01T19:45:01Z</td>
@@ -1579,6 +1752,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/37.72.168.163" target="_blank" rel="noopener"><code>37[.]72[.]168[.]163</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-08T19:46:36Z</td>
@@ -1587,6 +1761,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.54.63.135" target="_blank" rel="noopener"><code>38[.]54[.]63[.]135</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-30T09:45:23Z</td>
@@ -1595,6 +1770,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.54.8.74" target="_blank" rel="noopener"><code>38[.]54[.]8[.]74</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-12T09:45:25Z</td>
@@ -1603,6 +1779,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.54.88.188" target="_blank" rel="noopener"><code>38[.]54[.]88[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-25T19:46:42Z</td>
@@ -1611,6 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/38.54.97.169" target="_blank" rel="noopener"><code>38[.]54[.]97[.]169</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:46:39Z</td>
@@ -1619,6 +1797,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/39.105.16.200" target="_blank" rel="noopener"><code>39[.]105[.]16[.]200</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-24T09:46:11Z</td>
@@ -1627,6 +1806,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.135.34.69" target="_blank" rel="noopener"><code>43[.]135[.]34[.]69</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-07T19:45:42Z</td>
@@ -1635,6 +1815,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.143.57.45" target="_blank" rel="noopener"><code>43[.]143[.]57[.]45</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:46:57Z</td>
@@ -1643,6 +1824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.160.225.40" target="_blank" rel="noopener"><code>43[.]160[.]225[.]40</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:22Z</td>
@@ -1651,6 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/43.198.116.85" target="_blank" rel="noopener"><code>43[.]198[.]116[.]85</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-09T09:46:58Z</td>
@@ -1659,6 +1842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.112.206.54" target="_blank" rel="noopener"><code>45[.]112[.]206[.]54</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-17T09:47:32Z</td>
@@ -1667,6 +1851,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.125.67.171" target="_blank" rel="noopener"><code>45[.]125[.]67[.]171</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:23Z</td>
@@ -1675,6 +1860,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.127.32.150" target="_blank" rel="noopener"><code>45[.]127[.]32[.]150</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-29T09:45:29Z</td>
@@ -1683,6 +1869,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.128.156.112" target="_blank" rel="noopener"><code>45[.]128[.]156[.]112</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-25T09:46:27Z</td>
@@ -1691,6 +1878,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.13.239.249" target="_blank" rel="noopener"><code>45[.]13[.]239[.]249</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-11T09:46:41Z</td>
@@ -1699,6 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.139.226.224" target="_blank" rel="noopener"><code>45[.]139[.]226[.]224</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-04T09:45:57Z</td>
@@ -1707,6 +1896,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.142.31.82" target="_blank" rel="noopener"><code>45[.]142[.]31[.]82</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-31T19:46:18Z</td>
@@ -1715,6 +1905,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.150.38.95" target="_blank" rel="noopener"><code>45[.]150[.]38[.]95</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-06-28T19:44:54Z</td>
@@ -1723,6 +1914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.155.69.153" target="_blank" rel="noopener"><code>45[.]155[.]69[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-16T19:45:35Z</td>
@@ -1731,6 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.155.69.175" target="_blank" rel="noopener"><code>45[.]155[.]69[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:24Z</td>
@@ -1739,6 +1932,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.157.117.186" target="_blank" rel="noopener"><code>45[.]157[.]117[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-08T09:45:54Z</td>
@@ -1747,6 +1941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.202.1.16" target="_blank" rel="noopener"><code>45[.]202[.]1[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-21T09:46:29Z</td>
@@ -1755,6 +1950,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.207.211.207" target="_blank" rel="noopener"><code>45[.]207[.]211[.]207</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-24T09:46:25Z</td>
@@ -1763,6 +1959,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.249.89.172" target="_blank" rel="noopener"><code>45[.]249[.]89[.]172</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-16T09:47:20Z</td>
@@ -1771,6 +1968,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.38.20.38" target="_blank" rel="noopener"><code>45[.]38[.]20[.]38</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-05T09:46:29Z</td>
@@ -1779,6 +1977,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/45.77.203.212" target="_blank" rel="noopener"><code>45[.]77[.]203[.]212</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T09:46:32Z</td>
@@ -1787,6 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/46.225.119.0" target="_blank" rel="noopener"><code>46[.]225[.]119[.]0</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-16T09:47:26Z</td>
@@ -1795,6 +1995,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/47.103.106.26" target="_blank" rel="noopener"><code>47[.]103[.]106[.]26</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T08:43:44Z</td>
@@ -1803,6 +2004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/47.243.96.54" target="_blank" rel="noopener"><code>47[.]243[.]96[.]54</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-23T09:46:37Z</td>
@@ -1811,6 +2013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/5.133.102.33" target="_blank" rel="noopener"><code>5[.]133[.]102[.]33</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-10T19:46:16Z</td>
@@ -1819,6 +2022,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/5.180.20.26" target="_blank" rel="noopener"><code>5[.]180[.]20[.]26</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-20T19:46:46Z</td>
@@ -1827,6 +2031,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/51.77.54.76" target="_blank" rel="noopener"><code>51[.]77[.]54[.]76</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-11T19:45:01Z</td>
@@ -1835,6 +2040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/62.210.87.233" target="_blank" rel="noopener"><code>62[.]210[.]87[.]233</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-03T09:45:20Z</td>
@@ -1843,6 +2049,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/64.177.45.143" target="_blank" rel="noopener"><code>64[.]177[.]45[.]143</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-02T09:45:31Z</td>
@@ -1851,6 +2058,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/66.179.30.218" target="_blank" rel="noopener"><code>66[.]179[.]30[.]218</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-07T09:46:56Z</td>
@@ -1859,6 +2067,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/68.64.177.24" target="_blank" rel="noopener"><code>68[.]64[.]177[.]24</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-16T19:47:20Z</td>
@@ -1867,6 +2076,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/69.48.229.91" target="_blank" rel="noopener"><code>69[.]48[.]229[.]91</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:47:19Z</td>
@@ -1875,6 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/78.17.93.96" target="_blank" rel="noopener"><code>78[.]17[.]93[.]96</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-11T09:47:18Z</td>
@@ -1883,6 +2094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/79.135.160.20" target="_blank" rel="noopener"><code>79[.]135[.]160[.]20</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:28Z</td>
@@ -1891,6 +2103,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/8.137.111.232" target="_blank" rel="noopener"><code>8[.]137[.]111[.]232</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-23T09:46:57Z</td>
@@ -1899,6 +2112,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/80.96.108.225" target="_blank" rel="noopener"><code>80[.]96[.]108[.]225</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-10T09:47:25Z</td>
@@ -1907,6 +2121,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.115.16.4" target="_blank" rel="noopener"><code>82[.]115[.]16[.]4</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-08T09:47:11Z</td>
@@ -1915,6 +2130,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.158.229.143" target="_blank" rel="noopener"><code>82[.]158[.]229[.]143</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-11T19:46:04Z</td>
@@ -1923,6 +2139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.158.229.189" target="_blank" rel="noopener"><code>82[.]158[.]229[.]189</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-11T19:46:05Z</td>
@@ -1931,6 +2148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.158.229.30" target="_blank" rel="noopener"><code>82[.]158[.]229[.]30</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-11T19:46:05Z</td>
@@ -1939,6 +2157,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/82.25.12.111" target="_blank" rel="noopener"><code>82[.]25[.]12[.]111</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-27T19:45:39Z</td>
@@ -1947,6 +2166,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/84.46.251.62" target="_blank" rel="noopener"><code>84[.]46[.]251[.]62</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-14T09:51:34Z</td>
@@ -1955,6 +2175,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/85.120.216.8" target="_blank" rel="noopener"><code>85[.]120[.]216[.]8</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 75</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-02T09:46:57Z</td>
@@ -1963,6 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/85.155.186.2" target="_blank" rel="noopener"><code>85[.]155[.]186[.]2</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:30Z</td>
@@ -1971,6 +2193,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/85.209.90.132" target="_blank" rel="noopener"><code>85[.]209[.]90[.]132</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-28T09:46:05Z</td>
@@ -1979,6 +2202,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/87.251.64.204" target="_blank" rel="noopener"><code>87[.]251[.]64[.]204</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-07-24T19:45:44Z</td>
@@ -1987,6 +2211,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.110.91.35" target="_blank" rel="noopener"><code>89[.]110[.]91[.]35</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-12T19:46:45Z</td>
@@ -1995,6 +2220,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.124.108.211" target="_blank" rel="noopener"><code>89[.]124[.]108[.]211</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-11T09:47:29Z</td>
@@ -2003,6 +2229,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.126.221.170" target="_blank" rel="noopener"><code>89[.]126[.]221[.]170</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-17T19:47:11Z</td>
@@ -2011,6 +2238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/89.126.221.216" target="_blank" rel="noopener"><code>89[.]126[.]221[.]216</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-17T19:47:11Z</td>
@@ -2019,6 +2247,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.200.84.198" target="_blank" rel="noopener"><code>91[.]200[.]84[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-27T19:45:55Z</td>
@@ -2027,6 +2256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.202.233.153" target="_blank" rel="noopener"><code>91[.]202[.]233[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-01T02:43:31Z</td>
@@ -2035,6 +2265,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.202.233.214" target="_blank" rel="noopener"><code>91[.]202[.]233[.]214</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-19T19:45:18Z</td>
@@ -2043,6 +2274,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.215.85.212" target="_blank" rel="noopener"><code>91[.]215[.]85[.]212</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-05-28T09:46:09Z</td>
@@ -2051,6 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.228.153.116" target="_blank" rel="noopener"><code>91[.]228[.]153[.]116</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-26T12:46:43Z</td>
@@ -2059,6 +2292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.92.241.184" target="_blank" rel="noopener"><code>91[.]92[.]241[.]184</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T09:47:08Z</td>
@@ -2067,6 +2301,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/91.92.241.187" target="_blank" rel="noopener"><code>91[.]92[.]241[.]187</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-06T09:47:09Z</td>
@@ -2075,6 +2310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/94.237.62.102" target="_blank" rel="noopener"><code>94[.]237[.]62[.]102</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-13T19:46:52Z</td>
@@ -2083,6 +2319,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/94.26.248.76" target="_blank" rel="noopener"><code>94[.]26[.]248[.]76</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-12T09:47:52Z</td>
@@ -2091,6 +2328,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/94.26.83.60" target="_blank" rel="noopener"><code>94[.]26[.]83[.]60</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-10-03T09:45:40Z</td>
@@ -2099,6 +2337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.14.104.208" target="_blank" rel="noopener"><code>1[.]14[.]104[.]208</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 70</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-20T05:41:15Z</td>
@@ -2107,6 +2346,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.158.24.123" target="_blank" rel="noopener"><code>23[.]158[.]24[.]123</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 70</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-09-28T09:59:17Z</td>
@@ -2119,8 +2359,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

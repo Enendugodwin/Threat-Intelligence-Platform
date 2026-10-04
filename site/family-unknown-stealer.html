@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/8jdjpwka.baby" target="_blank" rel="noopener"><code>8jdjpwka[.]baby</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apdhlhs3.xyz" target="_blank" rel="noopener"><code>apdhlhs3[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bduwih8.pro" target="_blank" rel="noopener"><code>bduwih8[.]pro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/electronic72.pro" target="_blank" rel="noopener"><code>electronic72[.]pro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-23T06:34:17Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fbuytf67.click" target="_blank" rel="noopener"><code>fbuytf67[.]click</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fporziolandscaping.com" target="_blank" rel="noopener"><code>fporziolandscaping[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-07-09T15:33:18Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsderfjs42.com%2F" target="_blank" rel="noopener"><code>hxxps://sderfjs42[.]com/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-10-02T20:44:41Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/iqglobalsolutions.co.ke" target="_blank" rel="noopener"><code>iqglobalsolutions[.]co[.]ke</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-07-09T15:33:21Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/myticket.kwirs.xyz" target="_blank" rel="noopener"><code>myticket[.]kwirs[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2025-12-08T11:34:47Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/okekjaiw.click" target="_blank" rel="noopener"><code>okekjaiw[.]click</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:03Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/sderfjs42.com" target="_blank" rel="noopener"><code>sderfjs42[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-10-02T20:44:41Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsamiksha.com.sg%2Fdata%2Fzoom%2FWindows%2Fdownload.php%2F" target="_blank" rel="noopener"><code>hxxps://samiksha[.]com[.]sg/data/zoom/Windows/download[.]php/</code></a></td>
           <td>url</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-10-04T08:39:15Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/1connect-software.de" target="_blank" rel="noopener"><code>1connect-software[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/1connect.pl" target="_blank" rel="noopener"><code>1connect[.]pl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/420zm3.org" target="_blank" rel="noopener"><code>420zm3[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 78</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-10-02T21:24:12Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/7raaz.com" target="_blank" rel="noopener"><code>7raaz[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alchemybeauty.ca" target="_blank" rel="noopener"><code>alchemybeauty[.]ca</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alfabit.hr" target="_blank" rel="noopener"><code>alfabit[.]hr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alorisk.com" target="_blank" rel="noopener"><code>alorisk[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/americandreamsfoundation.org" target="_blank" rel="noopener"><code>americandreamsfoundation[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amoysupply.com" target="_blank" rel="noopener"><code>amoysupply[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anoesh.nl" target="_blank" rel="noopener"><code>anoesh[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apparthub.com" target="_blank" rel="noopener"><code>apparthub[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:34Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/arvanstore.com" target="_blank" rel="noopener"><code>arvanstore[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aryadigitalmarketing.com" target="_blank" rel="noopener"><code>aryadigitalmarketing[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/astutecopyblogging.com" target="_blank" rel="noopener"><code>astutecopyblogging[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bonas.nl" target="_blank" rel="noopener"><code>bonas[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/brainstorm-events.de" target="_blank" rel="noopener"><code>brainstorm-events[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/brittner.net" target="_blank" rel="noopener"><code>brittner[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bsv-dinslaken.de" target="_blank" rel="noopener"><code>bsv-dinslaken[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bvvaladares.com" target="_blank" rel="noopener"><code>bvvaladares[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/caitlinandcamera.com" target="_blank" rel="noopener"><code>caitlinandcamera[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/care-more-plus.de" target="_blank" rel="noopener"><code>care-more-plus[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cazari-brasov.ro" target="_blank" rel="noopener"><code>cazari-brasov[.]ro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:35Z</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/celler-spiesser.de" target="_blank" rel="noopener"><code>celler-spiesser[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ceylonictravels.com" target="_blank" rel="noopener"><code>ceylonictravels[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chadoichi.com" target="_blank" rel="noopener"><code>chadoichi[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chateauneuf-du-faou.com" target="_blank" rel="noopener"><code>chateauneuf-du-faou[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/christophburgstedt.de" target="_blank" rel="noopener"><code>christophburgstedt[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/classicalexcursions.com" target="_blank" rel="noopener"><code>classicalexcursions[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cne.paris" target="_blank" rel="noopener"><code>cne[.]paris</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/conceptalk.com" target="_blank" rel="noopener"><code>conceptalk[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:36Z</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/crustandcream.com" target="_blank" rel="noopener"><code>crustandcream[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ctsignworks.com" target="_blank" rel="noopener"><code>ctsignworks[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/databound.co" target="_blank" rel="noopener"><code>databound[.]co</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dentalmora.com" target="_blank" rel="noopener"><code>dentalmora[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/digitaltigerbd.com" target="_blank" rel="noopener"><code>digitaltigerbd[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dimveterana.com" target="_blank" rel="noopener"><code>dimveterana[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dirtywork.media" target="_blank" rel="noopener"><code>dirtywork[.]media</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dr-melanie-horstmann.de" target="_blank" rel="noopener"><code>dr-melanie-horstmann[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:37Z</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/drumfluence.com" target="_blank" rel="noopener"><code>drumfluence[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/edeka-kutsche.de" target="_blank" rel="noopener"><code>edeka-kutsche[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/eft-azione.it" target="_blank" rel="noopener"><code>eft-azione[.]it</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/equestrasian.org" target="_blank" rel="noopener"><code>equestrasian[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/esrataskinadiyaman.com" target="_blank" rel="noopener"><code>esrataskinadiyaman[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/estevezmichelena.com" target="_blank" rel="noopener"><code>estevezmichelena[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/etlglobal.co.uk" target="_blank" rel="noopener"><code>etlglobal[.]co[.]uk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -667,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/etta-textservice.de" target="_blank" rel="noopener"><code>etta-textservice[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -675,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fdp-telgte.de" target="_blank" rel="noopener"><code>fdp-telgte[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:38Z</td>
@@ -683,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fiy.cz" target="_blank" rel="noopener"><code>fiy[.]cz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -691,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/funkenwind.de" target="_blank" rel="noopener"><code>funkenwind[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -699,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gabfixhomesolutions.com" target="_blank" rel="noopener"><code>gabfixhomesolutions[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -707,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gasstationgourmet.com" target="_blank" rel="noopener"><code>gasstationgourmet[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -715,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gentlemensmechanical.com" target="_blank" rel="noopener"><code>gentlemensmechanical[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -723,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/glasreinigung-melle.de" target="_blank" rel="noopener"><code>glasreinigung-melle[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -731,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/globalfoodsafetyresource.com" target="_blank" rel="noopener"><code>globalfoodsafetyresource[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -739,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/goinstudios.com" target="_blank" rel="noopener"><code>goinstudios[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -747,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/greensite.org" target="_blank" rel="noopener"><code>greensite[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -755,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gsimvogelgesang.de" target="_blank" rel="noopener"><code>gsimvogelgesang[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -763,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/guanacaste.info" target="_blank" rel="noopener"><code>guanacaste[.]info</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:39Z</td>
@@ -771,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/halcyonresource.com" target="_blank" rel="noopener"><code>halcyonresource[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -779,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/hubusontour.de" target="_blank" rel="noopener"><code>hubusontour[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -787,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/iac-dueren.de" target="_blank" rel="noopener"><code>iac-dueren[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -795,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/imstil.de" target="_blank" rel="noopener"><code>imstil[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -803,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/jdnsquare.com" target="_blank" rel="noopener"><code>jdnsquare[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -811,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/justhr.be" target="_blank" rel="noopener"><code>justhr[.]be</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:40Z</td>
@@ -819,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/k-heck.de" target="_blank" rel="noopener"><code>k-heck[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -827,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/katarijewelry.com" target="_blank" rel="noopener"><code>katarijewelry[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -835,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/kesaria.com" target="_blank" rel="noopener"><code>kesaria[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -843,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/kgv-eintracht.de" target="_blank" rel="noopener"><code>kgv-eintracht[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -851,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/khtshop.com" target="_blank" rel="noopener"><code>khtshop[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -859,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/kinderopvangdopey.com" target="_blank" rel="noopener"><code>kinderopvangdopey[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -867,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/knoxvol.com" target="_blank" rel="noopener"><code>knoxvol[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -875,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/konshenglass.com" target="_blank" rel="noopener"><code>konshenglass[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:41Z</td>
@@ -883,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/krbookstore.com" target="_blank" rel="noopener"><code>krbookstore[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -891,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/kronebo.dk" target="_blank" rel="noopener"><code>kronebo[.]dk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -899,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/largebreedpuppiesreadyfornowhome.com" target="_blank" rel="noopener"><code>largebreedpuppiesreadyfornowhome[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -907,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/laststopsolar.com" target="_blank" rel="noopener"><code>laststopsolar[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -915,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/lebenslaudatio.de" target="_blank" rel="noopener"><code>lebenslaudatio[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -923,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/lianacosmetic.com" target="_blank" rel="noopener"><code>lianacosmetic[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -931,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/loewenpudel.de" target="_blank" rel="noopener"><code>loewenpudel[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -939,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/lot204.com" target="_blank" rel="noopener"><code>lot204[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -947,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/luxestorebd.com" target="_blank" rel="noopener"><code>luxestorebd[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:42Z</td>
@@ -955,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/maasleather.com" target="_blank" rel="noopener"><code>maasleather[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -963,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/magaleria.com" target="_blank" rel="noopener"><code>magaleria[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -971,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/marinacolerato.com.br" target="_blank" rel="noopener"><code>marinacolerato[.]com[.]br</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -979,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/marketzest.com" target="_blank" rel="noopener"><code>marketzest[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -987,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/midlandsbuggyhire.co.uk" target="_blank" rel="noopener"><code>midlandsbuggyhire[.]co[.]uk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -995,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/mindful-karrierecoaching.de" target="_blank" rel="noopener"><code>mindful-karrierecoaching[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -1003,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/mobinnova.com" target="_blank" rel="noopener"><code>mobinnova[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:43Z</td>
@@ -1011,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/moitruongbacninh24h.com" target="_blank" rel="noopener"><code>moitruongbacninh24h[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1019,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/mossycupfarm.com" target="_blank" rel="noopener"><code>mossycupfarm[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1027,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/muehldorf-simbach.de" target="_blank" rel="noopener"><code>muehldorf-simbach[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1035,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ndmcorporatesolutions.com" target="_blank" rel="noopener"><code>ndmcorporatesolutions[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1043,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/nettwark.org" target="_blank" rel="noopener"><code>nettwark[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1051,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/newstonerealtygroup.com" target="_blank" rel="noopener"><code>newstonerealtygroup[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1059,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/nguyenthanhluong.com" target="_blank" rel="noopener"><code>nguyenthanhluong[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1067,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/nicole.wedler.nl" target="_blank" rel="noopener"><code>nicole[.]wedler[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1075,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/nukewatch.org" target="_blank" rel="noopener"><code>nukewatch[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:44Z</td>
@@ -1083,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/nutritionsecureindy.com" target="_blank" rel="noopener"><code>nutritionsecureindy[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1091,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/onthewingsoffood.com" target="_blank" rel="noopener"><code>onthewingsoffood[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1099,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ortho-delfzijl.nl" target="_blank" rel="noopener"><code>ortho-delfzijl[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1107,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/osmeuspes.pt" target="_blank" rel="noopener"><code>osmeuspes[.]pt</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1115,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/otticamoderna.eu" target="_blank" rel="noopener"><code>otticamoderna[.]eu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1123,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/outreachfarmproject.org" target="_blank" rel="noopener"><code>outreachfarmproject[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1131,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ozilver.nl" target="_blank" rel="noopener"><code>ozilver[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1139,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ozsuteknik.com" target="_blank" rel="noopener"><code>ozsuteknik[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1147,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/pacifictowers.com" target="_blank" rel="noopener"><code>pacifictowers[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:45Z</td>
@@ -1155,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/paulusgemeinde-raunheim.de" target="_blank" rel="noopener"><code>paulusgemeinde-raunheim[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1163,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/payangel.info" target="_blank" rel="noopener"><code>payangel[.]info</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1171,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/paystubsetc.com" target="_blank" rel="noopener"><code>paystubsetc[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1179,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/praxis-siegeris.de" target="_blank" rel="noopener"><code>praxis-siegeris[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1187,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/pytacie.pl" target="_blank" rel="noopener"><code>pytacie[.]pl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1195,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/restauration-galaxy-tapis.com" target="_blank" rel="noopener"><code>restauration-galaxy-tapis[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1203,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/rijschoolpegasus.nl" target="_blank" rel="noopener"><code>rijschoolpegasus[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1211,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/romancingthebean.com" target="_blank" rel="noopener"><code>romancingthebean[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1219,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/runningwithj.com" target="_blank" rel="noopener"><code>runningwithj[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1227,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/saigont-shirt.com" target="_blank" rel="noopener"><code>saigont-shirt[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:46Z</td>
@@ -1235,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/savingdogsandcats.com" target="_blank" rel="noopener"><code>savingdogsandcats[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1243,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/schmidt-russnak.de" target="_blank" rel="noopener"><code>schmidt-russnak[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1251,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/seiden-collagen-faden-lifting.com" target="_blank" rel="noopener"><code>seiden-collagen-faden-lifting[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1259,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/simenyi.hu" target="_blank" rel="noopener"><code>simenyi[.]hu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1267,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/skraddarnshus.se" target="_blank" rel="noopener"><code>skraddarnshus[.]se</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1275,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/smartmedservices.net" target="_blank" rel="noopener"><code>smartmedservices[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1283,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/soundtrk.com" target="_blank" rel="noopener"><code>soundtrk[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1291,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/sprzataniegrobow.krakow.pl" target="_blank" rel="noopener"><code>sprzataniegrobow[.]krakow[.]pl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:47Z</td>
@@ -1299,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/szendryk-partner.de" target="_blank" rel="noopener"><code>szendryk-partner[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1307,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/talentclinics.com" target="_blank" rel="noopener"><code>talentclinics[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1315,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/tc-donauwoerth.de" target="_blank" rel="noopener"><code>tc-donauwoerth[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1323,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/thegrimeguys.com" target="_blank" rel="noopener"><code>thegrimeguys[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1331,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/thehappycoders.com" target="_blank" rel="noopener"><code>thehappycoders[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1339,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/theluxurycruiseadvisors.com" target="_blank" rel="noopener"><code>theluxurycruiseadvisors[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1347,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/themilkminimalist.com" target="_blank" rel="noopener"><code>themilkminimalist[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1355,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/theplumberinc.com" target="_blank" rel="noopener"><code>theplumberinc[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:48Z</td>
@@ -1363,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/toorangostar.com" target="_blank" rel="noopener"><code>toorangostar[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1371,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/topset-coaching.de" target="_blank" rel="noopener"><code>topset-coaching[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1379,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/underthebooth.com" target="_blank" rel="noopener"><code>underthebooth[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1387,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/undoism.org" target="_blank" rel="noopener"><code>undoism[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1395,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/unser-dorf-lietzow.de" target="_blank" rel="noopener"><code>unser-dorf-lietzow[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1403,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/upsolutservice.de" target="_blank" rel="noopener"><code>upsolutservice[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1411,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/urlaubsdomizil-binz.de" target="_blank" rel="noopener"><code>urlaubsdomizil-binz[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1419,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/verifiedstats.net" target="_blank" rel="noopener"><code>verifiedstats[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:49Z</td>
@@ -1427,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/visco-foam.com" target="_blank" rel="noopener"><code>visco-foam[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1435,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/vivasicurezza.com" target="_blank" rel="noopener"><code>vivasicurezza[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1443,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/wagahattourist.com" target="_blank" rel="noopener"><code>wagahattourist[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1451,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/wahlplakate-archiv.de" target="_blank" rel="noopener"><code>wahlplakate-archiv[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1459,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/wakeeup.com" target="_blank" rel="noopener"><code>wakeeup[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1467,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/wcpot.net" target="_blank" rel="noopener"><code>wcpot[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1475,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/xn--12ct4ap8bj4eva5b4gxe.com" target="_blank" rel="noopener"><code>xn--12ct4ap8bj4eva5b4gxe[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1483,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/yildirimotoaksesuar.com" target="_blank" rel="noopener"><code>yildirimotoaksesuar[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:50Z</td>
@@ -1491,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/yoga-fuer-maenner.de" target="_blank" rel="noopener"><code>yoga-fuer-maenner[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1499,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/youhityourgoal.com" target="_blank" rel="noopener"><code>youhityourgoal[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1507,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/zahnschirm.de" target="_blank" rel="noopener"><code>zahnschirm[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1515,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/zekerzit.nl" target="_blank" rel="noopener"><code>zekerzit[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1523,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/zhang-ramen.de" target="_blank" rel="noopener"><code>zhang-ramen[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1531,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/zwergennest-ulm.de" target="_blank" rel="noopener"><code>zwergennest-ulm[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 74</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-17T09:42:51Z</td>
@@ -1543,8 +1720,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

@@ -42,3 +42,6 @@ def test_coverage_aggregation():
     coverage = attack.coverage(rows)
     assert coverage["T1071.001"]["count"] >= 1
     assert coverage["T1486"]["name"] == "Data Encrypted for Impact"
+    assert coverage["T1486"]["basis"]["tag"] == 1
+    assert coverage["T1071.001"]["primary"] >= 1
+    assert coverage["T1071.001"]["basis"]["family"] >= 1

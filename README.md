@@ -147,6 +147,21 @@ techniques open per-group indicator pages, every indicator clicks through to a
 VirusTotal lookup, and KEV rows link to NVD plus the reports that reference
 them.
 
+## Risk scoring & IOC Explorer
+
+Every indicator gets a **risk score** (0-100, level CRITICAL/HIGH/MEDIUM/LOW/INFO)
+combining source confidence, multi-source corroboration, recency, malware
+association and indicator type - deliberately separate from raw feed confidence
+(`tip/scoring.py`). The **IOC Explorer** (`site/explorer.html`) searches the
+risk-ranked index client-side (top 10,000, type/risk filters) with each result
+linking to VirusTotal.
+
+Dashboard metrics show **actual run deltas** - new/updated/pruned *this run* plus
+7-day activity from the run history - instead of window counts, so "new" stays
+believable. The ATT&CK coverage table separates **family/tag evidence from the
+default heuristic** (`config/attack_map.yaml` -> `default_techniques`); heuristic
+mappings are shown as "+N heuristic" and excluded from the headline count.
+
 ## Adding a feed
 
 Implement `tip/feeds/base.py::Feed`:
@@ -211,6 +226,7 @@ tip/
   reportfeed.py     vendor report feed (RSS/Atom) -> data/reports.json
   vulnintel.py      CISA KEV catalog + EPSS scoring -> data/kev.json
   geo.py            ip-api.com geolocation (cached) -> data/geo.json
+  scoring.py        IOC risk scoring (confidence, corroboration, recency, context)
 templates/          Jinja UI (base + components + report.md.j2)
 design-system/      ui-ux-pro-max design system (Cyberpunk UI, MASTER.md)
 config/             config.yaml, attack_map.yaml
@@ -226,6 +242,7 @@ tests/              fixture-based suite (offline, no network)
 - [x] Dashboard redesign with the `ui-ux-pro-max` design system (Cyberpunk UI)
 - [x] Report feed: vendor advisories with IOC extraction, categories and recommendations
 - [x] Attack-origins map, CISA KEV + EPSS page, extra sources (MalwareBazaar / OpenPhish / CIRCL)
+- [x] Run-delta metrics, risk scoring, IOC Explorer, ATT&CK evidence split, dynamic source list
 - [ ] VT / AbuseIPDB enrichment for top indicators
 - [ ] Weekly digest issue (GitHub Issues bot)
 - [ ] YARA rule export for payload hashes

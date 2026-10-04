@@ -1,0 +1,115 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}IOC Explorer &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<h1 class="page-title">IOC Explorer</h1>
+<p class="muted">
+  Search {{ ioc_index | length }} risk-ranked indicators{% if ioc_index_truncated %} (top of {{ ioc_index_total }} tracked){% endif %}.
+  Values are defanged; clicking opens a VirusTotal lookup. Risk combines source confidence, corroboration,
+  recency, malware association and indicator type.
+</p>
+
+<section>
+  <div class="explorer-controls">
+    <input id="q" type="search" placeholder="Search IOC, domain, IP, URL, SHA256, malware, source..." aria-label="Search indicators">
+    <select id="ftype" aria-label="Filter by type">
+      <option value="">All types</option>
+      {% for t in explorer_types %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+    </select>
+    <select id="frisk" aria-label="Filter by risk level">
+      <option value="">Any risk</option>
+      <option value="critical">Critical</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+      <option value="info">Info</option>
+    </select>
+    <span class="muted" id="count" aria-live="polite"></span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Malware</th>
+          <th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <tr><td colspan="7" class="muted">Enable JavaScript to search the indicator index.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <noscript><p class="muted">JavaScript is disabled &mdash; use the drill-down pages from the Overview for per-type/family/technique lists, or download <code>dist/iocs.csv</code>.</p></noscript>
+</section>
+
+<script id="ioc-index" type="application/json">{{ ioc_index | tojson }}</script>
+<script>
+(function () {
+  var payload = document.getElementById("ioc-index");
+  if (!payload) { return; }
+  var DATA = JSON.parse(payload.textContent);
+  var rows = document.getElementById("rows");
+  var q = document.getElementById("q");
+  var ftype = document.getElementById("ftype");
+  var frisk = document.getElementById("frisk");
+  var count = document.getElementById("count");
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function refang(v) {
+    return String(v).replace(/\[\.\]/g, ".").replace(/^hxxp/i, "http");
+  }
+  function vtUrl(t, v) {
+    var real = refang(v);
+    if (t === "sha256" || t === "sha1" || t === "md5") { return "https://www.virustotal.com/gui/file/" + encodeURIComponent(real); }
+    if (t === "ipv4" || t === "ipv6") { return "https://www.virustotal.com/gui/ip-address/" + encodeURIComponent(real); }
+    if (t === "domain") { return "https://www.virustotal.com/gui/domain/" + encodeURIComponent(real); }
+    return "https://www.virustotal.com/gui/search/" + encodeURIComponent(real);
+  }
+
+  function render() {
+    var query = q.value.trim().toLowerCase();
+    var type = ftype.value;
+    var risk = frisk.value;
+    var out = [];
+    var total = 0;
+    for (var i = 0; i < DATA.length; i++) {
+      var item = DATA[i];
+      if (type && item.t !== type) { continue; }
+      if (risk && item.l !== risk) { continue; }
+      if (query) {
+        var haystack = (item.v + " " + (item.m || "") + " " + (item.s || "")).toLowerCase();
+        if (haystack.indexOf(query) < 0) { continue; }
+      }
+      total++;
+      if (out.length < 300) { out.push(item); }
+    }
+    count.textContent = total.toLocaleString() + " match" + (total === 1 ? "" : "es") +
+      (total > out.length ? " (showing first " + out.length + ")" : "");
+    var html = "";
+    for (var j = 0; j < out.length; j++) {
+      var it = out[j];
+      html += "<tr><td><a href=\"" + vtUrl(it.t, it.v) + "\" target=\"_blank\" rel=\"noopener\"><code>" + esc(it.v) + "</code></a></td>" +
+        "<td>" + esc(it.t) + "</td>" +
+        "<td><span class=\"risk risk-" + esc(it.l) + "\">" + esc(it.l) + " " + esc(it.r) + "</span></td>" +
+        "<td>" + (it.m ? esc(it.m) : "&mdash;") + "</td>" +
+        "<td>" + esc(it.s) + "</td>" +
+        "<td>" + (it.f ? esc(it.f) : "&mdash;") + "</td>" +
+        "<td class=\"num-cell\">" + esc(it.c) + "</td></tr>";
+    }
+    rows.innerHTML = html || "<tr><td colspan=\"7\" class=\"muted\">No indicators match.</td></tr>";
+  }
+
+  var timer;
+  function schedule() { clearTimeout(timer); timer = setTimeout(render, 120); }
+  q.addEventListener("input", schedule);
+  ftype.addEventListener("change", render);
+  frisk.addEventListener("change", render);
+  render();
+})();
+</script>
+{% endblock %}

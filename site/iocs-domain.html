@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -195,7 +206,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">Indicators by type: domain</h1>
 <p class="muted">
-  5304 indicator(s) with type domain &middot; showing the top 300 by confidence</p>
+  5292 indicator(s) with type domain &middot; showing the top 300 by confidence</p>
 
 <section>
   <div class="table-wrap">
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/0225958080.com" target="_blank" rel="noopener"><code>0225958080[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:19Z</td>
@@ -219,14 +231,25 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/0cbvmet6.tanyavondegurechaff.fit" target="_blank" rel="noopener"><code>0cbvmet6[.]tanyavondegurechaff[.]fit</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T10:48:18Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/0n1d6w64.wignalllindor.wiki" target="_blank" rel="noopener"><code>0n1d6w64[.]wignalllindor[.]wiki</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td>ClearFake</td>
+          <td></td>
+          <td>2026-10-02T17:00:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/1tmo4621.succeswithpaul.com" target="_blank" rel="noopener"><code>1tmo4621[.]succeswithpaul[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-02T21:52:38Z</td>
@@ -235,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/26television.com" target="_blank" rel="noopener"><code>26television[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -243,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/2ndhandbiz.com" target="_blank" rel="noopener"><code>2ndhandbiz[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-07T04:51:48Z</td>
@@ -251,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/360bayern.de" target="_blank" rel="noopener"><code>360bayern[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-22T16:39:18Z</td>
@@ -259,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/360photolove.com" target="_blank" rel="noopener"><code>360photolove[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:11Z</td>
@@ -267,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/360safeupdate.com" target="_blank" rel="noopener"><code>360safeupdate[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-11-24T11:50:52Z</td>
@@ -275,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/419boyz.com" target="_blank" rel="noopener"><code>419boyz[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -283,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/42.show" target="_blank" rel="noopener"><code>42[.]show</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:19Z</td>
@@ -291,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/4reel-charters.com" target="_blank" rel="noopener"><code>4reel-charters[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -299,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/4ty8o308.aonetruss.com.au" target="_blank" rel="noopener"><code>4ty8o308[.]aonetruss[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-04T07:50:13Z</td>
@@ -307,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/59na.com" target="_blank" rel="noopener"><code>59na[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T19:52:53Z</td>
@@ -315,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/5s5nnzli.kaarenorge.com" target="_blank" rel="noopener"><code>5s5nnzli[.]kaarenorge[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T06:34:45Z</td>
@@ -323,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/5szd8uv8.udeur.org" target="_blank" rel="noopener"><code>5szd8uv8[.]udeur[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T22:02:32Z</td>
@@ -331,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/61qw0jhu.udeur.org" target="_blank" rel="noopener"><code>61qw0jhu[.]udeur[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-02T22:01:35Z</td>
@@ -339,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/767p76lc.finowfurt.com" target="_blank" rel="noopener"><code>767p76lc[.]finowfurt[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T23:30:57Z</td>
@@ -347,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/8jdjpwka.baby" target="_blank" rel="noopener"><code>8jdjpwka[.]baby</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -355,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/8xr7xiog.rudeusgreyrat.my" target="_blank" rel="noopener"><code>8xr7xiog[.]rudeusgreyrat[.]my</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-04T18:06:36Z</td>
@@ -363,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/99xfcl1y.techvigilante.com" target="_blank" rel="noopener"><code>99xfcl1y[.]techvigilante[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T18:49:18Z</td>
@@ -371,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/9qxhxbbl.amsrealtors.com.au" target="_blank" rel="noopener"><code>9qxhxbbl[.]amsrealtors[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-04T03:42:56Z</td>
@@ -379,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/9ti1zjdd.wignalllindor.wiki" target="_blank" rel="noopener"><code>9ti1zjdd[.]wignalllindor[.]wiki</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T07:03:19Z</td>
@@ -387,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aasemiotica.com.ar" target="_blank" rel="noopener"><code>aasemiotica[.]com[.]ar</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -395,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/abeandasotie.com" target="_blank" rel="noopener"><code>abeandasotie[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:03Z</td>
@@ -403,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/abundantearthfoundation.org" target="_blank" rel="noopener"><code>abundantearthfoundation[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:19Z</td>
@@ -411,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/abundantprofessional.com" target="_blank" rel="noopener"><code>abundantprofessional[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -419,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/academicpipelinedatabase.net" target="_blank" rel="noopener"><code>academicpipelinedatabase[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-10T17:24:08Z</td>
@@ -427,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/accraphysio.com" target="_blank" rel="noopener"><code>accraphysio[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -435,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/achterhoekinformatie.nl" target="_blank" rel="noopener"><code>achterhoekinformatie[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:19Z</td>
@@ -443,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/acp-shop.com" target="_blank" rel="noopener"><code>acp-shop[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:03Z</td>
@@ -451,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/acroserver.com" target="_blank" rel="noopener"><code>acroserver[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-03-17T22:40:17Z</td>
@@ -459,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/action-winds.cfd" target="_blank" rel="noopener"><code>action-winds[.]cfd</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-11T22:47:09Z</td>
@@ -467,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/activeservers.net" target="_blank" rel="noopener"><code>activeservers[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-13T21:13:41Z</td>
@@ -475,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/adecoco.us" target="_blank" rel="noopener"><code>adecoco[.]us</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-22T16:39:18Z</td>
@@ -483,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/adelinepet.com" target="_blank" rel="noopener"><code>adelinepet[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -491,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/admind.fr" target="_blank" rel="noopener"><code>admind[.]fr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -499,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/adnib.in" target="_blank" rel="noopener"><code>adnib[.]in</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -507,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/advsalles.com.br" target="_blank" rel="noopener"><code>advsalles[.]com[.]br</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:46Z</td>
@@ -515,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/afluix.com" target="_blank" rel="noopener"><code>afluix[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-06-23T17:11:58Z</td>
@@ -523,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/agazud.com" target="_blank" rel="noopener"><code>agazud[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-29T10:12:26Z</td>
@@ -531,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/agenciainovaclick.com" target="_blank" rel="noopener"><code>agenciainovaclick[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -539,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aginij.com" target="_blank" rel="noopener"><code>aginij[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-06-22T18:35:13Z</td>
@@ -547,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aircraftmuseums.com" target="_blank" rel="noopener"><code>aircraftmuseums[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -555,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/airlinesapp.net" target="_blank" rel="noopener"><code>airlinesapp[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-10-16T08:49:32Z</td>
@@ -563,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ajilenayat.com" target="_blank" rel="noopener"><code>ajilenayat[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -571,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aksaholdings.com" target="_blank" rel="noopener"><code>aksaholdings[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-11-20T10:32:06Z</td>
@@ -579,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aksel.no" target="_blank" rel="noopener"><code>aksel[.]no</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:39Z</td>
@@ -587,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/al-anoudspecialized.com" target="_blank" rel="noopener"><code>al-anoudspecialized[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -595,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/al.333pwk.org" target="_blank" rel="noopener"><code>al[.]333pwk[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Vidar</td>
           <td></td>
           <td>2026-10-04T08:22:18Z</td>
@@ -603,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/al.396zk.net" target="_blank" rel="noopener"><code>al[.]396zk[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Vidar</td>
           <td></td>
           <td>2026-10-04T08:22:18Z</td>
@@ -611,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alagammal.org" target="_blank" rel="noopener"><code>alagammal[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -619,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/albatrosse.com" target="_blank" rel="noopener"><code>albatrosse[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:11Z</td>
@@ -627,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alexsisto.com" target="_blank" rel="noopener"><code>alexsisto[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -635,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alfrd.be" target="_blank" rel="noopener"><code>alfrd[.]be</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-08-26T18:37:02Z</td>
@@ -643,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alfuhin.com" target="_blank" rel="noopener"><code>alfuhin[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-29T09:56:46Z</td>
@@ -651,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alisaide.com" target="_blank" rel="noopener"><code>alisaide[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -659,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/allowedcloud.com" target="_blank" rel="noopener"><code>allowedcloud[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-01-11T10:59:45Z</td>
@@ -667,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alnahreengroup.com" target="_blank" rel="noopener"><code>alnahreengroup[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -675,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alojun.com" target="_blank" rel="noopener"><code>alojun[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-08-31T16:32:01Z</td>
@@ -683,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/alpha-it.pt" target="_blank" rel="noopener"><code>alpha-it[.]pt</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -691,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amaladin.com" target="_blank" rel="noopener"><code>amaladin[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-27T23:43:27Z</td>
@@ -699,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amateateatre.com" target="_blank" rel="noopener"><code>amateateatre[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -707,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amazoniarentacar.com.br" target="_blank" rel="noopener"><code>amazoniarentacar[.]com[.]br</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:46Z</td>
@@ -715,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amber-ridge-bruixsioi.live" target="_blank" rel="noopener"><code>amber-ridge-bruixsioi[.]live</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:55:38Z</td>
@@ -723,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amber-weave-otter-luor.pro" target="_blank" rel="noopener"><code>amber-weave-otter-luor[.]pro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-01T23:21:26Z</td>
@@ -731,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amisosmimarlik.com" target="_blank" rel="noopener"><code>amisosmimarlik[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:46Z</td>
@@ -739,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ampantarhoki1.xyz" target="_blank" rel="noopener"><code>ampantarhoki1[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -747,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ams-prd-cob.nl" target="_blank" rel="noopener"><code>ams-prd-cob[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-13T19:51:56Z</td>
@@ -755,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/analyticshore.icu" target="_blank" rel="noopener"><code>analyticshore[.]icu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-24T15:14:37Z</td>
@@ -763,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/analyze-me3.buzz" target="_blank" rel="noopener"><code>analyze-me3[.]buzz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-14T16:53:22Z</td>
@@ -771,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anbush.com" target="_blank" rel="noopener"><code>anbush[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-09-29T08:45:45Z</td>
@@ -779,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/andhotrodshop.com" target="_blank" rel="noopener"><code>andhotrodshop[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -787,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/andreykharkov.com" target="_blank" rel="noopener"><code>andreykharkov[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -795,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anewhopeministry.org" target="_blank" rel="noopener"><code>anewhopeministry[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:20Z</td>
@@ -803,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/angkasabetb.online" target="_blank" rel="noopener"><code>angkasabetb[.]online</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -811,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ankarakonteyner.com" target="_blank" rel="noopener"><code>ankarakonteyner[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -819,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anphuauto.vn" target="_blank" rel="noopener"><code>anphuauto[.]vn</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -827,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anushl.com" target="_blank" rel="noopener"><code>anushl[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-05T18:54:33Z</td>
@@ -835,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/anytime-for-animals.de" target="_blank" rel="noopener"><code>anytime-for-animals[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:03Z</td>
@@ -843,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apacheorg.wiki" target="_blank" rel="noopener"><code>apacheorg[.]wiki</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-12-28T02:22:09Z</td>
@@ -851,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apdhlhs3.xyz" target="_blank" rel="noopener"><code>apdhlhs3[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -859,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apdisasterrelief.com" target="_blank" rel="noopener"><code>apdisasterrelief[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -867,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apeduze.com" target="_blank" rel="noopener"><code>apeduze[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-23T16:44:21Z</td>
@@ -875,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/api.office-updates.org" target="_blank" rel="noopener"><code>api[.]office-updates[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-08-03T10:24:41Z</td>
@@ -883,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apmsolutionsglobal.com" target="_blank" rel="noopener"><code>apmsolutionsglobal[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -891,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/apotheke-rosenthalerplatz.de" target="_blank" rel="noopener"><code>apotheke-rosenthalerplatz[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:20Z</td>
@@ -899,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/appaloosa.cz" target="_blank" rel="noopener"><code>appaloosa[.]cz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -907,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/appartement-horizon.fr" target="_blank" rel="noopener"><code>appartement-horizon[.]fr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -915,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/appdevtechnology.com" target="_blank" rel="noopener"><code>appdevtechnology[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-02-01T02:21:19Z</td>
@@ -923,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/appeasy.build" target="_blank" rel="noopener"><code>appeasy[.]build</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -931,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aqweela.com" target="_blank" rel="noopener"><code>aqweela[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:20Z</td>
@@ -939,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/arkirent.it" target="_blank" rel="noopener"><code>arkirent[.]it</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -947,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/arkreform.com" target="_blank" rel="noopener"><code>arkreform[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:20Z</td>
@@ -955,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/arthron.si" target="_blank" rel="noopener"><code>arthron[.]si</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:20Z</td>
@@ -963,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/artidomain.com" target="_blank" rel="noopener"><code>artidomain[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-05-08T16:20:03Z</td>
@@ -971,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/artilda.co.kr" target="_blank" rel="noopener"><code>artilda[.]co[.]kr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -979,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/artisanaquascapes.net" target="_blank" rel="noopener"><code>artisanaquascapes[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -987,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/arvandagri.com" target="_blank" rel="noopener"><code>arvandagri[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -995,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/as.regcssv.com" target="_blank" rel="noopener"><code>as[.]regcssv[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-02-07T10:12:22Z</td>
@@ -1003,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/asa-gmbh-bln.de" target="_blank" rel="noopener"><code>asa-gmbh-bln[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -1011,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/asasyz.com" target="_blank" rel="noopener"><code>asasyz[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-29T10:14:36Z</td>
@@ -1019,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/asdder.com" target="_blank" rel="noopener"><code>asdder[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-08-31T16:32:01Z</td>
@@ -1027,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ashen-trace-zephyr-draeix.life" target="_blank" rel="noopener"><code>ashen-trace-zephyr-draeix[.]life</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-23T16:44:26Z</td>
@@ -1035,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/asiaartcollective.com" target="_blank" rel="noopener"><code>asiaartcollective[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -1043,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aspnetcenter.com" target="_blank" rel="noopener"><code>aspnetcenter[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-02-04T19:39:46Z</td>
@@ -1051,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/asterchildrenshoes.com" target="_blank" rel="noopener"><code>asterchildrenshoes[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-29T12:53:46Z</td>
@@ -1059,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/astra4512.startdedicated.com" target="_blank" rel="noopener"><code>astra4512[.]startdedicated[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-12-30T11:33:25Z</td>
@@ -1067,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/atdan.net" target="_blank" rel="noopener"><code>atdan[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1075,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/atechniques.com" target="_blank" rel="noopener"><code>atechniques[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-03-17T19:45:49Z</td>
@@ -1083,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ateliernow.net" target="_blank" rel="noopener"><code>ateliernow[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-09-05T19:10:47Z</td>
@@ -1091,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/athashreeanuvidyut.com" target="_blank" rel="noopener"><code>athashreeanuvidyut[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1099,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aualadin.com" target="_blank" rel="noopener"><code>aualadin[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-26T10:09:11Z</td>
@@ -1107,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/aurafliesen.com" target="_blank" rel="noopener"><code>aurafliesen[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1115,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/australiansuper.xyz" target="_blank" rel="noopener"><code>australiansuper[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-05-23T12:37:36Z</td>
@@ -1123,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/autoflotte-vergabe.de" target="_blank" rel="noopener"><code>autoflotte-vergabe[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T09:09:13Z</td>
@@ -1131,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/autosolutionsconnect.com" target="_blank" rel="noopener"><code>autosolutionsconnect[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-08-19T06:45:09Z</td>
@@ -1139,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/avantgardefr.com" target="_blank" rel="noopener"><code>avantgardefr[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:04Z</td>
@@ -1147,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/avdev.net" target="_blank" rel="noopener"><code>avdev[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-01-20T11:23:14Z</td>
@@ -1155,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/avenuepubhk.com" target="_blank" rel="noopener"><code>avenuepubhk[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1163,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/azadkantha.com" target="_blank" rel="noopener"><code>azadkantha[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1171,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/azaela.sk" target="_blank" rel="noopener"><code>azaela[.]sk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1179,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/azpromotionsllc.com" target="_blank" rel="noopener"><code>azpromotionsllc[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -1187,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/azurecloudfire.com" target="_blank" rel="noopener"><code>azurecloudfire[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-01-19T14:15:53Z</td>
@@ -1195,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/b20-straubing.de" target="_blank" rel="noopener"><code>b20-straubing[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1203,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/b2b.easypiecy.com" target="_blank" rel="noopener"><code>b2b[.]easypiecy[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -1211,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/baainbw-vergabe.de" target="_blank" rel="noopener"><code>baainbw-vergabe[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T09:09:13Z</td>
@@ -1219,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bacsihungthanh.com" target="_blank" rel="noopener"><code>bacsihungthanh[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:04Z</td>
@@ -1227,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/badiadisettimo.it" target="_blank" rel="noopener"><code>badiadisettimo[.]it</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:12Z</td>
@@ -1235,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/balgroup.com.au" target="_blank" rel="noopener"><code>balgroup[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T04:41:59Z</td>
@@ -1243,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/balservicesgroup.com.au" target="_blank" rel="noopener"><code>balservicesgroup[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T04:49:47Z</td>
@@ -1251,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/balticaviatraining.com" target="_blank" rel="noopener"><code>balticaviatraining[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1259,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bancodealimentosrio4.org" target="_blank" rel="noopener"><code>bancodealimentosrio4[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1267,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bansuri.com.au" target="_blank" rel="noopener"><code>bansuri[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1275,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/barabezo.com" target="_blank" rel="noopener"><code>barabezo[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-08-31T18:29:19Z</td>
@@ -1283,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/barriocomercial18.cl" target="_blank" rel="noopener"><code>barriocomercial18[.]cl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1291,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bashirdesign.com" target="_blank" rel="noopener"><code>bashirdesign[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1299,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bbs.vic.edu.au" target="_blank" rel="noopener"><code>bbs[.]vic[.]edu[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T04:58:59Z</td>
@@ -1307,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bbtotoalter.xyz" target="_blank" rel="noopener"><code>bbtotoalter[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -1315,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bbtti.in" target="_blank" rel="noopener"><code>bbtti[.]in</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-11T23:29:40Z</td>
@@ -1323,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bc-maasrhein.eu" target="_blank" rel="noopener"><code>bc-maasrhein[.]eu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1331,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bduwih8.pro" target="_blank" rel="noopener"><code>bduwih8[.]pro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Stealer</td>
           <td></td>
           <td>2026-09-04T22:03:02Z</td>
@@ -1339,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/beacontrace.bond" target="_blank" rel="noopener"><code>beacontrace[.]bond</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-14T16:53:23Z</td>
@@ -1347,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/beautyventas.com" target="_blank" rel="noopener"><code>beautyventas[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1355,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/belcol-cc.com" target="_blank" rel="noopener"><code>belcol-cc[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1363,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/belowtheline.finance" target="_blank" rel="noopener"><code>belowtheline[.]finance</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1371,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bentausfunds.com" target="_blank" rel="noopener"><code>bentausfunds[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1379,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/benuatotob.store" target="_blank" rel="noopener"><code>benuatotob[.]store</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -1387,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/benz86639933.com.tw" target="_blank" rel="noopener"><code>benz86639933[.]com[.]tw</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1395,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bet-game-duck.com" target="_blank" rel="noopener"><code>bet-game-duck[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1403,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/betiwin168.com" target="_blank" rel="noopener"><code>betiwin168[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1411,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bicda.com.bd" target="_blank" rel="noopener"><code>bicda[.]com[.]bd</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:13Z</td>
@@ -1419,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bikbakers.com.au" target="_blank" rel="noopener"><code>bikbakers[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T05:09:00Z</td>
@@ -1427,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/billboardgroup.com.au" target="_blank" rel="noopener"><code>billboardgroup[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T05:19:02Z</td>
@@ -1435,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/biobkliaum.live" target="_blank" rel="noopener"><code>biobkliaum[.]live</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-28T06:00:36Z</td>
@@ -1443,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/biodanza-irena.com" target="_blank" rel="noopener"><code>biodanza-irena[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1451,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/biostar.mx" target="_blank" rel="noopener"><code>biostar[.]mx</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1459,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blackandwhiteshoose.com" target="_blank" rel="noopener"><code>blackandwhiteshoose[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-01-12T21:56:23Z</td>
@@ -1467,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blackscreamfest.com" target="_blank" rel="noopener"><code>blackscreamfest[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:46Z</td>
@@ -1475,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bladehostpi.life" target="_blank" rel="noopener"><code>bladehostpi[.]life</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:30:01Z</td>
@@ -1483,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blankeneser-buergerverein.de" target="_blank" rel="noopener"><code>blankeneser-buergerverein[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1491,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bleupelikan.com" target="_blank" rel="noopener"><code>bleupelikan[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1499,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blinkij.com" target="_blank" rel="noopener"><code>blinkij[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-22T10:51:28Z</td>
@@ -1507,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blinkinuf.com" target="_blank" rel="noopener"><code>blinkinuf[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-06-26T10:56:33Z</td>
@@ -1515,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blitha.be" target="_blank" rel="noopener"><code>blitha[.]be</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1523,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blmdiscount.com" target="_blank" rel="noopener"><code>blmdiscount[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-15T22:13:26Z</td>
@@ -1531,6 +1716,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blog.bibra.eu" target="_blank" rel="noopener"><code>blog[.]bibra[.]eu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1539,6 +1725,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blogcenter.site" target="_blank" rel="noopener"><code>blogcenter[.]site</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -1547,6 +1734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bloodhorn8123.icu" target="_blank" rel="noopener"><code>bloodhorn8123[.]icu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-08-05T13:40:55Z</td>
@@ -1555,6 +1743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bloomaffirmations.com" target="_blank" rel="noopener"><code>bloomaffirmations[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1563,6 +1752,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/blopik.com" target="_blank" rel="noopener"><code>blopik[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-30T09:51:36Z</td>
@@ -1571,6 +1761,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bluestarhomewarehouse.com" target="_blank" rel="noopener"><code>bluestarhomewarehouse[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:40Z</td>
@@ -1579,6 +1770,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bluetreebh.com" target="_blank" rel="noopener"><code>bluetreebh[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1587,6 +1779,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/boatshow.com.br" target="_blank" rel="noopener"><code>boatshow[.]com[.]br</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -1595,6 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bodyevolution-labs.com" target="_blank" rel="noopener"><code>bodyevolution-labs[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -1603,6 +1797,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/boehmer-kommunikation.de" target="_blank" rel="noopener"><code>boehmer-kommunikation[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:21Z</td>
@@ -1611,6 +1806,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bopp-folie.de" target="_blank" rel="noopener"><code>bopp-folie[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1619,6 +1815,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/borgareyrar.com" target="_blank" rel="noopener"><code>borgareyrar[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:13Z</td>
@@ -1627,6 +1824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/borizhog.com" target="_blank" rel="noopener"><code>borizhog[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-29T08:36:59Z</td>
@@ -1635,6 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bornometa.com" target="_blank" rel="noopener"><code>bornometa[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-01T10:45:03Z</td>
@@ -1643,6 +1842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/botlesscucks.st" target="_blank" rel="noopener"><code>botlesscucks[.]st</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Mirai</td>
           <td></td>
           <td>2026-10-03T23:53:19Z</td>
@@ -1651,6 +1851,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/boxencheck.de" target="_blank" rel="noopener"><code>boxencheck[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:04Z</td>
@@ -1659,6 +1860,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/boxinstalaciones.com.ar" target="_blank" rel="noopener"><code>boxinstalaciones[.]com[.]ar</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1667,6 +1869,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/breakthroughbreathwork.com" target="_blank" rel="noopener"><code>breakthroughbreathwork[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1675,6 +1878,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/brent-logistic.pl" target="_blank" rel="noopener"><code>brent-logistic[.]pl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1683,6 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/brikeb.com" target="_blank" rel="noopener"><code>brikeb[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-09T17:18:34Z</td>
@@ -1691,6 +1896,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bthserv.com" target="_blank" rel="noopener"><code>bthserv[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-23T13:42:10Z</td>
@@ -1699,6 +1905,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/buildon.co.in" target="_blank" rel="noopener"><code>buildon[.]co[.]in</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1707,6 +1914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/busanasansor.com" target="_blank" rel="noopener"><code>busanasansor[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-11T23:29:40Z</td>
@@ -1715,6 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bwproject.net" target="_blank" rel="noopener"><code>bwproject[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1723,6 +1932,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bwyb.love" target="_blank" rel="noopener"><code>bwyb[.]love</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-11-06T18:07:30Z</td>
@@ -1731,6 +1941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cakedame.com" target="_blank" rel="noopener"><code>cakedame[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -1739,6 +1950,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/canadapainters.ca" target="_blank" rel="noopener"><code>canadapainters[.]ca</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1747,6 +1959,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/canalminor.com" target="_blank" rel="noopener"><code>canalminor[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1755,6 +1968,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/candleaura.com" target="_blank" rel="noopener"><code>candleaura[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -1763,6 +1977,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/canwizservices.com" target="_blank" rel="noopener"><code>canwizservices[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-11T23:29:40Z</td>
@@ -1771,6 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/caoojj61.thelogicofmoney.com" target="_blank" rel="noopener"><code>caoojj61[.]thelogicofmoney[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-03T06:37:06Z</td>
@@ -1779,6 +1995,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/capitalspa.sg" target="_blank" rel="noopener"><code>capitalspa[.]sg</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-04T01:49:37Z</td>
@@ -1787,6 +2004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/carboldesign.cz" target="_blank" rel="noopener"><code>carboldesign[.]cz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1795,6 +2013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/caretwentyfour.org" target="_blank" rel="noopener"><code>caretwentyfour[.]org</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1803,6 +2022,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/carewellphcy.com" target="_blank" rel="noopener"><code>carewellphcy[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -1811,6 +2031,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/carforsale.ie" target="_blank" rel="noopener"><code>carforsale[.]ie</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1819,6 +2040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/carwowk872.life" target="_blank" rel="noopener"><code>carwowk872[.]life</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-14T16:53:23Z</td>
@@ -1827,6 +2049,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/casasimona.ro" target="_blank" rel="noopener"><code>casasimona[.]ro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-22T16:35:43Z</td>
@@ -1835,6 +2058,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/catamaranholidays.gr" target="_blank" rel="noopener"><code>catamaranholidays[.]gr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:04Z</td>
@@ -1843,6 +2067,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cavs.es" target="_blank" rel="noopener"><code>cavs[.]es</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -1851,6 +2076,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/caxoxc.com" target="_blank" rel="noopener"><code>caxoxc[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-08-18T12:15:06Z</td>
@@ -1859,6 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cehocihit.com" target="_blank" rel="noopener"><code>cehocihit[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-16T13:10:54Z</td>
@@ -1867,6 +2094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/centrehabitation.com" target="_blank" rel="noopener"><code>centrehabitation[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-22T16:39:18Z</td>
@@ -1875,6 +2103,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cgmcareerpath.com" target="_blank" rel="noopener"><code>cgmcareerpath[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -1883,6 +2112,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/championlv.com" target="_blank" rel="noopener"><code>championlv[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1891,6 +2121,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chasehotel.com.au" target="_blank" rel="noopener"><code>chasehotel[.]com[.]au</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -1899,6 +2130,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chasingrainbowsacademy.com" target="_blank" rel="noopener"><code>chasingrainbowsacademy[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -1907,6 +2139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chateaupomeaux.com" target="_blank" rel="noopener"><code>chateaupomeaux[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -1915,6 +2148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/check.judicical.ml" target="_blank" rel="noopener"><code>check[.]judicical[.]ml</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-06-26T08:11:33Z</td>
@@ -1923,6 +2157,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/check1.judicical.ml" target="_blank" rel="noopener"><code>check1[.]judicical[.]ml</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-06-26T08:12:17Z</td>
@@ -1931,6 +2166,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/checkdvvc99.cc" target="_blank" rel="noopener"><code>checkdvvc99[.]cc</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T19:07:07Z</td>
@@ -1939,6 +2175,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/checkmybtrobot.cc" target="_blank" rel="noopener"><code>checkmybtrobot[.]cc</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-04T06:54:49Z</td>
@@ -1947,6 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chefskitchenbox.com" target="_blank" rel="noopener"><code>chefskitchenbox[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -1955,6 +2193,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chefstablebooks.com" target="_blank" rel="noopener"><code>chefstablebooks[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -1963,6 +2202,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chesft.com" target="_blank" rel="noopener"><code>chesft[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-10T15:29:51Z</td>
@@ -1971,6 +2211,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/childhealthresources.com" target="_blank" rel="noopener"><code>childhealthresources[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-11-24T11:54:46Z</td>
@@ -1979,6 +2220,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chimneyscrubber.com" target="_blank" rel="noopener"><code>chimneyscrubber[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -1987,6 +2229,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chirca.com" target="_blank" rel="noopener"><code>chirca[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:47Z</td>
@@ -1995,6 +2238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chitozx.com" target="_blank" rel="noopener"><code>chitozx[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-07-05T05:12:06Z</td>
@@ -2003,6 +2247,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/christchurchretailpark.co.uk" target="_blank" rel="noopener"><code>christchurchretailpark[.]co[.]uk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -2011,6 +2256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/chx.nl" target="_blank" rel="noopener"><code>chx[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2019,6 +2265,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ciib.com" target="_blank" rel="noopener"><code>ciib[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -2027,6 +2274,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cilliersaviation.com" target="_blank" rel="noopener"><code>cilliersaviation[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2035,6 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cinemart.co.il" target="_blank" rel="noopener"><code>cinemart[.]co[.]il</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -2043,6 +2292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cinephobiareleasing.com" target="_blank" rel="noopener"><code>cinephobiareleasing[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2051,6 +2301,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/circusproblem.net" target="_blank" rel="noopener"><code>circusproblem[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -2059,6 +2310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cirkoborpi.life" target="_blank" rel="noopener"><code>cirkoborpi[.]life</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-22T16:28:06Z</td>
@@ -2067,6 +2319,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/citrineapartment.com" target="_blank" rel="noopener"><code>citrineapartment[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -2075,6 +2328,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/citrixseruritys.com" target="_blank" rel="noopener"><code>citrixseruritys[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-18T13:51:16Z</td>
@@ -2083,6 +2337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ckdac.net" target="_blank" rel="noopener"><code>ckdac[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -2091,6 +2346,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/clickstream.icu" target="_blank" rel="noopener"><code>clickstream[.]icu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-24T11:37:34Z</td>
@@ -2099,6 +2355,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/clinicaeusalud.com.co" target="_blank" rel="noopener"><code>clinicaeusalud[.]com[.]co</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -2107,6 +2364,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/clinicaseconsultoriosb.com.br" target="_blank" rel="noopener"><code>clinicaseconsultoriosb[.]com[.]br</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2115,6 +2373,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/closegate21.xyz" target="_blank" rel="noopener"><code>closegate21[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-14T16:53:23Z</td>
@@ -2123,6 +2382,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cloudmane.online" target="_blank" rel="noopener"><code>cloudmane[.]online</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-12-17T12:12:59Z</td>
@@ -2131,6 +2391,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cloudmicro.pro" target="_blank" rel="noopener"><code>cloudmicro[.]pro</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-10-16T12:38:04Z</td>
@@ -2139,6 +2400,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cloudmicro.tech" target="_blank" rel="noopener"><code>cloudmicro[.]tech</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-09-20T16:57:02Z</td>
@@ -2147,6 +2409,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cloudplusafrica.com" target="_blank" rel="noopener"><code>cloudplusafrica[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:47Z</td>
@@ -2155,6 +2418,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/clownin-unterwegs.de" target="_blank" rel="noopener"><code>clownin-unterwegs[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -2163,6 +2427,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cmdatabase.com" target="_blank" rel="noopener"><code>cmdatabase[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-12-19T11:41:44Z</td>
@@ -2171,6 +2436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cnfastener.com" target="_blank" rel="noopener"><code>cnfastener[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-10-03T21:04:47Z</td>
@@ -2179,6 +2445,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cnpaintingcleaning.com" target="_blank" rel="noopener"><code>cnpaintingcleaning[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -2187,6 +2454,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cocaroman.com" target="_blank" rel="noopener"><code>cocaroman[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -2195,6 +2463,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coinlaundryinsurance.com" target="_blank" rel="noopener"><code>coinlaundryinsurance[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -2203,6 +2472,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/colmenacomunicacion.com" target="_blank" rel="noopener"><code>colmenacomunicacion[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T14:51:13Z</td>
@@ -2211,6 +2481,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/communicationmagicwithmen.com" target="_blank" rel="noopener"><code>communicationmagicwithmen[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-27T12:42:27Z</td>
@@ -2219,6 +2490,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/composeradrian.com" target="_blank" rel="noopener"><code>composeradrian[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2227,6 +2499,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/comprezor.com" target="_blank" rel="noopener"><code>comprezor[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2235,6 +2508,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/conectago.net" target="_blank" rel="noopener"><code>conectago[.]net</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2243,6 +2517,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/connorbogart.com" target="_blank" rel="noopener"><code>connorbogart[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:22Z</td>
@@ -2251,6 +2526,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/consumer-compass.com" target="_blank" rel="noopener"><code>consumer-compass[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2259,6 +2535,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coral-forge-beacon-glioen.live" target="_blank" rel="noopener"><code>coral-forge-beacon-glioen[.]live</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-13T12:09:11Z</td>
@@ -2267,6 +2544,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coral-thistle-kilmkruon.top" target="_blank" rel="noopener"><code>coral-thistle-kilmkruon[.]top</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T13:36:29Z</td>
@@ -2275,6 +2553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coral-wren-friastquii.top" target="_blank" rel="noopener"><code>coral-wren-friastquii[.]top</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-01T18:48:13Z</td>
@@ -2283,6 +2562,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coreaccessbilling.com" target="_blank" rel="noopener"><code>coreaccessbilling[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2291,6 +2571,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cornwelltoolsweld.com" target="_blank" rel="noopener"><code>cornwelltoolsweld[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:41Z</td>
@@ -2299,6 +2580,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/corporategiftdubai.ae" target="_blank" rel="noopener"><code>corporategiftdubai[.]ae</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2307,6 +2589,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/costum342183.life" target="_blank" rel="noopener"><code>costum342183[.]life</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-08-18T08:12:40Z</td>
@@ -2315,6 +2598,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/counsellorwebdesign.ca" target="_blank" rel="noopener"><code>counsellorwebdesign[.]ca</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2323,6 +2607,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cove-koi-hk753.xyz" target="_blank" rel="noopener"><code>cove-koi-hk753[.]xyz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-28T14:13:17Z</td>
@@ -2331,6 +2616,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cpmohali.in" target="_blank" rel="noopener"><code>cpmohali[.]in</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-22T16:39:18Z</td>
@@ -2339,6 +2625,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/creadeco-work.de" target="_blank" rel="noopener"><code>creadeco-work[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2347,6 +2634,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/crista-hartwig.de" target="_blank" rel="noopener"><code>crista-hartwig[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2355,6 +2643,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/crockpotgirl.com" target="_blank" rel="noopener"><code>crockpotgirl[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2363,6 +2652,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cruisevacationhq.com" target="_blank" rel="noopener"><code>cruisevacationhq[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-07-29T08:55:51Z</td>
@@ -2371,6 +2661,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cruu6ax4.thelogicofmoney.com" target="_blank" rel="noopener"><code>cruu6ax4[.]thelogicofmoney[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>ClearFake</td>
           <td></td>
           <td>2026-10-04T09:48:44Z</td>
@@ -2379,6 +2670,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cryocool.store" target="_blank" rel="noopener"><code>cryocool[.]store</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2387,6 +2679,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cryprocrax.com" target="_blank" rel="noopener"><code>cryprocrax[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:02Z</td>
@@ -2395,6 +2688,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cs.xcb.one" target="_blank" rel="noopener"><code>cs[.]xcb[.]one</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-12-27T22:15:29Z</td>
@@ -2403,6 +2697,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/csdp.cz" target="_blank" rel="noopener"><code>csdp[.]cz</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:14Z</td>
@@ -2411,6 +2706,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/csxv.sec.cm" target="_blank" rel="noopener"><code>csxv[.]sec[.]cm</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-09-09T20:06:55Z</td>
@@ -2419,6 +2715,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cubicfun.com" target="_blank" rel="noopener"><code>cubicfun[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2427,6 +2724,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cybersecnextgen.com" target="_blank" rel="noopener"><code>cybersecnextgen[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2435,6 +2733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cyy.turbo88ml.top" target="_blank" rel="noopener"><code>cyy[.]turbo88ml[.]top</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Vidar</td>
           <td></td>
           <td>2026-05-23T22:00:08Z</td>
@@ -2443,6 +2742,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dailychefhub.com" target="_blank" rel="noopener"><code>dailychefhub[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:03Z</td>
@@ -2451,6 +2751,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dailychefrecipe.com" target="_blank" rel="noopener"><code>dailychefrecipe[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:03Z</td>
@@ -2459,6 +2760,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/damazyncars.com" target="_blank" rel="noopener"><code>damazyncars[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -2467,6 +2769,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dasnervetext.com" target="_blank" rel="noopener"><code>dasnervetext[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-22T16:39:18Z</td>
@@ -2475,6 +2778,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/datapixel.icu" target="_blank" rel="noopener"><code>datapixel[.]icu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-24T15:14:07Z</td>
@@ -2483,6 +2787,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/datapointly.icu" target="_blank" rel="noopener"><code>datapointly[.]icu</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-24T11:38:25Z</td>
@@ -2491,6 +2796,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/datphongcondao.com" target="_blank" rel="noopener"><code>datphongcondao[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2499,6 +2805,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dbs-service.org.uk" target="_blank" rel="noopener"><code>dbs-service[.]org[.]uk</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:14Z</td>
@@ -2507,6 +2814,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dbx.formsift.io" target="_blank" rel="noopener"><code>dbx[.]formsift[.]io</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-01-31T15:09:13Z</td>
@@ -2515,6 +2823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dcowebify.com" target="_blank" rel="noopener"><code>dcowebify[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-15T22:40:05Z</td>
@@ -2523,6 +2832,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ddverp.com" target="_blank" rel="noopener"><code>ddverp[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-09-09T20:54:15Z</td>
@@ -2531,6 +2841,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/debouche-express.fr" target="_blank" rel="noopener"><code>debouche-express[.]fr</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-11T23:29:40Z</td>
@@ -2539,6 +2850,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/deconstructionera.com" target="_blank" rel="noopener"><code>deconstructionera[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-10T19:50:23Z</td>
@@ -2547,6 +2859,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/defegh.com" target="_blank" rel="noopener"><code>defegh[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-01T07:06:28Z</td>
@@ -2555,6 +2868,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/defenr.com" target="_blank" rel="noopener"><code>defenr[.]com</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-09T17:18:35Z</td>
@@ -2563,6 +2877,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dehgolansheyda.ir" target="_blank" rel="noopener"><code>dehgolansheyda[.]ir</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2571,6 +2886,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dein-berghof.de" target="_blank" rel="noopener"><code>dein-berghof[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2579,6 +2895,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/deleeue.lol" target="_blank" rel="noopener"><code>deleeue[.]lol</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td>KongTuke</td>
           <td></td>
           <td>2026-10-01T15:58:38Z</td>
@@ -2587,6 +2904,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/der-eskapist.de" target="_blank" rel="noopener"><code>der-eskapist[.]de</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
@@ -2595,17 +2913,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dereizendegoochelaar.nl" target="_blank" rel="noopener"><code>dereizendegoochelaar[.]nl</code></a></td>
           <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Unknown Loader</td>
           <td></td>
           <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dermatiteatopica.it" target="_blank" rel="noopener"><code>dermatiteatopica[.]it</code></a></td>
-          <td>domain</td>
-          <td>Unknown RAT</td>
-          <td></td>
-          <td>2026-09-09T20:54:15Z</td>
           <td class="num-cell">100</td>
         </tr>
       </tbody>
@@ -2615,8 +2926,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

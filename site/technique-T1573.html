@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -195,7 +206,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">ATT&amp;CK T1573: Encrypted Channel</h1>
 <p class="muted">
-  3469 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1573/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
+  3468 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1573/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
 
 <section>
   <div class="table-wrap">
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.14.76.111" target="_blank" rel="noopener"><code>1[.]14[.]76[.]111</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-24T10:56:07Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.15.248.225" target="_blank" rel="noopener"><code>1[.]15[.]248[.]225</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-06-28T22:51:22Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/1.15.76.39" target="_blank" rel="noopener"><code>1[.]15[.]76[.]39</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-04-07T07:17:26Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.126.10.34" target="_blank" rel="noopener"><code>101[.]126[.]10[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-05-23T14:56:56Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.200.193.211" target="_blank" rel="noopener"><code>101[.]200[.]193[.]211</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-02-14T15:11:17Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.201.54.74" target="_blank" rel="noopener"><code>101[.]201[.]54[.]74</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-23T18:05:43Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.32.109.112" target="_blank" rel="noopener"><code>101[.]32[.]109[.]112</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-09-10T20:01:24Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.32.204.81" target="_blank" rel="noopener"><code>101[.]32[.]204[.]81</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-12-13T10:06:28Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.34.182.130" target="_blank" rel="noopener"><code>101[.]34[.]182[.]130</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-29T22:33:30Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.34.208.175" target="_blank" rel="noopener"><code>101[.]34[.]208[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-19T09:19:03Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.34.222.38" target="_blank" rel="noopener"><code>101[.]34[.]222[.]38</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Viper RAT</td>
           <td></td>
           <td>2023-11-09T17:50:07Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.37.236.20" target="_blank" rel="noopener"><code>101[.]37[.]236[.]20</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-27T16:54:47Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.42.255.92" target="_blank" rel="noopener"><code>101[.]42[.]255[.]92</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-10T10:05:08Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/101.43.32.212" target="_blank" rel="noopener"><code>101[.]43[.]32[.]212</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-31T12:57:33Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.117.162.232" target="_blank" rel="noopener"><code>102[.]117[.]162[.]232</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2024-12-19T12:01:50Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.117.168.208" target="_blank" rel="noopener"><code>102[.]117[.]168[.]208</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-06-23T12:02:20Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.160.198" target="_blank" rel="noopener"><code>102[.]220[.]160[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-31T19:43:05Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.161.94" target="_blank" rel="noopener"><code>102[.]220[.]161[.]94</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-10T02:40:03Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.163.36" target="_blank" rel="noopener"><code>102[.]220[.]163[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-15T19:43:07Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.220.163.40" target="_blank" rel="noopener"><code>102[.]220[.]163[.]40</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-21T07:10:38Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/102.55.131.186" target="_blank" rel="noopener"><code>102[.]55[.]131[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-03T19:43:06Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.149.93.146" target="_blank" rel="noopener"><code>103[.]149[.]93[.]146</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-10-30T04:00:42Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.214.146.46" target="_blank" rel="noopener"><code>103[.]214[.]146[.]46</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-07-13T07:03:01Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.48.84.225" target="_blank" rel="noopener"><code>103[.]48[.]84[.]225</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-25T06:05:10Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.67.163.201" target="_blank" rel="noopener"><code>103[.]67[.]163[.]201</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-07-25T09:43:10Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.79.79.105" target="_blank" rel="noopener"><code>103[.]79[.]79[.]105</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>pupy</td>
           <td></td>
           <td>2026-01-18T00:03:59Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/103.83.86.147" target="_blank" rel="noopener"><code>103[.]83[.]86[.]147</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-16T11:47:10Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.128.92.144" target="_blank" rel="noopener"><code>104[.]128[.]92[.]144</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-10-31T17:43:37Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.129.171.63" target="_blank" rel="noopener"><code>104[.]129[.]171[.]63</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-10T17:55:42Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.168.102.116" target="_blank" rel="noopener"><code>104[.]168[.]102[.]116</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-30T21:05:05Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.243.248.63" target="_blank" rel="noopener"><code>104[.]243[.]248[.]63</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-01-20T08:04:17Z</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.248.155.168" target="_blank" rel="noopener"><code>104[.]248[.]155[.]168</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:28:45Z</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.37.172.247" target="_blank" rel="noopener"><code>104[.]37[.]172[.]247</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-29T06:28:18Z</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/106.12.111.209" target="_blank" rel="noopener"><code>106[.]12[.]111[.]209</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-09-11T06:43:14Z</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/106.54.209.36" target="_blank" rel="noopener"><code>106[.]54[.]209[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-01-02T14:31:12Z</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/106.54.61.188" target="_blank" rel="noopener"><code>106[.]54[.]61[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-20T06:37:42Z</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/106.55.253.229" target="_blank" rel="noopener"><code>106[.]55[.]253[.]229</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-04T08:05:07Z</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.150.105.91" target="_blank" rel="noopener"><code>107[.]150[.]105[.]91</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-01-30T16:04:48Z</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.217.220" target="_blank" rel="noopener"><code>107[.]172[.]217[.]220</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-02-20T11:00:06Z</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.219.129" target="_blank" rel="noopener"><code>107[.]172[.]219[.]129</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-22T22:25:42Z</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.172.3.15" target="_blank" rel="noopener"><code>107[.]172[.]3[.]15</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-03-10T00:01:13Z</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.180.64" target="_blank" rel="noopener"><code>107[.]173[.]180[.]64</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>DCRat</td>
           <td></td>
           <td>2026-10-04T10:05:06Z</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.4.16" target="_blank" rel="noopener"><code>107[.]173[.]4[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2025-05-05T12:00:30Z</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/107.173.89.148" target="_blank" rel="noopener"><code>107[.]173[.]89[.]148</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-11-04T17:48:48Z</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/108.187.43.94" target="_blank" rel="noopener"><code>108[.]187[.]43[.]94</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>ValleyRAT</td>
           <td></td>
           <td>2026-10-02T22:20:02Z</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.205.181.248" target="_blank" rel="noopener"><code>109[.]205[.]181[.]248</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-08-31T04:00:27Z</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.236.50.145" target="_blank" rel="noopener"><code>109[.]236[.]50[.]145</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-30T20:05:05Z</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/109.248.151.101" target="_blank" rel="noopener"><code>109[.]248[.]151[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-08-27T14:54:26Z</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.228.55.96" target="_blank" rel="noopener"><code>111[.]228[.]55[.]96</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-11-07T23:00:12Z</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.229.248.198" target="_blank" rel="noopener"><code>111[.]229[.]248[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-05T13:33:27Z</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.230.12.238" target="_blank" rel="noopener"><code>111[.]230[.]12[.]238</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-07T07:48:08Z</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.230.196.200" target="_blank" rel="noopener"><code>111[.]230[.]196[.]200</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-10-22T12:07:15Z</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.230.37.219" target="_blank" rel="noopener"><code>111[.]230[.]37[.]219</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-22T08:05:05Z</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.92.243.236" target="_blank" rel="noopener"><code>111[.]92[.]243[.]236</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-01-09T08:45:29Z</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/111.92.243.40" target="_blank" rel="noopener"><code>111[.]92[.]243[.]40</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-01-30T08:04:49Z</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/113.31.105.33" target="_blank" rel="noopener"><code>113[.]31[.]105[.]33</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-11T22:47:31Z</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/113.31.106.106" target="_blank" rel="noopener"><code>113[.]31[.]106[.]106</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-07T10:14:57Z</td>
@@ -667,6 +735,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/113.45.253.80" target="_blank" rel="noopener"><code>113[.]45[.]253[.]80</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-04-16T16:01:35Z</td>
@@ -675,6 +744,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/114.215.184.158" target="_blank" rel="noopener"><code>114[.]215[.]184[.]158</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-27T14:05:06Z</td>
@@ -683,6 +753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/114.55.133.151" target="_blank" rel="noopener"><code>114[.]55[.]133[.]151</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-01-27T14:31:40Z</td>
@@ -691,6 +762,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/114.66.27.110" target="_blank" rel="noopener"><code>114[.]66[.]27[.]110</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-01T19:05:04Z</td>
@@ -699,6 +771,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.120.245.134" target="_blank" rel="noopener"><code>115[.]120[.]245[.]134</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-09-25T20:00:39Z</td>
@@ -707,6 +780,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.190.160.206" target="_blank" rel="noopener"><code>115[.]190[.]160[.]206</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-23T20:01:06Z</td>
@@ -715,6 +789,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.190.161.178" target="_blank" rel="noopener"><code>115[.]190[.]161[.]178</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-03T20:01:15Z</td>
@@ -723,6 +798,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.190.233.79" target="_blank" rel="noopener"><code>115[.]190[.]233[.]79</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-01-06T08:02:23Z</td>
@@ -731,6 +807,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.190.250.28" target="_blank" rel="noopener"><code>115[.]190[.]250[.]28</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-02-25T19:01:08Z</td>
@@ -739,6 +816,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/115.29.171.175" target="_blank" rel="noopener"><code>115[.]29[.]171[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-19T13:44:33Z</td>
@@ -747,6 +825,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/116.198.233.179" target="_blank" rel="noopener"><code>116[.]198[.]233[.]179</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-12T20:01:25Z</td>
@@ -755,6 +834,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/116.203.31.207" target="_blank" rel="noopener"><code>116[.]203[.]31[.]207</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-18T20:01:59Z</td>
@@ -763,6 +843,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/116.62.174.16" target="_blank" rel="noopener"><code>116[.]62[.]174[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-20T08:29:10Z</td>
@@ -771,6 +852,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/116.62.185.223" target="_blank" rel="noopener"><code>116[.]62[.]185[.]223</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-30T19:45:18Z</td>
@@ -779,6 +861,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/116.62.34.159" target="_blank" rel="noopener"><code>116[.]62[.]34[.]159</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-03-30T07:11:21Z</td>
@@ -787,6 +870,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.175.125" target="_blank" rel="noopener"><code>117[.]72[.]175[.]125</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>VShell</td>
           <td></td>
           <td>2025-11-03T12:08:57Z</td>
@@ -795,6 +879,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.178.246" target="_blank" rel="noopener"><code>117[.]72[.]178[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-01-08T23:00:12Z</td>
@@ -803,6 +888,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.181.104" target="_blank" rel="noopener"><code>117[.]72[.]181[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-07-27T16:00:55Z</td>
@@ -811,6 +897,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.184.172" target="_blank" rel="noopener"><code>117[.]72[.]184[.]172</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-15T06:21:34Z</td>
@@ -819,6 +906,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.202.154" target="_blank" rel="noopener"><code>117[.]72[.]202[.]154</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-17T08:14:19Z</td>
@@ -827,6 +915,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.206.39" target="_blank" rel="noopener"><code>117[.]72[.]206[.]39</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-21T08:00:35Z</td>
@@ -835,6 +924,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.242.9" target="_blank" rel="noopener"><code>117[.]72[.]242[.]9</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-11-03T09:03:04Z</td>
@@ -843,6 +933,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/117.72.8.192" target="_blank" rel="noopener"><code>117[.]72[.]8[.]192</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-10-11T12:59:56Z</td>
@@ -851,6 +942,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/118.25.10.65" target="_blank" rel="noopener"><code>118[.]25[.]10[.]65</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-03-11T04:00:36Z</td>
@@ -859,6 +951,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/118.25.148.25" target="_blank" rel="noopener"><code>118[.]25[.]148[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-09-25T08:00:47Z</td>
@@ -867,6 +960,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/118.25.85.198" target="_blank" rel="noopener"><code>118[.]25[.]85[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-15T15:33:07Z</td>
@@ -875,6 +969,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/118.31.116.9" target="_blank" rel="noopener"><code>118[.]31[.]116[.]9</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-26T12:59:31Z</td>
@@ -883,6 +978,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/118.89.88.183" target="_blank" rel="noopener"><code>118[.]89[.]88[.]183</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-28T20:01:34Z</td>
@@ -891,6 +987,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.28.83.149" target="_blank" rel="noopener"><code>119[.]28[.]83[.]149</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-22T11:06:58Z</td>
@@ -899,6 +996,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.29.122.42" target="_blank" rel="noopener"><code>119[.]29[.]122[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-13T11:05:07Z</td>
@@ -907,6 +1005,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.29.231.118" target="_blank" rel="noopener"><code>119[.]29[.]231[.]118</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-16T08:01:47Z</td>
@@ -915,6 +1014,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.45.160.160" target="_blank" rel="noopener"><code>119[.]45[.]160[.]160</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-16T06:49:03Z</td>
@@ -923,6 +1023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.45.29.172" target="_blank" rel="noopener"><code>119[.]45[.]29[.]172</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-06-08T20:01:01Z</td>
@@ -931,6 +1032,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.91.208.190" target="_blank" rel="noopener"><code>119[.]91[.]208[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-06-02T08:38:33Z</td>
@@ -939,6 +1041,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/119.91.243.238" target="_blank" rel="noopener"><code>119[.]91[.]243[.]238</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-01T08:05:06Z</td>
@@ -947,6 +1050,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/120.26.240.21" target="_blank" rel="noopener"><code>120[.]26[.]240[.]21</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-25T12:31:07Z</td>
@@ -955,6 +1059,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/120.55.3.157" target="_blank" rel="noopener"><code>120[.]55[.]3[.]157</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-06-11T06:43:04Z</td>
@@ -963,6 +1068,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.127.253.146" target="_blank" rel="noopener"><code>121[.]127[.]253[.]146</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-08-21T09:43:27Z</td>
@@ -971,6 +1077,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.37.255.60" target="_blank" rel="noopener"><code>121[.]37[.]255[.]60</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-10-09T23:36:53Z</td>
@@ -979,6 +1086,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.4.38.18" target="_blank" rel="noopener"><code>121[.]4[.]38[.]18</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-25T08:52:09Z</td>
@@ -987,6 +1095,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/121.43.55.149" target="_blank" rel="noopener"><code>121[.]43[.]55[.]149</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-02-21T22:13:19Z</td>
@@ -995,6 +1104,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/123.57.146.34" target="_blank" rel="noopener"><code>123[.]57[.]146[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-19T09:18:59Z</td>
@@ -1003,6 +1113,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/123.58.198.236" target="_blank" rel="noopener"><code>123[.]58[.]198[.]236</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-19T07:56:13Z</td>
@@ -1011,6 +1122,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/124.222.145.172" target="_blank" rel="noopener"><code>124[.]222[.]145[.]172</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-01T02:05:06Z</td>
@@ -1019,6 +1131,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/124.223.114.203" target="_blank" rel="noopener"><code>124[.]223[.]114[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-18T15:34:22Z</td>
@@ -1027,6 +1140,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/124.223.199.101" target="_blank" rel="noopener"><code>124[.]223[.]199[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>ValleyRAT</td>
           <td></td>
           <td>2026-10-03T13:10:05Z</td>
@@ -1035,6 +1149,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/124.223.41.181" target="_blank" rel="noopener"><code>124[.]223[.]41[.]181</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-29T12:52:55Z</td>
@@ -1043,6 +1158,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/124.71.106.234" target="_blank" rel="noopener"><code>124[.]71[.]106[.]234</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-28T17:59:06Z</td>
@@ -1051,6 +1167,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/128.90.113.45" target="_blank" rel="noopener"><code>128[.]90[.]113[.]45</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-02T20:44:37Z</td>
@@ -1059,6 +1176,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/129.204.11.247" target="_blank" rel="noopener"><code>129[.]204[.]11[.]247</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-17T10:41:38Z</td>
@@ -1067,6 +1185,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/129.28.85.210" target="_blank" rel="noopener"><code>129[.]28[.]85[.]210</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-30T08:00:11Z</td>
@@ -1075,6 +1194,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/13.236.153.60" target="_blank" rel="noopener"><code>13[.]236[.]153[.]60</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>PoshC2</td>
           <td></td>
           <td>2026-06-03T15:24:07Z</td>
@@ -1083,6 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/13.55.118.253" target="_blank" rel="noopener"><code>13[.]55[.]118[.]253</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-06T22:59:35Z</td>
@@ -1091,6 +1212,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/130.12.182.209" target="_blank" rel="noopener"><code>130[.]12[.]182[.]209</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>PureRAT</td>
           <td></td>
           <td>2026-03-11T23:00:21Z</td>
@@ -1099,6 +1221,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.126.123" target="_blank" rel="noopener"><code>134[.]122[.]126[.]123</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-27T06:43:52Z</td>
@@ -1107,6 +1230,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.130.181" target="_blank" rel="noopener"><code>134[.]122[.]130[.]181</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-29T12:51:26Z</td>
@@ -1115,6 +1239,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/134.122.130.186" target="_blank" rel="noopener"><code>134[.]122[.]130[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-06T12:49:25Z</td>
@@ -1123,6 +1248,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/135.148.70.131" target="_blank" rel="noopener"><code>135[.]148[.]70[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remus</td>
           <td></td>
           <td>2026-09-30T19:00:26Z</td>
@@ -1131,6 +1257,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/136.24.173.249" target="_blank" rel="noopener"><code>136[.]24[.]173[.]249</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-01-20T16:04:24Z</td>
@@ -1139,6 +1266,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/137.184.42.85" target="_blank" rel="noopener"><code>137[.]184[.]42[.]85</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-15T22:57:51Z</td>
@@ -1147,6 +1275,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/137.220.151.95" target="_blank" rel="noopener"><code>137[.]220[.]151[.]95</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-26T14:05:05Z</td>
@@ -1155,6 +1284,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.226.236.52" target="_blank" rel="noopener"><code>138[.]226[.]236[.]52</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-22T12:01:29Z</td>
@@ -1163,6 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.68.110.227" target="_blank" rel="noopener"><code>138[.]68[.]110[.]227</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-10T17:05:31Z</td>
@@ -1171,6 +1302,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/138.68.227.71" target="_blank" rel="noopener"><code>138[.]68[.]227[.]71</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:57:13Z</td>
@@ -1179,6 +1311,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.155.148.131" target="_blank" rel="noopener"><code>139[.]155[.]148[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2023-10-24T10:39:59Z</td>
@@ -1187,6 +1320,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.159.203.44" target="_blank" rel="noopener"><code>139[.]159[.]203[.]44</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-21T12:53:29Z</td>
@@ -1195,6 +1329,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.196.111.118" target="_blank" rel="noopener"><code>139[.]196[.]111[.]118</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-11-06T07:26:25Z</td>
@@ -1203,6 +1338,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.196.126.161" target="_blank" rel="noopener"><code>139[.]196[.]126[.]161</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-12-06T07:36:52Z</td>
@@ -1211,6 +1347,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.196.174.152" target="_blank" rel="noopener"><code>139[.]196[.]174[.]152</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-14T12:05:08Z</td>
@@ -1219,6 +1356,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.196.223.82" target="_blank" rel="noopener"><code>139[.]196[.]223[.]82</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-25T07:52:31Z</td>
@@ -1227,6 +1365,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.198.183.44" target="_blank" rel="noopener"><code>139[.]198[.]183[.]44</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-10-11T23:27:10Z</td>
@@ -1235,6 +1374,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.60.160.8" target="_blank" rel="noopener"><code>139[.]60[.]160[.]8</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-23T20:44:05Z</td>
@@ -1243,6 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.84.159.182" target="_blank" rel="noopener"><code>139[.]84[.]159[.]182</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>pupy</td>
           <td></td>
           <td>2026-02-05T08:00:33Z</td>
@@ -1251,6 +1392,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/139.9.62.19" target="_blank" rel="noopener"><code>139[.]9[.]62[.]19</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-01-05T21:31:13Z</td>
@@ -1259,6 +1401,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/14.29.160.181" target="_blank" rel="noopener"><code>14[.]29[.]160[.]181</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-16T04:05:05Z</td>
@@ -1267,6 +1410,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/140.143.194.253" target="_blank" rel="noopener"><code>140[.]143[.]194[.]253</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-10-24T16:00:08Z</td>
@@ -1275,6 +1419,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/140.233.190.108" target="_blank" rel="noopener"><code>140[.]233[.]190[.]108</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-29T06:28:45Z</td>
@@ -1283,6 +1428,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/140.233.190.110" target="_blank" rel="noopener"><code>140[.]233[.]190[.]110</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-29T06:28:44Z</td>
@@ -1291,6 +1437,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/140.233.190.114" target="_blank" rel="noopener"><code>140[.]233[.]190[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T05:49:12Z</td>
@@ -1299,6 +1446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/140.233.190.115" target="_blank" rel="noopener"><code>140[.]233[.]190[.]115</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-29T06:28:31Z</td>
@@ -1307,6 +1455,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/141.255.166.178" target="_blank" rel="noopener"><code>141[.]255[.]166[.]178</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-02T13:46:24Z</td>
@@ -1315,6 +1464,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/141.98.10.154" target="_blank" rel="noopener"><code>141[.]98[.]10[.]154</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-06T13:17:30Z</td>
@@ -1323,6 +1473,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/142.93.6.168" target="_blank" rel="noopener"><code>142[.]93[.]6[.]168</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:28:45Z</td>
@@ -1331,6 +1482,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.198.110.248" target="_blank" rel="noopener"><code>143[.]198[.]110[.]248</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:54:53Z</td>
@@ -1339,6 +1491,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/143.244.155.53" target="_blank" rel="noopener"><code>143[.]244[.]155[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:57:03Z</td>
@@ -1347,6 +1500,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/144.172.68.200" target="_blank" rel="noopener"><code>144[.]172[.]68[.]200</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-03T13:45:51Z</td>
@@ -1355,6 +1509,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.158.198" target="_blank" rel="noopener"><code>146[.]70[.]158[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Sliver</td>
           <td></td>
           <td>2024-08-11T21:50:57Z</td>
@@ -1363,6 +1518,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.29.233" target="_blank" rel="noopener"><code>146[.]70[.]29[.]233</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-25T22:29:00Z</td>
@@ -1371,6 +1527,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.49.42" target="_blank" rel="noopener"><code>146[.]70[.]49[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-02-02T18:00:52Z</td>
@@ -1379,6 +1536,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.79.45" target="_blank" rel="noopener"><code>146[.]70[.]79[.]45</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Sliver</td>
           <td></td>
           <td>2025-09-18T20:02:44Z</td>
@@ -1387,6 +1545,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.237" target="_blank" rel="noopener"><code>146[.]70[.]87[.]237</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-07-01T00:02:11Z</td>
@@ -1395,6 +1554,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.64" target="_blank" rel="noopener"><code>146[.]70[.]87[.]64</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-08T21:18:39Z</td>
@@ -1403,6 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/146.70.87.96" target="_blank" rel="noopener"><code>146[.]70[.]87[.]96</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-07-02T04:02:12Z</td>
@@ -1411,6 +1572,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/147.182.203.222" target="_blank" rel="noopener"><code>147[.]182[.]203[.]222</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remus</td>
           <td></td>
           <td>2026-09-11T07:33:02Z</td>
@@ -1419,6 +1581,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/147.90.182.42" target="_blank" rel="noopener"><code>147[.]90[.]182[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T10:27:52Z</td>
@@ -1427,6 +1590,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.255.35.131" target="_blank" rel="noopener"><code>149[.]255[.]35[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-14T22:28:25Z</td>
@@ -1435,6 +1599,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.28.61.158" target="_blank" rel="noopener"><code>149[.]28[.]61[.]158</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2024-12-20T16:01:53Z</td>
@@ -1443,6 +1608,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.50.135.215" target="_blank" rel="noopener"><code>149[.]50[.]135[.]215</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-09-30T00:02:15Z</td>
@@ -1451,6 +1617,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/149.88.73.83" target="_blank" rel="noopener"><code>149[.]88[.]73[.]83</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-22T06:05:07Z</td>
@@ -1459,6 +1626,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/15.204.14.143" target="_blank" rel="noopener"><code>15[.]204[.]14[.]143</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Havoc</td>
           <td></td>
           <td>2026-02-08T11:00:25Z</td>
@@ -1467,6 +1635,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/15.204.95.228" target="_blank" rel="noopener"><code>15[.]204[.]95[.]228</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Havoc</td>
           <td></td>
           <td>2025-03-03T12:01:16Z</td>
@@ -1475,6 +1644,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/150.158.102.111" target="_blank" rel="noopener"><code>150[.]158[.]102[.]111</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-30T23:05:06Z</td>
@@ -1483,6 +1653,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/150.158.170.241" target="_blank" rel="noopener"><code>150[.]158[.]170[.]241</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-09-11T20:01:30Z</td>
@@ -1491,6 +1662,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/150.187.25.242" target="_blank" rel="noopener"><code>150[.]187[.]25[.]242</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-17T20:01:54Z</td>
@@ -1499,6 +1671,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/151.244.228.91" target="_blank" rel="noopener"><code>151[.]244[.]228[.]91</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-03T06:04:05Z</td>
@@ -1507,6 +1680,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/152.136.178.142" target="_blank" rel="noopener"><code>152[.]136[.]178[.]142</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-03-17T22:47:07Z</td>
@@ -1515,6 +1689,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/152.136.253.101" target="_blank" rel="noopener"><code>152[.]136[.]253[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-21T12:05:05Z</td>
@@ -1523,6 +1698,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/152.32.132.177" target="_blank" rel="noopener"><code>152[.]32[.]132[.]177</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-06-30T09:54:11Z</td>
@@ -1531,6 +1707,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/153.80.242.105" target="_blank" rel="noopener"><code>153[.]80[.]242[.]105</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-29T08:21:52Z</td>
@@ -1539,6 +1716,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.12.117.217" target="_blank" rel="noopener"><code>154[.]12[.]117[.]217</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-22T11:18:31Z</td>
@@ -1547,6 +1725,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.12.94.16" target="_blank" rel="noopener"><code>154[.]12[.]94[.]16</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-07-29T07:32:16Z</td>
@@ -1555,6 +1734,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.205.145.109" target="_blank" rel="noopener"><code>154[.]205[.]145[.]109</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Havoc</td>
           <td></td>
           <td>2025-11-10T16:02:55Z</td>
@@ -1563,6 +1743,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.22.117.31" target="_blank" rel="noopener"><code>154[.]22[.]117[.]31</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-09-17T21:24:41Z</td>
@@ -1571,6 +1752,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.221.17.44" target="_blank" rel="noopener"><code>154[.]221[.]17[.]44</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-09-01T12:00:42Z</td>
@@ -1579,6 +1761,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/154.221.25.38" target="_blank" rel="noopener"><code>154[.]221[.]25[.]38</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-06T07:24:00Z</td>
@@ -1587,6 +1770,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.103.69.239" target="_blank" rel="noopener"><code>155[.]103[.]69[.]239</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-23T10:53:01Z</td>
@@ -1595,6 +1779,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.103.69.57" target="_blank" rel="noopener"><code>155[.]103[.]69[.]57</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-24T08:07:23Z</td>
@@ -1603,6 +1788,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.103.69.85" target="_blank" rel="noopener"><code>155[.]103[.]69[.]85</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-24T11:50:28Z</td>
@@ -1611,6 +1797,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.103.70.232" target="_blank" rel="noopener"><code>155[.]103[.]70[.]232</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-30T08:15:53Z</td>
@@ -1619,6 +1806,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/155.103.71.242" target="_blank" rel="noopener"><code>155[.]103[.]71[.]242</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-24T09:11:10Z</td>
@@ -1627,6 +1815,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.227.233.153" target="_blank" rel="noopener"><code>156[.]227[.]233[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-06-25T04:00:19Z</td>
@@ -1635,6 +1824,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.239.252.191" target="_blank" rel="noopener"><code>156[.]239[.]252[.]191</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-03-22T18:02:20Z</td>
@@ -1643,6 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/156.254.20.47" target="_blank" rel="noopener"><code>156[.]254[.]20[.]47</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-24T03:47:41Z</td>
@@ -1651,6 +1842,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/158.158.0.196" target="_blank" rel="noopener"><code>158[.]158[.]0[.]196</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-06-19T00:02:44Z</td>
@@ -1659,6 +1851,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/159.223.24.190" target="_blank" rel="noopener"><code>159[.]223[.]24[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:28:44Z</td>
@@ -1667,6 +1860,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/159.65.246.188" target="_blank" rel="noopener"><code>159[.]65[.]246[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-22T16:42:29Z</td>
@@ -1675,6 +1869,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/159.75.176.189" target="_blank" rel="noopener"><code>159[.]75[.]176[.]189</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-03-17T08:00:12Z</td>
@@ -1683,6 +1878,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/159.89.166.50" target="_blank" rel="noopener"><code>159[.]89[.]166[.]50</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remus</td>
           <td></td>
           <td>2026-09-30T05:49:36Z</td>
@@ -1691,6 +1887,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/16.171.13.191" target="_blank" rel="noopener"><code>16[.]171[.]13[.]191</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-12-30T16:04:05Z</td>
@@ -1699,6 +1896,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/160.179.238.25" target="_blank" rel="noopener"><code>160[.]179[.]238[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-02T19:43:47Z</td>
@@ -1707,6 +1905,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/161.248.179.24" target="_blank" rel="noopener"><code>161[.]248[.]179[.]24</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-20T05:32:54Z</td>
@@ -1715,6 +1914,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/161.35.137.163" target="_blank" rel="noopener"><code>161[.]35[.]137[.]163</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:52:19Z</td>
@@ -1723,6 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/161.35.176.231" target="_blank" rel="noopener"><code>161[.]35[.]176[.]231</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Havoc</td>
           <td></td>
           <td>2025-05-29T22:26:34Z</td>
@@ -1731,6 +1932,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/162.252.173.12" target="_blank" rel="noopener"><code>162[.]252[.]173[.]12</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>RansomHub</td>
           <td></td>
           <td>2025-01-31T12:01:38Z</td>
@@ -1739,6 +1941,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.227.108.186" target="_blank" rel="noopener"><code>165[.]227[.]108[.]186</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-24T13:08:20Z</td>
@@ -1747,6 +1950,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.227.180.6" target="_blank" rel="noopener"><code>165[.]227[.]180[.]6</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-29T19:30:18Z</td>
@@ -1755,6 +1959,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.227.219.211" target="_blank" rel="noopener"><code>165[.]227[.]219[.]211</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:56:32Z</td>
@@ -1763,6 +1968,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.227.23.218" target="_blank" rel="noopener"><code>165[.]227[.]23[.]218</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:53:10Z</td>
@@ -1771,6 +1977,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.232.154.73" target="_blank" rel="noopener"><code>165[.]232[.]154[.]73</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:55:44Z</td>
@@ -1779,6 +1986,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.245.184.215" target="_blank" rel="noopener"><code>165[.]245[.]184[.]215</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-27T06:43:51Z</td>
@@ -1787,6 +1995,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/165.245.250.162" target="_blank" rel="noopener"><code>165[.]245[.]250[.]162</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:28:46Z</td>
@@ -1795,6 +2004,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.17.47.121" target="_blank" rel="noopener"><code>167[.]17[.]47[.]121</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-19T20:02:47Z</td>
@@ -1803,6 +2013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.172.71.210" target="_blank" rel="noopener"><code>167[.]172[.]71[.]210</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-30T09:28:45Z</td>
@@ -1811,6 +2022,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.99.51.2" target="_blank" rel="noopener"><code>167[.]99[.]51[.]2</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Sliver</td>
           <td></td>
           <td>2025-05-17T08:00:32Z</td>
@@ -1819,6 +2031,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/167.99.67.141" target="_blank" rel="noopener"><code>167[.]99[.]67[.]141</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remus</td>
           <td></td>
           <td>2026-09-29T06:28:54Z</td>
@@ -1827,6 +2040,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/168.61.180.98" target="_blank" rel="noopener"><code>168[.]61[.]180[.]98</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-09T22:36:37Z</td>
@@ -1835,6 +2049,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.239.128.43" target="_blank" rel="noopener"><code>169[.]239[.]128[.]43</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-06-25T08:08:03Z</td>
@@ -1843,6 +2058,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/169.40.135.36" target="_blank" rel="noopener"><code>169[.]40[.]135[.]36</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-02-24T12:02:30Z</td>
@@ -1851,6 +2067,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.111.139.78" target="_blank" rel="noopener"><code>172[.]111[.]139[.]78</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-29T19:43:53Z</td>
@@ -1859,6 +2076,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.174.234.34" target="_blank" rel="noopener"><code>172[.]174[.]234[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-04T11:00:54Z</td>
@@ -1867,6 +2085,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.233.97.159" target="_blank" rel="noopener"><code>172[.]233[.]97[.]159</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-07-30T20:01:06Z</td>
@@ -1875,6 +2094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.245.209.188" target="_blank" rel="noopener"><code>172[.]245[.]209[.]188</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-14T06:10:45Z</td>
@@ -1883,6 +2103,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.94.18.103" target="_blank" rel="noopener"><code>172[.]94[.]18[.]103</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2025-12-23T22:45:05Z</td>
@@ -1891,6 +2112,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.94.46.114" target="_blank" rel="noopener"><code>172[.]94[.]46[.]114</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-26T06:20:49Z</td>
@@ -1899,6 +2121,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.94.53.99" target="_blank" rel="noopener"><code>172[.]94[.]53[.]99</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-01T08:14:20Z</td>
@@ -1907,6 +2130,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/174.138.86.141" target="_blank" rel="noopener"><code>174[.]138[.]86[.]141</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-02-07T03:00:18Z</td>
@@ -1915,6 +2139,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/175.124.145.102" target="_blank" rel="noopener"><code>175[.]124[.]145[.]102</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-22T13:48:08Z</td>
@@ -1923,6 +2148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/175.41.16.98" target="_blank" rel="noopener"><code>175[.]41[.]16[.]98</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-12T16:50:58Z</td>
@@ -1931,6 +2157,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/175.41.21.29" target="_blank" rel="noopener"><code>175[.]41[.]21[.]29</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-13T16:57:52Z</td>
@@ -1939,6 +2166,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/176.126.114.42" target="_blank" rel="noopener"><code>176[.]126[.]114[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-25T06:28:10Z</td>
@@ -1947,6 +2175,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/176.31.71.168" target="_blank" rel="noopener"><code>176[.]31[.]71[.]168</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>pupy</td>
           <td></td>
           <td>2026-01-22T12:04:28Z</td>
@@ -1955,6 +2184,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/178.128.171.206" target="_blank" rel="noopener"><code>178[.]128[.]171[.]206</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-21T16:54:15Z</td>
@@ -1963,6 +2193,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/178.16.55.53" target="_blank" rel="noopener"><code>178[.]16[.]55[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-08-20T08:02:12Z</td>
@@ -1971,6 +2202,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/179.43.186.214" target="_blank" rel="noopener"><code>179[.]43[.]186[.]214</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-10-29T09:23:45Z</td>
@@ -1979,6 +2211,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/18.117.254.165" target="_blank" rel="noopener"><code>18[.]117[.]254[.]165</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-06-28T08:57:21Z</td>
@@ -1987,6 +2220,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/18.167.174.198" target="_blank" rel="noopener"><code>18[.]167[.]174[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>pupy</td>
           <td></td>
           <td>2025-09-13T04:01:58Z</td>
@@ -1995,6 +2229,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/180.76.141.175" target="_blank" rel="noopener"><code>180[.]76[.]141[.]175</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-12-07T16:01:37Z</td>
@@ -2003,6 +2238,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/180.93.125.137" target="_blank" rel="noopener"><code>180[.]93[.]125[.]137</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-02T13:55:04Z</td>
@@ -2011,6 +2247,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/180.93.236.78" target="_blank" rel="noopener"><code>180[.]93[.]236[.]78</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T12:51:22Z</td>
@@ -2019,6 +2256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/181.206.158.190" target="_blank" rel="noopener"><code>181[.]206[.]158[.]190</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>DCRat</td>
           <td></td>
           <td>2025-04-26T20:01:51Z</td>
@@ -2027,6 +2265,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/182.254.155.23" target="_blank" rel="noopener"><code>182[.]254[.]155[.]23</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-10-28T04:00:27Z</td>
@@ -2035,6 +2274,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/182.255.91.104" target="_blank" rel="noopener"><code>182[.]255[.]91[.]104</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-23T13:05:05Z</td>
@@ -2043,6 +2283,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/182.92.117.223" target="_blank" rel="noopener"><code>182[.]92[.]117[.]223</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-01-01T07:01:03Z</td>
@@ -2051,6 +2292,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.137.122.215" target="_blank" rel="noopener"><code>185[.]137[.]122[.]215</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-23T13:51:59Z</td>
@@ -2059,6 +2301,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.157.163.24" target="_blank" rel="noopener"><code>185[.]157[.]163[.]24</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-04T12:31:01Z</td>
@@ -2067,6 +2310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.186.143.111" target="_blank" rel="noopener"><code>185[.]186[.]143[.]111</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-05T22:55:20Z</td>
@@ -2075,6 +2319,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.196.10.121" target="_blank" rel="noopener"><code>185[.]196[.]10[.]121</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-04-02T10:17:26Z</td>
@@ -2083,6 +2328,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.196.8.18" target="_blank" rel="noopener"><code>185[.]196[.]8[.]18</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-05-11T22:47:10Z</td>
@@ -2091,6 +2337,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.215.151.9" target="_blank" rel="noopener"><code>185[.]215[.]151[.]9</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-02T06:31:02Z</td>
@@ -2099,6 +2346,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.236.203.101" target="_blank" rel="noopener"><code>185[.]236[.]203[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-02T14:46:32Z</td>
@@ -2107,6 +2355,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.33.86.15" target="_blank" rel="noopener"><code>185[.]33[.]86[.]15</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>RansomHub</td>
           <td></td>
           <td>2025-01-30T04:01:31Z</td>
@@ -2115,6 +2364,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.32" target="_blank" rel="noopener"><code>185[.]34[.]147[.]32</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:39Z</td>
@@ -2123,6 +2373,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.33" target="_blank" rel="noopener"><code>185[.]34[.]147[.]33</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-15T19:44:32Z</td>
@@ -2131,6 +2382,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.34.147.35" target="_blank" rel="noopener"><code>185[.]34[.]147[.]35</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-13T09:44:40Z</td>
@@ -2139,6 +2391,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/187.127.178.97" target="_blank" rel="noopener"><code>187[.]127[.]178[.]97</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remus</td>
           <td></td>
           <td>2026-09-30T05:49:11Z</td>
@@ -2147,6 +2400,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.166.244.201" target="_blank" rel="noopener"><code>188[.]166[.]244[.]201</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-02-04T00:02:27Z</td>
@@ -2155,6 +2409,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.166.246.245" target="_blank" rel="noopener"><code>188[.]166[.]246[.]245</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-09-27T06:43:50Z</td>
@@ -2163,6 +2418,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/188.212.158.203" target="_blank" rel="noopener"><code>188[.]212[.]158[.]203</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-30T06:05:05Z</td>
@@ -2171,6 +2427,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/190.144.146.90" target="_blank" rel="noopener"><code>190[.]144[.]146[.]90</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-30T19:00:27Z</td>
@@ -2179,6 +2436,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/191.124.5.229" target="_blank" rel="noopener"><code>191[.]124[.]5[.]229</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-03T07:57:34Z</td>
@@ -2187,6 +2445,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/191.124.5.50" target="_blank" rel="noopener"><code>191[.]124[.]5[.]50</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-10-02T07:41:39Z</td>
@@ -2195,6 +2454,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/191.93.113.119" target="_blank" rel="noopener"><code>191[.]93[.]113[.]119</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>DCRat</td>
           <td></td>
           <td>2026-09-11T13:38:17Z</td>
@@ -2203,6 +2463,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.162.199.242" target="_blank" rel="noopener"><code>192[.]162[.]199[.]242</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-14T12:03:48Z</td>
@@ -2211,6 +2472,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.169.176.54" target="_blank" rel="noopener"><code>192[.]169[.]176[.]54</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Sliver</td>
           <td></td>
           <td>2026-08-08T07:05:05Z</td>
@@ -2219,6 +2481,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.227.155.185" target="_blank" rel="noopener"><code>192[.]227[.]155[.]185</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-25T22:30:16Z</td>
@@ -2227,6 +2490,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.241.133.130" target="_blank" rel="noopener"><code>192[.]241[.]133[.]130</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-02-22T16:44:41Z</td>
@@ -2235,6 +2499,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.252.179.24" target="_blank" rel="noopener"><code>192[.]252[.]179[.]24</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-10T19:05:07Z</td>
@@ -2243,6 +2508,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/192.252.185.78" target="_blank" rel="noopener"><code>192[.]252[.]185[.]78</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-10T20:05:05Z</td>
@@ -2251,6 +2517,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.160.32.138" target="_blank" rel="noopener"><code>193[.]160[.]32[.]138</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-26T07:05:10Z</td>
@@ -2259,6 +2526,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.201.9.229" target="_blank" rel="noopener"><code>193[.]201[.]9[.]229</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-18T22:32:52Z</td>
@@ -2267,6 +2535,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.239.85.15" target="_blank" rel="noopener"><code>193[.]239[.]85[.]15</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Havoc</td>
           <td></td>
           <td>2025-06-02T12:01:04Z</td>
@@ -2275,6 +2544,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/193.29.13.216" target="_blank" rel="noopener"><code>193[.]29[.]13[.]216</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-23T16:42:50Z</td>
@@ -2283,6 +2553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.165.16.55" target="_blank" rel="noopener"><code>194[.]165[.]16[.]55</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2024-03-06T20:55:37Z</td>
@@ -2291,6 +2562,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.36.178.53" target="_blank" rel="noopener"><code>194[.]36[.]178[.]53</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-06T00:01:40Z</td>
@@ -2299,6 +2571,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.37.97.153" target="_blank" rel="noopener"><code>194[.]37[.]97[.]153</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-04-05T16:53:16Z</td>
@@ -2307,6 +2580,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.87.82.8" target="_blank" rel="noopener"><code>194[.]87[.]82[.]8</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-08-01T20:01:06Z</td>
@@ -2315,6 +2589,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/195.100.198.220" target="_blank" rel="noopener"><code>195[.]100[.]198[.]220</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2024-10-01T16:02:09Z</td>
@@ -2323,6 +2598,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/195.177.94.101" target="_blank" rel="noopener"><code>195[.]177[.]94[.]101</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-08-31T19:44:47Z</td>
@@ -2331,6 +2607,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/195.178.110.135" target="_blank" rel="noopener"><code>195[.]178[.]110[.]135</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-09-11T20:01:36Z</td>
@@ -2339,6 +2616,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/196.251.107.252" target="_blank" rel="noopener"><code>196[.]251[.]107[.]252</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-17T05:42:12Z</td>
@@ -2347,6 +2625,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/196.251.83.89" target="_blank" rel="noopener"><code>196[.]251[.]83[.]89</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-10-26T07:39:14Z</td>
@@ -2355,6 +2634,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/198.98.53.100" target="_blank" rel="noopener"><code>198[.]98[.]53[.]100</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Aisuru</td>
           <td></td>
           <td>2026-07-24T06:20:07Z</td>
@@ -2363,6 +2643,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/198.98.53.34" target="_blank" rel="noopener"><code>198[.]98[.]53[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-09-14T22:07:14Z</td>
@@ -2371,6 +2652,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.25.222.233" target="_blank" rel="noopener"><code>2[.]25[.]222[.]233</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T06:37:03Z</td>
@@ -2379,6 +2661,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.25.246.239" target="_blank" rel="noopener"><code>2[.]25[.]246[.]239</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-26T06:20:26Z</td>
@@ -2387,6 +2670,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.27.62.228" target="_blank" rel="noopener"><code>2[.]27[.]62[.]228</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-22T05:00:06Z</td>
@@ -2395,6 +2679,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/20.157.116.151" target="_blank" rel="noopener"><code>20[.]157[.]116[.]151</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-12-08T14:58:40Z</td>
@@ -2403,6 +2688,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/20.187.120.42" target="_blank" rel="noopener"><code>20[.]187[.]120[.]42</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-08-14T06:05:07Z</td>
@@ -2411,6 +2697,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/202.191.67.71" target="_blank" rel="noopener"><code>202[.]191[.]67[.]71</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2026-03-15T04:01:14Z</td>
@@ -2419,6 +2706,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/203.202.232.117" target="_blank" rel="noopener"><code>203[.]202[.]232[.]117</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T09:12:42Z</td>
@@ -2427,6 +2715,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/206.123.137.132" target="_blank" rel="noopener"><code>206[.]123[.]137[.]132</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-07T06:15:22Z</td>
@@ -2435,6 +2724,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/208.64.33.69" target="_blank" rel="noopener"><code>208[.]64[.]33[.]69</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-02T08:18:14Z</td>
@@ -2443,6 +2733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/208.87.129.112" target="_blank" rel="noopener"><code>208[.]87[.]129[.]112</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-11-11T12:01:51Z</td>
@@ -2451,6 +2742,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/209.250.227.127" target="_blank" rel="noopener"><code>209[.]250[.]227[.]127</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>pupy</td>
           <td></td>
           <td>2025-08-11T20:01:43Z</td>
@@ -2459,6 +2751,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/209.38.82.85" target="_blank" rel="noopener"><code>209[.]38[.]82[.]85</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-24T13:48:35Z</td>
@@ -2467,6 +2760,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/213.21.222.241" target="_blank" rel="noopener"><code>213[.]21[.]222[.]241</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2026-04-04T07:11:11Z</td>
@@ -2475,6 +2769,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.9.224.180" target="_blank" rel="noopener"><code>216[.]9[.]224[.]180</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T09:12:42Z</td>
@@ -2483,6 +2778,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.9.225.130" target="_blank" rel="noopener"><code>216[.]9[.]225[.]130</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-28T15:32:44Z</td>
@@ -2491,6 +2787,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/216.9.225.150" target="_blank" rel="noopener"><code>216[.]9[.]225[.]150</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-10T13:24:15Z</td>
@@ -2499,6 +2796,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.154.212.25" target="_blank" rel="noopener"><code>217[.]154[.]212[.]25</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2025-05-28T08:01:49Z</td>
@@ -2507,6 +2805,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.103.131" target="_blank" rel="noopener"><code>217[.]60[.]103[.]131</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-04T06:54:18Z</td>
@@ -2515,6 +2814,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.195.210" target="_blank" rel="noopener"><code>217[.]60[.]195[.]210</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-03T05:39:23Z</td>
@@ -2523,6 +2823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.195.246" target="_blank" rel="noopener"><code>217[.]60[.]195[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-15T15:18:03Z</td>
@@ -2531,6 +2832,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.60.195.34" target="_blank" rel="noopener"><code>217[.]60[.]195[.]34</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-08-27T08:50:41Z</td>
@@ -2539,6 +2841,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.64.148.147" target="_blank" rel="noopener"><code>217[.]64[.]148[.]147</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-10-01T08:14:20Z</td>
@@ -2547,6 +2850,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/217.79.243.148" target="_blank" rel="noopener"><code>217[.]79[.]243[.]148</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-15T10:32:22Z</td>
@@ -2555,6 +2859,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/221.132.29.137" target="_blank" rel="noopener"><code>221[.]132[.]29[.]137</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Unknown malware</td>
           <td></td>
           <td>2025-05-24T20:01:31Z</td>
@@ -2563,6 +2868,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.132.164.72" target="_blank" rel="noopener"><code>23[.]132[.]164[.]72</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-09-24T13:05:06Z</td>
@@ -2571,6 +2877,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.148.212.176" target="_blank" rel="noopener"><code>23[.]148[.]212[.]176</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2026-09-01T13:05:07Z</td>
@@ -2579,6 +2886,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.189.104.198" target="_blank" rel="noopener"><code>23[.]189[.]104[.]198</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Remcos</td>
           <td></td>
           <td>2026-09-30T17:06:42Z</td>
@@ -2587,6 +2895,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.224.152.139" target="_blank" rel="noopener"><code>23[.]224[.]152[.]139</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2021-10-13T17:43:22Z</td>
@@ -2595,6 +2904,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.198.246" target="_blank" rel="noopener"><code>23[.]227[.]198[.]246</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>Cobalt Strike</td>
           <td></td>
           <td>2022-01-15T22:26:20Z</td>
@@ -2603,6 +2913,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/23.227.199.61" target="_blank" rel="noopener"><code>23[.]227[.]199[.]61</code></a></td>
           <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td>AdaptixC2</td>
           <td></td>
           <td>2025-06-16T08:02:52Z</td>
@@ -2615,8 +2926,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

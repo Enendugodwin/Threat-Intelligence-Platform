@@ -217,6 +217,28 @@ class Store:
     def total(self) -> int:
         return self.conn.execute("SELECT COUNT(*) FROM iocs").fetchone()[0]
 
+    def count_confidence(self, minimum: int = 80) -> int:
+        return self.conn.execute(
+            "SELECT COUNT(*) FROM iocs WHERE confidence >= ?", (int(minimum),)
+        ).fetchone()[0]
+
+    def activity(self, days: int = 7) -> dict:
+        """Sum run deltas over the last N days (actual new/updated/pruned)."""
+        cutoff = _cutoff(days)
+        rows = self.conn.execute(
+            "SELECT stats FROM runs WHERE finished_at >= ?", (cutoff,)
+        ).fetchall()
+        new = updated = pruned = 0
+        for row in rows:
+            try:
+                stats = json.loads(row["stats"] or "{}")
+            except (TypeError, json.JSONDecodeError):
+                continue
+            new += int(stats.get("new") or 0)
+            updated += int(stats.get("updated") or 0)
+            pruned += int(stats.get("pruned") or 0)
+        return {"new": new, "updated": updated, "pruned": pruned, "runs": len(rows)}
+
     def counts_by_type(self) -> list[tuple[str, int]]:
         return _pairs(
             self.conn.execute("SELECT type, COUNT(*) FROM iocs GROUP BY type ORDER BY 2 DESC")

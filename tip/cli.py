@@ -184,7 +184,7 @@ def main(argv=None) -> int:
         from . import site as site_mod
         from .geo import load_geo
         from .reportfeed import load_reports
-        from .vulnintel import load_kev
+        from .vulnintel import load_kev, summarize as summarize_kev
 
         config = load_config(args.config)
         attack = load_attack_map(args.attack_map)
@@ -193,6 +193,8 @@ def main(argv=None) -> int:
         reports_doc = load_reports(data_dir)
         kev_doc = load_kev(data_dir)
         geo_doc = load_geo(data_dir)
+        if kev_doc:
+            context["kev_summary"] = summarize_kev(kev_doc)
         paths = site_mod.build_site(
             context,
             args.out,

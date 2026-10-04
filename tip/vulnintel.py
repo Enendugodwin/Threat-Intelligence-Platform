@@ -135,3 +135,20 @@ def fetch_kev(config: dict, data_dir) -> dict:
 
 def load_kev(data_dir) -> dict:
     return _load(kev_path(data_dir))
+
+
+def summarize(doc: dict, today: str | None = None) -> dict:
+    """Priority counts for the KEV page cards and the dashboard."""
+    today = today or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    entries = [entry for entry in (doc.get("entries") or []) if isinstance(entry, dict)]
+    return {
+        "total": len(entries),
+        "catalog_count": int(doc.get("catalog_count") or len(entries)),
+        "ransomware": sum(1 for entry in entries if entry.get("ransomware")),
+        "overdue": sum(
+            1
+            for entry in entries
+            if str(entry.get("due_date") or "") and str(entry.get("due_date")) < today
+        ),
+        "epss_high": sum(1 for entry in entries if (entry.get("epss") or 0.0) >= 0.5),
+    }

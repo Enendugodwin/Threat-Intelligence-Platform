@@ -111,6 +111,16 @@ td code{background:transparent;border:none;padding:0}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
 .chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
@@ -177,16 +187,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25925 indicators</span>
-      <span>25925 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
+      <span>2276 new / 23417 updated last run &middot; 25853 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-04T18:56:32Z</span>
+      <span>sync 2026-10-04T19:04:53Z</span>
     </span>
     <nav aria-label="Sections">
-      <a href="index.html">Dashboard</a>
-      <a href="reports.html">Report feed</a>
-      <a href="map.html">Attack origins</a>
-      <a href="kev.html">KEV</a>
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
@@ -203,7 +214,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <thead>
         <tr>
           <th scope="col">Indicator (defanged &mdash; click to look up)</th>
-          <th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col">Family</th><th scope="col">Sources</th>
           <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
         </tr>
       </thead>
@@ -211,6 +222,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/061dc35f8d2b1c678f489a27e6094753" target="_blank" rel="noopener"><code>061dc35f8d2b1c678f489a27e6094753</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Venus Stealer</td>
           <td></td>
           <td>2026-10-01T16:38:51Z</td>
@@ -219,6 +231,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/071d10ae47c1f2b8622577937d2beca3" target="_blank" rel="noopener"><code>071d10ae47c1f2b8622577937d2beca3</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:21Z</td>
@@ -227,6 +240,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/09969d56a5c3205dfb74493f5fcf6987" target="_blank" rel="noopener"><code>09969d56a5c3205dfb74493f5fcf6987</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Venus Stealer</td>
           <td></td>
           <td>2026-10-01T16:38:57Z</td>
@@ -235,6 +249,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/09b10a9fd1001dcf60ff5d80da7647a6" target="_blank" rel="noopener"><code>09b10a9fd1001dcf60ff5d80da7647a6</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Venus Stealer</td>
           <td></td>
           <td>2026-10-01T16:38:56Z</td>
@@ -243,6 +258,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/0f33cc2ca158f916e0f6e4f1e020f05e" target="_blank" rel="noopener"><code>0f33cc2ca158f916e0f6e4f1e020f05e</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:13Z</td>
@@ -251,6 +267,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/14e73b958f688f529144dbd881608f72" target="_blank" rel="noopener"><code>14e73b958f688f529144dbd881608f72</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>Venus Stealer</td>
           <td></td>
           <td>2026-10-03T06:30:08Z</td>
@@ -259,6 +276,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/168935f2a155f7d2385b1fce86543ba5" target="_blank" rel="noopener"><code>168935f2a155f7d2385b1fce86543ba5</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>WannaCryptor</td>
           <td></td>
           <td>2026-10-02T14:50:12Z</td>
@@ -267,6 +285,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/194382ff3461ff609cbc721c18349ecb" target="_blank" rel="noopener"><code>194382ff3461ff609cbc721c18349ecb</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-01T16:39:00Z</td>
@@ -275,6 +294,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/1a751cf6fdd0cda9148b2db6be136616" target="_blank" rel="noopener"><code>1a751cf6fdd0cda9148b2db6be136616</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:26Z</td>
@@ -283,6 +303,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/236ed5d47571a5e9857e88e995ca3186" target="_blank" rel="noopener"><code>236ed5d47571a5e9857e88e995ca3186</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:23Z</td>
@@ -291,6 +312,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/2c48c0ed0280c44479e69867c0e375b2" target="_blank" rel="noopener"><code>2c48c0ed0280c44479e69867c0e375b2</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>Overlord RAT</td>
           <td></td>
           <td>2026-10-03T06:30:36Z</td>
@@ -299,6 +321,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/30877dd0a5d0ade6f40906c1d4809566" target="_blank" rel="noopener"><code>30877dd0a5d0ade6f40906c1d4809566</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>SalatStealer</td>
           <td></td>
           <td>2026-10-01T16:39:02Z</td>
@@ -307,6 +330,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/391a7189c935f6f4ce9ceeebc900378a" target="_blank" rel="noopener"><code>391a7189c935f6f4ce9ceeebc900378a</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>stealler</td>
           <td></td>
           <td>2026-09-29T20:56:52Z</td>
@@ -315,6 +339,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/3a17c971d67659cfb590bd97f131039c" target="_blank" rel="noopener"><code>3a17c971d67659cfb590bd97f131039c</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>XWorm</td>
           <td></td>
           <td>2026-10-03T06:30:12Z</td>
@@ -323,6 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/3a91a3a45a3f8bd79e42b9c9b1c90f7d" target="_blank" rel="noopener"><code>3a91a3a45a3f8bd79e42b9c9b1c90f7d</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:59:47Z</td>
@@ -331,6 +357,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/3c9f13c34042ac53efd0878e8b8c7d29" target="_blank" rel="noopener"><code>3c9f13c34042ac53efd0878e8b8c7d29</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>MASS Logger</td>
           <td></td>
           <td>2026-10-02T14:50:06Z</td>
@@ -339,6 +366,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/44b68a5dc489e38bcca704342c60eaa3" target="_blank" rel="noopener"><code>44b68a5dc489e38bcca704342c60eaa3</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:19Z</td>
@@ -347,6 +375,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/48bbd5782504502fe420c4806db7cace" target="_blank" rel="noopener"><code>48bbd5782504502fe420c4806db7cace</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>NetWire RC</td>
           <td></td>
           <td>2026-10-02T14:50:16Z</td>
@@ -355,6 +384,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/4ddaff017607c53607551d6d328c08aa" target="_blank" rel="noopener"><code>4ddaff017607c53607551d6d328c08aa</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:14Z</td>
@@ -363,6 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/4e3047fc96e4a267b77694aa363accb2" target="_blank" rel="noopener"><code>4e3047fc96e4a267b77694aa363accb2</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>WannaCryptor</td>
           <td></td>
           <td>2026-10-03T06:30:05Z</td>
@@ -371,6 +402,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/4f398ea864ade8635dbabce66a963d91" target="_blank" rel="noopener"><code>4f398ea864ade8635dbabce66a963d91</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VIP Keylogger</td>
           <td></td>
           <td>2026-10-02T14:50:07Z</td>
@@ -379,6 +411,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5a12e4935f8b9504f6a2d0459478ea64" target="_blank" rel="noopener"><code>5a12e4935f8b9504f6a2d0459478ea64</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>CrossRAT</td>
           <td></td>
           <td>2026-10-02T14:59:48Z</td>
@@ -387,6 +420,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5d16a60f33b76f526032193a51abbdd8" target="_blank" rel="noopener"><code>5d16a60f33b76f526032193a51abbdd8</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>NetWire RC</td>
           <td></td>
           <td>2026-10-01T16:38:54Z</td>
@@ -395,6 +429,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/634c771e7cca5a60e98def6c1827dfac" target="_blank" rel="noopener"><code>634c771e7cca5a60e98def6c1827dfac</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:15Z</td>
@@ -403,6 +438,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/653ff40b9c10e44b5a4238d82d0ec0a6" target="_blank" rel="noopener"><code>653ff40b9c10e44b5a4238d82d0ec0a6</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-09-29T20:56:53Z</td>
@@ -411,6 +447,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/6fe69e1d0ca60ffa633c86374f962c74" target="_blank" rel="noopener"><code>6fe69e1d0ca60ffa633c86374f962c74</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:27Z</td>
@@ -419,6 +456,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/723ef6c0cfe1bba47ffea59beb16d14d" target="_blank" rel="noopener"><code>723ef6c0cfe1bba47ffea59beb16d14d</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:30Z</td>
@@ -427,6 +465,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/7b784e84c211dbdc94f2b19039b176f0" target="_blank" rel="noopener"><code>7b784e84c211dbdc94f2b19039b176f0</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Formbook</td>
           <td></td>
           <td>2026-10-02T14:50:05Z</td>
@@ -435,6 +474,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/7d7792af4bc247d434a2a743e0d61dba" target="_blank" rel="noopener"><code>7d7792af4bc247d434a2a743e0d61dba</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:06Z</td>
@@ -443,6 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/7eab214c8f45ffba3e38ca12da1f3903" target="_blank" rel="noopener"><code>7eab214c8f45ffba3e38ca12da1f3903</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-01T16:39:02Z</td>
@@ -451,6 +492,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/8234427b6af938569449c28a97e7e4ba" target="_blank" rel="noopener"><code>8234427b6af938569449c28a97e7e4ba</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:23Z</td>
@@ -459,6 +501,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/881bb1ac8a5f4f0be3c86867a331d269" target="_blank" rel="noopener"><code>881bb1ac8a5f4f0be3c86867a331d269</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>NetWire RC</td>
           <td></td>
           <td>2026-10-01T16:38:53Z</td>
@@ -467,6 +510,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/899da62728f6d0dfd3fe7f0dd6cee595" target="_blank" rel="noopener"><code>899da62728f6d0dfd3fe7f0dd6cee595</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:18Z</td>
@@ -475,6 +519,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/8ce80aaa7f59f63a115a0bd99c2a7796" target="_blank" rel="noopener"><code>8ce80aaa7f59f63a115a0bd99c2a7796</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:12Z</td>
@@ -483,6 +528,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/8da0682a940f6fe660af38de8e003111" target="_blank" rel="noopener"><code>8da0682a940f6fe660af38de8e003111</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>CrossRAT</td>
           <td></td>
           <td>2026-10-01T16:39:04Z</td>
@@ -491,6 +537,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/9190f4812fe3c0a33b9cc26672e44020" target="_blank" rel="noopener"><code>9190f4812fe3c0a33b9cc26672e44020</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>NetWire RC</td>
           <td></td>
           <td>2026-10-01T16:38:52Z</td>
@@ -499,6 +546,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/91ade8fc3cead6276f054d564b5a321d" target="_blank" rel="noopener"><code>91ade8fc3cead6276f054d564b5a321d</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:28Z</td>
@@ -507,6 +555,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/969b08e15fddacefa6bb67a94dba64a9" target="_blank" rel="noopener"><code>969b08e15fddacefa6bb67a94dba64a9</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>GCleaner</td>
           <td></td>
           <td>2026-10-02T14:50:24Z</td>
@@ -515,6 +564,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/9a1f1c5918d3a99ca97d75f01730cbf1" target="_blank" rel="noopener"><code>9a1f1c5918d3a99ca97d75f01730cbf1</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-01T16:39:01Z</td>
@@ -523,6 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/a8b66f8f94cd9af16afe7d0e6025bd1e" target="_blank" rel="noopener"><code>a8b66f8f94cd9af16afe7d0e6025bd1e</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Formbook</td>
           <td></td>
           <td>2026-10-01T16:39:05Z</td>
@@ -531,6 +582,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/b295cdcdd65caf39f3a9bb72f0b7acf6" target="_blank" rel="noopener"><code>b295cdcdd65caf39f3a9bb72f0b7acf6</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:25Z</td>
@@ -539,6 +591,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/beba98e5200d0580e7085436b270f536" target="_blank" rel="noopener"><code>beba98e5200d0580e7085436b270f536</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:15Z</td>
@@ -547,6 +600,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/c102a2e3889784f08640daede2cacc03" target="_blank" rel="noopener"><code>c102a2e3889784f08640daede2cacc03</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-01T16:38:59Z</td>
@@ -555,6 +609,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/c70c574562708a7cf41df894f10d2516" target="_blank" rel="noopener"><code>c70c574562708a7cf41df894f10d2516</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:31Z</td>
@@ -563,6 +618,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/cd7138d72aa0a82e26faa5bf63f143b9" target="_blank" rel="noopener"><code>cd7138d72aa0a82e26faa5bf63f143b9</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>SalatStealer</td>
           <td></td>
           <td>2026-10-01T16:39:03Z</td>
@@ -571,6 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/cfc04b28157e343eea79281900a771b3" target="_blank" rel="noopener"><code>cfc04b28157e343eea79281900a771b3</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>RN Stealer</td>
           <td></td>
           <td>2026-10-02T14:50:17Z</td>
@@ -579,6 +636,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/d0da9dbfb87faa44f1c30c146bf845bb" target="_blank" rel="noopener"><code>d0da9dbfb87faa44f1c30c146bf845bb</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Vidar</td>
           <td></td>
           <td>2026-10-01T16:38:55Z</td>
@@ -587,6 +645,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/d20506ee2979bc603ee21f68605626f8" target="_blank" rel="noopener"><code>d20506ee2979bc603ee21f68605626f8</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-01T16:38:58Z</td>
@@ -595,6 +654,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/d26dcee9175d152bb8c5dfbb70485e98" target="_blank" rel="noopener"><code>d26dcee9175d152bb8c5dfbb70485e98</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Coinminer</td>
           <td></td>
           <td>2026-10-02T14:50:09Z</td>
@@ -603,6 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/d9308962ded34dc930c02c17e615eb7d" target="_blank" rel="noopener"><code>d9308962ded34dc930c02c17e615eb7d</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>Formbook</td>
           <td></td>
           <td>2026-10-02T14:50:11Z</td>
@@ -611,6 +672,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/db807ebaff3009ce314772baf347529a" target="_blank" rel="noopener"><code>db807ebaff3009ce314772baf347529a</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>WannaCryptor</td>
           <td></td>
           <td>2026-10-02T14:50:10Z</td>
@@ -619,6 +681,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/dfa7cdfec52eef50a722413820c63042" target="_blank" rel="noopener"><code>dfa7cdfec52eef50a722413820c63042</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:22Z</td>
@@ -627,6 +690,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/dfc25c1f77918338f758aadc795a16c5" target="_blank" rel="noopener"><code>dfc25c1f77918338f758aadc795a16c5</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>stealler</td>
           <td></td>
           <td>2026-10-02T14:50:04Z</td>
@@ -635,6 +699,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/e5259c119b460f9d55d01978a01e428f" target="_blank" rel="noopener"><code>e5259c119b460f9d55d01978a01e428f</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:29Z</td>
@@ -643,6 +708,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/ebe14cc775229b3fc11ca51fc65d4500" target="_blank" rel="noopener"><code>ebe14cc775229b3fc11ca51fc65d4500</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td>Venus Stealer</td>
           <td></td>
           <td>2026-10-03T06:30:06Z</td>
@@ -651,6 +717,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/f67951d7458c0dfb220d17d61890a9f0" target="_blank" rel="noopener"><code>f67951d7458c0dfb220d17d61890a9f0</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>VShell</td>
           <td></td>
           <td>2026-10-02T14:50:20Z</td>
@@ -659,6 +726,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/f9b26c03b294c0a05398462482860b27" target="_blank" rel="noopener"><code>f9b26c03b294c0a05398462482860b27</code></a></td>
           <td>md5</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td>NetWire RC</td>
           <td></td>
           <td>2026-10-01T16:38:52Z</td>
@@ -671,8 +739,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 </main>
 <footer>
-  <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:56:32Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T19:04:53Z UTC</span></p>
 </footer>
 </body>
 </html>

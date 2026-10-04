@@ -1,18 +1,18 @@
 {% extends "base.html.j2" %}
 {% import "_components.j2" as ui %}
-{% block title %}Possible attack origins &mdash; Threat Intel Pipeline{% endblock %}
+{% block title %}Observed infrastructure geolocation &mdash; Threat Intel Pipeline{% endblock %}
 {% block head_extra %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>#map{height:540px;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card);z-index:1}</style>
 {% endblock %}
 {% block content %}
-<h1 class="page-title">Possible attack origins</h1>
+<h1 class="page-title">Observed infrastructure geolocation</h1>
 <p class="muted">
   Approximate geolocation of C2 and infrastructure indicators
   {% if geo.sources %}(sources: {{ geo.sources | join(", ") }}){% endif %}.
   {{ geo.ips_total }} IPs across {{ geo.countries }} countries &middot; provider {{ geo.provider }} &middot; updated {{ geo.generated_at }} UTC.
-  <br>Geolocation is approximate &mdash; hosting, VPN and cloud infrastructure regularly misrepresents the
-  operator's true location. Treat this as context, not attribution.
+  <br>Infrastructure location &ne; threat actor location &mdash; hosting, VPN and cloud infrastructure regularly
+  misrepresents the operator's true position. Treat this as context, not attribution.
 </p>
 
 <section>
