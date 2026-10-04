@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Securing the unpatchable in an age of AI-driven vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,63 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Securing the unpatchable in an age of AI-driven vulnerabilities</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-16</td></tr>
+        <tr><td>Report ID</td><td><code>9cbd7faaaa2e8a65</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/" rel="noopener">https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">AI is accelerating vulnerability discovery, leaving unpatchable operational technology (OT) systems at risk. Hoping for the best is not a viable anti-exploitation strategy. Deploying next-generation firewalls directly upstream allows for virtual patching through deep packet inspection. These systems scan incoming traffic to detect and block exploit attempts before they can impact the vulnerable device. The predictability of legitimate network connections to OT systems can be used to protect systems through micro-segmentation. This ensures that only a handful of authorized devices can communicate with the system, minimizing the attack surface. AI-assisted code analysis is uncovering decades of technical debt. Every new patch removes a newly identified coding mistake. Little by little, we are improving the state of software engineering, but the price is a cadence of patching that organizations may struggle to implement. These efforts leave unsupported systems, or systems that are not able to be patched for whatever reason, with unmitigated known vulnerabilities. How can such systems be secured in a world where AI is steadily improving its ability to identify new vulnerabilities? Operational technology (OT) systems provide the services that support modern life (e.g., medical equipment, building management systems, and industrial critical systems within chemical plants). Often the systems are certified to operate only with a defined set of software that cannot easily be altered, or operate using systems that are no longer supported. In either case, if a vulnerability is discovered that affects the system, there is no easy way for it to be patched. Ignoring the problem and hoping for the best is rarely an effective strategy. The U.K.’s NHS health system was significantly affected by the WannaCry worm in 2017, with a significant minority of systems running the end-of-life operating system Windows XP contributing to the problem. More recently, exploitation of end-of-life software was used to gain access to governmental systems in 2023. Even systems that are believed to run on a bespoke platform will almost certainly include common libraries and protocols in which vulnerabilities may be found. Vulnerable systems that are not publicly exposed can still be identified by threat actors who gain access to internal networks and pose a tempting target. Defending by predictability Applying the approved patch remains the best option. If this is not possible, we can use the</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
+  <p class="muted">No indicators were extracted from this report.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

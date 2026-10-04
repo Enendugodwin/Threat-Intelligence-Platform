@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Give yourself room to be human &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,99 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Give yourself room to be human</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-10-01</td></tr>
+        <tr><td>Report ID</td><td><code>d079a17148dbe51c</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/give-yourself-room-to-be-human/" rel="noopener">https://blog.talosintelligence.com/give-yourself-room-to-be-human/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Welcome to this week’s edition of the Threat Source newsletter. Fall is officially here in Maryland, and I can’t be more relieved. I flourish in 50 degree weather, where it feels natural to burrow under blankets, knit sweaters, and listen to an audiobook. Beyond that, though, can I say that I’m glad fall is here because the end of summer has been a bit of a shitshow? I’m allowed to curse on here, right? Without going into too much detail, my uncle was diagnosed with a rare cancer, and my family decided we were going to fly out to spend a week with him. I was determined to find a way to make it work, but on top of all of the emotions, my mind was racing with trying to figure out how to request the time off and get coverage for the tasks I’d be missing. I was anxious to ask, but my manager’s response to me requesting the week off was: “Family always, always comes first at Talos. You spend as much time with your family as you need. Don’t worry, we’ll work everything out. We have your back.” I knew I was in such a fortunate position to have that kind of support. Yet, even with the explicit encouragement to step away, there was still a lingering weight on my shoulders that I couldn&#39;t quite set down. LinkedIn might be an awful, artificial place, but occasionally I’ll find a non-AI-generated think piece or quote that sticks with me. On a recent post, I read, “We’d all be better off if we gave each other a little more room to be human here without worrying it makes us look less capable.” Okay, ouch! That described the unsettled feeling to a T. Ever since I was laid off at my previous company, my trauma response has insisted I prove myself, make myself “indispensable” and capable of taking on any challenges thrown my way. I&#39;m sure if you&#39;ve been through a layoff, you can relate. If you’re scared of your team perceiving you as less capable and more dispensable, please hear this: You are not a machine, and your value to your team isn&#39;t defined by how much personal or professional weight you take on without a break. It&#39;s so easy to extend grace to others, to insist that they spend time with their ill family members, but we have to extend the same grace to ourselves. If your team is great, they’ll want you at your best, not just your most productive, so you can fight the good fight. Don&#39;t let this fear stop you from taking the time you need. Life is worth living now , and we’re better at what we do when we’re well in all aspects of life. The one big thing For Cybersecu</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/give-yourself-room-to-be-human/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (27)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>md5</td><td><code>2915b3f8b703eb744fc54c81f4a9c67f</code></td></tr>
+        <tr><td>sha256</td><td><code>96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974</code></td></tr>
+        <tr><td>md5</td><td><code>aac3165ece2959f39ff98334618d10d9</code></td></tr>
+        <tr><td>sha256</td><td><code>90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59</code></td></tr>
+        <tr><td>md5</td><td><code>c2efb2dcacba6d3ccc175b6ce1b7ed0a</code></td></tr>
+        <tr><td>sha256</td><td><code>540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8</code></td></tr>
+        <tr><td>md5</td><td><code>d65c7b544a97b0c3f2773b5fcc57d30e</code></td></tr>
+        <tr><td>sha256</td><td><code>9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>md5</td><td><code>38de5b216c33833af710e88f7f64fc98</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=96fa6a7714670823c83099ea01d24d6d3ae8fef027f01a4ddac14f123b1c9974</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]darkreading[.]com/cyberattacks-data-breaches/south-africa-help-cyberattack-air-traffic-control</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]bleepingcomputer[.]com/news/security/automated-ai-agent-used-to-breach-cybersecurity-nonprofit-divd/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]securityweek[.]com/citrix-confirms-2-netscaler-zero-days-after-admins-pulled-the-plug/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]securityweek[.]com/pentagon-personnel-agency-data-breach-impacts-3-million-people/?utm_source=tldrinfosec</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]bleepingcomputer[.]com/news/security/teamviewer-urges-users-to-patch-severe-flaws-as-soon-as-possible/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]buzzsprout[.]com/2033817/episodes/19886740</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]virusbulletin[.]com/conference/vb2026/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]camlis[.]org/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://securityonionsolutions[.]com/conference/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bsidesaugusta[.]org/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://saintcon[.]org/</code></td></tr>
+        <tr><td>domain</td><td><code>talosintelligence[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 27 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

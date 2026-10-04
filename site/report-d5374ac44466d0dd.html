@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Trust and the enticing consultancy offer &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,99 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Trust and the enticing consultancy offer</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-24</td></tr>
+        <tr><td>Report ID</td><td><code>d5374ac44466d0dd</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/trust-and-the-enticing-consultancy-offer/" rel="noopener">https://blog.talosintelligence.com/trust-and-the-enticing-consultancy-offer/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Welcome to this week’s edition of the Threat Source newsletter. In the cybersecurity industry, trust is the invisible currency. Every practitioner carries the implicit trust not to abuse privileged access or knowledge of vulnerabilities in each employment or engagement. This trust is valued by those who require our services, but also by threat actors. Clumsy phishing attacks may be easy to identify, but be wary of unsolicited messages on social media, especially if someone is offering payment for a simple service or suggests a lucrative job offer. These might be an enticement to unknowingly sell your professional integrity. When an unknown profile contacted me offering $300 for an hour’s telephone consultation on digital transformation, I knew something was up. Firstly, the profile was remarkably sparse — there was none of the usual clutter that accumulates in a social media profile. The individual claimed to work as a consultant, but their employer had no footprint and only one employee. The profile didn’t pass the “smell” test, and it looked fake. Secondly, although I’m flattered, I doubt my opinions on digital transformation are worth $300. The figure is low enough to be plausible and high enough to be tempting, but at the same time suspiciously high for an initial consultation without prior qualification. The attack itself is a confidence trick. The initial phone consultation is merely a screening process to see if the target has the access or knowledge the attacker needs. If the target passes muster, the next step is commissioning a written report, and then being asked to deliver a &#34;special report.&#34; Plied with professional praise, the target is asked to provide insights that aren&#39;t in the public domain. To deliver the report and claim their fee, the target must reach out to co-workers, probe internal systems, or abuse professional relationships. Completing the assignment requires the target to abuse their trusted access and professional relationships and friendships. In the process, they burn trust worth far more than any monetary compensation. This social engineering attempt masquerading as an offer of consultancy is one variant. Fake recruiters offering prestigious and well-paid jobs, requiring candidates to install trojanised software under some pretence, is another. Security professionals spend their days protecting others, yet flattery and overconfidence often remain our greatest vulnerabilities. We are prone to believe that we could identify any</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/trust-and-the-enticing-consultancy-offer/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (27)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>md5</td><td><code>2915b3f8b703eb744fc54c81f4a9c67f</code></td></tr>
+        <tr><td>sha256</td><td><code>9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>md5</td><td><code>38de5b216c33833af710e88f7f64fc98</code></td></tr>
+        <tr><td>sha256</td><td><code>540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8</code></td></tr>
+        <tr><td>md5</td><td><code>d65c7b544a97b0c3f2773b5fcc57d30e</code></td></tr>
+        <tr><td>sha256</td><td><code>cfa1997682e4ed41bc691ba848d845abbe0b75ec97e640c2b015b4d1624a108a</code></td></tr>
+        <tr><td>md5</td><td><code>415898f14843d4a6537cf8f43d328eaf</code></td></tr>
+        <tr><td>sha256</td><td><code>38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55</code></td></tr>
+        <tr><td>md5</td><td><code>41444d7018601b599beac0c60ed1bf83</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=540080fea97d88ed902c5e4f9a026b4fcd32ab263706c520e00728f1a29578b8</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=cfa1997682e4ed41bc691ba848d845abbe0b75ec97e640c2b015b4d1624a108a</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=38d053135ddceaef0abb8296f3b0bf6114b25e10e6fa1bb8050aeecec4ba8f55</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]404media[.]co/we-hacked-the-fbi-hackers-say-they-have-data-on-all-fbi-employees/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]securityweek[.]com/fake-lastpass-installers-push-kernel-level-edr-killer-rapuncel-stealer/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]securityweek[.]com/japan-dismantles-first-north-korean-laptop-farm-as-us-and-allies-detail-wider-scheme/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://industrialcyber[.]co/utilities-energy-power-water-waste/colorado-water-utilities-face-foreign-cyberattacks-targeting-pumps-alarms-and-remote-access/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]wsj[.]com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]buzzsprout[.]com/2018149/episodes/19841224</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]virusbulletin[.]com/conference/vb2026/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]camlis[.]org/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://securityonionsolutions[.]com/conference/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bsidesaugusta[.]org/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://saintcon[.]org/</code></td></tr>
+        <tr><td>domain</td><td><code>talosintelligence[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 27 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

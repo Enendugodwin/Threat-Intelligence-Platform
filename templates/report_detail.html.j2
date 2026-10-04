@@ -1,0 +1,78 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}{{ report.title }} &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">{{ report.title }}</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">{{ report.label }}</span>
+  <span class="badge">{{ report.source_name }}</span>
+  {% if report.curated %}<span class="badge badge-curated">curated</span>{% endif %}
+  {% if report.cves %}<span class="badge">{{ report.cves | length }} CVE(s)</span>{% endif %}
+</div>
+
+<section>
+  <h2>{{ ui.icon("list") }}Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>{{ report.source_name }}</td></tr>
+        <tr><td>Category</td><td>{{ report.label }}</td></tr>
+        <tr><td>Published</td><td>{{ report.published[:10] if report.published else "—" }}</td></tr>
+        <tr><td>Report ID</td><td><code>{{ report.id }}</code></td></tr>
+        <tr><td>Original</td><td><a href="{{ report.url }}" rel="noopener">{{ report.url }}</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% if report.content %}
+<section>
+  <h2>{{ ui.icon("database") }}Excerpt</h2>
+  <p class="detail-text">{{ report.content }}</p>
+  <p class="muted">Excerpted from <a href="{{ report.url }}" rel="noopener">{{ report.source_name }}</a>; follow the source for full context.</p>
+</section>
+{% endif %}
+
+<section>
+  <h2>{{ ui.icon("alert") }}Indicators ({{ report.iocs | length }})</h2>
+  {% if report.iocs %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+      {% for i in report.iocs %}
+        <tr><td>{{ i.type }}</td><td><code>{{ i.value }}</code></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+  {% else %}
+  <p class="muted">No indicators were extracted from this report.</p>
+  {% endif %}
+</section>
+
+{% if report.cves %}
+<section>
+  <h2>{{ ui.icon("shield") }}Referenced CVEs</h2>
+  <div class="chip-list">
+    {% for c in report.cves %}<span class="chip">{{ c }}</span>{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section>
+  <h2>{{ ui.icon("target") }}Recommendations</h2>
+  {% if report.recommendations %}
+  <ol class="rec-list">
+    {% for rec in report.recommendations %}<li>{{ rec }}</li>{% endfor %}
+  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+  {% else %}
+  <p class="muted">No recommendations for this report yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

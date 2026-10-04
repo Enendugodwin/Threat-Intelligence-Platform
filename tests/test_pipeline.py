@@ -50,6 +50,29 @@ def test_offline_pipeline_end_to_end(tmp_path):
         rows = store.rows_for_export(30, 1000, 0, exclude_sources=["tor"])
         tor_rows = store.source_rows("tor")
 
+    reports_doc = {
+        "generated_at": "2026-10-04T00:00:00Z",
+        "categories": ["windows", "linux", "cisco", "paloalto", "general"],
+        "reports": [
+            {
+                "id": "abc123def4567890",
+                "title": "Test advisory",
+                "url": "https://vendor.test/advisory",
+                "source": "test",
+                "source_name": "Test Source",
+                "category": "windows",
+                "published": "2026-10-01T00:00:00Z",
+                "fetched": "2026-10-04T00:00:00Z",
+                "summary": "Short summary of the advisory.",
+                "content": "Full excerpt text.",
+                "iocs": [{"type": "domain", "value": "bad[.]example-bad[.]net"}],
+                "cves": ["CVE-2026-0001"],
+                "recommendations": ["Do the thing"],
+                "curated": False,
+            }
+        ],
+    }
+
     assert context["totals"]["total"] == again["total"]
     assert context["notable"]
     assert context["tor"]["total"] == 3
@@ -61,9 +84,17 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "Threat Intel Pulse" in text
     assert "[.]" in text  # indicators are defanged in reports
 
-    site_paths = build_site(context, tmp_path / "site", ROOT / "templates")
+    site_paths = build_site(context, tmp_path / "site", ROOT / "templates", reports=reports_doc)
     index = site_paths[0].read_text(encoding="utf-8")
     assert "Threat Intel Pipeline" in index
+    assert 'href="reports.html"' in index
+
+    site_dir = tmp_path / "site"
+    feed = (site_dir / "reports.html").read_text(encoding="utf-8")
+    assert "filterbar" in feed and "cat-windows" in feed and "Test advisory" in feed
+    detail = (site_dir / "report-abc123def4567890.html").read_text(encoding="utf-8")
+    assert "Do the thing" in detail
+    assert "bad[.]example-bad[.]net" in detail
 
     bundle = stix_mod.build_bundle(rows)
     assert bundle["_meta"]["indicator_count"] > 0

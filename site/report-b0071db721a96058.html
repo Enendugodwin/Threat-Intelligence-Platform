@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Beyond the ransomware: Tracking Storm-2570’s consistent tradecraft across deployments &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,75 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Beyond the ransomware: Tracking Storm-2570’s consistent tradecraft across deployments</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Windows</span>
+  <span class="badge">Microsoft Security Blog</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
+        <tr><td>Published</td><td>2026-09-24</td></tr>
+        <tr><td>Report ID</td><td><code>b0071db721a96058</code></td></tr>
+        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/24/beyond-ransomware-tracking-storm-2570-consistent-tradecraft-across-deployments/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/24/beyond-ransomware-tracking-storm-2570-consistent-tradecraft-across-deployments/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">In this article Who is Storm-2570? Storm-2570 attack chain: From initial foothold to impact What Storm-2570 activity means for defenders Mitigation and protection guidance Microsoft Defender detections Hunting queries Activity associated with Storm-2570, a ransomware affiliate linked to multiple ransomware payloads, illustrates how tracking and responding to ransomware attacks by payload alone can obscure the affiliates carrying out intrusions and the recurring behaviors that defenders can use to detect and disrupt them. Microsoft Threat Intelligence has observed Storm-2570 using consistent post-compromise tools and techniques across deployments involving Qilin, DragonForce, Anubis, and BERT ransomware. Across multiple investigations, Storm-2570 has maintained largely uniform tradecraft, infrastructure overlaps, and repeated use of the same remote access and cloud exfiltration tooling despite operating across multiple ransomware ecosystems. These findings reinforce the value of examining threat actor behavior across the attack chain rather than treating each ransomware payload as an isolated activity set. Recurring remote access, credential access, lateral movement, security tampering, and data exfiltration activity can help defenders connect related intrusions and respond before ransomware deployment, even when the final payload changes. In this blog post, we delve into the attack techniques attributed to Storm-2570. While Storm-2570’s methodology aligns with the tactics, techniques, and procedures (TTPs) of many tracked ransomware actors, analysis of their post-compromise tactics provides essential insights into how organizations can harden and defend against ransomware threat actors, informing opportunities to disrupt attackers even if they have gained initial access to a network. At the end of this blog, we also provide a comprehensive recommendation section with detection details. Who is Storm-2570? Storm-2570 is a ransomware affiliate that Microsoft Threat Intelligence has tracked since April 2025. We assess that Storm-2570 has operated across multiple ransomware as a service (RaaS) ecosystems, including Qilin, DragonForce, Anubis, and BERT. To date, Microsoft Threat Intelligence has observed Storm-2570 in multiple investigated intrusions affecting organizations in United States, Canada, United Kingdom, Spain, Netherlands, and Puerto Rico, including healthcare and public health, education, government agencies and services, financial services, energy,</p>
+  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/24/beyond-ransomware-tracking-storm-2570-consistent-tradecraft-across-deployments/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (3)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/threatintelblog</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 3 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

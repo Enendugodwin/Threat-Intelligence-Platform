@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Insights from the 2026 Microsoft Digital Defense Report &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,76 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Insights from the 2026 Microsoft Digital Defense Report</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Windows</span>
+  <span class="badge">Microsoft Security Blog</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
+        <tr><td>Published</td><td>2026-10-01</td></tr>
+        <tr><td>Report ID</td><td><code>143a7ccff4778ff1</code></td></tr>
+        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Every year, the Microsoft Digital Defense Report gives us an opportunity to step back from individual threats and look broadly at what Microsoft’s security and threat intelligence teams are seeing. Today, we released the 2026 Report , which reflects a security environment that continues to grow more interconnected. We see that across the report. Threat activity can span infrastructure, identities, applications, cloud environments, and software supply chains. AI systems and agents increasingly interact with data, tools, and business systems. And activity that looks incomplete in one part of an environment can become clearer when separate signals are considered together. That makes the connections across an environment increasingly relevant to how we understand both cyberthreats and defense. Read the 2026 Microsoft Digital Defense Report The pace of change also matters. AI models are becoming more capable, automation is expanding, and new connections are forming across the systems organizations rely on. These developments can change the speed and scale of security activity even as the underlying security fundamentals remain familiar. Several findings in this year’s report illustrate that. AI in the threat landscape Threat actors are incorporating AI into reconnaissance, social engineering, malware and exploit development, and post-compromise activity. For now, much of their use remains focused on specific parts of existing attack workflows, even as more advanced applications of AI continue to develop. AI can give threat actors greater speed, scale, and ability to tailor activity more efficiently. We see that in social engineering, where AI can make campaigns more targeted, and in technical work, where automation can compress parts of the attack process. The underlying methods often remain familiar. People, identities, exposed systems, and trusted access continue to feature prominently in the threat activity Microsoft observes. AI is also becoming more connected to the systems and processes organizations already rely on. That brings another dimension to the security work. Securing AI as part of the enterprise Agents are a good example of these observations. They can interact with enterprise data, applications, APIs, and tools, with different levels of access and autonomy depending on how they are designed and deployed. Those connections are what allow agents to perform useful work, and they are also part of what security teams need to understand. That makes i</p>
+  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (4)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/MDDR2026</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/MDDR2026_ExecutiveSummary</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/MDDR2026blog</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/Microsoft-Digital-Defense-Report-2026</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 4 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

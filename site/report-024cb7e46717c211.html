@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>NeedyMantis: Unpacking a post-compromise malware family used in targeted operations &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,85 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">NeedyMantis: Unpacking a post-compromise malware family used in targeted operations</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Windows</span>
+  <span class="badge">Microsoft Security Blog</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
+        <tr><td>Published</td><td>2026-09-28</td></tr>
+        <tr><td>Report ID</td><td><code>024cb7e46717c211</code></td></tr>
+        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/28/needymantis-unpacking-a-post-compromise-malware-family-used-in-targeted-operations/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/28/needymantis-unpacking-a-post-compromise-malware-family-used-in-targeted-operations/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">In this article Observed operators and targeting Malware packaging and distribution NeedyMantis architecture and capabilities Mitigation and protection guidance Hunting queries Indicators of compromise Microsoft Threat Intelligence has identified NeedyMantis, a modular post-compromise malware family observed in a limited number of targeted operations affecting telecommunications organizations, universities, medical nonprofits, intergovernmental organizations, and government contractors. Based on observed activity, NeedyMantis is typically deployed after a threat actor has already established access to a target environment, indicating that the malware is used to maintain long-term access and support follow-on operations. NeedyMantis activity dates back to at least October 2025. We discovered the malware family while analyzing and pivoting from research and indicators of compromise associated with the DAEMON Tools supply chain compromise, which Kaspersky previously reported on as part of its investigation into the campaign. Observed activity involving NeedyMantis has thus far aligned with activity that Microsoft associates with threat actors operating from China, although Microsoft has not determined whether all observed activity is attributable to the same operator. While NeedyMantis employs techniques commonly used by modern malware, its architecture combines multiple loaders, custom encrypted file archives, a custom executable file format, and modular components that enable operators to evade analysis and extend functionality through additional modules. These characteristics, combined with its use in targeted intrusions, make NeedyMantis a useful case study for understanding how threat actors establish and maintain long-term access within victim environments. In this blog, we analyze the NeedyMantis malware framework. We examine its packaging and deployment, custom archive format, loader architecture, command-and-control (C2) communications, and modular design. We also provide indicators of compromise (IOCs), Microsoft Defender detections, and mitigation guidance to help organizations defend against this threat and related activity. Observed operators and targeting At the time of writing, Microsoft has observed at least one threat actor using NeedyMantis malware: Storm-3069. Storm-3069 is Microsoft Threat Intelligence’s designator for activity associated with the DAEMON Tools supply chain compromise. While Microsoft assesses the activity originates from C</p>
+  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/28/needymantis-unpacking-a-post-compromise-malware-family-used-in-targeted-operations/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (13)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>e842dd7642c8e04b5ec20b6393848a9c904e4832930950c16664fe7800ba382e</code></td></tr>
+        <tr><td>sha256</td><td><code>9cb68f986043a576e19d32184c583b7d8f571c7219d8dc0065dced1c13f077ef</code></td></tr>
+        <tr><td>sha256</td><td><code>c82520eb03c084226be4eafbff46f56dca0aa8804a2a7f23a085a96afe71ef77</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://securelist[.]com/tr/daemon-tools-backdoor/119654/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://winsparkle[.]org/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://poedit[.]com/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/threatintelblog</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence</code></td></tr>
+        <tr><td>domain</td><td><code>corp[.]tripswithengine[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>securelist[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>winsparkle[.]org</code></td></tr>
+        <tr><td>domain</td><td><code>poedit[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 13 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

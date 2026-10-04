@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>USN-8816-4: Linux kernel (GKE) vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,68 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">USN-8816-4: Linux kernel (GKE) vulnerabilities</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
+<span class="badge">10 CVE(s)</span></div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-02</td></tr>
+        <tr><td>Report ID</td><td><code>cefccfb04e8b2966</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8816-4" rel="noopener">https://ubuntu.com/security/notices/USN-8816-4</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - S390 architecture; - x86 architecture; - DRBD Distributed Replicated Block Device drivers; - InfiniBand drivers; - IOMMU subsystem; - Multiple devices driver; - Network drivers; - Microsoft Azure Network Adapter (MANA) driver; - NVME drivers; - TCM subsystem; - Virtio Host (VHOST) subsystem; - Xen hypervisor drivers; - AFS file system; - File systems infrastructure; - Network file systems library; - Network file system (NFS) client; - NTFS3 file system; - OCFS2 file system; - OrangeFS file system; - SMB network file system; - IPv4 networking; - Sun RPC protocol; - IPv6 networking; - IP tunnels definitions; - Netfilter; - TCP network protocol; - Locking primitives; - 9P file system network protocol; - B.A.T.M.A.N. meshing protocol; - Networking core; - IFE protocol; - RxRPC session sockets; - Network traffic control; - SCTP protocol; - SMC sockets; - TIPC protocol; - XFRM subsystem; (CVE-2026-64530, CVE-2026-64534, CVE-2026-64535, CVE-2026-64541, CVE-2026-64551, CVE-2026-68083, CVE-2026-68457, CVE-2026-68476, CVE-2026-68477, CVE-2026-72014, CVE-2026-72020, CVE-2026-72033, CVE-2026-72041, CVE-2026-72046, CVE-2026-72064, CVE-2026-72065, CVE-2026-72069, CVE-2026-72083, CVE-2026-72084, CVE-2026-72085, CVE-2026-72098, CVE-2026-72129, CVE-2026-72130, CVE-2026-72137, CVE-2026-72139, CVE-2026-72191, CVE-2026-72192, CVE-2026-72194, CVE-2026-72217, CVE-2026-72220, CVE-2026-72221, CVE-2026-72222, CVE-2026-72226, CVE-2026-72234, CVE-2026-72248, CVE-2026-72249, CVE-2026-72251, CVE-2026-72277, CVE-2026-72278, CVE-2026-72279, CVE-2026-72287, CVE-2026-72288, CVE-2026-72289, CVE-2026-72296, CVE-2026-72299, CVE-2026-72317, CVE-2026-72318, CVE-2026-72319, CVE-2026-72320, CVE-2026-72322, CVE-2026-72323, CVE-2026-72329, CVE-2026-72339, CVE-2026-72348, CVE-2026-72351, CVE-2026-72355, CVE-2026-72366, CVE-2026-72381, CVE-2026-72393, CVE-2026-72398, CVE-2026-72399, CVE-2026-72412, CVE-2026-72417, CVE-2026-72422, CVE-2026-72429, CVE-2026-72436, CVE-2026-72442, CVE-2026-72451, CVE-2026-72463, CVE-2026-72466, CVE-2026-72472, CVE-2026-72473, CVE-2026-72477, CVE-2026-72491, CVE-2026-72493, CVE-2026-72494, CVE-2026-72495, CVE-2026-72496, CVE-2026-72501, CVE-2026-74255, CVE-2026-74267, CVE-2026-74268, CVE-2026-74269, CVE-2026-74287, CVE-2026-74310, CVE-2026-74345, CVE-2026-74350, CVE-2026</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8816-4" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
+  <p class="muted">No indicators were extracted from this report.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Referenced CVEs</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-64530</span><span class="chip">CVE-2026-64534</span><span class="chip">CVE-2026-64535</span><span class="chip">CVE-2026-64541</span><span class="chip">CVE-2026-64551</span><span class="chip">CVE-2026-68083</span><span class="chip">CVE-2026-68457</span><span class="chip">CVE-2026-68476</span><span class="chip">CVE-2026-68477</span><span class="chip">CVE-2026-72014</span>  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Assess exposure and patch affected systems: CVE-2026-64530, CVE-2026-64534, CVE-2026-64535, CVE-2026-64541, CVE-2026-64551 ...</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

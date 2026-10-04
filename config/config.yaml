@@ -40,3 +40,58 @@ report:
   top_n: 25
   tor_sample: 20
   repo_url: "https://github.com/Enendugodwin/Threat-Intelligence-Platform"
+
+# Report feed: vendor advisories -> site pages with IOCs + recommendations
+reports:
+  enabled: true
+  max_entries_per_source: 20
+  max_reports: 150          # newest feed reports kept; curated reports are always kept
+  max_iocs_per_report: 100
+  detail_chars: 2500
+  curated_file: intel/curated_reports.yaml
+  recommendations_file: intel/recommendations.yaml
+  sources:
+    msrc:
+      enabled: true
+      name: Microsoft Security Blog
+      url: https://www.microsoft.com/en-us/security/blog/feed/
+      category: windows
+    talos:
+      enabled: true
+      name: Cisco Talos
+      url: https://blog.talosintelligence.com/rss/
+      category: cisco
+    unit42:
+      enabled: true
+      name: Palo Alto Unit 42
+      url: https://unit42.paloaltonetworks.com/feed/
+      category: paloalto
+    ubuntu:
+      enabled: true
+      name: Ubuntu Security Notices
+      url: https://ubuntu.com/security/notices/rss.xml
+      category: linux
+    dfir:
+      enabled: true
+      name: The DFIR Report
+      url: https://thedfirreport.com/feed/
+      category: windows
+    sans_isc:
+      enabled: true
+      name: SANS ISC
+      url: https://isc.sans.edu/rssfeed.xml
+      category: general
+    cisa:
+      # Akamai edge returns 403 to Python clients (TLS fingerprint based);
+      # browsers/curl/PowerShell may work from home IPs, but CI runners are
+      # blocked too. Enable only if it works from your environment.
+      enabled: false
+      name: CISA Advisories
+      url: https://www.cisa.gov/cybersecurity-advisories/all.xml
+      category: general
+  # Category shown for a report: title keywords win, then the source default.
+  category_rules:
+    windows: ["windows", "microsoft", "active directory", "kerberos", "ntlm", "powershell", "winrm", "lsass", "smb", "rdp", "exchange server", "sharepoint", "hyper-v"]
+    linux: ["linux", "ubuntu", "debian", "red hat", "rhel", "centos", "fedora", "suse", "systemd", "kernel vulnerability", "openssh", "glibc", "container escape"]
+    cisco: ["cisco", "ios xe", "ios xr", "firepower", "nexus", "talos", "webex", "anyconnect", "catalyst", "meraki", "sd-wan", "unified communications"]
+    paloalto: ["palo alto", "paloalto", "pan-os", "panos", "unit 42", "unit42", "globalprotect", "panorama", "prisma access", "cortex xdr", "next-generation firewall"]

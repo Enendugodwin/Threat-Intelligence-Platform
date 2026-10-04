@@ -100,6 +100,37 @@ td code{background:transparent;border:none;padding:0}
 .chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
 .chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
 
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.filterbar input:checked + label{background:var(--color-primary);border-color:var(--color-primary);color:var(--color-on-primary);font-weight:600}
+.filterbar input:focus-visible + label{outline:2px solid var(--color-ring);outline-offset:2px}
+#f-windows:checked ~ .report-grid .report-card:not(.cat-windows),
+#f-linux:checked ~ .report-grid .report-card:not(.cat-linux),
+#f-cisco:checked ~ .report-grid .report-card:not(.cat-cisco),
+#f-paloalto:checked ~ .report-grid .report-card:not(.cat-paloalto),
+#f-general:checked ~ .report-grid .report-card:not(.cat-general){display:none}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
 /* Footer */
 footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
 footer p{margin:var(--space-xs) 0}
@@ -148,29 +179,30 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>23488 indicators</span>
-      <span>23488 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
       <span>4/4 feeds</span>
-      <span>sync 2026-10-04T17:54:16Z</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
-      <a href="report.html">Latest report</a>
+      <a href="reports.html">Report feed</a>
+      <a href="report.html">IOC pulse</a>
 <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-<p class="muted">Window: last 7 days &middot; Generated: 2026-10-04T17:54:16Z UTC</p>
+<p class="muted">Window: last 7 days &middot; Generated: 2026-10-04T18:10:39Z UTC</p>
 
 <section class="cards" aria-label="Key metrics">
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Indicators</div>
-    <span class="num">23488</span>
-    <span class="card-sub">23488 new / 7d</span>
+    <span class="num">23577</span>
+    <span class="card-sub">23577 new / 7d</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>New in window</div>
-    <span class="num">23488</span>
+    <span class="num">23577</span>
     <span class="card-sub">7-day window</span>
   </div>
   <div class="card">
@@ -185,8 +217,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>Tor nodes</div>
-    <span class="num">8536</span>
-    <span class="card-sub">2033 exits / 6503 relays</span>
+    <span class="num">8606</span>
+    <span class="card-sub">2048 exits / 6558 relays</span>
   </div>
 </section>
 
@@ -212,13 +244,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><code>threatfox</code></td>
-          <td class="num-cell">11211</td>
+          <td class="num-cell">11220</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>tor</code></td>
-          <td class="num-cell">8536</td>
+          <td class="num-cell">8538</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
@@ -230,30 +262,30 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Indicators by type</h2>
   <div class="bars">
-  <div class="bar-row" role="img" aria-label="ipv4: 8271 indicators, 8271 new in the last 7 days">
+  <div class="bar-row" role="img" aria-label="ipv4: 8321 indicators, 8321 new in the last 7 days">
     <span class="bar-label">ipv4</span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 100.0%"></span></span>
-    <span class="bar-value">8271 <span class="new">+8271</span></span>
+    <span class="bar-value">8321 <span class="new">+8321</span></span>
   </div>
-  <div class="bar-row" role="img" aria-label="url: 4775 indicators, 4775 new in the last 7 days">
+  <div class="bar-row" role="img" aria-label="url: 4779 indicators, 4779 new in the last 7 days">
     <span class="bar-label">url</span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 57.7%"></span></span>
-    <span class="bar-value">4775 <span class="new">+4775</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 57.4%"></span></span>
+    <span class="bar-value">4779 <span class="new">+4779</span></span>
   </div>
-  <div class="bar-row" role="img" aria-label="domain: 4385 indicators, 4385 new in the last 7 days">
+  <div class="bar-row" role="img" aria-label="domain: 4398 indicators, 4398 new in the last 7 days">
     <span class="bar-label">domain</span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 53.0%"></span></span>
-    <span class="bar-value">4385 <span class="new">+4385</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 52.9%"></span></span>
+    <span class="bar-value">4398 <span class="new">+4398</span></span>
   </div>
   <div class="bar-row" role="img" aria-label="sha256: 3297 indicators, 3297 new in the last 7 days">
     <span class="bar-label">sha256</span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 39.9%"></span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 39.6%"></span></span>
     <span class="bar-value">3297 <span class="new">+3297</span></span>
   </div>
-  <div class="bar-row" role="img" aria-label="ipv6: 2646 indicators, 2646 new in the last 7 days">
+  <div class="bar-row" role="img" aria-label="ipv6: 2668 indicators, 2668 new in the last 7 days">
     <span class="bar-label">ipv6</span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 32.0%"></span></span>
-    <span class="bar-value">2646 <span class="new">+2646</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 32.1%"></span></span>
+    <span class="bar-value">2668 <span class="new">+2668</span></span>
   </div>
   <div class="bar-row" role="img" aria-label="md5: 57 indicators, 57 new in the last 7 days">
     <span class="bar-label">md5</span>
@@ -277,9 +309,9 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Source</th><th scope="col" class="num-col">Indicators</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>threatfox</code></td><td class="num-cell">10413</td></tr>
-        <tr><td><code>tor</code></td><td class="num-cell">8536</td></tr>
-        <tr><td><code>urlhaus</code></td><td class="num-cell">4550</td></tr>
+        <tr><td><code>threatfox</code></td><td class="num-cell">10429</td></tr>
+        <tr><td><code>tor</code></td><td class="num-cell">8606</td></tr>
+        <tr><td><code>urlhaus</code></td><td class="num-cell">4553</td></tr>
         <tr><td><code>feodo</code></td><td class="num-cell">5</td></tr>
       </tbody>
     </table>
@@ -320,8 +352,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td>Unknown malware</td>
-          <td class="num-cell">432</td>
-          <td class="num-cell">432</td>
+          <td class="num-cell">433</td>
+          <td class="num-cell">433</td>
           <td>—</td>
         </tr>
         <tr>
@@ -337,15 +369,15 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>—</td>
         </tr>
         <tr>
-          <td>AdaptixC2</td>
-          <td class="num-cell">237</td>
-          <td class="num-cell">237</td>
+          <td>ClearFake</td>
+          <td class="num-cell">242</td>
+          <td class="num-cell">242</td>
           <td>—</td>
         </tr>
         <tr>
-          <td>ClearFake</td>
-          <td class="num-cell">231</td>
-          <td class="num-cell">231</td>
+          <td>AdaptixC2</td>
+          <td class="num-cell">237</td>
+          <td class="num-cell">237</td>
           <td>—</td>
         </tr>
         <tr>
@@ -356,8 +388,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td>Vidar</td>
-          <td class="num-cell">153</td>
-          <td class="num-cell">153</td>
+          <td class="num-cell">155</td>
+          <td class="num-cell">155</td>
           <td><span class="chip-list"><span class="chip">T1555</span><span class="chip">T1071.001</span><span class="chip">T1567</span></span></td>
         </tr>
         <tr>
@@ -431,19 +463,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>T1071.001</code></td>
           <td>Web Protocols</td>
           <td>command-and-control</td>
-          <td class="num-cell">21570</td>
+          <td class="num-cell">21658</td>
         </tr>
         <tr>
           <td><code>T1105</code></td>
           <td>Ingress Tool Transfer</td>
           <td>command-and-control</td>
-          <td class="num-cell">5978</td>
+          <td class="num-cell">5981</td>
         </tr>
         <tr>
           <td><code>T1498</code></td>
           <td>Network Denial of Service</td>
           <td>impact</td>
-          <td class="num-cell">5044</td>
+          <td class="num-cell">5046</td>
         </tr>
         <tr>
           <td><code>T1573</code></td>
@@ -497,13 +529,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>T1555</code></td>
           <td>Credentials from Password Stores</td>
           <td>credential-access</td>
-          <td class="num-cell">491</td>
+          <td class="num-cell">493</td>
         </tr>
         <tr>
           <td><code>T1567</code></td>
           <td>Exfiltration Over Web Service</td>
           <td>exfiltration</td>
-          <td class="num-cell">429</td>
+          <td class="num-cell">431</td>
         </tr>
         <tr>
           <td><code>T1552.001</code></td>
@@ -602,16 +634,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Metric</th><th scope="col" class="num-col">Value</th></tr>
       </thead>
       <tbody>
-        <tr><td>Nodes tracked</td><td class="num-cell">8536</td></tr>
-        <tr><td>Exit nodes</td><td class="num-cell">2033</td></tr>
-        <tr><td>Other relays</td><td class="num-cell">6503</td></tr>
-        <tr><td>New in window</td><td class="num-cell">8536</td></tr>
+        <tr><td>Nodes tracked</td><td class="num-cell">8606</td></tr>
+        <tr><td>Exit nodes</td><td class="num-cell">2048</td></tr>
+        <tr><td>Other relays</td><td class="num-cell">6558</td></tr>
+        <tr><td>New in window</td><td class="num-cell">8606</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 8536, source Tor Project Onionoo):</p>
+  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 8606, source Tor Project Onionoo):</p>
   <div class="chip-list">
-<span class="chip">1[.]201[.]176[.]176</span><span class="chip">100[.]2[.]63[.]41</span><span class="chip">101[.]55[.]125[.]10</span><span class="chip">102[.]130[.]113[.]29</span><span class="chip">102[.]130[.]113[.]30</span><span class="chip">102[.]130[.]113[.]42</span><span class="chip">102[.]130[.]113[.]9</span><span class="chip">102[.]130[.]115[.]59</span><span class="chip">102[.]130[.]117[.]167</span><span class="chip">102[.]130[.]119[.]48</span><span class="chip">102[.]130[.]127[.]117</span><span class="chip">102[.]205[.]44[.]36</span><span class="chip">102[.]205[.]44[.]5</span><span class="chip">102[.]211[.]56[.]20</span><span class="chip">102[.]211[.]56[.]25</span><span class="chip">102[.]68[.]99[.]63</span><span class="chip">103[.]105[.]21[.]2</span><span class="chip">103[.]109[.]100[.]207</span><span class="chip">103[.]109[.]101[.]105</span><span class="chip">103[.]109[.]187[.]71</span>  </div>
+<span class="chip">1[.]201[.]176[.]176</span><span class="chip">100[.]2[.]63[.]41</span><span class="chip">101[.]55[.]125[.]10</span><span class="chip">102[.]130[.]113[.]29</span><span class="chip">102[.]130[.]113[.]30</span><span class="chip">102[.]130[.]113[.]42</span><span class="chip">102[.]130[.]113[.]9</span><span class="chip">102[.]130[.]115[.]59</span><span class="chip">102[.]130[.]117[.]167</span><span class="chip">102[.]130[.]119[.]48</span><span class="chip">102[.]130[.]127[.]117</span><span class="chip">102[.]205[.]44[.]36</span><span class="chip">102[.]205[.]44[.]5</span><span class="chip">102[.]211[.]56[.]20</span><span class="chip">102[.]211[.]56[.]25</span><span class="chip">102[.]216[.]253[.]63</span><span class="chip">102[.]68[.]99[.]63</span><span class="chip">103[.]105[.]21[.]2</span><span class="chip">103[.]109[.]100[.]207</span><span class="chip">103[.]109[.]101[.]105</span>  </div>
   <p class="muted" style="margin-top: var(--space-lg)">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
 </section>
 
@@ -623,6 +655,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
       </thead>
       <tbody>
+        <tr>
+          <td><code>rudeusgreyrat[.]my</code></td>
+          <td>domain</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-04T18:04:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><code>213[.]108[.]21[.]234</code></td>
+          <td>ipv4</td>
+          <td>NetSupportManager RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-04T18:00:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
         <tr>
           <td><code>ecb767b39fd44b5a1d469ef8dd0f5ae4184b517c9a582ad07ba0e10105d21a33</code></td>
           <td>sha256</td>
@@ -807,22 +855,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-10-04T17:46:25Z</td>
           <td class="num-cell">100</td>
         </tr>
-        <tr>
-          <td><code>c431790e6da4e89eaf62a8a70d73dc953598d787109d8c6c365038c61bcdd586</code></td>
-          <td>sha256</td>
-          <td>Mirai</td>
-          <td>threatfox</td>
-          <td>2026-10-04T17:46:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><code>99890bb10d0cb653b009770c5fe1aeb24cd394ede9623a1463b46dc01e8d8b9f</code></td>
-          <td>sha256</td>
-          <td>Mirai</td>
-          <td>threatfox</td>
-          <td>2026-10-04T17:46:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -830,7 +862,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T17:54:16Z UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

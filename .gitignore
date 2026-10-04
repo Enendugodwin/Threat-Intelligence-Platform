@@ -11,9 +11,10 @@ __pycache__/
 # secrets
 .env
 
-# local data (CI publishes data/counters.json and caches the sqlite db)
+# local data (CI publishes data/counters.json, data/reports.json; caches the sqlite db)
 data/*
 !data/counters.json
+!data/reports.json
 *.sqlite
 *.sqlite-*
 

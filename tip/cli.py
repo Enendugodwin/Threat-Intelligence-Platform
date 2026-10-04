@@ -73,7 +73,19 @@ def main(argv=None) -> int:
     data_dir = pathlib.Path(args.data_dir)
 
     if args.command == "sync":
-        stats = run_sync(load_config(args.config), data_dir)
+        from .reportfeed import fetch_reports
+
+        config = load_config(args.config)
+        stats = run_sync(config, data_dir)
+        report_stats = fetch_reports(config, data_dir)
+        if not report_stats.get("skipped"):
+            sources = ", ".join(f"{k}: {v}" for k, v in report_stats["sources"].items())
+            print(
+                f"report feed: {report_stats['total']} reports "
+                f"({report_stats['curated']} curated)" + (f" [{sources}]" if sources else "")
+            )
+            if report_stats.get("errors"):
+                print(f"report feed errors: {report_stats['errors']}", file=sys.stderr)
         if stats.get("fatal"):
             print("all feeds failed - see log above", file=sys.stderr)
             return 1
@@ -151,13 +163,17 @@ def main(argv=None) -> int:
     if args.command == "site":
         from . import report as report_mod
         from . import site as site_mod
+        from .reportfeed import load_reports
 
         config = load_config(args.config)
         attack = load_attack_map(args.attack_map)
         with Store(data_dir / "iocs.sqlite") as store:
             context = report_mod.build_context(store, config, attack)
-        paths = site_mod.build_site(context, args.out, args.templates)
+        reports_doc = load_reports(data_dir)
+        paths = site_mod.build_site(context, args.out, args.templates, reports=reports_doc or None)
         print(f"wrote {paths[0]}")
+        if reports_doc:
+            print(f"wrote report feed + {len(reports_doc.get('reports') or [])} report page(s)")
         return 0
 
     if args.command == "push":

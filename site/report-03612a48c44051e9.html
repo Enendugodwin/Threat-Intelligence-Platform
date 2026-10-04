@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Preparing governments for an era of interconnected cyber risk &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,63 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Preparing governments for an era of interconnected cyber risk</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Windows</span>
+  <span class="badge">Microsoft Security Blog</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
+        <tr><td>Published</td><td>2026-10-01</td></tr>
+        <tr><td>Report ID</td><td><code>03612a48c44051e9</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blogs.microsoft.com/on-the-issues/2026/10/01/preparing-governments-for-an-era-of-interconnected-cyber-risk/" rel="noopener">https://blogs.microsoft.com/on-the-issues/2026/10/01/preparing-governments-for-an-era-of-interconnected-cyber-risk/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">According to this year’s Microsoft Digital Defense Report, government agencies and services were the sector most impacted by cyber threats in 2026, accounting for 27% of observed activity, up from 17% in 2025. Governments are also the most frequently targeted sectors for nation-state activity. They are attractive targets because they hold sensitive information, operate essential services, and sit at the center of networks of agencies, contractors, technology providers, and critical infrastructure operators. Dwell time, the period between when an attacker gains access and when defenders detect and stop them, also increased this year across multiple sectors. While organizations responded faster once an intrusion was identified, detecting threats early remains a challenge. Attackers increasingly gain access through techniques that mimic legitimate activity, making malicious behavior harder to spot. For example, phishing accounted for 23% of observed intrusions in 2026, up from 7% in 2025, highlighting the continued importance of compromised identities as an entry point for broader attacks. Taken together, the implication for governments is clear. Security in the AI era is no longer simply about preventing individual intrusions. It is about ensuring institutions can operate effectively in an environment where risks are interconnected, threats move faster, and attackers remain hidden longer. Public-private partnerships are also more important than ever for securing critical government infrastructure and developing the policies and regulations needed for emerging technologies. In this year’s report, which examines cyber threat trends observed between July 2025 and June 2026, Terrell Cox, Microsoft’s Corporate Vice President &amp; Deputy Chief Information Security Officer, and I explore how these dynamics are reshaping cyber risk. In a companion blog, Terrell takes a closer look at what these findings mean for CISOs and security professionals. To strengthen resilience, governments should focus on five priorities: Prepare for a faster threat environment AI is compressing the window for action. Adversaries are moving faster. A vulnerability’s discovery in the wild to active weaponization can be well below 24 hours. While the number of publicly disclosed software vulnerabilities (commonly tracked as CVEs) is projected to reach a record 72,000 in 2026. Governments best prepared for the future will be those that can rapidly gather and assess information, make decisions, c</p>
+  <p class="muted">Excerpted from <a href="https://blogs.microsoft.com/on-the-issues/2026/10/01/preparing-governments-for-an-era-of-interconnected-cyber-risk/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
+  <p class="muted">No indicators were extracted from this report.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

@@ -1,0 +1,22 @@
+# Operator-curated reports. Entries here always appear on the site, are marked
+# "curated" and are never overwritten by feed refreshes. Use this for internal
+# write-ups, vendor PDFs, or anything the automatic sources don't cover.
+#
+# Example:
+#   reports:
+#     - title: "Internal IR: phishing campaign against finance"
+#       url: "https://internal.example/ir/finance-phishing"
+#       source_name: "Internal IR"
+#       category: windows            # windows | linux | cisco | paloalto | general
+#       published: "2026-10-01"
+#       summary: "One-line summary shown on the feed card."
+#       content: "Longer excerpt shown on the report page."
+#       iocs:
+#         - { type: domain, value: "phish-portal[.]example-bad.net" }
+#         - { type: sha256, value: "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f" }
+#       cves: ["CVE-2026-12345"]
+#       recommendations:
+#         - "Block the sender domain at the mail gateway."
+#         - "Force password resets for the three affected users."
+
+reports: []

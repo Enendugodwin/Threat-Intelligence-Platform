@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>ClearFake WebDAV infection chain delivers Amatera stealer, ZigCryptoStealer, and NetSupport Manager &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,107 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">ClearFake WebDAV infection chain delivers Amatera stealer, ZigCryptoStealer, and NetSupport Manager</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-08</td></tr>
+        <tr><td>Report ID</td><td><code>942fd8aac49f2655</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/clearfake-webdav-infection-chain/" rel="noopener">https://blog.talosintelligence.com/clearfake-webdav-infection-chain/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Cisco Talos began an investigation after observing a DLL named &#34;verification.google&#34; executing from WebDAV at a Ukrainian government organization. We assess with moderate confidence that the attacks are not targeted at a particular organization, but are a part of a cryptocurrency and credentials-stealing operation using the Amatera stealer as the primary payload. Pivoting around the similar WebDAV behavior led to a second loader named &#34;pf.ch&#34; and allowed us to reconstruct its earlier delivery stages. The chain uses a Cloudflare Worker to inject JavaScript code stored on BNB Smart Chain and a ClickFix prompt impersonating Google CAPTCHA, leading to download and execution of Amatera stealer. The chain is likely very similar to what has caused the WebDAV-based execution at the Ukraininan government organization. The two Amatera builds were tasked with different secondary payloads by their respective command-and-control (C2) infrastructure: the &#34;pf.ch&#34; loader was instructed to deploy a NativeAOT loader running ZigCryptoStealer and a Go-based reverse proxy, while the &#34;verification.google&#34; loader was instructed to install an unauthorized instance of NetSupport Manager. The NetSupport Manager installation contained configuration with the C2 server using an IP address based in Russia. With moderate confidence, we assess that &#34;verification.google&#34; branch attack was conducted by a Russian threat actor. In April 2026, Cisco Talos identified an unusual WebDAV DLL execution in endpoint telemetry from a Ukrainian government organization. The remote file was named &#34;verification.google&#34; and was launched through the 32-bit version of &#34;rundll32.exe&#34;. This initial finding led us to two similar delivery chains, two different DLL loaders and two ACR/Amatera stealer payloads. Talos tracks the actor behind the observed &#34;verification.google&#34; activity as UAT-10820. Following the initial investigation, we decided to hunt for similar WebDAV and ordinal-execution patterns in an attempt to recover the full infection chain. Using VirusTotal, we were able to identify a full chain from a second DLL loader named &#34;pf.ch&#34;. These two examples are a part of a wider set of recent campaigns delivering Amatera through different infection chains. In July 2026, Malwarebytes documented fake game and software downloads that used RenPy Loader, MSBuild and EtherHiding before delivering Amatera. Blackpoint Cyber described another fake-verification chain that used a signed Microsoft App-V script, config</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/clearfake-webdav-infection-chain/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (35)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>279d04c0cfd700c8bcb9acbed528131d3ffef8e25d12713e8649772739aecb92</code></td></tr>
+        <tr><td>sha256</td><td><code>643ef35536ff9273fb84b8504467b1a5645cd3ffd5476d64b99244b02131b205</code></td></tr>
+        <tr><td>sha256</td><td><code>1819827e17f31e72d456158b6b9c90af25a65945f6f05d04a060da9f24179b25</code></td></tr>
+        <tr><td>sha256</td><td><code>bd36f4c15fe0acb6748da5ed12e45dcc37d412385812c078d1e4f04730e9f69b</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://telegra[.]ph/Functions-04-03</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://phys[.]stunned-amniotic[.]com/hub[.]log</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://blackpointcyber[.]com/blog/novel-fake-captcha-chain-delivering-amatera-stealer/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://potentpages[.]com/servers/hosting/security/the-mystery-worker-in-cloudflare</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://censys[.]com/blog/etherhiding-fake-captchas-click-fix-lures-blockchain-backed-payload-delivery/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]joesandbox[.]com/analysis/1877685/0/html</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]vmray[.]com/feature-highlight-dll-hollowing/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://blog[.]gdatasoftware[.]com/2026/02/38373-pivigames-spreads-hijackloader</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bscscan[.]com/address/0x7CC3cFC1Ac007B8c6566fD2C7419b15a75473468</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]vmray[.]com/threat-intelligence-insights-pivoting-off-the-blockchain/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]esentire[.]com/blog/unpacking-netsupport-rat-loaders-delivered-via-%20%20clickfix</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]sekoia[.]com/blog/meet-iclickfix-a-widespread-wordpress-targeting-f%20%20ramework-using-the-clickfix-tactic</code></td></tr>
+        <tr><td>ipv4</td><td><code>145[.]249[.]109[.]147</code></td></tr>
+        <tr><td>ipv4</td><td><code>45[.]150[.]34[.]2</code></td></tr>
+        <tr><td>ipv4</td><td><code>212[.]118[.]56[.]166</code></td></tr>
+        <tr><td>domain</td><td><code>pf[.]ch</code></td></tr>
+        <tr><td>domain</td><td><code>bsc-testnet-rpc[.]publicnode[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>leaguejazire[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>riyazinikokar[.]xyz</code></td></tr>
+        <tr><td>domain</td><td><code>telegra[.]ph</code></td></tr>
+        <tr><td>domain</td><td><code>bsc[.]rpc[.]blxrbdn[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>lb[.]propertyfind[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>fd[.]gstats-api-contact[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>pkg[.]vogueatelier[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>kffd3[.]vogueatelier[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>kffd3[.]vexlatech[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>static[.]quorashift[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>update[.]dubbedmuch[.]cc</code></td></tr>
+        <tr><td>domain</td><td><code>kr[.]cedar2glanz[.]ru</code></td></tr>
+        <tr><td>domain</td><td><code>phys[.]stunned-amniotic[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>paternal-angrily[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 35 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

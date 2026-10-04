@@ -1,0 +1,43 @@
+{% extends "base.html.j2" %}
+{% import "_components.j2" as ui %}
+{% block title %}Report feed &mdash; Threat Intel Pipeline{% endblock %}
+{% block content %}
+<h1 class="page-title">Threat intelligence report feed</h1>
+<p class="muted">
+  Advisories and vendor research from multiple sources. Indicators per report are extracted
+  automatically and defanged &mdash; validate before blocking. Last updated {{ reports.generated_at }} UTC.
+</p>
+
+<section>
+  <div class="filterbar" role="group" aria-label="Filter reports by category">
+    <input type="radio" name="cat" id="f-all" class="vh" checked>
+    <label for="f-all">All ({{ reports.total }})</label>
+    {% for c in reports.categories %}
+    <input type="radio" name="cat" id="f-{{ c.id }}" class="vh">
+    <label for="f-{{ c.id }}">{{ c.label }} ({{ c.count }})</label>
+    {% endfor %}
+  </div>
+
+  {% if reports.entries %}
+  <div class="report-grid">
+    {% for r in reports.entries %}
+    <article class="report-card cat-{{ r.category }}">
+      <div class="badges">
+        <span class="badge badge-cat">{{ r.label }}</span>
+        <span class="badge">{{ r.source_name }}</span>
+        {% if r.curated %}<span class="badge badge-curated">curated</span>{% endif %}
+      </div>
+      <h3><a href="report-{{ r.id }}.html">{{ r.title }}</a></h3>
+      {% if r.summary %}<p class="excerpt">{{ r.summary }}</p>{% endif %}
+      <div class="report-meta">
+        <span>{{ r.published[:10] if r.published else (r.fetched[:10] if r.fetched else "") }}</span>
+        <span>{{ r.iocs | length }} IOCs &middot; {{ r.recommendations | length }} recs</span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="muted">No reports yet &mdash; the next sync will populate the feed.</p>
+  {% endif %}
+</section>
+{% endblock %}

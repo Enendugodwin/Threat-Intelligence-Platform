@@ -13,6 +13,8 @@ ATT&CK (heuristically), and publishes finished products:
 | Suricata rules | `dist/suricata/ti.rules` | network detection |
 | CSV indicator set | `dist/iocs.csv` | quick lookups / watchlists |
 | Tor node list | `dist/tor/tor_nodes.txt` | firewall / proxy context (relays + exits) |
+| Report feed | `site/reports.html` (+ per-report pages) | filterable vendor advisory bank with IOCs + recommendations |
+| Report data | `data/reports.json` | normalized report feed (committed) |
 | Markdown report | `reports/latest.md` | intel pulse for the week |
 | HTML dashboard | `site/index.html` | published to GitHub Pages |
 
@@ -32,6 +34,11 @@ OTX ─────────┘   refang                              ├─�
                                                      ├─► Markdown report
                                                      └─► HTML dashboard (Pages)
 ```
+
+A parallel **report feed** ingests vendor advisories (RSS/Atom) into
+`data/reports.json` and renders `site/reports.html` - filterable by Windows /
+Linux / Cisco / Palo Alto / General - with a per-report IOC list and
+recommendations.
 
 - **Feeds** (keyless by default): URLhaus, Feodo Tracker C2 blocklist, ThreatFox,
   and Tor Project Onionoo (relay/exit node context - kept out of detections by
@@ -101,6 +108,30 @@ deploys the dashboard to `https://<user>.github.io/threat-intel-pipeline/`.
 mapping, regex tag rules, and default techniques. Extend it for families you
 care about.
 
+## Report feed
+
+`site/reports.html` is a bank of vendor advisories and research, filterable by
+category (Windows / Linux / Cisco / Palo Alto / General) and refreshed on every
+sync. Each report gets its own page with:
+
+- **Extracted indicators** - best-effort IOC extraction (URLs, domains, IPv4,
+  hashes) from the advisory text, refanged first and shown defanged. Extraction
+  is heuristic: validate before blocking.
+- **Recommendations** - merged from four layers, most specific first:
+  1. curated per-report notes (`intel/curated_reports.yaml`, or the `reports:`
+     map in `intel/recommendations.yaml` keyed by report ID)
+  2. automatic rules (CVEs -> patch advice; IOCs -> block/hunt)
+  3. category baseline (`intel/recommendations.yaml` -> `categories`)
+  4. source-specific notes (`intel/recommendations.yaml` -> `sources`)
+
+Sources are configured under `reports.sources` in `config/config.yaml`
+(Microsoft Security Blog, Cisco Talos, Unit 42, Ubuntu Security Notices, The
+DFIR Report, SANS ISC). CISA is included but disabled by default - its Akamai
+edge returns 403 to Python clients and CI runners. Normalized data lives in
+`data/reports.json` (newest 150 feed reports plus all curated entries). Every
+report page shows its **Report ID** so operator recommendations can be pinned
+to it.
+
 ## Adding a feed
 
 Implement `tip/feeds/base.py::Feed`:
@@ -155,9 +186,11 @@ tip/
   exports/          stix.py, sigma.py, suricata.py, csv_export.py, tor.py
   connectors/       misp.py, opencti.py (optional)
   report.py/site.py context building + Jinja rendering
+  reportfeed.py     vendor report feed (RSS/Atom) -> data/reports.json
 templates/          Jinja UI (base + components + report.md.j2)
 design-system/      ui-ux-pro-max design system (Cyberpunk UI, MASTER.md)
 config/             config.yaml, attack_map.yaml
+intel/              recommendations.yaml, curated_reports.yaml
 tests/              fixture-based suite (offline, no network)
 ```
 
@@ -167,6 +200,7 @@ tests/              fixture-based suite (offline, no network)
 - [x] Serverless deployment: Actions schedule + Pages dashboard + artifacts
 - [x] Optional MISP/OpenCTI connectors
 - [x] Dashboard redesign with the `ui-ux-pro-max` design system (Cyberpunk UI)
+- [x] Report feed: vendor advisories with IOC extraction, categories and recommendations
 - [ ] VT / AbuseIPDB enrichment for top indicators
 - [ ] Weekly digest issue (GitHub Issues bot)
 - [ ] YARA rule export for payload hashes

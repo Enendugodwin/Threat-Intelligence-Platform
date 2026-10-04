@@ -3,7 +3,7 @@
     "AMOS": 83,
     "AdaptixC2": 237,
     "AsyncRAT": 1190,
-    "ClearFake": 231,
+    "ClearFake": 242,
     "Cobalt Strike": 1226,
     "DCRat": 96,
     "DanaBot": 62,
@@ -17,41 +17,41 @@
     "Unknown Loader": 2644,
     "Unknown RAT": 132,
     "Unknown Stealer": 166,
-    "Unknown malware": 432,
+    "Unknown malware": 433,
     "VShell": 83,
-    "Vidar": 153
+    "Vidar": 155
   },
   "by_source": {
     "feodo": 5,
-    "threatfox": 10413,
-    "tor": 8536,
-    "urlhaus": 4550
+    "threatfox": 10429,
+    "tor": 8606,
+    "urlhaus": 4553
   },
   "by_type": {
-    "domain": 4385,
-    "ipv4": 8271,
-    "ipv6": 2646,
+    "domain": 4398,
+    "ipv4": 8321,
+    "ipv6": 2668,
     "md5": 57,
     "sha1": 57,
     "sha256": 3297,
-    "url": 4775
+    "url": 4779
   },
-  "generated_at": "2026-10-04T17:54:14Z",
+  "generated_at": "2026-10-04T18:10:08Z",
   "latest_run": {
     "errors": {},
     "feeds": {
       "feodo": 5,
-      "threatfox": 11211,
-      "tor": 8536,
+      "threatfox": 11220,
+      "tor": 8538,
       "urlhaus": 5000
     },
-    "fetched": 24752,
-    "finished_at": "2026-10-04T17:54:14Z",
-    "new": 79,
+    "fetched": 24763,
+    "finished_at": "2026-10-04T18:10:08Z",
+    "new": 169,
     "pruned": 0,
-    "started_at": "2026-10-04T17:54:11Z",
-    "total": 23488,
-    "updated": 23335
+    "started_at": "2026-10-04T18:09:56Z",
+    "total": 23577,
+    "updated": 23257
   },
-  "total": 23488
+  "total": 23577
 }

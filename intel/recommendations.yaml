@@ -1,0 +1,36 @@
+# Recommendations merged into every report page.
+#
+# Order on the page: per-report curated notes -> auto (CVE / IOC) ->
+# category baseline -> source-specific. Keep entries short and actionable.
+
+categories:
+  windows:
+    - Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.
+    - Collect and review process, network and registry telemetry for the listed indicators.
+    - Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.
+  linux:
+    - Apply the referenced distribution security updates (or vendor mitigations) after change-control review.
+    - Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.
+    - Keep sudo access minimal; review SSH exposure and key-based authentication.
+  cisco:
+    - Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.
+    - Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.
+    - Remove management-plane exposure to the internet and enforce control-plane ACLs.
+  paloalto:
+    - Ensure PAN-OS updates plus Apps & Threats content updates are current; check the advisory's fixed versions.
+    - Apply the vendor's mitigation guidance until patching completes and monitor traffic logs for the indicators.
+    - Keep management interfaces internal-only with admin MFA/RBAC.
+  general:
+    - Validate the indicators against your own telemetry before blocking or alerting.
+    - Keep your asset inventory current so exposure to affected products is visible.
+
+sources:
+  unit42:
+    - Read the full Unit 42 report for detections and additional context beyond the extracted indicators.
+  dfir:
+    - Walk the reported intrusion chain against your logs (initial access, persistence, lateral movement, exfiltration).
+  ubuntu:
+    - Confirm whether affected packages run on the listed hosts before scheduling the update window.
+
+# Per-report additions keyed by report id (shown on each report page as "Report ID").
+reports: {}

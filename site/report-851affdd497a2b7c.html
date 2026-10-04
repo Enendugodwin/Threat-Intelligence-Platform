@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Introducing CAIRN: Frontier tracking for AI-integrated malware &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,77 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Introducing CAIRN: Frontier tracking for AI-integrated malware</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+</div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-22</td></tr>
+        <tr><td>Report ID</td><td><code>851affdd497a2b7c</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/introducing-cairn-frontier-tracking-for-ai-integrated-malware/" rel="noopener">https://blog.talosintelligence.com/introducing-cairn-frontier-tracking-for-ai-integrated-malware/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">A cairn is a marker left behind on a trail, a deliberately placed stack of stones that helps hikers find their way when the path is unclear. Attackers building AI-integrated malware unintentionally (and inevitably) leave behind markers of their own: prompt templates, provider endpoints, API keys, jailbreak terms, and other artifacts embedded throughout their tooling. When we consider these strings as cognitive artifacts , or vestiges left behind from AI integration, we can enable a new, metadata-first hunting methodology for AI-integrated malware that is fast and scalable. These artifacts can be extracted, related, and classified without ever touching the underlying binary. Today, Cisco Talos is releasing this methodology in the form of CAIRN (Cognitive Artifact Intelligence Research Network), a research toolkit for hunting, classifying, and tracking emerging AI-integrated malware. Over time, we will share the full contents of our initial findings, starting today with CLOSEDQUORUM . Figure 1. CAIRN explorer connects malware binaries by metadata attributes like submitter, import hash, domain or AI provider. Run cairn explorer to launch the graph. CAIRN contains functionality for identifying AI-integrated malware; in our definition, that is malware that functionally operationalizes, explicitly targets, or exploits AI systems and their ecosystems — spanning functional integration into attack chains, credential and infrastructure compromise, and ecosystem-level abuse. These binaries are classified based on pre-defined AI-usage archetypes, and reporting findings in a structured way. CAIRN has an explorer layer, which creates a structured graph of cognitive artifact relationships to help defenders identify related malware families, infrastructure, and threat actors. Figure 2. The CAIRN processing pipeline extracts AI-integration artifacts from metadata, classifies and constructs unique representations for all samples, and clusters and graphs the sample relationships. Metadata-first architecture CAIRN operates entirely from metadata — no binary downloads or execution required. It combines rule-based detection, semantic clustering, and relationship graph traversal to identify AI-integrated malware through cognitive artifacts such as embedded prompts, provider endpoints, orchestration logic, API key prefixes, and AI-analysis evasion strings. CAIRN discovers candidate samples through up to 24 acquisition filters, each targeting a different type of AI-related artifac</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/introducing-cairn-frontier-tracking-for-ai-integrated-malware/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (5)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>url</td><td><code>hxxps://cert[.]gov[.]ua/article/6284730</code></td></tr>
+        <tr><td>domain</td><td><code>api[.]openai[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>api[.]anthropic[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>api[.]deepseek[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>generativelanguage[.]googleapis[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Block or hunt the 5 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

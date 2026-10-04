@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Active exploitation of Cisco Secure Firewall Management Center vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,88 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Active exploitation of Cisco Secure Firewall Management Center vulnerabilities</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+<span class="badge">2 CVE(s)</span></div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-09</td></tr>
+        <tr><td>Report ID</td><td><code>df020bc56450618a</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/fmc-ongoing-exploitation/" rel="noopener">https://blog.talosintelligence.com/fmc-ongoing-exploitation/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco’s Secure Firewall Management Center (FMC) Software. First, CVE-2026-20079 is an authentication bypass vulnerability in unpatched instances of Cisco’s Secure FMC Software, which allows an unauthenticated, remote attacker to bypass authentications and execute scripts on impacted devices to obtain root access to the underlying operating system. Second, CVE-2026-20316 is a vulnerability that allows a remote attacker to log in using a low-privileged account. CVE-2026-20079 is a critical vulnerability with a CVSS score of 10.0. Customers are strongly advised to follow Cisco’s guidance provided in the security advisory and apply the security patches previously made available. CVE-2026-20316 has a CVSS score of 5.3, however it can be used with other Cisco Secure FMC vulnerabilities to elevate privileges. Due to Talos identifying in the wild abuse of these CVE’s, customers are strongly advised to apply hotfixes for affected software versions already released by Cisco for CVE-2026-20079 and CVE-2026-20316 . A comprehensive hardening release consisting of these hotfixes along with other internally discovered vulnerabilities will be released next week (Week of September 14th). Talos’ analysis illustrates three clusters of post-compromise activity on FMC instances associated with state-sponsored and crimeware threat actors, as described below. The first cluster which we track as UAT-12197, involves the exploitation of CVE-2026-20079, leading to the deployment of web shells, a Java Archive (JAR)-based command executor, and credential exfiltration. The second intrusion cluster, which we attribute to UAT-11823, consisted of the exploitation of CVE-2026-20079 and CVE-2026-20316, leading to the deployment of a Netcat-based reverse shell and proxy tooling, ultimately leading to the deployment of a variant of the Cyclops Blink malware, previously attributed to the Russian APT Sandworm by the United States and United Kingdom . Talos is further disclosing a third cluster of malicious activity on an FMC instance, attributed to UAT-11988, who we assess with high confidence is a ransomware operator. The preliminary stages of the attack entailed the threat actor gaining access to the system via static credentials ( CVE-2026-20316) and then abusing legitimate built-in FMC tooling in living-off-the-land (LOTL) fashion to conduct extensive reconnaissance of the victim’s environment, deploy tunneling tool</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/fmc-ongoing-exploitation/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (11)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>b037f45e02a289325a1a5eb0d4db6a9fce9954fd0fdfd07162cb4eb2acbef77d</code></td></tr>
+        <tr><td>sha256</td><td><code>db491181ece3f319de6567ab6f6daa90c6879911cd890155e6b7d8cc7a1a8c8e</code></td></tr>
+        <tr><td>sha256</td><td><code>6f98add5d1a7729192b6ad8491d85c505c64836f7881742d6b93bd8e3d2fe461</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://malpedia[.]caad[.]fkie[.]fraunhofer[.]de/actor/sandworm</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]justice[.]gov/archives/opa/pr/justice-department-announces-court-authorized-disruption-botnet-controlled-russian-federation</code></td></tr>
+        <tr><td>ipv4</td><td><code>208[.]123[.]119[.]215</code></td></tr>
+        <tr><td>ipv4</td><td><code>89[.]34[.]96[.]56</code></td></tr>
+        <tr><td>ipv4</td><td><code>104[.]218[.]165[.]253</code></td></tr>
+        <tr><td>ipv4</td><td><code>91[.]214[.]78[.]118</code></td></tr>
+        <tr><td>ipv4</td><td><code>43[.]204[.]2[.]142</code></td></tr>
+        <tr><td>domain</td><td><code>omniquery[.]pl</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Referenced CVEs</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-20079</span><span class="chip">CVE-2026-20316</span>  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Assess exposure and patch affected systems: CVE-2026-20079, CVE-2026-20316</li><li>Block or hunt the 11 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

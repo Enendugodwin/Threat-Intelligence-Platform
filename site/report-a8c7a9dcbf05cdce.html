@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>Unauthenticated command injection on internet-facing mail servers: tracking CVE-2026-73570 &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,106 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">Unauthenticated command injection on internet-facing mail servers: tracking CVE-2026-73570</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Windows</span>
+  <span class="badge">Microsoft Security Blog</span>
+<span class="badge">1 CVE(s)</span></div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
+        <tr><td>Published</td><td>2026-09-30</td></tr>
+        <tr><td>Report ID</td><td><code>a8c7a9dcbf05cdce</code></td></tr>
+        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/30/unauthenticated-command-injection-on-internet-facing-mail-servers-tracking-cve-2026-73570/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/30/unauthenticated-command-injection-on-internet-facing-mail-servers-tracking-cve-2026-73570/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">In this article Attack chain overview Mitigation and protection guidance References Learn More Microsoft Threat Intelligence identified and tracked exploitation of CVE-2026-73570 , an unauthenticated OS command injection vulnerability in the Zimbra Collaboration Suite SNMP notification path. Exploitation can be triggered by a specially crafted email against internet-facing Zimbra servers when the optional zimbra-snmp package is installed and SNMP notifications are enabled, without requiring authentication or user interaction. Following successful exploitation, observed activity included deployment of JSP web shells and reverse shells, privilege escalation, persistent remote-access tooling, and memory-backed execution. Threat actors also accessed email and collected authentication and mailbox data, with archive creation and subsequent transfer activity observed. The activity included both automated payload delivery and hands-on-keyboard operations on compromised mail servers. Microsoft observed affected organizations in more than one region and industry. Based on the environments investigated, exploitation was not limited to a single sector or geographic area. The diagram combines behaviors observed across multiple confirmed compromises; no single host necessarily exhibited every stage. From remediation to public disclosure CVE-2026-73570 is an unauthenticated OS command-injection vulnerability in the Zimbra Collaboration Suite SNMP notification path. An attacker can send a specially crafted SMTP request that introduces untrusted input into SNMP notification processing. If the input is not sufficiently sanitized, embedded shell commands can execute with the privileges of the zimbra service account. Exploitation requires the optional zimbra-snmp package to be installed and SNMP notifications to be enabled. Zimbra version 10.1.20, released July 20, 2026, contains the relevant remediation. CVE-2026-73570 was publicly disclosed on August 13, 2026. Microsoft telemetry identified activity targeting the same injection path during the interval between those events. Attack chain overview Figure 1. CVE-2026-73570 attack chain, mapped to MITRE ATT&amp;CK tactics and composited across all confirmed compromises. Pre-disclosure reconnaissance and pre-exploitation probing Between July 28 and August 7, after a fix became available on July 20 but before public disclosure on August 13, Microsoft observed two distinct out-of-band scanning tools probing the vulnerable injection po</p>
+  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/30/unauthenticated-command-injection-on-internet-facing-mail-servers-tracking-cve-2026-73570/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (29)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>dee5af1c0f76b45d28bafd6e60c07bb8e391d98addf81ef8f13d073acdb3c48a</code></td></tr>
+        <tr><td>sha256</td><td><code>aea991f694911e321b0ab97534f2ad0291c392c0a43dabff664c563618bd036d</code></td></tr>
+        <tr><td>sha256</td><td><code>6ab7de2509038edf580aef6229c1c3db17f4da8f2d7d940818faf617d1938244</code></td></tr>
+        <tr><td>sha256</td><td><code>bf28f38122bf20d5fac969cc414daa6a890cdea872d389ca93d2092b6b7773cf</code></td></tr>
+        <tr><td>sha256</td><td><code>b594a42b8f1c6f090327bb9a3361c2d3515537fb7ac8da6b9061b9a3f330e159</code></td></tr>
+        <tr><td>sha256</td><td><code>65a7576c389326b6cdf9c993d0be6e5d50fed9655d1cdf2a3a50f2c21c8ec435</code></td></tr>
+        <tr><td>sha256</td><td><code>22ef852f6ebc39ee71235b90648b4b200b385c47d25c79545986493f8c70db69</code></td></tr>
+        <tr><td>sha256</td><td><code>518fe65dd349180191d9b258ab24876aaed6613cd657d0b626d1fc24e03a22b6</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/downloadazcopy-v10-linux</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://wiki[.]zimbra[.]com/wiki/Zimbra_Security_Advisories</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://wiki[.]zimbra[.]com/wiki/Zimbra_Releases/10[.]1[.]20</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://aka[.]ms/threatintelblog</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://microsoft[.]github[.]io/zerotrustassessment/</code></td></tr>
+        <tr><td>ipv4</td><td><code>117[.]107[.]25[.]243</code></td></tr>
+        <tr><td>ipv4</td><td><code>192[.]255[.]193[.]111</code></td></tr>
+        <tr><td>ipv4</td><td><code>45[.]32[.]30[.]235</code></td></tr>
+        <tr><td>ipv4</td><td><code>193[.]42[.]40[.]135</code></td></tr>
+        <tr><td>ipv4</td><td><code>3[.]209[.]137[.]175</code></td></tr>
+        <tr><td>domain</td><td><code>oast[.]online</code></td></tr>
+        <tr><td>domain</td><td><code>dnslog[.]pp[.]ua</code></td></tr>
+        <tr><td>domain</td><td><code>requestrepo[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>bypass[.]eu[.]org</code></td></tr>
+        <tr><td>domain</td><td><code>wsweb03[.]blob[.]core[.]windows[.]net</code></td></tr>
+        <tr><td>domain</td><td><code>psk1zim[.]abrdns[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>transzimbra[.]linkpc[.]net</code></td></tr>
+        <tr><td>domain</td><td><code>tls[.]psk1zim[.]abrdns[.]com</code></td></tr>
+        <tr><td>domain</td><td><code>wslogzimbra[.]linkpc[.]net</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Referenced CVEs</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-73570</span>  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Assess exposure and patch affected systems: CVE-2026-73570</li><li>Block or hunt the 29 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>

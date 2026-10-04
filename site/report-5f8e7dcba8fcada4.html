@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>{% block title %}Threat Intel Pipeline{% endblock %}</title>
+<title>We&#39;ve got one word for it, and it&#39;s usually the wrong one &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -179,25 +179,102 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>{{ totals.total }} indicators</span>
-      <span>{{ totals.new }} new / {{ window_days }}d</span>
-      <span>{{ feed_health.ok }}/{{ feed_health.total }} feeds</span>
-      <span>sync {{ generated_at }}</span>
+      <span><span class="status-dot" aria-hidden="true"></span>23577 indicators</span>
+      <span>23577 new / 7d</span>
+      <span>4/4 feeds</span>
+      <span>sync 2026-10-04T18:10:39Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Dashboard</a>
       <a href="reports.html">Report feed</a>
       <a href="report.html">IOC pulse</a>
-      {% if repo_url %}<a href="{{ repo_url }}" rel="noopener">GitHub</a>{% endif %}
-    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
   </div>
 </header>
 <main>
-{% block content %}{% endblock %}
+<a class="back-link" href="reports.html">&larr; Report feed</a>
+<h1 class="page-title">We&#39;ve got one word for it, and it&#39;s usually the wrong one</h1>
+<div class="badges" style="margin-bottom: var(--space-2xl)">
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+<span class="badge">2 CVE(s)</span></div>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
+  <div class="table-wrap">
+    <table class="meta-table">
+      <tbody>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-09-10</td></tr>
+        <tr><td>Report ID</td><td><code>5f8e7dcba8fcada4</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/weve-got-one-word-for-it-and-its-usually-the-wrong-one/" rel="noopener">https://blog.talosintelligence.com/weve-got-one-word-for-it-and-its-usually-the-wrong-one/</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">Welcome to this week’s edition of the Threat Source newsletter. Ask anybody in this industry what the work does to the health of the people who do it and you get one word back: burnout. It&#39;s a fine word, in and of itself. It’s easy to reach for, understandable to everyone… and it&#39;s the wrong one, most of the time. So, story time. Last year I gave an interview with the amazing Hazel Burton about VPNFilter, and my run-in with burnout . I was a manager during that time, and it took a toll on me and on the people around me, and when it was over I didn&#39;t have language for what had happened. Neither did my peers. Neither did my leadership. Nobody was withholding help from me… we just didn&#39;t have the words. Enter this summer, and I was afforded a unique opportunity to mentor some MBA students on burnout in cybersecurity. I know a thing or two about it, so I leapt at a chance to share and help grow future leaders. But I decided I was going to do more than share and relieve my experiences in this industry – I wanted to give back to them and the security industry. So, I fell down a fascinating and revealing research hole and learned better words to describe my experiences over my career. I spent my summer reviewing trauma case studies, clinical and academic literature on trauma in career fields like first responders, doctors, social workers, and the military. There are many decades of research focusing on trauma in those fields. Subsequently, my brain is packed full of better words! For example, burnout is exhaustion from chronic workload, and it eases when the load eases. We know this one well. Secondary traumatic stress is what absorbing somebody else&#39;s trauma does to you, and it looks like trauma. Think the CTI analyst exposed to horrible things on the dark web. Vicarious trauma is what years of other people&#39;s worst days do to how you see the world. It changes your beliefs, not your mood. Work in cybersecurity long enough, and it can pile up on your views. Moral injury is the damage from being made to act against your own values, or stopped from doing what you knew was right. This one can affect anyone who’s ever owned an outcome, but not the decision, and that’s common in this industry. One word, four injuries, and four different fixes. All of them are present in the industry that is cybersecurity. The problem? We’re just a young industry. Compared to medical, helping professions, or social workers, we’re incredibly immature with understanding the consequences o</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/weve-got-one-word-for-it-and-its-usually-the-wrong-one/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (25)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><code>9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>md5</td><td><code>2915b3f8b703eb744fc54c81f4a9c67f</code></td></tr>
+        <tr><td>sha256</td><td><code>90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59</code></td></tr>
+        <tr><td>md5</td><td><code>c2efb2dcacba6d3ccc175b6ce1b7ed0a</code></td></tr>
+        <tr><td>sha256</td><td><code>c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2</code></td></tr>
+        <tr><td>md5</td><td><code>9a47c4d379998ade2f8f99e23a630c06</code></td></tr>
+        <tr><td>sha256</td><td><code>9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>md5</td><td><code>38de5b216c33833af710e88f7f64fc98</code></td></tr>
+        <tr><td>sha256</td><td><code>5bb86c1cd08fe5e1516cba35c85fc03e503bd1b5469113ffa1f1b9e10897f811</code></td></tr>
+        <tr><td>md5</td><td><code>f3e82419a43220a7a222fc01b7607adc</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9f1f11a708d393e0a4109ae189bc64f1f3e312653dcf317a2bd406f18ffcc507</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=90b1456cdbe6bc2779ea0b4736ed9a998a71ae37390331b6ba87e389a49d3d59</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=c4dd71e347a076ba24bdd2d0ee532ef991c1ef25a2431a19f850942ba2ab16b2</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=9896a6fcb9bb5ac1ec5297b4a65be3f647589adf7c37b45f3f7466decd6a4a7f</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://talosintelligence[.]com/talos_file_reputation?s=5bb86c1cd08fe5e1516cba35c85fc03e503bd1b5469113ffa1f1b9e10897f811</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]cybrseccon[.]com/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]bleepingcomputer[.]com/news/security/new-microsoft-defender-shieldcrash-zero-day-grants-system-access/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]securityweek[.]com/north-korean-hackers-deploy-new-linux-espionage-toolkit/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]darkreading[.]com/cyberattacks-data-breaches/attackers-multi-hop-google-redirects-phishing-campaign</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]darkreading[.]com/cyberattacks-data-breaches/openai-agents-wiki-site-hugging-face-attack</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://open[.]spotify[.]com/episode/51DsSgDhNuRyhu3N8WCqK8?si=57d5503465d840f5</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]labscon[.]io/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]virusbulletin[.]com/conference/vb2026/</code></td></tr>
+        <tr><td>url</td><td><code>hxxps://www[.]camlis[.]org/</code></td></tr>
+        <tr><td>domain</td><td><code>talosintelligence[.]com</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Extracted automatically from the advisory text and defanged for safe handling.</p>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Referenced CVEs</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-20079</span><span class="chip">CVE-2026-20316</span>  </div>
+</section>
+
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
+  <ol class="rec-list">
+<li>Assess exposure and patch affected systems: CVE-2026-20079, CVE-2026-20316</li><li>Block or hunt the 25 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+</section>
 </main>
 <footer>
   <p>Sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; Tor Project &middot; AlienVault OTX</p>
-  <p>Indicators are defanged for safe display &middot; Generated by <a href="{{ repo_url }}" rel="noopener">threat-intel-pipeline</a> at <span class="mono">{{ generated_at }} UTC</span></p>
+  <p>Indicators are defanged for safe display &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-04T18:10:39Z UTC</span></p>
 </footer>
 </body>
 </html>
