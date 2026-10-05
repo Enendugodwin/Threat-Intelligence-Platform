@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>3 Consulting Myths Debunked by Unit 42 Experts &mdash; Threat Intel Pipeline</title>
+<title>USN-8851-3: Linux kernel (Azure) vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -218,24 +218,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">3 Consulting Myths Debunked by Unit 42 Experts</h1>
+<h1 class="page-title">USN-8851-3: Linux kernel (Azure) vulnerabilities</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Palo Alto</span>
-  <span class="badge">Palo Alto Unit 42</span>
-</div>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
+<span class="badge">3 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 3 CVE(s), none in KEV</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Palo Alto Unit 42</td></tr>
-        <tr><td>Category</td><td>Palo Alto</td></tr>
-        <tr><td>Published</td><td>2026-09-25</td></tr>
-        <tr><td>Report ID</td><td><code>e9160c0adae68644</code></td></tr>
-        <tr><td>Original</td><td><a href="https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/" rel="noopener">https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-05</td></tr>
+        <tr><td>Report ID</td><td><code>577e4845871e24b8</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8851-3" rel="noopener">https://ubuntu.com/security/notices/USN-8851-3</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -243,8 +243,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Unit 42 security experts address critical cybersecurity misconceptions, offering practical insights to help your organization reinforce its enterprise defenses. The post 3 Consulting Myths Debunked by Unit 42 Experts appeared first on Unit 42 .</p>
-  <p class="muted">Excerpted from <a href="https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/" rel="noopener">Palo Alto Unit 42</a>; follow the source for full context.</p>
+  <p class="detail-text">Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network file system (NFS) server daemon; - IPv6 networking; - Netfilter; (CVE-2025-38724, CVE-2026-53131, CVE-2026-53221)</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8851-3" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
@@ -252,11 +252,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <p class="muted">No indicators were extracted from this report.</p>
 </section>
 
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2025-38724</span><span class="chip">CVE-2026-53131</span><span class="chip">CVE-2026-53221</span>  </div>
+  <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
+</section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Ensure PAN-OS updates plus Apps &amp; Threats content updates are current; check the advisory&#39;s fixed versions.</li><li>Apply the vendor&#39;s mitigation guidance until patching completes and monitor traffic logs for the indicators.</li><li>Keep management interfaces internal-only with admin MFA/RBAC.</li><li>Read the full Unit 42 report for detections and additional context beyond the extracted indicators.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2025-38724, CVE-2026-53131, CVE-2026-53221</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>

@@ -225,10 +225,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>27242 indicators</span>
-      <span>911 new / 23455 updated last run &middot; 27242 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>29794 indicators</span>
+      <span>2552 new / 20329 updated last run &middot; 29794 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-05T05:56:26Z</span>
+      <span>sync 2026-10-05T15:01:23Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -246,7 +246,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <p class="muted">
   Advisories and vendor research from multiple sources. Indicators per report are extracted
   automatically and defanged &mdash; validate before blocking. Filter by category or search across
-  titles, summaries, tags and sources. Last updated 2026-10-05T05:56:17Z UTC.
+  titles, summaries, tags and sources. Last updated 2026-10-05T15:01:12Z UTC.
 </p>
 
 <section>
@@ -259,12 +259,60 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <input type="radio" name="cat" id="f-paloalto" class="vh report-filter">
 <input type="radio" name="cat" id="f-general" class="vh report-filter">
 <div class="filterbar" role="group" aria-label="Filter reports by category">
-    <label for="f-all">All (72)</label>
-<label for="f-windows">Windows (22)</label><label for="f-linux">Linux (10)</label><label for="f-hypervisors">Hypervisors (0)</label><label for="f-network">Network Devices (1)</label><label for="f-cisco">Cisco (14)</label><label for="f-paloalto">Palo Alto (13)</label><label for="f-general">General (12)</label>    <input id="rsearch" type="search" placeholder="Search reports (title, summary, tags, source)&hellip;" aria-label="Search reports">
+    <label for="f-all">All (76)</label>
+<label for="f-windows">Windows (22)</label><label for="f-linux">Linux (14)</label><label for="f-hypervisors">Hypervisors (0)</label><label for="f-network">Network Devices (1)</label><label for="f-cisco">Cisco (14)</label><label for="f-paloalto">Palo Alto (13)</label><label for="f-general">General (12)</label>    <input id="rsearch" type="search" placeholder="Search reports (title, summary, tags, source)&hellip;" aria-label="Search reports">
     <span class="report-count" id="rcount" aria-live="polite"></span>
   </div>
 
   <div class="report-grid">
+    <article class="report-card cat-linux" data-search="usn-8851-3: linux kernel (azure) vulnerabilities an attacker could possibly use these to compromise the system. this update corrects flaws in the following subsystems: - network file system (nfs) server daemon; - ipv6 networking; - netfilter; (cve-2025-38724, cve-2026-53131, cve-2026-53221) ubuntu security notices linux ">
+      <div class="badges">
+        <span class="badge badge-cat">Linux</span>
+        <span class="badge">Ubuntu Security Notices</span>
+<span class="risk risk-info">info</span>      </div>
+      <h3><a href="report-577e4845871e24b8.html">USN-8851-3: Linux kernel (Azure) vulnerabilities</a></h3>
+<p class="excerpt">An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network file system (NFS) server daemon; - IPv6 networking; - Netfilter; (CVE-2025-38724, CVE-2026-53131, CVE-2026-53221)</p>      <div class="report-meta">
+        <span>2026-10-05</span>
+        <span>
+<a href="report-577e4845871e24b8.html#recommendations">5 recs</a>        </span>
+      </div>
+    </article>
+    <article class="report-card cat-linux" data-search="usn-8868-1: libreoffice vulnerabilities an attacker could possibly use this issue to cause libreoffice to crash, resulting in a denial of service, or execute arbitrary code. (cve-2026-63272) it was discovered that libreoffice incorrectly handled pdf document imports. an attacker could possibly use this issue to cause libreoffice to crash, ubuntu security notices linux ">
+      <div class="badges">
+        <span class="badge badge-cat">Linux</span>
+        <span class="badge">Ubuntu Security Notices</span>
+<span class="risk risk-info">info</span>      </div>
+      <h3><a href="report-766e0fc5435f4817.html">USN-8868-1: LibreOffice vulnerabilities</a></h3>
+<p class="excerpt">An attacker could possibly use this issue to cause LibreOffice to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-63272) It was discovered that LibreOffice incorrectly handled PDF document imports. An attacker could possibly use this issue to cause LibreOffice to crash,</p>      <div class="report-meta">
+        <span>2026-10-05</span>
+        <span>
+<a href="report-766e0fc5435f4817.html#recommendations">5 recs</a>        </span>
+      </div>
+    </article>
+    <article class="report-card cat-linux" data-search="usn-8867-1: ceph vulnerability an attacker holding a presigned url could possibly use this issue to attach arbitrary unsigned x-amz-* headers that rgw would honor, allowing them to escalate their privileges beyond what the url&#39;s signer intended. ubuntu security notices linux ">
+      <div class="badges">
+        <span class="badge badge-cat">Linux</span>
+        <span class="badge">Ubuntu Security Notices</span>
+<span class="risk risk-info">info</span>      </div>
+      <h3><a href="report-c032ada24dcf6137.html">USN-8867-1: Ceph vulnerability</a></h3>
+<p class="excerpt">An attacker holding a presigned URL could possibly use this issue to attach arbitrary unsigned x-amz-* headers that RGW would honor, allowing them to escalate their privileges beyond what the URL&#39;s signer intended.</p>      <div class="report-meta">
+        <span>2026-10-05</span>
+        <span>
+<a href="report-c032ada24dcf6137.html#recommendations">4 recs</a>        </span>
+      </div>
+    </article>
+    <article class="report-card cat-linux" data-search="usn-8865-1: edk ii vulnerabilities an attacker could possibly use this issue to cause a heap buffer overflow, resulting in a denial of service. (cve-2026-63072) it was discovered that edk ii incorrectly handled cmp protection verification in the embedded openssl library. an attacker could possibly use this issue to cause a denial of ubuntu security notices linux ">
+      <div class="badges">
+        <span class="badge badge-cat">Linux</span>
+        <span class="badge">Ubuntu Security Notices</span>
+<span class="risk risk-info">info</span>      </div>
+      <h3><a href="report-9c69750b12eaec38.html">USN-8865-1: EDK II vulnerabilities</a></h3>
+<p class="excerpt">An attacker could possibly use this issue to cause a heap buffer overflow, resulting in a denial of service. (CVE-2026-63072) It was discovered that EDK II incorrectly handled CMP protection verification in the embedded OpenSSL library. An attacker could possibly use this issue to cause a denial of</p>      <div class="report-meta">
+        <span>2026-10-05</span>
+        <span>
+<a href="report-9c69750b12eaec38.html#recommendations">5 recs</a>        </span>
+      </div>
+    </article>
     <article class="report-card cat-general" data-search="isc stormcast for monday, october 5th, 2026 https://isc.sans.edu/podcastdetail/10122, (mon, oct 5th)  sans isc general ">
       <div class="badges">
         <span class="badge badge-cat">General</span>
@@ -1224,7 +1272,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-05T05:56:26Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-05T15:01:23Z UTC</span></p>
 </footer>
 </body>
 </html>

@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: php.shin_webshell &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
+.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
+.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
+.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
+.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+}
+@media (max-width:640px){
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>29794 indicators</span>
+      <span>2552 new / 20329 updated last run &middot; 29794 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-05T15:01:23Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="threats.html">Threats</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: php.shin_webshell</h1>
+<p class="muted">
+  71 indicator(s) attributed to php.shin_webshell</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/51hjimksoe.workers.dev" target="_blank" rel="noopener"><code>51hjimksoe[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-02T18:08:07Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/637g88ee4h.workers.dev" target="_blank" rel="noopener"><code>637g88ee4h[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T08:15:23Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/7279salmon.workers.dev" target="_blank" rel="noopener"><code>7279salmon[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T21:48:24Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/9st40u0r1b.workers.dev" target="_blank" rel="noopener"><code>9st40u0r1b[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-02T22:14:12Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/amydark.workers.dev" target="_blank" rel="noopener"><code>amydark[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T10:01:38Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aumxv74699.workers.dev" target="_blank" rel="noopener"><code>aumxv74699[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T06:24:58Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/betycu.workers.dev" target="_blank" rel="noopener"><code>betycu[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T21:01:56Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/binexuqo.workers.dev" target="_blank" rel="noopener"><code>binexuqo[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T21:58:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/biwoxehy.workers.dev" target="_blank" rel="noopener"><code>biwoxehy[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T15:31:22Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/britt952.workers.dev" target="_blank" rel="noopener"><code>britt952[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T00:10:57Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bygujoby.workers.dev" target="_blank" rel="noopener"><code>bygujoby[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T19:22:46Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/c8zqg6qg66.workers.dev" target="_blank" rel="noopener"><code>c8zqg6qg66[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T01:55:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cepeniso.workers.dev" target="_blank" rel="noopener"><code>cepeniso[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-02T22:09:22Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dabori.workers.dev" target="_blank" rel="noopener"><code>dabori[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T05:42:40Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/degesyno.workers.dev" target="_blank" rel="noopener"><code>degesyno[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T00:52:09Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/eyqfk03386.workers.dev" target="_blank" rel="noopener"><code>eyqfk03386[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T03:41:14Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fhcjvtc2dt.workers.dev" target="_blank" rel="noopener"><code>fhcjvtc2dt[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T13:41:46Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/finigyku.workers.dev" target="_blank" rel="noopener"><code>finigyku[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T01:46:48Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gijalodu.workers.dev" target="_blank" rel="noopener"><code>gijalodu[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T09:43:49Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/graylisha.workers.dev" target="_blank" rel="noopener"><code>graylisha[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T10:09:03Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/guvirepi.workers.dev" target="_blank" rel="noopener"><code>guvirepi[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T03:46:21Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/heheruve.workers.dev" target="_blank" rel="noopener"><code>heheruve[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T23:42:35Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hoordelrll.workers.dev" target="_blank" rel="noopener"><code>hoordelrll[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T03:59:07Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jbzrh59437.workers.dev" target="_blank" rel="noopener"><code>jbzrh59437[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T07:48:03Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jedaro.workers.dev" target="_blank" rel="noopener"><code>jedaro[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T00:04:52Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jordanna8106.workers.dev" target="_blank" rel="noopener"><code>jordanna8106[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T13:11:18Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jwekq68053.workers.dev" target="_blank" rel="noopener"><code>jwekq68053[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T10:36:44Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jygadule.workers.dev" target="_blank" rel="noopener"><code>jygadule[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T23:00:01Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kjkcx43493.workers.dev" target="_blank" rel="noopener"><code>kjkcx43493[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T04:38:47Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/klq7nduszn.workers.dev" target="_blank" rel="noopener"><code>klq7nduszn[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T01:59:14Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/komuge.workers.dev" target="_blank" rel="noopener"><code>komuge[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T02:41:32Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kt2jvxol0n.workers.dev" target="_blank" rel="noopener"><code>kt2jvxol0n[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T11:11:28Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kuvadeta.workers.dev" target="_blank" rel="noopener"><code>kuvadeta[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T09:23:44Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kytini.workers.dev" target="_blank" rel="noopener"><code>kytini[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T23:46:35Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lchtj96894.workers.dev" target="_blank" rel="noopener"><code>lchtj96894[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T07:37:28Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lihowihy.workers.dev" target="_blank" rel="noopener"><code>lihowihy[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T10:45:32Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/linybaso.workers.dev" target="_blank" rel="noopener"><code>linybaso[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T02:07:39Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lodulapi.workers.dev" target="_blank" rel="noopener"><code>lodulapi[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T17:26:29Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/majulyxo.workers.dev" target="_blank" rel="noopener"><code>majulyxo[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T11:19:15Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mebimaqe.workers.dev" target="_blank" rel="noopener"><code>mebimaqe[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-02T20:18:51Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mitilaha.workers.dev" target="_blank" rel="noopener"><code>mitilaha[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T20:05:00Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/miworywy.workers.dev" target="_blank" rel="noopener"><code>miworywy[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T13:36:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nfhmttiq00.workers.dev" target="_blank" rel="noopener"><code>nfhmttiq00[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T16:11:34Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nykyca.workers.dev" target="_blank" rel="noopener"><code>nykyca[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T07:56:49Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nyxafini.workers.dev" target="_blank" rel="noopener"><code>nyxafini[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T14:16:48Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/owxlh79562.workers.dev" target="_blank" rel="noopener"><code>owxlh79562[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T12:27:15Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pariku.workers.dev" target="_blank" rel="noopener"><code>pariku[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T14:23:24Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ponokyme.workers.dev" target="_blank" rel="noopener"><code>ponokyme[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T11:44:04Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pymela.workers.dev" target="_blank" rel="noopener"><code>pymela[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T00:56:40Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/q2r4yyqfjh.workers.dev" target="_blank" rel="noopener"><code>q2r4yyqfjh[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T09:28:32Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/qafonefu.workers.dev" target="_blank" rel="noopener"><code>qafonefu[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T17:58:35Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/qebapyma.workers.dev" target="_blank" rel="noopener"><code>qebapyma[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T23:04:36Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/qtvsz36517.workers.dev" target="_blank" rel="noopener"><code>qtvsz36517[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T20:00:39Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/r701ty1rl9.workers.dev" target="_blank" rel="noopener"><code>r701ty1rl9[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T09:50:21Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sazepidi.workers.dev" target="_blank" rel="noopener"><code>sazepidi[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T16:07:37Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sazyga.workers.dev" target="_blank" rel="noopener"><code>sazyga[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T01:31:13Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/significantpoppy.workers.dev" target="_blank" rel="noopener"><code>significantpoppy[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T06:00:53Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/texuqu.workers.dev" target="_blank" rel="noopener"><code>texuqu[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T13:03:50Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/tikuzi.workers.dev" target="_blank" rel="noopener"><code>tikuzi[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T14:54:02Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ueyn125trn.workers.dev" target="_blank" rel="noopener"><code>ueyn125trn[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T04:31:03Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vfbpo44248.workers.dev" target="_blank" rel="noopener"><code>vfbpo44248[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-02T20:09:49Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vikibima.workers.dev" target="_blank" rel="noopener"><code>vikibima[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T07:30:27Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/viryduly.workers.dev" target="_blank" rel="noopener"><code>viryduly[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T06:29:34Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vpmti71087.workers.dev" target="_blank" rel="noopener"><code>vpmti71087[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T17:32:29Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wbc0bxu006.workers.dev" target="_blank" rel="noopener"><code>wbc0bxu006[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T08:19:02Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/xeshr05216.workers.dev" target="_blank" rel="noopener"><code>xeshr05216[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T21:11:08Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/xosyhizi.workers.dev" target="_blank" rel="noopener"><code>xosyhizi[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-04T12:31:57Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zajiti.workers.dev" target="_blank" rel="noopener"><code>zajiti[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T05:53:32Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zepaho.workers.dev" target="_blank" rel="noopener"><code>zepaho[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T19:28:43Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zesavota.workers.dev" target="_blank" rel="noopener"><code>zesavota[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-05T05:35:45Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zozizo.workers.dev" target="_blank" rel="noopener"><code>zozizo[.]workers[.]dev</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>php.shin_webshell</td>
+          <td></td>
+          <td>2026-10-03T11:40:59Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+
+</main>
+<footer>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-05T15:01:23Z UTC</span></p>
+</footer>
+</body>
+</html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>3 Consulting Myths Debunked by Unit 42 Experts &mdash; Threat Intel Pipeline</title>
+<title>USN-8867-1: Ceph vulnerability &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -218,10 +218,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">3 Consulting Myths Debunked by Unit 42 Experts</h1>
+<h1 class="page-title">USN-8867-1: Ceph vulnerability</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Palo Alto</span>
-  <span class="badge">Palo Alto Unit 42</span>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
 </div>
 <div class="env-banner">
   <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
@@ -231,11 +231,11 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Palo Alto Unit 42</td></tr>
-        <tr><td>Category</td><td>Palo Alto</td></tr>
-        <tr><td>Published</td><td>2026-09-25</td></tr>
-        <tr><td>Report ID</td><td><code>e9160c0adae68644</code></td></tr>
-        <tr><td>Original</td><td><a href="https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/" rel="noopener">https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-05</td></tr>
+        <tr><td>Report ID</td><td><code>c032ada24dcf6137</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8867-1" rel="noopener">https://ubuntu.com/security/notices/USN-8867-1</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -243,8 +243,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Unit 42 security experts address critical cybersecurity misconceptions, offering practical insights to help your organization reinforce its enterprise defenses. The post 3 Consulting Myths Debunked by Unit 42 Experts appeared first on Unit 42 .</p>
-  <p class="muted">Excerpted from <a href="https://unit42.paloaltonetworks.com/3-consulting-myths-debunked-by-unit-42-experts/" rel="noopener">Palo Alto Unit 42</a>; follow the source for full context.</p>
+  <p class="detail-text">It was discovered that the Ceph Object Gateway (RGW) SigV4 handler did not reject requests carrying x-amz-* headers that were absent from the signed header set. An attacker holding a presigned URL could possibly use this issue to attach arbitrary unsigned x-amz-* headers that RGW would honor, allowing them to escalate their privileges beyond what the URL&#39;s signer intended.</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8867-1" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
@@ -256,7 +256,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Ensure PAN-OS updates plus Apps &amp; Threats content updates are current; check the advisory&#39;s fixed versions.</li><li>Apply the vendor&#39;s mitigation guidance until patching completes and monitor traffic logs for the indicators.</li><li>Keep management interfaces internal-only with admin MFA/RBAC.</li><li>Read the full Unit 42 report for detections and additional context beyond the extracted indicators.</li>  </ol>
+<li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
