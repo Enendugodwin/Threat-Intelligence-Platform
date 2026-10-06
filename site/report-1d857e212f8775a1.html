@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira &mdash; Threat Intel Pipeline</title>
+<title>USN-8872-1: libxmltok vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -218,26 +218,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira</h1>
+<h1 class="page-title">USN-8872-1: libxmltok vulnerabilities</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Windows</span>
-  <span class="badge">The DFIR Report</span>
-</div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Akira</span><span class="chip">Ransomware</span></div>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
+<span class="badge">2 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-high">high</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 2 CVE(s), none in KEV</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>The DFIR Report</td></tr>
-        <tr><td>Category</td><td>Windows</td></tr>
-        <tr><td>Published</td><td>2026-06-29</td></tr>
-        <tr><td>Report ID</td><td><code>71aeecc01452f3ca</code></td></tr>
-        <tr><td>Original</td><td><a href="https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/" rel="noopener">https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-05</td></tr>
+        <tr><td>Report ID</td><td><code>1d857e212f8775a1</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8872-1" rel="noopener">https://ubuntu.com/security/notices/USN-8872-1</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -245,8 +243,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Key Takeaways This case was first reported to customers in a threat brief released in July 2025 and in a public flash alert in August 2025 in partnership with Swisscom B2B CSIRT, which observed another intrusion tied to the same campaign. This report contains data from both intrusions. We plan to release a DFIR Labs […] The post From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira appeared first on The DFIR Report .</p>
-  <p class="muted">Excerpted from <a href="https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/" rel="noopener">The DFIR Report</a>; follow the source for full context.</p>
+  <p class="detail-text">It was discovered that Expat, contained with the xmltok library did not correctly handle certain integer arithmetic. If a user or automated system were tricked into opening a specially crafted file, an attacker could possibly cause a denial of service. (CVE-2026-56404, CVE-2026-56405)</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8872-1" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
@@ -254,11 +252,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <p class="muted">No indicators were extracted from this report.</p>
 </section>
 
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-56404</span><span class="chip">CVE-2026-56405</span>  </div>
+  <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
+</section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li><li>Walk the reported intrusion chain against your logs (initial access, persistence, lateral movement, exfiltration).</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2026-56404, CVE-2026-56405</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
