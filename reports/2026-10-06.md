@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T20:02:01Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T20:11:36Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 40432 |
-| New in window | 40432 |
+| Indicators tracked | 40469 |
+| New in window | 40469 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -15,21 +15,21 @@
 | --- | --- | --- |
 | urlhaus | 5001 | ok |
 | feodo | 5 | ok |
-| threatfox | 9371 | ok |
-| malwarebazaar | 1538 | ok |
+| threatfox | 9368 | ok |
+| malwarebazaar | 1534 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8619 | ok |
+| tor | 8612 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 12035 | 12035 |
-| ipv4 | 9045 | 9045 |
+| url | 12037 | 12037 |
+| ipv4 | 9071 | 9071 |
 | sha256 | 8185 | 8185 |
 | domain | 7846 | 7846 |
-| ipv6 | 2841 | 2841 |
+| ipv6 | 2850 | 2850 |
 | md5 | 252 | 252 |
 | sha1 | 228 | 228 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 9295 |
-| Exit nodes | 2161 |
-| Other relays | 7134 |
-| New in window | 9295 |
+| Nodes tracked | 9329 |
+| Exit nodes | 2168 |
+| Other relays | 7161 |
+| New in window | 9329 |
 
-Sample (20 of 9295, source: Tor Project Onionoo):
+Sample (20 of 9329, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]248[.]96[.]163`
 - `100[.]1[.]157[.]56`
@@ -94,13 +94,13 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1105 | Ingress Tool Transfer | command-and-control | 12368 |
-| T1071.001 | Web Protocols | command-and-control | 29357 |
-| T1498 | Network Denial of Service | impact | 7177 |
+| T1105 | Ingress Tool Transfer | command-and-control | 12370 |
+| T1071.001 | Web Protocols | command-and-control | 29397 |
+| T1498 | Network Denial of Service | impact | 7182 |
 | T1204.002 | Malicious File | execution | 5456 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 5445 |
-| T1573 | Encrypted Channel | command-and-control | 4636 |
-| T1056.001 | Keylogging | collection, credential-access | 3041 |
+| T1573 | Encrypted Channel | command-and-control | 4637 |
+| T1056.001 | Keylogging | collection, credential-access | 3042 |
 | T1566.001 | Spearphishing Attachment | initial-access | 2724 |
 | T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2484 |
 | T1113 | Screen Capture | collection | 2462 |
@@ -147,7 +147,7 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | [`155[.]2[.]192[.]88`](https://www.virustotal.com/gui/ip-address/155.2.192.88) | ipv4 | Potassium | threatfox | 2026-10-06T15:00:19Z | 100 |
 | [`51[.]89[.]199[.]102`](https://www.virustotal.com/gui/ip-address/51.89.199.102) | ipv4 | Potassium | threatfox | 2026-10-06T15:00:18Z | 100 |
 | [`70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e`](https://www.virustotal.com/gui/file/70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e) | sha256 | AMOS | threatfox | 2026-10-06T15:00:18Z | 100 |
-| [`a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb`](https://www.virustotal.com/gui/file/a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb) | sha256 | Unknown RAT | malwarebazaar, threatfox | 2026-10-06T14:30:50Z | 100 |
+| [`a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb`](https://www.virustotal.com/gui/file/a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb) | sha256 | Unknown RAT | threatfox, malwarebazaar | 2026-10-06T14:30:50Z | 100 |
 | [`2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9`](https://www.virustotal.com/gui/file/2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:50Z | 100 |
 | [`ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986`](https://www.virustotal.com/gui/file/ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
 | [`c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc`](https://www.virustotal.com/gui/file/c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
