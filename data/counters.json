@@ -39,16 +39,16 @@
     "sha256": 8174,
     "url": 12000
   },
-  "generated_at": "2026-10-06T18:13:52Z",
+  "generated_at": "2026-10-06T18:20:46Z",
   "latest_run": {
     "durations": {
-      "circl": 16.3,
-      "feodo": 0.1,
+      "circl": 45.3,
+      "feodo": 0.2,
       "malwarebazaar": 0.1,
       "openphish": 0.1,
       "threatfox": 0.5,
-      "tor": 1.9,
-      "urlhaus": 0.3
+      "tor": 1.7,
+      "urlhaus": 0.6
     },
     "errors": {},
     "feeds": {
@@ -61,12 +61,12 @@
       "urlhaus": 5001
     },
     "fetched": 25615,
-    "finished_at": "2026-10-06T18:13:52Z",
-    "new": 5574,
+    "finished_at": "2026-10-06T18:20:46Z",
+    "new": 0,
     "pruned": 0,
-    "started_at": "2026-10-06T18:13:31Z",
+    "started_at": "2026-10-06T18:19:57Z",
     "total": 40153,
-    "updated": 16618
+    "updated": 22192
   },
   "total": 40153
 }

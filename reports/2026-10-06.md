@@ -1,6 +1,6 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T18:14:00Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T18:20:56Z UTC
 
 | Metric | Value |
 | --- | --- |
