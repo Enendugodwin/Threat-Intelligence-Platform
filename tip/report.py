@@ -24,13 +24,6 @@ _FEED_LABELS = {
 }
 
 
-def _sources(row) -> list[str]:
-    try:
-        return [s for s in str(row["sources"] or "").split(",") if s]
-    except (IndexError, KeyError):
-        return []
-
-
 def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None = None) -> dict:
     section = config.get("feeds") or {}
     enabled = [name for name, opts in section.items() if (opts or {}).get("enabled")]
@@ -108,24 +101,38 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     org = org_profile(config)
     evidence_map = store.sources_map()
     sightings = store.sightings_map()
+    source_cache: dict[str, list[str]] = {}
+    risk_cache: dict[str, dict] = {}
 
     def _evidence(key: str) -> list[dict]:
         return evidence_map.get(str(key), [])
 
-    def _risk(row, sources: list[str]) -> dict:
+    def _row_sources(row) -> list[str]:
+        key = str(row["key"])
+        if key not in source_cache:
+            source_cache[key] = [item["source"] for item in evidence_map.get(key, [])]
+        return source_cache[key]
+
+    def _risk(row, sources: list[str] | None = None) -> dict:
+        key = str(row["key"])
+        if key in risk_cache:
+            return risk_cache[key]
+        sources = _row_sources(row) if sources is None else sources
         last_seen = row["last_seen"] or None
         if not last_seen:
             try:
                 last_seen = row["seen_at"]
             except (IndexError, KeyError):
                 last_seen = None
-        return ioc_risk(
+        risk = ioc_risk(
             confidence=row["confidence"] or 0,
             sources=len(sources),
             last_seen=last_seen,
             has_malware=bool(row["malware"]),
             ioc_type=row["type"],
         )
+        risk_cache[key] = risk
+        return risk
 
     new_by_type: dict[str, int] = {}
     new_by_family: dict[str, int] = {}
@@ -160,18 +167,16 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             }
         )
 
-    coverage = [{"id": tid, **info} for tid, info in attack.coverage(all_rows).items()]
-
     notable = [
         {
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
-            "risk": _risk(row, _sources(row)),
+            "risk": _risk(row, _row_sources(row)),
             "evidence": _evidence(row["key"])[:4],
             "hits": sightings.get(str(row["key"])) or None,
             "type": row["type"],
             "malware": row["malware"] or "",
-            "sources": _sources(row),
+            "sources": _row_sources(row),
             "first_seen": row["first_seen"] or "",
             "confidence": row["confidence"],
         }
@@ -203,6 +208,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     type_rows: dict[str, list] = {}
     family_rows_by_name: dict[str, list] = {}
     technique_rows: dict[str, list] = {}
+    classifications: dict[str, tuple[list[str], str]] = {}
     family_name_set = {f["name"] for f in families}
     for row in all_rows:
         type_rows.setdefault(row["type"], []).append(row)
@@ -212,11 +218,18 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             row_tags = json.loads(row["tags"] or "[]")
         except (TypeError, ValueError):
             row_tags = []
-        for technique in attack.techniques_for(row["malware"], row_tags, row["type"]):
+        techniques, basis = attack.classification(row["malware"], row_tags, row["type"])
+        classifications[str(row["key"])] = (techniques, basis)
+        for technique in techniques:
             technique_rows.setdefault(technique, []).append(row)
 
+    coverage = [
+        {"id": tid, **info}
+        for tid, info in attack.coverage(all_rows, classifications=classifications).items()
+    ]
+
     def _browse_entry(row) -> dict:
-        sources = _sources(row)
+        sources = _row_sources(row)
         return {
             "value": defang(row["value"]),
             "href": virustotal_url(row["type"], row["value"]),
@@ -272,7 +285,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     # IOC explorer index: risk-ranked rows for the client-side search page
     scored = []
     for row in all_rows:
-        sources = _sources(row)
+        sources = _row_sources(row)
         risk = _risk(row, sources)
         scored.append((risk["score"], risk["level"], row, sources))
     scored.sort(key=lambda item: (-item[0], str(item[2]["value"])))

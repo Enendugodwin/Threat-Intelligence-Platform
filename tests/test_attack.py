@@ -45,3 +45,14 @@ def test_coverage_aggregation():
     assert coverage["T1486"]["basis"]["tag"] == 1
     assert coverage["T1071.001"]["primary"] >= 1
     assert coverage["T1071.001"]["basis"]["family"] >= 1
+
+
+def test_coverage_reuses_precomputed_classifications():
+    attack = _map()
+    rows = [{"key": "domain:evil.test"}]
+    coverage = attack.coverage(
+        rows,
+        classifications={"domain:evil.test": (["T1486"], "tag")},
+    )
+    assert coverage["T1486"]["count"] == 1
+    assert coverage["T1486"]["basis"]["tag"] == 1

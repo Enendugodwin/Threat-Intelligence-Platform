@@ -99,20 +99,32 @@ class AttackMap:
         return list((self.techniques.get(technique_id) or {}).get("tactics") or [])
 
     # -- aggregation -------------------------------------------------------
-    def coverage(self, rows) -> dict[str, dict]:
+    def coverage(
+        self,
+        rows,
+        classifications: dict[str, tuple[list[str], str]] | None = None,
+    ) -> dict[str, dict]:
         """Count IOCs per technique, split by evidence basis.
 
         Entries carry ``count`` (all), ``primary`` (family + tag evidence) and
         ``basis`` counts so heuristics can be excluded from the headline number.
-        Sorted by primary evidence first.
+        Sorted by primary evidence first. Callers that already classified rows
+        can pass that mapping to avoid repeating regex/tag evaluation.
         """
         counts: dict[str, dict] = {}
         for row in rows:
             try:
-                tags = json.loads(row["tags"] or "[]")
-            except (TypeError, ValueError):
-                tags = []
-            techniques, basis = self.classification(row["malware"], tags, row["type"])
+                key = str(row["key"])
+            except (IndexError, KeyError, TypeError):
+                key = ""
+            result = classifications.get(key) if classifications is not None else None
+            if result is None:
+                try:
+                    tags = json.loads(row["tags"] or "[]")
+                except (TypeError, ValueError):
+                    tags = []
+                result = self.classification(row["malware"], tags, row["type"])
+            techniques, basis = result
             for technique in techniques:
                 entry = counts.setdefault(
                     technique,

@@ -194,6 +194,7 @@ def test_offline_pipeline_end_to_end(tmp_path):
     explorer = (site_dir / "explorer.html").read_text(encoding="utf-8")
     assert "IOC Explorer" in explorer and "ioc-index" in explorer
     assert "risk-" in explorer
+    assert "threatfox" in explorer
 
     # environment matching + report search
     assert "Action queue" not in index
