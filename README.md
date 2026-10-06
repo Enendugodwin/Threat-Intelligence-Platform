@@ -125,7 +125,8 @@ care about.
 `site/reports.html` is a bank of vendor advisories and research, filterable by
 category (Windows / Linux / Hypervisors / Network Devices / Cisco / Palo Alto /
 General) and searchable across titles, summaries, tags and sources; refreshed on
-every sync. Each report gets its own page with:
+every sync. Select report cards to export just those reports as CSV/JSON or print
+the selection to PDF. Each report gets its own page with:
 
 - **Extracted indicators** - best-effort IOC extraction (URLs, domains, IPv4,
   hashes) from the advisory text, refanged first and shown defanged. Extraction

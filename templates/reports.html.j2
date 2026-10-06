@@ -32,6 +32,25 @@
   </div>
 
   {% if reports.entries %}
+  <div class="report-selection-toolbar no-print" aria-label="Select and export reports">
+    <label class="select-visible"><input id="select-visible-reports" type="checkbox"> Select visible</label>
+    <span id="selected-report-count" class="report-selection-count" aria-live="polite">0 selected</span>
+    <details class="export-menu" id="selected-report-export">
+      <summary class="action-button primary" aria-label="Export selected reports">
+        Export selected
+        <svg class="icon export-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </summary>
+      <div class="export-menu-panel" role="group" aria-label="Export selected reports as">
+        <button type="button" data-export-selected="csv" disabled><span class="export-format">CSV</span><span class="export-description">Selected reports</span></button>
+        <button type="button" data-export-selected="json" disabled><span class="export-format">JSON</span><span class="export-description">Selected reports</span></button>
+        <button type="button" data-export-selected="pdf" disabled><span class="export-format">PDF</span><span class="export-description">Print selected reports</span></button>
+      </div>
+    </details>
+    <span class="muted">Exports only checked reports.</span>
+  </div>
+  {% endif %}
+
+  {% if reports.entries %}
   <div class="report-grid">
     {% for r in reports.entries %}
     <article class="report-card cat-{{ r.category }}" data-search="{{ (r.title ~ ' ' ~ (r.summary or '') ~ ' ' ~ r.source_name ~ ' ' ~ r.label ~ ' ' ~ ((r.tags or []) | join(' ')))|lower }}">
@@ -41,6 +60,7 @@
         {% if r.risk %}<span class="risk risk-{{ r.risk.level }}">{{ r.risk.level }}</span>{% endif %}
         {% if r.org_matches %}<span class="badge badge-env">in your stack</span>{% endif %}
         {% if r.curated %}<span class="badge badge-curated">curated</span>{% endif %}
+        <label class="report-select"><input class="report-checkbox" type="checkbox" value="{{ r.id }}" aria-label="Select report: {{ r.title }}"><span>Select</span></label>
       </div>
       <h3><a href="report-{{ r.id }}.html">{{ r.title }}</a></h3>
       {% if r.summary %}<p class="excerpt">{{ r.summary }}</p>{% endif %}
@@ -67,30 +87,191 @@
   {% endif %}
 </section>
 
+{% if reports.entries %}
+<script id="reports-export-data" type="application/json" data-generated-at="{{ reports.generated_at }}">{{ reports.export_entries | tojson }}</script>
+<div id="selected-printout" hidden></div>
+{% endif %}
+
 <script>
 (function () {
   var input = document.getElementById("rsearch");
   var grid = document.querySelector(".report-grid");
-  if (!input || !grid) { return; }
+  if (!grid) { return; }
   var cards = Array.prototype.slice.call(grid.querySelectorAll(".report-card"));
   var count = document.getElementById("rcount");
   var empty = document.getElementById("rnoresults");
+  var selectVisible = document.getElementById("select-visible-reports");
+  var selectedCount = document.getElementById("selected-report-count");
+  var exportMenu = document.getElementById("selected-report-export");
+  var exportButtons = Array.prototype.slice.call(document.querySelectorAll("[data-export-selected]"));
+  var checkboxList = Array.prototype.slice.call(grid.querySelectorAll(".report-checkbox"));
+  var dataNode = document.getElementById("reports-export-data");
+  var exportReports = dataNode ? JSON.parse(dataNode.textContent || "[]") : [];
+  var reportsById = Object.create(null);
+  exportReports.forEach(function (report) { reportsById[report.id] = report; });
+
+  function visibleCards() {
+    return cards.filter(function (card) { return card.offsetParent !== null; });
+  }
+
+  function updateSelection() {
+    var selected = checkboxList.filter(function (checkbox) { return checkbox.checked; });
+    var visible = visibleCards();
+    var selectedVisible = visible.filter(function (card) {
+      return card.querySelector(".report-checkbox").checked;
+    });
+    if (selectedCount) { selectedCount.textContent = selected.length + " selected"; }
+    if (selectVisible) {
+      selectVisible.disabled = visible.length === 0;
+      selectVisible.checked = visible.length > 0 && selectedVisible.length === visible.length;
+      selectVisible.indeterminate = selectedVisible.length > 0 && selectedVisible.length < visible.length;
+    }
+    exportButtons.forEach(function (button) { button.disabled = selected.length === 0; });
+    cards.forEach(function (card) {
+      card.classList.toggle("selected", Boolean(card.querySelector(".report-checkbox").checked));
+    });
+  }
 
   function apply() {
-    var query = input.value.trim().toLowerCase();
+    var query = input ? input.value.trim().toLowerCase() : "";
     cards.forEach(function (card) {
       var text = card.getAttribute("data-search") || "";
       card.style.display = (!query || text.indexOf(query) >= 0) ? "" : "none";
     });
-    var visible = cards.filter(function (card) { return card.offsetParent !== null; }).length;
+    var visible = visibleCards().length;
     if (count) { count.textContent = visible + " of " + cards.length + " reports"; }
     if (empty) { empty.style.display = visible === 0 ? "" : "none"; }
+    updateSelection();
   }
 
   var timer;
-  input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(apply, 120); });
+  if (input) { input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(apply, 120); }); }
   Array.prototype.forEach.call(document.querySelectorAll(".report-filter"), function (radio) {
     radio.addEventListener("change", apply);
+  });
+  checkboxList.forEach(function (checkbox) {
+    checkbox.addEventListener("change", updateSelection);
+  });
+  if (selectVisible) {
+    selectVisible.addEventListener("change", function () {
+      visibleCards().forEach(function (card) {
+        card.querySelector(".report-checkbox").checked = selectVisible.checked;
+      });
+      updateSelection();
+    });
+  }
+
+  function getSelectedReports() {
+    return checkboxList.filter(function (checkbox) { return checkbox.checked; })
+      .map(function (checkbox) { return reportsById[checkbox.value]; })
+      .filter(Boolean);
+  }
+
+  function downloadFile(content, mime, filename) {
+    var blob = new Blob([content], {type: mime});
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function reportFilename(extension) {
+    return "threat-intel-reports-" + new Date().toISOString().slice(0, 10) + "." + extension;
+  }
+
+  function csvCell(value) {
+    var text = String(value == null ? "" : value);
+    if (/^[\t\r\n ]*[=+\-@]/.test(text)) { text = "'" + text; }
+    return '"' + text.replace(/"/g, '""') + '"';
+  }
+
+  var csvColumns = [
+    ["id", "Report ID"], ["title", "Title"], ["published", "Published"],
+    ["source", "Source ID"], ["source_name", "Source"], ["category", "Category"],
+    ["url", "Original URL"], ["summary", "Summary"], ["tags", "Tags"],
+    ["cves", "CVEs"], ["techniques", "ATT&CK techniques"],
+    ["iocs", "Extracted indicators"], ["recommendations", "Recommendations"], ["curated", "Curated"]
+  ];
+
+  function csvValue(report, key) {
+    if (key === "iocs") {
+      return (report.iocs || []).map(function (ioc) { return ioc.type + ": " + ioc.value; }).join("; ");
+    }
+    if (Array.isArray(report[key])) { return report[key].join("; "); }
+    return report[key] === true ? "true" : report[key] === false ? "false" : (report[key] || "");
+  }
+
+  function appendText(parent, tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) { node.className = className; }
+    node.textContent = text;
+    parent.appendChild(node);
+    return node;
+  }
+
+  function appendPrintList(parent, heading, items) {
+    if (!items || !items.length) { return; }
+    appendText(parent, "h3", "", heading);
+    var list = document.createElement("ul");
+    items.forEach(function (item) { appendText(list, "li", "", item); });
+    parent.appendChild(list);
+  }
+
+  function buildPrintout(reports) {
+    var printout = document.getElementById("selected-printout");
+    printout.replaceChildren();
+    appendText(printout, "h1", "", "Selected threat intelligence reports");
+    appendText(printout, "p", "muted", reports.length + " report(s) · Generated " + (dataNode.getAttribute("data-generated-at") || ""));
+    reports.forEach(function (report) {
+      var article = document.createElement("article");
+      article.className = "selected-report-print";
+      appendText(article, "h2", "", report.title);
+      appendText(article, "p", "", [report.source_name, report.category, (report.published || "").slice(0, 10)].filter(Boolean).join(" · "));
+      if (report.url) { appendText(article, "p", "", "Source URL: " + report.url); }
+      if (report.summary) { appendText(article, "p", "", report.summary); }
+      appendPrintList(article, "CVEs", report.cves);
+      appendPrintList(article, "Tags", report.tags);
+      appendPrintList(article, "ATT&CK techniques", report.techniques);
+      appendPrintList(article, "Extracted indicators", (report.iocs || []).map(function (ioc) { return ioc.type + ": " + ioc.value; }));
+      appendPrintList(article, "Recommendations", report.recommendations);
+      printout.appendChild(article);
+    });
+    return printout;
+  }
+
+  function exportSelected(format) {
+    var selected = getSelectedReports();
+    if (!selected.length) { return; }
+    if (exportMenu) { exportMenu.open = false; }
+    if (format === "json") {
+      downloadFile(JSON.stringify({
+        schema: "threat-intel-platform/reports/v1",
+        generated_at: dataNode.getAttribute("data-generated-at") || "",
+        count: selected.length,
+        reports: selected
+      }, null, 2), "application/json;charset=utf-8", reportFilename("json"));
+    } else if (format === "csv") {
+      var lines = [csvColumns.map(function (column) { return csvCell(column[1]); }).join(",")];
+      selected.forEach(function (report) {
+        lines.push(csvColumns.map(function (column) { return csvCell(csvValue(report, column[0])); }).join(","));
+      });
+      downloadFile("\uFEFF" + lines.join("\r\n") + "\r\n", "text/csv;charset=utf-8", reportFilename("csv"));
+    } else if (format === "pdf") {
+      buildPrintout(selected);
+      document.body.classList.add("printing-selected-reports");
+      window.addEventListener("afterprint", function () {
+        document.body.classList.remove("printing-selected-reports");
+      }, {once:true});
+      window.print();
+    }
+  }
+
+  exportButtons.forEach(function (button) {
+    button.addEventListener("click", function () { exportSelected(button.getAttribute("data-export-selected")); });
   });
   apply();
 })();

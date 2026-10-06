@@ -77,6 +77,33 @@ def _reports_view(doc: dict, org: dict | None = None) -> dict:
     ]
     return {
         "entries": items,
+        "export_entries": [
+            {
+                "id": str(item.get("id") or ""),
+                "title": str(item.get("title") or ""),
+                "published": str(item.get("published") or ""),
+                "source": str(item.get("source") or ""),
+                "source_name": str(item.get("source_name") or ""),
+                "category": str(item.get("label") or ""),
+                "url": str(item.get("url") or ""),
+                "summary": str(item.get("summary") or ""),
+                "tags": [str(value) for value in (item.get("tags") or [])],
+                "cves": [str(value) for value in (item.get("cves") or [])],
+                "techniques": [str(value) for value in (item.get("techniques") or [])],
+                "iocs": [
+                    {
+                        "type": str(ioc.get("type") or ""),
+                        "value": str(ioc.get("value") or ""),
+                    }
+                    for ioc in (item.get("iocs") or [])
+                ],
+                "recommendations": [
+                    str(value) for value in (item.get("recommendations") or [])
+                ],
+                "curated": bool(item.get("curated")),
+            }
+            for item in items
+        ],
         "total": len(items),
         "categories": categories,
         "generated_at": doc.get("generated_at", ""),

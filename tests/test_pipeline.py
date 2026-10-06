@@ -1,6 +1,7 @@
 import csv
 import json
 import pathlib
+import re
 
 from tip.attack import load_attack_map
 from tip.exports import sigma as sigma_mod
@@ -193,6 +194,17 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "matched" in kev_html
     assert 'id="rsearch"' in feed
     assert "data-search=" in feed
+    assert 'id="select-visible-reports"' in feed
+    assert 'class="report-checkbox"' in feed
+    assert 'data-export-selected="csv"' in feed and 'data-export-selected="json"' in feed
+    assert 'data-export-selected="pdf"' in feed
+    assert 'id="reports-export-data"' in feed and '"title": "Test advisory"' in feed
+    assert 'id="selected-printout"' in feed and "Selected threat intelligence reports" in feed
+    export_data = re.search(r'<script id="reports-export-data"[^>]*>(.*?)</script>', feed, re.S)
+    exported_reports = json.loads(export_data.group(1))
+    assert len(exported_reports) == 1
+    assert exported_reports[0]["iocs"][0]["value"] == "bad[.]example-bad[.]net"
+    assert exported_reports[0]["recommendations"] == ["Do the thing"]
 
     # phase 4: feed deltas, threats/actor pages, report assessment
     assert "Duration" in index
