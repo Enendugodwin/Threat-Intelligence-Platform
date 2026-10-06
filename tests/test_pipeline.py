@@ -188,9 +188,8 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "IOC Explorer" in explorer and "ioc-index" in explorer
     assert "risk-" in explorer
 
-    # environment matching + action queue + report search
-    assert "Action queue" in index
-    assert "affects your stack" in index  # KEV fixture product "VPN" matches the org profile
+    # environment matching + report search
+    assert "Action queue" not in index
     assert "matched" in kev_html
     assert 'id="rsearch"' in feed
     assert "data-search=" in feed
