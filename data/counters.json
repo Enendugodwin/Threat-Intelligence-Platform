@@ -2,21 +2,21 @@
   "by_malware": {
     "AMOS": 145,
     "AdaptixC2": 251,
-    "AsyncRAT": 2174,
+    "AsyncRAT": 2176,
     "ClearFake": 1003,
-    "Cobalt Strike": 1236,
-    "DCRat": 98,
-    "Evilginx": 93,
+    "Cobalt Strike": 1241,
+    "DCRat": 99,
+    "Evilginx": 94,
     "Havoc": 88,
     "IClickFix": 730,
     "Mirai": 3304,
-    "PureRAT": 340,
+    "PureRAT": 345,
     "Remcos": 133,
     "Remus": 103,
     "Unknown Loader": 4093,
     "Unknown RAT": 167,
     "Unknown Stealer": 186,
-    "Unknown malware": 546,
+    "Unknown malware": 547,
     "VShell": 111,
     "Vidar": 255,
     "php.shin_webshell": 103
@@ -24,49 +24,49 @@
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 2641,
+    "malwarebazaar": 2646,
     "openphish": 1018,
-    "threatfox": 16506,
+    "threatfox": 16521,
     "tor": 9295,
-    "urlhaus": 10634
+    "urlhaus": 10639
   },
   "by_type": {
     "domain": 7845,
-    "ipv4": 9030,
+    "ipv4": 9045,
     "ipv6": 2841,
     "md5": 252,
     "sha1": 228,
-    "sha256": 8180,
-    "url": 12030
+    "sha256": 8185,
+    "url": 12035
   },
-  "generated_at": "2026-10-06T19:49:04Z",
+  "generated_at": "2026-10-06T19:56:22Z",
   "latest_run": {
     "durations": {
-      "circl": 22.8,
+      "circl": 10.6,
       "feodo": 0.2,
-      "malwarebazaar": 0.3,
+      "malwarebazaar": 0.1,
       "openphish": 0.1,
-      "threatfox": 0.6,
-      "tor": 4.5,
-      "urlhaus": 0.6
+      "threatfox": 0.5,
+      "tor": 2.1,
+      "urlhaus": 0.4
     },
     "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1538,
+      "malwarebazaar": 1534,
       "openphish": 300,
-      "threatfox": 9396,
+      "threatfox": 9370,
       "tor": 8619,
-      "urlhaus": 5000
+      "urlhaus": 5001
     },
-    "fetched": 25772,
-    "finished_at": "2026-10-06T19:49:04Z",
-    "new": 1,
+    "fetched": 25743,
+    "finished_at": "2026-10-06T19:56:22Z",
+    "new": 25,
     "pruned": 0,
-    "started_at": "2026-10-06T19:48:34Z",
-    "total": 40406,
-    "updated": 22293
+    "started_at": "2026-10-06T19:56:06Z",
+    "total": 40431,
+    "updated": 22241
   },
-  "total": 40406
+  "total": 40431
 }

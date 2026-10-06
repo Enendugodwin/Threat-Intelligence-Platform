@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T19:49:12Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T19:56:28Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 40406 |
-| New in window | 40406 |
+| Indicators tracked | 40431 |
+| New in window | 40431 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -13,10 +13,10 @@
 
 | Feed | Indicators this run | Status |
 | --- | --- | --- |
-| urlhaus | 5000 | ok |
+| urlhaus | 5001 | ok |
 | feodo | 5 | ok |
-| threatfox | 9396 | ok |
-| malwarebazaar | 1538 | ok |
+| threatfox | 9370 | ok |
+| malwarebazaar | 1534 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
 | tor | 8619 | ok |
@@ -25,9 +25,9 @@
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 12030 | 12030 |
-| ipv4 | 9030 | 9030 |
-| sha256 | 8180 | 8180 |
+| url | 12035 | 12035 |
+| ipv4 | 9045 | 9045 |
+| sha256 | 8185 | 8185 |
 | domain | 7845 | 7845 |
 | ipv6 | 2841 | 2841 |
 | md5 | 252 | 252 |
@@ -71,12 +71,12 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | --- | --- | --- | --- |
 | Unknown Loader | 4093 | 4093 | — |
 | Mirai | 3304 | 3304 | T1498, T1071.001 |
-| AsyncRAT | 2174 | 2174 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| Cobalt Strike | 1236 | 1236 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AsyncRAT | 2176 | 2176 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Cobalt Strike | 1241 | 1241 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
 | ClearFake | 1003 | 1003 | — |
 | IClickFix | 730 | 730 | — |
-| Unknown malware | 546 | 546 | — |
-| PureRAT | 340 | 340 | — |
+| Unknown malware | 547 | 547 | — |
+| PureRAT | 345 | 345 | — |
 | Vidar | 255 | 255 | T1555, T1071.001, T1567 |
 | AdaptixC2 | 251 | 251 | — |
 | Unknown Stealer | 186 | 186 | — |
@@ -86,27 +86,27 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | VShell | 111 | 111 | — |
 | Remus | 103 | 103 | — |
 | php.shin_webshell | 103 | 103 | — |
-| DCRat | 98 | 98 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| Evilginx | 93 | 93 | — |
+| DCRat | 99 | 99 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Evilginx | 94 | 94 | — |
 | Havoc | 88 | 88 | — |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1105 | Ingress Tool Transfer | command-and-control | 12358 |
-| T1071.001 | Web Protocols | command-and-control | 29340 |
-| T1498 | Network Denial of Service | impact | 7176 |
+| T1105 | Ingress Tool Transfer | command-and-control | 12368 |
+| T1071.001 | Web Protocols | command-and-control | 29356 |
+| T1498 | Network Denial of Service | impact | 7177 |
 | T1204.002 | Malicious File | execution | 5456 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 5445 |
-| T1573 | Encrypted Channel | command-and-control | 4625 |
-| T1056.001 | Keylogging | collection, credential-access | 3034 |
-| T1566.001 | Spearphishing Attachment | initial-access | 2721 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2481 |
-| T1113 | Screen Capture | collection | 2459 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1416 |
-| T1090 | Proxy | command-and-control | 1274 |
-| T1059.001 | PowerShell | execution | 1248 |
+| T1573 | Encrypted Channel | command-and-control | 4636 |
+| T1056.001 | Keylogging | collection, credential-access | 3041 |
+| T1566.001 | Spearphishing Attachment | initial-access | 2724 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2484 |
+| T1113 | Screen Capture | collection | 2462 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1421 |
+| T1090 | Proxy | command-and-control | 1279 |
+| T1059.001 | PowerShell | execution | 1253 |
 | T1566 | Phishing | initial-access | 1027 |
 | T1566.002 | Spearphishing Link | initial-access | 1027 |
 | T1555 | Credentials from Password Stores | credential-access | 839 |
