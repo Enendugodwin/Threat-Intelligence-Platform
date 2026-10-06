@@ -7,10 +7,8 @@
     <h1 class="page-title">Threat Intelligence Overview</h1>
     <p class="muted">{{ totals.total }} tracked indicators &middot; {{ feed_health.ok }}/{{ feed_health.total }} active feeds healthy</p>
   </div>
-  <div class="page-actions" aria-label="Export threat intelligence">
-    <a class="action-link" href="iocs.json" download>Download JSON</a>
-    <a class="action-link" href="iocs.csv" download>Download CSV</a>
-    <a class="action-link primary" href="report.html">Report / PDF</a>
+  <div class="page-actions no-print">
+    {{ ui.export_menu() }}
   </div>
 </div>
 {{ ui.cards(totals, feed_health, tor, window_days) }}

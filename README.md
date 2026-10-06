@@ -20,7 +20,7 @@ ATT&CK (heuristically), and publishes finished products:
 | KEV + EPSS | `site/kev.html` | known exploited vulnerabilities with exploit-probability scoring |
 | Markdown report | `reports/latest.md` | intel pulse for the week |
 | PDF report | `site/report.html` (browser print) | use **Export PDF** and choose Save as PDF |
-| HTML dashboard | `site/index.html` | GitHub Pages, dark/light toggle, JSON/CSV downloads |
+| HTML dashboard | `site/index.html` | GitHub Pages, dark/light toggle, CSV/JSON/PDF export dropdown |
 
 It runs entirely on GitHub: **Actions** execute the pipeline every 6 hours and
 **Pages** hosts the dashboard. No server required. MISP/OpenCTI connectors ship

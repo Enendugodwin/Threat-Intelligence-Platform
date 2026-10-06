@@ -137,8 +137,9 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "Threat Intel Pipeline" in index
     assert 'href="reports.html"' in index
     assert 'id="theme-toggle"' in index and 'data-theme="light"' in index
+    assert 'details class="export-menu"' in index
     assert 'href="iocs.json" download' in index and 'href="iocs.csv" download' in index
-    assert 'href="report.html"' in index and "Report / PDF" in index
+    assert 'href="report.html?print=1"' in index and "PDF report" in index
 
     site_dir = tmp_path / "site"
     site_json = json.loads((site_dir / "iocs.json").read_text(encoding="utf-8"))
@@ -146,7 +147,8 @@ def test_offline_pipeline_end_to_end(tmp_path):
     with (site_dir / "iocs.csv").open(newline="", encoding="utf-8") as fh:
         assert list(csv.DictReader(fh))
     pulse = (site_dir / "report.html").read_text(encoding="utf-8")
-    assert 'id="print-report"' in pulse and "window.print()" in pulse
+    assert 'details class="export-menu"' in pulse and 'href="report.html?print=1"' in pulse
+    assert 'new URLSearchParams(window.location.search)' in pulse and "window.print()" in pulse
     assert "@media print" in index
 
     feed = (site_dir / "reports.html").read_text(encoding="utf-8")

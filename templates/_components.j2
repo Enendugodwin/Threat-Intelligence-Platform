@@ -25,6 +25,20 @@
 </svg>
 {%- endmacro %}
 
+{% macro export_menu() -%}
+<details class="export-menu">
+  <summary class="action-button primary" aria-label="Choose report export format">
+    Export
+    <svg class="icon export-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+  </summary>
+  <div class="export-menu-panel" role="group" aria-label="Download report">
+    <a href="iocs.csv" download><span class="export-format">CSV</span><span class="export-description">Indicator data</span></a>
+    <a href="iocs.json" download><span class="export-format">JSON</span><span class="export-description">Indicator data</span></a>
+    <a href="report.html?print=1"><span class="export-format">PDF report</span><span class="export-description">Opens print / Save as PDF</span></a>
+  </div>
+</details>
+{%- endmacro %}
+
 {% macro bars(by_type, window_days) -%}
 {% if by_type %}
 {% set max_total = (by_type | map(attribute='total') | max) or 1 %}
