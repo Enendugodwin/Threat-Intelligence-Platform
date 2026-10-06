@@ -93,6 +93,9 @@ nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity
 .export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
 .export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
 .export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
 .export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
 .export-description{font-size:.7rem;color:var(--color-muted-foreground)}
 
@@ -198,6 +201,18 @@ td code{background:transparent;border:none;padding:0}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
 .print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -259,6 +274,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   table{min-width:0!important;font-size:8pt}
   th,td{padding:5px!important;border-color:#ccc!important}
   .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
 }
 </style>
 </head>
@@ -273,10 +292,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>40165 indicators</span>
-      <span>12 new / 22192 updated last run &middot; 40165 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40405 indicators</span>
+      <span>240 new / 22054 updated last run &middot; 40405 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T18:32:26Z</span>
+      <span>sync 2026-10-06T19:37:59Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -3321,7 +3340,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:32:26Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T19:37:59Z UTC</span></p>
 </footer>
 <script>
 (function () {

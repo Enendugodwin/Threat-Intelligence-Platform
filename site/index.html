@@ -93,6 +93,9 @@ nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity
 .export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
 .export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
 .export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
 .export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
 .export-description{font-size:.7rem;color:var(--color-muted-foreground)}
 
@@ -198,6 +201,18 @@ td code{background:transparent;border:none;padding:0}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
 .print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -259,6 +274,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   table{min-width:0!important;font-size:8pt}
   th,td{padding:5px!important;border-color:#ccc!important}
   .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
 }
 </style>
 </head>
@@ -273,10 +292,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>40165 indicators</span>
-      <span>12 new / 22192 updated last run &middot; 40165 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40405 indicators</span>
+      <span>240 new / 22054 updated last run &middot; 40405 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T18:32:26Z</span>
+      <span>sync 2026-10-06T19:37:59Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -299,7 +318,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <div class="page-heading">
   <div>
     <h1 class="page-title">Threat Intelligence Overview</h1>
-    <p class="muted">40165 tracked indicators &middot; 7/7 active feeds healthy</p>
+    <p class="muted">40405 tracked indicators &middot; 7/7 active feeds healthy</p>
   </div>
   <div class="page-actions no-print">
     <details class="export-menu">
@@ -318,18 +337,18 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section class="cards" aria-label="Key metrics">
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Indicators tracked</div>
-    <span class="num">40165</span>
-    <span class="card-sub">15396 at confidence &ge; 80</span>
+    <span class="num">40405</span>
+    <span class="card-sub">15694 at confidence &ge; 80</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>New this run</div>
-    <span class="num">12</span>
-    <span class="card-sub">22192 updated &middot; 0 pruned</span>
+    <span class="num">240</span>
+    <span class="card-sub">22054 updated &middot; 0 pruned</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Last 7 days</div>
-    <span class="num">40165</span>
-    <span class="card-sub">397073 updated &middot; 19 sync run(s)</span>
+    <span class="num">40405</span>
+    <span class="card-sub">419127 updated &middot; 20 sync run(s)</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Feeds healthy</div>
@@ -343,8 +362,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>Tor nodes</div>
-    <span class="num">9277</span>
-    <span class="card-sub">2156 exits / 7121 relays</span>
+    <span class="num">9295</span>
+    <span class="card-sub">2161 exits / 7134 relays</span>
   </div>
 </section>
 
@@ -427,7 +446,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>URLhaus</code></td>
           <td class="num-cell">5001</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">0.4s</td>
+          <td class="num-cell">0.5s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
@@ -435,23 +454,23 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>Feodo Tracker</code></td>
           <td class="num-cell">5</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">0.1s</td>
+          <td class="num-cell">0.2s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>ThreatFox</code></td>
-          <td class="num-cell">9235</td>
-          <td class="num-cell">+11</td>
+          <td class="num-cell">9396</td>
+          <td class="num-cell">+161</td>
           <td class="num-cell">0.4s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>MalwareBazaar</code></td>
-          <td class="num-cell">1548</td>
-          <td class="num-cell">0</td>
-          <td class="num-cell">0.1s</td>
+          <td class="num-cell">1538</td>
+          <td class="num-cell">-10</td>
+          <td class="num-cell">0.2s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
@@ -459,7 +478,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>OpenPhish</code></td>
           <td class="num-cell">300</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">0.0s</td>
+          <td class="num-cell">0.1s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
@@ -467,22 +486,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>CIRCL MISP</code></td>
           <td class="num-cell">914</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">7.7s</td>
+          <td class="num-cell">7.6s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>Tor Project</code></td>
-          <td class="num-cell">8623</td>
-          <td class="num-cell">0</td>
-          <td class="num-cell">2.1s</td>
+          <td class="num-cell">8619</td>
+          <td class="num-cell">-4</td>
+          <td class="num-cell">1.8s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="muted">Last run 2026-10-06T18:29:58Z UTC &middot; &Delta; compares with the previous run.</p>
+  <p class="muted">Last run 2026-10-06T19:37:44Z UTC &middot; &Delta; compares with the previous run.</p>
 </section>
 
 <section>
@@ -491,37 +510,37 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-url.html">url</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 100.0%"></span></span>
-    <span class="bar-value">12005 <span class="new">+12005</span></span>
+    <span class="bar-value">12029 <span class="new">+12029</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv4.html">ipv4</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 75.1%"></span></span>
-    <span class="bar-value">9014 <span class="new">+9014</span></span>
+    <span class="bar-value">9030 <span class="new">+9030</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-sha256.html">sha256</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 68.1%"></span></span>
-    <span class="bar-value">8174 <span class="new">+8174</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 68.0%"></span></span>
+    <span class="bar-value">8180 <span class="new">+8180</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-domain.html">domain</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 65.2%"></span></span>
-    <span class="bar-value">7829 <span class="new">+7829</span></span>
+    <span class="bar-value">7845 <span class="new">+7845</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv6.html">ipv6</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 23.6%"></span></span>
-    <span class="bar-value">2837 <span class="new">+2837</span></span>
+    <span class="bar-value">2841 <span class="new">+2841</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-md5.html">md5</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.4%"></span></span>
-    <span class="bar-value">165 <span class="new">+165</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 2.1%"></span></span>
+    <span class="bar-value">252 <span class="new">+252</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-sha1.html">sha1</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.2%"></span></span>
-    <span class="bar-value">141 <span class="new">+141</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.9%"></span></span>
+    <span class="bar-value">228 <span class="new">+228</span></span>
   </div>
 </div>
 
@@ -549,8 +568,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-asyncrat.html">AsyncRAT</a></td>
-          <td class="num-cell">2168</td>
-          <td class="num-cell">2168</td>
+          <td class="num-cell">2174</td>
+          <td class="num-cell">2174</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span></span></td>
         </tr>
         <tr>
@@ -561,14 +580,14 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-clearfake.html">ClearFake</a></td>
-          <td class="num-cell">990</td>
-          <td class="num-cell">990</td>
+          <td class="num-cell">1003</td>
+          <td class="num-cell">1003</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-iclickfix.html">IClickFix</a></td>
-          <td class="num-cell">729</td>
-          <td class="num-cell">729</td>
+          <td class="num-cell">730</td>
+          <td class="num-cell">730</td>
           <td>—</td>
         </tr>
         <tr>
@@ -584,16 +603,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>—</td>
         </tr>
         <tr>
-          <td><a href="family-adaptixc2.html">AdaptixC2</a></td>
-          <td class="num-cell">248</td>
-          <td class="num-cell">248</td>
-          <td>—</td>
+          <td><a href="family-vidar.html">Vidar</a></td>
+          <td class="num-cell">255</td>
+          <td class="num-cell">255</td>
+          <td><span class="chip-list"><span class="chip">T1555</span><span class="chip">T1071.001</span><span class="chip">T1567</span></span></td>
         </tr>
         <tr>
-          <td><a href="family-vidar.html">Vidar</a></td>
-          <td class="num-cell">231</td>
-          <td class="num-cell">231</td>
-          <td><span class="chip-list"><span class="chip">T1555</span><span class="chip">T1071.001</span><span class="chip">T1567</span></span></td>
+          <td><a href="family-adaptixc2.html">AdaptixC2</a></td>
+          <td class="num-cell">251</td>
+          <td class="num-cell">251</td>
+          <td>—</td>
         </tr>
         <tr>
           <td><a href="family-unknown-stealer.html">Unknown Stealer</a></td>
@@ -621,8 +640,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-vshell.html">VShell</a></td>
-          <td class="num-cell">110</td>
-          <td class="num-cell">110</td>
+          <td class="num-cell">111</td>
+          <td class="num-cell">111</td>
           <td>—</td>
         </tr>
         <tr>
@@ -633,8 +652,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-php-shin-webshell.html">php.shin_webshell</a></td>
-          <td class="num-cell">101</td>
-          <td class="num-cell">101</td>
+          <td class="num-cell">103</td>
+          <td class="num-cell">103</td>
           <td>—</td>
         </tr>
         <tr>
@@ -672,73 +691,73 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="technique-T1105.html"><code>T1105</code></a></td>
           <td>Ingress Tool Transfer</td>
           <td>command-and-control</td>
-          <td class="num-cell">12303</td>
+          <td class="num-cell">12357</td>
         </tr>
         <tr>
           <td><a href="technique-T1071.001.html"><code>T1071.001</code></a></td>
           <td>Web Protocols</td>
           <td>command-and-control</td>
-          <td class="num-cell">12199 <span class="muted">+17025 heuristic</span></td>
+          <td class="num-cell">12277 <span class="muted">+17060 heuristic</span></td>
         </tr>
         <tr>
           <td><a href="technique-T1498.html"><code>T1498</code></a></td>
           <td>Network Denial of Service</td>
           <td>impact</td>
-          <td class="num-cell">7162</td>
+          <td class="num-cell">7173</td>
         </tr>
         <tr>
           <td><a href="technique-T1204.002.html"><code>T1204.002</code></a></td>
           <td>Malicious File</td>
           <td>execution</td>
-          <td class="num-cell">5426</td>
+          <td class="num-cell">5456</td>
         </tr>
         <tr>
           <td><a href="technique-T1027.html"><code>T1027</code></a></td>
           <td>Obfuscated Files or Information</td>
           <td>defense-evasion</td>
-          <td class="num-cell">5415</td>
+          <td class="num-cell">5445</td>
         </tr>
         <tr>
           <td><a href="technique-T1573.html"><code>T1573</code></a></td>
           <td>Encrypted Channel</td>
           <td>command-and-control</td>
-          <td class="num-cell">4622</td>
+          <td class="num-cell">4625</td>
         </tr>
         <tr>
           <td><a href="technique-T1056.001.html"><code>T1056.001</code></a></td>
           <td>Keylogging</td>
           <td>collection, credential-access</td>
-          <td class="num-cell">2994</td>
+          <td class="num-cell">3034</td>
         </tr>
         <tr>
           <td><a href="technique-T1566.001.html"><code>T1566.001</code></a></td>
           <td>Spearphishing Attachment</td>
           <td>initial-access</td>
-          <td class="num-cell">2678</td>
+          <td class="num-cell">2721</td>
         </tr>
         <tr>
           <td><a href="technique-T1547.001.html"><code>T1547.001</code></a></td>
           <td>Registry Run Keys / Startup Folder</td>
           <td>persistence, privilege-escalation</td>
-          <td class="num-cell">2468</td>
+          <td class="num-cell">2481</td>
         </tr>
         <tr>
           <td><a href="technique-T1113.html"><code>T1113</code></a></td>
           <td>Screen Capture</td>
           <td>collection</td>
-          <td class="num-cell">2446</td>
+          <td class="num-cell">2459</td>
         </tr>
         <tr>
           <td><a href="technique-T1055.html"><code>T1055</code></a></td>
           <td>Process Injection</td>
           <td>defense-evasion, privilege-escalation</td>
-          <td class="num-cell">1413</td>
+          <td class="num-cell">1416</td>
         </tr>
         <tr>
           <td><a href="technique-T1090.html"><code>T1090</code></a></td>
           <td>Proxy</td>
           <td>command-and-control</td>
-          <td class="num-cell">1271</td>
+          <td class="num-cell">1274</td>
         </tr>
         <tr>
           <td><a href="technique-T1059.001.html"><code>T1059.001</code></a></td>
@@ -762,25 +781,25 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="technique-T1555.html"><code>T1555</code></a></td>
           <td>Credentials from Password Stores</td>
           <td>credential-access</td>
-          <td class="num-cell">779</td>
+          <td class="num-cell">839</td>
         </tr>
         <tr>
           <td><a href="technique-T1567.html"><code>T1567</code></a></td>
           <td>Exfiltration Over Web Service</td>
           <td>exfiltration</td>
-          <td class="num-cell">716</td>
+          <td class="num-cell">776</td>
         </tr>
         <tr>
           <td><a href="technique-T1552.001.html"><code>T1552.001</code></a></td>
           <td>Credentials In Files</td>
           <td>credential-access</td>
-          <td class="num-cell">499</td>
+          <td class="num-cell">508</td>
         </tr>
         <tr>
           <td><a href="technique-T1041.html"><code>T1041</code></a></td>
           <td>Exfiltration Over C2 Channel</td>
           <td>exfiltration</td>
-          <td class="num-cell">159</td>
+          <td class="num-cell">162</td>
         </tr>
         <tr>
           <td><a href="technique-T1059.005.html"><code>T1059.005</code></a></td>
@@ -850,14 +869,14 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Metric</th><th scope="col" class="num-col">Value</th></tr>
       </thead>
       <tbody>
-        <tr><td>Nodes tracked</td><td class="num-cell">9277</td></tr>
-        <tr><td>Exit nodes</td><td class="num-cell">2156</td></tr>
-        <tr><td>Other relays</td><td class="num-cell">7121</td></tr>
-        <tr><td>New in window</td><td class="num-cell">9277</td></tr>
+        <tr><td>Nodes tracked</td><td class="num-cell">9295</td></tr>
+        <tr><td>Exit nodes</td><td class="num-cell">2161</td></tr>
+        <tr><td>Other relays</td><td class="num-cell">7134</td></tr>
+        <tr><td>New in window</td><td class="num-cell">9295</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9277, source Tor Project Onionoo):</p>
+  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9295, source Tor Project Onionoo):</p>
   <div class="chip-list">
 <span class="chip">1[.]201[.]176[.]176</span><span class="chip">1[.]248[.]96[.]163</span><span class="chip">100[.]1[.]157[.]56</span><span class="chip">100[.]2[.]63[.]41</span><span class="chip">101[.]55[.]125[.]10</span><span class="chip">102[.]130[.]113[.]29</span><span class="chip">102[.]130[.]113[.]30</span><span class="chip">102[.]130[.]113[.]42</span><span class="chip">102[.]130[.]113[.]9</span><span class="chip">102[.]130[.]115[.]59</span><span class="chip">102[.]130[.]117[.]167</span><span class="chip">102[.]130[.]119[.]48</span><span class="chip">102[.]130[.]127[.]117</span><span class="chip">102[.]205[.]44[.]36</span><span class="chip">102[.]205[.]44[.]5</span><span class="chip">102[.]211[.]56[.]20</span><span class="chip">102[.]211[.]56[.]25</span><span class="chip">102[.]216[.]253[.]63</span><span class="chip">102[.]68[.]99[.]63</span><span class="chip">103[.]105[.]21[.]2</span>  </div>
   <p class="muted" style="margin-top: var(--space-lg)">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
@@ -871,6 +890,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Indicator (defanged)</th><th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th><th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th></tr>
       </thead>
       <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/114.66.20.236" target="_blank" rel="noopener"><code>114[.]66[.]20[.]236</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Quasar RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T19:05:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/up.3toto.com" target="_blank" rel="noopener"><code>up[.]3toto[.]com</code></a></td>
           <td>domain</td>
@@ -1111,16 +1140,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-10-06T14:30:48Z</td>
           <td class="num-cell">100</td>
         </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393" target="_blank" rel="noopener"><code>dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown RAT</td>
-          <td>threatfox</td>
-          <td>2026-10-06T14:30:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -1129,7 +1148,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:32:26Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T19:37:59Z UTC</span></p>
 </footer>
 <script>
 (function () {

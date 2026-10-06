@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>The Closed Quorum: Inside the first reported autonomous AI C2 implant &mdash; Threat Intel Pipeline</title>
+<title>USN-8884-1: U-Boot vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,26 +316,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">The Closed Quorum: Inside the first reported autonomous AI C2 implant</h1>
+<h1 class="page-title">USN-8884-1: U-Boot vulnerabilities</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Cisco</span>
-  <span class="badge">Cisco Talos</span>
-</div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Phishing</span></div>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
+<span class="badge">4 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 10 indicator(s)</div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 4 CVE(s), none in KEV</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Cisco Talos</td></tr>
-        <tr><td>Category</td><td>Cisco</td></tr>
-        <tr><td>Published</td><td>2026-09-22</td></tr>
-        <tr><td>Report ID</td><td><code>4c4cb6380811cfc6</code></td></tr>
-        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/" rel="noopener">https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-06</td></tr>
+        <tr><td>Report ID</td><td><code>02c1cc930dbfe9cb</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8884-1" rel="noopener">https://ubuntu.com/security/notices/USN-8884-1</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -343,45 +341,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">CLOSEDQUORUM, a malware binary discovered through Cisco Talos’ CAIRN project , exhibits fully autonomous command and control (C2). While we do not have confirmation of in-the-wild deployment, artifacts from the binary were used to connect the developer to postings on criminal forums related to carding, dating back to 2025. This malware is a useful reference example of how attackers can collapse the decision space of a particular attack phase into a constrained set of choices, allowing AI models to provide reasoning and act independently. CLOSEDQUORUM represents a shift in effort displacement for attackers, in which expanding portions of the attack chain can be executed without operator involvement. AI’s impact on offensive cyber operations has thus far mainly focused on two dimensions: speed and scale . Attackers can generate phishing lures faster and produce more malicious code variants with less effort. These are real effects, visible in the proliferation of AI-generated coding samples and agent-assisted intrusions that have become common in the past few years. But in each case, the human operator remains present: directing the tooling, selecting targets, and guiding the execution. AI makes the operator faster and more productive but does not remove them from the operation. A third dimension has received less attention in the malware space: effort displacement. This is not merely augmenting what an operator can accomplish in a session but transferring an entire phase of the attack from the operator to the system. Effort displacement compounds the effects of speed and scale because the human-in-the-loop is no longer the bottleneck. Human operators are bound by attention, working hours, and cognitive load. An AI system capable of executing a phase of the attack chain can continue when the operator is no longer watching. It does not go offline when the attacker sleeps. Today Cisco Talos released CAIRN , our open-source research toolkit for tracking AI-integrated malware. This is the first in a series of posts sharing what we&#39;ve found. While the threat class of CAIRN findings may span from experimental proof-of-concept to sophisticated active campaigns, the nature of the threat is aside from the focus: actively studying this frontier provides actionable insights to offset how threat actors are operationalizing AI. Introducing CLOSEDQUORUM CLOSEDQUORUM is, to our knowledge, the first publicly documented Windows implant to apply this model to tactical command </p>
-  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+  <p class="detail-text">Timo Preißl discovered that U-Boot incorrectly handled certain malformed ZFS file system metadata. An attacker could possibly use this issue to trigger an integer overflow and out-of-bounds memory access, resulting in arbitrary code execution or a denial of service. (CVE-2025-70290) Timo Preißl discovered that U-Boot incorrectly calculated buffer sizes when processing certain ext4 file systems. An attacker could possibly use this issue to trigger an integer overflow and out-of-bounds memory access, resulting in arbitrary code execution or a denial of service. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2025-70293) Mateusz Furdyna discovered that U-Boot incorrectly handled certain fragmented IP traffic when IP defragmentation was enabled. An attacker could possibly use this issue to corrupt memory by sending crafted IP fragments, resulting in arbitrary code execution. (CVE-2026-15390) Shahriyar Jalayeri and Mehrun P. Hunter discovered that U-Boot incorrectly handled certain fragmented IP traffic during network boot when IP defragmentation was enabled. An attacker could possibly use this issue to trigger an out-of-bounds write, resulting in a denial of service. (CVE-2026-71971)</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8884-1" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (10)</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/250d4fa37488af9b025333fa17705573d721467b203765bc360890b4f5a90cd7" target="_blank" rel="noopener"><code>250d4fa37488af9b025333fa17705573d721467b203765bc360890b4f5a90cd7</code></a></td></tr>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/c4dc171f2513fcaf9d5ecc815a94aee4063b213ab380f80bd3ac422dee5205a7" target="_blank" rel="noopener"><code>c4dc171f2513fcaf9d5ecc815a94aee4063b213ab380f80bd3ac422dee5205a7</code></a></td></tr>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/c13cea04f598e2b0c248d603a6e31bd13aabb64d8149c1b6a77b64e0b983a86f" target="_blank" rel="noopener"><code>c13cea04f598e2b0c248d603a6e31bd13aabb64d8149c1b6a77b64e0b983a86f</code></a></td></tr>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/f5f1f8c3e7b883793800ab6ccf21b3e60bd0730f300b4595fe74a33adc17a63c" target="_blank" rel="noopener"><code>f5f1f8c3e7b883793800ab6ccf21b3e60bd0730f300b4595fe74a33adc17a63c</code></a></td></tr>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/5191cf625dfc209a347f137b50aea199e82040fd5ee9086fb3e2de73c133f3cb" target="_blank" rel="noopener"><code>5191cf625dfc209a347f137b50aea199e82040fd5ee9086fb3e2de73c133f3cb</code></a></td></tr>
-        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/eddbd0ecf7195d38fefae5b9d393abfa79e6f3f94bde19308ecef130a05a42e5" target="_blank" rel="noopener"><code>eddbd0ecf7195d38fefae5b9d393abfa79e6f3f94bde19308ecef130a05a42e5</code></a></td></tr>
-        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/api.deepseek.com" target="_blank" rel="noopener"><code>api[.]deepseek[.]com</code></a></td></tr>
-        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/openrouter.ai" target="_blank" rel="noopener"><code>openrouter[.]ai</code></a></td></tr>
-        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/api.mistral.ai" target="_blank" rel="noopener"><code>api[.]mistral[.]ai</code></a></td></tr>
-        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/cdn.discordapp.com" target="_blank" rel="noopener"><code>cdn[.]discordapp[.]com</code></a></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
+  <p class="muted">No indicators were extracted from this report.</p>
 </section>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
   <div class="chip-list">
-<span class="chip"><a href="https://attack.mitre.org/techniques/T1003/001/" rel="noopener">T1003.001</a></span><span class="chip"><a href="https://attack.mitre.org/techniques/T1005/" rel="noopener">T1005</a></span><span class="chip"><a href="https://attack.mitre.org/techniques/T1027/" rel="noopener">T1027</a></span><span class="chip"><a href="https://attack.mitre.org/techniques/T1030/" rel="noopener">T1030</a></span>  </div>
+<span class="chip">CVE-2025-70290</span><span class="chip">CVE-2025-70293</span><span class="chip">CVE-2026-15390</span><span class="chip">CVE-2026-71971</span>  </div>
   <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
 </section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Block or hunt the 10 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2025-70290, CVE-2025-70293, CVE-2026-15390, CVE-2026-71971</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>

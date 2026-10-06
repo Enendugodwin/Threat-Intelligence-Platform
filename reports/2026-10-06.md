@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T18:32:20Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T19:37:53Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 40165 |
-| New in window | 40165 |
+| Indicators tracked | 40405 |
+| New in window | 40405 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -15,34 +15,34 @@
 | --- | --- | --- |
 | urlhaus | 5001 | ok |
 | feodo | 5 | ok |
-| threatfox | 9235 | ok |
-| malwarebazaar | 1548 | ok |
+| threatfox | 9396 | ok |
+| malwarebazaar | 1538 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8623 | ok |
+| tor | 8619 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 12005 | 12005 |
-| ipv4 | 9014 | 9014 |
-| sha256 | 8174 | 8174 |
-| domain | 7829 | 7829 |
-| ipv6 | 2837 | 2837 |
-| md5 | 165 | 165 |
-| sha1 | 141 | 141 |
+| url | 12029 | 12029 |
+| ipv4 | 9030 | 9030 |
+| sha256 | 8180 | 8180 |
+| domain | 7845 | 7845 |
+| ipv6 | 2841 | 2841 |
+| md5 | 252 | 252 |
+| sha1 | 228 | 228 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 9277 |
-| Exit nodes | 2156 |
-| Other relays | 7121 |
-| New in window | 9277 |
+| Nodes tracked | 9295 |
+| Exit nodes | 2161 |
+| Other relays | 7134 |
+| New in window | 9295 |
 
-Sample (20 of 9277, source: Tor Project Onionoo):
+Sample (20 of 9295, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]248[.]96[.]163`
 - `100[.]1[.]157[.]56`
@@ -71,21 +71,21 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | --- | --- | --- | --- |
 | Unknown Loader | 4093 | 4093 | — |
 | Mirai | 3304 | 3304 | T1498, T1071.001 |
-| AsyncRAT | 2168 | 2168 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| AsyncRAT | 2174 | 2174 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Cobalt Strike | 1236 | 1236 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| ClearFake | 990 | 990 | — |
-| IClickFix | 729 | 729 | — |
+| ClearFake | 1003 | 1003 | — |
+| IClickFix | 730 | 730 | — |
 | Unknown malware | 546 | 546 | — |
 | PureRAT | 340 | 340 | — |
-| AdaptixC2 | 248 | 248 | — |
-| Vidar | 231 | 231 | T1555, T1071.001, T1567 |
+| Vidar | 255 | 255 | T1555, T1071.001, T1567 |
+| AdaptixC2 | 251 | 251 | — |
 | Unknown Stealer | 186 | 186 | — |
 | Unknown RAT | 167 | 167 | — |
 | AMOS | 145 | 145 | — |
 | Remcos | 133 | 133 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| VShell | 110 | 110 | — |
+| VShell | 111 | 111 | — |
 | Remus | 103 | 103 | — |
-| php.shin_webshell | 101 | 101 | — |
+| php.shin_webshell | 103 | 103 | — |
 | DCRat | 98 | 98 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 93 | 93 | — |
 | Havoc | 88 | 88 | — |
@@ -94,25 +94,25 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1105 | Ingress Tool Transfer | command-and-control | 12303 |
-| T1071.001 | Web Protocols | command-and-control | 29224 |
-| T1498 | Network Denial of Service | impact | 7162 |
-| T1204.002 | Malicious File | execution | 5426 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 5415 |
-| T1573 | Encrypted Channel | command-and-control | 4622 |
-| T1056.001 | Keylogging | collection, credential-access | 2994 |
-| T1566.001 | Spearphishing Attachment | initial-access | 2678 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2468 |
-| T1113 | Screen Capture | collection | 2446 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1413 |
-| T1090 | Proxy | command-and-control | 1271 |
+| T1105 | Ingress Tool Transfer | command-and-control | 12357 |
+| T1071.001 | Web Protocols | command-and-control | 29337 |
+| T1498 | Network Denial of Service | impact | 7173 |
+| T1204.002 | Malicious File | execution | 5456 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 5445 |
+| T1573 | Encrypted Channel | command-and-control | 4625 |
+| T1056.001 | Keylogging | collection, credential-access | 3034 |
+| T1566.001 | Spearphishing Attachment | initial-access | 2721 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2481 |
+| T1113 | Screen Capture | collection | 2459 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1416 |
+| T1090 | Proxy | command-and-control | 1274 |
 | T1059.001 | PowerShell | execution | 1248 |
 | T1566 | Phishing | initial-access | 1027 |
 | T1566.002 | Spearphishing Link | initial-access | 1027 |
-| T1555 | Credentials from Password Stores | credential-access | 779 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 716 |
-| T1552.001 | Credentials In Files | credential-access | 499 |
-| T1041 | Exfiltration Over C2 Channel | exfiltration | 159 |
+| T1555 | Credentials from Password Stores | credential-access | 839 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 776 |
+| T1552.001 | Credentials In Files | credential-access | 508 |
+| T1041 | Exfiltration Over C2 Channel | exfiltration | 162 |
 | T1059.005 | Visual Basic | execution | 59 |
 | T1189 | Drive-by Compromise | initial-access | 17 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 17 |
@@ -127,6 +127,7 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
+| [`114[.]66[.]20[.]236`](https://www.virustotal.com/gui/ip-address/114.66.20.236) | ipv4 | Quasar RAT | threatfox | 2026-10-06T19:05:05Z | 100 |
 | [`up[.]3toto[.]com`](https://www.virustotal.com/gui/domain/up.3toto.com) | domain | Vidar | threatfox | 2026-10-06T18:20:48Z | 100 |
 | [`hxxps://up[.]3toto[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fup.3toto.com%2F) | url | Vidar | threatfox | 2026-10-06T18:20:48Z | 100 |
 | [`up[.]333vip[.]org`](https://www.virustotal.com/gui/domain/up.333vip.org) | domain | Vidar | threatfox | 2026-10-06T17:05:48Z | 100 |
@@ -151,7 +152,6 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | [`c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc`](https://www.virustotal.com/gui/file/c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
 | [`5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614`](https://www.virustotal.com/gui/file/5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
 | [`debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e`](https://www.virustotal.com/gui/file/debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:48Z | 100 |
-| [`dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393`](https://www.virustotal.com/gui/file/dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:47Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>

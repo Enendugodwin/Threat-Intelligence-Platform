@@ -93,6 +93,9 @@ nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity
 .export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
 .export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
 .export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
 .export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
 .export-description{font-size:.7rem;color:var(--color-muted-foreground)}
 
@@ -198,6 +201,18 @@ td code{background:transparent;border:none;padding:0}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
 .print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -259,6 +274,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   table{min-width:0!important;font-size:8pt}
   th,td{padding:5px!important;border-color:#ccc!important}
   .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
 }
 </style>
 </head>
@@ -273,10 +292,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>40165 indicators</span>
-      <span>12 new / 22192 updated last run &middot; 40165 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40405 indicators</span>
+      <span>240 new / 22054 updated last run &middot; 40405 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T18:32:26Z</span>
+      <span>sync 2026-10-06T19:37:59Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -299,7 +318,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">ATT&amp;CK T1566.001: Spearphishing Attachment</h1>
 <p class="muted">
-  2678 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1566/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
+  2721 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1566/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
 
 <section>
   <div class="table-wrap">
@@ -510,6 +529,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Remcos</td>
           <td></td>
           <td>2026-08-27T14:54:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/114.66.20.236" target="_blank" rel="noopener"><code>114[.]66[.]20[.]236</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Quasar RAT</td>
+          <td></td>
+          <td>2026-10-06T19:05:05Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -955,7 +984,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/190.144.146.90" target="_blank" rel="noopener"><code>190[.]144[.]146[.]90</code></a></td>
           <td>ipv4</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remcos</td>
           <td></td>
@@ -1055,7 +1084,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.25.222.233" target="_blank" rel="noopener"><code>2[.]25[.]222[.]233</code></a></td>
           <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remcos</td>
           <td></td>
@@ -1065,7 +1094,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/2.25.246.239" target="_blank" rel="noopener"><code>2[.]25[.]246[.]239</code></a></td>
           <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remcos</td>
           <td></td>
@@ -2093,6 +2122,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/00b61ee4c9907cb2dc9daadeacaa3e05" target="_blank" rel="noopener"><code>00b61ee4c9907cb2dc9daadeacaa3e05</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Agent Tesla</td>
+          <td></td>
+          <td>2026-10-06T19:24:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/036f1d11d4b3af6c3086ae47560af100e0e34f37" target="_blank" rel="noopener"><code>036f1d11d4b3af6c3086ae47560af100e0e34f37</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2120,6 +2159,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-05T02:33:31Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0709e53641829dc93945aece20e2da21" target="_blank" rel="noopener"><code>0709e53641829dc93945aece20e2da21</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:34Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2153,6 +2202,46 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0b81936f0bc1aaf3d55932e910e8a1cdbd80f276e59f80690a80f8f9e6550a93" target="_blank" rel="noopener"><code>0b81936f0bc1aaf3d55932e910e8a1cdbd80f276e59f80690a80f8f9e6550a93</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0ccda5fb8da309f4ca1af9510db9bbcbf8d91c6a12758f2ff05bfc885d46e764" target="_blank" rel="noopener"><code>0ccda5fb8da309f4ca1af9510db9bbcbf8d91c6a12758f2ff05bfc885d46e764</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:21Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0fecb72b1e5b1fc4f5a00fec90beb85b22b6ec9be8139dd4cdf448087decefd5" target="_blank" rel="noopener"><code>0fecb72b1e5b1fc4f5a00fec90beb85b22b6ec9be8139dd4cdf448087decefd5</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:04Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/10333cfe3b8de037f163d4e80af8e1f18cd5ca7af555dbc9c1da5409925a079d" target="_blank" rel="noopener"><code>10333cfe3b8de037f163d4e80af8e1f18cd5ca7af555dbc9c1da5409925a079d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:54Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/117247cf69d4b2aac633b314d3530b24f03a59fa" target="_blank" rel="noopener"><code>117247cf69d4b2aac633b314d3530b24f03a59fa</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2160,6 +2249,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-05T02:33:29Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/13e07c20dc2e25f48cb91682f2d5f97b9e398148" target="_blank" rel="noopener"><code>13e07c20dc2e25f48cb91682f2d5f97b9e398148</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:34Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2193,6 +2292,76 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1742ad51f743c9e518abec7fc6f9451b" target="_blank" rel="noopener"><code>1742ad51f743c9e518abec7fc6f9451b</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/19c91fe72a4e7aa7b59d84baf6ce9383" target="_blank" rel="noopener"><code>19c91fe72a4e7aa7b59d84baf6ce9383</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/19dc42491a499830d7638933b5f457740ffce395" target="_blank" rel="noopener"><code>19dc42491a499830d7638933b5f457740ffce395</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1cf8cce965f8f2089ce67ef811b29d13" target="_blank" rel="noopener"><code>1cf8cce965f8f2089ce67ef811b29d13</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:26Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/21eed78ef28f13581985a98514ec70fe1d8bfb9dce22900c9cff07796bbf2ade" target="_blank" rel="noopener"><code>21eed78ef28f13581985a98514ec70fe1d8bfb9dce22900c9cff07796bbf2ade</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2a4e92f9ceeafddef77dbdba62c0a9bd2711ce7be586994ba810712067c0e4fa" target="_blank" rel="noopener"><code>2a4e92f9ceeafddef77dbdba62c0a9bd2711ce7be586994ba810712067c0e4fa</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/36bebfe8d53c60e5b97c084bf6e0b4bb94e457fd" target="_blank" rel="noopener"><code>36bebfe8d53c60e5b97c084bf6e0b4bb94e457fd</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/36cf6285b152d569a123b34f6a08d892" target="_blank" rel="noopener"><code>36cf6285b152d569a123b34f6a08d892</code></a></td>
           <td>md5</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -2200,6 +2369,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Quasar RAT</td>
           <td></td>
           <td>2026-10-05T14:29:51Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/36e73c5600a6c9ee9b1ae3d8f113683e" target="_blank" rel="noopener"><code>36e73c5600a6c9ee9b1ae3d8f113683e</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:29Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2233,6 +2412,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/470e4fe714958203c44456ee3c346ee4cce3871d" target="_blank" rel="noopener"><code>470e4fe714958203c44456ee3c346ee4cce3871d</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:39Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/47ec550416d5740d5593508bd7088f26f1e7053cecd10851c2f15fb38e3fbd6d" target="_blank" rel="noopener"><code>47ec550416d5740d5593508bd7088f26f1e7053cecd10851c2f15fb38e3fbd6d</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 86</span></td>
@@ -2240,6 +2429,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-05T14:29:56Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4e58238888e17d1ddbc00b1de7e5bff740aaeeb4" target="_blank" rel="noopener"><code>4e58238888e17d1ddbc00b1de7e5bff740aaeeb4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:28Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2283,6 +2482,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5441f2790a3efc2769c3fd84ccce8ed773427b8c" target="_blank" rel="noopener"><code>5441f2790a3efc2769c3fd84ccce8ed773427b8c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/56d98688e5aa501787a31e98f9666b80002bb692e793257bb3a6f6f9cace8278" target="_blank" rel="noopener"><code>56d98688e5aa501787a31e98f9666b80002bb692e793257bb3a6f6f9cace8278</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2290,6 +2499,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-07T21:56:19Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/572b625b6f48b64ec15e038500c1d196f387e808" target="_blank" rel="noopener"><code>572b625b6f48b64ec15e038500c1d196f387e808</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:54Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2330,6 +2549,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Quasar RAT</td>
           <td></td>
           <td>2026-10-05T14:29:52Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5d010b50c9cfd89d091aa90acf4b1ffc8f1659e89d1993dd54f76498fed3cf67" target="_blank" rel="noopener"><code>5d010b50c9cfd89d091aa90acf4b1ffc8f1659e89d1993dd54f76498fed3cf67</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:23Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2393,6 +2622,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/61480a155193ab1d60ede49b5fe13556" target="_blank" rel="noopener"><code>61480a155193ab1d60ede49b5fe13556</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/63025373262924d8cf6755fc359fa04b19124e88dc8bd62b191ff8638be9f9fc" target="_blank" rel="noopener"><code>63025373262924d8cf6755fc359fa04b19124e88dc8bd62b191ff8638be9f9fc</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2440,6 +2679,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2024-08-21T00:57:39Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/672187a0dbc9f2314ffb8b34f9601fb29b2eb1d7" target="_blank" rel="noopener"><code>672187a0dbc9f2314ffb8b34f9601fb29b2eb1d7</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:21Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2523,6 +2772,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/791c80619bb5c1dcd0a560c419b8e32885d074c82f626a1f35d4f477a45eb344" target="_blank" rel="noopener"><code>791c80619bb5c1dcd0a560c419b8e32885d074c82f626a1f35d4f477a45eb344</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/7aedbf413ac8b83f1f1856891ec49c3cd98338d0" target="_blank" rel="noopener"><code>7aedbf413ac8b83f1f1856891ec49c3cd98338d0</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2563,6 +2822,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/822086e8cca3a86d1845e0c86cc249a5" target="_blank" rel="noopener"><code>822086e8cca3a86d1845e0c86cc249a5</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/82a4bd3e8d17ab61c6fb376bdaa08edd" target="_blank" rel="noopener"><code>82a4bd3e8d17ab61c6fb376bdaa08edd</code></a></td>
           <td>md5</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -2593,6 +2862,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/95e32a3d60558c896f50ff50684fe125" target="_blank" rel="noopener"><code>95e32a3d60558c896f50ff50684fe125</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/961466f8dc90b322c4e108432b6d7bf4e4f1545e" target="_blank" rel="noopener"><code>961466f8dc90b322c4e108432b6d7bf4e4f1545e</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2600,6 +2879,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AsyncRAT</td>
           <td></td>
           <td>2026-10-05T14:29:56Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9c374c3801bdcfa56b3c6c264ecb9e54acae6536b5ca77b9927abf76592457a4" target="_blank" rel="noopener"><code>9c374c3801bdcfa56b3c6c264ecb9e54acae6536b5ca77b9927abf76592457a4</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:38Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2643,6 +2932,46 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ac727d7ed3a0452251ae8b3d0f7f5d80" target="_blank" rel="noopener"><code>ac727d7ed3a0452251ae8b3d0f7f5d80</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ad6a7fe9c9d21c0f6d68b3d44f966150" target="_blank" rel="noopener"><code>ad6a7fe9c9d21c0f6d68b3d44f966150</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:54Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ad94161a022aa30896c1a8bcd8dbc85771295f860cbfda0926bfeaca9546f094" target="_blank" rel="noopener"><code>ad94161a022aa30896c1a8bcd8dbc85771295f860cbfda0926bfeaca9546f094</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:27Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b01b883c5126c1c9f2a4cc7108545e243033c06a" target="_blank" rel="noopener"><code>b01b883c5126c1c9f2a4cc7108545e243033c06a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:23Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/b23f425b28934f37e6d3039ed5a24d5a2e144a46" target="_blank" rel="noopener"><code>b23f425b28934f37e6d3039ed5a24d5a2e144a46</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2650,6 +2979,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Formbook</td>
           <td></td>
           <td>2026-10-05T14:29:58Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b51388e42f98c44816102b669880e625" target="_blank" rel="noopener"><code>b51388e42f98c44816102b669880e625</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:39Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c51dca474e7874c4b1056499e4df10dfec3d5afe" target="_blank" rel="noopener"><code>c51dca474e7874c4b1056499e4df10dfec3d5afe</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:04Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2683,6 +3032,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ca868ac1e4f42282fb74865fc2f9edf38b052e4b" target="_blank" rel="noopener"><code>ca868ac1e4f42282fb74865fc2f9edf38b052e4b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:26Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d5c4983535d57d69fc6f8c09ff4a3838d6a61ac6b149de67b89c0c062968d9cd" target="_blank" rel="noopener"><code>d5c4983535d57d69fc6f8c09ff4a3838d6a61ac6b149de67b89c0c062968d9cd</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:20Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/d73e2d8c9d886bdb7e4301d40bb620386c91bba8" target="_blank" rel="noopener"><code>d73e2d8c9d886bdb7e4301d40bb620386c91bba8</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2690,6 +3059,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Formbook</td>
           <td></td>
           <td>2026-10-01T16:39:05Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d7fea5f6217db6e04f75333a65a46cdfcc523c7f3ddc29cfaecb18cd8876ea98" target="_blank" rel="noopener"><code>d7fea5f6217db6e04f75333a65a46cdfcc523c7f3ddc29cfaecb18cd8876ea98</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>NjRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:26Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2703,6 +3082,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d9e3aad9d528c2cbcf57362306e6b5df" target="_blank" rel="noopener"><code>d9e3aad9d528c2cbcf57362306e6b5df</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AsyncRAT</td>
+          <td></td>
+          <td>2026-10-06T19:25:04Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/da6bf419e5110a9eedc74fabe2138fafb8c55894" target="_blank" rel="noopener"><code>da6bf419e5110a9eedc74fabe2138fafb8c55894</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2710,6 +3099,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Formbook</td>
           <td></td>
           <td>2026-10-05T14:29:49Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dc1e99af1aeb99dd7366b04c12f4d8c878b3e7c1" target="_blank" rel="noopener"><code>dc1e99af1aeb99dd7366b04c12f4d8c878b3e7c1</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Agent Tesla</td>
+          <td></td>
+          <td>2026-10-06T19:24:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e44ee181d3235c52db5d99e2cc86d306" target="_blank" rel="noopener"><code>e44ee181d3235c52db5d99e2cc86d306</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:25Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2733,6 +3142,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">95</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ee30381c96e9b17cfc08e2390087944ce99d8ee9" target="_blank" rel="noopener"><code>ee30381c96e9b17cfc08e2390087944ce99d8ee9</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:22Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/efbd76e4dbff0ad6829758fcafe26ce911722322" target="_blank" rel="noopener"><code>efbd76e4dbff0ad6829758fcafe26ce911722322</code></a></td>
           <td>sha1</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2740,6 +3159,36 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Quasar RAT</td>
           <td></td>
           <td>2026-10-05T14:29:51Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fa1d013f5d8f4833ca5e80b1987ce0908625fab234048fe16e293d5ccbb963fa" target="_blank" rel="noopener"><code>fa1d013f5d8f4833ca5e80b1987ce0908625fab234048fe16e293d5ccbb963fa</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:24:33Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fd0d23011657d0185f6e4fb5fe57eb7894c9fc606b9ae5fc6b977efcb2ef1eeb" target="_blank" rel="noopener"><code>fd0d23011657d0185f6e4fb5fe57eb7894c9fc606b9ae5fc6b977efcb2ef1eeb</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Agent Tesla</td>
+          <td></td>
+          <td>2026-10-06T19:24:24Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ffc95ee8997879d17dca007e9bf330dcfe53f26c" target="_blank" rel="noopener"><code>ffc95ee8997879d17dca007e9bf330dcfe53f26c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Formbook</td>
+          <td></td>
+          <td>2026-10-06T19:25:24Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2882,436 +3331,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-10-05T22:46:42Z</td>
           <td class="num-cell">90</td>
         </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/4c7c802a848d039e803088e2bd16a4232b2bfbfc296eca7da32bb28941b36d9b" target="_blank" rel="noopener"><code>4c7c802a848d039e803088e2bd16a4232b2bfbfc296eca7da32bb28941b36d9b</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T01:47:11Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/4ec8d28a905d70c8b6cda812f9a627350c851b3e18d1ee0839b8833080fd9dab" target="_blank" rel="noopener"><code>4ec8d28a905d70c8b6cda812f9a627350c851b3e18d1ee0839b8833080fd9dab</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T09:47:10Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/5bf1ded1fb864a9fb9c253cf24b8041ee43981448fb1e65f82cd3b78e335b9d9" target="_blank" rel="noopener"><code>5bf1ded1fb864a9fb9c253cf24b8041ee43981448fb1e65f82cd3b78e335b9d9</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T01:46:46Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/603afdd045f84118bf5de847af269a52a2234f184ac6ead42f8a251813b980a7" target="_blank" rel="noopener"><code>603afdd045f84118bf5de847af269a52a2234f184ac6ead42f8a251813b980a7</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T19:46:52Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/64d8fb286b66082ef57f080e5bfd24f641ca9ab0f16141eb69677207632ac553" target="_blank" rel="noopener"><code>64d8fb286b66082ef57f080e5bfd24f641ca9ab0f16141eb69677207632ac553</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-06T06:47:11Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/6e5bce876258aeb30ed5b3f381ee8f8a6b4ddaceb4f74f3a833e891f32a9b177" target="_blank" rel="noopener"><code>6e5bce876258aeb30ed5b3f381ee8f8a6b4ddaceb4f74f3a833e891f32a9b177</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T10:46:41Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7c5194d52390d505f86324cacd369873f900e1a9d766921bf650ecb29a4adf1e" target="_blank" rel="noopener"><code>7c5194d52390d505f86324cacd369873f900e1a9d766921bf650ecb29a4adf1e</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T09:47:13Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7ec5b590d97db12a7296aca834e0075d2f41df6cc768ff4431aa61f91af0f837" target="_blank" rel="noopener"><code>7ec5b590d97db12a7296aca834e0075d2f41df6cc768ff4431aa61f91af0f837</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T19:46:42Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/845ed2ec2c004bb7984cfd378401d6733a49b5b3a377498d2e900b86a8bc17ef" target="_blank" rel="noopener"><code>845ed2ec2c004bb7984cfd378401d6733a49b5b3a377498d2e900b86a8bc17ef</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T18:46:45Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/84de969fa7d734128d5293c458e736694b0eb42313b5d165d0ee44ca9cf888a7" target="_blank" rel="noopener"><code>84de969fa7d734128d5293c458e736694b0eb42313b5d165d0ee44ca9cf888a7</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Agent Tesla</td>
-          <td></td>
-          <td>2026-10-05T11:46:24Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/8ff671eb42c9a82e3a17941c12c0eb02b5d9829803e8b98ee262ce981265790e" target="_blank" rel="noopener"><code>8ff671eb42c9a82e3a17941c12c0eb02b5d9829803e8b98ee262ce981265790e</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T14:47:06Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/93454bb24f440fb87464b0255adc9cc998555f040f49a1611f3473a10f369b26" target="_blank" rel="noopener"><code>93454bb24f440fb87464b0255adc9cc998555f040f49a1611f3473a10f369b26</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T02:46:27Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/934586673c04f504e861d7d5415e4aa427108c807715d69dbd8fc7a467df1d4c" target="_blank" rel="noopener"><code>934586673c04f504e861d7d5415e4aa427108c807715d69dbd8fc7a467df1d4c</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T15:46:55Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/97d66f6298b0680665a959d7c53b9bfc69bfaabd3ccae17f9d313268513fca60" target="_blank" rel="noopener"><code>97d66f6298b0680665a959d7c53b9bfc69bfaabd3ccae17f9d313268513fca60</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AsyncRAT</td>
-          <td></td>
-          <td>2026-10-04T01:46:46Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/9a6793920a2d997e2adc93870d89119ad18603ef165545bcbc2d089ca4a12f5f" target="_blank" rel="noopener"><code>9a6793920a2d997e2adc93870d89119ad18603ef165545bcbc2d089ca4a12f5f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T02:46:46Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/9cefa49238c85632f4de8c3bc682cecb797c6308d76a3206aa8a64ef947c8285" target="_blank" rel="noopener"><code>9cefa49238c85632f4de8c3bc682cecb797c6308d76a3206aa8a64ef947c8285</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-06T06:47:09Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/a4e61e06ef73ac181c35774c525cdb8a693b385c7787e3fcf1ed827cc0e96048" target="_blank" rel="noopener"><code>a4e61e06ef73ac181c35774c525cdb8a693b385c7787e3fcf1ed827cc0e96048</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T22:46:44Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/a94e7819851437ae1624a4059f90c02eec13be0d6b0d69106d88fb31d7da4e52" target="_blank" rel="noopener"><code>a94e7819851437ae1624a4059f90c02eec13be0d6b0d69106d88fb31d7da4e52</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T09:47:11Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/b54e43fe9b51d9e862fafc39e80328ebdda2722bc200368b861bccd440462275" target="_blank" rel="noopener"><code>b54e43fe9b51d9e862fafc39e80328ebdda2722bc200368b861bccd440462275</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T01:47:10Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/b7a91c8f10e64ce50ed08bacb03930d1e21af876463f005ec4b11f3ed5f59adf" target="_blank" rel="noopener"><code>b7a91c8f10e64ce50ed08bacb03930d1e21af876463f005ec4b11f3ed5f59adf</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T09:47:09Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/bf9e5087058e453cdb78e463a26ae2d059cd7a0d66bc7db8b2c8b4a479111326" target="_blank" rel="noopener"><code>bf9e5087058e453cdb78e463a26ae2d059cd7a0d66bc7db8b2c8b4a479111326</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T18:46:47Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/c926d3a45f3f1ecb9e0e047cdbed9d029ea60ad0c36d8e311b0a0f67bd87ecca" target="_blank" rel="noopener"><code>c926d3a45f3f1ecb9e0e047cdbed9d029ea60ad0c36d8e311b0a0f67bd87ecca</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Formbook</td>
-          <td></td>
-          <td>2026-10-04T17:46:13Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/d552b203de56c02d511d189f794e2da9a1b0aba7952b98614103392fca27a639" target="_blank" rel="noopener"><code>d552b203de56c02d511d189f794e2da9a1b0aba7952b98614103392fca27a639</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T09:46:40Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/dbaa24a0ce77ca88132423b569ce6a45ae4a1443ce21e6b94f272aea2fdada63" target="_blank" rel="noopener"><code>dbaa24a0ce77ca88132423b569ce6a45ae4a1443ce21e6b94f272aea2fdada63</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T22:46:43Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/ed59f092ced012f8c3ececda732201c7d1f6f4a71b1a801bd1a1ac8c5e6ca597" target="_blank" rel="noopener"><code>ed59f092ced012f8c3ececda732201c7d1f6f4a71b1a801bd1a1ac8c5e6ca597</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T01:47:08Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f089e3cfc0ecbd6cd62c998b3610dfd6772fe530ea247f4157180792edd9ba35" target="_blank" rel="noopener"><code>f089e3cfc0ecbd6cd62c998b3610dfd6772fe530ea247f4157180792edd9ba35</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Emotet</td>
-          <td></td>
-          <td>2026-10-04T22:46:27Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f582d9c7e19931ceb372a0b8cdf73f541da73e675b2e486b84af3e83dd14ced9" target="_blank" rel="noopener"><code>f582d9c7e19931ceb372a0b8cdf73f541da73e675b2e486b84af3e83dd14ced9</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T14:47:05Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/fb370476092e61c556c479e0d20ce7ceb2c6f298423131a5206cf31ab740cb5f" target="_blank" rel="noopener"><code>fb370476092e61c556c479e0d20ce7ceb2c6f298423131a5206cf31ab740cb5f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Formbook</td>
-          <td></td>
-          <td>2026-10-04T22:46:27Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F31.220.3.140%2Fri%2Fla.bot.sh4" target="_blank" rel="noopener"><code>hxxp://31[.]220[.]3[.]140/ri/la[.]bot[.]sh4</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-03T04:38:59Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F87130921-60-20220830152356.webstarterz.com%2Fnew%2Fsecured_stub.ps1" target="_blank" rel="noopener"><code>hxxps://87130921-60-20220830152356[.]webstarterz[.]com/new/secured_stub[.]ps1</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Formbook</td>
-          <td></td>
-          <td>2026-10-04T14:39:16Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/162.243.103.246" target="_blank" rel="noopener"><code>162[.]243[.]103[.]246</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 70</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Emotet</td>
-          <td></td>
-          <td>2022-06-04T21:24:53Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/178.62.3.223" target="_blank" rel="noopener"><code>178[.]62[.]3[.]223</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 70</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>QakBot</td>
-          <td></td>
-          <td>2026-02-17T05:41:23Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/27.133.154.218" target="_blank" rel="noopener"><code>27[.]133[.]154[.]218</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 70</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>QakBot</td>
-          <td></td>
-          <td>2026-03-04T14:28:39Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/34.204.119.63" target="_blank" rel="noopener"><code>34[.]204[.]119[.]63</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 70</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>QakBot</td>
-          <td></td>
-          <td>2026-01-13T21:41:15Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/50.16.16.211" target="_blank" rel="noopener"><code>50[.]16[.]16[.]211</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 70</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>QakBot</td>
-          <td></td>
-          <td>2025-12-30T13:56:31Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7263c20b18ec748e1565590e7d9ac49841841d76a49e591f994bd144beb49d49" target="_blank" rel="noopener"><code>7263c20b18ec748e1565590e7d9ac49841841d76a49e591f994bd144beb49d49</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Bashlite</td>
-          <td></td>
-          <td>2026-10-05T15:46:51Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/e8a3815b8257861ba57065919ce9f6aa94b2810b28c28ed6555c7e5713eae62f" target="_blank" rel="noopener"><code>e8a3815b8257861ba57065919ce9f6aa94b2810b28c28ed6555c7e5713eae62f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Formbook</td>
-          <td></td>
-          <td>2026-10-05T18:47:01Z</td>
-          <td class="num-cell">85</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F107.172.235.223%2Fimg%2F3.jpg" target="_blank" rel="noopener"><code>hxxp://107[.]172[.]235[.]223/img/3[.]jpg</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 66</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-09-30T07:42:18Z</td>
-          <td class="num-cell">80</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F185.29.10.68%2FxdZGCANqNpylcDzT208.bin" target="_blank" rel="noopener"><code>hxxp://185[.]29[.]10[.]68/xdZGCANqNpylcDzT208[.]bin</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 66</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-10-05T09:16:20Z</td>
-          <td class="num-cell">80</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F185.29.9.42%2FRetslokalet.lpk" target="_blank" rel="noopener"><code>hxxp://185[.]29[.]9[.]42/Retslokalet[.]lpk</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 66</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-10-05T09:16:20Z</td>
-          <td class="num-cell">80</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F23.132.164.15%2FFAST%2Fstein.ps1" target="_blank" rel="noopener"><code>hxxp://23[.]132[.]164[.]15/FAST/stein[.]ps1</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 66</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-10-05T09:03:16Z</td>
-          <td class="num-cell">80</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F87130921-60-20220830152356.webstarterz.com%2Fnew%2Fsecured_stub.ps1" target="_blank" rel="noopener"><code>hxxp://87130921-60-20220830152356[.]webstarterz[.]com/new/secured_stub[.]ps1</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 64</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-10-01T15:11:16Z</td>
-          <td class="num-cell">80</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F87130921-60-20220830152356.webstarterz.com%2Fsecured_stub.ps1" target="_blank" rel="noopener"><code>hxxp://87130921-60-20220830152356[.]webstarterz[.]com/secured_stub[.]ps1</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-medium">medium 66</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>—</td>
-          <td></td>
-          <td>2026-10-01T15:11:15Z</td>
-          <td class="num-cell">80</td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -3321,7 +3340,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:32:26Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T19:37:59Z UTC</span></p>
 </footer>
 <script>
 (function () {
