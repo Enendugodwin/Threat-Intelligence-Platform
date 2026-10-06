@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T19:37:53Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T19:49:12Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 40405 |
-| New in window | 40405 |
+| Indicators tracked | 40406 |
+| New in window | 40406 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -13,7 +13,7 @@
 
 | Feed | Indicators this run | Status |
 | --- | --- | --- |
-| urlhaus | 5001 | ok |
+| urlhaus | 5000 | ok |
 | feodo | 5 | ok |
 | threatfox | 9396 | ok |
 | malwarebazaar | 1538 | ok |
@@ -25,7 +25,7 @@
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 12029 | 12029 |
+| url | 12030 | 12030 |
 | ipv4 | 9030 | 9030 |
 | sha256 | 8180 | 8180 |
 | domain | 7845 | 7845 |
@@ -94,9 +94,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1105 | Ingress Tool Transfer | command-and-control | 12357 |
-| T1071.001 | Web Protocols | command-and-control | 29337 |
-| T1498 | Network Denial of Service | impact | 7173 |
+| T1105 | Ingress Tool Transfer | command-and-control | 12358 |
+| T1071.001 | Web Protocols | command-and-control | 29340 |
+| T1498 | Network Denial of Service | impact | 7176 |
 | T1204.002 | Malicious File | execution | 5456 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 5445 |
 | T1573 | Encrypted Channel | command-and-control | 4625 |
