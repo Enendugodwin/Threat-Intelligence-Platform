@@ -1,4 +1,4 @@
-# threat-intel-pipeline
+# Threat-intel-pipeline
 
 [![tests](https://github.com/Enendugodwin/Threat-Intelligence-Platform/actions/workflows/tests.yml/badge.svg)](https://github.com/Enendugodwin/Threat-Intelligence-Platform/actions/workflows/tests.yml)
 
