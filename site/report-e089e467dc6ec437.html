@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>The Fine Art of Frustrating the Adversary &mdash; Threat Intel Pipeline</title>
+<title>USN-8870-1: OpenStack Aodh and Watcher vulnerability &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -218,26 +218,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">The Fine Art of Frustrating the Adversary</h1>
+<h1 class="page-title">USN-8870-1: OpenStack Aodh and Watcher vulnerability</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Cisco</span>
-  <span class="badge">Cisco Talos</span>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
 </div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Amatera</span><span class="chip">Ransomware</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-high">high</span> &middot; 2 indicator(s)</div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Cisco Talos</td></tr>
-        <tr><td>Category</td><td>Cisco</td></tr>
-        <tr><td>Published</td><td>2026-10-01</td></tr>
-        <tr><td>Report ID</td><td><code>4d43b6c7b064be13</code></td></tr>
-        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/the-fine-art-of-frustrating-the-adversary/" rel="noopener">https://blog.talosintelligence.com/the-fine-art-of-frustrating-the-adversary/</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-05</td></tr>
+        <tr><td>Report ID</td><td><code>e089e467dc6ec437</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8870-1" rel="noopener">https://ubuntu.com/security/notices/USN-8870-1</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -245,31 +243,20 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">For Cybersecurity Awareness Month, eight Cisco Talos researchers share practical ways defenders can frustrate adversaries at different stages of an operation. Deception techniques such as honeypot accounts, false infrastructure, and tarpits can slow adversaries down while giving defenders earlier opportunities to detect their activity. Behavioral detections, tighter control of legitimate remote-management tools, and clear boundaries around AI agents can make essential adversary actions more visible and easier to interrupt. Breaking dependencies between stages of an operation can prevent an adversary from reaching their next objective. Years ago, Cisco Talos blocked an adversary’s command-and-control (C2) traffic. The adversary responded by tweeting, “Write a rule for your a**.” A fine endorsement of our work, if I’ve ever heard one. Talos loves to see an adversary forced to change course. And if every alternative for them is slower, less stealthy, less reliable and more expensive? Chef’s kiss. Adversaries rely on certain advantages. They look for environments where tools and infrastructure allow them to blend in with normal activity. They also look for employees who can be pressured into acting before they have time to think. Strong cybersecurity defenses can change those conditions. They take away adversary choices and increase the risk attached to essential actions, forcing them to keep making new decisions. Each change of plan costs them time and resources, and may eventually cause them to give up and move to another target. It also creates more opportunities for defenders to spot what they are doing. For Cybersecurity Awareness Month, we’re exploring “the fine art of frustrating the adversary.” To kick us off, I asked researchers across Talos, covering all aspects of the attack chain, for the strongest recommendation they could give defenders to seriously frustrate a potential adversary in their environment, and what that action would prevent the adversary from doing next. Take away their choices Many adversaries use techniques that succeed against a large number of organizations. This makes a lot of economic sense: An operation that depends on every potential target having an unusual configuration will not scale particularly well. But it also creates an opportunity for defenders. “By being unique and setting things up a little differently, you may be able to better defend your environment when they come knocking,” Pierre says. For example, organizatio</p>
-  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/the-fine-art-of-frustrating-the-adversary/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+  <p class="detail-text">Chen YuXiang discovered that OpenStack Aodh did not correctly enforce project scoping in its alarm list API and that the OpenStack Watcher webhook trigger endpoint did not apply authorization. An attacker could possibly use this issue to access sensitive alarm metadata or trigger unauthorized action plans.</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8870-1" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (2)</h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fspecterops.io%2Fblog%2F2020%2F02%2F06%2Fcapability-abstraction%2F" target="_blank" rel="noopener"><code>hxxps://specterops[.]io/blog/2020/02/06/capability-abstraction/</code></a></td></tr>
-        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/telegra.ph" target="_blank" rel="noopener"><code>telegra[.]ph</code></a></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
+  <p class="muted">No indicators were extracted from this report.</p>
 </section>
 
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Block or hunt the 2 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+<li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
