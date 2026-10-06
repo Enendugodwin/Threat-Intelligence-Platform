@@ -93,6 +93,11 @@ reports:
       name: SANS ISC
       url: https://isc.sans.edu/rssfeed.xml
       category: general
+    rapid7:
+      enabled: true
+      name: Rapid7 Cybersecurity Blog
+      url: https://www.rapid7.com/blog/rss/
+      category: general
     cisa:
       # Akamai edge returns 403 to Python clients (TLS fingerprint based);
       # browsers/curl/PowerShell may work from home IPs, but CI runners are

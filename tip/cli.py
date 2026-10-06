@@ -46,7 +46,7 @@ def build_parser() -> argparse.ArgumentParser:
     commands = (
         ("sync", "fetch enabled feeds and update the local database"),
         ("report", "render Markdown report(s) from the database"),
-        ("export", "write STIX, Sigma, Suricata and CSV exports"),
+        ("export", "write STIX, JSON, CSV, Sigma and Suricata exports"),
         ("site", "build the static dashboard"),
         ("stats", "print database statistics"),
         ("sightings", "import internal sighting telemetry (CSV/JSON) or show stats"),
@@ -131,6 +131,7 @@ def main(argv=None) -> int:
 
     if args.command == "export":
         from .exports import csv_export
+        from .exports import json_export
         from .exports import reports_stix
         from .exports import sigma as sigma_mod
         from .exports import stix as stix_mod
@@ -158,6 +159,7 @@ def main(argv=None) -> int:
         bundle = stix_mod.build_bundle(rows, sightings=sighting_data)
         stix_path = stix_mod.write_bundle(bundle, out / "stix" / "bundle.json")
         csv_path = csv_export.write_csv(rows, out / "iocs.csv")
+        json_path = json_export.write_json(rows, out / "iocs.json")
 
         sigma_cfg = exports_cfg.get("sigma") or {}
         sigma_rules = sigma_mod.build_rules(
@@ -190,7 +192,7 @@ def main(argv=None) -> int:
 
         print(
             f"wrote {stix_path} ({bundle['_meta']['indicator_count']} indicators, "
-            f"{bundle['_meta']['sighting_count']} sightings), {csv_path}, "
+            f"{bundle['_meta']['sighting_count']} sightings), {csv_path}, {json_path}, "
             f"{len(sigma_rules)} sigma rule(s), {suricata_path} ({len(suricata_lines)} rule(s)), "
             f"{tor_path} ({tor_count} Tor nodes)"
             + (

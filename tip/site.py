@@ -8,8 +8,9 @@ from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
+from .exports import csv_export, json_export
 from .normalize import attack_url, refang, slugify, virustotal_url
+from .reportfeed import CATEGORY_LABELS, CATEGORY_ORDER
 from .scoring import technology_matches
 from .vulnintel import summarize as summarize_kev
 
@@ -357,6 +358,13 @@ def build_site(
     (out_dir / "index.html").write_text(index_html, encoding="utf-8")
     (out_dir / "report.html").write_text(report_html, encoding="utf-8")
     written += [out_dir / "index.html", out_dir / "report.html"]
+
+    if "export_rows" in context:
+        csv_path = csv_export.write_csv(context["export_rows"], out_dir / "iocs.csv")
+        json_path = json_export.write_json(
+            context["export_rows"], out_dir / "iocs.json", context.get("generated_at")
+        )
+        written += [json_path, csv_path]
 
     if "ioc_index" in context:
         explorer_html = env.get_template("explorer.html.j2").render(**context)

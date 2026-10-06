@@ -73,10 +73,30 @@ def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None 
 def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
     """Collect everything the report/site templates need."""
     report_cfg = config.get("report") or {}
+    export_cfg = config.get("exports") or {}
     window_days = int(report_cfg.get("window_days", 7))
     top_n = int(report_cfg.get("top_n", 25))
 
     all_rows = store.all_rows()
+    export_rows = store.rows_for_export(
+        int(export_cfg.get("window_days", 30)),
+        int(export_cfg.get("max_rows", 30000)),
+        int(export_cfg.get("min_confidence", 0)),
+        exclude_sources=[str(source) for source in (export_cfg.get("exclude_sources") or [])],
+    )
+    export_rows = [
+        {
+            "value": row["value"],
+            "type": row["type"],
+            "malware": row["malware"] or "",
+            "sources": row["sources"] or "",
+            "confidence": row["confidence"] or 0,
+            "first_seen": row["first_seen"] or "",
+            "last_seen": row["last_seen"] or "",
+            "reference": row["reference"] or "",
+        }
+        for row in export_rows
+    ]
     new_rows = store.new_since(window_days)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -306,6 +326,7 @@ def build_context(store: Store, config: dict, attack: AttackMap) -> dict:
             ),
         },
         "feed_health": _feed_health(config, last_run, previous_run),
+        "export_rows": export_rows,
         "by_type": by_type,
         "by_source": [{"source": s, "count": c} for s, c in store.counts_by_source()],
         "families": families,

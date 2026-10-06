@@ -57,7 +57,7 @@ jobs:
       - name: Build report
         run: python -m tip report
 
-      - name: Export STIX / Sigma / Suricata / CSV
+      - name: Export STIX / JSON / CSV / Sigma / Suricata
         run: python -m tip export
 
       - name: Build dashboard

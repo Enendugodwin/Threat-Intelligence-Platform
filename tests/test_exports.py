@@ -1,9 +1,11 @@
 import csv
+import json
 
 import yaml
 
 from tip.attack import AttackMap
 from tip.exports import csv_export
+from tip.exports import json_export
 from tip.exports import sigma as sigma_mod
 from tip.exports import stix as stix_mod
 from tip.exports import suricata as suricata_mod
@@ -126,6 +128,15 @@ def test_csv_export(tmp_path):
         rows = list(csv.DictReader(fh))
     assert len(rows) == 4
     assert rows[0]["value"] == "c2-steady-host.com"
+
+
+def test_json_export(tmp_path):
+    path = json_export.write_json(ROWS, tmp_path / "iocs.json", "2026-10-05T00:00:00Z")
+    document = json.loads(path.read_text(encoding="utf-8"))
+    assert document["count"] == 4
+    assert document["generated_at"] == "2026-10-05T00:00:00Z"
+    assert document["indicators"][0]["value"] == "c2-steady-host.com"
+    assert document["indicators"][0]["sources"] == "threatfox"
 
 
 def test_stix_sightings():

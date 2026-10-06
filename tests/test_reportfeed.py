@@ -200,3 +200,14 @@ def test_fetch_reports_isolates_source_failure(tmp_path, monkeypatch):
     stats = fetch_reports(_config(tmp_path), tmp_path)
     assert "src_a" in stats["errors"]
     assert stats["total"] == 0
+
+
+def test_rapid7_report_source_is_enabled():
+    import yaml
+
+    root = pathlib.Path(__file__).resolve().parent.parent
+    config = yaml.safe_load((root / "config" / "config.yaml").read_text(encoding="utf-8"))
+    source = config["reports"]["sources"]["rapid7"]
+    assert source["enabled"] is True
+    assert source["name"] == "Rapid7 Cybersecurity Blog"
+    assert source["url"] == "https://www.rapid7.com/blog/rss/"

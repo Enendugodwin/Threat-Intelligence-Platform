@@ -11,14 +11,16 @@ ATT&CK (heuristically), and publishes finished products:
 | STIX 2.1 bundle | `dist/stix/bundle.json` | OpenCTI / MISP / SIEM TI ingestion |
 | Sigma rules (IOC watchlists) | `dist/sigma/*.yml` | convert with sigma-cli, load into your SIEM |
 | Suricata rules | `dist/suricata/ti.rules` | network detection |
-| CSV indicator set | `dist/iocs.csv` | quick lookups / watchlists |
+| CSV indicator set | `dist/iocs.csv` + `site/iocs.csv` | quick lookups / watchlists |
+| JSON indicator set | `dist/iocs.json` + `site/iocs.json` | structured IOC export for integrations |
 | Tor node list | `dist/tor/tor_nodes.txt` | firewall / proxy context (relays + exits) |
 | Report feed | `site/reports.html` (+ per-report pages) | filterable vendor advisory bank with IOCs + recommendations |
 | Report data | `data/reports.json` | normalized report feed (committed) |
 | Attack map | `site/map.html` | geolocated C2/infrastructure origins (Leaflet) |
 | KEV + EPSS | `site/kev.html` | known exploited vulnerabilities with exploit-probability scoring |
 | Markdown report | `reports/latest.md` | intel pulse for the week |
-| HTML dashboard | `site/index.html` | published to GitHub Pages |
+| PDF report | `site/report.html` (browser print) | use **Export PDF** and choose Save as PDF |
+| HTML dashboard | `site/index.html` | GitHub Pages, dark/light toggle, JSON/CSV downloads |
 
 It runs entirely on GitHub: **Actions** execute the pipeline every 6 hours and
 **Pages** hosts the dashboard. No server required. MISP/OpenCTI connectors ship
@@ -67,7 +69,7 @@ pip install -r requirements-dev.txt
 
 python -m tip sync         # fetch feeds -> data/iocs.sqlite
 python -m tip report       # reports/latest.md
-python -m tip export       # dist/ (STIX, Sigma, Suricata, CSV)
+python -m tip export       # dist/ (STIX, JSON, CSV, Sigma, Suricata)
 python -m tip site         # site/index.html - open it in a browser
 python -m tip stats        # database summary
 ```
@@ -137,7 +139,7 @@ every sync. Each report gets its own page with:
 
 Sources are configured under `reports.sources` in `config/config.yaml`
 (Microsoft Security Blog, Cisco Talos, Unit 42, Ubuntu Security Notices, The
-DFIR Report, SANS ISC). CISA is included but disabled by default - its Akamai
+DFIR Report, SANS ISC, Rapid7 Cybersecurity Blog). CISA is included but disabled by default - its Akamai
 edge returns 403 to Python clients and CI runners. Normalized data lives in
 `data/reports.json` (newest 150 feed reports plus all curated entries). Every
 report page shows its **Report ID** so operator recommendations can be pinned

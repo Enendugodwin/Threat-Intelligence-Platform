@@ -2,7 +2,18 @@
 {% import "_components.j2" as ui %}
 {% block title %}Report {{ generated_date }} &mdash; Threat Intel Pipeline{% endblock %}
 {% block content %}
-<p class="muted">Window: last {{ window_days }} days &middot; Generated: {{ generated_at }} UTC</p>
+<div class="page-heading">
+  <div>
+    <h1 class="page-title">Threat Intel Pulse</h1>
+    <p class="muted">Window: last {{ window_days }} days &middot; Generated: {{ generated_at }} UTC</p>
+  </div>
+  <div class="page-actions no-print">
+    <button class="action-button primary" id="print-report" type="button">Export PDF</button>
+    <a class="action-link" href="iocs.json" download>JSON</a>
+    <a class="action-link" href="iocs.csv" download>CSV</a>
+  </div>
+</div>
+<p class="print-hint no-print">Choose <strong>Save as PDF</strong> in your browser&rsquo;s print dialog.</p>
 
 {{ ui.cards(totals, feed_health, tor, window_days) }}
 
@@ -40,4 +51,7 @@
 {{ ui.tor_section(tor) }}
 
 {{ ui.notable_section(notable) }}
+<script>
+document.getElementById("print-report").addEventListener("click", function () { window.print(); });
+</script>
 {% endblock %}

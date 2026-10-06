@@ -1,9 +1,12 @@
+import csv
+import json
 import pathlib
 
 from tip.attack import load_attack_map
 from tip.exports import sigma as sigma_mod
 from tip.exports import stix as stix_mod
 from tip.exports import suricata as suricata_mod
+from tip.exports import json_export
 from tip.exports import tor as tor_export
 from tip.pipeline import run_sync
 from tip.report import build_context, write_report
@@ -50,6 +53,10 @@ def test_offline_pipeline_end_to_end(tmp_path):
         context = build_context(store, config, attack)
         rows = store.rows_for_export(30, 1000, 0, exclude_sources=["tor"])
         tor_rows = store.source_rows("tor")
+
+    cli_json = json_export.build_document(rows, "2026-10-05T00:00:00Z")
+    assert cli_json["count"] == len(rows) > 0
+    assert cli_json["indicators"][0]["value"]
 
     reports_doc = {
         "generated_at": "2026-10-04T00:00:00Z",
@@ -129,8 +136,19 @@ def test_offline_pipeline_end_to_end(tmp_path):
     index = site_paths[0].read_text(encoding="utf-8")
     assert "Threat Intel Pipeline" in index
     assert 'href="reports.html"' in index
+    assert 'id="theme-toggle"' in index and 'data-theme="light"' in index
+    assert 'href="iocs.json" download' in index and 'href="iocs.csv" download' in index
+    assert 'href="report.html"' in index and "Report / PDF" in index
 
     site_dir = tmp_path / "site"
+    site_json = json.loads((site_dir / "iocs.json").read_text(encoding="utf-8"))
+    assert site_json["count"] == len(site_json["indicators"]) > 0
+    with (site_dir / "iocs.csv").open(newline="", encoding="utf-8") as fh:
+        assert list(csv.DictReader(fh))
+    pulse = (site_dir / "report.html").read_text(encoding="utf-8")
+    assert 'id="print-report"' in pulse and "window.print()" in pulse
+    assert "@media print" in index
+
     feed = (site_dir / "reports.html").read_text(encoding="utf-8")
     assert "filterbar" in feed and "cat-windows" in feed and "Test advisory" in feed
     assert "report-abc123def4567890.html#iocs" in feed
