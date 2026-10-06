@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
 <title>Observed infrastructure geolocation &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
+  color-scheme:dark;
   /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
   --color-primary:#00FF41; --color-on-primary:#0F172A;
   --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
@@ -20,6 +29,12 @@
   --color-muted:#181818; --color-muted-foreground:#94A3B8;
   --color-border:#1F1F1F; --color-destructive:#EF4444;
   --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
   /* Dense dashboard spacing scale */
   --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
   --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
@@ -27,6 +42,23 @@
   --radius:10px;
   --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +69,7 @@ a:hover{opacity:.85}
 .icon{flex:none}
 
 /* Header */
-header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
 .header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
 .brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
 .brand:hover{opacity:1}
@@ -48,6 +80,10 @@ header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filt
 nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
 nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
 nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 
 /* Layout */
 main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
@@ -61,40 +97,44 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .card-head svg{color:var(--color-primary)}
-.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
 .card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
-.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
 .card-bad .card-head svg{color:var(--color-accent)}
 
 /* Tables */
 .table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
 th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
-th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
 th.num-col,td.num-cell{text-align:right}
 td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr{transition:background .15s ease}
-tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:hover{background:var(--color-primary-soft)}
 tbody tr:last-child td{border-bottom:none}
 code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
 td code{background:transparent;border:none;padding:0}
 
 /* Status pills */
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
-.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
-.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
 .bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
 .bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
 .bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
-.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
 .bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
 .bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
 
 /* Chips */
 .chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
@@ -110,11 +150,11 @@ td code{background:transparent;border:none;padding:0}
 .chip a:hover{color:var(--color-primary);opacity:1}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
-.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
 .risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
-.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
-.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
-.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
 .risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
 .risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
 .explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
@@ -124,11 +164,11 @@ td code{background:transparent;border:none;padding:0}
 .filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
 .filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
-.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
-.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
 .queue{display:flex;flex-direction:column;gap:var(--space-md)}
 .queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
-.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
 .queue-body{flex:1;min-width:0}
 .queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
 .queue-why{color:var(--color-muted-foreground);font-size:.78rem}
@@ -136,16 +176,17 @@ td code{background:transparent;border:none;padding:0}
 @media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
 .report-card h3 a{color:var(--color-foreground)}
 .report-card h3 a:hover{color:var(--color-primary);opacity:1}
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
 .badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
-.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
-.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -178,14 +219,34 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   .card .num{font-size:1.5rem}
   th,td{padding:var(--space-sm) var(--space-md)}
   table{min-width:460px;font-size:.8rem}
-  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
 }
 @media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
   .bars{padding:var(--space-lg)}
   .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
   .bar-label{order:1;flex:1 1 auto}
   .bar-value{order:2;flex:0 0 auto}
   .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -202,10 +263,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>34579 indicators</span>
-      <span>3299 new / 17900 updated last run &middot; 34579 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40153 indicators</span>
+      <span>5574 new / 16618 updated last run &middot; 40153 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T06:34:39Z</span>
+      <span>sync 2026-10-06T18:14:05Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -215,7 +276,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
   </div>
 </header>
 <main>
@@ -223,7 +290,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <p class="muted">
   Approximate geolocation of C2 and infrastructure indicators
 (sources: report, threatfox).
-  400 IPs across 51 countries &middot; provider ip-api.com &middot; updated 2026-10-06T06:34:35Z UTC.
+  413 IPs across 52 countries &middot; provider ip-api.com &middot; updated 2026-10-06T18:13:58Z UTC.
   <br>Infrastructure location &ne; threat actor location &mdash; hosting, VPN and cloud infrastructure regularly
   misrepresents the operator's true position. Treat this as context, not attribution.
 </p>
@@ -243,7 +310,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td class="num-cell">1</td>
           <td>United States (US)</td>
-          <td class="num-cell">72</td>
+          <td class="num-cell">79</td>
           <td><code>100.61.249.34</code> <code>104.129.171.63</code> <code>104.168.102.116</code> <code>104.219.238.196</code> <code>104.37.172.247</code></td>
         </tr>
         <tr>
@@ -290,21 +357,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td class="num-cell">9</td>
+          <td>Japan (JP)</td>
+          <td class="num-cell">9</td>
+          <td><code>130.94.67.107</code> <code>149.104.78.208</code> <code>176.126.114.42</code> <code>20.18.4.1</code> <code>34.153.223.102</code></td>
+        </tr>
+        <tr>
+          <td class="num-cell">10</td>
           <td>Brazil (BR)</td>
           <td class="num-cell">9</td>
           <td><code>147.45.116.124</code> <code>147.45.116.125</code> <code>147.45.116.130</code> <code>172.233.20.99</code> <code>201.79.51.164</code></td>
         </tr>
         <tr>
-          <td class="num-cell">10</td>
+          <td class="num-cell">11</td>
           <td>Russia (RU)</td>
           <td class="num-cell">8</td>
           <td><code>109.107.189.252</code> <code>130.49.149.13</code> <code>171.22.130.121</code> <code>212.118.56.166</code> <code>212.192.14.31</code></td>
-        </tr>
-        <tr>
-          <td class="num-cell">11</td>
-          <td>Japan (JP)</td>
-          <td class="num-cell">7</td>
-          <td><code>130.94.67.107</code> <code>176.126.114.42</code> <code>34.153.223.102</code> <code>43.130.251.228</code> <code>43.133.164.200</code></td>
         </tr>
         <tr>
           <td class="num-cell">12</td>
@@ -362,129 +429,129 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td class="num-cell">21</td>
+          <td>Taiwan (TW)</td>
+          <td class="num-cell">4</td>
+          <td><code>1.34.200.85</code> <code>122.116.138.33</code> <code>193.42.40.135</code> <code>59.125.211.65</code></td>
+        </tr>
+        <tr>
+          <td class="num-cell">22</td>
           <td>Mauritius (MU)</td>
           <td class="num-cell">4</td>
           <td><code>102.117.165.210</code> <code>102.117.167.58</code> <code>102.117.170.218</code> <code>102.117.173.122</code></td>
         </tr>
         <tr>
-          <td class="num-cell">22</td>
+          <td class="num-cell">23</td>
           <td>Romania (RO)</td>
           <td class="num-cell">4</td>
           <td><code>140.233.190.108</code> <code>140.233.190.110</code> <code>140.233.190.114</code> <code>140.233.190.115</code></td>
         </tr>
         <tr>
-          <td class="num-cell">23</td>
+          <td class="num-cell">24</td>
           <td>Spain (ES)</td>
           <td class="num-cell">4</td>
           <td><code>145.249.109.10</code> <code>145.249.109.147</code> <code>158.158.18.61</code> <code>172.233.111.242</code></td>
         </tr>
         <tr>
-          <td class="num-cell">24</td>
+          <td class="num-cell">25</td>
           <td>Croatia (HR)</td>
           <td class="num-cell">4</td>
           <td><code>5.181.2.159</code> <code>5.181.2.72</code> <code>5.181.2.75</code> <code>5.181.2.8</code></td>
         </tr>
         <tr>
-          <td class="num-cell">25</td>
+          <td class="num-cell">26</td>
           <td>Canada (CA)</td>
           <td class="num-cell">3</td>
           <td><code>154.12.117.217</code> <code>172.94.46.114</code> <code>38.9.96.236</code></td>
         </tr>
         <tr>
-          <td class="num-cell">26</td>
+          <td class="num-cell">27</td>
           <td>Mexico (MX)</td>
           <td class="num-cell">3</td>
           <td><code>187.145.62.206</code> <code>189.141.53.203</code> <code>45.133.180.18</code></td>
         </tr>
         <tr>
-          <td class="num-cell">27</td>
+          <td class="num-cell">28</td>
           <td>Ukraine (UA)</td>
           <td class="num-cell">3</td>
           <td><code>196.251.121.249</code> <code>94.154.40.106</code> <code>94.154.40.119</code></td>
         </tr>
         <tr>
-          <td class="num-cell">28</td>
+          <td class="num-cell">29</td>
           <td>Poland (PL)</td>
           <td class="num-cell">3</td>
           <td><code>2.59.163.183</code> <code>2.59.163.4</code> <code>2.59.163.77</code></td>
         </tr>
         <tr>
-          <td class="num-cell">29</td>
+          <td class="num-cell">30</td>
           <td>Bulgaria (BG)</td>
           <td class="num-cell">3</td>
           <td><code>2.59.218.73</code> <code>91.92.41.39</code> <code>94.26.68.68</code></td>
         </tr>
         <tr>
-          <td class="num-cell">30</td>
+          <td class="num-cell">31</td>
           <td>Finland (FI)</td>
           <td class="num-cell">3</td>
           <td><code>37.27.146.241</code> <code>37.27.157.157</code> <code>87.120.107.15</code></td>
         </tr>
         <tr>
-          <td class="num-cell">31</td>
+          <td class="num-cell">32</td>
           <td>Indonesia (ID)</td>
           <td class="num-cell">3</td>
           <td><code>43.157.198.200</code> <code>43.157.240.245</code> <code>43.173.28.224</code></td>
         </tr>
         <tr>
-          <td class="num-cell">32</td>
+          <td class="num-cell">33</td>
           <td>Iceland (IS)</td>
           <td class="num-cell">3</td>
           <td><code>89.127.233.194</code> <code>89.147.111.64</code> <code>93.95.227.51</code></td>
         </tr>
         <tr>
-          <td class="num-cell">33</td>
+          <td class="num-cell">34</td>
           <td>Morocco (MA)</td>
           <td class="num-cell">2</td>
           <td><code>102.55.131.186</code> <code>160.179.238.25</code></td>
         </tr>
         <tr>
-          <td class="num-cell">34</td>
+          <td class="num-cell">35</td>
           <td>Argentina (AR)</td>
           <td class="num-cell">2</td>
           <td><code>128.90.113.45</code> <code>130.94.107.174</code></td>
         </tr>
         <tr>
-          <td class="num-cell">35</td>
+          <td class="num-cell">36</td>
           <td>Australia (AU)</td>
           <td class="num-cell">2</td>
           <td><code>13.236.153.60</code> <code>209.38.82.85</code></td>
         </tr>
         <tr>
-          <td class="num-cell">36</td>
+          <td class="num-cell">37</td>
           <td>Lithuania (LT)</td>
           <td class="num-cell">2</td>
           <td><code>141.98.10.154</code> <code>91.224.92.203</code></td>
         </tr>
         <tr>
-          <td class="num-cell">37</td>
+          <td class="num-cell">38</td>
           <td>South Korea (KR)</td>
           <td class="num-cell">2</td>
           <td><code>175.124.145.102</code> <code>43.108.51.124</code></td>
         </tr>
         <tr>
-          <td class="num-cell">38</td>
+          <td class="num-cell">39</td>
           <td>Colombia (CO)</td>
           <td class="num-cell">2</td>
           <td><code>190.144.146.90</code> <code>191.93.113.119</code></td>
         </tr>
         <tr>
-          <td class="num-cell">39</td>
+          <td class="num-cell">40</td>
           <td>Panama (PA)</td>
           <td class="num-cell">1</td>
           <td><code>128.90.112.243</code></td>
         </tr>
         <tr>
-          <td class="num-cell">40</td>
+          <td class="num-cell">41</td>
           <td>Thailand (TH)</td>
           <td class="num-cell">1</td>
           <td><code>188.212.158.203</code></td>
-        </tr>
-        <tr>
-          <td class="num-cell">41</td>
-          <td>Taiwan (TW)</td>
-          <td class="num-cell">1</td>
-          <td><code>193.42.40.135</code></td>
         </tr>
         <tr>
           <td class="num-cell">42</td>
@@ -512,36 +579,42 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td class="num-cell">46</td>
+          <td>Bolivia (BO)</td>
+          <td class="num-cell">1</td>
+          <td><code>45.227.253.132</code></td>
+        </tr>
+        <tr>
+          <td class="num-cell">47</td>
           <td>Estonia (EE)</td>
           <td class="num-cell">1</td>
           <td><code>45.83.182.68</code></td>
         </tr>
         <tr>
-          <td class="num-cell">47</td>
+          <td class="num-cell">48</td>
           <td>Malaysia (MY)</td>
           <td class="num-cell">1</td>
           <td><code>72.61.149.25</code></td>
         </tr>
         <tr>
-          <td class="num-cell">48</td>
+          <td class="num-cell">49</td>
           <td>Georgia (GE)</td>
           <td class="num-cell">1</td>
           <td><code>91.214.78.118</code></td>
         </tr>
         <tr>
-          <td class="num-cell">49</td>
+          <td class="num-cell">50</td>
           <td>Moldova (MD)</td>
           <td class="num-cell">1</td>
           <td><code>93.185.165.104</code></td>
         </tr>
         <tr>
-          <td class="num-cell">50</td>
+          <td class="num-cell">51</td>
           <td>South Africa (ZA)</td>
           <td class="num-cell">1</td>
           <td><code>94.156.152.24</code></td>
         </tr>
         <tr>
-          <td class="num-cell">51</td>
+          <td class="num-cell">52</td>
           <td>Slovakia (SK)</td>
           <td class="num-cell">1</td>
           <td><code>95.102.34.46</code></td>
@@ -554,7 +627,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
-  var points = [{"cc": "us", "count": 72, "country": "United States", "ips": ["100.61.249.34", "104.129.171.63", "104.168.102.116", "104.219.238.196", "104.37.172.247", "107.173.180.64", "130.94.17.15", "134.122.126.123"], "lat": 38.533, "lon": -91.563}, {"cc": "nl", "count": 40, "country": "The Netherlands", "ips": ["103.245.231.248", "103.245.231.79", "109.236.50.145", "138.124.67.16", "138.124.67.244", "138.124.67.60", "157.245.76.251", "158.94.209.12"], "lat": 52.181, "lon": 5.045}, {"cc": "cn", "count": 36, "country": "China", "ips": ["101.34.208.175", "106.55.253.229", "111.230.37.219", "114.215.184.158", "114.66.27.110", "116.62.174.16", "117.107.25.243", "117.72.202.154"], "lat": 32.063, "lon": 117.412}, {"cc": "de", "count": 36, "country": "Germany", "ips": ["103.160.59.97", "104.105.26.84", "104.243.248.63", "134.122.68.238", "144.172.68.200", "144.172.69.79", "153.80.242.105", "159.223.24.190"], "lat": 50.282, "lon": 9.125}, {"cc": "hk", "count": 29, "country": "Hong Kong", "ips": ["103.115.49.124", "103.214.146.46", "108.187.43.94", "121.127.253.146", "146.70.79.45", "147.90.182.42", "148.66.17.126", "149.88.73.83"], "lat": 22.318, "lon": 114.177}, {"cc": "sg", "count": 25, "country": "Singapore", "ips": ["104.248.155.168", "104.248.156.16", "129.226.82.94", "137.220.151.95", "146.190.111.53", "15.235.204.60", "157.230.254.212", "165.245.184.215"], "lat": 1.327, "lon": 103.765}, {"cc": "tr", "count": 10, "country": "T\u00fcrkiye", "ips": ["103.83.86.147", "155.103.69.239", "155.103.69.57", "155.103.69.85", "155.103.70.232", "155.103.71.242", "203.202.232.117", "216.9.224.180"], "lat": 41.01, "lon": 28.99}, {"cc": "gb", "count": 9, "country": "United Kingdom", "ips": ["104.218.165.253", "138.68.128.163", "143.246.216.114", "57.128.171.127", "85.11.182.104", "85.234.91.247", "89.185.84.164", "89.185.84.98"], "lat": 51.694, "lon": -0.45}, {"cc": "br", "count": 9, "country": "Brazil", "ips": ["147.45.116.124", "147.45.116.125", "147.45.116.130", "172.233.20.99", "201.79.51.164", "43.157.142.78", "43.157.181.156", "43.166.68.17"], "lat": -22.361, "lon": -45.731}, {"cc": "ru", "count": 8, "country": "Russia", "ips": ["109.107.189.252", "130.49.149.13", "171.22.130.121", "212.118.56.166", "212.192.14.31", "212.193.31.145", "89.19.223.49", "89.23.113.104"], "lat": 56.806, "lon": 35.779}, {"cc": "jp", "count": 7, "country": "Japan", "ips": ["130.94.67.107", "176.126.114.42", "34.153.223.102", "43.130.251.228", "43.133.164.200", "43.167.217.157", "45.32.30.235"], "lat": 35.676, "lon": 139.703}, {"cc": "se", "count": 7, "country": "Sweden", "ips": ["132.243.187.112", "132.243.187.133", "172.232.132.117", "185.157.163.24", "185.236.203.101", "206.123.137.132", "217.64.148.147"], "lat": 59.228, "lon": 17.809}, {"cc": "in", "count": 7, "country": "India", "ips": ["134.209.146.147", "143.244.135.17", "159.89.166.50", "168.144.113.82", "187.127.178.97", "43.204.2.142", "45.79.123.245"], "lat": 15.589, "lon": 75.574}, {"cc": "fr", "count": 7, "country": "France", "ips": ["172.94.53.99", "185.137.122.215", "195.177.94.101", "45.95.233.131", "62.133.62.30", "72.60.189.171", "95.182.87.134"], "lat": 48.083, "lon": 3.621}, {"cc": "si", "count": 6, "country": "Slovenia", "ips": ["102.220.160.198", "102.220.161.94", "102.220.163.160", "102.220.163.36", "102.220.163.40", "130.12.181.199"], "lat": 46.057, "lon": 14.506}, {"cc": "ch", "count": 6, "country": "Switzerland", "ips": ["141.255.166.178", "176.65.144.177", "179.43.170.151", "217.60.103.131", "217.60.103.200", "46.19.140.50"], "lat": 47.103, "lon": 7.806}, {"cc": "at", "count": 6, "country": "Austria", "ips": ["87.251.69.138", "87.251.69.139", "87.251.69.144", "87.251.69.145", "87.251.69.165", "87.251.69.166"], "lat": 47.516, "lon": 14.55}, {"cc": "vn", "count": 5, "country": "Vietnam", "ips": ["103.48.84.225", "103.67.163.201", "161.248.179.24", "180.93.125.137", "180.93.236.78"], "lat": 11.973, "lon": 107.709}, {"cc": "lv", "count": 5, "country": "Latvia", "ips": ["109.248.151.101", "94.183.235.11", "94.183.235.142", "94.183.235.159", "94.183.235.249"], "lat": 56.947, "lon": 24.098}, {"cc": "mk", "count": 5, "country": "North Macedonia", "ips": ["89.185.82.37", "89.185.82.38", "89.185.82.39", "89.185.82.69", "89.185.82.70"], "lat": 41.998, "lon": 21.425}, {"cc": "mu", "count": 4, "country": "Mauritius", "ips": ["102.117.165.210", "102.117.167.58", "102.117.170.218", "102.117.173.122"], "lat": -20.249, "lon": 57.488}, {"cc": "ro", "count": 4, "country": "Romania", "ips": ["140.233.190.108", "140.233.190.110", "140.233.190.114", "140.233.190.115"], "lat": 44.427, "lon": 26.102}, {"cc": "es", "count": 4, "country": "Spain", "ips": ["145.249.109.10", "145.249.109.147", "158.158.18.61", "172.233.111.242"], "lat": 40.417, "lon": -3.702}, {"cc": "hr", "count": 4, "country": "Croatia", "ips": ["5.181.2.159", "5.181.2.72", "5.181.2.75", "5.181.2.8"], "lat": 45.829, "lon": 15.979}, {"cc": "ca", "count": 3, "country": "Canada", "ips": ["154.12.117.217", "172.94.46.114", "38.9.96.236"], "lat": 45.507, "lon": -73.685}, {"cc": "mx", "count": 3, "country": "Mexico", "ips": ["187.145.62.206", "189.141.53.203", "45.133.180.18"], "lat": 20.189, "lon": -99.983}, {"cc": "ua", "count": 3, "country": "Ukraine", "ips": ["196.251.121.249", "94.154.40.106", "94.154.40.119"], "lat": 50.45, "lon": 30.524}, {"cc": "pl", "count": 3, "country": "Poland", "ips": ["2.59.163.183", "2.59.163.4", "2.59.163.77"], "lat": 52.23, "lon": 21.009}, {"cc": "bg", "count": 3, "country": "Bulgaria", "ips": ["2.59.218.73", "91.92.41.39", "94.26.68.68"], "lat": 42.659, "lon": 23.356}, {"cc": "fi", "count": 3, "country": "Finland", "ips": ["37.27.146.241", "37.27.157.157", "87.120.107.15"], "lat": 60.172, "lon": 24.935}, {"cc": "id", "count": 3, "country": "Indonesia", "ips": ["43.157.198.200", "43.157.240.245", "43.173.28.224"], "lat": -6.211, "lon": 106.845}, {"cc": "is", "count": 3, "country": "Iceland", "ips": ["89.127.233.194", "89.147.111.64", "93.95.227.51"], "lat": 64.143, "lon": -21.925}, {"cc": "ma", "count": 2, "country": "Morocco", "ips": ["102.55.131.186", "160.179.238.25"], "lat": 34.892, "lon": -6.322}, {"cc": "ar", "count": 2, "country": "Argentina", "ips": ["128.90.113.45", "130.94.107.174"], "lat": -34.609, "lon": -58.382}, {"cc": "au", "count": 2, "country": "Australia", "ips": ["13.236.153.60", "209.38.82.85"], "lat": -33.883, "lon": 151.199}, {"cc": "lt", "count": 2, "country": "Lithuania", "ips": ["141.98.10.154", "91.224.92.203"], "lat": 54.797, "lon": 24.642}, {"cc": "kr", "count": 2, "country": "South Korea", "ips": ["175.124.145.102", "43.108.51.124"], "lat": 37.527, "lon": 126.95}, {"cc": "co", "count": 2, "country": "Colombia", "ips": ["190.144.146.90", "191.93.113.119"], "lat": 7.788, "lon": -74.435}, {"cc": "pa", "count": 1, "country": "Panama", "ips": ["128.90.112.243"], "lat": 8.982, "lon": -79.52}, {"cc": "th", "count": 1, "country": "Thailand", "ips": ["188.212.158.203"], "lat": 13.775, "lon": 100.52}, {"cc": "tw", "count": 1, "country": "Taiwan", "ips": ["193.42.40.135"], "lat": 25.053, "lon": 121.526}, {"cc": "sa", "count": 1, "country": "Saudi Arabia", "ips": ["2.91.182.143"], "lat": 24.687, "lon": 46.722}, {"cc": "ae", "count": 1, "country": "United Arab Emirates", "ips": ["20.74.145.114"], "lat": 25.267, "lon": 55.317}, {"cc": "cz", "count": 1, "country": "Czechia", "ips": ["208.64.33.69"], "lat": 50.088, "lon": 14.412}, {"cc": "it", "count": 1, "country": "Italy", "ips": ["45.155.68.31"], "lat": 45.464, "lon": 9.19}, {"cc": "ee", "count": 1, "country": "Estonia", "ips": ["45.83.182.68"], "lat": 59.437, "lon": 24.753}, {"cc": "my", "count": 1, "country": "Malaysia", "ips": ["72.61.149.25"], "lat": 3.141, "lon": 101.685}, {"cc": "ge", "count": 1, "country": "Georgia", "ips": ["91.214.78.118"], "lat": 42.0, "lon": 43.5}, {"cc": "md", "count": 1, "country": "Moldova", "ips": ["93.185.165.104"], "lat": 47.011, "lon": 28.864}, {"cc": "za", "count": 1, "country": "South Africa", "ips": ["94.156.152.24"], "lat": -25.836, "lon": 28.138}, {"cc": "sk", "count": 1, "country": "Slovakia", "ips": ["95.102.34.46"], "lat": 48.158, "lon": 17.147}];
+  var points = [{"cc": "us", "count": 79, "country": "United States", "ips": ["100.61.249.34", "104.129.171.63", "104.168.102.116", "104.219.238.196", "104.37.172.247", "107.173.180.64", "130.94.17.15", "134.122.126.123"], "lat": 38.531, "lon": -91.806}, {"cc": "nl", "count": 40, "country": "The Netherlands", "ips": ["103.245.231.248", "103.245.231.79", "109.236.50.145", "138.124.67.16", "138.124.67.244", "138.124.67.60", "157.245.76.251", "158.94.209.12"], "lat": 52.181, "lon": 5.045}, {"cc": "cn", "count": 36, "country": "China", "ips": ["101.34.208.175", "106.55.253.229", "111.230.37.219", "114.215.184.158", "114.66.27.110", "116.62.174.16", "117.107.25.243", "117.72.202.154"], "lat": 32.063, "lon": 117.412}, {"cc": "de", "count": 36, "country": "Germany", "ips": ["103.160.59.97", "104.105.26.84", "104.243.248.63", "134.122.68.238", "144.172.68.200", "144.172.69.79", "153.80.242.105", "159.223.24.190"], "lat": 50.282, "lon": 9.125}, {"cc": "hk", "count": 29, "country": "Hong Kong", "ips": ["103.115.49.124", "103.214.146.46", "108.187.43.94", "121.127.253.146", "146.70.79.45", "147.90.182.42", "148.66.17.126", "149.88.73.83"], "lat": 22.318, "lon": 114.177}, {"cc": "sg", "count": 25, "country": "Singapore", "ips": ["104.248.155.168", "104.248.156.16", "129.226.82.94", "137.220.151.95", "146.190.111.53", "15.235.204.60", "157.230.254.212", "165.245.184.215"], "lat": 1.327, "lon": 103.765}, {"cc": "tr", "count": 10, "country": "T\u00fcrkiye", "ips": ["103.83.86.147", "155.103.69.239", "155.103.69.57", "155.103.69.85", "155.103.70.232", "155.103.71.242", "203.202.232.117", "216.9.224.180"], "lat": 41.01, "lon": 28.99}, {"cc": "gb", "count": 9, "country": "United Kingdom", "ips": ["104.218.165.253", "138.68.128.163", "143.246.216.114", "57.128.171.127", "85.11.182.104", "85.234.91.247", "89.185.84.164", "89.185.84.98"], "lat": 51.694, "lon": -0.45}, {"cc": "jp", "count": 9, "country": "Japan", "ips": ["130.94.67.107", "149.104.78.208", "176.126.114.42", "20.18.4.1", "34.153.223.102", "43.130.251.228", "43.133.164.200", "43.167.217.157"], "lat": 35.678, "lon": 139.709}, {"cc": "br", "count": 9, "country": "Brazil", "ips": ["147.45.116.124", "147.45.116.125", "147.45.116.130", "172.233.20.99", "201.79.51.164", "43.157.142.78", "43.157.181.156", "43.166.68.17"], "lat": -22.361, "lon": -45.731}, {"cc": "ru", "count": 8, "country": "Russia", "ips": ["109.107.189.252", "130.49.149.13", "171.22.130.121", "212.118.56.166", "212.192.14.31", "212.193.31.145", "89.19.223.49", "89.23.113.104"], "lat": 56.806, "lon": 35.779}, {"cc": "se", "count": 7, "country": "Sweden", "ips": ["132.243.187.112", "132.243.187.133", "172.232.132.117", "185.157.163.24", "185.236.203.101", "206.123.137.132", "217.64.148.147"], "lat": 59.228, "lon": 17.809}, {"cc": "in", "count": 7, "country": "India", "ips": ["134.209.146.147", "143.244.135.17", "159.89.166.50", "168.144.113.82", "187.127.178.97", "43.204.2.142", "45.79.123.245"], "lat": 15.589, "lon": 75.574}, {"cc": "fr", "count": 7, "country": "France", "ips": ["172.94.53.99", "185.137.122.215", "195.177.94.101", "45.95.233.131", "62.133.62.30", "72.60.189.171", "95.182.87.134"], "lat": 48.083, "lon": 3.621}, {"cc": "si", "count": 6, "country": "Slovenia", "ips": ["102.220.160.198", "102.220.161.94", "102.220.163.160", "102.220.163.36", "102.220.163.40", "130.12.181.199"], "lat": 46.057, "lon": 14.506}, {"cc": "ch", "count": 6, "country": "Switzerland", "ips": ["141.255.166.178", "176.65.144.177", "179.43.170.151", "217.60.103.131", "217.60.103.200", "46.19.140.50"], "lat": 47.103, "lon": 7.806}, {"cc": "at", "count": 6, "country": "Austria", "ips": ["87.251.69.138", "87.251.69.139", "87.251.69.144", "87.251.69.145", "87.251.69.165", "87.251.69.166"], "lat": 47.516, "lon": 14.55}, {"cc": "vn", "count": 5, "country": "Vietnam", "ips": ["103.48.84.225", "103.67.163.201", "161.248.179.24", "180.93.125.137", "180.93.236.78"], "lat": 11.973, "lon": 107.709}, {"cc": "lv", "count": 5, "country": "Latvia", "ips": ["109.248.151.101", "94.183.235.11", "94.183.235.142", "94.183.235.159", "94.183.235.249"], "lat": 56.947, "lon": 24.098}, {"cc": "mk", "count": 5, "country": "North Macedonia", "ips": ["89.185.82.37", "89.185.82.38", "89.185.82.39", "89.185.82.69", "89.185.82.70"], "lat": 41.998, "lon": 21.425}, {"cc": "tw", "count": 4, "country": "Taiwan", "ips": ["1.34.200.85", "122.116.138.33", "193.42.40.135", "59.125.211.65"], "lat": 24.542, "lon": 121.182}, {"cc": "mu", "count": 4, "country": "Mauritius", "ips": ["102.117.165.210", "102.117.167.58", "102.117.170.218", "102.117.173.122"], "lat": -20.249, "lon": 57.488}, {"cc": "ro", "count": 4, "country": "Romania", "ips": ["140.233.190.108", "140.233.190.110", "140.233.190.114", "140.233.190.115"], "lat": 44.427, "lon": 26.102}, {"cc": "es", "count": 4, "country": "Spain", "ips": ["145.249.109.10", "145.249.109.147", "158.158.18.61", "172.233.111.242"], "lat": 40.417, "lon": -3.702}, {"cc": "hr", "count": 4, "country": "Croatia", "ips": ["5.181.2.159", "5.181.2.72", "5.181.2.75", "5.181.2.8"], "lat": 45.829, "lon": 15.979}, {"cc": "ca", "count": 3, "country": "Canada", "ips": ["154.12.117.217", "172.94.46.114", "38.9.96.236"], "lat": 45.507, "lon": -73.685}, {"cc": "mx", "count": 3, "country": "Mexico", "ips": ["187.145.62.206", "189.141.53.203", "45.133.180.18"], "lat": 20.189, "lon": -99.983}, {"cc": "ua", "count": 3, "country": "Ukraine", "ips": ["196.251.121.249", "94.154.40.106", "94.154.40.119"], "lat": 50.45, "lon": 30.524}, {"cc": "pl", "count": 3, "country": "Poland", "ips": ["2.59.163.183", "2.59.163.4", "2.59.163.77"], "lat": 52.23, "lon": 21.009}, {"cc": "bg", "count": 3, "country": "Bulgaria", "ips": ["2.59.218.73", "91.92.41.39", "94.26.68.68"], "lat": 42.659, "lon": 23.356}, {"cc": "fi", "count": 3, "country": "Finland", "ips": ["37.27.146.241", "37.27.157.157", "87.120.107.15"], "lat": 60.172, "lon": 24.935}, {"cc": "id", "count": 3, "country": "Indonesia", "ips": ["43.157.198.200", "43.157.240.245", "43.173.28.224"], "lat": -6.211, "lon": 106.845}, {"cc": "is", "count": 3, "country": "Iceland", "ips": ["89.127.233.194", "89.147.111.64", "93.95.227.51"], "lat": 64.143, "lon": -21.925}, {"cc": "ma", "count": 2, "country": "Morocco", "ips": ["102.55.131.186", "160.179.238.25"], "lat": 34.892, "lon": -6.322}, {"cc": "ar", "count": 2, "country": "Argentina", "ips": ["128.90.113.45", "130.94.107.174"], "lat": -34.609, "lon": -58.382}, {"cc": "au", "count": 2, "country": "Australia", "ips": ["13.236.153.60", "209.38.82.85"], "lat": -33.883, "lon": 151.199}, {"cc": "lt", "count": 2, "country": "Lithuania", "ips": ["141.98.10.154", "91.224.92.203"], "lat": 54.797, "lon": 24.642}, {"cc": "kr", "count": 2, "country": "South Korea", "ips": ["175.124.145.102", "43.108.51.124"], "lat": 37.527, "lon": 126.95}, {"cc": "co", "count": 2, "country": "Colombia", "ips": ["190.144.146.90", "191.93.113.119"], "lat": 7.788, "lon": -74.435}, {"cc": "pa", "count": 1, "country": "Panama", "ips": ["128.90.112.243"], "lat": 8.982, "lon": -79.52}, {"cc": "th", "count": 1, "country": "Thailand", "ips": ["188.212.158.203"], "lat": 13.775, "lon": 100.52}, {"cc": "sa", "count": 1, "country": "Saudi Arabia", "ips": ["2.91.182.143"], "lat": 24.687, "lon": 46.722}, {"cc": "ae", "count": 1, "country": "United Arab Emirates", "ips": ["20.74.145.114"], "lat": 25.267, "lon": 55.317}, {"cc": "cz", "count": 1, "country": "Czechia", "ips": ["208.64.33.69"], "lat": 50.088, "lon": 14.412}, {"cc": "it", "count": 1, "country": "Italy", "ips": ["45.155.68.31"], "lat": 45.464, "lon": 9.19}, {"cc": "bo", "count": 1, "country": "Bolivia", "ips": ["45.227.253.132"], "lat": -16.49, "lon": -68.119}, {"cc": "ee", "count": 1, "country": "Estonia", "ips": ["45.83.182.68"], "lat": 59.437, "lon": 24.753}, {"cc": "my", "count": 1, "country": "Malaysia", "ips": ["72.61.149.25"], "lat": 3.141, "lon": 101.685}, {"cc": "ge", "count": 1, "country": "Georgia", "ips": ["91.214.78.118"], "lat": 42.0, "lon": 43.5}, {"cc": "md", "count": 1, "country": "Moldova", "ips": ["93.185.165.104"], "lat": 47.011, "lon": 28.864}, {"cc": "za", "count": 1, "country": "South Africa", "ips": ["94.156.152.24"], "lat": -25.836, "lon": 28.138}, {"cc": "sk", "count": 1, "country": "Slovakia", "ips": ["95.102.34.46"], "lat": 48.158, "lon": 17.147}];
   if (typeof L === "undefined" || !document.getElementById("map")) { return; }
   var map = L.map("map", { worldCopyJump: true, scrollWheelZoom: false }).setView([22, 10], 2);
   L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
@@ -574,7 +647,28 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T06:34:39Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:14:05Z UTC</span></p>
 </footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+</script>
 </body>
 </html>

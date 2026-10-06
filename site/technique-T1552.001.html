@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
 <title>ATT&amp;CK T1552.001: Credentials In Files &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
+  color-scheme:dark;
   /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
   --color-primary:#00FF41; --color-on-primary:#0F172A;
   --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
@@ -20,6 +29,12 @@
   --color-muted:#181818; --color-muted-foreground:#94A3B8;
   --color-border:#1F1F1F; --color-destructive:#EF4444;
   --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
   /* Dense dashboard spacing scale */
   --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
   --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
@@ -27,6 +42,23 @@
   --radius:10px;
   --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +69,7 @@ a:hover{opacity:.85}
 .icon{flex:none}
 
 /* Header */
-header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
 .header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
 .brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
 .brand:hover{opacity:1}
@@ -48,6 +80,10 @@ header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filt
 nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
 nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
 nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 
 /* Layout */
 main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
@@ -61,40 +97,44 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .card-head svg{color:var(--color-primary)}
-.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
 .card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
-.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
 .card-bad .card-head svg{color:var(--color-accent)}
 
 /* Tables */
 .table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
 th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
-th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
 th.num-col,td.num-cell{text-align:right}
 td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr{transition:background .15s ease}
-tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:hover{background:var(--color-primary-soft)}
 tbody tr:last-child td{border-bottom:none}
 code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
 td code{background:transparent;border:none;padding:0}
 
 /* Status pills */
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
-.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
-.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
 .bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
 .bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
 .bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
-.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
 .bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
 .bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
 
 /* Chips */
 .chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
@@ -110,11 +150,11 @@ td code{background:transparent;border:none;padding:0}
 .chip a:hover{color:var(--color-primary);opacity:1}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
-.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
 .risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
-.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
-.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
-.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
 .risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
 .risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
 .explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
@@ -124,11 +164,11 @@ td code{background:transparent;border:none;padding:0}
 .filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
 .filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
-.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
-.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
 .queue{display:flex;flex-direction:column;gap:var(--space-md)}
 .queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
-.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
 .queue-body{flex:1;min-width:0}
 .queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
 .queue-why{color:var(--color-muted-foreground);font-size:.78rem}
@@ -136,16 +176,17 @@ td code{background:transparent;border:none;padding:0}
 @media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
 .report-card h3 a{color:var(--color-foreground)}
 .report-card h3 a:hover{color:var(--color-primary);opacity:1}
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
 .badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
-.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
-.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -178,14 +219,34 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   .card .num{font-size:1.5rem}
   th,td{padding:var(--space-sm) var(--space-md)}
   table{min-width:460px;font-size:.8rem}
-  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
 }
 @media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
   .bars{padding:var(--space-lg)}
   .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
   .bar-label{order:1;flex:1 1 auto}
   .bar-value{order:2;flex:0 0 auto}
   .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
 }
 </style>
 </head>
@@ -200,10 +261,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>34579 indicators</span>
-      <span>3299 new / 17900 updated last run &middot; 34579 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40153 indicators</span>
+      <span>5574 new / 16618 updated last run &middot; 40153 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T06:34:39Z</span>
+      <span>sync 2026-10-06T18:14:05Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -213,14 +274,20 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
   </div>
 </header>
 <main>
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">ATT&amp;CK T1552.001: Credentials In Files</h1>
 <p class="muted">
-  454 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1552/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
+  499 indicator(s) mapped to this technique (heuristic mapping) &middot; showing the top 300 by confidence &middot; <a href="https://attack.mitre.org/techniques/T1552/001/" rel="noopener" target="_blank">definition on attack.mitre.org</a></p>
 
 <section>
   <div class="table-wrap">
@@ -256,7 +323,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/04531fd7a4f20b31612f398f9cbf7b5c5eb1155cb2574e3d1bf0c26c19367d73" target="_blank" rel="noopener"><code>04531fd7a4f20b31612f398f9cbf7b5c5eb1155cb2574e3d1bf0c26c19367d73</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -286,7 +353,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/084a17e95f09e16e444f0a1be7a999d6de1e1c847ebc4909c0878e6bb5905e3f" target="_blank" rel="noopener"><code>084a17e95f09e16e444f0a1be7a999d6de1e1c847ebc4909c0878e6bb5905e3f</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -394,6 +461,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1ae7c76d12374c7764b6616e8b1b9b98a2a2afbfc38f954dd014d3566de969b4" target="_blank" rel="noopener"><code>1ae7c76d12374c7764b6616e8b1b9b98a2a2afbfc38f954dd014d3566de969b4</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T07:29:53Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/1b602dfba0ae028d6917c4ca7d66a9d3f3a56efca4f4551501ffa40bdf9aad5a" target="_blank" rel="noopener"><code>1b602dfba0ae028d6917c4ca7d66a9d3f3a56efca4f4551501ffa40bdf9aad5a</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -406,7 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/1b801252bc10f28739198c4f089bb8eb9d55519d5ddc1cfdff183355abb735f3" target="_blank" rel="noopener"><code>1b801252bc10f28739198c4f089bb8eb9d55519d5ddc1cfdff183355abb735f3</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -416,7 +493,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/1b823f040519acfc56fba55f537ac5a794e4fa0729e91c093b954091740bbc5c" target="_blank" rel="noopener"><code>1b823f040519acfc56fba55f537ac5a794e4fa0729e91c093b954091740bbc5c</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -474,6 +551,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/26cade4c23eb0b3b3f38d4520de79a371c2aee9de6b8bae3988a4b5f2e8064f9" target="_blank" rel="noopener"><code>26cade4c23eb0b3b3f38d4520de79a371c2aee9de6b8bae3988a4b5f2e8064f9</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T11:10:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/271a32a5c821fa28ccb19dc7042c0cee51bdc10201d291eb6c1b1d9d267b29b6" target="_blank" rel="noopener"><code>271a32a5c821fa28ccb19dc7042c0cee51bdc10201d291eb6c1b1d9d267b29b6</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -486,7 +573,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/2aab920a903332f258deaf5c6b572af0e08142e2b690a10d2e59600b1b9c7ad3" target="_blank" rel="noopener"><code>2aab920a903332f258deaf5c6b572af0e08142e2b690a10d2e59600b1b9c7ad3</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -506,7 +593,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/2e0062a81b67c89b9c09e8714a64219c8b9d2842657ecfafc9c8ca4987298079" target="_blank" rel="noopener"><code>2e0062a81b67c89b9c09e8714a64219c8b9d2842657ecfafc9c8ca4987298079</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -544,6 +631,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/37ee0b813c06da8eaabc00327c1f06895ab17702624c659047d77dec0344e419" target="_blank" rel="noopener"><code>37ee0b813c06da8eaabc00327c1f06895ab17702624c659047d77dec0344e419</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T14:30:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/38091c12e82987345d0cbfb6c71b609356eddb2ad9db9f1a177c21ca415a98b1" target="_blank" rel="noopener"><code>38091c12e82987345d0cbfb6c71b609356eddb2ad9db9f1a177c21ca415a98b1</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -566,7 +663,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/39ac2c4015532e8b06bf54ecebe497ebf2652c1a55e67605fa0c2618c2735906" target="_blank" rel="noopener"><code>39ac2c4015532e8b06bf54ecebe497ebf2652c1a55e67605fa0c2618c2735906</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Agent Tesla</td>
           <td></td>
@@ -576,7 +673,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/3e5d2ee4c5f08108346845bb7c74403a5363f93e0223f2e25f41e96752469c7c" target="_blank" rel="noopener"><code>3e5d2ee4c5f08108346845bb7c74403a5363f93e0223f2e25f41e96752469c7c</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -686,7 +783,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/4e2c0396e96e3e5d763fdcba313ace876ca45333c7683a087698768ff2ea277f" target="_blank" rel="noopener"><code>4e2c0396e96e3e5d763fdcba313ace876ca45333c7683a087698768ff2ea277f</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -696,7 +793,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/500a7b1e245ffc9445f8f123ad7b64d4c5110e0ca541a5baf75c47174f06f4cd" target="_blank" rel="noopener"><code>500a7b1e245ffc9445f8f123ad7b64d4c5110e0ca541a5baf75c47174f06f4cd</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -726,7 +823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5963a9491c91eae44384e239284fdc74dc3db9ee1b13c24eccc516ece350df34" target="_blank" rel="noopener"><code>5963a9491c91eae44384e239284fdc74dc3db9ee1b13c24eccc516ece350df34</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>PureLogs Stealer</td>
           <td></td>
@@ -744,6 +841,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5a84a21b93ac5a2352d8115e7917b0ba5d0e1432db79d6db010d3cd00a13486a" target="_blank" rel="noopener"><code>5a84a21b93ac5a2352d8115e7917b0ba5d0e1432db79d6db010d3cd00a13486a</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T12:29:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/5b95e5ba6aae7c0f14a6f319d92886379107a9e5ab198cdd38b077bd0faf77e6" target="_blank" rel="noopener"><code>5b95e5ba6aae7c0f14a6f319d92886379107a9e5ab198cdd38b077bd0faf77e6</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -756,7 +863,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/5e40447b206a908081f75e175362e8804aa7a62e7d9b4d90f3539a854998c371" target="_blank" rel="noopener"><code>5e40447b206a908081f75e175362e8804aa7a62e7d9b4d90f3539a854998c371</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -806,7 +913,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/63429eac7c14c7daadb99ddae461fdb6cd24ac72b9b3de9d4878d06c211e6408" target="_blank" rel="noopener"><code>63429eac7c14c7daadb99ddae461fdb6cd24ac72b9b3de9d4878d06c211e6408</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -824,6 +931,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6d77fa3925af744c30734bf74bf6f427eaf0f2dc11c27067e55e40417d095908" target="_blank" rel="noopener"><code>6d77fa3925af744c30734bf74bf6f427eaf0f2dc11c27067e55e40417d095908</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T12:29:17Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e" target="_blank" rel="noopener"><code>70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T15:00:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/723f9c6f4d9451e4ce581cdabf4d033b46d780856ab2e16a70d6b4963029f95a" target="_blank" rel="noopener"><code>723f9c6f4d9451e4ce581cdabf4d033b46d780856ab2e16a70d6b4963029f95a</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -831,6 +958,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-04T12:13:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/729f917a016df231164a233c20538f4c2927af811e3fe1bc226c2eb548353a6a" target="_blank" rel="noopener"><code>729f917a016df231164a233c20538f4c2927af811e3fe1bc226c2eb548353a6a</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:00:58Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -904,6 +1041,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8a46e1e6618195522b92f36336334029a0c6ddecc8212384403a7517023a1461" target="_blank" rel="noopener"><code>8a46e1e6618195522b92f36336334029a0c6ddecc8212384403a7517023a1461</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:00:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/8becd875025d341d1e7f5aceba462ec8d63e9f62b1a4322bfa7d7ac3b5623d36" target="_blank" rel="noopener"><code>8becd875025d341d1e7f5aceba462ec8d63e9f62b1a4322bfa7d7ac3b5623d36</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -911,6 +1058,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-05T06:15:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8e0300cf9eccdc1225289fa643514c9aa006d29b35a16ba97f57bcd168deafd0" target="_blank" rel="noopener"><code>8e0300cf9eccdc1225289fa643514c9aa006d29b35a16ba97f57bcd168deafd0</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:01:01Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -961,6 +1118,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-05T14:38:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9132737ba8ee70e318546ba8b034ab595c0ccecc66ae70e47ddd2f08a2d240f7" target="_blank" rel="noopener"><code>9132737ba8ee70e318546ba8b034ab595c0ccecc66ae70e47ddd2f08a2d240f7</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:01:00Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1064,6 +1231,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a826b9cc584bd8c95e2778eb52e58e252f006b183d0cdc87de245b96faec4a6f" target="_blank" rel="noopener"><code>a826b9cc584bd8c95e2778eb52e58e252f006b183d0cdc87de245b96faec4a6f</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:00:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da" target="_blank" rel="noopener"><code>aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -1136,7 +1313,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/b0ef915a1a0068e20d52e0c9ed943a419c5dbff563b2a1f6b2e5154c9b98e79b" target="_blank" rel="noopener"><code>b0ef915a1a0068e20d52e0c9ed943a419c5dbff563b2a1f6b2e5154c9b98e79b</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -1146,7 +1323,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/b12b322b29405a3843bf5bdb9be949f03b191d0fa2789cefdaa2f07e1f4be8d2" target="_blank" rel="noopener"><code>b12b322b29405a3843bf5bdb9be949f03b191d0fa2789cefdaa2f07e1f4be8d2</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -1164,6 +1341,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b2d7e7a3dfa43d8d675c745e3996ee83c0b827780fb39b0bb7f9057d048ea1af" target="_blank" rel="noopener"><code>b2d7e7a3dfa43d8d675c745e3996ee83c0b827780fb39b0bb7f9057d048ea1af</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:00:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/b3f992d3a24399d30a125869a40ff23443c97d79b0198ae7234c72780b86039a" target="_blank" rel="noopener"><code>b3f992d3a24399d30a125869a40ff23443c97d79b0198ae7234c72780b86039a</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
@@ -1171,6 +1358,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-04T06:54:39Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b43a80bca19518057a38fd7153406c0eccfba6ebd29840d51909ac7991747522" target="_blank" rel="noopener"><code>b43a80bca19518057a38fd7153406c0eccfba6ebd29840d51909ac7991747522</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T12:01:02Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1304,6 +1501,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ca4717d84adc33c42fed4bd9f4656893a2f8892b943b250f5265cb6303b64371" target="_blank" rel="noopener"><code>ca4717d84adc33c42fed4bd9f4656893a2f8892b943b250f5265cb6303b64371</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T12:01:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/cc16c460ded51ac533139917d16ef09eea894fd4058618c97d511de7722c460f" target="_blank" rel="noopener"><code>cc16c460ded51ac533139917d16ef09eea894fd4058618c97d511de7722c460f</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -1314,6 +1521,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/content.brightplaza.lat" target="_blank" rel="noopener"><code>content[.]brightplaza[.]lat</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>RevStealer</td>
+          <td></td>
+          <td>2026-10-06T08:40:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/d102ef1443c555253b71de42d001251da9b364ed6017850f3dba07db33800037" target="_blank" rel="noopener"><code>d102ef1443c555253b71de42d001251da9b364ed6017850f3dba07db33800037</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -1321,6 +1538,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-03T06:03:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d2ba1eca6546f7f2929fc0fe6e31041ee2833886f099bca0059ca5a655a39025" target="_blank" rel="noopener"><code>d2ba1eca6546f7f2929fc0fe6e31041ee2833886f099bca0059ca5a655a39025</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T11:18:12Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1336,7 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/d39857fb92a0b6dc3c5da29dceb2cd92adf5b32da2d601893f0200adae7cc1e8" target="_blank" rel="noopener"><code>d39857fb92a0b6dc3c5da29dceb2cd92adf5b32da2d601893f0200adae7cc1e8</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -1351,6 +1578,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-05T06:15:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d49785f0195374536fa826a9f2228da105b80fa7bff5d8bee24c7260c665a09e" target="_blank" rel="noopener"><code>d49785f0195374536fa826a9f2228da105b80fa7bff5d8bee24c7260c665a09e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-06T07:47:09Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1404,6 +1641,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dc011a386766aa0969d1cb7ec7a1ea5dd6588d3593f24d5671d433a17bb60b96" target="_blank" rel="noopener"><code>dc011a386766aa0969d1cb7ec7a1ea5dd6588d3593f24d5671d433a17bb60b96</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T13:30:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/file/dc4f2d231061b28e24d4c7a85ea4904f6704059d271587f0f0c1951993be7775" target="_blank" rel="noopener"><code>dc4f2d231061b28e24d4c7a85ea4904f6704059d271587f0f0c1951993be7775</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -1411,6 +1658,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-03T06:04:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dd6728339551ead0253bc546f93fc499b0df7e293853e5ba1fb4ed4c189ad3fe" target="_blank" rel="noopener"><code>dd6728339551ead0253bc546f93fc499b0df7e293853e5ba1fb4ed4c189ad3fe</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T10:02:04Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dl.stacknode.cc" target="_blank" rel="noopener"><code>dl[.]stacknode[.]cc</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T11:17:27Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1441,6 +1708,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-03T06:14:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ebc3610ded79c4ba7d38ccc5bc054220c5682267655d9a7530f41c2297d2a281" target="_blank" rel="noopener"><code>ebc3610ded79c4ba7d38ccc5bc054220c5682267655d9a7530f41c2297d2a281</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T07:29:55Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1476,7 +1753,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/file/f34d710806afa48402934964c15d381991bb386280a6b84889282e68f2b14ff1" target="_blank" rel="noopener"><code>f34d710806afa48402934964c15d381991bb386280a6b84889282e68f2b14ff1</code></a></td>
           <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td></td>
@@ -1546,7 +1823,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/faircloud512421.buzz" target="_blank" rel="noopener"><code>faircloud512421[.]buzz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1611,6 +1888,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Stealc</td>
           <td></td>
           <td>2026-09-22T06:39:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F192.162.199.249%2F45fw5qfmd55m" target="_blank" rel="noopener"><code>hxxp://192[.]162[.]199[.]249/45fw5qfmd55m</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T14:30:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F192.162.199.249%2F5i42segizmrmxlrq" target="_blank" rel="noopener"><code>hxxp://192[.]162[.]199[.]249/5i42segizmrmxlrq</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td></td>
+          <td>2026-10-06T14:30:46Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1724,6 +2021,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F188.245.231.9" target="_blank" rel="noopener"><code>hxxps://188[.]245[.]231[.]9</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-06T08:05:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F192.142.37.129" target="_blank" rel="noopener"><code>hxxps://192[.]142[.]37[.]129</code></a></td>
           <td>url</td>
           <td><span class="risk risk-high">high 84</span></td>
@@ -1816,7 +2123,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F65.108.13.120" target="_blank" rel="noopener"><code>hxxps://65[.]108[.]13[.]120</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td></td>
@@ -1946,7 +2253,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fdb.396zk.net" target="_blank" rel="noopener"><code>hxxps://db[.]396zk[.]net</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td></td>
@@ -1966,7 +2273,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fed.5-rt.org" target="_blank" rel="noopener"><code>hxxps://ed[.]5-rt[.]org</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td></td>
@@ -2161,6 +2468,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Unknown RAT</td>
           <td></td>
           <td>2026-10-06T05:27:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.333vip.org" target="_blank" rel="noopener"><code>hxxps://hi[.]333vip[.]org</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-06T15:21:44Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.3toto.com" target="_blank" rel="noopener"><code>hxxps://hi[.]3toto[.]com</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td></td>
+          <td>2026-10-06T16:18:33Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2376,7 +2703,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpz.5-rt.org" target="_blank" rel="noopener"><code>hxxps://pz[.]5-rt[.]org</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td></td>
@@ -2401,6 +2728,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Vidar</td>
           <td></td>
           <td>2026-10-03T06:04:05Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsa1atik.cn%2Fsa1at%2F" target="_blank" rel="noopener"><code>hxxps://sa1atik[.]cn/sa1at/</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>SalatStealer</td>
+          <td></td>
+          <td>2026-10-06T11:18:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsalator.es%2Fsa1at%2F" target="_blank" rel="noopener"><code>hxxps://salator[.]es/sa1at/</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>SalatStealer</td>
+          <td></td>
+          <td>2026-10-06T11:18:12Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2511,6 +2858,36 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Vidar</td>
           <td></td>
           <td>2026-10-01T05:17:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwebsalat.top%2Fsa1at%2F" target="_blank" rel="noopener"><code>hxxps://websalat[.]top/sa1at/</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>SalatStealer</td>
+          <td></td>
+          <td>2025-10-16T13:29:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwruser.org%2Fsa1at%2F" target="_blank" rel="noopener"><code>hxxps://wruser[.]org/sa1at/</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>SalatStealer</td>
+          <td></td>
+          <td>2026-10-06T11:18:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwruser.org%3A992%2Fsa1at%2F" target="_blank" rel="noopener"><code>hxxps://wruser[.]org:992/sa1at/</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>SalatStealer</td>
+          <td></td>
+          <td>2026-10-06T11:18:13Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2636,7 +3013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzu.369jk.org" target="_blank" rel="noopener"><code>hxxps://zu[.]369jk[.]org</code></a></td>
           <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td></td>
@@ -2651,6 +3028,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>AMOS</td>
           <td></td>
           <td>2026-10-03T07:31:54Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mail0.runport23.lat" target="_blank" rel="noopener"><code>mail0[.]runport23[.]lat</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>RevStealer</td>
+          <td></td>
+          <td>2026-10-06T08:38:09Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2734,6 +3121,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/stacknode.cc" target="_blank" rel="noopener"><code>stacknode[.]cc</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ACR Stealer</td>
+          <td></td>
+          <td>2026-10-06T11:17:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/zibidik.sbs" target="_blank" rel="noopener"><code>zibidik[.]sbs</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -2781,6 +3178,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>PXA Stealer</td>
           <td></td>
           <td>2026-10-05T02:33:40Z</td>
+          <td class="num-cell">95</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0b654057aac66c49e8eb909a106df4415a61d8c03cc85e28d261205ff2e212ca" target="_blank" rel="noopener"><code>0b654057aac66c49e8eb909a106df4415a61d8c03cc85e28d261205ff2e212ca</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown Stealer</td>
+          <td></td>
+          <td>2026-10-06T06:47:25Z</td>
           <td class="num-cell">95</td>
         </tr>
         <tr>
@@ -2893,346 +3300,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-10-05T02:33:53Z</td>
           <td class="num-cell">95</td>
         </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/2ed38621c36aa2f806a8bfbd93703e09" target="_blank" rel="noopener"><code>2ed38621c36aa2f806a8bfbd93703e09</code></a></td>
-          <td>md5</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:39Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/3394df48ee2b8996591edd5f5156a8306704ec4c" target="_blank" rel="noopener"><code>3394df48ee2b8996591edd5f5156a8306704ec4c</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:40Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/3cfd3c6512de02c73f4a4ce14d9f600fab07f2f7115b88653f5dba49c3e7da98" target="_blank" rel="noopener"><code>3cfd3c6512de02c73f4a4ce14d9f600fab07f2f7115b88653f5dba49c3e7da98</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>SalatStealer</td>
-          <td></td>
-          <td>2026-10-03T12:47:01Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/3e383999a73f55f7c40b175486dac327dacc770d" target="_blank" rel="noopener"><code>3e383999a73f55f7c40b175486dac327dacc770d</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:41Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/3e42bf50234aadcec42cc7b9ebf7ab42" target="_blank" rel="noopener"><code>3e42bf50234aadcec42cc7b9ebf7ab42</code></a></td>
-          <td>md5</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:47Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/44b0d0daa6a52a853a1a0d8b82a7633c5131e986b3b5e984ae57033352ea77c6" target="_blank" rel="noopener"><code>44b0d0daa6a52a853a1a0d8b82a7633c5131e986b3b5e984ae57033352ea77c6</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:46Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/521eb1e636e7cd556d18bcba34a54f86b8d1136d" target="_blank" rel="noopener"><code>521eb1e636e7cd556d18bcba34a54f86b8d1136d</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:39Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/5efd226c61938fd938cb084def17e90ccea28607b1a856010732d5b9328a3780" target="_blank" rel="noopener"><code>5efd226c61938fd938cb084def17e90ccea28607b1a856010732d5b9328a3780</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:42Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/61900d78b44aba8289c92f411e9d519edd92ba72" target="_blank" rel="noopener"><code>61900d78b44aba8289c92f411e9d519edd92ba72</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:48Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/621253d914d63aa02e28f15a3b4a49498019a5895e791d3b4925e870ada1a49e" target="_blank" rel="noopener"><code>621253d914d63aa02e28f15a3b4a49498019a5895e791d3b4925e870ada1a49e</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:39Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/6247f894dd125112dbd9f9f9414b3ca0788c1de302e806e32022354be7b19aba" target="_blank" rel="noopener"><code>6247f894dd125112dbd9f9f9414b3ca0788c1de302e806e32022354be7b19aba</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>RedLine Stealer</td>
-          <td></td>
-          <td>2024-08-24T02:08:17Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/662877adc3019d099f84d7e1e27a56704df09a03" target="_blank" rel="noopener"><code>662877adc3019d099f84d7e1e27a56704df09a03</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:53Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/6cbfe036e8d8bea4b900739ae628ba64150ccea2b6acb8980dbb9af7e8792184" target="_blank" rel="noopener"><code>6cbfe036e8d8bea4b900739ae628ba64150ccea2b6acb8980dbb9af7e8792184</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:37Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/76a096829c0c1de893c2587bc70fde38d7eb9f337c52535c5cf58b9e84d5b1ff" target="_blank" rel="noopener"><code>76a096829c0c1de893c2587bc70fde38d7eb9f337c52535c5cf58b9e84d5b1ff</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:40Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/77040e91b88fbd56c168fd5624d56e506d071caf06420ccc006adb4df444b9fb" target="_blank" rel="noopener"><code>77040e91b88fbd56c168fd5624d56e506d071caf06420ccc006adb4df444b9fb</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:38Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/790a55c929ccdce6d34b811301121fe7ebf2a35b2fddbe8736bc582b23b91a15" target="_blank" rel="noopener"><code>790a55c929ccdce6d34b811301121fe7ebf2a35b2fddbe8736bc582b23b91a15</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>SalatStealer</td>
-          <td></td>
-          <td>2026-10-01T15:39:13Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7bc95611eacde59bce1dfd752b6d9ca958494688" target="_blank" rel="noopener"><code>7bc95611eacde59bce1dfd752b6d9ca958494688</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:47Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/861952d1ea908f76fd9f581881e5a63a" target="_blank" rel="noopener"><code>861952d1ea908f76fd9f581881e5a63a</code></a></td>
-          <td>md5</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>ZStealer</td>
-          <td></td>
-          <td>2026-10-05T14:30:25Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/8ac83e755540f135e7027952f4c9e9468aceea64ef975da088749be0ba04d9a8" target="_blank" rel="noopener"><code>8ac83e755540f135e7027952f4c9e9468aceea64ef975da088749be0ba04d9a8</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:41Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/919479019189e43720143e7ff3fefe95046cbd75c3ae3785d15f7245105fb014" target="_blank" rel="noopener"><code>919479019189e43720143e7ff3fefe95046cbd75c3ae3785d15f7245105fb014</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:43Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/a895a95a1bb5e53bb703c4174a2928f7204a939f" target="_blank" rel="noopener"><code>a895a95a1bb5e53bb703c4174a2928f7204a939f</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:42Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/bfb8c3b715f56c56cd512135d5ff3f1c" target="_blank" rel="noopener"><code>bfb8c3b715f56c56cd512135d5ff3f1c</code></a></td>
-          <td>md5</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:38Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/c8874cddeda68f92c4d3f732905202e4fe930ab8" target="_blank" rel="noopener"><code>c8874cddeda68f92c4d3f732905202e4fe930ab8</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>ZStealer</td>
-          <td></td>
-          <td>2026-10-05T14:30:25Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/e1c289d5b8dcab62f8dad6179bf64ef621b6931de3aafb451a68a8a6cb7c2a7f" target="_blank" rel="noopener"><code>e1c289d5b8dcab62f8dad6179bf64ef621b6931de3aafb451a68a8a6cb7c2a7f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Stealer</td>
-          <td></td>
-          <td>2026-10-06T04:47:02Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/e3e511856550c7504f7bc56ba56b46f18f9b41efe8d9be3a9abb957ea3b9d7a9" target="_blank" rel="noopener"><code>e3e511856550c7504f7bc56ba56b46f18f9b41efe8d9be3a9abb957ea3b9d7a9</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Stealer</td>
-          <td></td>
-          <td>2026-10-06T03:47:18Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/ea234da5770dddc9cfec8f4d996f50c4147413228321c69a4c90d697d81dfdaa" target="_blank" rel="noopener"><code>ea234da5770dddc9cfec8f4d996f50c4147413228321c69a4c90d697d81dfdaa</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:44Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f10af0c42a22451276da002c581c9e38cddbbc7dc91d8319dce9a5b394e34020" target="_blank" rel="noopener"><code>f10af0c42a22451276da002c581c9e38cddbbc7dc91d8319dce9a5b394e34020</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:53Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f1b2732e9514446bd024c8ba5f9d3ec2d259ab001177614ac6e52b36ae586bae" target="_blank" rel="noopener"><code>f1b2732e9514446bd024c8ba5f9d3ec2d259ab001177614ac6e52b36ae586bae</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>ZStealer</td>
-          <td></td>
-          <td>2026-10-05T14:30:24Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f7284c4f24d718c0a738d75ff10a0e74eb5bc79e" target="_blank" rel="noopener"><code>f7284c4f24d718c0a738d75ff10a0e74eb5bc79e</code></a></td>
-          <td>sha1</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PXA Stealer</td>
-          <td></td>
-          <td>2026-10-05T02:33:43Z</td>
-          <td class="num-cell">95</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/15988f3d46d1c569f90fe3e9afa46f018be526b918102b8b2d20c0088f025c29" target="_blank" rel="noopener"><code>15988f3d46d1c569f90fe3e9afa46f018be526b918102b8b2d20c0088f025c29</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Arkei Stealer</td>
-          <td></td>
-          <td>2026-10-06T02:47:08Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/175a7d2a8dcc50665e5f3dd5f0513cc091184065b424907d3e544a56c163e2a3" target="_blank" rel="noopener"><code>175a7d2a8dcc50665e5f3dd5f0513cc091184065b424907d3e544a56c163e2a3</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Arkei Stealer</td>
-          <td></td>
-          <td>2026-10-06T02:47:07Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/202c71cccc63a9bad0c94b898a6447c2723724c7c534bfb7f2143eb6a50a2196" target="_blank" rel="noopener"><code>202c71cccc63a9bad0c94b898a6447c2723724c7c534bfb7f2143eb6a50a2196</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Agent Tesla</td>
-          <td></td>
-          <td>2026-10-04T18:46:59Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/538b96f59a98e8c1d667823317d893451dd16d3c7e75203a2bbb2f9eaac4d249" target="_blank" rel="noopener"><code>538b96f59a98e8c1d667823317d893451dd16d3c7e75203a2bbb2f9eaac4d249</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>PureLogs Stealer</td>
-          <td></td>
-          <td>2026-10-06T02:47:22Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/84de969fa7d734128d5293c458e736694b0eb42313b5d165d0ee44ca9cf888a7" target="_blank" rel="noopener"><code>84de969fa7d734128d5293c458e736694b0eb42313b5d165d0ee44ca9cf888a7</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Agent Tesla</td>
-          <td></td>
-          <td>2026-10-05T11:46:24Z</td>
-          <td class="num-cell">90</td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -3242,7 +3309,28 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T06:34:39Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:14:05Z UTC</span></p>
 </footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+</script>
 </body>
 </html>

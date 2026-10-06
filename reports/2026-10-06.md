@@ -1,35 +1,35 @@
 # Threat Intel Pulse — 2026-10-06
 
-**Window:** last 7 days · **Generated:** 2026-10-06T06:34:36Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-06T18:14:00Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 34579 |
-| New in window | 34579 |
+| Indicators tracked | 40153 |
+| New in window | 40153 |
 | Malware families (annotated) | 20 |
-| ATT&CK techniques (heuristic) | 27 |
+| ATT&CK techniques (heuristic) | 28 |
 
 ## Feed health
 
 | Feed | Indicators this run | Status |
 | --- | --- | --- |
-| urlhaus | 5000 | ok |
+| urlhaus | 5001 | ok |
 | feodo | 5 | ok |
-| threatfox | 8913 | ok |
-| malwarebazaar | 1076 | ok |
+| threatfox | 9224 | ok |
+| malwarebazaar | 1548 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8596 | ok |
+| tor | 8623 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 9179 | 9179 |
-| ipv4 | 8891 | 8891 |
-| sha256 | 7339 | 7339 |
-| domain | 6064 | 6064 |
-| ipv6 | 2800 | 2800 |
+| url | 12000 | 12000 |
+| ipv4 | 9014 | 9014 |
+| sha256 | 8174 | 8174 |
+| domain | 7822 | 7822 |
+| ipv6 | 2837 | 2837 |
 | md5 | 165 | 165 |
 | sha1 | 141 | 141 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 9168 |
-| Exit nodes | 2106 |
-| Other relays | 7062 |
-| New in window | 9168 |
+| Nodes tracked | 9277 |
+| Exit nodes | 2156 |
+| Other relays | 7121 |
+| New in window | 9277 |
 
-Sample (20 of 9168, source: Tor Project Onionoo):
+Sample (20 of 9277, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]248[.]96[.]163`
 - `100[.]1[.]157[.]56`
@@ -69,50 +69,50 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Mirai | 3284 | 3284 | T1498, T1071.001 |
-| Unknown Loader | 2792 | 2792 | — |
-| AsyncRAT | 2163 | 2163 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| Cobalt Strike | 1235 | 1235 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| ClearFake | 855 | 855 | — |
-| Unknown malware | 511 | 511 | — |
-| IClickFix | 384 | 384 | — |
+| Unknown Loader | 4093 | 4093 | — |
+| Mirai | 3304 | 3304 | T1498, T1071.001 |
+| AsyncRAT | 2168 | 2168 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Cobalt Strike | 1236 | 1236 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| ClearFake | 984 | 984 | — |
+| IClickFix | 729 | 729 | — |
+| Unknown malware | 546 | 546 | — |
 | PureRAT | 340 | 340 | — |
-| AdaptixC2 | 245 | 245 | — |
-| Vidar | 216 | 216 | T1555, T1071.001, T1567 |
-| Unknown Stealer | 174 | 174 | — |
-| Unknown RAT | 157 | 157 | — |
-| AMOS | 132 | 132 | — |
-| Remcos | 109 | 109 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| VShell | 109 | 109 | — |
-| DCRat | 97 | 97 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| AdaptixC2 | 248 | 248 | — |
+| Vidar | 229 | 229 | T1555, T1071.001, T1567 |
+| Unknown Stealer | 186 | 186 | — |
+| Unknown RAT | 167 | 167 | — |
+| AMOS | 145 | 145 | — |
+| Remcos | 133 | 133 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| VShell | 110 | 110 | — |
+| Remus | 102 | 102 | — |
+| php.shin_webshell | 101 | 101 | — |
+| DCRat | 98 | 98 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | Evilginx | 93 | 93 | — |
-| Remus | 93 | 93 | — |
-| php.shin_webshell | 89 | 89 | — |
 | Havoc | 88 | 88 | — |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 27111 |
-| T1105 | Ingress Tool Transfer | command-and-control | 9590 |
-| T1498 | Network Denial of Service | impact | 6984 |
-| T1573 | Encrypted Channel | command-and-control | 4579 |
-| T1056.001 | Keylogging | collection, credential-access | 2958 |
-| T1204.002 | Malicious File | execution | 2951 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 2940 |
-| T1566.001 | Spearphishing Attachment | initial-access | 2642 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2434 |
-| T1113 | Screen Capture | collection | 2412 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1410 |
-| T1090 | Proxy | command-and-control | 1270 |
-| T1059.001 | PowerShell | execution | 1247 |
-| T1566 | Phishing | initial-access | 857 |
-| T1566.002 | Spearphishing Link | initial-access | 857 |
-| T1555 | Credentials from Password Stores | credential-access | 722 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 659 |
-| T1552.001 | Credentials In Files | credential-access | 454 |
-| T1041 | Exfiltration Over C2 Channel | exfiltration | 157 |
+| T1105 | Ingress Tool Transfer | command-and-control | 12301 |
+| T1071.001 | Web Protocols | command-and-control | 29210 |
+| T1498 | Network Denial of Service | impact | 7157 |
+| T1204.002 | Malicious File | execution | 5426 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 5415 |
+| T1573 | Encrypted Channel | command-and-control | 4622 |
+| T1056.001 | Keylogging | collection, credential-access | 2994 |
+| T1566.001 | Spearphishing Attachment | initial-access | 2678 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 2468 |
+| T1113 | Screen Capture | collection | 2446 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1413 |
+| T1090 | Proxy | command-and-control | 1271 |
+| T1059.001 | PowerShell | execution | 1248 |
+| T1566 | Phishing | initial-access | 1027 |
+| T1566.002 | Spearphishing Link | initial-access | 1027 |
+| T1555 | Credentials from Password Stores | credential-access | 777 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 714 |
+| T1552.001 | Credentials In Files | credential-access | 499 |
+| T1041 | Exfiltration Over C2 Channel | exfiltration | 159 |
 | T1059.005 | Visual Basic | execution | 59 |
 | T1189 | Drive-by Compromise | initial-access | 17 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 17 |
@@ -121,36 +121,37 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | T1490 | Inhibit System Recovery | impact | 5 |
 | T1562.001 | Disable or Modify Tools | defense-evasion | 5 |
 | T1003 | OS Credential Dumping | credential-access | 1 |
+| T1190 | Exploit Public-Facing Application | initial-access | 1 |
 
 ## Notable new indicators
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
-| [`marblegrove[.]cfd`](https://www.virustotal.com/gui/domain/marblegrove.cfd) | domain | Unknown Loader | threatfox | 2026-10-06T06:18:43Z | 100 |
-| [`rovgruien[.]pro`](https://www.virustotal.com/gui/domain/rovgruien.pro) | domain | IClickFix | threatfox | 2026-10-06T05:52:51Z | 100 |
-| [`176[.]97[.]114[.]125`](https://www.virustotal.com/gui/ip-address/176.97.114.125) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:13Z | 100 |
-| [`176[.]97[.]114[.]132`](https://www.virustotal.com/gui/ip-address/176.97.114.132) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:12Z | 100 |
-| [`176[.]97[.]114[.]170`](https://www.virustotal.com/gui/ip-address/176.97.114.170) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:11Z | 100 |
-| [`176[.]97[.]114[.]177`](https://www.virustotal.com/gui/ip-address/176.97.114.177) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:11Z | 100 |
-| [`176[.]97[.]114[.]243`](https://www.virustotal.com/gui/ip-address/176.97.114.243) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:10Z | 100 |
-| [`176[.]97[.]114[.]29`](https://www.virustotal.com/gui/ip-address/176.97.114.29) | ipv4 | Jackskid | threatfox | 2026-10-06T05:52:09Z | 100 |
-| [`gnfelg66[.]succeswithpaul[.]com`](https://www.virustotal.com/gui/domain/gnfelg66.succeswithpaul.com) | domain | ClearFake | threatfox | 2026-10-06T05:30:30Z | 100 |
-| [`succeswithpaul[.]com`](https://www.virustotal.com/gui/domain/succeswithpaul.com) | domain | ClearFake | threatfox | 2026-10-06T05:29:03Z | 100 |
-| [`hxxps://ohhhhhmoney[.]com/fF2`](https://www.virustotal.com/gui/search/https%3A%2F%2Fohhhhhmoney.com%2FfF2) | url | HijackLoader | threatfox | 2026-10-06T05:28:16Z | 100 |
-| [`hxxps://fu[.]333pwk[.]org`](https://www.virustotal.com/gui/search/https%3A%2F%2Ffu.333pwk.org) | url | Vidar | threatfox | 2026-10-06T05:28:13Z | 100 |
-| [`hxxps://fu[.]396zk[.]net`](https://www.virustotal.com/gui/search/https%3A%2F%2Ffu.396zk.net) | url | Vidar | threatfox | 2026-10-06T05:28:12Z | 100 |
-| [`165[.]22[.]244[.]100`](https://www.virustotal.com/gui/ip-address/165.22.244.100) | ipv4 | Aisuru | threatfox | 2026-10-06T05:28:08Z | 100 |
-| [`46[.]101[.]164[.]65`](https://www.virustotal.com/gui/ip-address/46.101.164.65) | ipv4 | Aisuru | threatfox | 2026-10-06T05:28:06Z | 100 |
-| [`7cfe5781ebb844a267300fbc9f343d293d774bab9b0a530cc49262ddc083c5ed`](https://www.virustotal.com/gui/file/7cfe5781ebb844a267300fbc9f343d293d774bab9b0a530cc49262ddc083c5ed) | sha256 | AMOS | threatfox | 2026-10-06T05:28:05Z | 100 |
-| [`147[.]139[.]168[.]67`](https://www.virustotal.com/gui/ip-address/147.139.168.67) | ipv4 | Jackskid | threatfox | 2026-10-06T05:28:04Z | 100 |
-| [`198[.]11[.]174[.]58`](https://www.virustotal.com/gui/ip-address/198.11.174.58) | ipv4 | Jackskid | threatfox | 2026-10-06T05:28:00Z | 100 |
-| [`134[.]122[.]22[.]105`](https://www.virustotal.com/gui/ip-address/134.122.22.105) | ipv4 | Aisuru | threatfox | 2026-10-06T05:27:59Z | 100 |
-| [`45[.]91[.]52[.]45`](https://www.virustotal.com/gui/ip-address/45.91.52.45) | ipv4 | Unknown RAT | threatfox | 2026-10-06T05:27:59Z | 100 |
-| [`159[.]89[.]95[.]185`](https://www.virustotal.com/gui/ip-address/159.89.95.185) | ipv4 | Aisuru | threatfox | 2026-10-06T05:27:55Z | 100 |
-| [`aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da`](https://www.virustotal.com/gui/file/aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da) | sha256 | AMOS | threatfox | 2026-10-06T05:27:52Z | 100 |
-| [`128[.]90[.]108[.]163`](https://www.virustotal.com/gui/ip-address/128.90.108.163) | ipv4 | Remcos | threatfox | 2026-10-06T05:27:51Z | 100 |
-| [`hxxps://heavenproject[.]lgbt/api/connect`](https://www.virustotal.com/gui/search/https%3A%2F%2Fheavenproject.lgbt%2Fapi%2Fconnect) | url | Unknown RAT | threatfox | 2026-10-06T05:27:46Z | 100 |
-| [`hxxps://heavenproject[.]lgbt/api/heartbeat`](https://www.virustotal.com/gui/search/https%3A%2F%2Fheavenproject.lgbt%2Fapi%2Fheartbeat) | url | Unknown RAT | threatfox | 2026-10-06T05:27:44Z | 100 |
+| [`up[.]333vip[.]org`](https://www.virustotal.com/gui/domain/up.333vip.org) | domain | Vidar | threatfox | 2026-10-06T17:05:48Z | 100 |
+| [`hxxps://up[.]333vip[.]org/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fup.333vip.org%2F) | url | Vidar | threatfox | 2026-10-06T17:05:48Z | 100 |
+| [`89[.]32[.]41[.]19`](https://www.virustotal.com/gui/ip-address/89.32.41.19) | ipv4 | Potassium | threatfox | 2026-10-06T16:57:12Z | 100 |
+| [`04ue33gt[.]truenarrator[.]com`](https://www.virustotal.com/gui/domain/04ue33gt.truenarrator.com) | domain | ClearFake | threatfox | 2026-10-06T16:52:25Z | 100 |
+| [`hxxps://hi[.]3toto[.]com`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.3toto.com) | url | Vidar | threatfox | 2026-10-06T16:18:33Z | 100 |
+| [`getsupportonlinenow[.]com`](https://www.virustotal.com/gui/domain/getsupportonlinenow.com) | domain | Unknown RAT | threatfox | 2026-10-06T16:18:31Z | 100 |
+| [`43[.]228[.]157[.]72`](https://www.virustotal.com/gui/ip-address/43.228.157.72) | ipv4 | Remcos | threatfox | 2026-10-06T16:18:30Z | 100 |
+| [`89[.]32[.]41[.]49`](https://www.virustotal.com/gui/ip-address/89.32.41.49) | ipv4 | Potassium | threatfox | 2026-10-06T16:03:36Z | 100 |
+| [`0nna1vpc[.]sallysprattstudio[.]com`](https://www.virustotal.com/gui/domain/0nna1vpc.sallysprattstudio.com) | domain | ClearFake | threatfox | 2026-10-06T15:39:28Z | 100 |
+| [`s5goru1r[.]kobet[.]store`](https://www.virustotal.com/gui/domain/s5goru1r.kobet.store) | domain | ClearFake | threatfox | 2026-10-06T15:22:12Z | 100 |
+| [`hxxps://hi[.]333vip[.]org`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.333vip.org) | url | Vidar | threatfox | 2026-10-06T15:21:44Z | 100 |
+| [`102[.]220[.]163[.]130`](https://www.virustotal.com/gui/ip-address/102.220.163.130) | ipv4 | Remcos | threatfox | 2026-10-06T15:21:43Z | 100 |
+| [`91[.]92[.]242[.]19`](https://www.virustotal.com/gui/ip-address/91.92.242.19) | ipv4 | Potassium | threatfox | 2026-10-06T15:17:46Z | 100 |
+| [`155[.]2[.]192[.]88`](https://www.virustotal.com/gui/ip-address/155.2.192.88) | ipv4 | Potassium | threatfox | 2026-10-06T15:00:19Z | 100 |
+| [`51[.]89[.]199[.]102`](https://www.virustotal.com/gui/ip-address/51.89.199.102) | ipv4 | Potassium | threatfox | 2026-10-06T15:00:18Z | 100 |
+| [`70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e`](https://www.virustotal.com/gui/file/70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e) | sha256 | AMOS | threatfox | 2026-10-06T15:00:18Z | 100 |
+| [`a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb`](https://www.virustotal.com/gui/file/a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb) | sha256 | Unknown RAT | malwarebazaar, threatfox | 2026-10-06T14:30:50Z | 100 |
+| [`2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9`](https://www.virustotal.com/gui/file/2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:50Z | 100 |
+| [`ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986`](https://www.virustotal.com/gui/file/ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
+| [`c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc`](https://www.virustotal.com/gui/file/c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
+| [`5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614`](https://www.virustotal.com/gui/file/5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:49Z | 100 |
+| [`debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e`](https://www.virustotal.com/gui/file/debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:48Z | 100 |
+| [`dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393`](https://www.virustotal.com/gui/file/dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:47Z | 100 |
+| [`b2c851105fa97e65b4a9068bba3d832b02a0bcb5d594f689e07391403305ebb7`](https://www.virustotal.com/gui/file/b2c851105fa97e65b4a9068bba3d832b02a0bcb5d594f689e07391403305ebb7) | sha256 | Unknown RAT | threatfox | 2026-10-06T14:30:47Z | 100 |
+| [`hxxp://192[.]162[.]199[.]249/45fw5qfmd55m`](https://www.virustotal.com/gui/search/http%3A%2F%2F192.162.199.249%2F45fw5qfmd55m) | url | AMOS | threatfox | 2026-10-06T14:30:46Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>

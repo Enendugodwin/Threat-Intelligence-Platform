@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
 <title>Malware family: IClickFix &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
+  color-scheme:dark;
   /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
   --color-primary:#00FF41; --color-on-primary:#0F172A;
   --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
@@ -20,6 +29,12 @@
   --color-muted:#181818; --color-muted-foreground:#94A3B8;
   --color-border:#1F1F1F; --color-destructive:#EF4444;
   --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
   /* Dense dashboard spacing scale */
   --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
   --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
@@ -27,6 +42,23 @@
   --radius:10px;
   --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +69,7 @@ a:hover{opacity:.85}
 .icon{flex:none}
 
 /* Header */
-header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
 .header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
 .brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
 .brand:hover{opacity:1}
@@ -48,6 +80,10 @@ header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filt
 nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
 nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
 nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 
 /* Layout */
 main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
@@ -61,40 +97,44 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .card-head svg{color:var(--color-primary)}
-.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
 .card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
-.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
 .card-bad .card-head svg{color:var(--color-accent)}
 
 /* Tables */
 .table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
 th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
-th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
 th.num-col,td.num-cell{text-align:right}
 td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr{transition:background .15s ease}
-tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:hover{background:var(--color-primary-soft)}
 tbody tr:last-child td{border-bottom:none}
 code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
 td code{background:transparent;border:none;padding:0}
 
 /* Status pills */
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
-.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
-.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
 .bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
 .bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
 .bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
-.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
 .bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
 .bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
 
 /* Chips */
 .chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
@@ -110,11 +150,11 @@ td code{background:transparent;border:none;padding:0}
 .chip a:hover{color:var(--color-primary);opacity:1}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
-.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
 .risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
-.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
-.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
-.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
 .risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
 .risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
 .explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
@@ -124,11 +164,11 @@ td code{background:transparent;border:none;padding:0}
 .filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
 .filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
-.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
-.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
 .queue{display:flex;flex-direction:column;gap:var(--space-md)}
 .queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
-.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
 .queue-body{flex:1;min-width:0}
 .queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
 .queue-why{color:var(--color-muted-foreground);font-size:.78rem}
@@ -136,16 +176,17 @@ td code{background:transparent;border:none;padding:0}
 @media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
 .report-card h3 a{color:var(--color-foreground)}
 .report-card h3 a:hover{color:var(--color-primary);opacity:1}
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
 .badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
-.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
-.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -178,14 +219,34 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   .card .num{font-size:1.5rem}
   th,td{padding:var(--space-sm) var(--space-md)}
   table{min-width:460px;font-size:.8rem}
-  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
 }
 @media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
   .bars{padding:var(--space-lg)}
   .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
   .bar-label{order:1;flex:1 1 auto}
   .bar-value{order:2;flex:0 0 auto}
   .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
 }
 </style>
 </head>
@@ -200,10 +261,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>34579 indicators</span>
-      <span>3299 new / 17900 updated last run &middot; 34579 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40153 indicators</span>
+      <span>5574 new / 16618 updated last run &middot; 40153 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T06:34:39Z</span>
+      <span>sync 2026-10-06T18:14:05Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -213,14 +274,20 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
   </div>
 </header>
 <main>
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">Malware family: IClickFix</h1>
 <p class="muted">
-  384 indicator(s) attributed to IClickFix &middot; showing the top 300 by confidence</p>
+  729 indicator(s) attributed to IClickFix &middot; showing the top 300 by confidence</p>
 
 <section>
   <div class="table-wrap">
@@ -326,7 +393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amber-ridge-bruixsioi.live" target="_blank" rel="noopener"><code>amber-ridge-bruixsioi[.]live</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -336,11 +403,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/amber-weave-otter-luor.pro" target="_blank" rel="noopener"><code>amber-weave-otter-luor[.]pro</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-01T23:21:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/amicsmartorelles.es" target="_blank" rel="noopener"><code>amicsmartorelles[.]es</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-30T07:01:36Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -356,7 +433,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/analyze-me3.buzz" target="_blank" rel="noopener"><code>analyze-me3[.]buzz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -406,7 +483,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ashen-trace-zephyr-draeix.life" target="_blank" rel="noopener"><code>ashen-trace-zephyr-draeix[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -476,7 +553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/beacontrace.bond" target="_blank" rel="noopener"><code>beacontrace[.]bond</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -504,6 +581,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/betternotbitterwidower.com" target="_blank" rel="noopener"><code>betternotbitterwidower[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-11T18:08:55Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bettina-pittaluga.com" target="_blank" rel="noopener"><code>bettina-pittaluga[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-15T20:39:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bicda.com.bd" target="_blank" rel="noopener"><code>bicda[.]com[.]bd</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -516,7 +613,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/biobkliaum.live" target="_blank" rel="noopener"><code>biobkliaum[.]live</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -526,7 +623,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/bladehostpi.life" target="_blank" rel="noopener"><code>bladehostpi[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -574,6 +671,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bytefootage.com" target="_blank" rel="noopener"><code>bytefootage[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-11T18:08:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/capitalspa.sg" target="_blank" rel="noopener"><code>capitalspa[.]sg</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -584,9 +691,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/carlomahfouz.com" target="_blank" rel="noopener"><code>carlomahfouz[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-30T07:01:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/carwowk872.life" target="_blank" rel="noopener"><code>carwowk872[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -616,7 +733,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/checkmybtrobot.cc" target="_blank" rel="noopener"><code>checkmybtrobot[.]cc</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -656,7 +773,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/cirkoborpi.life" target="_blank" rel="noopener"><code>cirkoborpi[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -676,7 +793,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/closegate21.xyz" target="_blank" rel="noopener"><code>closegate21[.]xyz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -756,7 +873,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coral-thistle-kilmkruon.top" target="_blank" rel="noopener"><code>coral-thistle-kilmkruon[.]top</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -764,9 +881,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/coral-vale-grialdkeon.top" target="_blank" rel="noopener"><code>coral-vale-grialdkeon[.]top</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:14:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/coral-wren-friastquii.top" target="_blank" rel="noopener"><code>coral-wren-friastquii[.]top</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -796,7 +923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/costum342183.life" target="_blank" rel="noopener"><code>costum342183[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -844,6 +971,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cuiskceogflayn.pro" target="_blank" rel="noopener"><code>cuiskceogflayn[.]pro</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:14:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/dailychefhub.com" target="_blank" rel="noopener"><code>dailychefhub[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -876,7 +1013,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/desis3x.com" target="_blank" rel="noopener"><code>desis3x[.]com</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -904,6 +1041,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/driearquitetos.com" target="_blank" rel="noopener"><code>driearquitetos[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-10T18:35:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/driftwoodresortmn.com" target="_blank" rel="noopener"><code>driftwoodresortmn[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -911,6 +1058,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-22T16:35:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dusky-lark-piarnskaeum.ink" target="_blank" rel="noopener"><code>dusky-lark-piarnskaeum[.]ink</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:14:59Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -974,6 +1131,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/etigroup.in" target="_blank" rel="noopener"><code>etigroup[.]in</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-21T15:54:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/evanengineering.com" target="_blank" rel="noopener"><code>evanengineering[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -996,7 +1163,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/evrything-pix.icu" target="_blank" rel="noopener"><code>evrything-pix[.]icu</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1006,7 +1173,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/faircloud512421.buzz" target="_blank" rel="noopener"><code>faircloud512421[.]buzz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1014,9 +1181,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fcuaa.org" target="_blank" rel="noopener"><code>fcuaa[.]org</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-20T18:13:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fern-crane-ziankroaum.life" target="_blank" rel="noopener"><code>fern-crane-ziankroaum[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1026,7 +1203,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fern-trace-anvil-meoix.live" target="_blank" rel="noopener"><code>fern-trace-anvil-meoix[.]live</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1086,7 +1263,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/fringliaencobalt.ink" target="_blank" rel="noopener"><code>fringliaencobalt[.]ink</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1116,7 +1293,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gaezskoynbrisk.com" target="_blank" rel="noopener"><code>gaezskoynbrisk[.]com</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1206,7 +1383,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/girlsonpi823.life" target="_blank" rel="noopener"><code>girlsonpi823[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1216,7 +1393,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gixxipi9823.life" target="_blank" rel="noopener"><code>gixxipi9823[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1226,7 +1403,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/glacial-bloom-wren-croaon.life" target="_blank" rel="noopener"><code>glacial-bloom-wren-croaon[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1246,7 +1423,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/gpixx.xyz" target="_blank" rel="noopener"><code>gpixx[.]xyz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1334,9 +1511,19 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hbaw.com.br" target="_blank" rel="noopener"><code>hbaw[.]com[.]br</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/harleybikesmall.com" target="_blank" rel="noopener"><code>harleybikesmall[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-15T20:39:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hbaw.com.br" target="_blank" rel="noopener"><code>hbaw[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1366,7 +1553,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/hollow-badger-moasfraum.life" target="_blank" rel="noopener"><code>hollow-badger-moasfraum[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1376,7 +1563,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/hollow-forge-rook-guiyn.life" target="_blank" rel="noopener"><code>hollow-forge-rook-guiyn[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1574,6 +1761,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ikriomata.gr" target="_blank" rel="noopener"><code>ikriomata[.]gr</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-30T07:02:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/illusiongin.com" target="_blank" rel="noopener"><code>illusiongin[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -1581,6 +1778,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-07-29T08:56:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/include.co.kr" target="_blank" rel="noopener"><code>include[.]co[.]kr</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-30T07:02:23Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1596,11 +1803,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/indigo-finch-misgoaen.life" target="_blank" rel="noopener"><code>indigo-finch-misgoaen[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-25T13:58:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/indigocraelmtoaix.top" target="_blank" rel="noopener"><code>indigocraelmtoaix[.]top</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:14:59Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1616,7 +1833,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/interseq.at" target="_blank" rel="noopener"><code>interseq[.]at</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
+          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1631,6 +1848,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/joydesigns.studio" target="_blank" rel="noopener"><code>joydesigns[.]studio</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-30T07:02:27Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1651,6 +1878,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-15T20:39:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/juliafranken.com" target="_blank" rel="noopener"><code>juliafranken[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-01T01:17:13Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1686,7 +1923,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/kiln-skioi-c29up.com" target="_blank" rel="noopener"><code>kiln-skioi-c29up[.]com</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1716,7 +1953,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/krestmoais-reed.life" target="_blank" rel="noopener"><code>krestmoais-reed[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1824,6 +2061,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lofsloatkioa.pro" target="_blank" rel="noopener"><code>lofsloatkioa[.]pro</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:14:59Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/logistics-ca.com" target="_blank" rel="noopener"><code>logistics-ca[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
@@ -1836,7 +2083,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/longslimpi.life" target="_blank" rel="noopener"><code>longslimpi[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1856,11 +2103,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/lustkliondruara.space" target="_blank" rel="noopener"><code>lustkliondruara[.]space</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-29T10:49:09Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/maartendevoldere.be" target="_blank" rel="noopener"><code>maartendevoldere[.]be</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-01T01:17:13Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1871,6 +2128,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:15Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/maismadeshop.com" target="_blank" rel="noopener"><code>maismadeshop[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-31T07:16:47Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1891,6 +2158,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-16T09:56:40Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/marcmunoz.com" target="_blank" rel="noopener"><code>marcmunoz[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-29T08:57:03Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -1954,6 +2231,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/megeve.beer" target="_blank" rel="noopener"><code>megeve[.]beer</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T08:15:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/mesa-zaimmuen.life" target="_blank" rel="noopener"><code>mesa-zaimmuen[.]life</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -1976,7 +2263,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/misty-ripple-lark-kraiara.top" target="_blank" rel="noopener"><code>misty-ripple-lark-kraiara[.]top</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -1994,6 +2281,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/moss-froggaee.space" target="_blank" rel="noopener"><code>moss-froggaee[.]space</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-14T16:53:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/myfinanzplaner.de" target="_blank" rel="noopener"><code>myfinanzplaner[.]de</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-01T01:17:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/naturfotografie-roman-vitt.de" target="_blank" rel="noopener"><code>naturfotografie-roman-vitt[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2001,6 +2308,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-13T12:10:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nepajunkremoval.com" target="_blank" rel="noopener"><code>nepajunkremoval[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-20T18:13:27Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2026,7 +2343,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/noasdoastrien.top" target="_blank" rel="noopener"><code>noasdoastrien[.]top</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2036,7 +2353,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/norkapi41.icu" target="_blank" rel="noopener"><code>norkapi41[.]icu</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2046,11 +2363,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/norrykilu231.digital" target="_blank" rel="noopener"><code>norrykilu231[.]digital</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-14T16:53:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/novopren.com" target="_blank" rel="noopener"><code>novopren[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-20T18:13:27Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2076,11 +2403,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/ochre-quill-buindbaio.icu" target="_blank" rel="noopener"><code>ochre-quill-buindbaio[.]icu</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-09-28T06:00:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/oeko.com.au" target="_blank" rel="noopener"><code>oeko[.]com[.]au</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-31T07:16:53Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2144,6 +2481,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pilotpresence.com" target="_blank" rel="noopener"><code>pilotpresence[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-11T18:09:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pipp.is" target="_blank" rel="noopener"><code>pipp[.]is</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-29T18:00:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/pizza-greenlantern.com" target="_blank" rel="noopener"><code>pizza-greenlantern[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2151,6 +2508,36 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:41:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/plantaodosvidros.com.br" target="_blank" rel="noopener"><code>plantaodosvidros[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-14T01:31:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/plugspot.eco" target="_blank" rel="noopener"><code>plugspot[.]eco</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-11T18:09:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pluzz899.com" target="_blank" rel="noopener"><code>pluzz899[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-14T01:31:50Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2171,6 +2558,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/premieimoveis.com" target="_blank" rel="noopener"><code>premieimoveis[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-01T01:53:12Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2214,6 +2611,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pureenergycycling.com" target="_blank" rel="noopener"><code>pureenergycycling[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-31T07:16:58Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/quickkitchendishes.com" target="_blank" rel="noopener"><code>quickkitchendishes[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2226,11 +2633,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/quill-soaor-xhsw9.pro" target="_blank" rel="noopener"><code>quill-soaor-xhsw9[.]pro</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:55:38Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/quoalmsiaxpliao.pro" target="_blank" rel="noopener"><code>quoalmsiaxpliao[.]pro</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:15:00Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2256,7 +2673,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/relmciarnlioix.life" target="_blank" rel="noopener"><code>relmciarnlioix[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2286,7 +2703,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/rokkyho32.life" target="_blank" rel="noopener"><code>rokkyho32[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2314,6 +2731,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rumbiebyrumbie.com" target="_blank" rel="noopener"><code>rumbiebyrumbie[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-15T15:00:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rvlconsultoria.com.br" target="_blank" rel="noopener"><code>rvlconsultoria[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-14T01:31:51Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/sable-orbit-wren-fiayn.live" target="_blank" rel="noopener"><code>sable-orbit-wren-fiayn[.]live</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2324,6 +2761,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/salfleoyn-willow.pro" target="_blank" rel="noopener"><code>salfleoyn-willow[.]pro</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-10-06T13:15:00Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/salvationarmyangeltreecc.com" target="_blank" rel="noopener"><code>salvationarmyangeltreecc[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2331,6 +2778,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/santamonicaconsultoria.com.br" target="_blank" rel="noopener"><code>santamonicaconsultoria[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-29T08:57:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sarahbir.com" target="_blank" rel="noopener"><code>sarahbir[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-13T12:10:17Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2371,6 +2838,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/seniorcarenation.com" target="_blank" rel="noopener"><code>seniorcarenation[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-08-17T22:08:30Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2434,13 +2911,33 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sitraproject.eu" target="_blank" rel="noopener"><code>sitraproject[.]eu</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-31T07:15:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sivasiroll.com.br" target="_blank" rel="noopener"><code>sivasiroll[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-21T15:54:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/skaedbraearaquiet.life" target="_blank" rel="noopener"><code>skaedbraearaquiet[.]life</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
-          <td>2026-09-21T07:10:45Z</td>
+          <td>2026-09-20T22:19:11Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2476,11 +2973,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/solarboabsleois.icu" target="_blank" rel="noopener"><code>solarboabsleois[.]icu</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:30:03Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/somatutando.com.br" target="_blank" rel="noopener"><code>somatutando[.]com[.]br</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-07T04:51:03Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2516,7 +3023,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/speedpi12321.xyz" target="_blank" rel="noopener"><code>speedpi12321[.]xyz</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2526,7 +3033,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/sportsdisport.com" target="_blank" rel="noopener"><code>sportsdisport[.]com</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2541,6 +3048,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-02T18:56:16Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/studioathos.com" target="_blank" rel="noopener"><code>studioathos[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-07-29T08:57:52Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
@@ -2614,6 +3131,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thematchtheory.com" target="_blank" rel="noopener"><code>thematchtheory[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-21T15:54:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/therxfamily.com" target="_blank" rel="noopener"><code>therxfamily[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2626,7 +3153,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/thunderstopui912.life" target="_blank" rel="noopener"><code>thunderstopui912[.]life</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2704,6 +3231,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">100</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/trilliot6776.icu" target="_blank" rel="noopener"><code>trilliot6776[.]icu</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-19T09:06:06Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/trokuni412.icu" target="_blank" rel="noopener"><code>trokuni412[.]icu</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>IClickFix</td>
+          <td></td>
+          <td>2026-09-14T16:53:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/domain/tudodoporco.com.br" target="_blank" rel="noopener"><code>tudodoporco[.]com[.]br</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 82</span></td>
@@ -2726,7 +3273,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/usual-pixx12.digital" target="_blank" rel="noopener"><code>usual-pixx12[.]digital</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
@@ -2746,492 +3293,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/domain/vale-quaeum-a4hc9.top" target="_blank" rel="noopener"><code>vale-quaeum-a4hc9[.]top</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>IClickFix</td>
           <td></td>
           <td>2026-10-03T11:30:04Z</td>
           <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/vale-quaiyn-jtbn8.life" target="_blank" rel="noopener"><code>vale-quaiyn-jtbn8[.]life</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-24T20:40:49Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/varka.in" target="_blank" rel="noopener"><code>varka[.]in</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/vctraders.co.za" target="_blank" rel="noopener"><code>vctraders[.]co[.]za</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-08-18T12:08:15Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/velvet-otter-glagceis.life" target="_blank" rel="noopener"><code>velvet-otter-glagceis[.]life</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-23T09:45:10Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/velvetreoskslaon.pro" target="_blank" rel="noopener"><code>velvetreoskslaon[.]pro</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:55:38Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/vgatogel.org" target="_blank" rel="noopener"><code>vgatogel[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:41:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/vgatoto.org" target="_blank" rel="noopener"><code>vgatoto[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:41:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/villaelpis.net" target="_blank" rel="noopener"><code>villaelpis[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/vivid-orbit-fjord-gaie.life" target="_blank" rel="noopener"><code>vivid-orbit-fjord-gaie[.]life</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-27T12:12:32Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/voyag413.xyz" target="_blank" rel="noopener"><code>voyag413[.]xyz</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-14T16:53:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/webuytexashousesforcash.com" target="_blank" rel="noopener"><code>webuytexashousesforcash[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/winter-finch-slaibteis.life" target="_blank" rel="noopener"><code>winter-finch-slaibteis[.]life</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-25T08:10:00Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/workworm1412.buzz" target="_blank" rel="noopener"><code>workworm1412[.]buzz</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-13T12:09:12Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/wwtoto2-pro.com" target="_blank" rel="noopener"><code>wwtoto2-pro[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:41:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.chefstablehub.com" target="_blank" rel="noopener"><code>www[.]chefstablehub[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.dainikbarta.net" target="_blank" rel="noopener"><code>www[.]dainikbarta[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.debrancheexpert.tv" target="_blank" rel="noopener"><code>www[.]debrancheexpert[.]tv</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-15T20:39:53Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.grillchefsecrets.com" target="_blank" rel="noopener"><code>www[.]grillchefsecrets[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.hostetlercommercialroofing.com" target="_blank" rel="noopener"><code>www[.]hostetlercommercialroofing[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.irandavari.com" target="_blank" rel="noopener"><code>www[.]irandavari[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-07-29T08:58:00Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.kitchensecretbook.com" target="_blank" rel="noopener"><code>www[.]kitchensecretbook[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.mastergrillrecipes.com" target="_blank" rel="noopener"><code>www[.]mastergrillrecipes[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.mcrajman.com" target="_blank" rel="noopener"><code>www[.]mcrajman[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-10T17:24:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.mencid.es" target="_blank" rel="noopener"><code>www[.]mencid[.]es</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.paginaypantalla.top" target="_blank" rel="noopener"><code>www[.]paginaypantalla[.]top</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-07-29T08:58:01Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.pereanton.com" target="_blank" rel="noopener"><code>www[.]pereanton[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.poloartisticovinile.it" target="_blank" rel="noopener"><code>www[.]poloartisticovinile[.]it</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.polotravelltd.com" target="_blank" rel="noopener"><code>www[.]polotravelltd[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.quartzsurfacedesign.com" target="_blank" rel="noopener"><code>www[.]quartzsurfacedesign[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.searedrecipes.com" target="_blank" rel="noopener"><code>www[.]searedrecipes[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.sudeventishow.it" target="_blank" rel="noopener"><code>www[.]sudeventishow[.]it</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-07-29T08:58:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.tiptoes.co.uk" target="_blank" rel="noopener"><code>www[.]tiptoes[.]co[.]uk</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-07-29T08:58:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/www.ultimategrillhub.com" target="_blank" rel="noopener"><code>www[.]ultimategrillhub[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:46:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/xingyaotec.com" target="_blank" rel="noopener"><code>xingyaotec[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-27T12:42:27Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/xn--q3cxt4bxc8b.com" target="_blank" rel="noopener"><code>xn--q3cxt4bxc8b[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-15T20:39:53Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/yummyhomebase.com" target="_blank" rel="noopener"><code>yummyhomebase[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:41:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/yumrecipebox.com" target="_blank" rel="noopener"><code>yumrecipebox[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-03T11:41:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/yvzkids.com" target="_blank" rel="noopener"><code>yvzkids[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-07-29T08:58:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/zentzbyzee.com.au" target="_blank" rel="noopener"><code>zentzbyzee[.]com[.]au</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-17T09:22:35Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/zimmerei-ruhland.de" target="_blank" rel="noopener"><code>zimmerei-ruhland[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-09-17T09:22:35Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ziplocmoving.com" target="_blank" rel="noopener"><code>ziplocmoving[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-02T18:56:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/zvh3.com" target="_blank" rel="noopener"><code>zvh3[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-05T19:17:56Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ashen-arc-badger-maie.life" target="_blank" rel="noopener"><code>ashen-arc-badger-maie[.]life</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-06T05:27:07Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/d01fdb5aae8f112526040a39b0bfb9e27d813003178645e65f8d1cfdb2a26c87" target="_blank" rel="noopener"><code>d01fdb5aae8f112526040a39b0bfb9e27d813003178645e65f8d1cfdb2a26c87</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-05T23:46:48Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/datastorminc.live" target="_blank" rel="noopener"><code>datastorminc[.]live</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-06T05:27:05Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/docs.traxstreaming.live" target="_blank" rel="noopener"><code>docs[.]traxstreaming[.]live</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-06T05:27:03Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/empowerconsulting.live" target="_blank" rel="noopener"><code>empowerconsulting[.]live</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-06T05:27:03Z</td>
-          <td class="num-cell">90</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/glacial-sketch-otter-triis.live" target="_blank" rel="noopener"><code>glacial-sketch-otter-triis[.]live</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td></td>
-          <td>2026-10-06T05:27:05Z</td>
-          <td class="num-cell">90</td>
         </tr>
       </tbody>
     </table>
@@ -3242,7 +3309,28 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T06:34:39Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:14:05Z UTC</span></p>
 </footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+</script>
 </body>
 </html>

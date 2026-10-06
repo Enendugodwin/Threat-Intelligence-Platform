@@ -1,9 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
 <title>Report 2026-10-06 &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
 <style>
 :root{
+  color-scheme:dark;
   /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
   --color-primary:#00FF41; --color-on-primary:#0F172A;
   --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
@@ -20,6 +29,12 @@
   --color-muted:#181818; --color-muted-foreground:#94A3B8;
   --color-border:#1F1F1F; --color-destructive:#EF4444;
   --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
   /* Dense dashboard spacing scale */
   --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
   --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
@@ -27,6 +42,23 @@
   --radius:10px;
   --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +69,7 @@ a:hover{opacity:.85}
 .icon{flex:none}
 
 /* Header */
-header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
 .header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
 .brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
 .brand:hover{opacity:1}
@@ -48,6 +80,10 @@ header{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.88);backdrop-filt
 nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
 nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
 nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 
 /* Layout */
 main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
@@ -61,40 +97,44 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 /* Cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
 .card-head svg{color:var(--color-primary)}
-.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px rgba(0,255,65,.28);line-height:1.1}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
 .card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
-.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px rgba(255,51,51,.32)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
 .card-bad .card-head svg{color:var(--color-accent)}
 
 /* Tables */
 .table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
 table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
 th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
-th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:rgba(24,24,24,.55);white-space:nowrap}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
 th.num-col,td.num-cell{text-align:right}
 td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr{transition:background .15s ease}
-tbody tr:hover{background:rgba(0,255,65,.045)}
+tbody tr:hover{background:var(--color-primary-soft)}
 tbody tr:last-child td{border-bottom:none}
 code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
 td code{background:transparent;border:none;padding:0}
 
 /* Status pills */
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
-.pill.ok{color:var(--color-primary);border-color:rgba(0,255,65,.4);background:rgba(0,255,65,.08)}
-.pill.err{color:var(--color-destructive);border-color:rgba(239,68,68,.45);background:rgba(239,68,68,.08)}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
 .bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
 .bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
 .bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
-.bar-fill{display:block;height:100%;background:linear-gradient(90deg,rgba(0,255,65,.5),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
 .bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
 .bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
 
 /* Chips */
 .chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
@@ -110,11 +150,11 @@ td code{background:transparent;border:none;padding:0}
 .chip a:hover{color:var(--color-primary);opacity:1}
 .chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
 .chip-list.small .chip{font-size:.64rem;padding:1px 6px}
-.chip-kev{border-color:rgba(255,51,51,.5);color:var(--color-accent)}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
 .risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
-.risk-critical{color:var(--color-accent);border-color:rgba(255,51,51,.65);background:rgba(255,51,51,.14)}
-.risk-high{color:var(--color-accent);border-color:rgba(255,51,51,.45)}
-.risk-medium{color:var(--color-primary);border-color:rgba(0,255,65,.45)}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
 .risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
 .risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
 .explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
@@ -124,11 +164,11 @@ td code{background:transparent;border:none;padding:0}
 .filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
 .filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
 .report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
-.badge-env{border-color:rgba(0,255,65,.5);color:var(--color-primary)}
-.env-banner{border-left:3px solid var(--color-primary);background:rgba(0,255,65,.06);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
 .queue{display:flex;flex-direction:column;gap:var(--space-md)}
 .queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
-.queue-item:hover{border-color:rgba(0,255,65,.35)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
 .queue-body{flex:1;min-width:0}
 .queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
 .queue-why{color:var(--color-muted-foreground);font-size:.78rem}
@@ -136,16 +176,17 @@ td code{background:transparent;border:none;padding:0}
 @media (max-width:640px){.queue-item{flex-wrap:wrap}}
 .report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
 .report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
-.report-card:hover{border-color:rgba(0,255,65,.45);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
 .report-card h3 a{color:var(--color-foreground)}
 .report-card h3 a:hover{color:var(--color-primary);opacity:1}
 .badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
 .badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
-.badge-cat{border-color:rgba(0,255,65,.4);color:var(--color-primary)}
-.badge-curated{border-color:rgba(255,51,51,.45);color:var(--color-accent)}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
 .excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
 .rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
 .rec-list li::marker{color:var(--color-primary)}
 .back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
@@ -178,14 +219,34 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   .card .num{font-size:1.5rem}
   th,td{padding:var(--space-sm) var(--space-md)}
   table{min-width:460px;font-size:.8rem}
-  .table-wrap{box-shadow:inset -20px 0 14px -16px rgba(0,255,65,.3)}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
 }
 @media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
   .bars{padding:var(--space-lg)}
   .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
   .bar-label{order:1;flex:1 1 auto}
   .bar-value{order:2;flex:0 0 auto}
   .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
 }
 </style>
 </head>
@@ -200,10 +261,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>34579 indicators</span>
-      <span>3299 new / 17900 updated last run &middot; 34579 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>40153 indicators</span>
+      <span>5574 new / 16618 updated last run &middot; 40153 new / 7d</span>
       <span>7/7 feeds</span>
-      <span>sync 2026-10-06T06:34:39Z</span>
+      <span>sync 2026-10-06T18:14:05Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -213,27 +274,44 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>    </nav>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
   </div>
 </header>
 <main>
-<p class="muted">Window: last 7 days &middot; Generated: 2026-10-06T06:34:39Z UTC</p>
+<div class="page-heading">
+  <div>
+    <h1 class="page-title">Threat Intel Pulse</h1>
+    <p class="muted">Window: last 7 days &middot; Generated: 2026-10-06T18:14:05Z UTC</p>
+  </div>
+  <div class="page-actions no-print">
+    <button class="action-button primary" id="print-report" type="button">Export PDF</button>
+    <a class="action-link" href="iocs.json" download>JSON</a>
+    <a class="action-link" href="iocs.csv" download>CSV</a>
+  </div>
+</div>
+<p class="print-hint no-print">Choose <strong>Save as PDF</strong> in your browser&rsquo;s print dialog.</p>
 
 <section class="cards" aria-label="Key metrics">
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Indicators tracked</div>
-    <span class="num">34579</span>
-    <span class="card-sub">12343 at confidence &ge; 80</span>
+    <span class="num">40153</span>
+    <span class="card-sub">15386 at confidence &ge; 80</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>New this run</div>
-    <span class="num">3299</span>
-    <span class="card-sub">17900 updated &middot; 0 pruned</span>
+    <span class="num">5574</span>
+    <span class="card-sub">16618 updated &middot; 0 pruned</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Last 7 days</div>
-    <span class="num">34579</span>
-    <span class="card-sub">336071 updated &middot; 16 sync run(s)</span>
+    <span class="num">40153</span>
+    <span class="card-sub">352689 updated &middot; 17 sync run(s)</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Feeds healthy</div>
@@ -247,8 +325,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>Tor nodes</div>
-    <span class="num">9168</span>
-    <span class="card-sub">2106 exits / 7062 relays</span>
+    <span class="num">9277</span>
+    <span class="card-sub">2156 exits / 7121 relays</span>
   </div>
 </section>
 
@@ -262,8 +340,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <tbody>
         <tr>
           <td><code>URLhaus</code></td>
-          <td class="num-cell">5000</td>
-          <td class="num-cell">0</td>
+          <td class="num-cell">5001</td>
+          <td class="num-cell">+1</td>
           <td class="num-cell">0.3s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
@@ -278,16 +356,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><code>ThreatFox</code></td>
-          <td class="num-cell">8913</td>
-          <td class="num-cell">+312</td>
-          <td class="num-cell">0.3s</td>
+          <td class="num-cell">9224</td>
+          <td class="num-cell">+311</td>
+          <td class="num-cell">0.5s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>MalwareBazaar</code></td>
-          <td class="num-cell">1076</td>
-          <td class="num-cell">-18</td>
+          <td class="num-cell">1548</td>
+          <td class="num-cell">+472</td>
           <td class="num-cell">0.1s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
@@ -304,22 +382,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>CIRCL MISP</code></td>
           <td class="num-cell">914</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">25.4s</td>
+          <td class="num-cell">16.3s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>Tor Project</code></td>
-          <td class="num-cell">8596</td>
-          <td class="num-cell">+10</td>
-          <td class="num-cell">1.1s</td>
+          <td class="num-cell">8623</td>
+          <td class="num-cell">+27</td>
+          <td class="num-cell">1.9s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="muted">Last run 2026-10-06T06:34:31Z UTC &middot; &Delta; compares with the previous run.</p>
+  <p class="muted">Last run 2026-10-06T18:13:52Z UTC &middot; &Delta; compares with the previous run.</p>
 </section>
 
 <section>
@@ -328,36 +406,36 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-url.html">url</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 100.0%"></span></span>
-    <span class="bar-value">9179 <span class="new">+9179</span></span>
+    <span class="bar-value">12000 <span class="new">+12000</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv4.html">ipv4</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 96.9%"></span></span>
-    <span class="bar-value">8891 <span class="new">+8891</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 75.1%"></span></span>
+    <span class="bar-value">9014 <span class="new">+9014</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-sha256.html">sha256</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 80.0%"></span></span>
-    <span class="bar-value">7339 <span class="new">+7339</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 68.1%"></span></span>
+    <span class="bar-value">8174 <span class="new">+8174</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-domain.html">domain</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 66.1%"></span></span>
-    <span class="bar-value">6064 <span class="new">+6064</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 65.2%"></span></span>
+    <span class="bar-value">7822 <span class="new">+7822</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv6.html">ipv6</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 30.5%"></span></span>
-    <span class="bar-value">2800 <span class="new">+2800</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 23.6%"></span></span>
+    <span class="bar-value">2837 <span class="new">+2837</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-md5.html">md5</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.8%"></span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.4%"></span></span>
     <span class="bar-value">165 <span class="new">+165</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-sha1.html">sha1</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.5%"></span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 1.2%"></span></span>
     <span class="bar-value">141 <span class="new">+141</span></span>
   </div>
 </div>
@@ -372,12 +450,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Source</th><th scope="col" class="num-col">Indicators</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>threatfox</code></td><td class="num-cell">14210</td></tr>
-        <tr><td><code>tor</code></td><td class="num-cell">9168</td></tr>
-        <tr><td><code>urlhaus</code></td><td class="num-cell">7995</td></tr>
-        <tr><td><code>malwarebazaar</code></td><td class="num-cell">1920</td></tr>
+        <tr><td><code>threatfox</code></td><td class="num-cell">16219</td></tr>
+        <tr><td><code>urlhaus</code></td><td class="num-cell">10607</td></tr>
+        <tr><td><code>tor</code></td><td class="num-cell">9277</td></tr>
+        <tr><td><code>malwarebazaar</code></td><td class="num-cell">2635</td></tr>
+        <tr><td><code>openphish</code></td><td class="num-cell">1018</td></tr>
         <tr><td><code>circl</code></td><td class="num-cell">914</td></tr>
-        <tr><td><code>openphish</code></td><td class="num-cell">850</td></tr>
         <tr><td><code>feodo</code></td><td class="num-cell">5</td></tr>
       </tbody>
     </table>
@@ -393,45 +471,45 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr>
-          <td><a href="family-mirai.html">Mirai</a></td>
-          <td class="num-cell">3284</td>
-          <td class="num-cell">3284</td>
-          <td><span class="chip-list"><span class="chip">T1498</span><span class="chip">T1071.001</span></span></td>
-        </tr>
-        <tr>
           <td><a href="family-unknown-loader.html">Unknown Loader</a></td>
-          <td class="num-cell">2792</td>
-          <td class="num-cell">2792</td>
+          <td class="num-cell">4093</td>
+          <td class="num-cell">4093</td>
           <td>—</td>
         </tr>
         <tr>
+          <td><a href="family-mirai.html">Mirai</a></td>
+          <td class="num-cell">3304</td>
+          <td class="num-cell">3304</td>
+          <td><span class="chip-list"><span class="chip">T1498</span><span class="chip">T1071.001</span></span></td>
+        </tr>
+        <tr>
           <td><a href="family-asyncrat.html">AsyncRAT</a></td>
-          <td class="num-cell">2163</td>
-          <td class="num-cell">2163</td>
+          <td class="num-cell">2168</td>
+          <td class="num-cell">2168</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span></span></td>
         </tr>
         <tr>
           <td><a href="family-cobalt-strike.html">Cobalt Strike</a></td>
-          <td class="num-cell">1235</td>
-          <td class="num-cell">1235</td>
+          <td class="num-cell">1236</td>
+          <td class="num-cell">1236</td>
           <td><span class="chip-list"><span class="chip">T1071.001</span><span class="chip">T1573</span><span class="chip">T1055</span><span class="chip">T1059.001</span><span class="chip">T1105</span><span class="chip">T1090</span></span></td>
         </tr>
         <tr>
           <td><a href="family-clearfake.html">ClearFake</a></td>
-          <td class="num-cell">855</td>
-          <td class="num-cell">855</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><a href="family-unknown-malware.html">Unknown malware</a></td>
-          <td class="num-cell">511</td>
-          <td class="num-cell">511</td>
+          <td class="num-cell">984</td>
+          <td class="num-cell">984</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-iclickfix.html">IClickFix</a></td>
-          <td class="num-cell">384</td>
-          <td class="num-cell">384</td>
+          <td class="num-cell">729</td>
+          <td class="num-cell">729</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><a href="family-unknown-malware.html">Unknown malware</a></td>
+          <td class="num-cell">546</td>
+          <td class="num-cell">546</td>
           <td>—</td>
         </tr>
         <tr>
@@ -442,68 +520,68 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-adaptixc2.html">AdaptixC2</a></td>
-          <td class="num-cell">245</td>
-          <td class="num-cell">245</td>
+          <td class="num-cell">248</td>
+          <td class="num-cell">248</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-vidar.html">Vidar</a></td>
-          <td class="num-cell">216</td>
-          <td class="num-cell">216</td>
+          <td class="num-cell">229</td>
+          <td class="num-cell">229</td>
           <td><span class="chip-list"><span class="chip">T1555</span><span class="chip">T1071.001</span><span class="chip">T1567</span></span></td>
         </tr>
         <tr>
           <td><a href="family-unknown-stealer.html">Unknown Stealer</a></td>
-          <td class="num-cell">174</td>
-          <td class="num-cell">174</td>
+          <td class="num-cell">186</td>
+          <td class="num-cell">186</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-unknown-rat.html">Unknown RAT</a></td>
-          <td class="num-cell">157</td>
-          <td class="num-cell">157</td>
+          <td class="num-cell">167</td>
+          <td class="num-cell">167</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-amos.html">AMOS</a></td>
-          <td class="num-cell">132</td>
-          <td class="num-cell">132</td>
+          <td class="num-cell">145</td>
+          <td class="num-cell">145</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-remcos.html">Remcos</a></td>
-          <td class="num-cell">109</td>
-          <td class="num-cell">109</td>
+          <td class="num-cell">133</td>
+          <td class="num-cell">133</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span><span class="chip">T1573</span></span></td>
         </tr>
         <tr>
           <td><a href="family-vshell.html">VShell</a></td>
-          <td class="num-cell">109</td>
-          <td class="num-cell">109</td>
+          <td class="num-cell">110</td>
+          <td class="num-cell">110</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><a href="family-remus.html">Remus</a></td>
+          <td class="num-cell">102</td>
+          <td class="num-cell">102</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><a href="family-php-shin-webshell.html">php.shin_webshell</a></td>
+          <td class="num-cell">101</td>
+          <td class="num-cell">101</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-dcrat.html">DCRat</a></td>
-          <td class="num-cell">97</td>
-          <td class="num-cell">97</td>
+          <td class="num-cell">98</td>
+          <td class="num-cell">98</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span></span></td>
         </tr>
         <tr>
           <td><a href="family-evilginx.html">Evilginx</a></td>
           <td class="num-cell">93</td>
           <td class="num-cell">93</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><a href="family-remus.html">Remus</a></td>
-          <td class="num-cell">93</td>
-          <td class="num-cell">93</td>
-          <td>—</td>
-        </tr>
-        <tr>
-          <td><a href="family-php-shin-webshell.html">php.shin_webshell</a></td>
-          <td class="num-cell">89</td>
-          <td class="num-cell">89</td>
           <td>—</td>
         </tr>
         <tr>
@@ -518,7 +596,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </section>
 
 <section>
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>ATT&amp;CK coverage<span class="count">&nbsp;(27 techniques)</span></h2>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>ATT&amp;CK coverage<span class="count">&nbsp;(28 techniques)</span></h2>
   <div class="table-wrap">
     <table>
       <thead>
@@ -526,118 +604,118 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr>
-          <td><a href="technique-T1071.001.html"><code>T1071.001</code></a></td>
-          <td>Web Protocols</td>
-          <td>command-and-control</td>
-          <td class="num-cell">11961 <span class="muted">+15150 heuristic</span></td>
-        </tr>
-        <tr>
           <td><a href="technique-T1105.html"><code>T1105</code></a></td>
           <td>Ingress Tool Transfer</td>
           <td>command-and-control</td>
-          <td class="num-cell">9590</td>
+          <td class="num-cell">12301</td>
+        </tr>
+        <tr>
+          <td><a href="technique-T1071.001.html"><code>T1071.001</code></a></td>
+          <td>Web Protocols</td>
+          <td>command-and-control</td>
+          <td class="num-cell">12192 <span class="muted">+17018 heuristic</span></td>
         </tr>
         <tr>
           <td><a href="technique-T1498.html"><code>T1498</code></a></td>
           <td>Network Denial of Service</td>
           <td>impact</td>
-          <td class="num-cell">6984</td>
-        </tr>
-        <tr>
-          <td><a href="technique-T1573.html"><code>T1573</code></a></td>
-          <td>Encrypted Channel</td>
-          <td>command-and-control</td>
-          <td class="num-cell">4579</td>
-        </tr>
-        <tr>
-          <td><a href="technique-T1056.001.html"><code>T1056.001</code></a></td>
-          <td>Keylogging</td>
-          <td>collection, credential-access</td>
-          <td class="num-cell">2958</td>
+          <td class="num-cell">7157</td>
         </tr>
         <tr>
           <td><a href="technique-T1204.002.html"><code>T1204.002</code></a></td>
           <td>Malicious File</td>
           <td>execution</td>
-          <td class="num-cell">2951</td>
+          <td class="num-cell">5426</td>
         </tr>
         <tr>
           <td><a href="technique-T1027.html"><code>T1027</code></a></td>
           <td>Obfuscated Files or Information</td>
           <td>defense-evasion</td>
-          <td class="num-cell">2940</td>
+          <td class="num-cell">5415</td>
+        </tr>
+        <tr>
+          <td><a href="technique-T1573.html"><code>T1573</code></a></td>
+          <td>Encrypted Channel</td>
+          <td>command-and-control</td>
+          <td class="num-cell">4622</td>
+        </tr>
+        <tr>
+          <td><a href="technique-T1056.001.html"><code>T1056.001</code></a></td>
+          <td>Keylogging</td>
+          <td>collection, credential-access</td>
+          <td class="num-cell">2994</td>
         </tr>
         <tr>
           <td><a href="technique-T1566.001.html"><code>T1566.001</code></a></td>
           <td>Spearphishing Attachment</td>
           <td>initial-access</td>
-          <td class="num-cell">2642</td>
+          <td class="num-cell">2678</td>
         </tr>
         <tr>
           <td><a href="technique-T1547.001.html"><code>T1547.001</code></a></td>
           <td>Registry Run Keys / Startup Folder</td>
           <td>persistence, privilege-escalation</td>
-          <td class="num-cell">2434</td>
+          <td class="num-cell">2468</td>
         </tr>
         <tr>
           <td><a href="technique-T1113.html"><code>T1113</code></a></td>
           <td>Screen Capture</td>
           <td>collection</td>
-          <td class="num-cell">2412</td>
+          <td class="num-cell">2446</td>
         </tr>
         <tr>
           <td><a href="technique-T1055.html"><code>T1055</code></a></td>
           <td>Process Injection</td>
           <td>defense-evasion, privilege-escalation</td>
-          <td class="num-cell">1410</td>
+          <td class="num-cell">1413</td>
         </tr>
         <tr>
           <td><a href="technique-T1090.html"><code>T1090</code></a></td>
           <td>Proxy</td>
           <td>command-and-control</td>
-          <td class="num-cell">1270</td>
+          <td class="num-cell">1271</td>
         </tr>
         <tr>
           <td><a href="technique-T1059.001.html"><code>T1059.001</code></a></td>
           <td>PowerShell</td>
           <td>execution</td>
-          <td class="num-cell">1247</td>
+          <td class="num-cell">1248</td>
         </tr>
         <tr>
           <td><a href="technique-T1566.html"><code>T1566</code></a></td>
           <td>Phishing</td>
           <td>initial-access</td>
-          <td class="num-cell">857</td>
+          <td class="num-cell">1027</td>
         </tr>
         <tr>
           <td><a href="technique-T1566.002.html"><code>T1566.002</code></a></td>
           <td>Spearphishing Link</td>
           <td>initial-access</td>
-          <td class="num-cell">857</td>
+          <td class="num-cell">1027</td>
         </tr>
         <tr>
           <td><a href="technique-T1555.html"><code>T1555</code></a></td>
           <td>Credentials from Password Stores</td>
           <td>credential-access</td>
-          <td class="num-cell">722</td>
+          <td class="num-cell">777</td>
         </tr>
         <tr>
           <td><a href="technique-T1567.html"><code>T1567</code></a></td>
           <td>Exfiltration Over Web Service</td>
           <td>exfiltration</td>
-          <td class="num-cell">659</td>
+          <td class="num-cell">714</td>
         </tr>
         <tr>
           <td><a href="technique-T1552.001.html"><code>T1552.001</code></a></td>
           <td>Credentials In Files</td>
           <td>credential-access</td>
-          <td class="num-cell">454</td>
+          <td class="num-cell">499</td>
         </tr>
         <tr>
           <td><a href="technique-T1041.html"><code>T1041</code></a></td>
           <td>Exfiltration Over C2 Channel</td>
           <td>exfiltration</td>
-          <td class="num-cell">157</td>
+          <td class="num-cell">159</td>
         </tr>
         <tr>
           <td><a href="technique-T1059.005.html"><code>T1059.005</code></a></td>
@@ -687,6 +765,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>credential-access</td>
           <td class="num-cell">1</td>
         </tr>
+        <tr>
+          <td><a href="technique-T1190.html"><code>T1190</code></a></td>
+          <td>Exploit Public-Facing Application</td>
+          <td>initial-access</td>
+          <td class="num-cell">1</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -701,14 +785,14 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Metric</th><th scope="col" class="num-col">Value</th></tr>
       </thead>
       <tbody>
-        <tr><td>Nodes tracked</td><td class="num-cell">9168</td></tr>
-        <tr><td>Exit nodes</td><td class="num-cell">2106</td></tr>
-        <tr><td>Other relays</td><td class="num-cell">7062</td></tr>
-        <tr><td>New in window</td><td class="num-cell">9168</td></tr>
+        <tr><td>Nodes tracked</td><td class="num-cell">9277</td></tr>
+        <tr><td>Exit nodes</td><td class="num-cell">2156</td></tr>
+        <tr><td>Other relays</td><td class="num-cell">7121</td></tr>
+        <tr><td>New in window</td><td class="num-cell">9277</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9168, source Tor Project Onionoo):</p>
+  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9277, source Tor Project Onionoo):</p>
   <div class="chip-list">
 <span class="chip">1[.]201[.]176[.]176</span><span class="chip">1[.]248[.]96[.]163</span><span class="chip">100[.]1[.]157[.]56</span><span class="chip">100[.]2[.]63[.]41</span><span class="chip">101[.]55[.]125[.]10</span><span class="chip">102[.]130[.]113[.]29</span><span class="chip">102[.]130[.]113[.]30</span><span class="chip">102[.]130[.]113[.]42</span><span class="chip">102[.]130[.]113[.]9</span><span class="chip">102[.]130[.]115[.]59</span><span class="chip">102[.]130[.]117[.]167</span><span class="chip">102[.]130[.]119[.]48</span><span class="chip">102[.]130[.]127[.]117</span><span class="chip">102[.]205[.]44[.]36</span><span class="chip">102[.]205[.]44[.]5</span><span class="chip">102[.]211[.]56[.]20</span><span class="chip">102[.]211[.]56[.]25</span><span class="chip">102[.]216[.]253[.]63</span><span class="chip">102[.]68[.]99[.]63</span><span class="chip">103[.]105[.]21[.]2</span>  </div>
   <p class="muted" style="margin-top: var(--space-lg)">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
@@ -723,253 +807,253 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/marblegrove.cfd" target="_blank" rel="noopener"><code>marblegrove[.]cfd</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/up.333vip.org" target="_blank" rel="noopener"><code>up[.]333vip[.]org</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
+          <td>Vidar</td>
           <td>threatfox</td>
-          <td>2026-10-06T06:18:43Z</td>
+          <td>2026-10-06T17:05:48Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/rovgruien.pro" target="_blank" rel="noopener"><code>rovgruien[.]pro</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>IClickFix</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:51Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.125" target="_blank" rel="noopener"><code>176[.]97[.]114[.]125</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.132" target="_blank" rel="noopener"><code>176[.]97[.]114[.]132</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:12Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.170" target="_blank" rel="noopener"><code>176[.]97[.]114[.]170</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:11Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.177" target="_blank" rel="noopener"><code>176[.]97[.]114[.]177</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:11Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.243" target="_blank" rel="noopener"><code>176[.]97[.]114[.]243</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:10Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/176.97.114.29" target="_blank" rel="noopener"><code>176[.]97[.]114[.]29</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:52:09Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gnfelg66.succeswithpaul.com" target="_blank" rel="noopener"><code>gnfelg66[.]succeswithpaul[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>ClearFake</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:30:30Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/succeswithpaul.com" target="_blank" rel="noopener"><code>succeswithpaul[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-critical">critical 85</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>ClearFake</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:29:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fohhhhhmoney.com%2FfF2" target="_blank" rel="noopener"><code>hxxps://ohhhhhmoney[.]com/fF2</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>HijackLoader</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:16Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffu.333pwk.org" target="_blank" rel="noopener"><code>hxxps://fu[.]333pwk[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fup.333vip.org%2F" target="_blank" rel="noopener"><code>hxxps://up[.]333vip[.]org/</code></a></td>
           <td>url</td>
           <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:28:13Z</td>
+          <td>2026-10-06T17:05:48Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffu.396zk.net" target="_blank" rel="noopener"><code>hxxps://fu[.]396zk[.]net</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/89.32.41.19" target="_blank" rel="noopener"><code>89[.]32[.]41[.]19</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Potassium</td>
+          <td>threatfox</td>
+          <td>2026-10-06T16:57:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/04ue33gt.truenarrator.com" target="_blank" rel="noopener"><code>04ue33gt[.]truenarrator[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-06T16:52:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.3toto.com" target="_blank" rel="noopener"><code>hxxps://hi[.]3toto[.]com</code></a></td>
           <td>url</td>
           <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:28:12Z</td>
+          <td>2026-10-06T16:18:33Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/165.22.244.100" target="_blank" rel="noopener"><code>165[.]22[.]244[.]100</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Aisuru</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:08Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/46.101.164.65" target="_blank" rel="noopener"><code>46[.]101[.]164[.]65</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Aisuru</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7cfe5781ebb844a267300fbc9f343d293d774bab9b0a530cc49262ddc083c5ed" target="_blank" rel="noopener"><code>7cfe5781ebb844a267300fbc9f343d293d774bab9b0a530cc49262ddc083c5ed</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/147.139.168.67" target="_blank" rel="noopener"><code>147[.]139[.]168[.]67</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/198.11.174.58" target="_blank" rel="noopener"><code>198[.]11[.]174[.]58</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Jackskid</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:28:00Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/134.122.22.105" target="_blank" rel="noopener"><code>134[.]122[.]22[.]105</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Aisuru</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:27:59Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/45.91.52.45" target="_blank" rel="noopener"><code>45[.]91[.]52[.]45</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
+          <td><a href="https://www.virustotal.com/gui/domain/getsupportonlinenow.com" target="_blank" rel="noopener"><code>getsupportonlinenow[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown RAT</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:27:59Z</td>
+          <td>2026-10-06T16:18:31Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/159.89.95.185" target="_blank" rel="noopener"><code>159[.]89[.]95[.]185</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Aisuru</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:27:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da" target="_blank" rel="noopener"><code>aa00225f01e1f8542d8275adb88936111ce387e8ec529b1566ff2532369737da</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-06T05:27:52Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.108.163" target="_blank" rel="noopener"><code>128[.]90[.]108[.]163</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/43.228.157.72" target="_blank" rel="noopener"><code>43[.]228[.]157[.]72</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-critical">critical 86</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remcos</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:27:51Z</td>
+          <td>2026-10-06T16:18:30Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fheavenproject.lgbt%2Fapi%2Fconnect" target="_blank" rel="noopener"><code>hxxps://heavenproject[.]lgbt/api/connect</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/89.32.41.49" target="_blank" rel="noopener"><code>89[.]32[.]41[.]49</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>Unknown RAT</td>
+          <td>Potassium</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:27:46Z</td>
+          <td>2026-10-06T16:03:36Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fheavenproject.lgbt%2Fapi%2Fheartbeat" target="_blank" rel="noopener"><code>hxxps://heavenproject[.]lgbt/api/heartbeat</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/0nna1vpc.sallysprattstudio.com" target="_blank" rel="noopener"><code>0nna1vpc[.]sallysprattstudio[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/s5goru1r.kobet.store" target="_blank" rel="noopener"><code>s5goru1r[.]kobet[.]store</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:22:12Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fhi.333vip.org" target="_blank" rel="noopener"><code>hxxps://hi[.]333vip[.]org</code></a></td>
           <td>url</td>
           <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:21:44Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/102.220.163.130" target="_blank" rel="noopener"><code>102[.]220[.]163[.]130</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Remcos</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:21:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/91.92.242.19" target="_blank" rel="noopener"><code>91[.]92[.]242[.]19</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Potassium</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:17:46Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/155.2.192.88" target="_blank" rel="noopener"><code>155[.]2[.]192[.]88</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Potassium</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:00:19Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/51.89.199.102" target="_blank" rel="noopener"><code>51[.]89[.]199[.]102</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Potassium</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:00:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e" target="_blank" rel="noopener"><code>70185ccd2aca8d2232164abe51699c4698bed86c551c9edf284063b5791c054e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td>threatfox</td>
+          <td>2026-10-06T15:00:18Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb" target="_blank" rel="noopener"><code>a4f5bec5e206631a718b88e16f1a5fa3ebd0ad55955fd30001c29e42b601beeb</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 93</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>malwarebazaar, threatfox</td>
+          <td>2026-10-06T14:30:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9" target="_blank" rel="noopener"><code>2d8fb6368c33ba76766834ab0737e9e830d8413ece0e7568a93fa3f894cd7ef9</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
           <td>Unknown RAT</td>
           <td>threatfox</td>
-          <td>2026-10-06T05:27:44Z</td>
+          <td>2026-10-06T14:30:50Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986" target="_blank" rel="noopener"><code>ff1d48aeeda856e3b2f6aac842dc393e1156e1d5f783b1e7f812b3b0d5eb2986</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc" target="_blank" rel="noopener"><code>c7ef30d2fbc1fad85c9e14c200b9328b7be55b83ab2080e8dd7e25be76abb2dc</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614" target="_blank" rel="noopener"><code>5c1bf506401bda993ceedaf28b90ebff6d6beb92f33b9b975c21fc85b1be2614</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:49Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e" target="_blank" rel="noopener"><code>debdc34170bd40bf2e18611eeb4605f99bd146b88c694cb1d7cf751976ead49e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393" target="_blank" rel="noopener"><code>dbe63e6863be3fefc70f8446134129f8351147c213cea78696e324429cf29393</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b2c851105fa97e65b4a9068bba3d832b02a0bcb5d594f689e07391403305ebb7" target="_blank" rel="noopener"><code>b2c851105fa97e65b4a9068bba3d832b02a0bcb5d594f689e07391403305ebb7</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:47Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F192.162.199.249%2F45fw5qfmd55m" target="_blank" rel="noopener"><code>hxxp://192[.]162[.]199[.]249/45fw5qfmd55m</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td>threatfox</td>
+          <td>2026-10-06T14:30:46Z</td>
           <td class="num-cell">100</td>
         </tr>
       </tbody>
@@ -977,10 +1061,34 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
 </section>
+<script>
+document.getElementById("print-report").addEventListener("click", function () { window.print(); });
+</script>
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T06:34:39Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-06T18:14:05Z UTC</span></p>
 </footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+</script>
 </body>
 </html>
