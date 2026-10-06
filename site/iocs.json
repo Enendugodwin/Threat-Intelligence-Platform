@@ -1,8 +1,18 @@
 {
   "schema": "threat-intel-platform/iocs/v1",
-  "generated_at": "2026-10-06T19:56:34Z",
+  "generated_at": "2026-10-06T20:02:07Z",
   "count": 30000,
   "indicators": [
+    {
+      "value": "gwfsiev0.kubis.store",
+      "type": "domain",
+      "malware": "ClearFake",
+      "sources": "threatfox",
+      "confidence": 100,
+      "first_seen": "2026-10-06T19:52:40Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1956015/"
+    },
     {
       "value": "114.66.20.236",
       "type": "ipv4",
@@ -140,7 +150,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-06T15:21:44Z",
-      "last_seen": "2026-10-06T19:48:14Z",
+      "last_seen": "2026-10-06T19:53:16Z",
       "reference": "https://threatfox.abuse.ch/ioc/1955677/"
     },
     {
@@ -1370,7 +1380,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-06T08:05:13Z",
-      "last_seen": "2026-10-06T19:49:27Z",
+      "last_seen": "2026-10-06T19:54:29Z",
       "reference": "https://threatfox.abuse.ch/ioc/1954476/"
     },
     {
@@ -1580,7 +1590,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-06T05:28:13Z",
-      "last_seen": "2026-10-06T19:50:03Z",
+      "last_seen": "2026-10-06T19:53:39Z",
       "reference": "https://threatfox.abuse.ch/ioc/1953319/"
     },
     {
@@ -1940,7 +1950,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-06T05:27:21Z",
-      "last_seen": "2026-10-06T19:45:35Z",
+      "last_seen": "2026-10-06T19:50:40Z",
       "reference": "https://threatfox.abuse.ch/ioc/1954077/"
     },
     {
@@ -2740,7 +2750,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T14:38:17Z",
-      "last_seen": "2026-10-06T19:37:23Z",
+      "last_seen": "2026-10-06T19:52:49Z",
       "reference": "https://threatfox.abuse.ch/ioc/1952882/"
     },
     {
@@ -2750,7 +2760,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T14:38:17Z",
-      "last_seen": "2026-10-06T19:37:35Z",
+      "last_seen": "2026-10-06T19:52:50Z",
       "reference": "https://threatfox.abuse.ch/ioc/1952883/"
     },
     {
@@ -2760,7 +2770,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T14:38:17Z",
-      "last_seen": "2026-10-06T19:37:46Z",
+      "last_seen": "2026-10-06T19:52:44Z",
       "reference": "https://threatfox.abuse.ch/ioc/1952884/"
     },
     {
@@ -3160,7 +3170,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T09:54:58Z",
-      "last_seen": "2026-10-06T19:46:25Z",
+      "last_seen": "2026-10-06T19:51:35Z",
       "reference": "https://threatfox.abuse.ch/ioc/1952634/"
     },
     {
@@ -3680,7 +3690,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T06:15:36Z",
-      "last_seen": "2026-10-06T19:47:56Z",
+      "last_seen": "2026-10-06T19:53:07Z",
       "reference": "https://threatfox.abuse.ch/ioc/1950364/"
     },
     {
@@ -3780,7 +3790,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-05T06:15:31Z",
-      "last_seen": "2026-10-06T19:48:29Z",
+      "last_seen": "2026-10-06T19:53:36Z",
       "reference": "https://threatfox.abuse.ch/ioc/1951816/"
     },
     {
@@ -9010,7 +9020,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-04T08:00:40Z",
-      "last_seen": "2026-10-06T19:48:20Z",
+      "last_seen": "2026-10-06T19:53:25Z",
       "reference": "https://threatfox.abuse.ch/ioc/1949876/"
     },
     {
@@ -9470,7 +9480,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-04T07:17:55Z",
-      "last_seen": "2026-10-06T19:48:22Z",
+      "last_seen": "2026-10-06T19:53:52Z",
       "reference": "https://threatfox.abuse.ch/ioc/1949811/"
     },
     {
@@ -15390,7 +15400,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-03T17:28:12Z",
-      "last_seen": "2026-10-06T19:45:17Z",
+      "last_seen": "2026-10-06T19:50:19Z",
       "reference": "https://threatfox.abuse.ch/ioc/1948720/"
     },
     {
@@ -20570,7 +20580,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-03T06:04:05Z",
-      "last_seen": "2026-10-06T19:49:54Z",
+      "last_seen": "2026-10-06T19:54:59Z",
       "reference": "https://threatfox.abuse.ch/ioc/1946053/"
     },
     {
@@ -20690,7 +20700,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-03T06:03:56Z",
-      "last_seen": "2026-10-06T19:50:05Z",
+      "last_seen": "2026-10-06T19:53:54Z",
       "reference": "https://threatfox.abuse.ch/ioc/1946243/"
     },
     {
@@ -24610,7 +24620,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T20:44:41Z",
-      "last_seen": "2026-10-06T19:47:55Z",
+      "last_seen": "2026-10-06T19:52:59Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945535/"
     },
     {
@@ -24670,7 +24680,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T20:44:37Z",
-      "last_seen": "2026-10-06T19:49:22Z",
+      "last_seen": "2026-10-06T19:54:26Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945609/"
     },
     {
@@ -26840,7 +26850,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T16:47:07Z",
-      "last_seen": "2026-10-06T19:47:28Z",
+      "last_seen": "2026-10-06T19:52:31Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945509/"
     },
     {
@@ -26960,7 +26970,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T08:27:46Z",
-      "last_seen": "2026-10-06T19:48:30Z",
+      "last_seen": "2026-10-06T19:52:20Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945201/"
     },
     {
@@ -26970,7 +26980,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T08:27:46Z",
-      "last_seen": "2026-10-06T19:48:46Z",
+      "last_seen": "2026-10-06T19:53:50Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945218/"
     },
     {
@@ -27030,7 +27040,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-02T06:30:51Z",
-      "last_seen": "2026-10-06T19:45:13Z",
+      "last_seen": "2026-10-06T19:50:19Z",
       "reference": "https://threatfox.abuse.ch/ioc/1944246/"
     },
     {
@@ -27130,7 +27140,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-01T11:03:46Z",
-      "last_seen": "2026-10-06T19:50:00Z",
+      "last_seen": "2026-10-06T19:51:55Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943779/"
     },
     {
@@ -27150,7 +27160,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-01T08:14:22Z",
-      "last_seen": "2026-10-06T19:47:24Z",
+      "last_seen": "2026-10-06T19:52:28Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943618/"
     },
     {
@@ -27300,7 +27310,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-01T05:17:44Z",
-      "last_seen": "2026-10-06T19:48:42Z",
+      "last_seen": "2026-10-06T19:53:48Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943366/"
     },
     {
@@ -27320,7 +27330,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-10-01T05:17:23Z",
-      "last_seen": "2026-10-06T19:50:02Z",
+      "last_seen": "2026-10-06T19:55:04Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943507/"
     },
     {
@@ -27430,7 +27440,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T14:49:40Z",
-      "last_seen": "2026-10-06T19:47:38Z",
+      "last_seen": "2026-10-06T19:52:51Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942921/"
     },
     {
@@ -27480,7 +27490,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:46Z",
-      "last_seen": "2026-10-06T19:22:10Z",
+      "last_seen": "2026-10-06T19:53:33Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943648/"
     },
     {
@@ -27500,7 +27510,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:45Z",
-      "last_seen": "2026-10-06T19:21:17Z",
+      "last_seen": "2026-10-06T19:52:40Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945518/"
     },
     {
@@ -27510,7 +27520,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:45Z",
-      "last_seen": "2026-10-06T19:21:30Z",
+      "last_seen": "2026-10-06T19:52:27Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943080/"
     },
     {
@@ -27520,7 +27530,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:45Z",
-      "last_seen": "2026-10-06T19:21:45Z",
+      "last_seen": "2026-10-06T19:53:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942770/"
     },
     {
@@ -27530,7 +27540,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:44Z",
-      "last_seen": "2026-10-06T19:22:23Z",
+      "last_seen": "2026-10-06T19:53:20Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942797/"
     },
     {
@@ -27540,7 +27550,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T09:28:44Z",
-      "last_seen": "2026-10-06T19:21:58Z",
+      "last_seen": "2026-10-06T19:52:53Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942773/"
     },
     {
@@ -27550,7 +27560,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T08:15:53Z",
-      "last_seen": "2026-10-06T19:44:11Z",
+      "last_seen": "2026-10-06T19:51:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942761/"
     },
     {
@@ -27630,7 +27640,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T05:49:50Z",
-      "last_seen": "2026-10-06T19:49:28Z",
+      "last_seen": "2026-10-06T19:54:30Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942050/"
     },
     {
@@ -27680,7 +27690,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-30T05:49:36Z",
-      "last_seen": "2026-10-06T19:50:07Z",
+      "last_seen": "2026-10-06T19:52:04Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942168/"
     },
     {
@@ -27780,7 +27790,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T16:36:31Z",
-      "last_seen": "2026-10-06T19:45:27Z",
+      "last_seen": "2026-10-06T19:51:02Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941985/"
     },
     {
@@ -27800,7 +27810,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T12:10:35Z",
-      "last_seen": "2026-10-06T19:47:46Z",
+      "last_seen": "2026-10-06T19:52:48Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941664/"
     },
     {
@@ -27900,7 +27910,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T06:28:45Z",
-      "last_seen": "2026-10-06T19:38:44Z",
+      "last_seen": "2026-10-06T19:51:05Z",
       "reference": "https://threatfox.abuse.ch/ioc/1942743/"
     },
     {
@@ -27910,7 +27920,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T06:28:44Z",
-      "last_seen": "2026-10-06T19:38:26Z",
+      "last_seen": "2026-10-06T19:51:05Z",
       "reference": "https://threatfox.abuse.ch/ioc/1943365/"
     },
     {
@@ -27940,7 +27950,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T06:28:38Z",
-      "last_seen": "2026-10-06T19:48:48Z",
+      "last_seen": "2026-10-06T19:53:50Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941251/"
     },
     {
@@ -27950,7 +27960,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T06:28:38Z",
-      "last_seen": "2026-10-06T19:48:17Z",
+      "last_seen": "2026-10-06T19:53:24Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941252/"
     },
     {
@@ -27970,7 +27980,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-29T06:28:31Z",
-      "last_seen": "2026-10-06T19:37:59Z",
+      "last_seen": "2026-10-06T19:51:05Z",
       "reference": "https://threatfox.abuse.ch/ioc/1948993/"
     },
     {
@@ -30650,7 +30660,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-27T06:38:35Z",
-      "last_seen": "2026-10-06T19:48:39Z",
+      "last_seen": "2026-10-06T19:53:42Z",
       "reference": "https://threatfox.abuse.ch/ioc/1935679/"
     },
     {
@@ -30660,7 +30670,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T15:32:09Z",
-      "last_seen": "2026-10-06T19:47:44Z",
+      "last_seen": "2026-10-06T19:52:56Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934828/"
     },
     {
@@ -30670,7 +30680,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T15:06:17Z",
-      "last_seen": "2026-10-06T19:49:41Z",
+      "last_seen": "2026-10-06T19:54:57Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934804/"
     },
     {
@@ -30690,7 +30700,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:25Z",
-      "last_seen": "2026-10-06T19:49:53Z",
+      "last_seen": "2026-10-06T19:54:56Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934702/"
     },
     {
@@ -30700,7 +30710,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:24Z",
-      "last_seen": "2026-10-06T19:48:18Z",
+      "last_seen": "2026-10-06T19:53:20Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934692/"
     },
     {
@@ -30720,7 +30730,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:24Z",
-      "last_seen": "2026-10-06T19:45:13Z",
+      "last_seen": "2026-10-06T19:50:17Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934708/"
     },
     {
@@ -30730,7 +30740,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:23Z",
-      "last_seen": "2026-10-06T19:49:02Z",
+      "last_seen": "2026-10-06T19:54:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934700/"
     },
     {
@@ -30750,7 +30760,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:22Z",
-      "last_seen": "2026-10-06T19:48:35Z",
+      "last_seen": "2026-10-06T19:53:40Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934683/"
     },
     {
@@ -30760,7 +30770,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:20:21Z",
-      "last_seen": "2026-10-06T19:48:17Z",
+      "last_seen": "2026-10-06T19:53:48Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934707/"
     },
     {
@@ -30770,7 +30780,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:13Z",
-      "last_seen": "2026-10-06T19:48:13Z",
+      "last_seen": "2026-10-06T19:53:31Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934688/"
     },
     {
@@ -30780,7 +30790,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:12Z",
-      "last_seen": "2026-10-06T19:50:09Z",
+      "last_seen": "2026-10-06T19:53:28Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934686/"
     },
     {
@@ -30790,7 +30800,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:11Z",
-      "last_seen": "2026-10-06T19:45:28Z",
+      "last_seen": "2026-10-06T19:50:32Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934687/"
     },
     {
@@ -30800,7 +30810,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:11Z",
-      "last_seen": "2026-10-06T19:49:59Z",
+      "last_seen": "2026-10-06T19:55:02Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934729/"
     },
     {
@@ -30810,7 +30820,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:10Z",
-      "last_seen": "2026-10-06T19:45:21Z",
+      "last_seen": "2026-10-06T19:50:36Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934710/"
     },
     {
@@ -30820,7 +30830,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:08Z",
-      "last_seen": "2026-10-06T19:49:35Z",
+      "last_seen": "2026-10-06T19:54:50Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934699/"
     },
     {
@@ -30830,7 +30840,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:08Z",
-      "last_seen": "2026-10-06T19:46:59Z",
+      "last_seen": "2026-10-06T19:52:04Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934704/"
     },
     {
@@ -30840,7 +30850,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-26T12:13:08Z",
-      "last_seen": "2026-10-06T19:46:55Z",
+      "last_seen": "2026-10-06T19:52:00Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934709/"
     },
     {
@@ -32150,7 +32160,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-20T16:36:19Z",
-      "last_seen": "2026-10-06T19:48:06Z",
+      "last_seen": "2026-10-06T19:53:43Z",
       "reference": "https://threatfox.abuse.ch/ioc/1925903/"
     },
     {
@@ -32160,7 +32170,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-20T14:52:20Z",
-      "last_seen": "2026-10-06T19:48:54Z",
+      "last_seen": "2026-10-06T19:53:59Z",
       "reference": "https://threatfox.abuse.ch/ioc/1925881/"
     },
     {
@@ -32300,7 +32310,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-19T06:25:37Z",
-      "last_seen": "2026-10-06T19:48:28Z",
+      "last_seen": "2026-10-06T19:53:31Z",
       "reference": "https://threatfox.abuse.ch/ioc/1924357/"
     },
     {
@@ -32310,7 +32320,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-19T05:52:21Z",
-      "last_seen": "2026-10-06T19:45:55Z",
+      "last_seen": "2026-10-06T19:51:00Z",
       "reference": "https://threatfox.abuse.ch/ioc/1924325/"
     },
     {
@@ -32330,7 +32340,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-18T17:23:47Z",
-      "last_seen": "2026-10-06T19:50:03Z",
+      "last_seen": "2026-10-06T19:55:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1924001/"
     },
     {
@@ -32580,7 +32590,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-16T15:07:01Z",
-      "last_seen": "2026-10-06T19:36:31Z",
+      "last_seen": "2026-10-06T19:54:15Z",
       "reference": "https://threatfox.abuse.ch/ioc/1921148/"
     },
     {
@@ -34100,7 +34110,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-11T07:33:02Z",
-      "last_seen": "2026-10-06T19:49:41Z",
+      "last_seen": "2026-10-06T19:52:37Z",
       "reference": "https://threatfox.abuse.ch/ioc/1912134/"
     },
     {
@@ -37120,7 +37130,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-09-07T05:44:20Z",
-      "last_seen": "2026-10-06T19:32:04Z",
+      "last_seen": "2026-10-06T19:50:27Z",
       "reference": "https://threatfox.abuse.ch/ioc/1903236/"
     },
     {
@@ -37870,7 +37880,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-08-20T14:10:36Z",
-      "last_seen": "2026-10-06T19:47:14Z",
+      "last_seen": "2026-10-06T19:52:28Z",
       "reference": "https://threatfox.abuse.ch/ioc/1883153/"
     },
     {
@@ -39240,7 +39250,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-04-26T18:11:00Z",
-      "last_seen": "2026-10-06T19:49:23Z",
+      "last_seen": "2026-10-06T19:52:47Z",
       "reference": "https://threatfox.abuse.ch/ioc/1800411/"
     },
     {
@@ -39250,7 +39260,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2026-04-23T04:45:34Z",
-      "last_seen": "2026-10-06T19:49:17Z",
+      "last_seen": "2026-10-06T19:50:23Z",
       "reference": "https://threatfox.abuse.ch/ioc/1796426/"
     },
     {
@@ -41770,7 +41780,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2024-11-12T15:05:48Z",
-      "last_seen": "2026-10-06T19:31:13Z",
+      "last_seen": "2026-10-06T19:51:18Z",
       "reference": "https://threatfox.abuse.ch/ioc/1344482/"
     },
     {
@@ -41780,7 +41790,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2024-10-22T13:56:44Z",
-      "last_seen": "2026-10-06T19:34:17Z",
+      "last_seen": "2026-10-06T19:53:26Z",
       "reference": "https://threatfox.abuse.ch/ioc/1338677/"
     },
     {
@@ -41790,7 +41800,7 @@
       "sources": "threatfox",
       "confidence": 100,
       "first_seen": "2024-10-22T13:56:41Z",
-      "last_seen": "2026-10-06T19:34:40Z",
+      "last_seen": "2026-10-06T19:53:07Z",
       "reference": "https://threatfox.abuse.ch/ioc/1338675/"
     },
     {
@@ -167100,7 +167110,7 @@
       "sources": "threatfox",
       "confidence": 75,
       "first_seen": "2026-10-05T22:15:39Z",
-      "last_seen": "2026-10-06T19:46:22Z",
+      "last_seen": "2026-10-06T19:51:25Z",
       "reference": "https://threatfox.abuse.ch/ioc/1953646/"
     },
     {
@@ -178960,7 +178970,7 @@
       "sources": "threatfox",
       "confidence": 75,
       "first_seen": "2026-10-02T19:05:20Z",
-      "last_seen": "2026-10-06T19:49:43Z",
+      "last_seen": "2026-10-06T19:54:46Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945759/"
     },
     {
@@ -185740,7 +185750,7 @@
       "sources": "threatfox",
       "confidence": 75,
       "first_seen": "2026-09-26T15:11:58Z",
-      "last_seen": "2026-10-06T19:43:52Z",
+      "last_seen": "2026-10-06T19:52:29Z",
       "reference": "https://threatfox.abuse.ch/ioc/1934812/"
     },
     {
@@ -299992,16 +300002,6 @@
       "first_seen": "2026-10-03T04:00:49Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1947045/"
-    },
-    {
-      "value": "5b7feeacff6d72522fc4ef7845556385bca0801c5c957ce531fbce82d5e81bfc",
-      "type": "sha256",
-      "malware": "AsyncRAT",
-      "sources": "threatfox",
-      "confidence": 50,
-      "first_seen": "2026-10-03T04:00:49Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1947046/"
     }
   ]
 }
