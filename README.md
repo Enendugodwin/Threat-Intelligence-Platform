@@ -13,7 +13,7 @@ ATT&CK (heuristically), and publishes finished products:
 | Suricata rules | `dist/suricata/ti.rules` | network detection |
 | CSV indicator set | `dist/iocs.csv` + `site/iocs.csv` | quick lookups / watchlists |
 | JSON indicator set | `dist/iocs.json` + `site/iocs.json` | structured IOC export for integrations |
-| Tor node list | `dist/tor/tor_nodes.txt` | firewall / proxy context (relays + exits) |
+| Tor node list | `dist/tor/tor_nodes.txt` + `site/tor_nodes.txt` | firewall / proxy download (relays + exits) |
 | Report feed | `site/reports.html` (+ per-report pages) | filterable vendor advisory bank with IOCs + recommendations |
 | Report data | `data/reports.json` | normalized report feed (committed) |
 | Attack map | `site/map.html` | geolocated C2/infrastructure origins (Leaflet) |

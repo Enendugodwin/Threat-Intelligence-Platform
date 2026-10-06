@@ -133,6 +133,7 @@ def test_offline_pipeline_end_to_end(tmp_path):
         reports=reports_doc,
         kev=kev_doc,
         geo=geo_doc,
+        tor_rows=tor_rows,
     )
     index = site_paths[0].read_text(encoding="utf-8")
     assert "Threat Intel Pipeline" in index
@@ -141,8 +142,14 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert 'details class="export-menu"' in index
     assert 'href="iocs.json" download' in index and 'href="iocs.csv" download' in index
     assert 'href="report.html?print=1"' in index and "PDF report" in index
+    assert 'href="tor_nodes.txt" download' in index
 
     site_dir = tmp_path / "site"
+    tor_file = site_dir / "tor_nodes.txt"
+    assert tor_file.is_file()
+    tor_addresses = [line for line in tor_file.read_text(encoding="utf-8").splitlines() if line and not line.startswith("#")]
+    assert len(tor_addresses) == 3
+    assert set(tor_addresses) == {row["value"] for row in tor_rows}
     site_json = json.loads((site_dir / "iocs.json").read_text(encoding="utf-8"))
     assert site_json["count"] == len(site_json["indicators"]) > 0
     with (site_dir / "iocs.csv").open(newline="", encoding="utf-8") as fh:

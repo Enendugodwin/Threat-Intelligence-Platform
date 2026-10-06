@@ -142,7 +142,10 @@
     {% for ip in tor.sample %}<span class="chip">{{ ip }}</span>{% endfor %}
   </div>
   {% endif %}
-  <p class="muted" style="margin-top: var(--space-lg)">Full list: <code>dist/tor/tor_nodes.txt</code> (in the <code>threat-intel-output</code> workflow artifact).</p>
+  {% if tor.download_url %}
+  <p style="margin-top: var(--space-lg)"><a class="action-link primary no-print" href="{{ tor.download_url }}" download>Download all Tor nodes (.txt)</a></p>
+  <p class="muted">One address per line, including relays and exits.</p>
+  {% endif %}
   {% else %}
   <p class="muted">No Tor node data this run.</p>
   {% endif %}

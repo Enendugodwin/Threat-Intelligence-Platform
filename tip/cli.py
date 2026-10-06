@@ -215,6 +215,7 @@ def main(argv=None) -> int:
         attack = load_attack_map(args.attack_map)
         with Store(data_dir / "iocs.sqlite") as store:
             context = report_mod.build_context(store, config, attack)
+            tor_rows = store.source_rows("tor")
         reports_doc = load_reports(data_dir)
         kev_doc = load_kev(data_dir)
         geo_doc = load_geo(data_dir)
@@ -240,6 +241,7 @@ def main(argv=None) -> int:
             reports=reports_doc or None,
             kev=kev_doc or None,
             geo=geo_doc or None,
+            tor_rows=tor_rows,
         )
         print(f"wrote {paths[0]}")
         if reports_doc:
