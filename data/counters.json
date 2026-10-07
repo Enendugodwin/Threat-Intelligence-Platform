@@ -1,72 +1,73 @@
 {
   "by_malware": {
-    "AMOS": 153,
+    "AMOS": 160,
     "AdaptixC2": 251,
-    "AsyncRAT": 2176,
-    "ClearFake": 1048,
+    "AsyncRAT": 2178,
+    "ClearFake": 1059,
     "Cobalt Strike": 1243,
-    "DCRat": 100,
+    "DCRat": 104,
     "Evilginx": 94,
-    "Havoc": 89,
-    "IClickFix": 732,
+    "Havoc": 90,
+    "IClickFix": 733,
     "Mirai": 3305,
-    "PureRAT": 345,
-    "Remcos": 139,
-    "Remus": 105,
-    "Unknown Loader": 4094,
-    "Unknown RAT": 167,
+    "PureRAT": 353,
+    "Remcos": 143,
+    "Remus": 109,
+    "Unknown Loader": 4095,
+    "Unknown RAT": 168,
     "Unknown Stealer": 186,
-    "Unknown malware": 554,
-    "VShell": 112,
-    "Vidar": 267,
-    "php.shin_webshell": 119
+    "Unknown malware": 557,
+    "VShell": 114,
+    "Vidar": 274,
+    "php.shin_webshell": 130
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 2724,
-    "openphish": 1209,
-    "threatfox": 16650,
-    "tor": 9418,
+    "malwarebazaar": 2886,
+    "openphish": 1419,
+    "threatfox": 16779,
+    "tor": 9441,
     "urlhaus": 10864
   },
   "by_type": {
-    "domain": 7926,
-    "ipv4": 9173,
-    "ipv6": 2864,
+    "domain": 7986,
+    "ipv4": 9235,
+    "ipv6": 2868,
     "md5": 252,
     "sha1": 228,
-    "sha256": 8269,
-    "url": 12462
+    "sha256": 8438,
+    "url": 12691
   },
-  "generated_at": "2026-10-07T06:14:01Z",
+  "generated_at": "2026-10-07T13:44:37Z",
   "latest_run": {
     "durations": {
-      "circl": 93.3,
+      "circl": 17.7,
       "feodo": 0.2,
-      "malwarebazaar": 0.1,
+      "malwarebazaar": 0.2,
       "openphish": 0.1,
-      "threatfox": 0.6,
-      "tor": 2.0,
-      "urlhaus": 0.6
+      "threatfox": 0.3,
+      "tor": 1.3,
+      "urlhaus": 369.5
     },
-    "errors": {},
+    "errors": {
+      "urlhaus": "ConnectionError: HTTPSConnectionPool(host='urlhaus.abuse.ch', port=443): Max retries exceeded with url: /downloads/csv_recent/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='urlhaus.abuse.ch', port=443): Read timed out. (read timeout=90)\"))"
+    },
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1508,
+      "malwarebazaar": 1375,
       "openphish": 300,
-      "threatfox": 8883,
-      "tor": 8639,
-      "urlhaus": 5001
+      "threatfox": 8518,
+      "tor": 8631
     },
-    "fetched": 25250,
-    "finished_at": "2026-10-07T06:14:01Z",
-    "new": 705,
+    "fetched": 19743,
+    "finished_at": "2026-10-07T13:44:37Z",
+    "new": 524,
     "pruned": 0,
-    "started_at": "2026-10-07T06:12:23Z",
-    "total": 41174,
-    "updated": 21190
+    "started_at": "2026-10-07T13:38:07Z",
+    "total": 41698,
+    "updated": 18219
   },
-  "total": 41174
+  "total": 41698
 }

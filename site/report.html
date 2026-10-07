@@ -292,10 +292,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>41174 indicators</span>
-      <span>705 new / 21190 updated last run &middot; 41174 new / 7d</span>
-      <span>7/7 feeds</span>
-      <span>sync 2026-10-07T06:14:15Z</span>
+      <span><span class="status-dot" aria-hidden="true"></span>41698 indicators</span>
+      <span>524 new / 18219 updated last run &middot; 41698 new / 7d</span>
+      <span>6/7 feeds</span>
+      <span>sync 2026-10-07T13:45:01Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -318,7 +318,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <div class="page-heading">
   <div>
     <h1 class="page-title">Threat Intel Pulse</h1>
-    <p class="muted">Window: last 7 days &middot; Generated: 2026-10-07T06:14:15Z UTC</p>
+    <p class="muted">Window: last 7 days &middot; Generated: 2026-10-07T13:45:01Z UTC</p>
   </div>
   <div class="page-actions no-print">
     <details class="export-menu">
@@ -339,22 +339,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section class="cards" aria-label="Key metrics">
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Indicators tracked</div>
-    <span class="num">41174</span>
-    <span class="card-sub">16016 at confidence &ge; 80</span>
+    <span class="num">41698</span>
+    <span class="card-sub">16108 at confidence &ge; 80</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>New this run</div>
-    <span class="num">705</span>
-    <span class="card-sub">21190 updated &middot; 0 pruned</span>
+    <span class="num">524</span>
+    <span class="card-sub">18219 updated &middot; 0 pruned</span>
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Last 7 days</div>
-    <span class="num">41174</span>
-    <span class="card-sub">529340 updated &middot; 25 sync run(s)</span>
+    <span class="num">41698</span>
+    <span class="card-sub">547559 updated &middot; 26 sync run(s)</span>
   </div>
-  <div class="card">
+  <div class="card card-bad">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>Feeds healthy</div>
-    <span class="num">7/7</span>
+    <span class="num">6/7</span>
     <span class="card-sub">last run</span>
   </div>
   <div class="card">
@@ -364,8 +364,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>Tor nodes</div>
-    <span class="num">9418</span>
-    <span class="card-sub">2184 exits / 7234 relays</span>
+    <span class="num">9441</span>
+    <span class="card-sub">2186 exits / 7255 relays</span>
   </div>
 </section>
 
@@ -379,11 +379,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <tbody>
         <tr>
           <td><code>URLhaus</code></td>
-          <td class="num-cell">5001</td>
-          <td class="num-cell">0</td>
-          <td class="num-cell">0.6s</td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">&mdash;</td>
+          <td class="num-cell">369.5s</td>
           <td>
-<span class="pill ok">ok</span>          </td>
+<span class="pill err">error</span> <span class="err-text">ConnectionError: HTTPSConnectionPool(host=&#39;urlhaus.abuse.ch&#39;, port=443): Max retries exceeded with url: /downloads/csv_recent/ (Caused by ReadTimeoutError(&#34;HTTPSConnectionPool(host=&#39;urlhaus.abuse.ch&#39;, port=443): Read timed out. (read timeout=90)&#34;))</span>
+          </td>
         </tr>
         <tr>
           <td><code>Feodo Tracker</code></td>
@@ -395,17 +396,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><code>ThreatFox</code></td>
-          <td class="num-cell">8883</td>
-          <td class="num-cell">-485</td>
-          <td class="num-cell">0.6s</td>
+          <td class="num-cell">8518</td>
+          <td class="num-cell">-365</td>
+          <td class="num-cell">0.3s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>MalwareBazaar</code></td>
-          <td class="num-cell">1508</td>
-          <td class="num-cell">-26</td>
-          <td class="num-cell">0.1s</td>
+          <td class="num-cell">1375</td>
+          <td class="num-cell">-133</td>
+          <td class="num-cell">0.2s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
@@ -421,22 +422,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><code>CIRCL MISP</code></td>
           <td class="num-cell">914</td>
           <td class="num-cell">0</td>
-          <td class="num-cell">93.3s</td>
+          <td class="num-cell">17.7s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
         <tr>
           <td><code>Tor Project</code></td>
-          <td class="num-cell">8639</td>
-          <td class="num-cell">+27</td>
-          <td class="num-cell">2.0s</td>
+          <td class="num-cell">8631</td>
+          <td class="num-cell">-8</td>
+          <td class="num-cell">1.3s</td>
           <td>
 <span class="pill ok">ok</span>          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <p class="muted">Last run 2026-10-07T06:14:01Z UTC &middot; &Delta; compares with the previous run.</p>
+  <p class="muted">Last run 2026-10-07T13:44:37Z UTC &middot; &Delta; compares with the previous run.</p>
 </section>
 
 <section>
@@ -445,27 +446,27 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-url.html">url</a></span>
     <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 100.0%"></span></span>
-    <span class="bar-value">12462 <span class="new">+12462</span></span>
+    <span class="bar-value">12691 <span class="new">+12691</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv4.html">ipv4</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 73.6%"></span></span>
-    <span class="bar-value">9173 <span class="new">+9173</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 72.8%"></span></span>
+    <span class="bar-value">9235 <span class="new">+9235</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-sha256.html">sha256</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 66.4%"></span></span>
-    <span class="bar-value">8269 <span class="new">+8269</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 66.5%"></span></span>
+    <span class="bar-value">8438 <span class="new">+8438</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-domain.html">domain</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 63.6%"></span></span>
-    <span class="bar-value">7926 <span class="new">+7926</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 62.9%"></span></span>
+    <span class="bar-value">7986 <span class="new">+7986</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-ipv6.html">ipv6</a></span>
-    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 23.0%"></span></span>
-    <span class="bar-value">2864 <span class="new">+2864</span></span>
+    <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width: 22.6%"></span></span>
+    <span class="bar-value">2868 <span class="new">+2868</span></span>
   </div>
   <div class="bar-row">
     <span class="bar-label"><a href="iocs-md5.html">md5</a></span>
@@ -489,11 +490,11 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Source</th><th scope="col" class="num-col">Indicators</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>threatfox</code></td><td class="num-cell">16650</td></tr>
+        <tr><td><code>threatfox</code></td><td class="num-cell">16779</td></tr>
         <tr><td><code>urlhaus</code></td><td class="num-cell">10864</td></tr>
-        <tr><td><code>tor</code></td><td class="num-cell">9418</td></tr>
-        <tr><td><code>malwarebazaar</code></td><td class="num-cell">2724</td></tr>
-        <tr><td><code>openphish</code></td><td class="num-cell">1209</td></tr>
+        <tr><td><code>tor</code></td><td class="num-cell">9441</td></tr>
+        <tr><td><code>malwarebazaar</code></td><td class="num-cell">2886</td></tr>
+        <tr><td><code>openphish</code></td><td class="num-cell">1419</td></tr>
         <tr><td><code>circl</code></td><td class="num-cell">914</td></tr>
         <tr><td><code>feodo</code></td><td class="num-cell">5</td></tr>
       </tbody>
@@ -511,8 +512,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <tbody>
         <tr>
           <td><a href="family-unknown-loader.html">Unknown Loader</a></td>
-          <td class="num-cell">4094</td>
-          <td class="num-cell">4094</td>
+          <td class="num-cell">4095</td>
+          <td class="num-cell">4095</td>
           <td>—</td>
         </tr>
         <tr>
@@ -523,8 +524,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-asyncrat.html">AsyncRAT</a></td>
-          <td class="num-cell">2176</td>
-          <td class="num-cell">2176</td>
+          <td class="num-cell">2178</td>
+          <td class="num-cell">2178</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span></span></td>
         </tr>
         <tr>
@@ -535,32 +536,32 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-clearfake.html">ClearFake</a></td>
-          <td class="num-cell">1048</td>
-          <td class="num-cell">1048</td>
+          <td class="num-cell">1059</td>
+          <td class="num-cell">1059</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-iclickfix.html">IClickFix</a></td>
-          <td class="num-cell">732</td>
-          <td class="num-cell">732</td>
+          <td class="num-cell">733</td>
+          <td class="num-cell">733</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-unknown-malware.html">Unknown malware</a></td>
-          <td class="num-cell">554</td>
-          <td class="num-cell">554</td>
+          <td class="num-cell">557</td>
+          <td class="num-cell">557</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-purerat.html">PureRAT</a></td>
-          <td class="num-cell">345</td>
-          <td class="num-cell">345</td>
+          <td class="num-cell">353</td>
+          <td class="num-cell">353</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-vidar.html">Vidar</a></td>
-          <td class="num-cell">267</td>
-          <td class="num-cell">267</td>
+          <td class="num-cell">274</td>
+          <td class="num-cell">274</td>
           <td><span class="chip-list"><span class="chip">T1555</span><span class="chip">T1071.001</span><span class="chip">T1567</span></span></td>
         </tr>
         <tr>
@@ -577,44 +578,44 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-unknown-rat.html">Unknown RAT</a></td>
-          <td class="num-cell">167</td>
-          <td class="num-cell">167</td>
+          <td class="num-cell">168</td>
+          <td class="num-cell">168</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-amos.html">AMOS</a></td>
-          <td class="num-cell">153</td>
-          <td class="num-cell">153</td>
+          <td class="num-cell">160</td>
+          <td class="num-cell">160</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-remcos.html">Remcos</a></td>
-          <td class="num-cell">139</td>
-          <td class="num-cell">139</td>
+          <td class="num-cell">143</td>
+          <td class="num-cell">143</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span><span class="chip">T1573</span></span></td>
         </tr>
         <tr>
           <td><a href="family-php-shin-webshell.html">php.shin_webshell</a></td>
-          <td class="num-cell">119</td>
-          <td class="num-cell">119</td>
+          <td class="num-cell">130</td>
+          <td class="num-cell">130</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-vshell.html">VShell</a></td>
-          <td class="num-cell">112</td>
-          <td class="num-cell">112</td>
+          <td class="num-cell">114</td>
+          <td class="num-cell">114</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-remus.html">Remus</a></td>
-          <td class="num-cell">105</td>
-          <td class="num-cell">105</td>
+          <td class="num-cell">109</td>
+          <td class="num-cell">109</td>
           <td>—</td>
         </tr>
         <tr>
           <td><a href="family-dcrat.html">DCRat</a></td>
-          <td class="num-cell">100</td>
-          <td class="num-cell">100</td>
+          <td class="num-cell">104</td>
+          <td class="num-cell">104</td>
           <td><span class="chip-list"><span class="chip">T1566.001</span><span class="chip">T1547.001</span><span class="chip">T1056.001</span><span class="chip">T1113</span><span class="chip">T1071.001</span></span></td>
         </tr>
         <tr>
@@ -625,8 +626,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
         <tr>
           <td><a href="family-havoc.html">Havoc</a></td>
-          <td class="num-cell">89</td>
-          <td class="num-cell">89</td>
+          <td class="num-cell">90</td>
+          <td class="num-cell">90</td>
           <td>—</td>
         </tr>
       </tbody>
@@ -646,61 +647,73 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="technique-T1105.html"><code>T1105</code></a></td>
           <td>Ingress Tool Transfer</td>
           <td>command-and-control</td>
-          <td class="num-cell">12602</td>
+          <td class="num-cell">12605</td>
         </tr>
         <tr>
           <td><a href="technique-T1071.001.html"><code>T1071.001</code></a></td>
           <td>Web Protocols</td>
           <td>command-and-control</td>
-          <td class="num-cell">12468 <span class="muted">+17264 heuristic</span></td>
+          <td class="num-cell">12515 <span class="muted">+17361 heuristic</span></td>
         </tr>
         <tr>
           <td><a href="technique-T1498.html"><code>T1498</code></a></td>
           <td>Network Denial of Service</td>
           <td>impact</td>
-          <td class="num-cell">7321</td>
+          <td class="num-cell">7339</td>
         </tr>
         <tr>
           <td><a href="technique-T1204.002.html"><code>T1204.002</code></a></td>
           <td>Malicious File</td>
           <td>execution</td>
-          <td class="num-cell">5464</td>
+          <td class="num-cell">5467</td>
         </tr>
         <tr>
           <td><a href="technique-T1027.html"><code>T1027</code></a></td>
           <td>Obfuscated Files or Information</td>
           <td>defense-evasion</td>
-          <td class="num-cell">5453</td>
+          <td class="num-cell">5456</td>
         </tr>
         <tr>
           <td><a href="technique-T1573.html"><code>T1573</code></a></td>
           <td>Encrypted Channel</td>
           <td>command-and-control</td>
-          <td class="num-cell">4657</td>
+          <td class="num-cell">4682</td>
         </tr>
         <tr>
           <td><a href="technique-T1056.001.html"><code>T1056.001</code></a></td>
           <td>Keylogging</td>
           <td>collection, credential-access</td>
-          <td class="num-cell">3053</td>
+          <td class="num-cell">3073</td>
         </tr>
         <tr>
           <td><a href="technique-T1566.001.html"><code>T1566.001</code></a></td>
           <td>Spearphishing Attachment</td>
           <td>initial-access</td>
-          <td class="num-cell">2732</td>
+          <td class="num-cell">2743</td>
         </tr>
         <tr>
           <td><a href="technique-T1547.001.html"><code>T1547.001</code></a></td>
           <td>Registry Run Keys / Startup Folder</td>
           <td>persistence, privilege-escalation</td>
-          <td class="num-cell">2491</td>
+          <td class="num-cell">2502</td>
         </tr>
         <tr>
           <td><a href="technique-T1113.html"><code>T1113</code></a></td>
           <td>Screen Capture</td>
           <td>collection</td>
-          <td class="num-cell">2469</td>
+          <td class="num-cell">2480</td>
+        </tr>
+        <tr>
+          <td><a href="technique-T1566.html"><code>T1566</code></a></td>
+          <td>Phishing</td>
+          <td>initial-access</td>
+          <td class="num-cell">1428</td>
+        </tr>
+        <tr>
+          <td><a href="technique-T1566.002.html"><code>T1566.002</code></a></td>
+          <td>Spearphishing Link</td>
+          <td>initial-access</td>
+          <td class="num-cell">1428</td>
         </tr>
         <tr>
           <td><a href="technique-T1055.html"><code>T1055</code></a></td>
@@ -721,34 +734,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">1255</td>
         </tr>
         <tr>
-          <td><a href="technique-T1566.html"><code>T1566</code></a></td>
-          <td>Phishing</td>
-          <td>initial-access</td>
-          <td class="num-cell">1218</td>
-        </tr>
-        <tr>
-          <td><a href="technique-T1566.002.html"><code>T1566.002</code></a></td>
-          <td>Spearphishing Link</td>
-          <td>initial-access</td>
-          <td class="num-cell">1218</td>
-        </tr>
-        <tr>
           <td><a href="technique-T1555.html"><code>T1555</code></a></td>
           <td>Credentials from Password Stores</td>
           <td>credential-access</td>
-          <td class="num-cell">899</td>
+          <td class="num-cell">915</td>
         </tr>
         <tr>
           <td><a href="technique-T1567.html"><code>T1567</code></a></td>
           <td>Exfiltration Over Web Service</td>
           <td>exfiltration</td>
-          <td class="num-cell">836</td>
+          <td class="num-cell">852</td>
         </tr>
         <tr>
           <td><a href="technique-T1552.001.html"><code>T1552.001</code></a></td>
           <td>Credentials In Files</td>
           <td>credential-access</td>
-          <td class="num-cell">559</td>
+          <td class="num-cell">571</td>
         </tr>
         <tr>
           <td><a href="technique-T1041.html"><code>T1041</code></a></td>
@@ -824,14 +825,14 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><th scope="col">Metric</th><th scope="col" class="num-col">Value</th></tr>
       </thead>
       <tbody>
-        <tr><td>Nodes tracked</td><td class="num-cell">9418</td></tr>
-        <tr><td>Exit nodes</td><td class="num-cell">2184</td></tr>
-        <tr><td>Other relays</td><td class="num-cell">7234</td></tr>
-        <tr><td>New in window</td><td class="num-cell">9418</td></tr>
+        <tr><td>Nodes tracked</td><td class="num-cell">9441</td></tr>
+        <tr><td>Exit nodes</td><td class="num-cell">2186</td></tr>
+        <tr><td>Other relays</td><td class="num-cell">7255</td></tr>
+        <tr><td>New in window</td><td class="num-cell">9441</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9418, source Tor Project Onionoo):</p>
+  <p class="muted" style="margin-top: var(--space-lg)">Sample (20 of 9441, source Tor Project Onionoo):</p>
   <div class="chip-list">
 <span class="chip">1[.]201[.]176[.]176</span><span class="chip">1[.]248[.]96[.]163</span><span class="chip">100[.]1[.]157[.]56</span><span class="chip">100[.]2[.]63[.]41</span><span class="chip">101[.]55[.]125[.]10</span><span class="chip">102[.]130[.]113[.]29</span><span class="chip">102[.]130[.]113[.]30</span><span class="chip">102[.]130[.]113[.]42</span><span class="chip">102[.]130[.]113[.]9</span><span class="chip">102[.]130[.]115[.]59</span><span class="chip">102[.]130[.]117[.]167</span><span class="chip">102[.]130[.]119[.]48</span><span class="chip">102[.]130[.]127[.]117</span><span class="chip">102[.]205[.]44[.]36</span><span class="chip">102[.]205[.]44[.]5</span><span class="chip">102[.]211[.]56[.]20</span><span class="chip">102[.]211[.]56[.]25</span><span class="chip">102[.]216[.]253[.]63</span><span class="chip">102[.]68[.]99[.]63</span><span class="chip">103[.]105[.]21[.]2</span>  </div>
   <p style="margin-top: var(--space-lg)"><a class="action-link primary no-print" href="tor_nodes.txt" download>Download all Tor nodes (.txt)</a></p>
@@ -847,253 +848,253 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F172.234.110.213" target="_blank" rel="noopener"><code>hxxps://172[.]234[.]110[.]213</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Vidar</td>
-          <td>threatfox</td>
-          <td>2026-10-07T06:04:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/45.55.202.73" target="_blank" rel="noopener"><code>45[.]55[.]202[.]73</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/49.234.48.58" target="_blank" rel="noopener"><code>49[.]234[.]48[.]58</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-critical">critical 86</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>Remus</td>
+          <td>VShell</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:50Z</td>
+          <td>2026-10-07T13:05:06Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.102.194" target="_blank" rel="noopener"><code>128[.]90[.]102[.]194</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/102.117.168.65" target="_blank" rel="noopener"><code>102[.]117[.]168[.]65</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Remcos</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:50Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.108.50" target="_blank" rel="noopener"><code>128[.]90[.]108[.]50</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Remcos</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:50Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/285216ad44f6cf4c8b70dcdbcbaeb9807ca83d217f6bf48a834e20de6a882708" target="_blank" rel="noopener"><code>285216ad44f6cf4c8b70dcdbcbaeb9807ca83d217f6bf48a834e20de6a882708</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:49Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/97a7cb9173bcef716a999ff6968805d416c02ccfa29a5f4f6fcc31e9a9878fba" target="_blank" rel="noopener"><code>97a7cb9173bcef716a999ff6968805d416c02ccfa29a5f4f6fcc31e9a9878fba</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 93</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox, malwarebazaar</td>
-          <td>2026-10-07T04:37:48Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/204.44.93.119" target="_blank" rel="noopener"><code>204[.]44[.]93[.]119</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Remcos</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:48Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/db528a6c9b4eea0d095c69f85a181676c7de77fc564da78f83ea4babcc04b080" target="_blank" rel="noopener"><code>db528a6c9b4eea0d095c69f85a181676c7de77fc564da78f83ea4babcc04b080</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown malware</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:46Z</td>
+          <td>2026-10-07T13:05:05Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/87.232.123.60" target="_blank" rel="noopener"><code>87[.]232[.]123[.]60</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/137.220.224.26" target="_blank" rel="noopener"><code>137[.]220[.]224[.]26</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-critical">critical 86</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Unknown RAT</td>
+          <td>threatfox</td>
+          <td>2026-10-07T12:32:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkb.3toto.com" target="_blank" rel="noopener"><code>hxxps://kb[.]3toto[.]com</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td>threatfox</td>
+          <td>2026-10-07T12:32:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b0a61e0d2b769b06c8e83cd7529c6d31ddcf30bd6dae83cae0452f098e069df0" target="_blank" rel="noopener"><code>b0a61e0d2b769b06c8e83cd7529c6d31ddcf30bd6dae83cae0452f098e069df0</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td>threatfox</td>
+          <td>2026-10-07T12:32:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sarmo.store" target="_blank" rel="noopener"><code>sarmo[.]store</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-07T12:22:07Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apexfd.click" target="_blank" rel="noopener"><code>apexfd[.]click</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remus</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:46Z</td>
+          <td>2026-10-07T11:56:18Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/file/dd11fdaa68ac849eea117fea352c2436a9aecedb974a0bd9fe108d8792165c07" target="_blank" rel="noopener"><code>dd11fdaa68ac849eea117fea352c2436a9aecedb974a0bd9fe108d8792165c07</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:44Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frosemaryballad.co%2Fproxy%2Fpublic-hook" target="_blank" rel="noopener"><code>hxxps://rosemaryballad[.]co/proxy/public-hook</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>SmartApeSG</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/rosemaryballad.co" target="_blank" rel="noopener"><code>rosemaryballad[.]co</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/cryonex.sbs" target="_blank" rel="noopener"><code>cryonex[.]sbs</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>SmartApeSG</td>
+          <td>Remus</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:43Z</td>
+          <td>2026-10-07T11:56:18Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Frosemaryballad.co%2Fproxy%2Falias-client.js" target="_blank" rel="noopener"><code>hxxps://rosemaryballad[.]co/proxy/alias-client[.]js</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>SmartApeSG</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fvv.3toto.com" target="_blank" rel="noopener"><code>hxxps://vv[.]3toto[.]com</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Vidar</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/1d9fd698ccfcc4cd0f8f8f66df82da734b9f341ae47f489d7ccc6732400dcefd" target="_blank" rel="noopener"><code>1d9fd698ccfcc4cd0f8f8f66df82da734b9f341ae47f489d7ccc6732400dcefd</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/746e37c45296c42d8bbd1f0c0aff7b6b20ecd14c1108e9899cc6cc78c2573fec" target="_blank" rel="noopener"><code>746e37c45296c42d8bbd1f0c0aff7b6b20ecd14c1108e9899cc6cc78c2573fec</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 87</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/1ebbe1479d2be9b5ddae584a2d987e5f6f4ce14c1f002bb8bd1fb7e13046969e" target="_blank" rel="noopener"><code>1ebbe1479d2be9b5ddae584a2d987e5f6f4ce14c1f002bb8bd1fb7e13046969e</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 93</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox, malwarebazaar</td>
-          <td>2026-10-07T04:37:38Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/cc85c7eff50e4df105b28b300fae9603ad3d1653408c6bdc5a2665a16c379103" target="_blank" rel="noopener"><code>cc85c7eff50e4df105b28b300fae9603ad3d1653408c6bdc5a2665a16c379103</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-critical">critical 93</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>AMOS</td>
-          <td>threatfox, malwarebazaar</td>
-          <td>2026-10-07T04:37:37Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/128.90.108.89" target="_blank" rel="noopener"><code>128[.]90[.]108[.]89</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Remcos</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:37Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/match.sitefulia.com" target="_blank" rel="noopener"><code>match[.]sitefulia[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/cfcher.biz" target="_blank" rel="noopener"><code>cfcher[.]biz</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>FAKEUPDATES</td>
+          <td>Remus</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:37Z</td>
+          <td>2026-10-07T11:56:18Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F172.233.174.218" target="_blank" rel="noopener"><code>hxxps://172[.]233[.]174[.]218</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Vidar</td>
-          <td>threatfox</td>
-          <td>2026-10-07T04:37:36Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/103.254.61.170" target="_blank" rel="noopener"><code>103[.]254[.]61[.]170</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/103.83.86.40" target="_blank" rel="noopener"><code>103[.]83[.]86[.]40</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-critical">critical 86</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Remcos</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:35Z</td>
+          <td>2026-10-07T11:44:51Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/file/23f6b48ec53b6490d06722b49a54aaaf855f63c15bde3c32cb90db432d8fcb96" target="_blank" rel="noopener"><code>23f6b48ec53b6490d06722b49a54aaaf855f63c15bde3c32cb90db432d8fcb96</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/file/6111a10b82cc1bf6bac1082bc8ffa36e9f3123f0feb811aac281278a7fe63e13" target="_blank" rel="noopener"><code>6111a10b82cc1bf6bac1082bc8ffa36e9f3123f0feb811aac281278a7fe63e13</code></a></td>
           <td>sha256</td>
           <td><span class="risk risk-critical">critical 87</span></td>
           <td class="num-cell">&mdash;</td>
           <td>AMOS</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:33Z</td>
+          <td>2026-10-07T11:44:51Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/46.246.14.21" target="_blank" rel="noopener"><code>46[.]246[.]14[.]21</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-critical">critical 86</span></td>
+          <td><a href="https://www.virustotal.com/gui/domain/kb.3toto.com" target="_blank" rel="noopener"><code>kb[.]3toto[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
           <td class="num-cell">&mdash;</td>
-          <td>Remcos</td>
+          <td>Vidar</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:32Z</td>
+          <td>2026-10-07T11:40:48Z</td>
           <td class="num-cell">100</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ffo.333vip.org" target="_blank" rel="noopener"><code>hxxps://fo[.]333vip[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fkb.3toto.com%2F" target="_blank" rel="noopener"><code>hxxps://kb[.]3toto[.]com/</code></a></td>
           <td>url</td>
           <td><span class="risk risk-high">high 84</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Vidar</td>
           <td>threatfox</td>
-          <td>2026-10-07T04:37:31Z</td>
+          <td>2026-10-07T11:40:48Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/7wlvj9nh.lezo.store" target="_blank" rel="noopener"><code>7wlvj9nh[.]lezo[.]store</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-07T11:39:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lh5yl7g0.pegy.store" target="_blank" rel="noopener"><code>lh5yl7g0[.]pegy[.]store</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-07T11:33:37Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pegy.store" target="_blank" rel="noopener"><code>pegy[.]store</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ClearFake</td>
+          <td>threatfox</td>
+          <td>2026-10-07T11:31:20Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/49f19199c38499498aa4dead3e19102c6679192fe282e72ec024b19191d8ae63" target="_blank" rel="noopener"><code>49f19199c38499498aa4dead3e19102c6679192fe282e72ec024b19191d8ae63</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 87</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>AMOS</td>
+          <td>threatfox</td>
+          <td>2026-10-07T11:08:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F95.182.97.240" target="_blank" rel="noopener"><code>hxxps://95[.]182[.]97[.]240</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 84</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Vidar</td>
+          <td>threatfox</td>
+          <td>2026-10-07T11:08:02Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/260120.vercel.app" target="_blank" rel="noopener"><code>260120[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:36Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/coreviewer.vercel.app" target="_blank" rel="noopener"><code>coreviewer[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ext-checkedin.vercel.app" target="_blank" rel="noopener"><code>ext-checkedin[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:35Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/tailwind-version-4.vercel.app" target="_blank" rel="noopener"><code>tailwind-version-4[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thopywork.vercel.app" target="_blank" rel="noopener"><code>thopywork[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/valid-dep.vercel.app" target="_blank" rel="noopener"><code>valid-dep[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:34Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vscode-bootstrapper.vercel.app" target="_blank" rel="noopener"><code>vscode-bootstrapper[.]vercel[.]app</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>ContagiousDrop</td>
+          <td>threatfox</td>
+          <td>2026-10-07T10:38:33Z</td>
           <td class="num-cell">100</td>
         </tr>
       </tbody>
@@ -1104,7 +1105,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-07T06:14:15Z UTC</span></p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-07T13:45:01Z UTC</span></p>
 </footer>
 <script>
 (function () {

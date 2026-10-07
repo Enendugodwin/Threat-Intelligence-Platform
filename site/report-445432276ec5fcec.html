@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>Securing the unpatchable in an age of AI-driven vulnerabilities &mdash; Threat Intel Pipeline</title>
+<title>One breach, please, and make no mistakes &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,13 +316,15 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">Securing the unpatchable in an age of AI-driven vulnerabilities</h1>
+<h1 class="page-title">One breach, please, and make no mistakes</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
   <span class="badge badge-cat">Cisco</span>
   <span class="badge">Cisco Talos</span>
 </div>
+<div class="chip-list small" style="margin-bottom: var(--space-xl)">
+<span class="chip">Ransomware</span><span class="chip">Phishing</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-high">high</span> &middot; 9 indicator(s)</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
@@ -331,9 +333,9 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <tbody>
         <tr><td>Source</td><td>Cisco Talos</td></tr>
         <tr><td>Category</td><td>Cisco</td></tr>
-        <tr><td>Published</td><td>2026-09-16</td></tr>
-        <tr><td>Report ID</td><td><code>9cbd7faaaa2e8a65</code></td></tr>
-        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/" rel="noopener">https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/</a></td></tr>
+        <tr><td>Published</td><td>2026-10-07</td></tr>
+        <tr><td>Report ID</td><td><code>445432276ec5fcec</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/one-breach-please-and-make-no-mistakes/" rel="noopener">https://blog.talosintelligence.com/one-breach-please-and-make-no-mistakes/</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -341,20 +343,38 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">AI is accelerating vulnerability discovery, leaving unpatchable operational technology (OT) systems at risk. Hoping for the best is not a viable anti-exploitation strategy. Deploying next-generation firewalls directly upstream allows for virtual patching through deep packet inspection. These systems scan incoming traffic to detect and block exploit attempts before they can impact the vulnerable device. The predictability of legitimate network connections to OT systems can be used to protect systems through micro-segmentation. This ensures that only a handful of authorized devices can communicate with the system, minimizing the attack surface. AI-assisted code analysis is uncovering decades of technical debt. Every new patch removes a newly identified coding mistake. Little by little, we are improving the state of software engineering, but the price is a cadence of patching that organizations may struggle to implement. These efforts leave unsupported systems, or systems that are not able to be patched for whatever reason, with unmitigated known vulnerabilities. How can such systems be secured in a world where AI is steadily improving its ability to identify new vulnerabilities? Operational technology (OT) systems provide the services that support modern life (e.g., medical equipment, building management systems, and industrial critical systems within chemical plants). Often the systems are certified to operate only with a defined set of software that cannot easily be altered, or operate using systems that are no longer supported. In either case, if a vulnerability is discovered that affects the system, there is no easy way for it to be patched. Ignoring the problem and hoping for the best is rarely an effective strategy. The U.K.’s NHS health system was significantly affected by the WannaCry worm in 2017, with a significant minority of systems running the end-of-life operating system Windows XP contributing to the problem. More recently, exploitation of end-of-life software was used to gain access to governmental systems in 2023. Even systems that are believed to run on a bespoke platform will almost certainly include common libraries and protocols in which vulnerabilities may be found. Vulnerable systems that are not publicly exposed can still be identified by threat actors who gain access to internal networks and pose a tempting target. Defending by predictability Applying the approved patch remains the best option. If this is not possible, we can use the</p>
-  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/securing-the-unpatchable-in-an-age-of-ai-driven-vulnerabilities/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
+  <p class="detail-text">For some time now, the cybersecurity community has seen examples of autonomous agents, built inside AI labs, attacking public infrastructure (to name a few, Hugging Face , DSEWiki , and RubyGems ). Of course, frontier labs have built-in security to prevent these attacks from occurring, but every now and then, the training or prompting appears to be insufficient — especially when the agents themselves attempt to use logic to probe and bypass the restrictions placed on them. The question that matters is not whether AI attacks are coming, because the age of AI agents executing cyber attacks is already here. The question is what to do about it and how to harden the stack against a swarm of agents who will relentlessly lie, deceive, and probe until the objective is met. Imagine your organization is a target for a creative human-driven AI adversary whose many agentic friends like to discuss and brainstorm different attack techniques. The limit here is the group’s own imagination, tools, prompts, and skills. However, there is a difference between the human 1) prompting the group (or an AI agent) to “break into an organization,” and 2) preparing it with information — a detailed tool mapping, markup files with instructions for agents, offensive security prompts, agents.md with guidance, and specific skills that would be invoked in different situations to guide agents into how to interpret an output of tools or access gained. The swarm of AI agents might fabricate employee identities and social profiles, contact the HR team with a plausible onboarding request, walk in by exploiting an unpatched vulnerability, or simply mail out phishing invoices at volume. The sky is the limit here . These types of attacks can be executed all at once, with agents comparing notes and adapting in near real time to challenges (and your environment). What used to take a red team months of dedicated work, scoping, building and hiding infrastructure, and running the campaign now compresses into hours for a swarm of communicating agents that do not tire, lose focus, or need weekends, and can stand up infrastructure quickly. Penetration test today, red team tomorrow I would argue that most of the public “attacks” seen so far more closely resemble a penetration test (pentest) than a true red team operation. They are loud, visible, lean on volume, and appear to use off-the-shelf tooling with thousands of agents working together. RubyGems is the clear example of a loud attack. The registration</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/one-breach-please-and-make-no-mistakes/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
-  <p class="muted">No indicators were extracted from this report.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (9)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fopenai.com%2Findex%2Fhugging-face-incident-and-the-road-ahead%2F" target="_blank" rel="noopener"><code>hxxps://openai[.]com/index/hugging-face-incident-and-the-road-ahead/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.reuters.com%2Fworld%2Feurope%2Fopenai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04%2F" target="_blank" rel="noopener"><code>hxxps://www[.]reuters[.]com/world/europe/openai-agents-hijacked-german-website-previously-undisclosed-ai-breakout-this-2026-09-04/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.reuters.com%2Flegal%2Flitigation%2Fopenai-agents-attacked-software-service-rubygems-before-hugging-face-incident-2026-09-11%2F" target="_blank" rel="noopener"><code>hxxps://www[.]reuters[.]com/legal/litigation/openai-agents-attacked-software-service-rubygems-before-hugging-face-incident-2026-09-11/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcollusion.wiki%2F" target="_blank" rel="noopener"><code>hxxps://collusion[.]wiki/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fthehackernews.com%2F2026%2F09%2Fopenai-agents-linked-to-rubygems.html" target="_blank" rel="noopener"><code>hxxps://thehackernews[.]com/2026/09/openai-agents-linked-to-rubygems[.]html</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fduo.com%2Fsolutions%2Factive-directory-defense" target="_blank" rel="noopener"><code>hxxps://duo[.]com/solutions/active-directory-defense</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fduo.com%2Fdocs%2Floginduo" target="_blank" rel="noopener"><code>hxxps://duo[.]com/docs/loginduo</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.beyondtrust.com%2Fblog%2Fentry%2Fmalicious-codex-skills-ai-agent-security" target="_blank" rel="noopener"><code>hxxps://www[.]beyondtrust[.]com/blog/entry/malicious-codex-skills-ai-agent-security</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fthehackernews.com%2F2026%2F09%2Fmalicious-git-configs-can-make-claude.html" target="_blank" rel="noopener"><code>hxxps://thehackernews[.]com/2026/09/malicious-git-configs-can-make-claude[.]html</code></a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
 </section>
 
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
+<li>Block or hunt the 9 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
