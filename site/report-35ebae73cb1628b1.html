@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>Metasploit Wrap Up: Belgian Waffles, Chocolates, and…Modules-Frites? &mdash; Threat Intel Pipeline</title>
+<title>USN-8890-1: libsoup vulnerabilities &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,42 +316,51 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">Metasploit Wrap Up: Belgian Waffles, Chocolates, and…Modules-Frites?</h1>
+<h1 class="page-title">USN-8890-1: libsoup vulnerabilities</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">General</span>
-  <span class="badge">Rapid7 Cybersecurity Blog</span>
-</div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Metasploit</span></div>
+  <span class="badge badge-cat">Linux</span>
+  <span class="badge">Ubuntu Security Notices</span>
+<span class="badge">8 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 8 CVE(s), none in KEV</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Rapid7 Cybersecurity Blog</td></tr>
-        <tr><td>Category</td><td>General</td></tr>
-        <tr><td>Published</td><td>2026-09-25</td></tr>
-        <tr><td>Report ID</td><td><code>57cc9f4b5f83babd</code></td></tr>
-        <tr><td>Original</td><td><a href="https://www.rapid7.com/blog/post/pt-metasploit-wrap-up-belgian-waffles-chocolates-and-modules-frites" rel="noopener">https://www.rapid7.com/blog/post/pt-metasploit-wrap-up-belgian-waffles-chocolates-and-modules-frites</a></td></tr>
+        <tr><td>Source</td><td>Ubuntu Security Notices</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
+        <tr><td>Published</td><td>2026-10-06</td></tr>
+        <tr><td>Report ID</td><td><code>35ebae73cb1628b1</code></td></tr>
+        <tr><td>Original</td><td><a href="https://ubuntu.com/security/notices/USN-8890-1" rel="noopener">https://ubuntu.com/security/notices/USN-8890-1</a></td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
+  <p class="detail-text">It was discovered that libsoup incorrectly handled certain HTTP/2 requests. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 24.04 LTS and Ubuntu 26.04 LTS. (CVE-2026-4271) It was discovered that libsoup incorrectly handled certain HTTPS proxy connections. A remote attacker could possibly use this issue to obtain sensitive information. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-5119) It was discovered that libsoup incorrectly parsed certain chunked HTTP requests. A remote attacker could possibly use this issue to bypass security controls. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-6324) It was discovered that libsoup incorrectly handled proxy authentication credentials. A remote attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66339) It was discovered that libsoup incorrectly handled certain HTTP Range headers. A remote attacker could possibly use this issue to cause a denial of service. (CVE-2026-77014, CVE-2026-77680) It was discovered that libsoup incorrectly handled certain HTTP/2 connections. A remote attacker could possibly use this issue to obtain sensitive information or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-85197) It was discovered that libsoup incorrectly handled certain HTTP/2 transfers. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-85534)</p>
+  <p class="muted">Excerpted from <a href="https://ubuntu.com/security/notices/USN-8890-1" rel="noopener">Ubuntu Security Notices</a>; follow the source for full context.</p>
+</section>
 
 <section id="iocs">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
   <p class="muted">No indicators were extracted from this report.</p>
 </section>
 
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2026-4271</span><span class="chip">CVE-2026-5119</span><span class="chip">CVE-2026-6324</span><span class="chip">CVE-2026-66339</span><span class="chip">CVE-2026-77014</span><span class="chip">CVE-2026-77680</span><span class="chip">CVE-2026-85197</span><span class="chip">CVE-2026-85534</span>  </div>
+  <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
+</section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Validate the indicators against your own telemetry before blocking or alerting.</li><li>Keep your asset inventory current so exposure to affected products is visible.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2026-4271, CVE-2026-5119, CVE-2026-6324, CVE-2026-66339, CVE-2026-77014 ...</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
