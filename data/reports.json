@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T13:44:37Z",
+  "generated_at": "2026-10-07T23:13:07Z",
   "categories": [
     "windows",
     "linux",
@@ -11,6 +11,301 @@
   ],
   "reports": [
     {
+      "id": "79a8a7bd13982952",
+      "title": "Evolution of Web3 in Cloud Supply Chain Attacks",
+      "url": "https://unit42.paloaltonetworks.com/web3-cloud-supply-chain-attacks/",
+      "source": "unit42",
+      "source_name": "Palo Alto Unit 42",
+      "category": "paloalto",
+      "published": "2026-10-07T22:00:16Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "Unit 42 details how threat actors leverage Web3 infrastructure and open-source supply chain attacks to breach enterprise cloud environments The post Evolution of Web3 in Cloud Supply Chain Attacks appeared first on Unit 42 .",
+      "content": "Unit 42 details how threat actors leverage Web3 infrastructure and open-source supply chain attacks to breach enterprise cloud environments The post Evolution of Web3 in Cloud Supply Chain Attacks appeared first on Unit 42 .",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Ensure PAN-OS updates plus Apps & Threats content updates are current; check the advisory's fixed versions.",
+        "Apply the vendor's mitigation guidance until patching completes and monitor traffic logs for the indicators.",
+        "Keep management interfaces internal-only with admin MFA/RBAC.",
+        "Read the full Unit 42 report for detections and additional context beyond the extracted indicators."
+      ],
+      "curated": false
+    },
+    {
+      "id": "79976e0ae4389a3c",
+      "title": "Four Compliance Frameworks, One Security Team. How Universities Can Stop Drowning in Regulatory Risk",
+      "url": "https://www.rapid7.com/blog/post/it-compliance-frameworks-for-universities-drowning-in-regulatory-risk",
+      "source": "rapid7",
+      "source_name": "Rapid7 Cybersecurity Blog",
+      "category": "general",
+      "published": "2026-10-07T19:29:23Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "A ransomware attack is discovered at 9 PM on a Friday. By 9 PM Saturday, your institution needs to have identified that student financial aid data was involved, determined the scope of the breach, and filed formal notification with federal regulators, while simultaneously managing the technical resp",
+      "content": "Most industries manage one major compliance framework. Universities might manage four simultaneously, each bringing with it unique requirements, enforcement mechanisms, and consequences for failure. Here's what that actually looks like in practice. In Part 1 of this series, we laid out the scale of the threat facing higher education: 4,388 cyberattacks per organization per week, a 24% year-over-year increase, and the fundamental architectural flaw of defending each campus independently. If the threat picture alone wasn't enough to demand action, there's a second crisis unfolding in parallel that is, if anything, more immediately consequential. The regulatory environment for higher education has quietly become one of the most complex in any sector. Universities don't just face the legal and reputational fallout of a data breach. They face simultaneous obligations under four distinct federal frameworks, each with its own definition of adequate security, its own reporting timelines, and its own set of penalties for non-compliance. Managing those four frameworks across a single campus is hard. Managing them across a multi-campus system where each school operates its own IT environment, with its own tools, its own staff, and its own data governance practices, is a compounding nightmare that most institutions haven't fully reckoned with yet. Let's walk through each framework from the ground-level. FERPA: The 24-hour clock nobody talks about The Family Educational Rights and Privacy Act (FERPA) has governed the privacy of student education records since 1974. Most university administrators are broadly familiar with it, whereby students have the right to access their own records, institutions have an obligation to protect those records from unauthorized disclosure, and violations can result in loss of federal funding. Now, what has become far more operationally consequential in the age of sophisticated cyberattacks is the breach notification requirement for financial aid data. When a breach compromises student financial aid information, institutions must notify the Department of Education's Federal Student Aid office within 24 hours of discovering the incident. Not 72 hours, which is the standard under many commercial data breach frameworks. Not \"as soon as practicable,\" but twenty-four hours. Think about what that timeline actually demands. A ransomware attack is discovered at 9 PM on a Friday. By 9 PM Saturday, your institution needs to have identified that stud",
+      "iocs": [],
+      "cves": [],
+      "tags": [
+        "Ransomware"
+      ],
+      "techniques": [],
+      "recommendations": [
+        "Validate the indicators against your own telemetry before blocking or alerting.",
+        "Keep your asset inventory current so exposure to affected products is visible."
+      ],
+      "curated": false
+    },
+    {
+      "id": "2e60222f3f0a45eb",
+      "title": "Microsoft, Adobe, Apple, and Foxit vulnerabilities",
+      "url": "https://blog.talosintelligence.com/microsoft-adobe-apple-and-foxit-vulnerabilities/",
+      "source": "talos",
+      "source_name": "Cisco Talos",
+      "category": "windows",
+      "published": "2026-10-07T19:27:08Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "Cisco Talos\u2019 Vulnerability Discovery & Research team recently disclosed vulnerabilities in Adobe, Apple, Foxit Reader, and Microsoft. The vulnerabilities mentioned in this blog post have been patched by their respective vendors, in adherence to Cisco\u2019s third-party vulnerability disclosure policy . F",
+      "content": "Cisco Talos\u2019 Vulnerability Discovery & Research team recently disclosed vulnerabilities in Adobe, Apple, Foxit Reader, and Microsoft. The vulnerabilities mentioned in this blog post have been patched by their respective vendors, in adherence to Cisco\u2019s third-party vulnerability disclosure policy . For Snort coverage that can detect the exploitation of these vulnerabilities, download the latest rule sets from Snort.org , and our latest Vulnerability Advisories are always posted on Talos Intelligence\u2019s website . Adobe Photoshop privilege escalation vulnerability TALOS-2026-2360 (CVE-2026-48388) is a privilege escalation vulnerability in the Installation functionality of Photoshop (version(s): Photoshop_Set-Up.exe version 2.11.0.30). An attacker can replace files with a specially crafted malformed file to trigger this vulnerability and lead to privilege escalation. Apple macOS CoreWLAN information disclosure vulnerability TALOS-2026-2376 is an information disclosure vulnerability in the CoreWLAN functionality of macOS (version(s): 26.3.1(25D2128)). An attacker can call a sequence of APIs to trigger this vulnerability. Foxit Reader code execution and use-after-free vulnerabilities TALOS-2026-2420 (CVE-2026-57256) is a code execution vulnerability in the Javascript checkbox CBF_Widget functionality of Foxit Reader (version(s): 2026.1.1.36485). A specially crafted malformed file provided by an attacker can lead to remote code execution. TALOS-2026-2446 (CVE-2026-91799) is a use-after-free vulnerability in the way Foxit Reader handles an Array object. A specially crafted JavaScript code inside a malicious PDF document can trigger this vulnerability, which can lead to memory corruption and result in arbitrary code execution. Microsoft Windows out-of-bounds, use-after-free, and type confusion vulnerabilities TALOS-2026-2443 (CVE-2026-50475) is an out-of-bounds pointer offset vulnerability in the Microsoft Windows NETIO.sys driver. A specially crafted I/O request packet (IRP) can cause disclosure of sensitive information. TALOS-2026-2426 (CVE-2026-58613) is a use-after-free vulnerability in Windows Cloud Files Mini Filter Driver (version(s): 10.0.26100.8457 (WinBuild.160101.0800)). A specially crafted sequence of Cloud Filter API calls, executed with a dedicated application, can lead to privilege escalation. TALOS-2026-2445 (CVE-2026-80093) is a type confusion vulnerability in Windows Cloud Files Mini Filter Driver (version(s): 10.0.26100.8457 (WinBuild.160101.0800)",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://snort[.]org/"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]talosintelligence[.]com/vulnerability_reports/TALOS-2026-2360"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2376"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2420"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2446"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2443"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2426"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2445"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://talosintelligence[.]com/vulnerability_reports/TALOS-2026-2427"
+        },
+        {
+          "type": "ipv4",
+          "value": "2[.]11[.]0[.]30"
+        },
+        {
+          "type": "domain",
+          "value": "snort[.]org"
+        }
+      ],
+      "cves": [
+        "CVE-2026-48388",
+        "CVE-2026-49177",
+        "CVE-2026-50475",
+        "CVE-2026-57256",
+        "CVE-2026-58613",
+        "CVE-2026-80093",
+        "CVE-2026-91799"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-48388, CVE-2026-49177, CVE-2026-50475, CVE-2026-57256, CVE-2026-58613 ...",
+        "Block or hunt the 12 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
+        "Collect and review process, network and registry telemetry for the listed indicators.",
+        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
+      ],
+      "curated": false
+    },
+    {
+      "id": "b8d4b6b6961b386a",
+      "title": "USN-8900-1: Go Networking vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-8900-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-07T19:09:10Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "A remote attacker could possibly use this issue to cause a denial of service. (CVE-2022-27664) It was discovered that Go Networking had quadratic complexity when decoding HPACK headers in HTTP/2 streams. A remote attacker could possibly use this issue to cause Go Networking to use excessive resource",
+      "content": "It was discovered that Go Networking did not properly handle server errors after sending a GOAWAY frame during HTTP/2 connection shutdown, which could cause the connection to hang. A remote attacker could possibly use this issue to cause a denial of service. (CVE-2022-27664) It was discovered that Go Networking had quadratic complexity when decoding HPACK headers in HTTP/2 streams. A remote attacker could possibly use this issue to cause Go Networking to use excessive resources, leading to a denial of service. (CVE-2022-41723) It was discovered that Go Networking incorrectly rendered text nodes outside of the HTML namespace literally, causing text that should be escaped to not be escaped. A remote attacker could possibly use this issue to perform cross-site scripting attacks. (CVE-2023-3978) Guido Vranken discovered that Go Networking processed certain inputs to the HTML parsing functions non-linearly with respect to their length. A remote attacker could possibly use this issue to cause Go Networking to use excessive resources, leading to a denial of service. (CVE-2024-45338) Sean Ng discovered that Go Networking incorrectly interpreted tags in foreign content with unquoted attribute values ending with a solidus character as self-closing, which could result in content being placed in the wrong scope during DOM construction. A remote attacker could possibly use this issue to perform cross-site scripting attacks. (CVE-2025-22872) It was discovered that Go Networking had quadratic parsing complexity when processing certain HTML inputs. A remote attacker could possibly use this issue to cause Go Networking to use excessive resources, leading to a denial of service. (CVE-2025-47911) It was discovered that Go Networking could enter an infinite loop when parsing certain HTML inputs. A remote attacker could possibly use this issue to cause Go Networking to use excessive resources, leading to a denial of service. (CVE-2025-58190) It was discovered that Go Networking incorrectly accepted Punycode-encoded labels that decoded to ASCII-only labels when processing internationalized domain names. A remote attacker could possibly use this issue to bypass access control restrictions and escalate privileges. (CVE-2026-39821)",
+      "iocs": [],
+      "cves": [
+        "CVE-2022-27664",
+        "CVE-2022-41723",
+        "CVE-2023-3978",
+        "CVE-2024-45338",
+        "CVE-2025-22872",
+        "CVE-2025-47911",
+        "CVE-2025-58190",
+        "CVE-2026-39821"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2022-27664, CVE-2022-41723, CVE-2023-3978, CVE-2024-45338, CVE-2025-22872 ...",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "13ead4d4034110c9",
+      "title": "3 lessons from frontier AI vulnerability research",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/07/3-lessons-from-frontier-ai-vulnerability-research/",
+      "source": "msrc",
+      "source_name": "Microsoft Security Blog",
+      "category": "windows",
+      "published": "2026-10-07T16:00:00Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "Validation and remediation as a continuous learning loop Transferring security research to help open source projects Open-source vulnerability reporting snapshot Measured costs of automated validation FORGE OSS Bug Hunt Party: Human coordination at scale (Hackathon) Akrites: Coordinated effort to re",
+      "content": "In this article Shift 1. From frontier capability to scale Shift 2. From token consumption to reasoning economics Shift 3. Validation and remediation as a continuous learning loop Transferring security research to help open source projects Open-source vulnerability reporting snapshot Measured costs of automated validation FORGE OSS Bug Hunt Party: Human coordination at scale (Hackathon) Akrites: Coordinated effort to remediate vulnerabilities What\u2019s next for FORGE Lab? The mission of Microsoft Security\u2019s Frontier Offensive Research & Generative Exploitation (FORGE) Lab is to advance the frontier of autonomous security engineering. We\u2019re building a team that enables AI-native vulnerability research at Microsoft, pushing the boundaries of finding and fixing zero-day vulnerabilities. Four principles guide that work: autonomy over labor, defense through offense, building ecosystems over individual examples, and understanding over findings. This post reflects those principles in practice across Windows, the Linux kernel, and widely used open-source projects. Learn more about the Microsoft FORGE Lab From May 2026 through September 2026, FORGE helped discover Windows vulnerabilities assigned 140 common vulnerabilities and exposures (CVEs), including 52 addressed in September 2026\u2019s security release alone. The work reaches well beyond Windows. FORGE members submitted 155 internally validated reports across 23 open-source projects, including the Linux kernel. And through Akrites, a Linux Foundation initiative that coordinates confidential remediation and disclosure for vulnerabilities in critical open-source software, one of our Linux reports became the first Akrites submission to result in a patch merged into the Linux kernel. These results demonstrate that agentic discovery can operate at meaningful volume, but they also expose the next constraint. Finding a difficult vulnerability proves an agent\u2019s frontier capability. Repeatedly converting such findings into security updates requires a different kind of system\u2014one that can move credible work through validation, remediation, and release. Discovery creates security value only when validation and remediation can keep pace. For security leaders, the question is no longer only whether AI can find vulnerabilities, but whether an organization can validate and fix them as fast as they are found. Three lessons follow, each marking a shift in how we approach vulnerability research: From frontier capability to scale. From",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-9545"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-13608"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-56848"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-64563"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://akrites[.]org/"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://vuln[.]cs[.]berkeley[.]edu/"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://microsoft[.]ai/news/introducing-mai-cyber-1-flash-inside-mdash/"
+        }
+      ],
+      "cves": [
+        "CVE-2026-13608",
+        "CVE-2026-56848",
+        "CVE-2026-64563",
+        "CVE-2026-9545"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-13608, CVE-2026-56848, CVE-2026-64563, CVE-2026-9545",
+        "Block or hunt the 7 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
+        "Collect and review process, network and registry telemetry for the listed indicators.",
+        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
+      ],
+      "curated": false
+    },
+    {
+      "id": "a7dce30e3faaeae9",
+      "title": "Scans for Atlassian vulnerablity (CVE-2026-21589), (Wed, Oct 7th)",
+      "url": "https://isc.sans.edu/diary/rss/33406",
+      "source": "sans_isc",
+      "source_name": "SANS ISC",
+      "category": "general",
+      "published": "2026-10-07T14:59:33Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "On October 5th, Atlassian published patches for multiple products to fix an \"Arbitrary File Access\" vulnerability [CVE-2026-21589]. An attacker can read arbitrary files in the web application's directory, potentially exposing sensitive information such as configuration files.",
+      "content": "On October 5th, Atlassian published patches for multiple products to fix an \"Arbitrary File Access\" vulnerability [CVE-2026-21589]. An attacker can read arbitrary files in the web application's directory, potentially exposing sensitive information such as configuration files.",
+      "iocs": [],
+      "cves": [
+        "CVE-2026-21589"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-21589",
+        "Validate the indicators against your own telemetry before blocking or alerting.",
+        "Keep your asset inventory current so exposure to affected products is visible."
+      ],
+      "curated": false
+    },
+    {
+      "id": "cea2536312c68947",
+      "title": "USN-8895-1: Sudo vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-8895-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-07T13:12:22Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "A local attacker could possibly use this issue to execute commands outside the intended time window by manipulating the TZ environment variable.",
+      "content": "It was discovered that Sudo did not properly handle time-based access restrictions when sudoers rules used NOTBEFORE or NOTAFTER with timestamps omitting the trailing timezone indicator. A local attacker could possibly use this issue to execute commands outside the intended time window by manipulating the TZ environment variable.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "ba087cf846b2b3de",
+      "title": "USN-8894-1: poppler vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-8894-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-07T13:00:38Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-102620) It was discovered that Poppler had an integer overflow in SplashClip::clipToPath. An attacker could possibly use this issue to cause Poppler to crash, r",
+      "content": "It was discovered that Poppler had an integer overflow in FoFiTrueType::cvtSfnts. An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-102620) It was discovered that Poppler had an integer overflow in SplashClip::clipToPath. An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-102621) It was discovered that Poppler had a null pointer dereference in JBIG2Stream. An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service. (CVE-2026-93312) It was discovered that Poppler had an integer overflow in JBIG2Stream::readCodeTableSeg. An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-93313) It was discovered that Poppler had an integer overflow in FoFiTrueType::mapCodeToGID. An attacker could possibly use this issue to cause Poppler to crash, resulting in a denial of service, or execute arbitrary code. (CVE-2026-93314)",
+      "iocs": [],
+      "cves": [
+        "CVE-2026-102620",
+        "CVE-2026-102621",
+        "CVE-2026-93312",
+        "CVE-2026-93313",
+        "CVE-2026-93314"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-102620, CVE-2026-102621, CVE-2026-93312, CVE-2026-93313, CVE-2026-93314",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
       "id": "2e1e15e83be51d6e",
       "title": "CVE-2026-21589: Critical unauthenticated arbitrary file access in Atlassian products",
       "url": "https://www.rapid7.com/blog/post/etr-cve-2026-21589-critical-unauthenticated-arbitrary-file-access-in-atlassian-products",
@@ -18,7 +313,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-10-07T12:11:26Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On October 5, 2026, Atlassian published a security advisory for CVE-2026-21589 , a critical arbitrary file access vulnerability affecting eight products: Bitbucket Data Center, Confluence Data Center, Jira Service Management Data Center, Jira Software Data Center, Bamboo Data Center, Crowd",
       "content": "Overview On October 5, 2026, Atlassian published a security advisory for CVE-2026-21589 , a critical arbitrary file access vulnerability affecting eight products: Bitbucket Data Center, Confluence Data Center, Jira Service Management Data Center, Jira Software Data Center, Bamboo Data Center, Crowd Data Center, Crucible, and Fisheye. Atlassian assigned the vulnerability a CVSSv4 score of 9.3 . An unauthenticated remote attacker who knows a target file's exact name and path can access it within the application's web root; the vulnerability does not provide directory listing or enumeration. Atlassian's advisory treats all versions before the applicable fixed releases as affected, including unsupported versions. Affected Atlassian Cloud products have already been patched, and no action is required from Cloud customers. Detailed technical analysis and file-read proof-of-concept scripts are public, so Rapid7 recommends patching on an emergency basis, outside of normal patch cycles, and reviewing access logs for attempted exploitation. Technical overview NVD lists files or directories accessible to external parties ( CWE-552 ) as the weakness associated with CVE-2026-21589. On October 6, watchTowr Labs published a technical analysis based on comparisons of vulnerable and patched Jira, Confluence, and Bitbucket packages. Their analysis identified a path traversal vulnerability in Atlassian's web-resource handling: double-colon ( :: ) sequences can become path separators during request processing, allowing traversal components to reach the resource-loading code, resulting in the contents of arbitrary file being read back to an attacker. Their testing could not traverse outside the Tomcat context, but could read files throughout the application web root. In an Atlassian Crowd deployment that had Jira configured, reading WEB-INF/classes/crowd.properties exposed application credentials. With network access to Crowd, they used those credentials to create a user and add it to jira-administrators ; Crowd's IP allowlisting can block this direct route. Mitigation guidance Organizations should upgrade each affected installation to a listed fixed version or the latest available version. Atlassian's October 5 advisory lists the following fixed versions: Product Fixed versions Bitbucket Data Center 9.4.26 , 10.2.8 , 10.5.1 Confluence Data Center 9.2.26 , 10.2.19 Jira Service Management Data Center 5.12.40 , 10.3.26 , 11.3.12 Jira Software Data Center 9.12.40 , 10.3.26 , 11.3.",
       "iocs": [
@@ -50,7 +345,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-10-07T10:40:07Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The attackers\u2019 wider claims remain unverified, and Snowflake told Sky News that its investigation had found no compromise of the Snowflake platform at that point. Even without knowing the full route into ASOS\u2019s environment, though, the notification raises a useful question for security teams: what h",
       "content": "This week, ASOS customers opened their phones to find a hostile push notification delivered through the retailer\u2019s own app. The message claimed the company\u2019s Snowflake environment had been compromised and directed ASOS to engage with the sender through Telegram. ASOS later confirmed to Sky News that an unauthorized customer notification had been sent and said it was investigating activity involving third-party platforms used to communicate with customers. The company also said basic personal information, including names and contact details, may have been accessed, while payment-card information and account passwords were not believed to be affected. The attackers\u2019 wider claims remain unverified, and Snowflake told Sky News that its investigation had found no compromise of the Snowflake platform at that point. Even without knowing the full route into ASOS\u2019s environment, though, the notification raises a useful question for security teams: what happens when an attacker can communicate through a channel customers already trust? When the message comes from the real app Most security awareness advice assumes there will be something suspicious for the recipient to notice. The sender might be unfamiliar, the domain slightly wrong, or the request out of character. Those checks become much less useful when the message arrives through the genuine app sitting on someone\u2019s phone. Attackers have already been moving in this direction elsewhere. Rapid7 research into calendar-based phishing showed how malicious content can appear inside familiar workflows, while our earlier look at how social engineering is evolving explored the growing use of collaboration tools and other everyday platforms to make attacks feel routine. The ASOS incident moves that problem into a customer-facing environment. Once an attacker has access to a system that can speak on behalf of a business, the trust built around that system can work in the attacker\u2019s favor too. \"Let's face it, an attacker would much rather borrow trust that already exists than spend time building their own. Our recent Zimbra research is a good example, because once you can impersonate a sender or edit a calendar from inside the platform, everything the victim checks lives in a system they have no reason to question. I can't say how this one happened, but a notification coming out of a real app gives an attacker that same head start. There is no strange domain or unfamiliar sender to catch, so the activity can look a lot lik",
       "iocs": [
@@ -76,6 +371,33 @@
       "curated": false
     },
     {
+      "id": "a6465e1414c2b5b7",
+      "title": "USN-8893-1: Libwebsockets vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-8893-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-07T10:05:38Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "An attacker could possibly use this issue to execute arbitrary code. (CVE-2026-19773) It was discovered that libwebsockets did not properly handle CBOR recording in the LECP parser, which could result in a write past the end of an allocated buffer. An attacker could possibly use this issue to cause",
+      "content": "It was discovered that libwebsockets did not properly validate user-supplied data when parsing HTTP/2 HPACK path headers, which could result in a write past the end of an allocated buffer. An attacker could possibly use this issue to execute arbitrary code. (CVE-2026-19773) It was discovered that libwebsockets did not properly handle CBOR recording in the LECP parser, which could result in a write past the end of an allocated buffer. An attacker could possibly use this issue to cause a crash or execute arbitrary code. (CVE-2026-78161)",
+      "iocs": [],
+      "cves": [
+        "CVE-2026-19773",
+        "CVE-2026-78161"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-19773, CVE-2026-78161",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
       "id": "445432276ec5fcec",
       "title": "One breach, please, and make no mistakes",
       "url": "https://blog.talosintelligence.com/one-breach-please-and-make-no-mistakes/",
@@ -83,7 +405,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-10-07T10:00:25Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The swarm of AI agents might fabricate employee identities and social profiles, contact the HR team with a plausible onboarding request, walk in by exploiting an unpatched vulnerability, or simply mail out phishing invoices at volume. What used to take a red team months of dedicated work, scoping, b",
       "content": "For some time now, the cybersecurity community has seen examples of autonomous agents, built inside AI labs, attacking public infrastructure (to name a few, Hugging Face , DSEWiki , and RubyGems ). Of course, frontier labs have built-in security to prevent these attacks from occurring, but every now and then, the training or prompting appears to be insufficient \u2014 especially when the agents themselves attempt to use logic to probe and bypass the restrictions placed on them. The question that matters is not whether AI attacks are coming, because the age of AI agents executing cyber attacks is already here. The question is what to do about it and how to harden the stack against a swarm of agents who will relentlessly lie, deceive, and probe until the objective is met. Imagine your organization is a target for a creative human-driven AI adversary whose many agentic friends like to discuss and brainstorm different attack techniques. The limit here is the group\u2019s own imagination, tools, prompts, and skills. However, there is a difference between the human 1) prompting the group (or an AI agent) to \u201cbreak into an organization,\u201d and 2) preparing it with information \u2014 a detailed tool mapping, markup files with instructions for agents, offensive security prompts, agents.md with guidance, and specific skills that would be invoked in different situations to guide agents into how to interpret an output of tools or access gained. The swarm of AI agents might fabricate employee identities and social profiles, contact the HR team with a plausible onboarding request, walk in by exploiting an unpatched vulnerability, or simply mail out phishing invoices at volume. The sky is the limit here . These types of attacks can be executed all at once, with agents comparing notes and adapting in near real time to challenges (and your environment). What used to take a red team months of dedicated work, scoping, building and hiding infrastructure, and running the campaign now compresses into hours for a swarm of communicating agents that do not tire, lose focus, or need weekends, and can stand up infrastructure quickly. Penetration test today, red team tomorrow I would argue that most of the public \u201cattacks\u201d seen so far more closely resemble a penetration test (pentest) than a true red team operation. They are loud, visible, lean on volume, and appear to use off-the-shelf tooling with thousands of agents working together. RubyGems is the clear example of a loud attack. The registration",
       "iocs": [
@@ -139,6 +461,47 @@
       "curated": false
     },
     {
+      "id": "e159bfb1ee0c96db",
+      "title": "LSN-0122-1: Kernel Live Patch Security Notice",
+      "url": "https://ubuntu.com/security/notices/LSN-0122-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-07T09:53:00Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved: fs: dlm: fix use after free in midcomms commit While working on processing dlm message in softirq context I experienced the following KASAN use-after-free warning: . In the Linux kernel, the following vulnerability has been resolved",
+      "content": "In the Linux kernel, the following vulnerability has been resolved: fs: dlm: fix use after free in midcomms commit While working on processing dlm message in softirq context I experienced the following KASAN use-after-free warning: . In the Linux kernel, the following vulnerability has been resolved: wifi: brcmfmac: Fix oops due to NULL pointer dereference in brcmf_sdiod_sglist_rw() This patch fixes a NULL pointer dereference bug in brcmfmac that occurs when a high 'sd_sgentry_align' value applies (e.g. 512) and a lot of queued SKBs are sent from the pkt queue. In the Linux kernel, the following vulnerability has been resolved: padata: fix UAF in padata_reorder A bug was found when run ltp test: BUG: KASAN: slab-use-after-free in padata_find_next+0x29/0x1a0 Read of size 4 at addr ffff88bbfe003524 by task kworker/u113:2/3039206 CPU: 0 PID: 3039206 Comm: kworker/u113:2 Kdump: loaded Not tainted 6.6.0+ Workqueue: pdecrypt_parallel padata_parallel_worker Call Trace: dump_stack_lvl+0x32/0x50 print_address_description.constprop.0+0x6b/0x3d0 print_report+0xdd/0x2c0 kasan_report+0xa5/0xd0 padata_find_next+0x29/0x1a0 padata_reorder+0x131/0x220 padata_parallel_worker+0x3d/0xc0 process_one_work+0x2ec/0x5a0 If 'mdelay(10)' is added before calling 'padata_find_next' in the 'padata_reorder' function, this issue could be reproduced easily with ltp test (pcrypt_aead01). In the Linux kernel, the following vulnerability has been resolved: geneve: Fix use-after-free in geneve_find_dev(). In the Linux kernel, the following vulnerability has been resolved: ksmbd: fix use-after-free in ksmbd_sessions_deregister() In multichannel mode, UAF issue can occur in session_deregister when the second channel sets up a session through the connection of the first channel. In the Linux kernel, the following vulnerability has been resolved: netfilter: nft_tunnel: fix geneve_opt type confusion addition When handling multiple NFTA_TUNNEL_KEY_OPTS_GENEVE attributes, the parsing logic should place every geneve_opt structure one by one compactly. In the Linux kernel, the following vulnerability has been resolved: ext4: ignore xattrs past end Once inside 'ext4_xattr_inode_dec_ref_all' we should ignore xattrs entries past the 'end' entry. In the Linux kernel, the following vulnerability has been resolved: ksmbd: fix use-after-free in __smb2_lease_break_noti() Move tcp_transport free to ksmbd_conn_free. In the Linux kernel, the following vulnerability has been resolved: ksmbd: Fix dangling pointer ",
+      "iocs": [
+        {
+          "type": "ipv4",
+          "value": "1[.]2[.]3[.]4"
+        }
+      ],
+      "cves": [
+        "CVE-2025-37823",
+        "CVE-2025-38425",
+        "CVE-2025-38437",
+        "CVE-2025-38494",
+        "CVE-2025-38550",
+        "CVE-2025-38707",
+        "CVE-2025-39730",
+        "CVE-2025-39849",
+        "CVE-2025-39864",
+        "CVE-2026-23222"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2025-37823, CVE-2025-38425, CVE-2025-38437, CVE-2025-38494, CVE-2025-38550 ...",
+        "Block or hunt the 1 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
       "id": "40db35f3daf76cb9",
       "title": "ISC Stormcast For Wednesday, October 7th, 2026 https://isc.sans.edu/podcastdetail/10126, (Wed, Oct 7th)",
       "url": "https://isc.sans.edu/diary/rss/33404",
@@ -146,7 +509,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-07T02:00:02Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -167,9 +530,32 @@
       "source_name": "Ubuntu Security Notices",
       "category": "linux",
       "published": "2026-10-06T20:11:42Z",
-      "fetched": "2026-10-07T06:14:01Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "An attacker could possibly use this issue to obtain sensitive information and gain unauthorized access to Ubuntu Pro repositories.",
       "content": "Darshan U discovered that Ubuntu Pro for WSL exposed the attach token in command-line arguments when enabling a subscription on a WSL instance. An attacker could possibly use this issue to obtain sensitive information and gain unauthorized access to Ubuntu Pro repositories.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "14070dbacb3e2fc8",
+      "title": "USN-8891-1: librsvg vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-8891-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-10-06T17:47:29Z",
+      "fetched": "2026-10-07T23:13:07Z",
+      "summary": "An attacker could possibly use this issue to cause a denial of service or execute arbitrary code.",
+      "content": "It was discovered that librsvg incorrectly handled duplicate XML entity declarations while processing SVG documents containing nested XML inclusions. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code.",
       "iocs": [],
       "cves": [],
       "tags": [],
@@ -190,7 +576,7 @@
       "source_name": "Ubuntu Security Notices",
       "category": "linux",
       "published": "2026-10-06T16:43:00Z",
-      "fetched": "2026-10-07T06:14:01Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "A remote attacker could possibly use this issue to cause a denial of service. (CVE-2026-4271) It was discovered that libsoup incorrectly handled certain HTTPS proxy connections. A remote attacker could possibly use this issue to obtain sensitive information.",
       "content": "It was discovered that libsoup incorrectly handled certain HTTP/2 requests. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 24.04 LTS and Ubuntu 26.04 LTS. (CVE-2026-4271) It was discovered that libsoup incorrectly handled certain HTTPS proxy connections. A remote attacker could possibly use this issue to obtain sensitive information. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-5119) It was discovered that libsoup incorrectly parsed certain chunked HTTP requests. A remote attacker could possibly use this issue to bypass security controls. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-6324) It was discovered that libsoup incorrectly handled proxy authentication credentials. A remote attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66339) It was discovered that libsoup incorrectly handled certain HTTP Range headers. A remote attacker could possibly use this issue to cause a denial of service. (CVE-2026-77014, CVE-2026-77680) It was discovered that libsoup incorrectly handled certain HTTP/2 connections. A remote attacker could possibly use this issue to obtain sensitive information or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-85197) It was discovered that libsoup incorrectly handled certain HTTP/2 transfers. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2026-85534)",
       "iocs": [],
@@ -223,7 +609,7 @@
       "source_name": "Ubuntu Security Notices",
       "category": "linux",
       "published": "2026-10-06T16:09:02Z",
-      "fetched": "2026-10-07T06:14:01Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "An attacker could possibly use this issue to trigger an integer overflow and out-of-bounds memory access, resulting in arbitrary code execution or a denial of service. (CVE-2025-70290) Timo Prei\u00dfl discovered that U-Boot incorrectly calculated buffer sizes when processing certain ext4 file systems. A",
       "content": "Timo Prei\u00dfl discovered that U-Boot incorrectly handled certain malformed ZFS file system metadata. An attacker could possibly use this issue to trigger an integer overflow and out-of-bounds memory access, resulting in arbitrary code execution or a denial of service. (CVE-2025-70290) Timo Prei\u00dfl discovered that U-Boot incorrectly calculated buffer sizes when processing certain ext4 file systems. An attacker could possibly use this issue to trigger an integer overflow and out-of-bounds memory access, resulting in arbitrary code execution or a denial of service. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, Ubuntu 24.04 LTS, and Ubuntu 26.04 LTS. (CVE-2025-70293) Mateusz Furdyna discovered that U-Boot incorrectly handled certain fragmented IP traffic when IP defragmentation was enabled. An attacker could possibly use this issue to corrupt memory by sending crafted IP fragments, resulting in arbitrary code execution. (CVE-2026-15390) Shahriyar Jalayeri and Mehrun P. Hunter discovered that U-Boot incorrectly handled certain fragmented IP traffic during network boot when IP defragmentation was enabled. An attacker could possibly use this issue to trigger an out-of-bounds write, resulting in a denial of service. (CVE-2026-71971)",
       "iocs": [],
@@ -252,7 +638,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-10-06T16:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Most of what has been written about AI and vulnerability management focuses on speed: how much faster frontier AI models can scan code, find weaknesses, design patches, and build exploits than any human team. That part is true, and it matters to how we remediate vulnerabilities. The real test for ch",
       "content": "Most of what has been written about AI and vulnerability management focuses on speed: how much faster frontier AI models can scan code, find weaknesses, design patches, and build exploits than any human team. That part is true, and it matters to how we remediate vulnerabilities. The more challenging question is what happens after the scan? Frontier AI models are about to hand every security team a far larger set of findings than they have ever had to work through. The real test for chief information security officers (CISOs) and IT security leaders is not how fast they can patch. It is whether they can keep the balance between patching quickly and patching correctly, at a scale no human review process was built for. This shift creates both new challenges and new opportunities. The same AI capabilities accelerating cyberattackers are also enabling defenders to identify exposures earlier, automate remediation, and build more resilient security programs. Not every vulnerability will be patched in time, so the controls that limit what an attacker can do by defense in depth matter more than ever. CISOs can dramatically improve the security posture of their Microsoft infrastructure by deploying Microsoft Baseline Security Mode (BSM) , building on how Microsoft protects Microsoft. Learn more about Microsoft Baseline Security Mode How do frontier AI models change vulnerability management for CISOs? Microsoft uses frontier AI models to find vulnerabilities in its code base and mitigate them at controlled pace. Potential vulnerabilities are reviewed on validity, severity, and potential impact. As we have explained in previous blogs, many steps in our vulnerability handling and disclosure processes now are AI-powered , allowing them to scale . Most vulnerabilities in cloud software are being mitigated by Microsoft without customer intervention. For on-premises Microsoft software, customers should continue to expect a substantial increase in the number of vulnerabilities released on Patch Tuesdays relative to historic volumes before the advent of frontier AI models earlier this year\u2014September 2026 saw a record number, close to 1,000. 1 Due to the non-deterministic nature of AI models, different runs by the same model or with different models may yield different results. With better models becoming available over time, AI-powered vulnerability scanning of our existing code base and new code should become part of our standard security assurance. We use a \u2018harness\u2019 layer",
       "iocs": [
@@ -280,7 +666,7 @@
       "source_name": "Ubuntu Security Notices",
       "category": "linux",
       "published": "2026-10-06T15:46:18Z",
-      "fetched": "2026-10-07T06:14:01Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "A local attacker with hypervisor access could possibly use this to trigger an out-of-bounds condition and compromise the integrity of SEV-SNP guest memory. (CVE-2023-20585) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system.",
       "content": "It was discovered that some AMD processors did not properly perform Reverse Map Table (RMP) checks when the IOMMU accessed certain host buffers. A local attacker with hypervisor access could possibly use this to trigger an out-of-bounds condition and compromise the integrity of SEV-SNP guest memory. (CVE-2023-20585) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - NVDIMM (Non-Volatile Memory Device) drivers; - Handshake API; - ARM32 architecture; - MIPS architecture; - OpenRISC architecture; - PowerPC architecture; - RISC-V architecture; - S390 architecture; - x86 architecture; - Cryptographic API; - Compute Acceleration Framework; - Intel NPU Driver; - ACPI drivers; - Android drivers; - Serial ATA and Parallel ATA drivers; - Drivers core; - Rados block device (RBD) driver; - Ublk userspace block driver; - Bluetooth drivers; - Cdrom driver; - Character device driver; - TPM device driver; - Data acquisition framework and drivers; - Hardware crypto device drivers; - CXL (Compute Express Link) drivers; - DAX dirext access to differentiated memory framework; - DIBS (Direct Internal Buffer Sharing) drivers; - Buffer Sharing and Synchronization framework; - DMA engine subsystem; - DPLL subsystem; - EDAC drivers; - FireWire subsystem; - Arm Firmware Framework for ARMv8-A(FFA); - ARM SCMI message protocol; - Intel Stratix 10 firmware drivers; - FPGA Framework; - GPIB drivers; - GPIO subsystem; - GPU drivers; - HID subsystem; - Microsoft Hyper-V drivers; - Hardware monitoring drivers; - CoreSight HW tracing drivers; - Intel Trace Hub HW tracing drivers; - I2C subsystem; - I3C subsystem; - IIO subsystem; - IIO ADC drivers; - IIO Magnetometer sensors drivers; - InfiniBand drivers; - Input Device (Miscellaneous) drivers; - IOMMU subsystem; - IRQ chip drivers; - LED subsystem; - Mailbox framework; - Multiple devices driver; - Media drivers; - MemoryStick subsystem; - Multifunction device drivers; - Intel Management Engine Interface driver; - Amazon Nitro Secure Module driver; - MMC subsystem; - MTD block device drivers; - Network drivers; - Ethernet bonding driver; - Mellanox network drivers; - Microsoft Azure Network Adapter (MANA) driver; - Texas Instruments network drivers; - MediaTek network drivers; - NTB driver; - NVME drivers; - Device tree and open firmware driver; - Operating Performance Points (OPP) driver;",
       "iocs": [
@@ -494,7 +880,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-10-06T14:11:03Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Enforce least-privilege delegation by using temporary, task-scoped credentials tied to specific job definitions rather than persistent administrative permissions.",
       "content": "As organizations deploy autonomous AI agents, security teams face a significant shift as non-human non-human entities making decisions, invoking tools, and delegating tasks to other agents without human intervention. Security architectures built around human users, static APIs, and distinct endpoints break down when AI agents dynamically collaborate across an environment. As these interactions become more common, securing agent-to-agent communication without blocking adoption will require security leaders to treat autonomous agents as first-class identities, with their own permissions, behaviors, and activity to monitor. The operational reality: A new attack surface Consider a standard enterprise scenario where a primary agent delegates a task to a secondary agent, which then queries a production database through the Model Context Protocol and forwards a summary to external infrastructure. Traditional controls may struggle to capture the complete interaction, leaving security teams without visibility into intent, delegation chains, and scope of authority and introducing five security challenges that deserve particular attention: Identity and delegation chaining requires verifying an agent\u2019s identity while ensuring its delegated authority never exceeds the permissions of the initiating user. Behavioral drift creates detection blind spots because when autonomous agents adapt execution paths dynamically, distinguishing normal operational variance from compromise or prompt injection becomes extremely difficult. Tool and protocol abuse allows agents to invoke APIs and tools autonomously, meaning that without strict guardrails, an agent quickly becomes an unwitting vector for data exfiltration or unauthorized execution. Cascading access can create systemic risk when a compromised high-privilege agent influences secondary agents and expands access across interconnected enterprise systems. Observability gaps arise when fragmented API logs cannot reconstruct multi-agent decision paths or explain why a particular action took place. How agent activity fits existing security operations Agent-to-agent communication can be treated as an extension of the security telemetry teams already collect across users, endpoints, cloud workloads, and applications. Bringing agent identities, delegation paths, tool invocations, and data access into the same investigation model allows existing detection engineering and behavioral analytics practices to evolve alongside agentic workloa",
       "iocs": [],
@@ -515,7 +901,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-06T13:16:02Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "It seems that a trend started\u2026 I continue my journey discovering more RMM (\"Remote Management & Monitoring\") tools abused by threat actors!",
       "content": "It seems that a trend started\u2026 I continue my journey discovering more RMM (\"Remote Management & Monitoring\") tools abused by threat actors! A few days ago, I wrote a diary[1] about ScreenConnect used in the wild. Today, I found another one.",
       "iocs": [],
@@ -617,7 +1003,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-06T11:45:11Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -661,7 +1047,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-10-06T10:00:33Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Analysis of Blinder Tunnel, an Iran-nexus campaign using fake Dubai Airports recruitment lures and GitHub C2 malware to target critical infrastructure. The post Blinder Tunnel Campaign Targets Iraqi Infrastructure appeared first on Unit 42 .",
       "content": "Analysis of Blinder Tunnel, an Iran-nexus campaign using fake Dubai Airports recruitment lures and GitHub C2 malware to target critical infrastructure. The post Blinder Tunnel Campaign Targets Iraqi Infrastructure appeared first on Unit 42 .",
       "iocs": [],
@@ -882,7 +1268,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-05T02:00:02Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -903,7 +1289,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-05T00:15:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "For an experiment, I created a script [1] that parses and send the TTY logs collected from actors or bots activity that run various commands after they successfully login the DShield sensor. Those TTY logs are sent daily at the end of each day to the DShield SIEM [2] to be correlated with all the da",
       "content": "For an experiment, I created a script [1] that parses and send the TTY logs collected from actors or bots activity that run various commands after they successfully login the DShield sensor. Those TTY logs are sent daily at the end of each day to the DShield SIEM [2] to be correlated with all the data.",
       "iocs": [],
@@ -924,7 +1310,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-04T07:58:51Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Sometimes I have to smile, or my interest is triggered, when I review new User Agent Strings in the honeypot logs.",
       "content": "Sometimes I have to smile, or my interest is triggered, when I review new User Agent Strings in the honeypot logs.",
       "iocs": [],
@@ -945,7 +1331,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-03T14:40:21Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "YARA-X's 1.21.0 release brings 5 improvements and 4 bugfixes.",
       "content": "YARA-X's 1.21.0 release brings 5 improvements and 4 bugfixes.",
       "iocs": [],
@@ -966,7 +1352,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "cisco",
       "published": "2026-10-02T13:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Because proxies alter HTTP headers (adding X-Forwarded-For and changing User-Agent lengths), the malware can no longer rely on static byte offsets to find its payload. The backdoor uses this \" 9999 \" as a reference point, dynamically scans for the \\r\\n\\r\\n terminator, and extracts the hex-encoded co",
       "content": "Overview Rapid7 tracked a set of Linux samples that blend into the software and device conventions of the telecom environments they target. The set spans a newly observed BPFDoor variant, a BPF Rekoobe build seen against South Korean targets, a dropper, and six builds of a Linux implant we track as AVERAT , deployed against Taiwanese appliances. Additionally, we provide source code details of the Rapid7 BPFDoor controller introduced in our April 2026 blog, Stealthy BPFDoor Variants are a Needle That Looks Like Hay . The chain uses two binaries. A dropper writes a shell script to the appliance's storage mount and executes it. The script stages both payloads into /sbin under the names ntpdate and udevds , launches them, and deletes each file ten seconds later while the processes continue running. One of those payloads is the dropper itself, re-executing as a resident watchdog, leaving both processes running without an on-disk image. The dropper derives its encryption key from the string ShareTech and lives in the appliance's own add-on package directory. The BPFDoor variants seen against South Korean systems impersonate the PID file of SpamSniper, a Korean anti-spam product, and rotate through ten Linux daemon names. Across the samples, each component adopts names and conventions designed to look unremarkable in the environment it targets. The common thread is regionalized disguise: each sample is aware of the vendor\u2019s software running on the targeted systems and implements process spoofing accordingly. Passive BPF implants avoid conventional port scans; while outbound beacons hide inside ordinary DNS, TCP, and traffic, the threat-actor(s) are leveraging SMTP to stay under the radar. Telecommunications and network-edge operators are most affected, including embedded devices such as CCTV and DVR systems that can sit close to the network core. Readers will learn how each component works, what binds the six AVERAT builds to one another, and which behaviors and indicators to hunt for. Technical analysis Rapid7 BPFDoor controller Figure 1: Overview of BPFDoor HTTP-tunneled trigger flow through edge proxy \u2800 Following our introduction of the Rapid7 BPFDoor controller, published in March , this section examines new features from the reconstructed source code. Earlier BPFDoor variants relied on raw \"magic bytes\" (like 0x7255 or 0x5293 ) sitting in the TCP or UDP headers. Once security vendors wrote static network signatures (Suricata/Snort) to detect these Layer 4 an",
       "iocs": [
@@ -1199,7 +1585,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-02T02:00:02Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -1220,7 +1606,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-10-01T18:00:52Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The one big thing For Cybersecurity Awareness Month, Talos is sharing crowdsourced strategies from our researchers to help you master \u201cThe Fine Art of Frustrating the Adversary.\u201d By deploying deception techniques, behavioral detections, and strict controls over legitimate tools, defenders can strip",
       "content": "Welcome to this week\u2019s edition of the Threat Source newsletter. Fall is officially here in Maryland, and I can\u2019t be more relieved. I flourish in 50 degree weather, where it feels natural to burrow under blankets, knit sweaters, and listen to an audiobook. Beyond that, though, can I say that I\u2019m glad fall is here because the end of summer has been a bit of a shitshow? I\u2019m allowed to curse on here, right? Without going into too much detail, my uncle was diagnosed with a rare cancer, and my family decided we were going to fly out to spend a week with him. I was determined to find a way to make it work, but on top of all of the emotions, my mind was racing with trying to figure out how to request the time off and get coverage for the tasks I\u2019d be missing. I was anxious to ask, but my manager\u2019s response to me requesting the week off was: \u201cFamily always, always comes first at Talos. You spend as much time with your family as you need. Don\u2019t worry, we\u2019ll work everything out. We have your back.\u201d I knew I was in such a fortunate position to have that kind of support. Yet, even with the explicit encouragement to step away, there was still a lingering weight on my shoulders that I couldn't quite set down. LinkedIn might be an awful, artificial place, but occasionally I\u2019ll find a non-AI-generated think piece or quote that sticks with me. On a recent post, I read, \u201cWe\u2019d all be better off if we gave each other a little more room to be human here without worrying it makes us look less capable.\u201d Okay, ouch! That described the unsettled feeling to a T. Ever since I was laid off at my previous company, my trauma response has insisted I prove myself, make myself \u201cindispensable\u201d and capable of taking on any challenges thrown my way. I'm sure if you've been through a layoff, you can relate. If you\u2019re scared of your team perceiving you as less capable and more dispensable, please hear this: You are not a machine, and your value to your team isn't defined by how much personal or professional weight you take on without a break. It's so easy to extend grace to others, to insist that they spend time with their ill family members, but we have to extend the same grace to ourselves. If your team is great, they\u2019ll want you at your best, not just your most productive, so you can fight the good fight. Don't let this fear stop you from taking the time you need. Life is worth living now , and we\u2019re better at what we do when we\u2019re well in all aspects of life. The one big thing For Cybersecu",
       "iocs": [
@@ -1385,7 +1771,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-10-01T14:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Dwell time, the period between when an attacker gains access and when defenders detect and stop them, also increased this year across multiple sectors. Attackers increasingly gain access through techniques that mimic legitimate activity, making malicious behavior harder to spot. For example, phishin",
       "content": "According to this year\u2019s Microsoft Digital Defense Report, government agencies and services were the sector most impacted by cyber threats in 2026, accounting for 27% of observed activity, up from 17% in 2025. Governments are also the most frequently targeted sectors for nation-state activity. They are attractive targets because they hold sensitive information, operate essential services, and sit at the center of networks of agencies, contractors, technology providers, and critical infrastructure operators. Dwell time, the period between when an attacker gains access and when defenders detect and stop them, also increased this year across multiple sectors. While organizations responded faster once an intrusion was identified, detecting threats early remains a challenge. Attackers increasingly gain access through techniques that mimic legitimate activity, making malicious behavior harder to spot. For example, phishing accounted for 23% of observed intrusions in 2026, up from 7% in 2025, highlighting the continued importance of compromised identities as an entry point for broader attacks. Taken together, the implication for governments is clear. Security in the AI era is no longer simply about preventing individual intrusions. It is about ensuring institutions can operate effectively in an environment where risks are interconnected, threats move faster, and attackers remain hidden longer. Public-private partnerships are also more important than ever for securing critical government infrastructure and developing the policies and regulations needed for emerging technologies. In this year\u2019s report, which examines cyber threat trends observed between July 2025 and June 2026, Terrell Cox, Microsoft\u2019s Corporate Vice President & Deputy Chief Information Security Officer, and I explore how these dynamics are reshaping cyber risk. In a companion blog, Terrell takes a closer look at what these findings mean for CISOs and security professionals. To strengthen resilience, governments should focus on five priorities: Prepare for a faster threat environment AI is compressing the window for action. Adversaries are moving faster. A vulnerability\u2019s discovery in the wild to active weaponization can be well below 24 hours. While the number of publicly disclosed software vulnerabilities (commonly tracked as CVEs) is projected to reach a record 72,000 in 2026. Governments best prepared for the future will be those that can rapidly gather and assess information, make decisions, c",
       "iocs": [],
@@ -1410,7 +1796,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-10-01T14:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "AI in the threat landscape Threat actors are incorporating AI into reconnaissance, social engineering, malware and exploit development, and post-compromise activity. AI can give threat actors greater speed, scale, and ability to tailor activity more efficiently. Read the executive summary of the 202",
       "content": "Every year, the Microsoft Digital Defense Report gives us an opportunity to step back from individual threats and look broadly at what Microsoft\u2019s security and threat intelligence teams are seeing. Today, we released the 2026 Report , which reflects a security environment that continues to grow more interconnected. We see that across the report. Threat activity can span infrastructure, identities, applications, cloud environments, and software supply chains. AI systems and agents increasingly interact with data, tools, and business systems. And activity that looks incomplete in one part of an environment can become clearer when separate signals are considered together. That makes the connections across an environment increasingly relevant to how we understand both cyberthreats and defense. Read the 2026 Microsoft Digital Defense Report The pace of change also matters. AI models are becoming more capable, automation is expanding, and new connections are forming across the systems organizations rely on. These developments can change the speed and scale of security activity even as the underlying security fundamentals remain familiar. Several findings in this year\u2019s report illustrate that. AI in the threat landscape Threat actors are incorporating AI into reconnaissance, social engineering, malware and exploit development, and post-compromise activity. For now, much of their use remains focused on specific parts of existing attack workflows, even as more advanced applications of AI continue to develop. AI can give threat actors greater speed, scale, and ability to tailor activity more efficiently. We see that in social engineering, where AI can make campaigns more targeted, and in technical work, where automation can compress parts of the attack process. The underlying methods often remain familiar. People, identities, exposed systems, and trusted access continue to feature prominently in the threat activity Microsoft observes. AI is also becoming more connected to the systems and processes organizations already rely on. That brings another dimension to the security work. Securing AI as part of the enterprise Agents are a good example of these observations. They can interact with enterprise data, applications, APIs, and tools, with different levels of access and autonomy depending on how they are designed and deployed. Those connections are what allow agents to perform useful work, and they are also part of what security teams need to understand. That makes i",
       "iocs": [
@@ -1450,7 +1836,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-10-01T13:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "As AI takes on more of the enrichment, correlation, and initial assessment inside the SOC, roles, skills, and KPIs still require deliberate redesign. Security leaders need to decide where automation is dependable, where human judgment should remain decisive, and how teams should be measured when ale",
       "content": "As AI takes on more of the enrichment, correlation, and initial assessment inside the SOC, roles, skills, and KPIs still require deliberate redesign. Security leaders need to decide where automation is dependable, where human judgment should remain decisive, and how teams should be measured when alert handling is no longer the center of the operating model The Gartner\u00ae report, The Roles Required for the AI-Enabled Security Operations Center (SOC) , examines the roles and capabilities Gartner expects the SOC to require as AI becomes embedded in security operations. Rapid7 is offering complimentary access to the research, which we believe can help leaders plan their future workforce, operating model, and investment priorities. How will AI change the role of SOC analysts? Many analyst roles and performance measures remain closely tied to handling individual alerts. As organizations introduce AI SOC agents to support enrichment, correlation, and initial assessment, leaders may need to reconsider where human expertise creates the greatest operational value. Gartner states, \"Human analysts must transition from alert triage roles to end-to-end case ownership and effective response option communication.\" At Rapid7, we believe this shift creates an opportunity for analysts to focus their judgment on validating context, coordinating response, and communicating decisions clearly. Gartner also recommends, \"Stop recording alert metrics and run the SOC on cases and decisions.\" Robert Willis, VP of Managed Detection and Response at Rapid7, puts it plainly: \"Alert volume is a distraction. The real measure of SOC value is decision quality, did you get the right answer, fast enough to act on it? MDR is built to deliver exactly that: answers, not alerts, so your team can focus on ownership and response rather than triage.\" MDR can help manage alert volume while adding investigation and response capacity, giving internal teams more space to focus on the cases that require their context and ownership. Where does human judgment remain essential? Rapid7's experience applying agentic AI within our MDR SOC shows how this division of work can operate in practice. Our agentic workflows have saved more than 200 analyst hours each week and achieved 99.93% benign-disposition accuracy, reducing the repetitive work involved in initial triage and giving analysts more time for complex, ambiguous, and higher-stakes investigations. We believe human judgment remains essential when a decision ",
       "iocs": [],
@@ -1567,7 +1953,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-10-01T10:00:05Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Years ago, Cisco Talos blocked an adversary\u2019s command-and-control (C2) traffic. Different credentials or authentication methods can be required for particularly sensitive systems, while protected enclaves can provide increased monitoring around critical infrastructure. \u201cFalse servers, shares, user a",
       "content": "For Cybersecurity Awareness Month, eight Cisco Talos researchers share practical ways defenders can frustrate adversaries at different stages of an operation. Deception techniques such as honeypot accounts, false infrastructure, and tarpits can slow adversaries down while giving defenders earlier opportunities to detect their activity. Behavioral detections, tighter control of legitimate remote-management tools, and clear boundaries around AI agents can make essential adversary actions more visible and easier to interrupt. Breaking dependencies between stages of an operation can prevent an adversary from reaching their next objective. Years ago, Cisco Talos blocked an adversary\u2019s command-and-control (C2) traffic. The adversary responded by tweeting, \u201cWrite a rule for your a**.\u201d A fine endorsement of our work, if I\u2019ve ever heard one. Talos loves to see an adversary forced to change course. And if every alternative for them is slower, less stealthy, less reliable and more expensive? Chef\u2019s kiss. Adversaries rely on certain advantages. They look for environments where tools and infrastructure allow them to blend in with normal activity. They also look for employees who can be pressured into acting before they have time to think. Strong cybersecurity defenses can change those conditions. They take away adversary choices and increase the risk attached to essential actions, forcing them to keep making new decisions. Each change of plan costs them time and resources, and may eventually cause them to give up and move to another target. It also creates more opportunities for defenders to spot what they are doing. For Cybersecurity Awareness Month, we\u2019re exploring \u201cthe fine art of frustrating the adversary.\u201d To kick us off, I asked researchers across Talos, covering all aspects of the attack chain, for the strongest recommendation they could give defenders to seriously frustrate a potential adversary in their environment, and what that action would prevent the adversary from doing next. Take away their choices Many adversaries use techniques that succeed against a large number of organizations. This makes a lot of economic sense: An operation that depends on every potential target having an unusual configuration will not scale particularly well. But it also creates an opportunity for defenders. \u201cBy being unique and setting things up a little differently, you may be able to better defend your environment when they come knocking,\u201d Pierre says. For example, organizatio",
       "iocs": [
@@ -1602,7 +1988,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-10-01T05:32:13Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Threat Actors do not always use top-notch techniques or very complex malware to perform their attacks.",
       "content": "Threat Actors do not always use top-notch techniques or very complex malware to perform their attacks. Sometimes, they just abuse of existing applications...",
       "iocs": [],
@@ -1644,7 +2030,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "network",
       "published": "2026-09-30T20:00:04Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Unit 42 is aware of possible 0-day activity against NetScaler devices. Citrix reports CVE-2026-88771, CVE-2026-88772 have been exploited in the wild. The post Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30) appeared first on Unit 42 .",
       "content": "Unit 42 is aware of possible 0-day activity against NetScaler devices. Citrix reports CVE-2026-88771, CVE-2026-88772 have been exploited in the wild. The post Threat Brief: NetScaler Zero Days CVE-2026-88771 and CVE-2026-88772 Exploited in the Wild (Updated September 30) appeared first on Unit 42 .",
       "iocs": [],
@@ -1668,7 +2054,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-30T19:31:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": ", a pair on the state of phishing-resistant authentication.",
       "content": "In this article Why you should attend Microsoft Ignite Make the most of your time at Microsoft Ignite Explore the Security sessions at Microsoft Ignite 2026 Build your schedule In the agentic era, the stakes are higher: AI agents now act with real access to your identities, your data, and your cloud, so every adoption decision is a trust decision. That is why security is a through line at Microsoft Ignite 2026, from a Security Pre-Day before the event opens to a security segment in the keynote, and four security themes across all four days. Join us in San Francisco from November 17 to 20, 2026 , or online. See the Microsoft Security roadmap first, get hands-on with new agentic security solutions, and connect directly with the experts, partners, and peers who can help you make it real. This year we spotlight our AI-first, end-to-end security platform designed to protect identities, devices, data, applications, clouds, infrastructure, and the AI agents now working alongside your teams. Register for Microsoft Ignite 2026 Why you should attend Microsoft Ignite Understand where Microsoft is placing its bets . See what is being announced, what is shipping next, and what it means for your architecture, your security operations center (SOC), and your governance model. Build skills you can use immediately . Technical breakouts run from level 200 to level 400, paired with instructor-led labs and onsite certifications, so you leave with implementation guidance rather than slideware. Pressure-test your plans with the people who built it . Bring your real architecture, deployment, and roadmap questions to Microsoft engineers, MVPs, and the product teams behind these tools. See the proof, not the promise . Customer stories, live demos, and partner solutions show what is already working in production today. Connect with the people who make it real . Expert meetups, connection pods, table talks, and evening events put you alongside security practitioners, leaders, Microsoft partners, and peers working the same problems. Make the most of your time at Microsoft Ignite Whether you join us in San Francisco or online, you will have access to a full slate of experiences designed to help you connect, learn, and grow as a security professional. Here is what is in store. Start a day early at the Security Pre-Day On Monday, November 16, 2026, from 1:00 PM PT to 5:00 PM PT, the Security Pre-Day gives you four hours with Microsoft Security leaders and external industry voices before ",
       "iocs": [
@@ -1721,7 +2107,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "cisco",
       "published": "2026-09-30T15:09:22Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On September 30, 2026, Cisco published a security advisory for CVE-2026-76504 , a critical API authentication bypass vulnerability affecting Cisco Catalyst SD-WAN Manager. The vulnerability has a CVSSv3.1 score of 9.8 and results from improper handling of URL encoding ( CWE-177 ). An unauth",
       "content": "Overview On September 30, 2026, Cisco published a security advisory for CVE-2026-76504 , a critical API authentication bypass vulnerability affecting Cisco Catalyst SD-WAN Manager. The vulnerability has a CVSSv3.1 score of 9.8 and results from improper handling of URL encoding ( CWE-177 ). An unauthenticated, remote attacker can send a crafted HTTP request that bypasses an authentication rule for a specific API endpoint, gaining access to the API with the privileges of the admin user. According to Cisco, CVE-2026-76504 is being actively exploited in the wild; Cisco PSIRT became aware of the activity in September 2026. Cisco Catalyst SD-WAN Manager systems with ports exposed to the internet are at risk of compromise. The vulnerability affects the product regardless of system configuration, and Cisco has not provided a workaround, however vendor supplied updates are available. Rapid7 strongly recommends that organizations upgrade affected systems to a fixed release on an emergency basis, outside of normal patch cycles, and investigate internet-facing systems for signs of exploitation. Cisco Catalyst SD-WAN Manager was also affected by two critical, unauthenticated peering authentication flaws earlier in 2026: CVE-2026-20127 and Rapid7-discovered CVE-2026-20182 . Both were distinct issues in the vdaemon service and similar parts of its networking stack. CVE-2026-76504 targets a separate API authentication path, but the recurrence of authentication bypasses in internet-facing Catalyst SD-WAN control components reinforces the need for emergency remediation. On September 30, 2026, CVE-2026-76504 was added to the U.S. Cybersecurity and Infrastructure Security Agency's (CISA) list of known exploited vulnerabilities (KEV) , based on evidence of active exploitation. CISA set a remediation due date of October 3, 2026. Mitigation guidance Cisco has released software updates that remediate CVE-2026-76504. Organizations running affected instances of Cisco Catalyst SD-WAN Manager should upgrade to an appropriate fixed release listed below without waiting for a regular patch cycle: Cisco Catalyst SD-WAN Software release First fixed release Earlier than 20.9 Migrate to a fixed release 20.9 20.9.10.1 20.12 20.12.8.2 20.15 20.15.6.1 20.18 20.18.4.1 26.1 26.1.2.1 26.2 26.2.1 Cisco has addressed the vulnerability in the cloud-based Cisco SD-WAN Cloud (Cisco Managed) release 20.15.605 , and indicates that no customer action is required for that service. There are no workarounds",
       "iocs": [
@@ -1770,7 +2156,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-30T14:16:37Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Attackers have taken notice, and the pressure on security teams continues to grow. Confirmed attacks against higher education institutions exposed more than 3.9 million records in 2025, with ransomware continuing to disrupt teaching, research, financial aid, and administrative operations. If ransomw",
       "content": "Higher education faces a difficult security equation. Universities hold large volumes of sensitive student, financial, health, and research data while supporting open networks, distributed users, legacy infrastructure, and increasingly complex cloud environments. Attackers have taken notice, and the pressure on security teams continues to grow. In Q2 2025, universities faced an average of 4,388 cyberattacks per organization per week, up 24% from the same period in 2024. Nine in ten universities reported experiencing a breach or security incident during the previous 12 months, while the average cost of a data breach in education reached $10.22 million. Confirmed attacks against higher education institutions exposed more than 3.9 million records in 2025, with ransomware continuing to disrupt teaching, research, financial aid, and administrative operations. Those figures are concerning on their own, but they only explain part of the problem. For university systems with multiple campuses, the way security is organized can create an additional layer of risk. Why is higher education so difficult to secure? Universities operate differently from most commercial organizations. Open access, collaboration, and academic freedom are central to their mission, which means security teams must protect environments where students, faculty, researchers, guests, and third parties connect from almost anywhere. That openness sits alongside an unusually broad mix of sensitive data. A single university may hold student PII, financial aid and tax records, health information, proprietary research, government-funded projects, and intellectual property. Many institutions also rely on legacy systems that have been connected over time to modern cloud applications, APIs, learning platforms, and research networks, creating visibility gaps that can be difficult to manage. Resource pressure adds to the challenge. The draft cites 94% of higher education IT leaders as saying they lack enough personnel to defend their environments adequately, leaving relatively small teams responsible for sprawling networks with large numbers of users, devices, applications, and third-party services. Why multi-campus fragmentation increases cyber risk For multi-campus university systems, many of these pressures are compounded by decentralized security operations. Individual campuses often maintain their own infrastructure, security tools, teams, incident response processes, vendor relationships, and renewal c",
       "iocs": [],
@@ -1793,7 +2179,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-30T14:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Exploitation can be triggered by a specially crafted email against internet-facing Zimbra servers when the optional zimbra-snmp package is installed and SNMP notifications are enabled, without requiring authentication or user interaction. Following successful exploitation, observed activity included",
       "content": "In this article Attack chain overview Mitigation and protection guidance References Learn More Microsoft Threat Intelligence identified and tracked exploitation of CVE-2026-73570 , an unauthenticated OS command injection vulnerability in the Zimbra Collaboration Suite SNMP notification path. Exploitation can be triggered by a specially crafted email against internet-facing Zimbra servers when the optional zimbra-snmp package is installed and SNMP notifications are enabled, without requiring authentication or user interaction. Following successful exploitation, observed activity included deployment of JSP web shells and reverse shells, privilege escalation, persistent remote-access tooling, and memory-backed execution. Threat actors also accessed email and collected authentication and mailbox data, with archive creation and subsequent transfer activity observed. The activity included both automated payload delivery and hands-on-keyboard operations on compromised mail servers. Microsoft observed affected organizations in more than one region and industry. Based on the environments investigated, exploitation was not limited to a single sector or geographic area. The diagram combines behaviors observed across multiple confirmed compromises; no single host necessarily exhibited every stage. From remediation to public disclosure CVE-2026-73570 is an unauthenticated OS command-injection vulnerability in the Zimbra Collaboration Suite SNMP notification path. An attacker can send a specially crafted SMTP request that introduces untrusted input into SNMP notification processing. If the input is not sufficiently sanitized, embedded shell commands can execute with the privileges of the zimbra service account. Exploitation requires the optional zimbra-snmp package to be installed and SNMP notifications to be enabled. Zimbra version 10.1.20, released July 20, 2026, contains the relevant remediation. CVE-2026-73570 was publicly disclosed on August 13, 2026. Microsoft telemetry identified activity targeting the same injection path during the interval between those events. Attack chain overview Figure 1. CVE-2026-73570 attack chain, mapped to MITRE ATT&CK tactics and composited across all confirmed compromises. Pre-disclosure reconnaissance and pre-exploitation probing Between July 28 and August 7, after a fix became available on July 20 but before public disclosure on August 13, Microsoft observed two distinct out-of-band scanning tools probing the vulnerable injection po",
       "iocs": [
@@ -1947,7 +2333,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-30T10:00:01Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as \u201cAntino\u201d in developer artifacts. Antino is a Rust-compi",
       "content": "Cisco Talos uncovered a cluster of activity we track as UAT-11587 targeting government and policy organizations across Asia, including in Taiwan, India, the Philippines, and Cambodia, to deliver a previously undocumented backdoor referred to as \u201cAntino\u201d in developer artifacts. Talos first observed UAT-11587 activity in September 2025. By July 2026, Talos had identified at least 16 affected or targeted institutional environments across eight Asian countries. Antino is a Rust-compiled Windows backdoor that supports host reconnaissance, shell and PowerShell execution, file transfer, in-memory shellcode loading and persistence. Its native command-and-control channel operates exclusively through Microsoft 365, using Microsoft Graph to interact with Outlook and OneDrive. Talos identified a recurring delivery branch that began with spear-phishing emails and tailored decoy documents, followed by a five-stage infection chain. The actor relied heavily on Cloudflare infrastructure for delivery, execution tracking, and payload staging. Based on the development, preparation-environment, and targeting indicators detailed in this report, Talos assesses with high confidence that UAT-11587 is China-nexus. Overview Talos first identified UAT-11587\u2019s campaign while investigating a spear-phishing campaign directed at Taiwan's academic, think tank, and civil society policy community in March 2026. The message recreated Gmail's attachment interface and directed the target into a cloud-hosted, multi-stage infection chain. Across this activity, our researchers assessed that the actor used several delivery methods, loader families, and post-compromise tools. One recurring final-stage payload was a custom Rust backdoor that Talos tracks as Antino. Antino communicates with Microsoft 365 applications and uses Outlook and OneDrive objects as dead drops, rather than depending on a conspicuous dedicated command server. Further investigation showed that the activity extended beyond the initial Taiwan operation. Talos subsequently identified confirmed or probable affected government and security environments across multiple Asian countries, alongside additional regional targeting supported by lure content. While this report was being prepared, Symantec published research on an activity set it tracks as Jewelbug . Talos identified overlaps between UAT-11587 and the Antino-related espionage activity attributed to Jewelbug. Although Symantec reported that Jewelbug conducted both espionage an",
       "iocs": [
@@ -2397,7 +2783,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-29T21:39:27Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Once executed, the legitimate MSP360 installer, distributed under a deceptive file name established remote management access on affected devices and enabled threat actors to gain an initial foothold using trusted administrative software. Microsoft did not observe exploitation of ScreenConnect softwa",
       "content": "In this article Attack chain overview Mitigation and protection guidance Learn More In July 2026, Microsoft Defender Experts observed phishing campaigns targeting organizations across multiple industries that distributed a masqueraded MSP360 Remote Monitoring and Management (RMM) installer through meeting invitations, PDF-themed lures, software update prompts, and other social-engineering content. Once executed, the legitimate MSP360 installer, distributed under a deceptive file name established remote management access on affected devices and enabled threat actors to gain an initial foothold using trusted administrative software. Microsoft observed the MSP360 deployment being used to download and install a ConnectWise ScreenConnect client, creating a secondary remote-access channel that provided redundant access to compromised systems. Microsoft did not observe exploitation of ScreenConnect software itself; rather, threat actors abused legitimately obtained remote administration software to establish and maintain access. After access was established, threat actors used these remote administration channels to deploy additional tools and conduct post-compromise activity, including information collection and credential-access operations. This activity highlights how threat actors continue to abuse legitimate remote administration software to blend into normal IT operations while maintaining persistent access and reducing detection opportunities. Microsoft Defender for Endpoint detects suspicious and uncommon remote-management activity, while the hunting queries and mitigations in this post can help organizations identify and restrict unapproved RMM use. Attack chain overview The observed multi-stage intrusion chain began when phishing lures delivered a legitimate, digitally signed MSP360 RMM v2.5.0.67 installer under deceptive filenames. Following successful User Account Control (UAC) elevation, the installer established MSP360 services for persistent access and leveraged the RMM agent to invoke PowerShell, download, and silently install ConnectWise ScreenConnect. This effectively introduced a second remote administration channel on the compromised device, which the threat actor subsequently used to transfer and execute additional tooling supporting credential access, local data collection, and other post-compromise activity. Figure 1. Attack chain showing phishing delivering a masqueraded MSP360 RMM installer that deploys ScreenConnect for persistent remote",
       "iocs": [
@@ -2589,7 +2975,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-29T16:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "In our latest Cyberattack Series report, we examine how the Microsoft Detection and Response Team (DART)\u2014the team that delivers Microsoft Defender Experts Cybersecurity Incident Response \u2014investigated activity by Storm-3068 , a threat actor that turned a successful self-service password reset into a",
       "content": "What began as a single compromised identity quickly expanded into an organization\u2019s development and cloud environments. In our latest Cyberattack Series report, we examine how the Microsoft Detection and Response Team (DART)\u2014the team that delivers Microsoft Defender Experts Cybersecurity Incident Response \u2014investigated activity by Storm-3068 , a threat actor that turned a successful self-service password reset into access to Azure DevOps, development pipelines, and Kubernetes resources. By leveraging legitimate identity and cloud services rather than malware or software exploits, the threat actor established persistent access, enumerated repositories, and obtained credentials that opened a path into connected cloud infrastructure. This case highlights a growing challenge for defenders: when identities, source code, pipelines, and production environments are tightly linked, a single account compromise can provide a pathway to much broader access across the organization. Read on to learn more or access the full report . Read the full cyberattack report What happened? The intrusion began with Storm-3068 gaining access to a user account through a self-service password reset process and then taking full control of the identity by registering its own authentication methods. With persistent access established, the threat actor shifted its focus to Azure DevOps using legitimate administrative tools and automated scripts to enumerate repositories, projects, pipelines, and deployment environments. TACTIC: Trusted pipelines were exploited Rather than deploying malware, the threat actor modified development pipelines to collect Kubernetes credentials and expand access into cloud infrastructure.\u200b\u200b Azure DevOps proved to be a high-value target because it sat at the intersection of identity, software development, and cloud operations. By mapping trusted deployment paths and connected resources, the threat actor was able to identify opportunities to expand beyond the initial compromise. The investigation revealed that Storm-3068 created a malicious pipeline designed to harvest Kubernetes credentials at scale. The pipeline deployed a kube agent and executed multiple jobs intended to collect kubeconfig files containing cluster connection details and authentication information. Leveraging the permissions of the compromised account, the threat actor deployed the pipeline that was authorized to access more than 50 resources and authenticated to services. In addition to deployi",
       "iocs": [],
@@ -2614,7 +3000,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-29T15:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "As part of this evolution, Star Blizzard adopted RedFlick, a malware delivery technique that helps evade detection by initiating a set of scheduled tasks to deploy the actor\u2019s custom backdoor, CosmicPulse. Combined with the actor\u2019s shift toward large-scale phishing operations during the same period,",
       "content": "In this article Star Blizzard TTPs observed in 2026 Defending against Star Blizzard and RedFlick-related activity Microsoft Defender detections Hunting queries Indicators of compromise Since January 2026, Microsoft has observed Russian state threat actor Star Blizzard evolve their detection evasion capabilities through large-scale phishing campaigns, the use of accounts on compromised websites, and a novel malware delivery technique that Microsoft tracks as \u201cRedFlick\u201d. These changes represent a notable shift in the actor\u2019s operational tradecraft and support ongoing cyberespionage activity targeting Ukrainian individuals and institutions as well as international non-government organizations (NGOs), Western think tanks, governments, and other organizations associated with international policy\u2014particularly those with a nexus in supporting Ukraine. As part of this evolution, Star Blizzard adopted RedFlick, a malware delivery technique that helps evade detection by initiating a set of scheduled tasks to deploy the actor\u2019s custom backdoor, CosmicPulse. This technique is a notable departure from the actor\u2019s previous use of ClickFix-based infection chains which required victims to complete multiple actions before CosmicPulse could be installed. By contrast, the RedFlick infection flow only requires a single user interaction, reducing friction in the compromise process. Combined with the actor\u2019s shift toward large-scale phishing operations during the same period, these changes likely improve Star Blizzard\u2019s ability to reach more targets, evade detection, and increase the likelihood of successful compromise. This blog provides updated technical analysis of Star Blizzard\u2019s tactics, techniques, and procedures (TTPs) observed throughout 2026, building on our 2025 and 2023 blogs. It details the actor\u2019s evolving phishing, persistence, and malware delivery techniques, and provides recommendations, indicators of compromise (IOCs), detections, and hunting guidance to help organizations identify and defend against RedFlick-related activity. As with any observed nation-state actor activity, Microsoft directly notifies customers that have been targeted or compromised, providing them with recommendations and mitigations to secure their accounts. Star Blizzard TTPs observed in 2026 Star Blizzard is attributed by the United States Cybersecurity and Infrastructure Agency (CISA) as subordinate to the Russian Federal Security Service Centre (FSB) Centre 18. Star Blizzard periodicall",
       "iocs": [
@@ -2778,7 +3164,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-29T10:00:48Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The post OperTraitors: How Kubernetes Operators Betray Your Security Posture appeared first on Unit 42 .",
       "content": "We introduce OperTraitor, a tool to audit privileges of Kubernetes operators, identify excessive RBAC risks, and secure non-human identities. The post OperTraitors: How Kubernetes Operators Betray Your Security Posture appeared first on Unit 42 .",
       "iocs": [],
@@ -2801,7 +3187,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-29T10:00:36Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Attackers are using greater sophistication to gain access to high-yield targets like executives, and company-wide security measures can easily miss these subtle, personal attacks. The executive vulnerability gap For a sophisticated threat actor, an executive is not only a high-ranking employee, but",
       "content": "Attackers are using greater sophistication to gain access to high-yield targets like executives, and company-wide security measures can easily miss these subtle, personal attacks. Executive Threat Detection offers protection for up to 10 principals, with monthly custom threat hunts and reports relevant to those principals\u2019 corporate systems. Proactive attention from incident response experts gives executives peace of mind by detecting and stopping long-term, stealthy adversary access. In our previous exploration of proactive threat hunting , Cisco Talos discussed how the modern security landscape requires a shift from \"waiting for the blinky light\" to actively searching for the quietest whispers of an adversary. Since then, the threat landscape has only become more personalized. Today, we are seeing a significant surge in whaling and highly targeted campaigns where the objective is the leadership team, not the average user. To meet this evolving challenge, Cisco Talos Incident Response (Talos IR) is proud to announce the launch of Executive Threat Detection (ETD) . This new proactive service joins our suite of retainer offerings, providing a dedicated, intelligence-led hunting cadence specifically for your organization\u2019s most high-value IT assets. The executive vulnerability gap For a sophisticated threat actor, an executive is not only a high-ranking employee, but also a high-yield target. Leadership accounts often hold the keys to the kingdom, possessing elevated access to sensitive financial data, intellectual property, and strategic roadmap communications. Furthermore, an executive\u2019s digital footprint often extends beyond the traditional corporate perimeter, making them a prime target for bespoke social engineering and advanced persistent threats (APTs). While enterprise-wide endpoint detection and response (EDR) is a critical foundation, it is often tuned for the average user profile. The subtle, low-and-slow techniques used to compromise a CEO or CFO can easily be lost in the noise of a 10,000-endpoint environment. ETD closes this gap by applying a magnifying glass to the systems that matter most. Introducing Executive Threat Detection ETD is a specialized, ongoing proactive service that provides monthly, human-led threat hunting and intelligence analysis. Unlike automated tools, ETD is powered by a dedicated team of Talos IR experts who become intimately familiar with your executive environment. Our goal is simple: to detect the compromise of execut",
       "iocs": [
@@ -2876,7 +3262,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-09-28T15:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Based on observed activity, NeedyMantis is typically deployed after a threat actor has already established access to a target environment, indicating that the malware is used to maintain long-term access and support follow-on operations. Observed activity involving NeedyMantis has thus far aligned w",
       "content": "In this article Observed operators and targeting Malware packaging and distribution NeedyMantis architecture and capabilities Mitigation and protection guidance Hunting queries Indicators of compromise Microsoft Threat Intelligence has identified NeedyMantis, a modular post-compromise malware family observed in a limited number of targeted operations affecting telecommunications organizations, universities, medical nonprofits, intergovernmental organizations, and government contractors. Based on observed activity, NeedyMantis is typically deployed after a threat actor has already established access to a target environment, indicating that the malware is used to maintain long-term access and support follow-on operations. NeedyMantis activity dates back to at least October 2025. We discovered the malware family while analyzing and pivoting from research and indicators of compromise associated with the DAEMON Tools supply chain compromise, which Kaspersky previously reported on as part of its investigation into the campaign. Observed activity involving NeedyMantis has thus far aligned with activity that Microsoft associates with threat actors operating from China, although Microsoft has not determined whether all observed activity is attributable to the same operator. While NeedyMantis employs techniques commonly used by modern malware, its architecture combines multiple loaders, custom encrypted file archives, a custom executable file format, and modular components that enable operators to evade analysis and extend functionality through additional modules. These characteristics, combined with its use in targeted intrusions, make NeedyMantis a useful case study for understanding how threat actors establish and maintain long-term access within victim environments. In this blog, we analyze the NeedyMantis malware framework. We examine its packaging and deployment, custom archive format, loader architecture, command-and-control (C2) communications, and modular design. We also provide indicators of compromise (IOCs), Microsoft Defender detections, and mitigation guidance to help organizations defend against this threat and related activity. Observed operators and targeting At the time of writing, Microsoft has observed at least one threat actor using NeedyMantis malware: Storm-3069. Storm-3069 is Microsoft Threat Intelligence\u2019s designator for activity associated with the DAEMON Tools supply chain compromise. While Microsoft assesses the activity originates from C",
       "iocs": [
@@ -2955,7 +3341,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-09-28T10:05:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On September 27, 2026, Citrix disclosed eight new vulnerabilities affecting NetScaler ADC and NetScaler Gateway, including two critical remote code execution (RCE) vulnerabilities: CVE-2026-88771 and CVE-2026-88772 . Both of these RCE vulnerabilities carry a critical CVSSv4 score of 9.5, an",
       "content": "Overview On September 27, 2026, Citrix disclosed eight new vulnerabilities affecting NetScaler ADC and NetScaler Gateway, including two critical remote code execution (RCE) vulnerabilities: CVE-2026-88771 and CVE-2026-88772 . Both of these RCE vulnerabilities carry a critical CVSSv4 score of 9.5, and both have been confirmed as being actively exploited in the wild as zero-days prior to the vendor disclosure . CVE-2026-88771 affects vulnerable NetScaler deployments in their default configuration, with no additional product features required. The vendor has also indicated that the attack complexity for exploiting CVE-2026-88771 is low, meaning reliable RCE is likely against all vulnerable NetScaler appliances regardless of their configuration. This is especially concerning due to the prevalence of NetScaler appliances. CVE-2026-88772 is a memory corruption vulnerability and requires the DTLS feature to be enabled on the appliance. The vendor has indicated that the attack complexity is high, meaning achieving reliable exploitation may be more difficult for an attacker than that of CVE-2026-88771. The U.S. Cybersecurity and Infrastructure Security Agency (CISA) reports active exploitation is occurring globally, and added both CVE-2026-88771 and CVE-2026-88772 to its Known Exploited Vulnerabilities (KEV) catalog on September 27, 2026. Multiple CERTs worldwide have begun issuing alerts due to the critical nature of this situation. On October 4, 2026, Citrix published an advisory for a new NetScaler vulnerability, CVE-2026-88779. This new vulnerability was disclosed as being exploited in-the-wild as a zero-day prior to disclosure, and was added to CISA KEV the same day. CVE-2026-88779 affects NetScaler appliances that have a SAML service provider (SP) or identity provider (IdP) configured. Attackers can send repeated attempts, where each attempt will crash the SAML service, and upon the sixth crash the appliance will reboot. The following table summarizes all nine vulnerabilities: CVE CVSSv4 Vulnerability Exploitation confirmed CVE-2026-88771 9.5 (Critical) Improper input validation leading to RCE in a default configuration (CWE-20) Yes ( CISA ) CVE-2026-88772 9.5 (Critical) Memory overflow leading to RCE in a DTLS configuration (CWE-119) Yes ( CISA ) CVE-2026-88773 9.3 (Critical) HTTP request smuggling (CWE-444) No CVE-2026-88774 7.0 (High) Policy bypass involving URL expressions (CWE-16) No CVE-2026-88775 8.8 (High) Memory overflow in Gateway or AAA configurati",
       "iocs": [
@@ -3024,7 +3410,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-25T23:00:28Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Unit 42 security experts address critical cybersecurity misconceptions, offering practical insights to help your organization reinforce its enterprise defenses. The post 3 Consulting Myths Debunked by Unit 42 Experts appeared first on Unit 42 .",
       "content": "Unit 42 security experts address critical cybersecurity misconceptions, offering practical insights to help your organization reinforce its enterprise defenses. The post 3 Consulting Myths Debunked by Unit 42 Experts appeared first on Unit 42 .",
       "iocs": [],
@@ -3112,7 +3498,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-25T14:38:05Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -3135,7 +3521,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-24T18:00:37Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Every practitioner carries the implicit trust not to abuse privileged access or knowledge of vulnerabilities in each employment or engagement. This trust is valued by those who require our services, but also by threat actors. Clumsy phishing attacks may be easy to identify, but be wary of unsolicite",
       "content": "Welcome to this week\u2019s edition of the Threat Source newsletter. In the cybersecurity industry, trust is the invisible currency. Every practitioner carries the implicit trust not to abuse privileged access or knowledge of vulnerabilities in each employment or engagement. This trust is valued by those who require our services, but also by threat actors. Clumsy phishing attacks may be easy to identify, but be wary of unsolicited messages on social media, especially if someone is offering payment for a simple service or suggests a lucrative job offer. These might be an enticement to unknowingly sell your professional integrity. When an unknown profile contacted me offering $300 for an hour\u2019s telephone consultation on digital transformation, I knew something was up. Firstly, the profile was remarkably sparse \u2014 there was none of the usual clutter that accumulates in a social media profile. The individual claimed to work as a consultant, but their employer had no footprint and only one employee. The profile didn\u2019t pass the \u201csmell\u201d test, and it looked fake. Secondly, although I\u2019m flattered, I doubt my opinions on digital transformation are worth $300. The figure is low enough to be plausible and high enough to be tempting, but at the same time suspiciously high for an initial consultation without prior qualification. The attack itself is a confidence trick. The initial phone consultation is merely a screening process to see if the target has the access or knowledge the attacker needs. If the target passes muster, the next step is commissioning a written report, and then being asked to deliver a \"special report.\" Plied with professional praise, the target is asked to provide insights that aren't in the public domain. To deliver the report and claim their fee, the target must reach out to co-workers, probe internal systems, or abuse professional relationships. Completing the assignment requires the target to abuse their trusted access and professional relationships and friendships. In the process, they burn trust worth far more than any monetary compensation. This social engineering attempt masquerading as an offer of consultancy is one variant. Fake recruiters offering prestigious and well-paid jobs, requiring candidates to install trojanised software under some pretence, is another. Security professionals spend their days protecting others, yet flattery and overconfidence often remain our greatest vulnerabilities. We are prone to believe that we could identify any",
       "iocs": [
@@ -3311,7 +3697,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-24T13:00:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Threat actors breach a mailbox, silently monitor operations, map approval chains, and ultimately exploit that access to divert funds or exfiltrate sensitive assets. CISA keeps putting Zimbra bugs into the Known Exploited Vulnerabilities catalog , and the last three years make the point on their own:",
       "content": "Business Email Compromise (BEC) operates on a familiar playbook. Threat actors breach a mailbox, silently monitor operations, map approval chains, and ultimately exploit that access to divert funds or exfiltrate sensitive assets. This dynamic is central to our analysis as we kick off a series around Rapid7's collaborative research with Zimbra; upcoming installments will explore technical details and broader findings based within the Zimbra Collaboration Suite. Our investigation disrupted the traditional BEC model in unexpected ways. We uncovered over 50 vulnerabilities, and found that several allow attackers not just to observe environments, but to actively rewrite them by impersonating senders without credentials, controlling inbox visibility, and altering shared documents and calendars. Business Email Compromise in action: Digital abuse of trust None of this is theoretical for Zimbra. But don\u2019t take my word for it, just ask Russia . CISA keeps putting Zimbra bugs into the Known Exploited Vulnerabilities catalog , and the last three years make the point on their own: CVE-2024-45519 , command injection in the postjournal service, unauthenticated command execution. Proofpoint saw attackers stuffing base64 payloads into CC fields on September 28, 2024. CISA added it to KEV on October 3. CVE-2025-27915 , stored XSS in the Classic Web Client, triggered by a crafted .ICS attachment. It is used as a zero-day against Brazilian military targets to steal mail and quietly set forwarding filters. It went into KEV in October, 2025. CVE-2026-73570 , unauthenticated command injection through SNMP notification handling. CISA added it on August 21 of this year and gave federal agencies three days. Shadowserver has been counting somewhere north of 260 compromised instances while hunting for exploitation artifacts. Go back further and the pattern holds. Rapid7 tracked widespread exploitation of CVE-2022-27925 and CVE-2022-37042 in 2022, a path traversal chained with an authentication bypass that let attackers drop a JSP shell on a Zimbra server without credentials. Google's Threat Analysis Group later documented four separate threat groups working the same zero-day known as CVE-2023-37580. Each of these groups went after email, credentials, and authentication tokens. Attackers figured out a long time ago that the system sitting in the middle of everyone's communication is worth the effort. So when you find a set of bugs that let you write to that system instead of only read",
       "iocs": [
@@ -3350,7 +3736,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-23T13:49:39Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Security teams already have long queues of potential application vulnerabilities. Dynamic application security testing (DAST) helps answer those questions by testing applications as an attacker encounters them. Validation helps narrow the field by showing which exposures can be reached or exploited",
       "content": "Security teams already have long queues of potential application vulnerabilities. The useful question is what happens next: can they see how a weakness behaves in a running application, reproduce the attack, and give developers enough evidence to fix it? Dynamic application security testing (DAST) helps answer those questions by testing applications as an attacker encounters them. The IDC MarketScape: Worldwide Dynamic Application Security Testing 2026 Vendor Assessment (Doc #US54119126, September 2026). The IDC MarketScape evaluated 16 vendors and named Rapid7 a Leader. We believe the result reflects the strength of Rapid7\u2019s DAST capabilities, but the IDC MarketScape also offers a useful view of where the category is heading. DAST has developed beyond traditional web scanning into a source of runtime evidence that can help organizations validate risk across the application layer. From possible weakness to validated application risk Code analysis and dependency scanning help teams identify weaknesses before an application is deployed. DAST provides a different view by interacting with the assembled application while it is running. It can show what happens when a particular request reaches the application, how the application responds, and whether a suspected weakness can be reproduced. This is especially valuable for APIs and AI-backed applications, where risk may emerge through interactions among models, prompts, data, tools, and permissions. Some of these behaviors cannot be fully understood from source code or a dependency manifest. They become visible when the application is exercised under runtime conditions. DAST therefore has a direct role in continuous threat exposure management (CTEM). Discovery gives teams a view of their assets and possible weaknesses, but that view alone does not tell them where to focus. Validation helps narrow the field by showing which exposures can be reached or exploited and providing evidence that teams can use to take action. For Rapid7, DAST is exposure management applied to the application layer. Web applications, APIs, and AI-backed endpoints are all part of the attack surface, so they need to be discovered, tested, prioritized, and managed alongside infrastructure, cloud, and other exposures. Why we believe Rapid7 was named a Leader by IDC Rapid7\u2019s DAST solution is delivered as part of the Exposure Command portfolio. Its scan engine maps an application, executes attacks against the discovered paths, and validates con",
       "iocs": [],
@@ -3371,7 +3757,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-09-23T08:43:39Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On September 22, 2026, F5 published a security advisory for CVE-2026-94127 , a critical heap-based buffer overflow vulnerability affecting F5 BIG-IP Access Policy Manager (APM). The vulnerability has a CVSS v3.1 score of 9.8. An unauthenticated attacker with network access to an affected vi",
       "content": "Overview On September 22, 2026, F5 published a security advisory for CVE-2026-94127 , a critical heap-based buffer overflow vulnerability affecting F5 BIG-IP Access Policy Manager (APM). The vulnerability has a CVSS v3.1 score of 9.8. An unauthenticated attacker with network access to an affected virtual server may be able to achieve remote code execution (RCE) by sending specifically crafted traffic. BIG-IP APM provides identity-aware access control for applications and other corporate resources and can integrate with authentication technologies including OAuth, OpenID Connect, and SAML. CVE-2026-94127 is not exposed in a default configuration: exploitation requires a BIG-IP virtual server with both an APM access policy and an OAuth profile configured. Because affected BIG-IP systems may process traffic at an organization's network edge, organizations using this configuration should prioritize remediation. The vulnerability affects the data plane and does not expose the BIG-IP control plane. BIG-IP systems operating in Appliance mode are also affected. F5 lists the following affected release trains and corresponding fixed hotfixes: BIG-IP 21.1.0: versions prior to Hotfix-BIGIP-21.1.0.2.0.30.22-ENG BIG-IP 17.5.0: versions prior to Hotfix-BIGIP-17.5.1.9.0.160.12-ENG BIG-IP 17.1.0: versions prior to Hotfix-BIGIP-17.1.3.5.0.41.14-ENG As of September 22, 2026, CVE-2026-94127 has been added to the CISA KEV while a publicly available proof of concept was not confirmed. Mitigation guidance Organizations running affected F5 BIG-IP deployments should apply the appropriate F5 hotfix as soon as operationally feasible, particularly where a vulnerable APM and OAuth configuration is reachable from untrusted networks. F5 lists the following remediation versions: BIG-IP 21.1.0: update to Hotfix-BIGIP-21.1.0.2.0.30.22-ENG or later. BIG-IP 17.5.0: update to Hotfix-BIGIP-17.5.1.9.0.160.12-ENG or later. BIG-IP 17.1.0: update to Hotfix-BIGIP-17.1.3.5.0.41.14-ENG or later. Administrators should first determine whether a BIG-IP APM access policy and an OAuth profile are configured together on a virtual server, since this configuration is required for exposure. For organizations that cannot immediately apply the applicable update, F5 provides an iRule workaround through F5 Support. Customers should open a support case with F5 to obtain the vendor-provided workaround and follow F5's implementation guidance. Rapid7 customers Exposure Command, Vulnerability Management, and Nexpose E",
       "iocs": [
@@ -3407,7 +3793,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-22T10:00:58Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "CLOSEDQUORUM, a malware binary discovered through Cisco Talos\u2019 CAIRN project , exhibits fully autonomous command and control (C2). This malware is a useful reference example of how attackers can collapse the decision space of a particular attack phase into a constrained set of choices, allowing AI m",
       "content": "CLOSEDQUORUM, a malware binary discovered through Cisco Talos\u2019 CAIRN project , exhibits fully autonomous command and control (C2). While we do not have confirmation of in-the-wild deployment, artifacts from the binary were used to connect the developer to postings on criminal forums related to carding, dating back to 2025. This malware is a useful reference example of how attackers can collapse the decision space of a particular attack phase into a constrained set of choices, allowing AI models to provide reasoning and act independently. CLOSEDQUORUM represents a shift in effort displacement for attackers, in which expanding portions of the attack chain can be executed without operator involvement. AI\u2019s impact on offensive cyber operations has thus far mainly focused on two dimensions: speed and scale . Attackers can generate phishing lures faster and produce more malicious code variants with less effort. These are real effects, visible in the proliferation of AI-generated coding samples and agent-assisted intrusions that have become common in the past few years. But in each case, the human operator remains present: directing the tooling, selecting targets, and guiding the execution. AI makes the operator faster and more productive but does not remove them from the operation. A third dimension has received less attention in the malware space: effort displacement. This is not merely augmenting what an operator can accomplish in a session but transferring an entire phase of the attack from the operator to the system. Effort displacement compounds the effects of speed and scale because the human-in-the-loop is no longer the bottleneck. Human operators are bound by attention, working hours, and cognitive load. An AI system capable of executing a phase of the attack chain can continue when the operator is no longer watching. It does not go offline when the attacker sleeps. Today Cisco Talos released CAIRN , our open-source research toolkit for tracking AI-integrated malware. This is the first in a series of posts sharing what we've found. While the threat class of CAIRN findings may span from experimental proof-of-concept to sophisticated active campaigns, the nature of the threat is aside from the focus: actively studying this frontier provides actionable insights to offset how threat actors are operationalizing AI. Introducing CLOSEDQUORUM CLOSEDQUORUM is, to our knowledge, the first publicly documented Windows implant to apply this model to tactical command ",
       "iocs": [
@@ -3482,7 +3868,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-22T10:00:25Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Attackers building AI-integrated malware unintentionally (and inevitably) leave behind markers of their own: prompt templates, provider endpoints, API keys, jailbreak terms, and other artifacts embedded throughout their tooling. When we consider these strings as cognitive artifacts , or vestiges lef",
       "content": "A cairn is a marker left behind on a trail, a deliberately placed stack of stones that helps hikers find their way when the path is unclear. Attackers building AI-integrated malware unintentionally (and inevitably) leave behind markers of their own: prompt templates, provider endpoints, API keys, jailbreak terms, and other artifacts embedded throughout their tooling. When we consider these strings as cognitive artifacts , or vestiges left behind from AI integration, we can enable a new, metadata-first hunting methodology for AI-integrated malware that is fast and scalable. These artifacts can be extracted, related, and classified without ever touching the underlying binary. Today, Cisco Talos is releasing this methodology in the form of CAIRN (Cognitive Artifact Intelligence Research Network), a research toolkit for hunting, classifying, and tracking emerging AI-integrated malware. Over time, we will share the full contents of our initial findings, starting today with CLOSEDQUORUM . Figure 1. CAIRN explorer connects malware binaries by metadata attributes like submitter, import hash, domain or AI provider. Run cairn explorer to launch the graph. CAIRN contains functionality for identifying AI-integrated malware; in our definition, that is malware that functionally operationalizes, explicitly targets, or exploits AI systems and their ecosystems \u2014 spanning functional integration into attack chains, credential and infrastructure compromise, and ecosystem-level abuse. These binaries are classified based on pre-defined AI-usage archetypes, and reporting findings in a structured way. CAIRN has an explorer layer, which creates a structured graph of cognitive artifact relationships to help defenders identify related malware families, infrastructure, and threat actors. Figure 2. The CAIRN processing pipeline extracts AI-integration artifacts from metadata, classifies and constructs unique representations for all samples, and clusters and graphs the sample relationships. Metadata-first architecture CAIRN operates entirely from metadata \u2014 no binary downloads or execution required. It combines rule-based detection, semantic clustering, and relationship graph traversal to identify AI-integrated malware through cognitive artifacts such as embedded prompts, provider endpoints, orchestration logic, API key prefixes, and AI-analysis evasion strings. CAIRN discovers candidate samples through up to 24 acquisition filters, each targeting a different type of AI-related artifac",
       "iocs": [
@@ -3526,7 +3912,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-21T10:00:13Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The post From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies appeared first on Unit 42 .",
       "content": "We explore how AWS neutralizes exposed IAM credentials using managed policies, detailing GitHub secret scanning and CloudTrail monitoring strategies. The post From Exposure to Lockdown: How AWS Neutralizes Compromised IAM Credentials through Managed Policies appeared first on Unit 42 .",
       "iocs": [],
@@ -3549,7 +3935,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-18T10:00:36Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Analysis of how default configurations in AWS AgentCore Harness allow prompt injection to exfiltrate credentials, and key steps to secure your agents.",
       "content": "Analysis of how default configurations in AWS AgentCore Harness allow prompt injection to exfiltrate credentials, and key steps to secure your agents. The post A Vault with a Heap-View: The Uncomfortable Space Between AgentCore Harness and Identity appeared first on Unit 42 .",
       "iocs": [],
@@ -3572,7 +3958,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-17T22:00:33Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Cross-environment attacks demand a new approach to security operations. Learn how Unit 42 Managed XSIAM helps SOC teams investigate complete attack paths. The post Inside the Modern SOC: Defending the Cross-Environment Pivot appeared first on Unit 42 .",
       "content": "Cross-environment attacks demand a new approach to security operations. Learn how Unit 42 Managed XSIAM helps SOC teams investigate complete attack paths. The post Inside the Modern SOC: Defending the Cross-Environment Pivot appeared first on Unit 42 .",
       "iocs": [],
@@ -3595,7 +3981,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-17T18:00:23Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "On the offensive side, practically every recent model is already able to mine decades of tech debt to uncover an uncomfortable number of vulnerabilities. The one big thing Cisco Talos is sharing new insights into Japan's ransomware landscape, where incidents rose nearly 5 percent in the first half o",
       "content": "Welcome to this week\u2019s edition of the Threat Source newsletter. There\u2019s been a lot of talk recently about slowing down the pace of AI development . And yes, there are legitimate moral, ethical, geopolitical, and safety concerns with the use of AI. It\u2019s not clear yet whether an AI slowdown could happen, let alone whether it should ( hat tip to Dr. Ian Malcolm ). I admit, I\u2019m not really qualified to opine on the impacts unrestricted AI might have on bioterrorism, the balance of international power, or even our chances of being eaten by dinosaurs. What I can tell you, though, is that any sort of \u201cAI slowdown\u201d is not likely to have much of an impact on cybersecurity. There are a few reasons to think this. The most obvious one is that models are already really good . We\u2019re at the point where the newest models bring only incremental improvements in cybersecurity capabilities. Arguably, they\u2019ve been getting better so fast that our ability to use them effectively for defensive tasks hasn\u2019t kept up. On the offensive side, practically every recent model is already able to mine decades of tech debt to uncover an uncomfortable number of vulnerabilities. Instead of chasing model improvements, our best strategy might be to improve our agentic harnesses and frameworks, essentially giving us better capabilities with our existing models. Maybe even more importantly, many of us are still not eating our cyber-vegetables . I get it: AI is hot. It\u2019s sexy. It brings the money and the board\u2019s attention. But no matter how great your AI is, if it\u2019s sitting on the typical two-and-a-half-legged stool that is most IT environments, you\u2019re still going to have compromises and breaches no matter how much AI you throw at it. We\u2019ve known for a long time now that good security depends on things like asset and role inventories, identity management, least privilege, and segmented networks. They\u2019re not as shiny as AI, but they\u2019re more impactful in terms of making it harder for threats both human and agentic to successfully carry out attacks. This is not to say that you shouldn\u2019t be looking at AI until you\u2019ve solved all your other security problems; just don\u2019t look only to AI. Regardless of whether we slow the pace of AI development or not, we still have plenty of places to make significant security improvements using the models we already have access to. By making better use of what we already have and by investing in well-known security fundamentals, we can come out ahead no matter whether AI",
       "iocs": [
@@ -3733,7 +4119,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-17T10:00:43Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Compared with the same period last year, ransomware incidents in Japan increased slightly by approximately 4.7%, indicating that ransomware continues to pose a significant threat. In Japan, The Gentlemen was the most active ransomware group in the first half of 2026. Attackers continue to primarily",
       "content": "Compared with the same period last year, ransomware incidents in Japan increased slightly by approximately 4.7%, indicating that ransomware continues to pose a significant threat. In Japan, The Gentlemen was the most active ransomware group in the first half of 2026. Attackers continue to primarily target small- and medium-sized enterprises, with organizations capitalized at less than JPY 1 billion accounting for approximately 80% of the total \u2014 an increase of around 13% from the previous year. The total number of listings on The Gentlemen\u2019s leak site increased from 48 in January to 105 in July, representing approximately a 2.2-fold increase in activity. Additionally, there is a possibility that Russian-speaking individuals are involved in The Gentlemen\u2019s attacks. Qilin, which recorded the second-highest number of observed incidents in 2026 after The Gentlemen, is leveraging AI to improve the efficiency of its operations. Victimized companies Figure 1 summarizes ransomware incidents affecting Japanese companies from January to July 2026. According to Cisco Talos research, 90 organizations in Japan were affected by ransomware during this period. Compared with 86 incidents during the same period from January to July last year, this represents a slight increase of approximately 4.7%, indicating that ransomware incidents continue to remain at a high level. On a monthly basis, there were approximately 13 incidents per month on average. The number of incidents increased in March and April, with April recording the highest number during the period at 19 incidents. Cases involving overseas offices and subsidiaries accounted for 13.3% of the total. Among these, Taiwan recorded the highest number of incidents, followed by the United States and the Philippines, which recorded the same number of incidents, with multiple cases identified in each country. Figure 1. Ransomware incidents in Japan during the first half of 2026 (January through July). The manufacturing sector continued to be the most affected industry, accounting for 34% of incidents, followed by the information and communications sector at 11% and the services sector at 9% (see Figure 2). Figure 2. Percentage of victim organizations by industry. In terms of the size of the affected organizations, those with capital of less than JPY 100 million accounted for the largest share at 48%, followed by organizations with capital of JPY 100 million to less than JPY 1 billion at 30%. Combined, organizations with cap",
       "iocs": [],
@@ -3763,7 +4149,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-16T10:00:36Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "AI is accelerating vulnerability discovery, leaving unpatchable operational technology (OT) systems at risk. Hoping for the best is not a viable anti-exploitation strategy. Deploying next-generation firewalls directly upstream allows for virtual patching through deep packet inspection.",
       "content": "AI is accelerating vulnerability discovery, leaving unpatchable operational technology (OT) systems at risk. Hoping for the best is not a viable anti-exploitation strategy. Deploying next-generation firewalls directly upstream allows for virtual patching through deep packet inspection. These systems scan incoming traffic to detect and block exploit attempts before they can impact the vulnerable device. The predictability of legitimate network connections to OT systems can be used to protect systems through micro-segmentation. This ensures that only a handful of authorized devices can communicate with the system, minimizing the attack surface. AI-assisted code analysis is uncovering decades of technical debt. Every new patch removes a newly identified coding mistake. Little by little, we are improving the state of software engineering, but the price is a cadence of patching that organizations may struggle to implement. These efforts leave unsupported systems, or systems that are not able to be patched for whatever reason, with unmitigated known vulnerabilities. How can such systems be secured in a world where AI is steadily improving its ability to identify new vulnerabilities? Operational technology (OT) systems provide the services that support modern life (e.g., medical equipment, building management systems, and industrial critical systems within chemical plants). Often the systems are certified to operate only with a defined set of software that cannot easily be altered, or operate using systems that are no longer supported. In either case, if a vulnerability is discovered that affects the system, there is no easy way for it to be patched. Ignoring the problem and hoping for the best is rarely an effective strategy. The U.K.\u2019s NHS health system was significantly affected by the WannaCry worm in 2017, with a significant minority of systems running the end-of-life operating system Windows XP contributing to the problem. More recently, exploitation of end-of-life software was used to gain access to governmental systems in 2023. Even systems that are believed to run on a bespoke platform will almost certainly include common libraries and protocols in which vulnerabilities may be found. Vulnerable systems that are not publicly exposed can still be identified by threat actors who gain access to internal networks and pose a tempting target. Defending by predictability Applying the approved patch remains the best option. If this is not possible, we can use the",
       "iocs": [],
@@ -3785,7 +4171,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-16T10:00:06Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Modern macOS malware uses deceptive setup guides to steal credentials and sensitive user data.",
       "content": "Modern macOS malware uses deceptive setup guides to steal credentials and sensitive user data. Learn how to identify and block these threats. The post Atomic macOS (AMOS) Stealer Activity appeared first on Unit 42 .",
       "iocs": [],
@@ -3808,7 +4194,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "cisco",
       "published": "2026-09-15T12:22:50Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On September 14, 2026, Cisco published a security advisory for CVE-2026-76461 , a critical SQL injection vulnerability affecting Cisco AsyncOS Software for Cisco Secure Email Gateway. The vulnerability has a reported CVSS v3.1 base score of 9.8 and could allow an unauthenticated, remote att",
       "content": "Overview On September 14, 2026, Cisco published a security advisory for CVE-2026-76461 , a critical SQL injection vulnerability affecting Cisco AsyncOS Software for Cisco Secure Email Gateway. The vulnerability has a reported CVSS v3.1 base score of 9.8 and could allow an unauthenticated, remote attacker to execute arbitrary commands with root privileges on an affected appliance. Cisco Secure Email Gateway, formerly known as IronPort Email Security Appliance, is an enterprise email security product that inspects inbound and outbound email for threats including phishing, malware, spam, and business email compromise. Because affected gateways process externally delivered email as part of their normal operation, exploitation does not require access to an administrative interface or authentication. An attacker can reportedly trigger the vulnerability by sending a specially crafted email through a vulnerable gateway. CVE-2026-76461 was added to CISA's Known Exploited Vulnerabilities ( KEV ) catalog on the same day as the vendor disclosed the vulnerability, indicating that CVE-2026-76461 was exploited as a zero-day prior to disclosure. Cisco noted that their PSIRT became aware of active exploitation in September 2026. At the time of publication, there is no public proof-of-concept exploit code available, and no attribution for the current threat actor activity. Mitigation guidance Organizations running Cisco Secure Email Gateway should prioritize upgrading to a vendor-supplied fixed version on an emergency basis, outside of normal patching cycles. Affected Version Fixed Version 15.5 and earlier 15.5.5-014 16.0 16.0.4-302 16.5 16.5.0-780 Given the reported active exploitation and the ability to achieve unauthenticated root-level command execution through malicious email processing, organizations should prioritize patching rather than relying solely on network controls or monitoring. Cisco also strongly recommends that customers migrate to the latest product version, 16.5.0-780. For the latest remediation guidance, see the vendor advisory . Indicators of compromise The following indicators of compromise for CVE-2026-76461 were reported within the Cisco security advisory . To confirm any attempted exploitation of this vulnerability, review the mail_logs and look for suspicious SQL statements. If the device is part of a cluster, review the logs of each cluster device. The following is a non-exhaustive example of how a malicious SQL statement could be detected in the",
       "iocs": [],
@@ -3835,7 +4221,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-14T14:51:07Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Most MDR services react after an attacker has already broken in. Rapid7 designed its service to anticipate where attackers are likely to succeed and disrupt them earlier.",
       "content": "The managed detection and response (MDR) market has reached a turning point. We\u2019ve gone beyond the baseline of 24/7 monitoring focusing on the speed of detection and moved to a world with a convergence of exposure management and response to deliver measurable, outcome-based defenses of a larger, AI-driven attack surface. For anyone evaluating MDR right now, the Managed Detection and Response Services Landscape, Q3 2026 report by Forrester is a useful map that lays out where the market is heading. This is a market that has moved beyond \"do you cover my telemetry?\" to \u201cCan a provider connect and prove that its activity is tied to real reduction in risk?\u201d. Rapid7 was named among the notable providers in this Forrester MDR Landscape. Being included matters to us, but the more interesting story is in what Forrester says about the market itself. Detection and exposure are becoming one service One of the report's clearest signals is directional: Forrester writes that \"MDR services will converge with exposure and posture improvement.\u201d That convergence is the whole basis of Rapid7 MDR and our Command Platform strategy. Most MDR services react after an attacker has already broken in. Rapid7 designed its service to anticipate where attackers are likely to succeed and disrupt them earlier. We combine exposure context, detection, and response into a single operational loop, where vulnerability findings and asset risk scoring flow directly into alerts and investigations. This means analysts can cut noise and focus response on the exposures most likely to cause business impact. It's what we mean by exposure-informed, Preemptive MDR : The same context that tells you where you're weak is the context that sharpens how you detect and respond. For buyers, the practical implication is that old procurement habits are changing. Buyers used to invest in detection from one vendor, exposure management from another, and then hope the two solutions would seamlessly talk to each other. That approach is now turning into a liability. The market will reward providers that connect these additions to measurable risk reduction rather than bolting on loosely joined SKUs. That's a bar customers should hold every provider to, including Rapid7. \"Make providers prove the investigation, rather than narrate the dashboard\" The second theme is about accountability. In its guidance on working with providers, Forrester is blunt: Buyers should \"make providers prove the investigation, rather than narrat",
       "iocs": [
@@ -3862,7 +4248,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-09-14T10:02:57Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview On September 10, 2026, GitLab published a critical patch release for GitLab Community Edition (CE) and Enterprise Edition (EE). The release addresses CVE-2026-85706 , a critical path traversal vulnerability ( CWE-22 ) in the repository commits API with a CVSSv3.1 score of 10.0 . On Septembe",
       "content": "Overview On September 10, 2026, GitLab published a critical patch release for GitLab Community Edition (CE) and Enterprise Edition (EE). The release addresses CVE-2026-85706 , a critical path traversal vulnerability ( CWE-22 ) in the repository commits API with a CVSSv3.1 score of 10.0 . According to GitLab, improper path confinement and missing authentication enforcement could allow an unauthenticated user to read arbitrary files from an affected GitLab server under certain conditions. On September 11, 2026, CVE-2026-85706 was added to the U.S. Cybersecurity and Infrastructure Security Agency's (CISA) Known Exploited Vulnerabilities (KEV) catalog, based on evidence of active exploitation. CISA set a remediation due date of September 14, 2026, for affected Federal Civilian Executive Branch agencies and marked the vulnerability as subject to forensic triage requirements under Binding Operational Directive 26-04. Organizations running affected self-managed GitLab instances should remediate CVE-2026-85706 on an emergency basis, outside of normal patch cycles. Mitigation guidance A vendor-supplied update is available to remediate CVE-2026-85706. Organizations running affected self-managed GitLab CE or EE instances should upgrade to a fixed version immediately. Affected GitLab CE/EE versions Fixed version All versions from 18.7 before 19.1.8 19.1.8 All versions from 19.2 before 19.2.6 19.2.6 All versions from 19.3 before 19.3.2 19.3.2 GitLab.com is already running a patched version, and GitLab Dedicated customers do not need to take action. Per GitLab, all self-managed deployment types are affected, including Omnibus, source code, and Helm chart deployments. The updates include database migrations. Single-node installations will experience downtime while the migrations run; multi-node deployments can use GitLab's zero-downtime upgrade procedure. Of the fixed releases, only 19.3.2 includes post-deployment migrations. The patch release also addresses 17 other vulnerabilities. These include CVE-2026-87719 , a critical insecure deserialization vulnerability ( CWE-502 ) in GitLab EE with a CVSSv3.1 score of 9.9 . GitLab states that, under certain conditions, an authenticated user with Duo Chat access could obtain Advanced Search instance configurations and sensitive credentials using a specially crafted GraphQL subscription argument. At the time of publication, only CVE-2026-85706 is known to be exploited in the wild. Given the confirmed exploitation, Rapid7 strongl",
       "iocs": [
@@ -3897,7 +4283,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-14T10:00:01Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The post Unmasking Cloud Identities: From Behavioral Clustering to Automated Detection appeared first on Unit 42 .",
       "content": "We designed a behavioral clustering model to map cloud identity roles from audit logs, enabling continuous threat detection using standard SQL queries. The post Unmasking Cloud Identities: From Behavioral Clustering to Automated Detection appeared first on Unit 42 .",
       "iocs": [],
@@ -3920,7 +4306,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "cisco",
       "published": "2026-09-11T13:35:11Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Another banger from Metasploit with sixteen new modules, including ten exploit modules, with five on the CISA KEV list. Cisco, Papercut, Sonicwall, Jetbrains, and Langflow all have exploit modules, and not to be outdone, we even have a Metasploit scanner to watch the watchers! New module content (16",
       "content": "This One Goes to Sixteen! Another banger from Metasploit with sixteen new modules, including ten exploit modules, with five on the CISA KEV list. Cisco, Papercut, Sonicwall, Jetbrains, and Langflow all have exploit modules, and not to be outdone, we even have a Metasploit scanner to watch the watchers! New module content (16) Elasticsearch ingest-attachment Apache Tika XFA XXE Local File Read Authors: Bourbon Offensive Security Services and Jean-Marie Bourbon Type: Auxiliary Pull request: #21739 contributed by kmkz Path: scanner/http/elasticsearch_tika_xfa_xxe CVE reference: CVE-2025-66516 Description: Adds an auxiliary scanner module for CVE-2025-54988/CVE-2025-66516. The module validates an XML External Entity (XXE) vulnerability in Apache Tika's XFA parser exposed through the Elasticsearch attachment ingest processor. SPIP Unauthenticated Blind SQLi via Date Field Escaping Bypass Authors: Benoit Hua, Franck Chevalier, Julien Voisin, and ka3n1x Type: Auxiliary Pull request: #21791 contributed by jvoisin Path: scanner/http/spip_annee_sqli Description: Adds modules/auxiliary/scanner/http/spip_annee_sqli.rb which exploits a blind SQL injection in SPIP's date column escaping logic. Metasploit Payload Handler Detection (TCP/UDP/HTTP/HTTPS) Author: h00die Type: Auxiliary Pull request: #21551 contributed by h00die Path: scanner/msf/handler_detect Description: Adds a scanner module to enumerate ports on a host and determine if they're a Metasploit Reverse Handler or not, and if they are, what kind of shell they were going to land. ESC8 Relay: SMB to HTTP(S) via Kerberos Author: Pushpender Rathore Type: Auxiliary Pull request: #21709 contributed by Pushpenderrathore Path: server/relay/esc8_kerberos CVE reference: CVE-2026-20929 Description: This introduces native Kerberos authentication relay capabilities to the framework's relay stack. It includes a new auxiliary module (esc8_kerberos) that exploits CVE-2026-20929 by targeting AD CS Web Enrollment (ESC8). The module captures an SMB2 AP-REQ from a coerced client and seamlessly replays the authentication to the target certificate server over HTTP. This chain ultimately allows an attacker to issue a certificate for the coerced victim and obtain a valid Kerberos TGT without requiring their credentials. Linux x64 Sandbox Environment Gate Author: Massimo Bertocchi Type: Evasion Pull request: #21642 contributed by litemars Path: linux/x64/sandbox_gate Description: Adds a Linux x64 sandbox\u2011evasion module that performs l",
       "iocs": [
@@ -3970,7 +4356,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "windows",
       "published": "2026-09-11T13:33:33Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Introduction The surge in emerging threat actors directly correlates with the rapid escalation of victim counts and stolen financial resources. The recent introduction of a new Fraud framework by the MITRE organization underscores the critical need to combat fraud and highlights the significant dang",
       "content": "Introduction The surge in emerging threat actors directly correlates with the rapid escalation of victim counts and stolen financial resources. Simultaneously, this growth has spurred the proliferation of specialized supply storefronts across social media platforms, dark web channels, and various smaller niche marketplaces. Security teams today face evolving challenges, requiring them to continuously refine monitoring channels, adjust operational strategies, and foster cross-functional internal collaboration to capture actionable intelligence. With fraud damages anticipated to approach hundreds of billions of USD , security teams must navigate numerous non-compliant channels while ingesting and processing diverse data formats\u2014such as documents, imagery, video, and unformatted text\u2014linked to organizational assets. The recent introduction of a new Fraud framework by the MITRE organization underscores the critical need to combat fraud and highlights the significant danger these threat actors pose to all organizations. The MITRE organization has been taking a positive step towards standardizing the fight against fraud, while helping organizations target the relevant directions to look at. These marketplaces supply a range of services in need for the novice fraudster, encompassing server infrastructure, targeted lists, and even support for money laundering facilitated through compromised accounts across various platforms. As larger, well-known marketplaces have been dismantled, smaller, specialized shops are experiencing heightened activity from buyers seeking to engage in fraudulent endeavors. This blog post undertakes an exploration of these marketplaces and their operational modalities, illuminating the contemporary fraud economy and underscoring the enduring critical nature of robust detection and prevention initiatives. Fraud-as-a-Service (FaaS) Fraud is broadly defined as an intentional, dishonest act or misrepresentation of material facts, calculated to deceive others in order to secure an unfair or unlawful gain. Consequently, the Fraud-as-a-Service (FaaS) model encompasses various vendors and digital storefronts that facilitate such activities by providing new tools, instructional guides, and ancillary services for fraudsters. Online shops and marketplaces, such as Xleet, Blackpass, Infodig and Styx, provide a venue for contemporary fraudsters to acquire the necessary resources for whichever scheme they intend to execute. Users are able to purchase act",
       "iocs": [
@@ -4001,7 +4387,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-10T18:00:15Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Attributed to a Russian threat actor tracked as UAT-10820, the campaign delivers the Amatera stealer alongside secondary payloads like ZigCryptoStealer and NetSupport Manager. Despite the high-profile initial victim, we assess with moderate confidence that this is an opportunistic, broad-based crypt",
       "content": "Welcome to this week\u2019s edition of the Threat Source newsletter. Ask anybody in this industry what the work does to the health of the people who do it and you get one word back: burnout. It's a fine word, in and of itself. It\u2019s easy to reach for, understandable to everyone\u2026 and it's the wrong one, most of the time. So, story time. Last year I gave an interview with the amazing Hazel Burton about VPNFilter, and my run-in with burnout . I was a manager during that time, and it took a toll on me and on the people around me, and when it was over I didn't have language for what had happened. Neither did my peers. Neither did my leadership. Nobody was withholding help from me\u2026 we just didn't have the words. Enter this summer, and I was afforded a unique opportunity to mentor some MBA students on burnout in cybersecurity. I know a thing or two about it, so I leapt at a chance to share and help grow future leaders. But I decided I was going to do more than share and relieve my experiences in this industry \u2013 I wanted to give back to them and the security industry. So, I fell down a fascinating and revealing research hole and learned better words to describe my experiences over my career. I spent my summer reviewing trauma case studies, clinical and academic literature on trauma in career fields like first responders, doctors, social workers, and the military. There are many decades of research focusing on trauma in those fields. Subsequently, my brain is packed full of better words! For example, burnout is exhaustion from chronic workload, and it eases when the load eases. We know this one well. Secondary traumatic stress is what absorbing somebody else's trauma does to you, and it looks like trauma. Think the CTI analyst exposed to horrible things on the dark web. Vicarious trauma is what years of other people's worst days do to how you see the world. It changes your beliefs, not your mood. Work in cybersecurity long enough, and it can pile up on your views. Moral injury is the damage from being made to act against your own values, or stopped from doing what you knew was right. This one can affect anyone who\u2019s ever owned an outcome, but not the decision, and that\u2019s common in this industry. One word, four injuries, and four different fixes. All of them are present in the industry that is cybersecurity. The problem? We\u2019re just a young industry. Compared to medical, helping professions, or social workers, we\u2019re incredibly immature with understanding the consequences o",
       "iocs": [
@@ -4133,7 +4519,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-10T10:00:43Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Learn how root access on a compromised K8s node allows attackers to utilize SPIFFE/SPIRE metadata to spoof and harvest co-located workload identities. The post The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE appeared first on Unit 42 .",
       "content": "Learn how root access on a compromised K8s node allows attackers to utilize SPIFFE/SPIRE metadata to spoof and harvest co-located workload identities. The post The Machine With Many Faces: Post-Exploitation Identity Misuse in SPIFFE/SPIRE appeared first on Unit 42 .",
       "iocs": [],
@@ -4156,7 +4542,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-09-09T16:08:59Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco\u2019s Secure Firewall Management Center (FMC) Software. First, CVE-2026-20079 is an authentication bypass vulnerability in unpatched instances of Cisco\u2019s Secure FMC Software, which allows an unauthenticated, remote attacke",
       "content": "Cisco Talos is actively tracking the exploitation of two vulnerabilities in Cisco\u2019s Secure Firewall Management Center (FMC) Software. First, CVE-2026-20079 is an authentication bypass vulnerability in unpatched instances of Cisco\u2019s Secure FMC Software, which allows an unauthenticated, remote attacker to bypass authentications and execute scripts on impacted devices to obtain root access to the underlying operating system. Second, CVE-2026-20316 is a vulnerability that allows a remote attacker to log in using a low-privileged account. CVE-2026-20079 is a critical vulnerability with a CVSS score of 10.0. Customers are strongly advised to follow Cisco\u2019s guidance provided in the security advisory and apply the security patches previously made available. CVE-2026-20316 has a CVSS score of 5.3, however it can be used with other Cisco Secure FMC vulnerabilities to elevate privileges. Due to Talos identifying in the wild abuse of these CVE\u2019s, customers are strongly advised to apply hotfixes for affected software versions already released by Cisco for CVE-2026-20079 and CVE-2026-20316 . A comprehensive hardening release consisting of these hotfixes along with other internally discovered vulnerabilities will be released next week (Week of September 14th). Talos\u2019 analysis illustrates three clusters of post-compromise activity on FMC instances associated with state-sponsored and crimeware threat actors, as described below. The first cluster which we track as UAT-12197, involves the exploitation of CVE-2026-20079, leading to the deployment of web shells, a Java Archive (JAR)-based command executor, and credential exfiltration. The second intrusion cluster, which we attribute to UAT-11823, consisted of the exploitation of CVE-2026-20079 and CVE-2026-20316, leading to the deployment of a Netcat-based reverse shell and proxy tooling, ultimately leading to the deployment of a variant of the Cyclops Blink malware, previously attributed to the Russian APT Sandworm by the United States and United Kingdom . Talos is further disclosing a third cluster of malicious activity on an FMC instance, attributed to UAT-11988, who we assess with high confidence is a ransomware operator. The preliminary stages of the attack entailed the threat actor gaining access to the system via static credentials ( CVE-2026-20316) and then abusing legitimate built-in FMC tooling in living-off-the-land (LOTL) fashion to conduct extensive reconnaissance of the victim\u2019s environment, deploy tunneling tool",
       "iocs": [
@@ -4232,7 +4618,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-09-09T15:16:34Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "If your scan engine already holds credentials for a host, it can ask that host which ports are open instead of probing for them. Everything after it, from identifying services to checking for vulnerabilities to evaluating policy, depends on the answer being right. There is a more direct route on any",
       "content": "If your scan engine already holds credentials for a host, it can ask that host which ports are open instead of probing for them. Every scan begins with the same question: which ports on this host are open? Everything after it, from identifying services to checking for vulnerabilities to evaluating policy, depends on the answer being right. The traditional answer comes from the outside: the scan engine sends traffic to a range of ports and infers each port's state from how the host responds. That approach is the industry standard, and it works well when a clear network path exists between the engine and the host. Hardened hosts can stay silent rather than replying, which forces the engine to wait out timeouts. Rate limiting and intrusion prevention can throttle a burst of probes, and genuinely open ports go missing when they do. Large port ranges take time to cover thoroughly, and that time comes out of your scan window. There is a more direct route on any host where the scan engine already holds valid credentials: ask the host itself. This is credentialed discovery, so a credential that matches the host is the precondition for everything that follows. The engine connects to the port that credential uses, authenticates with a credential you already manage, and the host's operating system returns an authoritative list of the ports it is listening on. That list covers both TCP and UDP ports. There is no probing, no inference, and nothing to wait out. Three things to know before enabling pre-port discovery Pre-port discovery can report ports that a firewall or other network control stops your scan engine from reaching, and on those hosts you get fewer results and a longer scan. SSH and the Scan Assistant are tried on their standard ports, TCP 22 and TCP 21047, unless you set a different port on the credential's restriction. Credential coverage decides which hosts benefit, and a host with no matching credential falls back to a network port scan. Each of these is covered in full in the configuration and troubleshooting documentation . If your engine only reaches these hosts through a restrictive firewall, see who should leave this off below. Why probing from the outside can hit a wall A network port scan works by inference. The engine sends traffic to each port in a configured range and reads the host's response, or its silence, as evidence about that port's state. Inference is the whole method, and its accuracy depends on the path between the engine and the hos",
       "iocs": [],
@@ -4250,7 +4636,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-09T10:00:55Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "An investigation into how cybercriminals used YouTube gaming lures and SEO poisoning to deliver multi-payload malware to enterprise networks.",
       "content": "An investigation into how cybercriminals used YouTube gaming lures and SEO poisoning to deliver multi-payload malware to enterprise networks. The post Untracked Nightmares: The Threats Hiding Behind Commodity Infrastructure appeared first on Unit 42 .",
       "iocs": [],
@@ -4273,7 +4659,7 @@
       "source_name": "Cisco Talos",
       "category": "windows",
       "published": "2026-09-08T22:16:35Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as \"critical.\" Microsoft notes that 2 of the vulnerabilities disclosed this month have been exploited in the wild: CVE-2026-819",
       "content": "Microsoft has released its monthly security update for September 2026, which includes 973 vulnerabilities affecting a range of products, including 113 that Microsoft marked as \"critical.\" Microsoft notes that 2 of the vulnerabilities disclosed this month have been exploited in the wild: CVE-2026-81963 affects Windows Update Stack. CVE-2026-81963 is a elevation of privilege vulnerability associated with Improper Link Resolution Before File Access ('Link Following') and Improper Access Control and has a CVSS base score of 7.8. CVE-2026-85880 affects Windows Advanced Local Procedure Call (ALPC). CVE-2026-85880 is a elevation of privilege vulnerability associated with Heap-based Buffer Overflow and Use of Uninitialized Resource and has a CVSS base score of 7.8. Out of 113 \"critical\" vulnerabilities, 82 are remote code execution (RCE) vulnerabilities. Microsoft considers exploitation of the following vulnerabilities more likely: CVE-2026-69676 affects Windows Kerberos. CVE-2026-69676 is a remote code execution vulnerability associated with Authentication Bypass by Capture-replay and has a CVSS base score of 8.8. CVE-2026-69852 affects Windows Routing and Remote Access Service (RRAS). CVE-2026-69852 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.5. CVE-2026-72957 affects Windows Deployment Services. CVE-2026-72957 is a remote code execution vulnerability associated with Heap-based Buffer Overflow and has a CVSS base score of 7.8. CVE-2026-69854 affects Spring Cloud Azure. CVE-2026-69854 is a elevation of privilege vulnerability associated with Improper Authentication and has a CVSS base score of 9.0. CVE-2026-83501 affects Windows Virtualization-Based Security (VBS). CVE-2026-83501 is a information disclosure vulnerability associated with Out-of-bounds Read and has a CVSS base score of 5.5. CVE-2026-70585 affects Windows Services for NFS ONCRPC XDR Driver. CVE-2026-70585 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 7.0. CVE-2026-69730 affects Windows DNS Server. CVE-2026-69730 is a remote code execution vulnerability associated with Use After Free and has a CVSS base score of 9.8. CVE-2026-69857 affects Azure Cosmos DB. CVE-2026-69857 is a spoofing vulnerability associated with Authorization Bypass Through User-Controlled Key and has a CVSS base score of 8.5. Microsoft considers exploitation of the following vulnerabilities less likely: CVE",
       "iocs": [
@@ -4317,7 +4703,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-09-08T21:44:04Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Microsoft is publishing 974 own-product vulnerabilities on September 2026 Patch Tuesday , including 723 vulnerabilities in Windows. Along with Microsoft fixes for 25 non-Microsoft CVEs, that brings the total number of vulnerabilities on the table today to 999. Whether this is the biggest Patch Tuesd",
       "content": "Microsoft is publishing 974 own-product vulnerabilities on September 2026 Patch Tuesday , including 723 vulnerabilities in Windows. Along with Microsoft fixes for 25 non-Microsoft CVEs, that brings the total number of vulnerabilities on the table today to 999. Whether this is the biggest Patch Tuesday ever depends on how we count, but this is by far the most CVEs that Microsoft has ever published in a single day. As Rapid7 noted last month, there is no reason to suppose that Patch Tuesday will ever return to the lower volumes we saw prior to 2026. Microsoft is aware of exploitation in the wild for two of the vulnerabilities published today. Windows ALPC: zero-day EoP The eternal game of elevation of privilege whack-a-mole between Microsoft and attackers continues. This month, the battle is centered on the Windows Advanced Local Procedure Call (ALPC) mechanism, a kernel capability that facilitates inter-process communication. Microsoft is aware of exploitation in the wild already. Successful abuse of the flaw underlying CVE-2026-85880 grants an attacker SYSTEM via a buffer overflow that enables an out-of-bounds write, and as we all know by now, this is exactly what would happen during the first five minutes of a technically accurate horror movie about ransomware. We can infer one silver lining here: since neither Server 2025 nor Windows 11 receives patches for CVE-2026-85880, it is likely that Microsoft\u2019s ongoing efforts to level up memory safety by rewriting critical kernel components in Rust are paying off. Windows Update Stack: zero-day EoP Attackers disappointed by Microsoft\u2019s move towards memory safety improvements for various critical kernel components need not leave empty-handed today. Microsoft is aware of existing exploitation in the wild for CVE-2026-81963 , an elevation of privilege vulnerability in the Windows Update Stack that leads to SYSTEM privileges via improper link resolution. All supported versions of Windows receive a patch, which presumably tightens up controls to prevent the Windows Update Stack from following a malicious link and overwriting a system component with an attacker-controlled imposter. The relatively pedestrian CVSS v3 base score of 7.8 is no reason for less concern, since no serious attacker will bother developing an intricate one-shot RCE when a two-stage attack chain consisting of low-privileged local access coupled with elevation of privilege will achieve the same ultimate goal much more easily. Living on the Edge: br",
       "iocs": [
@@ -4783,7 +5169,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-03T10:00:58Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Explore how attackers targeting Latin American entities use AI for data exfiltration and how basic OpSec errors allow defenders to disrupt operations. The post Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America appeared first on Unit 42 .",
       "content": "Explore how attackers targeting Latin American entities use AI for data exfiltration and how basic OpSec errors allow defenders to disrupt operations. The post Attackers Expose Ongoing AI Tool Use Targeting Organizations in Latin America appeared first on Unit 42 .",
       "iocs": [],
@@ -4843,7 +5229,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-09-02T10:00:46Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Using autonomous AI agents, an attacker breached an enterprise network in a matter of hours.",
       "content": "Using autonomous AI agents, an attacker breached an enterprise network in a matter of hours. Understand how to address and defend against agentic attacks. The post An AI-Assisted Cyber Attack: Inside a Unit 42 Investigation appeared first on Unit 42 .",
       "iocs": [],
@@ -4866,7 +5252,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "windows",
       "published": "2026-08-31T10:00:36Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Learn how the Spring Ring campaign abuses Microsoft Teams and voice phishing to deploy malware and target enterprise domain controllers. The post Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams appeared first on Unit 42 .",
       "content": "Learn how the Spring Ring campaign abuses Microsoft Teams and voice phishing to deploy malware and target enterprise domain controllers. The post Spring Ring: An Inside Look at Voice Phishing Campaigns in Microsoft Teams appeared first on Unit 42 .",
       "iocs": [],
@@ -4937,7 +5323,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2026-08-24T14:28:41Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Case Summary In March 2026, our team identified an SEO poisoning campaign leading to malware deployment [\u2026] The post BengalSEO Part 1: Anatomy of the Operation appeared first on The DFIR Report .",
       "content": "Key Takeaways The DFIR Report Offerings Check out our Products here and our Services here. Want a demo, more information on our services, pricing or just want to chat? Get in Touch Contact us today for pricing or a demo! Case Summary In March 2026, our team identified an SEO poisoning campaign leading to malware deployment [\u2026] The post BengalSEO Part 1: Anatomy of the Operation appeared first on The DFIR Report .",
       "iocs": [],
@@ -4962,7 +5348,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2026-06-29T13:07:17Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "This report contains data from both intrusions.",
       "content": "Key Takeaways This case was first reported to customers in a threat brief released in July 2025 and in a public flash alert in August 2025 in partnership with Swisscom B2B CSIRT, which observed another intrusion tied to the same campaign. This report contains data from both intrusions. We plan to release a DFIR Labs [\u2026] The post From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira appeared first on The DFIR Report .",
       "iocs": [],
@@ -4988,7 +5374,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2026-05-11T14:05:04Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The EtherRAT malware family was first reported by Sysdig back in December 2025. At that time, the initial access vector was exploitation of CVE-2025-55182 (React2Shell) targeting Linux servers. In March 2026, a Windows variant campaign was reported by Atos, with their investigation showing evidence",
       "content": "The EtherRAT malware family was first reported by Sysdig back in December 2025. At that time, the initial access vector was exploitation of CVE-2025-55182 (React2Shell) targeting Linux servers. In March 2026, a Windows variant campaign was reported by Atos, with their investigation showing evidence of activity going back to the previous December. In April, we [\u2026] The post Flash Alert: EtherRat and TukTuk C2 End in The Gentleman Ransomware appeared first on The DFIR Report .",
       "iocs": [],
@@ -5016,7 +5402,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2026-04-22T14:51:21Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "This AI-assisted workflow resulted in the modular platform Bissa scanner [\u2026] The post Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting appeared first on The DFIR Report .",
       "content": "Key Takeaways We identified an exposed server that provided unusual visibility into a large-scale, multi-victim exploitation and collection operation. Artifacts on the host showed that Claude Code and OpenClaw were embedded in the operator\u2019s day-to-day workflow, supporting troubleshooting, orchestration, and refinement of the collection pipeline. This AI-assisted workflow resulted in the modular platform Bissa scanner [\u2026] The post Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting appeared first on The DFIR Report .",
       "iocs": [],
@@ -5039,7 +5425,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2026-02-23T14:09:43Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "This intrusion began in mid-February 2024 after a threat actor exploited a vulnerability (CVE-2023-46604) on an exposed Apache ActiveMQ server. The threat actor was able to perform remote code execution (RCE) by using a Java Spring class and a custom Java Spring [\u2026] The post Apache ActiveMQ Exploit",
       "content": "Key Takeaways An audio version of this report can be found on Spotify, Apple, YouTube, Audible, & Amazon. This intrusion began in mid-February 2024 after a threat actor exploited a vulnerability (CVE-2023-46604) on an exposed Apache ActiveMQ server. The threat actor was able to perform remote code execution (RCE) by using a Java Spring class and a custom Java Spring [\u2026] The post Apache ActiveMQ Exploit Leads to LockBit Ransomware appeared first on The DFIR Report .",
       "iocs": [],
@@ -5068,7 +5454,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2025-12-17T19:07:07Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "The intrusion began in early March 2025 with a single successful Remote Desktop Protocol (RDP) logon to an internet-exposed system.",
       "content": "Key Takeaways The DFIR Report Services Contact us today for pricing or a demo! The intrusion began in early March 2025 with a single successful Remote Desktop Protocol (RDP) logon to an internet-exposed system. Notably, there was no evidence of credential stuffing, brute forcing, or other failed authentication attempts from the source IP, indicating the [\u2026] The post Cat\u2019s Got Your Files: Lynx Ransomware appeared first on The DFIR Report .",
       "iocs": [],
@@ -5093,7 +5479,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2025-09-29T14:30:06Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Table of Contents: Case Summary Analysts Initial Access Execution Persistence Privilege Escalation Defense Evasion Credential Access Discovery Lateral Movement Command and Control Exfiltration Impact Timeline Diamond Model Indicators Detections MITRE ATT&CK Case Summary The intrusion [\u2026] The post Fr",
       "content": "Key Takeaways Private Threat Briefs: 20+ private DFIR reports annually. Contact us today for pricing or a demo! Table of Contents: Case Summary Analysts Initial Access Execution Persistence Privilege Escalation Defense Evasion Credential Access Discovery Lateral Movement Command and Control Exfiltration Impact Timeline Diamond Model Indicators Detections MITRE ATT&CK Case Summary The intrusion [\u2026] The post From a Single Click: How Lunar Spider Enabled a Near Two-Month Intrusion appeared first on The DFIR Report .",
       "iocs": [],
@@ -5116,7 +5502,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2025-09-08T14:20:31Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Table of Contents: Case Summary Analysts Initial Access Execution Persistence Privilege Escalation Defense Evasion Credential Access Discovery Lateral Movement Collection Command and Control Exfiltration Impact Timeline Diamond Model Indicators Detections MITRE ATT&CK Case Summary The intrusion bega",
       "content": "Key Takeaways Private Threat Briefs: 20+ private DFIR reports annually. Contact us today for pricing or a demo! Table of Contents: Case Summary Analysts Initial Access Execution Persistence Privilege Escalation Defense Evasion Credential Access Discovery Lateral Movement Collection Command and Control Exfiltration Impact Timeline Diamond Model Indicators Detections MITRE ATT&CK Case Summary The intrusion began in [\u2026] The post Blurring the Lines: Intrusion Shows Connection With Three Major Ransomware Gangs appeared first on The DFIR Report .",
       "iocs": [],
@@ -5141,7 +5527,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2025-08-05T21:30:00Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Overview Bumblebee malware has been an initial access tool used by threat actors since late 2021. In 2023 the malware was first reported as using SEO poisoning as a delivery mechanism. Recently in May of 2025 Cyjax reported on a campaign using this method again, impersonating various IT tools.",
       "content": "Overview Bumblebee malware has been an initial access tool used by threat actors since late 2021. In 2023 the malware was first reported as using SEO poisoning as a delivery mechanism. Recently in May of 2025 Cyjax reported on a campaign using this method again, impersonating various IT tools. We observed a similar campaign in [\u2026] The post Flash Alert: From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira appeared first on The DFIR Report .",
       "iocs": [],
@@ -5167,7 +5553,7 @@
       "source_name": "The DFIR Report",
       "category": "windows",
       "published": "2025-07-14T00:50:41Z",
-      "fetched": "2026-10-07T13:44:37Z",
+      "fetched": "2026-10-07T23:13:07Z",
       "summary": "Researchers from The DFIR Report, in partnership with Proofpoint, have identified a new and resilient variant of the Interlock ransomware group\u2019s remote access trojan (RAT). This new malware, a shift from the previously identified JavaScript-based Interlock RAT (aka NodeSnake), uses PHP and is being",
       "content": "Researchers from The DFIR Report, in partnership with Proofpoint, have identified a new and resilient variant of the Interlock ransomware group\u2019s remote access trojan (RAT). This new malware, a shift from the previously identified JavaScript-based Interlock RAT (aka NodeSnake), uses PHP and is being used in a widespread campaign. Since May 2025, activity related to [\u2026] The post KongTuke FileFix Leads to New Interlock RAT Variant appeared first on The DFIR Report .",
       "iocs": [],

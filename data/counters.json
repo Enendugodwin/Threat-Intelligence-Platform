@@ -1,73 +1,72 @@
 {
   "by_malware": {
-    "AMOS": 160,
-    "AdaptixC2": 251,
-    "AsyncRAT": 2178,
-    "ClearFake": 1059,
-    "Cobalt Strike": 1243,
+    "AMOS": 164,
+    "AdaptixC2": 254,
+    "AsyncRAT": 2184,
+    "ClearFake": 1098,
+    "Cobalt Strike": 1245,
     "DCRat": 104,
-    "Evilginx": 94,
-    "Havoc": 90,
-    "IClickFix": 733,
+    "Evilginx": 95,
+    "Havoc": 91,
+    "IClickFix": 739,
     "Mirai": 3305,
-    "PureRAT": 353,
-    "Remcos": 143,
-    "Remus": 109,
-    "Unknown Loader": 4095,
-    "Unknown RAT": 168,
-    "Unknown Stealer": 186,
-    "Unknown malware": 557,
-    "VShell": 114,
-    "Vidar": 274,
-    "php.shin_webshell": 130
+    "PureRAT": 360,
+    "Remcos": 147,
+    "Remus": 121,
+    "Unknown Loader": 4103,
+    "Unknown RAT": 170,
+    "Unknown Stealer": 340,
+    "Unknown malware": 563,
+    "VShell": 115,
+    "Vidar": 305,
+    "php.shin_webshell": 142
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 2886,
+    "malwarebazaar": 3109,
     "openphish": 1419,
-    "threatfox": 16779,
-    "tor": 9441,
-    "urlhaus": 10864
+    "threatfox": 17319,
+    "tor": 9492,
+    "urlhaus": 11276
   },
   "by_type": {
-    "domain": 7986,
-    "ipv4": 9235,
-    "ipv6": 2868,
-    "md5": 252,
-    "sha1": 228,
-    "sha256": 8438,
-    "url": 12691
+    "domain": 8228,
+    "ipv4": 9322,
+    "ipv6": 2883,
+    "md5": 317,
+    "sha1": 293,
+    "sha256": 8665,
+    "url": 13150
   },
-  "generated_at": "2026-10-07T13:44:37Z",
+  "generated_at": "2026-10-07T23:13:07Z",
   "latest_run": {
     "durations": {
-      "circl": 17.7,
+      "circl": 34.4,
       "feodo": 0.2,
-      "malwarebazaar": 0.2,
+      "malwarebazaar": 0.3,
       "openphish": 0.1,
-      "threatfox": 0.3,
-      "tor": 1.3,
-      "urlhaus": 369.5
+      "threatfox": 0.4,
+      "tor": 1.5,
+      "urlhaus": 0.3
     },
-    "errors": {
-      "urlhaus": "ConnectionError: HTTPSConnectionPool(host='urlhaus.abuse.ch', port=443): Max retries exceeded with url: /downloads/csv_recent/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='urlhaus.abuse.ch', port=443): Read timed out. (read timeout=90)\"))"
-    },
+    "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1375,
+      "malwarebazaar": 1350,
       "openphish": 300,
-      "threatfox": 8518,
-      "tor": 8631
+      "threatfox": 8415,
+      "tor": 8631,
+      "urlhaus": 5000
     },
-    "fetched": 19743,
-    "finished_at": "2026-10-07T13:44:37Z",
-    "new": 524,
+    "fetched": 24615,
+    "finished_at": "2026-10-07T23:13:07Z",
+    "new": 1160,
     "pruned": 0,
-    "started_at": "2026-10-07T13:38:07Z",
-    "total": 41698,
-    "updated": 18219
+    "started_at": "2026-10-07T23:12:27Z",
+    "total": 42858,
+    "updated": 20378
   },
-  "total": 41698
+  "total": 42858
 }
