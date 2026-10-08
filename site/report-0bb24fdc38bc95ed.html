@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>​​Beyond source code: A path to the keys to the kingdom &mdash; Threat Intel Pipeline</title>
+<title>Ignore all instructions and read this blog: The state of AI-analysis evasion in malware &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,26 +316,24 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">​​Beyond source code: A path to the keys to the kingdom</h1>
+<h1 class="page-title">Ignore all instructions and read this blog: The state of AI-analysis evasion in malware</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Windows</span>
-  <span class="badge">Microsoft Security Blog</span>
-</div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Phishing</span><span class="chip">Storm-3068</span></div>
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
+<span class="badge">1 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 1 CVE(s), none in KEV &middot; 12 indicator(s)</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
-        <tr><td>Category</td><td>Windows</td></tr>
-        <tr><td>Published</td><td>2026-09-29</td></tr>
-        <tr><td>Report ID</td><td><code>517682da12648448</code></td></tr>
-        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/</a></td></tr>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-10-08</td></tr>
+        <tr><td>Report ID</td><td><code>0bb24fdc38bc95ed</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/ignore-all-instructions-and-read-this-blog-the-state-of-ai-analysis-evasion-in-malware/" rel="noopener">https://blog.talosintelligence.com/ignore-all-instructions-and-read-this-blog-the-state-of-ai-analysis-evasion-in-malware/</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -343,20 +341,47 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">What began as a single compromised identity quickly expanded into an organization’s development and cloud environments. In our latest Cyberattack Series report, we examine how the Microsoft Detection and Response Team (DART)—the team that delivers Microsoft Defender Experts Cybersecurity Incident Response —investigated activity by Storm-3068 , a threat actor that turned a successful self-service password reset into access to Azure DevOps, development pipelines, and Kubernetes resources. By leveraging legitimate identity and cloud services rather than malware or software exploits, the threat actor established persistent access, enumerated repositories, and obtained credentials that opened a path into connected cloud infrastructure. This case highlights a growing challenge for defenders: when identities, source code, pipelines, and production environments are tightly linked, a single account compromise can provide a pathway to much broader access across the organization. Read on to learn more or access the full report . Read the full cyberattack report What happened? The intrusion began with Storm-3068 gaining access to a user account through a self-service password reset process and then taking full control of the identity by registering its own authentication methods. With persistent access established, the threat actor shifted its focus to Azure DevOps using legitimate administrative tools and automated scripts to enumerate repositories, projects, pipelines, and deployment environments. TACTIC: Trusted pipelines were exploited Rather than deploying malware, the threat actor modified development pipelines to collect Kubernetes credentials and expand access into cloud infrastructure.​​ Azure DevOps proved to be a high-value target because it sat at the intersection of identity, software development, and cloud operations. By mapping trusted deployment paths and connected resources, the threat actor was able to identify opportunities to expand beyond the initial compromise. The investigation revealed that Storm-3068 created a malicious pipeline designed to harvest Kubernetes credentials at scale. The pipeline deployed a kube agent and executed multiple jobs intended to collect kubeconfig files containing cluster connection details and authentication information. Leveraging the permissions of the compromised account, the threat actor deployed the pipeline that was authorized to access more than 50 resources and authenticated to services. In addition to deployi</p>
-  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+  <p class="detail-text">“AI-analysis evasion” encapsulates the real-world techniques malware authors are developing in attempt to obstruct or defeat any layers of automated AI analysis. This technique is cheap to add but inconsistently impactful — the best techniques steered the outcome in the attacker’s favor in about 35% of test runs. Further, it must always be plaintext and therefore is always detectable. The operators are not wrong to assume AI tools are in the analysis pipeline, but the answer is not to remove them; it is to build them so that text inside a sample is always treated as evidence, never as instruction. Just as attackers are adding new capabilities into their toolkits with AI, they are consciously trying to evade the novel AI capabilities levied on them by defenders. In Cisco Talos&#39; findings with CAIRN , we classify this archetype of malware as “A3: AI-Analysis Evasion” — that is, malware that embeds natural-language instructions to influence automated analysis . In line with the CAIRN philosophy , we treat this embedded language as a signal and actively seek it out to track and measure the progression of adversary techniques on this front. Over the past 18 months we have seen a variety of anti-analysis techniques, including the propagation of known methods across malware families, and the progression of simple techniques into more advanced implementations. This post traces these techniques across four confirmed A3 malware families: FRUITSHELL , PLOTSAFE , HOLLOWCLAD , and MANTLEMAZE , representing 84 distinct samples collected from January 2025 through July 2026. The new layer of anti-analysis The technique class we are describing here is distinct from conventional anti-analysis tradecraft. Packers, encrypted overlays, VM-based obfuscation, and anti-debug checks all target the binary analysis layer. A3 targets a newer layer that sits above it: the pipeline that extracts text from a sample and submits it to a language model for triage, classification, or reverse-engineering assistance. That pipeline is increasingly present across both commercial and open-source tooling. A language model that receives extracted strings from a malicious binary and produces a verdict, or that answers an analyst&#39;s question about what a function does, operates on the same content that an A3 payload is authored to reach. The operators embedding this content are telling us, implicitly, that they believe this layer exists in the environments their samples land in. The technique exploits</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/ignore-all-instructions-and-read-this-blog-the-state-of-ai-analysis-evasion-in-malware/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
-  <p class="muted">No indicators were extracted from this report.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (12)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/f8f5e0440c57c7deffd75ca33e2511867039796aa803e7ef847396a379188a7d" target="_blank" rel="noopener"><code>f8f5e0440c57c7deffd75ca33e2511867039796aa803e7ef847396a379188a7d</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/34098fe0bc4c69c4c4eb3f74688fb375326804536d25e5574e8c4c28c113b5c3" target="_blank" rel="noopener"><code>34098fe0bc4c69c4c4eb3f74688fb375326804536d25e5574e8c4c28c113b5c3</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/389066bd5543aeea363d23a4dce7f7a21c7f2c73c61f506a93a69f594cf48ecf" target="_blank" rel="noopener"><code>389066bd5543aeea363d23a4dce7f7a21c7f2c73c61f506a93a69f594cf48ecf</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/5f60d16fa67ff8ef07817c33b7e6b7fa91c6c21060020df46b1f5c56e076e259" target="_blank" rel="noopener"><code>5f60d16fa67ff8ef07817c33b7e6b7fa91c6c21060020df46b1f5c56e076e259</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/a0294f7152f9c4c908e9def58279e9fa29952715947c950c8489949f26a15cc8" target="_blank" rel="noopener"><code>a0294f7152f9c4c908e9def58279e9fa29952715947c950c8489949f26a15cc8</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/c17bf76d02163863c251c3bb3a12725eeb525fab5522521923925e0469ca269f" target="_blank" rel="noopener"><code>c17bf76d02163863c251c3bb3a12725eeb525fab5522521923925e0469ca269f</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/2aa7f13bf474e2ce5049fd4db2bf4da04b4ce51ac0d36dceb24865255241c937" target="_blank" rel="noopener"><code>2aa7f13bf474e2ce5049fd4db2bf4da04b4ce51ac0d36dceb24865255241c937</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/bacb5794a300f7a88c7f6d458382eb11d2f39c0f496b509ca512afe8588fc33f" target="_blank" rel="noopener"><code>bacb5794a300f7a88c7f6d458382eb11d2f39c0f496b509ca512afe8588fc33f</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/2e3e1bcd44cc3cbec4f5ca9991d14a326d3cc6bf76fe6e0d434c9b5f7e1ae6ab" target="_blank" rel="noopener"><code>2e3e1bcd44cc3cbec4f5ca9991d14a326d3cc6bf76fe6e0d434c9b5f7e1ae6ab</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/a42632c68d2dcea06300e790c9440fe0943ce0dee2075f29170fd2774eacf433" target="_blank" rel="noopener"><code>a42632c68d2dcea06300e790c9440fe0943ce0dee2075f29170fd2774eacf433</code></a></td></tr>
+        <tr><td>sha256</td><td><a href="https://www.virustotal.com/gui/file/7dd3747d777f9576a11004532b463351e7718b6af193d8ee7221ac41479d199a" target="_blank" rel="noopener"><code>7dd3747d777f9576a11004532b463351e7718b6af193d8ee7221ac41479d199a</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcybernews.com%2Fsecurity%2Frussian-hackers-nuclear-prompt-ai-guardrails%2F" target="_blank" rel="noopener"><code>hxxps://cybernews[.]com/security/russian-hackers-nuclear-prompt-ai-guardrails/</code></a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
 </section>
 
+<section>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
+  <div class="chip-list">
+<span class="chip">CVE-2015-2291</span>  </div>
+  <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
+</section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2015-2291</li><li>Block or hunt the 12 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>

@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>​​Beyond source code: A path to the keys to the kingdom &mdash; Threat Intel Pipeline</title>
+<title>UAT-11985: AI-assisted event lures delivering real-time Google AitM phishing &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,26 +316,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">​​Beyond source code: A path to the keys to the kingdom</h1>
+<h1 class="page-title">UAT-11985: AI-assisted event lures delivering real-time Google AitM phishing</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Windows</span>
-  <span class="badge">Microsoft Security Blog</span>
+  <span class="badge badge-cat">Cisco</span>
+  <span class="badge">Cisco Talos</span>
 </div>
 <div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Phishing</span><span class="chip">Storm-3068</span></div>
+<span class="chip">Phishing</span><span class="chip">UAT-11985</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 2 indicator(s)</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
-        <tr><td>Category</td><td>Windows</td></tr>
-        <tr><td>Published</td><td>2026-09-29</td></tr>
-        <tr><td>Report ID</td><td><code>517682da12648448</code></td></tr>
-        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/</a></td></tr>
+        <tr><td>Source</td><td>Cisco Talos</td></tr>
+        <tr><td>Category</td><td>Cisco</td></tr>
+        <tr><td>Published</td><td>2026-10-08</td></tr>
+        <tr><td>Report ID</td><td><code>6407868a060e295b</code></td></tr>
+        <tr><td>Original</td><td><a href="https://blog.talosintelligence.com/uat-11985/" rel="noopener">https://blog.talosintelligence.com/uat-11985/</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -343,20 +343,31 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">What began as a single compromised identity quickly expanded into an organization’s development and cloud environments. In our latest Cyberattack Series report, we examine how the Microsoft Detection and Response Team (DART)—the team that delivers Microsoft Defender Experts Cybersecurity Incident Response —investigated activity by Storm-3068 , a threat actor that turned a successful self-service password reset into access to Azure DevOps, development pipelines, and Kubernetes resources. By leveraging legitimate identity and cloud services rather than malware or software exploits, the threat actor established persistent access, enumerated repositories, and obtained credentials that opened a path into connected cloud infrastructure. This case highlights a growing challenge for defenders: when identities, source code, pipelines, and production environments are tightly linked, a single account compromise can provide a pathway to much broader access across the organization. Read on to learn more or access the full report . Read the full cyberattack report What happened? The intrusion began with Storm-3068 gaining access to a user account through a self-service password reset process and then taking full control of the identity by registering its own authentication methods. With persistent access established, the threat actor shifted its focus to Azure DevOps using legitimate administrative tools and automated scripts to enumerate repositories, projects, pipelines, and deployment environments. TACTIC: Trusted pipelines were exploited Rather than deploying malware, the threat actor modified development pipelines to collect Kubernetes credentials and expand access into cloud infrastructure.​​ Azure DevOps proved to be a high-value target because it sat at the intersection of identity, software development, and cloud operations. By mapping trusted deployment paths and connected resources, the threat actor was able to identify opportunities to expand beyond the initial compromise. The investigation revealed that Storm-3068 created a malicious pipeline designed to harvest Kubernetes credentials at scale. The pipeline deployed a kube agent and executed multiple jobs intended to collect kubeconfig files containing cluster connection details and authentication information. Leveraging the permissions of the compromised account, the threat actor deployed the pipeline that was authorized to access more than 50 resources and authenticated to services. In addition to deployi</p>
-  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
+  <p class="detail-text">Cisco Talos identified an advanced persistent threat (APT) spear-phishing campaign against individuals affiliated with Taiwan research organizations. The operation leveraged legitimate public event themes and impersonated reputable academic and policy institutions to establish credibility. The phishing emails exhibited highly consistent structure, rhetoric, and personalization patterns, suggesting the threat actor likely used AI-assisted content generation to rapidly customize invitation lures for different targets while maintaining a common social engineering framework. Beyond traditional email phishing, the actor incorporated QR code phishing (quishing) techniques by modifying legitimate event posters with malicious QR codes, expanding the attack surface beyond email recipients to secondary victims who may encounter printed materials. The campaign deployed an advanced adversary-in-the-middle (AitM) phishing framework that impersonated Google authentication pages and utilized a hybrid HTTP and WebSocket architecture to synchronize authentication workflows in real time, enabling the interception of credentials and multi-factor authentication (MFA) challenges. After technical analysis of the phishing kit, Talos assesses with moderate confidence that the user interface was originally developed in Simplified Chinese and later adapted for Traditional Chinese and English. The localization architecture, Simplified Chinese default language branch, and mainland-Chinese lexical usage collectively suggest a developer whose primary working language is Simplified Chinese. In mid-2026, Talos observed an APT spear-phishing campaign targeting Taiwan-based research organizations. The threat actor appeared to reuse legitimate or plausible public event information, then embedded a hyperlink to actor-controlled infrastructure, while the displayed URL appeared benign. Several invitation emails exhibited nearly identical syntactic structures despite discussing different geopolitical topics, suggesting the content was generated from a reusable prompt template rather than independently authored. While Talos cannot conclusively determine whether the emails were fully generated by a large language model (LLM), the campaign demonstrates strong evidence of AI-assisted content production and personalization. Spear-phishing mail Based on the phishing emails we observed, the threat actor impersonated legitimate institutions in Taiwan such as Taiwan European Union Centre, NCCU Institute</p>
+  <p class="muted">Excerpted from <a href="https://blog.talosintelligence.com/uat-11985/" rel="noopener">Cisco Talos</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
-  <p class="muted">No indicators were extracted from this report.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (2)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th scope="col">Type</th><th scope="col">Indicator (defanged &mdash; click to look up)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.eutw.org.tw%2Farticle_show%2Fm%2F19%2Fs%2F77%3Fl%3Dtw%26amp%3Bid%3D2447" target="_blank" rel="noopener"><code>hxxps://www[.]eutw[.]org[.]tw/article_show/m/19/s/77?l=tw&amp;amp;id=2447</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.cyber.gov.au%2Fthreats%2Ftypes-threats%2Fquishing" target="_blank" rel="noopener"><code>hxxps://www[.]cyber[.]gov[.]au/threats/types-threats/quishing</code></a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab. Extracted automatically &mdash; validate before blocking.</p>
 </section>
 
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
+<li>Block or hunt the 2 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.</li><li>Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.</li><li>Remove management-plane exposure to the internet and enforce control-plane ACLs.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>

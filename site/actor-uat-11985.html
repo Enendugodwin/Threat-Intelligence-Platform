@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>​​Beyond source code: A path to the keys to the kingdom &mdash; Threat Intel Pipeline</title>
+<title>UAT-11985 &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -315,49 +315,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
 </header>
 <main>
-<a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">​​Beyond source code: A path to the keys to the kingdom</h1>
-<div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Windows</span>
-  <span class="badge">Microsoft Security Blog</span>
-</div>
-<div class="chip-list small" style="margin-bottom: var(--space-xl)">
-<span class="chip">Phishing</span><span class="chip">Storm-3068</span></div>
-<div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
+<a class="back-link" href="threats.html">&larr; Threats</a>
+<h1 class="page-title">Threat actor: UAT-11985</h1>
+<p class="muted">1 report(s) reference this actor &middot; latest 2026-10-08.</p>
+
+
+
 
 <section>
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
-  <div class="table-wrap">
-    <table class="meta-table">
-      <tbody>
-        <tr><td>Source</td><td>Microsoft Security Blog</td></tr>
-        <tr><td>Category</td><td>Windows</td></tr>
-        <tr><td>Published</td><td>2026-09-29</td></tr>
-        <tr><td>Report ID</td><td><code>517682da12648448</code></td></tr>
-        <tr><td>Original</td><td><a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/</a></td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section>
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">What began as a single compromised identity quickly expanded into an organization’s development and cloud environments. In our latest Cyberattack Series report, we examine how the Microsoft Detection and Response Team (DART)—the team that delivers Microsoft Defender Experts Cybersecurity Incident Response —investigated activity by Storm-3068 , a threat actor that turned a successful self-service password reset into access to Azure DevOps, development pipelines, and Kubernetes resources. By leveraging legitimate identity and cloud services rather than malware or software exploits, the threat actor established persistent access, enumerated repositories, and obtained credentials that opened a path into connected cloud infrastructure. This case highlights a growing challenge for defenders: when identities, source code, pipelines, and production environments are tightly linked, a single account compromise can provide a pathway to much broader access across the organization. Read on to learn more or access the full report . Read the full cyberattack report What happened? The intrusion began with Storm-3068 gaining access to a user account through a self-service password reset process and then taking full control of the identity by registering its own authentication methods. With persistent access established, the threat actor shifted its focus to Azure DevOps using legitimate administrative tools and automated scripts to enumerate repositories, projects, pipelines, and deployment environments. TACTIC: Trusted pipelines were exploited Rather than deploying malware, the threat actor modified development pipelines to collect Kubernetes credentials and expand access into cloud infrastructure.​​ Azure DevOps proved to be a high-value target because it sat at the intersection of identity, software development, and cloud operations. By mapping trusted deployment paths and connected resources, the threat actor was able to identify opportunities to expand beyond the initial compromise. The investigation revealed that Storm-3068 created a malicious pipeline designed to harvest Kubernetes credentials at scale. The pipeline deployed a kube agent and executed multiple jobs intended to collect kubeconfig files containing cluster connection details and authentication information. Leveraging the permissions of the compromised account, the threat actor deployed the pipeline that was authorized to access more than 50 resources and authenticated to services. In addition to deployi</p>
-  <p class="muted">Excerpted from <a href="https://www.microsoft.com/en-us/security/blog/2026/09/29/beyond-source-code-a-path-to-the-keys-to-the-kingdom/" rel="noopener">Microsoft Security Blog</a>; follow the source for full context.</p>
-</section>
-
-<section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
-  <p class="muted">No indicators were extracted from this report.</p>
-</section>
-
-
-<section id="recommendations">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
-  <ol class="rec-list">
-<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
-  <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Reports</h2>
+  <div class="chip-list">
+<span class="chip"><a href="report-6407868a060e295b.html">UAT-11985: AI-assisted event lures delivering real-time Google AitM phishing</a> <span class="muted">2026-10-08</span></span>  </div>
 </section>
 </main>
 <footer>
