@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting &mdash; Threat Intel Pipeline</title>
+<title>ISC Stormcast For Thursday, October 8th, 2026 https://isc.sans.edu/podcastdetail/10128, (Thu, Oct 8th) &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,10 +316,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting</h1>
+<h1 class="page-title">ISC Stormcast For Thursday, October 8th, 2026 https://isc.sans.edu/podcastdetail/10128, (Thu, Oct 8th)</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Windows</span>
-  <span class="badge">The DFIR Report</span>
+  <span class="badge badge-cat">General</span>
+  <span class="badge">SANS ISC</span>
 </div>
 <div class="env-banner">
   <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
@@ -329,21 +329,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>The DFIR Report</td></tr>
-        <tr><td>Category</td><td>Windows</td></tr>
-        <tr><td>Published</td><td>2026-04-22</td></tr>
-        <tr><td>Report ID</td><td><code>cc92fce80231127b</code></td></tr>
-        <tr><td>Original</td><td><a href="https://thedfirreport.com/2026/04/22/bissa-scanner-exposed-ai-assisted-mass-exploitation-and-credential-harvesting/" rel="noopener">https://thedfirreport.com/2026/04/22/bissa-scanner-exposed-ai-assisted-mass-exploitation-and-credential-harvesting/</a></td></tr>
+        <tr><td>Source</td><td>SANS ISC</td></tr>
+        <tr><td>Category</td><td>General</td></tr>
+        <tr><td>Published</td><td>2026-10-08</td></tr>
+        <tr><td>Report ID</td><td><code>ecdf7113631fa319</code></td></tr>
+        <tr><td>Original</td><td><a href="https://isc.sans.edu/diary/rss/33408" rel="noopener">https://isc.sans.edu/diary/rss/33408</a></td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
-<section>
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Key Takeaways We identified an exposed server that provided unusual visibility into a large-scale, multi-victim exploitation and collection operation. Artifacts on the host showed that Claude Code and OpenClaw were embedded in the operator’s day-to-day workflow, supporting troubleshooting, orchestration, and refinement of the collection pipeline. This AI-assisted workflow resulted in the modular platform Bissa scanner […] The post Bissa Scanner Exposed: AI-Assisted Mass Exploitation and Credential Harvesting appeared first on The DFIR Report .</p>
-  <p class="muted">Excerpted from <a href="https://thedfirreport.com/2026/04/22/bissa-scanner-exposed-ai-assisted-mass-exploitation-and-credential-harvesting/" rel="noopener">The DFIR Report</a>; follow the source for full context.</p>
-</section>
 
 <section id="iocs">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (0)</h2>
@@ -354,7 +349,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li><li>Walk the reported intrusion chain against your logs (initial access, persistence, lateral movement, exfiltration).</li>  </ol>
+<li>Validate the indicators against your own telemetry before blocking or alerting.</li><li>Keep your asset inventory current so exposure to affected products is visible.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
