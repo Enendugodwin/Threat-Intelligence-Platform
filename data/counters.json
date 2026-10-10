@@ -2,51 +2,51 @@
   "by_malware": {
     "AMOS": 205,
     "AdaptixC2": 268,
-    "AsyncRAT": 2204,
-    "ClearFake": 1607,
-    "Cobalt Strike": 1264,
+    "AsyncRAT": 2205,
+    "ClearFake": 1615,
+    "Cobalt Strike": 1265,
     "DCRat": 107,
     "Evilginx": 95,
     "Formbook": 97,
-    "IClickFix": 1217,
-    "Mirai": 3579,
+    "IClickFix": 1225,
+    "Mirai": 3654,
     "PureRAT": 375,
     "Remcos": 169,
     "Remus": 146,
     "Unknown Loader": 4551,
     "Unknown RAT": 172,
     "Unknown Stealer": 547,
-    "Unknown malware": 678,
-    "VShell": 151,
+    "Unknown malware": 758,
+    "VShell": 181,
     "Vidar": 392,
-    "php.shin_webshell": 259
+    "php.shin_webshell": 272
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 3967,
-    "openphish": 2196,
-    "threatfox": 20177,
-    "tor": 9789,
-    "urlhaus": 13965
+    "malwarebazaar": 4159,
+    "openphish": 2437,
+    "threatfox": 20408,
+    "tor": 9857,
+    "urlhaus": 14139
   },
   "by_type": {
-    "domain": 9915,
-    "ipv4": 9780,
-    "ipv6": 2928,
+    "domain": 9948,
+    "ipv4": 9852,
+    "ipv6": 2934,
     "md5": 421,
     "sha1": 396,
-    "sha256": 9634,
-    "url": 16870
+    "sha256": 9840,
+    "url": 17369
   },
-  "generated_at": "2026-10-09T22:45:51Z",
+  "generated_at": "2026-10-10T06:05:37Z",
   "latest_run": {
     "durations": {
-      "circl": 8.9,
-      "feodo": 0.2,
-      "malwarebazaar": 0.1,
-      "openphish": 0.1,
-      "threatfox": 0.4,
+      "circl": 90.3,
+      "feodo": 0.3,
+      "malwarebazaar": 0.3,
+      "openphish": 0.0,
+      "threatfox": 0.6,
       "tor": 2.1,
       "urlhaus": 0.5
     },
@@ -54,19 +54,19 @@
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 860,
+      "malwarebazaar": 985,
       "openphish": 300,
-      "threatfox": 7154,
-      "tor": 8633,
+      "threatfox": 7185,
+      "tor": 8640,
       "urlhaus": 5000
     },
-    "fetched": 22866,
-    "finished_at": "2026-10-09T22:45:51Z",
-    "new": 1575,
+    "fetched": 23029,
+    "finished_at": "2026-10-10T06:05:37Z",
+    "new": 816,
     "pruned": 0,
-    "started_at": "2026-10-09T22:45:37Z",
-    "total": 49944,
-    "updated": 18632
+    "started_at": "2026-10-10T06:04:01Z",
+    "total": 50760,
+    "updated": 19528
   },
-  "total": 49944
+  "total": 50760
 }
