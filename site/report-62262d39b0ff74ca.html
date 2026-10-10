@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
-<title>Blinder Tunnel Campaign Targets Iraqi Infrastructure &mdash; Threat Intel Pipeline</title>
+<title>Why TLP should not replace your internal information classification, (Sat, Oct 10th) &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
@@ -316,10 +316,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </header>
 <main>
 <a class="back-link" href="reports.html">&larr; Report feed</a>
-<h1 class="page-title">Blinder Tunnel Campaign Targets Iraqi Infrastructure</h1>
+<h1 class="page-title">Why TLP should not replace your internal information classification, (Sat, Oct 10th)</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">Palo Alto</span>
-  <span class="badge">Palo Alto Unit 42</span>
+  <span class="badge badge-cat">General</span>
+  <span class="badge">SANS ISC</span>
 </div>
 <div class="env-banner">
   <strong>Assessment:</strong> risk <span class="risk risk-info">info</span></div>
@@ -329,11 +329,11 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="table-wrap">
     <table class="meta-table">
       <tbody>
-        <tr><td>Source</td><td>Palo Alto Unit 42</td></tr>
-        <tr><td>Category</td><td>Palo Alto</td></tr>
-        <tr><td>Published</td><td>2026-10-06</td></tr>
-        <tr><td>Report ID</td><td><code>986e0b7b7db00c83</code></td></tr>
-        <tr><td>Original</td><td><a href="https://unit42.paloaltonetworks.com/blinder-tunnel-targets-critical-infrastructure/" rel="noopener">https://unit42.paloaltonetworks.com/blinder-tunnel-targets-critical-infrastructure/</a></td></tr>
+        <tr><td>Source</td><td>SANS ISC</td></tr>
+        <tr><td>Category</td><td>General</td></tr>
+        <tr><td>Published</td><td>2026-10-10</td></tr>
+        <tr><td>Report ID</td><td><code>62262d39b0ff74ca</code></td></tr>
+        <tr><td>Original</td><td><a href="https://isc.sans.edu/diary/rss/33414" rel="noopener">https://isc.sans.edu/diary/rss/33414</a></td></tr>
       </tbody>
     </table>
   </div>
@@ -341,8 +341,8 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Analysis of Blinder Tunnel, an Iran-nexus campaign using fake Dubai Airports recruitment lures and GitHub C2 malware to target critical infrastructure. The post Blinder Tunnel Campaign Targets Iraqi Infrastructure appeared first on Unit 42 .</p>
-  <p class="muted">Excerpted from <a href="https://unit42.paloaltonetworks.com/blinder-tunnel-targets-critical-infrastructure/" rel="noopener">Palo Alto Unit 42</a>; follow the source for full context.</p>
+  <p class="detail-text">The Traffic Light Protocol (TLP)[1], which is now in its second incarnation, is a wonderful standard that enables one to easily communicate whether information may be shared further (and if so, how far).</p>
+  <p class="muted">Excerpted from <a href="https://isc.sans.edu/diary/rss/33414" rel="noopener">SANS ISC</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
@@ -354,7 +354,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Ensure PAN-OS updates plus Apps &amp; Threats content updates are current; check the advisory&#39;s fixed versions.</li><li>Apply the vendor&#39;s mitigation guidance until patching completes and monitor traffic logs for the indicators.</li><li>Keep management interfaces internal-only with admin MFA/RBAC.</li><li>Read the full Unit 42 report for detections and additional context beyond the extracted indicators.</li>  </ol>
+<li>Validate the indicators against your own telemetry before blocking or alerting.</li><li>Keep your asset inventory current so exposure to affected products is visible.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
