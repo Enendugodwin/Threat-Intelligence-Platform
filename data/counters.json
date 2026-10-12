@@ -1,72 +1,72 @@
 {
   "by_malware": {
-    "AMOS": 249,
+    "AMOS": 250,
     "AdaptixC2": 273,
-    "AsyncRAT": 2224,
-    "ClearFake": 1676,
-    "Cobalt Strike": 1273,
+    "AsyncRAT": 2228,
+    "ClearFake": 1686,
+    "Cobalt Strike": 1275,
     "DCRat": 110,
     "DanaBot": 136,
     "Formbook": 100,
     "IClickFix": 1290,
-    "Mirai": 3810,
+    "Mirai": 3855,
     "PureRAT": 381,
-    "Remcos": 174,
+    "Remcos": 177,
     "Remus": 161,
-    "Unknown Loader": 4562,
+    "Unknown Loader": 4563,
     "Unknown RAT": 179,
-    "Unknown Stealer": 564,
-    "Unknown malware": 887,
-    "VShell": 257,
-    "Vidar": 600,
-    "php.shin_webshell": 355
+    "Unknown Stealer": 565,
+    "Unknown malware": 891,
+    "VShell": 276,
+    "Vidar": 701,
+    "php.shin_webshell": 368
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 4834,
-    "openphish": 3028,
-    "threatfox": 21663,
-    "tor": 10025,
-    "urlhaus": 14977
+    "malwarebazaar": 4934,
+    "openphish": 3213,
+    "threatfox": 21878,
+    "tor": 10082,
+    "urlhaus": 15043
   },
   "by_type": {
-    "domain": 10319,
-    "ipv4": 10246,
-    "ipv6": 2963,
+    "domain": 10383,
+    "ipv4": 10308,
+    "ipv6": 2967,
     "md5": 500,
     "sha1": 475,
-    "sha256": 10590,
-    "url": 18983
+    "sha256": 10692,
+    "url": 19331
   },
-  "generated_at": "2026-10-11T22:09:38Z",
+  "generated_at": "2026-10-12T06:13:29Z",
   "latest_run": {
     "durations": {
-      "circl": 32.4,
-      "feodo": 0.3,
-      "malwarebazaar": 0.2,
+      "circl": 76.6,
+      "feodo": 0.2,
+      "malwarebazaar": 0.3,
       "openphish": 0.1,
       "threatfox": 0.4,
-      "tor": 1.8,
-      "urlhaus": 0.5
+      "tor": 2.0,
+      "urlhaus": 0.7
     },
     "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 865,
+      "malwarebazaar": 765,
       "openphish": 300,
-      "threatfox": 5756,
-      "tor": 8585,
+      "threatfox": 5700,
+      "tor": 8602,
       "urlhaus": 5001
     },
-    "fetched": 21426,
-    "finished_at": "2026-10-11T22:09:38Z",
-    "new": 780,
+    "fetched": 21287,
+    "finished_at": "2026-10-12T06:13:29Z",
+    "new": 580,
     "pruned": 0,
-    "started_at": "2026-10-11T22:09:02Z",
-    "total": 54076,
-    "updated": 18068
+    "started_at": "2026-10-12T06:12:07Z",
+    "total": 54656,
+    "updated": 18207
   },
-  "total": 54076
+  "total": 54656
 }
