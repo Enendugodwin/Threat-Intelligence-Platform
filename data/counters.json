@@ -1,72 +1,72 @@
 {
   "by_malware": {
-    "AMOS": 250,
-    "AdaptixC2": 273,
-    "AsyncRAT": 2228,
-    "ClearFake": 1686,
-    "Cobalt Strike": 1275,
+    "AMOS": 267,
+    "AdaptixC2": 275,
+    "AsyncRAT": 2232,
+    "ClearFake": 1698,
+    "Cobalt Strike": 1284,
     "DCRat": 110,
-    "DanaBot": 136,
-    "Formbook": 100,
-    "IClickFix": 1290,
-    "Mirai": 3855,
-    "PureRAT": 381,
-    "Remcos": 177,
-    "Remus": 161,
-    "Unknown Loader": 4563,
-    "Unknown RAT": 179,
-    "Unknown Stealer": 565,
-    "Unknown malware": 891,
-    "VShell": 276,
-    "Vidar": 701,
-    "php.shin_webshell": 368
+    "DanaBot": 192,
+    "IClickFix": 1303,
+    "Jackskid": 104,
+    "Mirai": 3960,
+    "PureRAT": 387,
+    "Remcos": 196,
+    "Remus": 164,
+    "Unknown Loader": 4569,
+    "Unknown RAT": 185,
+    "Unknown Stealer": 566,
+    "Unknown malware": 931,
+    "VShell": 279,
+    "Vidar": 785,
+    "php.shin_webshell": 387
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 4934,
-    "openphish": 3213,
-    "threatfox": 21878,
-    "tor": 10082,
-    "urlhaus": 15043
+    "malwarebazaar": 5292,
+    "openphish": 3367,
+    "threatfox": 22384,
+    "tor": 10132,
+    "urlhaus": 15948
   },
   "by_type": {
-    "domain": 10383,
-    "ipv4": 10308,
-    "ipv6": 2967,
+    "domain": 10518,
+    "ipv4": 10491,
+    "ipv6": 2979,
     "md5": 500,
     "sha1": 475,
-    "sha256": 10692,
-    "url": 19331
+    "sha256": 11069,
+    "url": 20458
   },
-  "generated_at": "2026-10-12T06:13:29Z",
+  "generated_at": "2026-10-12T15:46:53Z",
   "latest_run": {
     "durations": {
-      "circl": 76.6,
+      "circl": 10.9,
       "feodo": 0.2,
-      "malwarebazaar": 0.3,
+      "malwarebazaar": 0.2,
       "openphish": 0.1,
-      "threatfox": 0.4,
-      "tor": 2.0,
-      "urlhaus": 0.7
+      "threatfox": 0.6,
+      "tor": 1.8,
+      "urlhaus": 0.4
     },
     "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 765,
+      "malwarebazaar": 944,
       "openphish": 300,
-      "threatfox": 5700,
-      "tor": 8602,
-      "urlhaus": 5001
+      "threatfox": 5937,
+      "tor": 8568,
+      "urlhaus": 5000
     },
-    "fetched": 21287,
-    "finished_at": "2026-10-12T06:13:29Z",
-    "new": 580,
+    "fetched": 21668,
+    "finished_at": "2026-10-12T15:46:53Z",
+    "new": 1834,
     "pruned": 0,
-    "started_at": "2026-10-12T06:12:07Z",
-    "total": 54656,
-    "updated": 18207
+    "started_at": "2026-10-12T15:46:38Z",
+    "total": 56490,
+    "updated": 17416
   },
-  "total": 54656
+  "total": 56490
 }
