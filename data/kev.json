@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-10-13T14:25:04Z",
-  "catalog_version": "2026.10.08",
-  "catalog_count": 1739,
+  "generated_at": "2026-10-13T22:56:40Z",
+  "catalog_version": "2026.10.13",
+  "catalog_count": 1741,
   "entries": [
+    {
+      "cve": "CVE-2026-104935",
+      "vendor": "Ivanti",
+      "product": "Connect Secure",
+      "name": "Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability",
+      "date_added": "2026-10-13",
+      "due_date": "2026-10-16",
+      "ransomware": false,
+      "description": "Ivanti Connect Secure contains an authentication bypass by spoofing vulnerability that allows a remote unauthenticated attacker to execute arbitrary commands.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
+    {
+      "cve": "CVE-2026-96951",
+      "vendor": "Microsoft",
+      "product": "Windows",
+      "name": "Microsoft Windows Command Injection Vulnerability",
+      "date_added": "2026-10-13",
+      "due_date": "2026-10-16",
+      "ransomware": false,
+      "description": "Microsoft Windows Shell contains a command injection vulnerability that allows an unauthorized attacker to bypass a security feature over a network.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
     {
       "cve": "CVE-2015-5477",
       "vendor": "ISC",
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.01026,
       "epss_percentile": 0.62367
-    },
-    {
-      "cve": "CVE-2026-3909",
-      "vendor": "Google",
-      "product": "Skia",
-      "name": "Google Skia Out-of-Bounds Write Vulnerability",
-      "date_added": "2026-03-13",
-      "due_date": "2026-03-27",
-      "ransomware": false,
-      "description": "Google Skia contains an out-of-bounds write vulnerability that could allow a remote attacker to perform out of bounds memory access via a crafted HTML page. This vulnerability affects Google Chrome and ChromeOS, Android, Flutter, and possibly other products.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.02301,
-      "epss_percentile": 0.82717
-    },
-    {
-      "cve": "CVE-2025-68613",
-      "vendor": "n8n",
-      "product": "n8n",
-      "name": "n8n Improper Control of Dynamically-Managed Code Resources Vulnerability",
-      "date_added": "2026-03-11",
-      "due_date": "2026-03-25",
-      "ransomware": false,
-      "description": "n8n contains an improper control of dynamically managed code resources vulnerability in its workflow expression evaluation system that allows for remote code execution.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.98994,
-      "epss_percentile": 0.9993
     }
   ]
 }
