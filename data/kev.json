@@ -1,8 +1,60 @@
 {
-  "generated_at": "2026-10-14T17:22:26Z",
-  "catalog_version": "2026.10.13",
-  "catalog_count": 1741,
+  "generated_at": "2026-10-14T21:49:42Z",
+  "catalog_version": "2026.10.14",
+  "catalog_count": 1745,
   "entries": [
+    {
+      "cve": "CVE-2026-105134",
+      "vendor": "Ahsay",
+      "product": "AhsayCBS",
+      "name": "Ahsay AhsayCBS Command Injection Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
+      "ransomware": false,
+      "description": "Ahsay AhsayCBS contains a command injection vulnerability that could allow a remote attacker to execute operating system commands via manipulation of the random parameter in the Replication Receiver component\u2019s /rps/api/json/UpdateReceivers.do endpoint. This vulnerability can be ",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01843,
+      "epss_percentile": 0.78594
+    },
+    {
+      "cve": "CVE-2026-76519",
+      "vendor": "Cisco",
+      "product": "Secure Email Gateway",
+      "name": "Cisco Secure Email Gateway Relative Path Traversal Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
+      "ransomware": false,
+      "description": "Cisco Secure Email Gateway contains a relative path traversal vulnerability that could allow an unauthenticated, remote attacker to write arbitrary files on the underlying operating system.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
+    {
+      "cve": "CVE-2026-105133",
+      "vendor": "Ahsay",
+      "product": "AhsayCBS",
+      "name": "Ahsay AhsayCBS Improper Authentication Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
+      "ransomware": false,
+      "description": "Ahsay AhsayCBS contains an improper authentication vulnerability that could allow a remote attacker to bypass authentication via manipulation of the random parameter in the API component\u2019s checkSysPwd function. This vulnerability can be chained with CVE-2026-105134.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00383,
+      "epss_percentile": 0.30672
+    },
+    {
+      "cve": "CVE-2026-0322",
+      "vendor": "Palo Alto Networks",
+      "product": "PAN-OS",
+      "name": "Palo Alto Networks PAN-OS Code Injection Vulnerability",
+      "date_added": "2026-10-14",
+      "due_date": "2026-10-17",
+      "ransomware": false,
+      "description": "Palo Alto Networks PAN-OS contains a code injection vulnerability that could allow an authenticated attacker with network access to execute arbitrary code with root privileges on the firewall.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
     {
       "cve": "CVE-2026-104935",
       "vendor": "Ivanti",
@@ -2550,58 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.43166,
       "epss_percentile": 0.98688
-    },
-    {
-      "cve": "CVE-2025-66376",
-      "vendor": "Synacor",
-      "product": "Zimbra Collaboration Suite (ZCS)",
-      "name": "Synacor Zimbra Collaboration Suite (ZCS) Cross-Site Scripting Vulnerability",
-      "date_added": "2026-03-18",
-      "due_date": "2026-04-01",
-      "ransomware": false,
-      "description": "Synacor Zimbra Collaboration Suite (ZCS) contains a cross-site scripting vulnerability in the Classic UI where attackers could abuse Cascading Style Sheets (CSS) @import directives in email HTML.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.20227,
-      "epss_percentile": 0.974
-    },
-    {
-      "cve": "CVE-2026-20963",
-      "vendor": "Microsoft",
-      "product": "SharePoint",
-      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-03-18",
-      "due_date": "2026-03-21",
-      "ransomware": false,
-      "description": "Microsoft SharePoint contains a deserialization of untrusted data vulnerability that allows an unauthorized attacker to execute code over a network.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.29582,
-      "epss_percentile": 0.98143
-    },
-    {
-      "cve": "CVE-2025-47813",
-      "vendor": "Wing FTP Server",
-      "product": "Wing FTP Server",
-      "name": "Wing FTP Server Information Disclosure Vulnerability",
-      "date_added": "2026-03-16",
-      "due_date": "2026-03-30",
-      "ransomware": false,
-      "description": "Wing FTP Server contains a generation of error message containing sensitive information vulnerability when using a long value in the UID cookie.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.63107,
-      "epss_percentile": 0.99184
-    },
-    {
-      "cve": "CVE-2026-3910",
-      "vendor": "Google",
-      "product": "Chromium V8",
-      "name": "Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability",
-      "date_added": "2026-03-13",
-      "due_date": "2026-03-27",
-      "ransomware": false,
-      "description": "Google Chromium V8 contains an improper restriction of operations within the bounds of a memory buffer vulnerability that could allow a remote attacker to execute arbitrary code inside a sandbox via a crafted HTML page. This vulnerability could affect multiple web browsers that u",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.01026,
-      "epss_percentile": 0.62367
     }
   ]
 }
