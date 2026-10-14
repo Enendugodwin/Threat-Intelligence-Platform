@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T12:08:50Z",
+  "generated_at": "2026-10-14T17:22:26Z",
   "catalog_version": "2026.10.13",
   "catalog_count": 1741,
   "entries": [
@@ -13,8 +13,8 @@
       "ransomware": false,
       "description": "Ivanti Connect Secure contains an authentication bypass by spoofing vulnerability that allows a remote unauthenticated attacker to execute arbitrary commands.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.25982,
+      "epss_percentile": 0.97961
     },
     {
       "cve": "CVE-2026-96951",
@@ -26,8 +26,8 @@
       "ransomware": false,
       "description": "Microsoft Windows Shell contains a command injection vulnerability that allows an unauthorized attacker to bypass a security feature over a network.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.01506,
+      "epss_percentile": 0.73847
     },
     {
       "cve": "CVE-2015-5477",
