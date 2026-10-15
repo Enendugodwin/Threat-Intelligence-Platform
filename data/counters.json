@@ -1,72 +1,72 @@
 {
   "by_malware": {
-    "AMOS": 339,
-    "AdaptixC2": 283,
-    "AsyncRAT": 2274,
-    "ClearFake": 1861,
-    "Cobalt Strike": 1325,
+    "AMOS": 374,
+    "AdaptixC2": 285,
+    "AsyncRAT": 2279,
+    "ClearFake": 1870,
+    "Cobalt Strike": 1333,
     "DanaBot": 194,
     "Formbook": 172,
-    "IClickFix": 1333,
-    "Mirai": 4215,
-    "PureRAT": 409,
-    "Remcos": 259,
-    "Remus": 180,
-    "Sliver": 297,
-    "Unknown Loader": 4901,
+    "IClickFix": 1492,
+    "Mirai": 4227,
+    "PureRAT": 411,
+    "Remcos": 271,
+    "Remus": 182,
+    "Sliver": 298,
+    "Unknown Loader": 4902,
     "Unknown RAT": 204,
     "Unknown Stealer": 628,
-    "Unknown malware": 1038,
-    "VShell": 354,
-    "Vidar": 3185,
-    "php.shin_webshell": 503
+    "Unknown malware": 1047,
+    "VShell": 646,
+    "Vidar": 3471,
+    "php.shin_webshell": 514
   },
   "by_source": {
     "circl": 914,
     "feodo": 5,
-    "malwarebazaar": 6804,
+    "malwarebazaar": 6878,
     "openphish": 4807,
-    "threatfox": 27250,
-    "tor": 10536,
-    "urlhaus": 17281
+    "threatfox": 28111,
+    "tor": 10576,
+    "urlhaus": 17368
   },
   "by_type": {
-    "domain": 11419,
-    "ipv4": 11323,
-    "ipv6": 3130,
+    "domain": 11603,
+    "ipv4": 11441,
+    "ipv6": 3137,
     "md5": 697,
     "sha1": 672,
-    "sha256": 12633,
-    "url": 25663
+    "sha256": 12986,
+    "url": 26047
   },
-  "generated_at": "2026-10-15T04:53:51Z",
+  "generated_at": "2026-10-15T11:45:49Z",
   "latest_run": {
     "durations": {
-      "circl": 2.9,
-      "feodo": 0.1,
+      "circl": 20.6,
+      "feodo": 0.3,
       "malwarebazaar": 0.1,
-      "openphish": 0.0,
+      "openphish": 0.1,
       "threatfox": 0.4,
-      "tor": 2.7,
-      "urlhaus": 0.4
+      "tor": 1.3,
+      "urlhaus": 0.5
     },
     "errors": {},
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1259,
+      "malwarebazaar": 1177,
       "openphish": 300,
-      "threatfox": 8161,
-      "tor": 8691,
+      "threatfox": 8612,
+      "tor": 8698,
       "urlhaus": 5000
     },
-    "fetched": 24330,
-    "finished_at": "2026-10-15T04:53:51Z",
-    "new": 1158,
+    "fetched": 24706,
+    "finished_at": "2026-10-15T11:45:49Z",
+    "new": 1046,
     "pruned": 0,
-    "started_at": "2026-10-15T04:53:43Z",
-    "total": 65537,
-    "updated": 21130
+    "started_at": "2026-10-15T11:45:25Z",
+    "total": 66583,
+    "updated": 21652
   },
-  "total": 65537
+  "total": 66583
 }
