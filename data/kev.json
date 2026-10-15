@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T11:45:55Z",
+  "generated_at": "2026-10-15T17:12:16Z",
   "catalog_version": "2026.10.14",
   "catalog_count": 1745,
   "entries": [
@@ -26,8 +26,8 @@
       "ransomware": false,
       "description": "Cisco Secure Email Gateway contains a relative path traversal vulnerability that could allow an unauthenticated, remote attacker to write arbitrary files on the underlying operating system.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.01743,
+      "epss_percentile": 0.77354
     },
     {
       "cve": "CVE-2026-105133",
@@ -52,8 +52,8 @@
       "ransomware": false,
       "description": "Palo Alto Networks PAN-OS contains a code injection vulnerability that could allow an authenticated attacker with network access to execute arbitrary code with root privileges on the firewall.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.01076,
+      "epss_percentile": 0.64349
     },
     {
       "cve": "CVE-2026-104935",
