@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-10-15T17:12:16Z",
-  "catalog_version": "2026.10.14",
-  "catalog_count": 1745,
+  "generated_at": "2026-10-15T21:32:57Z",
+  "catalog_version": "2026.10.15",
+  "catalog_count": 1746,
   "entries": [
+    {
+      "cve": "CVE-2026-21589",
+      "vendor": "Atlassian",
+      "product": "Multiple Products",
+      "name": "Atlassian Multiple Products Files or Directories Accessible to External Parties Vulnerability",
+      "date_added": "2026-10-15",
+      "due_date": "2026-10-18",
+      "ransomware": false,
+      "description": "Multiple Atlassian products (Bitbucket Data Center ,Confluence Data Center, Jira Service Management Data Center, Jira Software Data Center, Bamboo Data Center, Crowd Data Center, Crucible and Fisheye) contain a files or directories accessible to external parties vulnerability whi",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.02777,
+      "epss_percentile": 0.86118
+    },
     {
       "cve": "CVE-2026-105134",
       "vendor": "Ahsay",
@@ -2589,19 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.01604,
       "epss_percentile": 0.74999
-    },
-    {
-      "cve": "CVE-2026-20131",
-      "vendor": "Cisco",
-      "product": "Secure Firewall Management Center (FMC)",
-      "name": "Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management Deserialization of Untrusted Data Vulnerability",
-      "date_added": "2026-03-19",
-      "due_date": "2026-03-22",
-      "ransomware": true,
-      "description": "Cisco Secure Firewall Management Center (FMC) Software and Cisco Security Cloud Control (SCC) Firewall Management contain a deserialization of untrusted data vulnerability in the web-based management interface that could allow an unauthenticated, remote attacker to execute arbitr",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.43166,
-      "epss_percentile": 0.98688
     }
   ]
 }
