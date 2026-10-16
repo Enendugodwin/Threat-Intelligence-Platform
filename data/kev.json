@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-10-16T16:48:18Z",
-  "catalog_version": "2026.10.15",
-  "catalog_count": 1746,
+  "generated_at": "2026-10-16T21:25:10Z",
+  "catalog_version": "2026.10.16",
+  "catalog_count": 1748,
   "entries": [
+    {
+      "cve": "CVE-2026-102764",
+      "vendor": "BeyondTrust",
+      "product": "Remote Support",
+      "name": "BeyondTrust Remote Support Authentication Bypass by Spoofing Vulnerability",
+      "date_added": "2026-10-16",
+      "due_date": "2026-10-19",
+      "ransomware": false,
+      "description": "BeyondTrust Remote Support contains an authentication bypass by spoofing vulnerability that could allow a remote attacker to perform file operations on the appliance.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00601,
+      "epss_percentile": 0.47647
+    },
+    {
+      "cve": "CVE-2025-61624",
+      "vendor": "Fortinet",
+      "product": "Multiple Products",
+      "name": "Fortinet Multiple Products Path Traversal Vulnerability",
+      "date_added": "2026-10-16",
+      "due_date": "2026-10-19",
+      "ransomware": false,
+      "description": "FortiOS, FortiPAM, FortiProxy, and FortiSwitchManager contain a path traversal vulnerability that may allow an authenticated attacker with admin profile and at least read-write permissions to write or delete arbitrary files via specific CLI commands.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.0058,
+      "epss_percentile": 0.46551
+    },
     {
       "cve": "CVE-2026-21589",
       "vendor": "Atlassian",
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.00355,
       "epss_percentile": 0.26987
-    },
-    {
-      "cve": "CVE-2025-43520",
-      "vendor": "Apple",
-      "product": "Multiple Products",
-      "name": "Apple Multiple Products Classic Buffer Overflow Vulnerability",
-      "date_added": "2026-03-20",
-      "due_date": "2026-04-03",
-      "ransomware": false,
-      "description": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel memory.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.00425,
-      "epss_percentile": 0.34562
-    },
-    {
-      "cve": "CVE-2025-31277",
-      "vendor": "Apple",
-      "product": "Multiple Products",
-      "name": "Apple Multiple Products Buffer Overflow Vulnerability",
-      "date_added": "2026-03-20",
-      "due_date": "2026-04-03",
-      "ransomware": false,
-      "description": "Apple Safari, iOS, watchOS, visionOS, iPadOS, macOS, and tvOS contain a buffer overflow vulnerability that could allow the processing of maliciously crafted web content which may lead to memory corruption.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.01604,
-      "epss_percentile": 0.74999
     }
   ]
 }
