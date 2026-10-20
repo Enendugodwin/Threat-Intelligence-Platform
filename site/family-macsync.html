@@ -1,0 +1,2925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: MacSync &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
+.export-menu{position:relative}
+.export-menu>summary{list-style:none;user-select:none}
+.export-menu>summary::-webkit-details-marker{display:none}
+.export-menu[open]>summary{background:var(--color-primary-soft)}
+.export-chevron{transition:transform .18s ease}
+.export-menu[open] .export-chevron{transform:rotate(180deg)}
+.export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
+.export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
+.export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
+.export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
+.export-description{font-size:.7rem;color:var(--color-muted-foreground)}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:var(--color-primary-soft)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
+}
+@media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
+  .export-menu-panel{left:0;right:auto}
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>83601 indicators</span>
+      <span>1273 new / 19800 updated last run &middot; 23993 new / 7d</span>
+      <span>7/7 feeds</span>
+      <span>sync 2026-10-20T17:22:24Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="threats.html">Threats</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: MacSync</h1>
+<p class="muted">
+  255 indicator(s) attributed to MacSync</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0e01d720a0e545e363736bd9b7fc7df142aadcf7550ffc001f0633f8ac718a8e" target="_blank" rel="noopener"><code>0e01d720a0e545e363736bd9b7fc7df142aadcf7550ffc001f0633f8ac718a8e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 93</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-20T08:24:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/1441bet.com" target="_blank" rel="noopener"><code>1441bet[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/39ae68e02ab6ea9fb39c538eeb6177cdf105557f937f6bcc462e9c0e64319926" target="_blank" rel="noopener"><code>39ae68e02ab6ea9fb39c538eeb6177cdf105557f937f6bcc462e9c0e64319926</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-12T07:31:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/3plfast.com" target="_blank" rel="noopener"><code>3plfast[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/401trading.com" target="_blank" rel="noopener"><code>401trading[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/499cb7ae6c385c77d3eb663394e552626621ecac74d86c8dc392f4098886927d" target="_blank" rel="noopener"><code>499cb7ae6c385c77d3eb663394e552626621ecac74d86c8dc392f4098886927d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-15T00:52:43Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/5x5web.com" target="_blank" rel="noopener"><code>5x5web[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/61f8e4e3e263934a04d18e29fd5edaa0840b1a8137b649e8241e5bae013f200d" target="_blank" rel="noopener"><code>61f8e4e3e263934a04d18e29fd5edaa0840b1a8137b649e8241e5bae013f200d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 93</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-18T22:27:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/accesscovidtest.com" target="_blank" rel="noopener"><code>accesscovidtest[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/accesscovidtests.com" target="_blank" rel="noopener"><code>accesscovidtests[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aidevmaster.com" target="_blank" rel="noopener"><code>aidevmaster[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aivalero.com" target="_blank" rel="noopener"><code>aivalero[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alabamalimoservice.com" target="_blank" rel="noopener"><code>alabamalimoservice[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alabamarecoverycenter.com" target="_blank" rel="noopener"><code>alabamarecoverycenter[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/alluringsites.com" target="_blank" rel="noopener"><code>alluringsites[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/americanskydive.com" target="_blank" rel="noopener"><code>americanskydive[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/apptux.com" target="_blank" rel="noopener"><code>apptux[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/appvax.com" target="_blank" rel="noopener"><code>appvax[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aquaticpoolsandspas.com" target="_blank" rel="noopener"><code>aquaticpoolsandspas[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/arizonahomesellers.com" target="_blank" rel="noopener"><code>arizonahomesellers[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ashevilleroofingcontractor.com" target="_blank" rel="noopener"><code>ashevilleroofingcontractor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ashevilleweddingfilms.com" target="_blank" rel="noopener"><code>ashevilleweddingfilms[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atlantaairporttaxiservice.com" target="_blank" rel="noopener"><code>atlantaairporttaxiservice[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atlantaofficiants.com" target="_blank" rel="noopener"><code>atlantaofficiants[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:21Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atlanticwoodworking.com" target="_blank" rel="noopener"><code>atlanticwoodworking[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atlsaagent.com" target="_blank" rel="noopener"><code>atlsaagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/atxpressurewashing.com" target="_blank" rel="noopener"><code>atxpressurewashing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b05f89e41ee8a6613461bdd57362772258f7fd8383a5d013a7965f3fd8f08eb0" target="_blank" rel="noopener"><code>b05f89e41ee8a6613461bdd57362772258f7fd8383a5d013a7965f3fd8f08eb0</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 93</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-19T09:24:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bankruptcyrhodeisland.com" target="_blank" rel="noopener"><code>bankruptcyrhodeisland[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-18T22:27:14Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bcrealestateagency.com" target="_blank" rel="noopener"><code>bcrealestateagency[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/beachhoteldestin.com" target="_blank" rel="noopener"><code>beachhoteldestin[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/beachjiujitsu.com" target="_blank" rel="noopener"><code>beachjiujitsu[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/beaocnagent.com" target="_blank" rel="noopener"><code>beaocnagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/belldredgingpump.com" target="_blank" rel="noopener"><code>belldredgingpump[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bestbuydomain.com" target="_blank" rel="noopener"><code>bestbuydomain[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bismarckchiropractor.com" target="_blank" rel="noopener"><code>bismarckchiropractor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-19T09:24:31Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/blackcarserviceslax.com" target="_blank" rel="noopener"><code>blackcarserviceslax[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/bravoslandscaping.com" target="_blank" rel="noopener"><code>bravoslandscaping[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/briskinternet.com" target="_blank" rel="noopener"><code>briskinternet[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/buylabgrowndiamond.com" target="_blank" rel="noopener"><code>buylabgrowndiamond[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/buynewgymequipment.com" target="_blank" rel="noopener"><code>buynewgymequipment[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/buywx.com" target="_blank" rel="noopener"><code>buywx[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cabinrentalsnc.com" target="_blank" rel="noopener"><code>cabinrentalsnc[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/californiasmallbusinesslaw.com" target="_blank" rel="noopener"><code>californiasmallbusinesslaw[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/centralflgaragedoors.com" target="_blank" rel="noopener"><code>centralflgaragedoors[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/centralfloridapowerwash.com" target="_blank" rel="noopener"><code>centralfloridapowerwash[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/charlestonlawncompany.com" target="_blank" rel="noopener"><code>charlestonlawncompany[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/charlestonwaterheater.com" target="_blank" rel="noopener"><code>charlestonwaterheater[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/charlotteawning.com" target="_blank" rel="noopener"><code>charlotteawning[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/charlottedefenseattorney.com" target="_blank" rel="noopener"><code>charlottedefenseattorney[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/charlottesvilleinteriordesign.com" target="_blank" rel="noopener"><code>charlottesvilleinteriordesign[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/cincycarpetcleaning.com" target="_blank" rel="noopener"><code>cincycarpetcleaning[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/coloradoaffordablelawyer.com" target="_blank" rel="noopener"><code>coloradoaffordablelawyer[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/coloradoconstructionsupply.com" target="_blank" rel="noopener"><code>coloradoconstructionsupply[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/criminallawyerpr.com" target="_blank" rel="noopener"><code>criminallawyerpr[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/croclandscapes.com" target="_blank" rel="noopener"><code>croclandscapes[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dallasirrigationservices.com" target="_blank" rel="noopener"><code>dallasirrigationservices[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dallasmobileautomechanic.com" target="_blank" rel="noopener"><code>dallasmobileautomechanic[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/darkmauve.com" target="_blank" rel="noopener"><code>darkmauve[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/daxivo.com" target="_blank" rel="noopener"><code>daxivo[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/deltatransmission.com" target="_blank" rel="noopener"><code>deltatransmission[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/denverpediatricchiropractor.com" target="_blank" rel="noopener"><code>denverpediatricchiropractor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/denverplumbingandwaterheater.com" target="_blank" rel="noopener"><code>denverplumbingandwaterheater[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/detroitconcretecontractor.com" target="_blank" rel="noopener"><code>detroitconcretecontractor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dfwemergencydentist.com" target="_blank" rel="noopener"><code>dfwemergencydentist[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/direito-digital.com" target="_blank" rel="noopener"><code>direito-digital[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dixonshvac.com" target="_blank" rel="noopener"><code>dixonshvac[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dogtrainersgeorgia.com" target="_blank" rel="noopener"><code>dogtrainersgeorgia[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dramshopliabilityattorney.com" target="_blank" rel="noopener"><code>dramshopliabilityattorney[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dremaagent.com" target="_blank" rel="noopener"><code>dremaagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dualverify.com" target="_blank" rel="noopener"><code>dualverify[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dubaivehiclemart.com" target="_blank" rel="noopener"><code>dubaivehiclemart[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dylantreeservice.com" target="_blank" rel="noopener"><code>dylantreeservice[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/e-agentics.com" target="_blank" rel="noopener"><code>e-agentics[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/e-renewable.com" target="_blank" rel="noopener"><code>e-renewable[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e6b0de2d1e40e60fe6aa94621e4bf33e567657f13b178da9744c6b04894fea86" target="_blank" rel="noopener"><code>e6b0de2d1e40e60fe6aa94621e4bf33e567657f13b178da9744c6b04894fea86</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, malwarebazaar</td>
+          <td>2026-10-15T18:37:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ecnoagent.com" target="_blank" rel="noopener"><code>ecnoagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/electricdredger.com" target="_blank" rel="noopener"><code>electricdredger[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/elitefenceanddeck.com" target="_blank" rel="noopener"><code>elitefenceanddeck[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/energedge.com" target="_blank" rel="noopener"><code>energedge[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/envestassetmanagement.com" target="_blank" rel="noopener"><code>envestassetmanagement[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fencecompanycharleston.com" target="_blank" rel="noopener"><code>fencecompanycharleston[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/firealarmflorida.com" target="_blank" rel="noopener"><code>firealarmflorida[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/flheadshot.com" target="_blank" rel="noopener"><code>flheadshot[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/flip-cart.com" target="_blank" rel="noopener"><code>flip-cart[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/flmaeagent.com" target="_blank" rel="noopener"><code>flmaeagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/floridakitchencabinet.com" target="_blank" rel="noopener"><code>floridakitchencabinet[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/floridapsychicmedium.com" target="_blank" rel="noopener"><code>floridapsychicmedium[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/floridavacationvillarental.com" target="_blank" rel="noopener"><code>floridavacationvillarental[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/floridawinetours.com" target="_blank" rel="noopener"><code>floridawinetours[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fredscarpetcleaning.com" target="_blank" rel="noopener"><code>fredscarpetcleaning[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/garagedoorskentucky.com" target="_blank" rel="noopener"><code>garagedoorskentucky[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/garagedoorstexas.com" target="_blank" rel="noopener"><code>garagedoorstexas[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genomicsforge.com" target="_blank" rel="noopener"><code>genomicsforge[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/glimemragent.com" target="_blank" rel="noopener"><code>glimemragent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/glwoagent.com" target="_blank" rel="noopener"><code>glwoagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/goelagent.com" target="_blank" rel="noopener"><code>goelagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/grnadagent.com" target="_blank" rel="noopener"><code>grnadagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gylphagent.com" target="_blank" rel="noopener"><code>gylphagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/haertagent.com" target="_blank" rel="noopener"><code>haertagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hawaiifencecompany.com" target="_blank" rel="noopener"><code>hawaiifencecompany[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hawaiiwindowtinting.com" target="_blank" rel="noopener"><code>hawaiiwindowtinting[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/headshotdfw.com" target="_blank" rel="noopener"><code>headshotdfw[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/healthcareqai.com" target="_blank" rel="noopener"><code>healthcareqai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/heartycenter.com" target="_blank" rel="noopener"><code>heartycenter[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hivona.com" target="_blank" rel="noopener"><code>hivona[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hoepagent.com" target="_blank" rel="noopener"><code>hoepagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/homeinspectionnaperville.com" target="_blank" rel="noopener"><code>homeinspectionnaperville[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/homeinspectionsdelaware.com" target="_blank" rel="noopener"><code>homeinspectionsdelaware[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/homeinspectoralaska.com" target="_blank" rel="noopener"><code>homeinspectoralaska[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/horizonmanagedservices.com" target="_blank" rel="noopener"><code>horizonmanagedservices[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbankruptcyrhodeisland.com%2Fcurl%2F28a0700d864a15f5bc551accd41342c59d881f7051555f3ca3a3a5403301628b" target="_blank" rel="noopener"><code>hxxps://bankruptcyrhodeisland[.]com/curl/28a0700d864a15f5bc551accd41342c59d881f7051555f3ca3a3a5403301628b</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-18T22:27:13Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbismarckchiropractor.com%2Fcurl%2F42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a" target="_blank" rel="noopener"><code>hxxps://bismarckchiropractor[.]com/curl/42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-19T09:24:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finternetlouisiana.com%2Fcurl%2F42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a" target="_blank" rel="noopener"><code>hxxps://internetlouisiana[.]com/curl/42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-12T07:31:57Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Finternetmissouri.com%2Fcurl%2F42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a" target="_blank" rel="noopener"><code>hxxps://internetmissouri[.]com/curl/42403afd2906a8f3062e3ddb19b28572d88db9ae74b147319383bd280c6bec0a</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-15T18:37:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsantaclaracountyproperties.com%2Fcurl%2F28a0700d864a15f5bc551accd41342c59d881f7051555f3ca3a3a5403301628b" target="_blank" rel="noopener"><code>hxxps://santaclaracountyproperties[.]com/curl/28a0700d864a15f5bc551accd41342c59d881f7051555f3ca3a3a5403301628b</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-20T08:24:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftherapygeorgia.com%2Fcurl%2F6bab7f3072580dd7a8fc3bf0ca52c98d3136ed0839e61c7e7794494b3b8c03ac" target="_blank" rel="noopener"><code>hxxps://therapygeorgia[.]com/curl/6bab7f3072580dd7a8fc3bf0ca52c98d3136ed0839e61c7e7794494b3b8c03ac</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-critical">critical 90</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-15T00:52:45Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hybridcustomhomes.com" target="_blank" rel="noopener"><code>hybridcustomhomes[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/injurylawsocal.com" target="_blank" rel="noopener"><code>injurylawsocal[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/inqix.com" target="_blank" rel="noopener"><code>inqix[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/internetlouisiana.com" target="_blank" rel="noopener"><code>internetlouisiana[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-12T07:31:56Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/internetmissouri.com" target="_blank" rel="noopener"><code>internetmissouri[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-15T18:37:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/intopython.com" target="_blank" rel="noopener"><code>intopython[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/investigatemiami.com" target="_blank" rel="noopener"><code>investigatemiami[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/investigatoraustin.com" target="_blank" rel="noopener"><code>investigatoraustin[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/irvineinteriordesigner.com" target="_blank" rel="noopener"><code>irvineinteriordesigner[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/itsystemsexpert.com" target="_blank" rel="noopener"><code>itsystemsexpert[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jacksonvillemma.com" target="_blank" rel="noopener"><code>jacksonvillemma[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jaxivo.com" target="_blank" rel="noopener"><code>jaxivo[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jerryshvac.com" target="_blank" rel="noopener"><code>jerryshvac[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/jobureau.com" target="_blank" rel="noopener"><code>jobureau[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kidsjumpandplay.com" target="_blank" rel="noopener"><code>kidsjumpandplay[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kirkcharlie.com" target="_blank" rel="noopener"><code>kirkcharlie[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kitchenbathremodels.com" target="_blank" rel="noopener"><code>kitchenbathremodels[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kylesplumbing.com" target="_blank" rel="noopener"><code>kylesplumbing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lalandscapelighting.com" target="_blank" rel="noopener"><code>lalandscapelighting[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/languageschoolai.com" target="_blank" rel="noopener"><code>languageschoolai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lasvegaslaminateflooring.com" target="_blank" rel="noopener"><code>lasvegaslaminateflooring[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lasvegasweddingreception.com" target="_blank" rel="noopener"><code>lasvegasweddingreception[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/legacybuilderscolorado.com" target="_blank" rel="noopener"><code>legacybuilderscolorado[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lifecoachrochester.com" target="_blank" rel="noopener"><code>lifecoachrochester[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/livetux.com" target="_blank" rel="noopener"><code>livetux[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/longbeachmartialarts.com" target="_blank" rel="noopener"><code>longbeachmartialarts[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/loqira.com" target="_blank" rel="noopener"><code>loqira[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/louisianaroofrepair.com" target="_blank" rel="noopener"><code>louisianaroofrepair[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/luxuryswisshomes.com" target="_blank" rel="noopener"><code>luxuryswisshomes[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/lvvacationrentals.com" target="_blank" rel="noopener"><code>lvvacationrentals[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/majordubai.com" target="_blank" rel="noopener"><code>majordubai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/massachusettsyoga.com" target="_blank" rel="noopener"><code>massachusettsyoga[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/miamidadenotary.com" target="_blank" rel="noopener"><code>miamidadenotary[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/miamipcsupport.com" target="_blank" rel="noopener"><code>miamipcsupport[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/miamiresidentialroofing.com" target="_blank" rel="noopener"><code>miamiresidentialroofing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/mintnt.com" target="_blank" rel="noopener"><code>mintnt[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/modernhomeai.com" target="_blank" rel="noopener"><code>modernhomeai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/moldinspectiondayton.com" target="_blank" rel="noopener"><code>moldinspectiondayton[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nameisfame.com" target="_blank" rel="noopener"><code>nameisfame[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/napavalleymentalhealth.com" target="_blank" rel="noopener"><code>napavalleymentalhealth[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/newjerseypetsitter.com" target="_blank" rel="noopener"><code>newjerseypetsitter[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nolageneralcontractor.com" target="_blank" rel="noopener"><code>nolageneralcontractor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/nolatreeservice.com" target="_blank" rel="noopener"><code>nolatreeservice[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/oepnagent.com" target="_blank" rel="noopener"><code>oepnagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ohdentalimplants.com" target="_blank" rel="noopener"><code>ohdentalimplants[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/oklahomawarehousing.com" target="_blank" rel="noopener"><code>oklahomawarehousing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/olympiapetemergency.com" target="_blank" rel="noopener"><code>olympiapetemergency[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/oregoninteriors.com" target="_blank" rel="noopener"><code>oregoninteriors[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/orlandodoorandglass.com" target="_blank" rel="noopener"><code>orlandodoorandglass[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/paintboothinstalling.com" target="_blank" rel="noopener"><code>paintboothinstalling[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/papartybus.com" target="_blank" rel="noopener"><code>papartybus[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pestcontrolamarillo.com" target="_blank" rel="noopener"><code>pestcontrolamarillo[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pevrix.com" target="_blank" rel="noopener"><code>pevrix[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/phoenixvideoagency.com" target="_blank" rel="noopener"><code>phoenixvideoagency[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/plasmaticsystems.com" target="_blank" rel="noopener"><code>plasmaticsystems[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/plethorawallet.com" target="_blank" rel="noopener"><code>plethorawallet[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/polyvideos.com" target="_blank" rel="noopener"><code>polyvideos[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/premierrentalpurchase.com" target="_blank" rel="noopener"><code>premierrentalpurchase[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pricasino.com" target="_blank" rel="noopener"><code>pricasino[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/prmieagent.com" target="_blank" rel="noopener"><code>prmieagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/proetctagent.com" target="_blank" rel="noopener"><code>proetctagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/proxyviper.com" target="_blank" rel="noopener"><code>proxyviper[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/prptoagent.com" target="_blank" rel="noopener"><code>prptoagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pruagent.com" target="_blank" rel="noopener"><code>pruagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/qeuryagent.com" target="_blank" rel="noopener"><code>qeuryagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/qusetagent.com" target="_blank" rel="noopener"><code>qusetagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/raelagent.com" target="_blank" rel="noopener"><code>raelagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/realestateagentsd.com" target="_blank" rel="noopener"><code>realestateagentsd[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/realrim.com" target="_blank" rel="noopener"><code>realrim[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/restoremental.com" target="_blank" rel="noopener"><code>restoremental[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ricksjunk.com" target="_blank" rel="noopener"><code>ricksjunk[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/riversideconcretecontractors.com" target="_blank" rel="noopener"><code>riversideconcretecontractors[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/robertjonesrealty.com" target="_blank" rel="noopener"><code>robertjonesrealty[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/robscarpetcleaning.com" target="_blank" rel="noopener"><code>robscarpetcleaning[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/roteagent.com" target="_blank" rel="noopener"><code>roteagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/ruenagent.com" target="_blank" rel="noopener"><code>ruenagent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/rvieragent.com" target="_blank" rel="noopener"><code>rvieragent[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sanfranciscoinsulation.com" target="_blank" rel="noopener"><code>sanfranciscoinsulation[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sanibellslandre.com" target="_blank" rel="noopener"><code>sanibellslandre[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/santaclaracountyproperties.com" target="_blank" rel="noopener"><code>santaclaracountyproperties[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-20T08:24:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/scottsdalemobilewindowtinting.com" target="_blank" rel="noopener"><code>scottsdalemobilewindowtinting[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/scottsdalevending.com" target="_blank" rel="noopener"><code>scottsdalevending[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sdlasik.com" target="_blank" rel="noopener"><code>sdlasik[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sdpsychic.com" target="_blank" rel="noopener"><code>sdpsychic[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/seattlewrongfuldeathlawyer.com" target="_blank" rel="noopener"><code>seattlewrongfuldeathlawyer[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/shareyourprompt.com" target="_blank" rel="noopener"><code>shareyourprompt[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/silveradolandscape.com" target="_blank" rel="noopener"><code>silveradolandscape[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/southtexashvac.com" target="_blank" rel="noopener"><code>southtexashvac[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:28Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/spokanetrailersales.com" target="_blank" rel="noopener"><code>spokanetrailersales[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/spotlessridesdetailing.com" target="_blank" rel="noopener"><code>spotlessridesdetailing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sullyphotos.com" target="_blank" rel="noopener"><code>sullyphotos[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/swiftfixgaragedoors.com" target="_blank" rel="noopener"><code>swiftfixgaragedoors[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/swisshomesforsale.com" target="_blank" rel="noopener"><code>swisshomesforsale[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/syracusefertilitycenter.com" target="_blank" rel="noopener"><code>syracusefertilitycenter[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/texascommercialpainting.com" target="_blank" rel="noopener"><code>texascommercialpainting[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thedenverattorney.com" target="_blank" rel="noopener"><code>thedenverattorney[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/therapygeorgia.com" target="_blank" rel="noopener"><code>therapygeorgia[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 91</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox, urlhaus</td>
+          <td>2026-10-15T00:52:42Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/thevenueapartments.com" target="_blank" rel="noopener"><code>thevenueapartments[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/toledotreeservices.com" target="_blank" rel="noopener"><code>toledotreeservices[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/top50business.com" target="_blank" rel="noopener"><code>top50business[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:23Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/touristprogram.com" target="_blank" rel="noopener"><code>touristprogram[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/trailblazehealth.com" target="_blank" rel="noopener"><code>trailblazehealth[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/truckrepairlasvegas.com" target="_blank" rel="noopener"><code>truckrepairlasvegas[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/trufflecatering.com" target="_blank" rel="noopener"><code>trufflecatering[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:30Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/truheating.com" target="_blank" rel="noopener"><code>truheating[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/utahhardwoodflooring.com" target="_blank" rel="noopener"><code>utahhardwoodflooring[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/utahplumbingandheating.com" target="_blank" rel="noopener"><code>utahplumbingandheating[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vacationrentalvirginia.com" target="_blank" rel="noopener"><code>vacationrentalvirginia[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:24Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/vegasmanageditservices.com" target="_blank" rel="noopener"><code>vegasmanageditservices[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:26Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/virginiaoverheaddoor.com" target="_blank" rel="noopener"><code>virginiaoverheaddoor[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/waterdamagerepairflorida.com" target="_blank" rel="noopener"><code>waterdamagerepairflorida[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/web54zoom.us" target="_blank" rel="noopener"><code>web54zoom[.]us</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wolfmoving.com" target="_blank" rel="noopener"><code>wolfmoving[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/wolfwraps.com" target="_blank" rel="noopener"><code>wolfwraps[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:25Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/xavierclothing.com" target="_blank" rel="noopener"><code>xavierclothing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:22Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/yoauction.com" target="_blank" rel="noopener"><code>yoauction[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:27Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/zanderrealestate.com" target="_blank" rel="noopener"><code>zanderrealestate[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-critical">critical 85</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-09-02T16:39:29Z</td>
+          <td class="num-cell">100</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6e4b84389afb4683e19f921ce3f54703fb6bb146fbdbffac3e398894074c0fa0" target="_blank" rel="noopener"><code>6e4b84389afb4683e19f921ce3f54703fb6bb146fbdbffac3e398894074c0fa0</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 77</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-06T01:46:47Z</td>
+          <td class="num-cell">90</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/aientertainmentcompany.com" target="_blank" rel="noopener"><code>aientertainmentcompany[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:54Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/coordinationhubs.com" target="_blank" rel="noopener"><code>coordinationhubs[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:55Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/deepanalysisai.com" target="_blank" rel="noopener"><code>deepanalysisai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:53Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/fintechdimension.com" target="_blank" rel="noopener"><code>fintechdimension[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:52Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genieagentflow.com" target="_blank" rel="noopener"><code>genieagentflow[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:47Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genovaorobotic.com" target="_blank" rel="noopener"><code>genovaorobotic[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:47Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genovaorobotics.com" target="_blank" rel="noopener"><code>genovaorobotics[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:46Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genovaorobots.com" target="_blank" rel="noopener"><code>genovaorobots[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:45Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/genovau.com" target="_blank" rel="noopener"><code>genovau[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:44Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/internetnorthcarolina.com" target="_blank" rel="noopener"><code>internetnorthcarolina[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:41Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/judism.com" target="_blank" rel="noopener"><code>judism[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:52Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kentuckyautodealer.com" target="_blank" rel="noopener"><code>kentuckyautodealer[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:39Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/opennetworkprotocol.com" target="_blank" rel="noopener"><code>opennetworkprotocol[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:35Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pacificsteelbuildings.com" target="_blank" rel="noopener"><code>pacificsteelbuildings[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:38Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/seohumanoid.com" target="_blank" rel="noopener"><code>seohumanoid[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:36Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/sevensynergy.com" target="_blank" rel="noopener"><code>sevensynergy[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:51Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/spatialiv.com" target="_blank" rel="noopener"><code>spatialiv[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:51Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/tiftonroofing.com" target="_blank" rel="noopener"><code>tiftonroofing[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:36Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/undisruptedai.com" target="_blank" rel="noopener"><code>undisruptedai[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:50Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/youthfulintelligence.com" target="_blank" rel="noopener"><code>youthfulintelligence[.]com</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>MacSync</td>
+          <td>threatfox</td>
+          <td>2026-10-20T16:31:49Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+
+</main>
+<footer>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
+  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-20T17:22:24Z UTC</span></p>
+</footer>
+<script>
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+(function () {
+  var isReport = /(?:^|\/)report\.html$/.test(window.location.pathname);
+  var shouldPrint = new URLSearchParams(window.location.search).get("print") === "1";
+  if (!isReport || !shouldPrint) return;
+  var printReport = function () { window.setTimeout(function () { window.print(); }, 150); };
+  if (document.readyState === "complete") printReport();
+  else window.addEventListener("load", printReport, {once:true});
+})();
+</script>
+</body>
+</html>
