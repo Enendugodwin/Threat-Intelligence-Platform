@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-21
 
-**Window:** last 7 days · **Generated:** 2026-10-21T12:04:32Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-21T17:24:24Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 87039 |
-| New in window | 25208 |
+| Indicators tracked | 87065 |
+| New in window | 23261 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -13,23 +13,23 @@
 
 | Feed | Indicators this run | Status |
 | --- | --- | --- |
-| urlhaus | 5000 | ok |
+| urlhaus | — | error: HTTPError: 410 Client Error: Gone for url: https://urlhaus.abuse.ch/downloads/csv_recent/ |
 | feodo | 5 | ok |
-| threatfox | 7934 | ok |
-| malwarebazaar | 1525 | ok |
+| threatfox | — | error: HTTPError: 410 Client Error: Gone for url: https://threatfox.abuse.ch/export/json/recent/ |
+| malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8650 | ok |
+| tor | 8621 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 35834 | 12286 |
-| sha256 | 17921 | 6074 |
-| domain | 14960 | 3873 |
-| ipv4 | 13072 | 1981 |
-| ipv6 | 3319 | 304 |
+| url | 35834 | 11148 |
+| sha256 | 17921 | 5662 |
+| domain | 14960 | 3605 |
+| ipv4 | 13091 | 1856 |
+| ipv6 | 3326 | 300 |
 | md5 | 980 | 346 |
 | sha1 | 953 | 344 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11550 |
-| Exit nodes | 2431 |
-| Other relays | 9119 |
-| New in window | 1214 |
+| Nodes tracked | 11576 |
+| Exit nodes | 2434 |
+| Other relays | 9142 |
+| New in window | 1188 |
 
-Sample (20 of 11550, source: Tor Project Onionoo):
+Sample (20 of 11576, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,32 +69,32 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 3991 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5710 | 827 | — |
-| Mirai | 5479 | 1205 | T1498, T1071.001 |
-| IClickFix | 2729 | 1405 | — |
-| AsyncRAT | 2339 | 78 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 277 | — |
-| Unknown malware | 1900 | 904 | — |
-| Cobalt Strike | 1375 | 56 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 834 | — |
-| VShell | 995 | 646 | — |
-| php.shin_webshell | 739 | 287 | — |
-| Unknown Stealer | 671 | 46 | — |
-| PureRAT | 460 | 56 | — |
-| Remus | 449 | 273 | — |
-| Remcos | 390 | 162 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Sliver | 386 | 102 | T1071.001, T1573, T1090, T1055 |
-| AdaptixC2 | 307 | 27 | — |
+| Vidar | 6184 | 3472 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5710 | 789 | — |
+| Mirai | 5479 | 1192 | T1498, T1071.001 |
+| IClickFix | 2729 | 1397 | — |
+| AsyncRAT | 2339 | 72 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 251 | — |
+| Unknown malware | 1900 | 870 | — |
+| Cobalt Strike | 1375 | 50 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1138 | 806 | — |
+| VShell | 995 | 643 | — |
+| php.shin_webshell | 739 | 257 | — |
+| Unknown Stealer | 671 | 43 | — |
+| PureRAT | 460 | 54 | — |
+| Remus | 449 | 269 | — |
+| Remcos | 390 | 136 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Sliver | 386 | 96 | T1071.001, T1573, T1090, T1055 |
+| AdaptixC2 | 307 | 25 | — |
 | MacSync | 257 | 252 | — |
-| Unknown RAT | 236 | 39 | — |
+| Unknown RAT | 236 | 32 | — |
 | Formbook | 224 | 89 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54145 |
+| T1071.001 | Web Protocols | command-and-control | 54171 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |

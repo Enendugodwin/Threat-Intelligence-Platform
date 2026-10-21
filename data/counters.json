@@ -27,46 +27,47 @@
     "malwarebazaar": 10245,
     "openphish": 8405,
     "threatfox": 38963,
-    "tor": 11550,
+    "tor": 11576,
     "urlhaus": 20459
   },
   "by_type": {
     "domain": 14960,
-    "ipv4": 13072,
-    "ipv6": 3319,
+    "ipv4": 13091,
+    "ipv6": 3326,
     "md5": 980,
     "sha1": 953,
     "sha256": 17921,
     "url": 35834
   },
-  "generated_at": "2026-10-21T12:04:22Z",
+  "generated_at": "2026-10-21T17:24:17Z",
   "latest_run": {
     "durations": {
-      "circl": 4.0,
-      "feodo": 0.3,
+      "circl": 2.8,
+      "feodo": 0.2,
       "malwarebazaar": 0.1,
-      "openphish": 0.0,
-      "threatfox": 0.6,
-      "tor": 2.1,
-      "urlhaus": 0.5
+      "openphish": 0.1,
+      "threatfox": 0.1,
+      "tor": 4.8,
+      "urlhaus": 0.2
     },
-    "errors": {},
+    "errors": {
+      "malwarebazaar": "HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/",
+      "threatfox": "HTTPError: 410 Client Error: Gone for url: https://threatfox.abuse.ch/export/json/recent/",
+      "urlhaus": "HTTPError: 410 Client Error: Gone for url: https://urlhaus.abuse.ch/downloads/csv_recent/"
+    },
     "feeds": {
       "circl": 914,
       "feodo": 5,
-      "malwarebazaar": 1525,
       "openphish": 300,
-      "threatfox": 7934,
-      "tor": 8650,
-      "urlhaus": 5000
+      "tor": 8621
     },
-    "fetched": 24328,
-    "finished_at": "2026-10-21T12:04:22Z",
-    "new": 2054,
+    "fetched": 9840,
+    "finished_at": "2026-10-21T17:24:17Z",
+    "new": 26,
     "pruned": 0,
-    "started_at": "2026-10-21T12:04:13Z",
-    "total": 87039,
-    "updated": 20118
+    "started_at": "2026-10-21T17:24:08Z",
+    "total": 87065,
+    "updated": 9814
   },
-  "total": 87039
+  "total": 87065
 }
