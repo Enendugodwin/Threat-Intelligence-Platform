@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-10-20
+# Threat Intel Pulse — 2026-10-21
 
-**Window:** last 7 days · **Generated:** 2026-10-20T21:44:30Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-21T05:02:15Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 83936 |
-| New in window | 24328 |
+| Indicators tracked | 84985 |
+| New in window | 23951 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -15,34 +15,34 @@
 | --- | --- | --- |
 | urlhaus | 5000 | ok |
 | feodo | 5 | ok |
-| threatfox | 6866 | ok |
-| malwarebazaar | 1437 | ok |
+| threatfox | 7127 | ok |
+| malwarebazaar | 1639 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8690 | ok |
+| tor | 8707 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 34580 | 12316 |
-| sha256 | 17201 | 5625 |
-| domain | 14034 | 3363 |
-| ipv4 | 12883 | 1905 |
-| ipv6 | 3306 | 306 |
-| md5 | 979 | 407 |
-| sha1 | 953 | 406 |
+| url | 35070 | 12180 |
+| sha256 | 17562 | 5767 |
+| domain | 14160 | 3095 |
+| ipv4 | 12954 | 1924 |
+| ipv6 | 3307 | 296 |
+| md5 | 979 | 345 |
+| sha1 | 953 | 344 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11461 |
-| Exit nodes | 2427 |
-| Other relays | 9034 |
-| New in window | 1203 |
+| Nodes tracked | 11500 |
+| Exit nodes | 2428 |
+| Other relays | 9072 |
+| New in window | 1209 |
 
-Sample (20 of 11461, source: Tor Project Onionoo):
+Sample (20 of 11500, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,46 +69,46 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 5931 | 4371 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5457 | 857 | — |
-| Mirai | 5414 | 1230 | T1498, T1071.001 |
-| AsyncRAT | 2334 | 79 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| IClickFix | 2107 | 789 | — |
-| ClearFake | 2075 | 349 | — |
-| Unknown malware | 1841 | 866 | — |
-| Cobalt Strike | 1369 | 56 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 999 | 709 | — |
-| VShell | 937 | 591 | — |
-| php.shin_webshell | 715 | 284 | — |
-| Unknown Stealer | 662 | 88 | — |
-| PureRAT | 458 | 59 | — |
-| Remus | 426 | 253 | — |
-| Sliver | 382 | 100 | T1071.001, T1573, T1090, T1055 |
-| Remcos | 373 | 155 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| AdaptixC2 | 306 | 29 | — |
+| Vidar | 6057 | 4122 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5490 | 607 | — |
+| Mirai | 5457 | 1197 | T1498, T1071.001 |
+| AsyncRAT | 2334 | 73 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| IClickFix | 2186 | 864 | — |
+| ClearFake | 2082 | 274 | — |
+| Unknown malware | 1846 | 853 | — |
+| Cobalt Strike | 1369 | 55 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1067 | 766 | — |
+| VShell | 962 | 616 | — |
+| php.shin_webshell | 732 | 290 | — |
+| Unknown Stealer | 662 | 37 | — |
+| PureRAT | 458 | 54 | — |
+| Remus | 437 | 262 | — |
+| Sliver | 382 | 98 | T1071.001, T1573, T1090, T1055 |
+| Remcos | 379 | 156 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| AdaptixC2 | 306 | 26 | — |
 | MacSync | 257 | 252 | — |
-| Unknown RAT | 229 | 37 | — |
-| Formbook | 224 | 96 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
+| Unknown RAT | 229 | 32 | — |
+| Formbook | 224 | 89 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 52526 |
-| T1105 | Ingress Tool Transfer | command-and-control | 25280 |
-| T1498 | Network Denial of Service | impact | 12981 |
-| T1555 | Credentials from Password Stores | credential-access | 9930 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 9734 |
-| T1204.002 | Malicious File | execution | 9680 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 9518 |
-| T1573 | Encrypted Channel | command-and-control | 9292 |
-| T1566 | Phishing | initial-access | 7829 |
-| T1566.002 | Spearphishing Link | initial-access | 7829 |
-| T1552.001 | Credentials In Files | credential-access | 5772 |
-| T1056.001 | Keylogging | collection, credential-access | 4135 |
-| T1566.001 | Spearphishing Attachment | initial-access | 3760 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 3104 |
-| T1113 | Screen Capture | collection | 3040 |
+| T1071.001 | Web Protocols | command-and-control | 52947 |
+| T1105 | Ingress Tool Transfer | command-and-control | 25366 |
+| T1498 | Network Denial of Service | impact | 13070 |
+| T1555 | Credentials from Password Stores | credential-access | 10125 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 9929 |
+| T1204.002 | Malicious File | execution | 9714 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 9552 |
+| T1573 | Encrypted Channel | command-and-control | 9329 |
+| T1566 | Phishing | initial-access | 8129 |
+| T1566.002 | Spearphishing Link | initial-access | 8129 |
+| T1552.001 | Credentials In Files | credential-access | 5859 |
+| T1056.001 | Keylogging | collection, credential-access | 4144 |
+| T1566.001 | Spearphishing Attachment | initial-access | 3768 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 3112 |
+| T1113 | Screen Capture | collection | 3048 |
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 2022 |
 | T1090 | Proxy | command-and-control | 1792 |
 | T1059.001 | PowerShell | execution | 1383 |
@@ -127,31 +127,31 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
-| [`hxxps://q[.]9winn[.]org/d`](https://www.virustotal.com/gui/search/https%3A%2F%2Fq.9winn.org%2Fd) | url | Vidar | threatfox | 2026-10-20T21:39:48Z | 100 |
-| [`d2bbbd9a8aa85ca603c52867e04c4f910466c0764d4a27d6bb338316860de0d1`](https://www.virustotal.com/gui/file/d2bbbd9a8aa85ca603c52867e04c4f910466c0764d4a27d6bb338316860de0d1) | sha256 | AMOS | threatfox | 2026-10-20T21:39:01Z | 100 |
-| [`hxxps://s7[.]abbc123[.]org/bas/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs7.abbc123.org%2Fbas%2F) | url | Vidar | threatfox | 2026-10-20T21:35:48Z | 100 |
-| [`19459527965033538912c33d6d83f90502b807b8374c2ce08d929f07821bd214`](https://www.virustotal.com/gui/file/19459527965033538912c33d6d83f90502b807b8374c2ce08d929f07821bd214) | sha256 | AMOS | threatfox | 2026-10-20T21:35:21Z | 100 |
-| [`558b6752b1d1afffac1f20c970ffb1148eb860e9d92be2221354238b0755f9da`](https://www.virustotal.com/gui/file/558b6752b1d1afffac1f20c970ffb1148eb860e9d92be2221354238b0755f9da) | sha256 | AMOS | threatfox | 2026-10-20T21:32:22Z | 100 |
-| [`hxxp://slink4u[.]click:9692/files`](https://www.virustotal.com/gui/search/http%3A%2F%2Fslink4u.click%3A9692%2Ffiles) | url | Remus | threatfox | 2026-10-20T21:31:55Z | 100 |
-| [`hxxps://s7[.]abbc123[.]org/t3q/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs7.abbc123.org%2Ft3q%2F) | url | Vidar | threatfox | 2026-10-20T21:30:48Z | 100 |
-| [`64d36fbccffa093c8975265608b7fc21036edd05d0185e27f37b373499169ee4`](https://www.virustotal.com/gui/file/64d36fbccffa093c8975265608b7fc21036edd05d0185e27f37b373499169ee4) | sha256 | AMOS | threatfox | 2026-10-20T21:28:56Z | 100 |
-| [`hxxps://i1[.]abbastoto[.]org/mk`](https://www.virustotal.com/gui/search/https%3A%2F%2Fi1.abbastoto.org%2Fmk) | url | Vidar | threatfox | 2026-10-20T21:26:21Z | 100 |
-| [`hxxps://s7[.]abbc123[.]org/fj/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs7.abbc123.org%2Ffj%2F) | url | Vidar | threatfox | 2026-10-20T21:25:48Z | 100 |
-| [`hxxp://darcy19[.]my:8312/imports`](https://www.virustotal.com/gui/search/http%3A%2F%2Fdarcy19.my%3A8312%2Fimports) | url | Remus | threatfox | 2026-10-20T21:25:39Z | 100 |
-| [`302e2722d8f679e32e7760e922ae46b887a769ed4975283946308a701f5e6748`](https://www.virustotal.com/gui/file/302e2722d8f679e32e7760e922ae46b887a769ed4975283946308a701f5e6748) | sha256 | AMOS | threatfox | 2026-10-20T21:24:50Z | 100 |
-| [`1c45e83f214fc193d3c643fdd08bac440e1c25cec08f5e9abb0b113390a8afb2`](https://www.virustotal.com/gui/file/1c45e83f214fc193d3c643fdd08bac440e1c25cec08f5e9abb0b113390a8afb2) | sha256 | AMOS | threatfox | 2026-10-20T21:22:21Z | 100 |
-| [`hxxp://tool01[.]art:7713/transactions`](https://www.virustotal.com/gui/search/http%3A%2F%2Ftool01.art%3A7713%2Ftransactions) | url | Remus | threatfox | 2026-10-20T21:21:37Z | 100 |
-| [`hxxp://netulse[.]sbs:5621/articles`](https://www.virustotal.com/gui/search/http%3A%2F%2Fnetulse.sbs%3A5621%2Farticles) | url | Remus | threatfox | 2026-10-20T21:21:07Z | 100 |
-| [`hxxps://s7[.]abbc123[.]org/ri/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs7.abbc123.org%2Fri%2F) | url | Vidar | threatfox | 2026-10-20T21:20:48Z | 100 |
-| [`9c3551bc157cb2a038915ba6708b8a41e7188c6ff96cb120d5fcd8218b160ea5`](https://www.virustotal.com/gui/file/9c3551bc157cb2a038915ba6708b8a41e7188c6ff96cb120d5fcd8218b160ea5) | sha256 | AMOS | threatfox | 2026-10-20T21:19:25Z | 100 |
-| [`hxxp://tool01[.]art:7713/comments`](https://www.virustotal.com/gui/search/http%3A%2F%2Ftool01.art%3A7713%2Fcomments) | url | Remus | threatfox | 2026-10-20T21:17:24Z | 100 |
-| [`hxxp://retas3[.]help:7713/reviews`](https://www.virustotal.com/gui/search/http%3A%2F%2Fretas3.help%3A7713%2Freviews) | url | Remus | threatfox | 2026-10-20T21:16:52Z | 100 |
-| [`hxxp://retas3[.]help:7713/exports`](https://www.virustotal.com/gui/search/http%3A%2F%2Fretas3.help%3A7713%2Fexports) | url | Remus | threatfox | 2026-10-20T21:16:43Z | 100 |
-| [`hxxps://s7[.]abbc123[.]org/x3/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs7.abbc123.org%2Fx3%2F) | url | Vidar | threatfox | 2026-10-20T21:15:48Z | 100 |
-| [`hxxp://vydga2[.]xyz:5621/exports`](https://www.virustotal.com/gui/search/http%3A%2F%2Fvydga2.xyz%3A5621%2Fexports) | url | Remus | threatfox | 2026-10-20T21:14:19Z | 100 |
-| [`hxxp://vydga2[.]xyz:5621/workspaces`](https://www.virustotal.com/gui/search/http%3A%2F%2Fvydga2.xyz%3A5621%2Fworkspaces) | url | Remus | threatfox | 2026-10-20T21:14:18Z | 100 |
-| [`hxxp://finter28[.]help:5621/projects`](https://www.virustotal.com/gui/search/http%3A%2F%2Ffinter28.help%3A5621%2Fprojects) | url | Remus | threatfox | 2026-10-20T21:14:05Z | 100 |
-| [`hxxp://tool01[.]art:7713/contacts`](https://www.virustotal.com/gui/search/http%3A%2F%2Ftool01.art%3A7713%2Fcontacts) | url | Remus | threatfox | 2026-10-20T21:12:40Z | 100 |
+| [`a68c66b3945a66e75877accfc954b18f4323ac4e4cf027418449470c0af78b76`](https://www.virustotal.com/gui/file/a68c66b3945a66e75877accfc954b18f4323ac4e4cf027418449470c0af78b76) | sha256 | Mirai | threatfox, malwarebazaar | 2026-10-21T04:54:31Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/ij/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fij%2F) | url | Vidar | threatfox | 2026-10-21T04:50:48Z | 100 |
+| [`b5052707fbecd8647b4f13026df1b0cb8b54b7e652d517d14aa418e9c241b7d7`](https://www.virustotal.com/gui/file/b5052707fbecd8647b4f13026df1b0cb8b54b7e652d517d14aa418e9c241b7d7) | sha256 | AMOS | threatfox | 2026-10-21T04:46:33Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/jm/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fjm%2F) | url | Vidar | threatfox | 2026-10-21T04:45:48Z | 100 |
+| [`c66da66fee552460de019b65b0824e4015bca4344d3df307592754a359a430e0`](https://www.virustotal.com/gui/file/c66da66fee552460de019b65b0824e4015bca4344d3df307592754a359a430e0) | sha256 | AMOS | threatfox | 2026-10-21T04:45:15Z | 100 |
+| [`efd5fbce12a6b9c66b1154ee667303d379541b0eb19c44c2864067fe8648d28f`](https://www.virustotal.com/gui/file/efd5fbce12a6b9c66b1154ee667303d379541b0eb19c44c2864067fe8648d28f) | sha256 | AMOS | threatfox | 2026-10-21T04:42:29Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/qx/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fqx%2F) | url | Vidar | threatfox | 2026-10-21T04:40:48Z | 100 |
+| [`05e7782e6f1b3f0c951138a44b7cf15e041e4d9b794e08daa8b4be86399a55b4`](https://www.virustotal.com/gui/file/05e7782e6f1b3f0c951138a44b7cf15e041e4d9b794e08daa8b4be86399a55b4) | sha256 | AMOS | threatfox | 2026-10-21T04:38:52Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/vb/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fvb%2F) | url | Vidar | threatfox | 2026-10-21T04:35:48Z | 100 |
+| [`akhfbttn[.]blinderai[.]com`](https://www.virustotal.com/gui/domain/akhfbttn.blinderai.com) | domain | ClearFake | threatfox | 2026-10-21T04:35:18Z | 100 |
+| [`d48b8fa62a2b19eebca276c84ecaa8858379ce810702372535483bb6fe9f1116`](https://www.virustotal.com/gui/file/d48b8fa62a2b19eebca276c84ecaa8858379ce810702372535483bb6fe9f1116) | sha256 | AMOS | threatfox | 2026-10-21T04:34:46Z | 100 |
+| [`e990ec0eb21c1cfc1d53e7e43ae2e912cedc3d6ce3d0ac8bc442cc1783d4fa4b`](https://www.virustotal.com/gui/file/e990ec0eb21c1cfc1d53e7e43ae2e912cedc3d6ce3d0ac8bc442cc1783d4fa4b) | sha256 | AMOS | threatfox | 2026-10-21T04:31:44Z | 100 |
+| [`hxxps://c[.]9winn[.]org/g/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fc.9winn.org%2Fg%2F) | url | Vidar | threatfox | 2026-10-21T04:30:48Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/lo/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Flo%2F) | url | Vidar | threatfox | 2026-10-21T04:30:48Z | 100 |
+| [`c5bd449668102c0e01da1394d924d61e71b8e166a03c98b22d26c10cdf9b98ed`](https://www.virustotal.com/gui/file/c5bd449668102c0e01da1394d924d61e71b8e166a03c98b22d26c10cdf9b98ed) | sha256 | AMOS | threatfox | 2026-10-21T04:28:22Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/o5/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fo5%2F) | url | Vidar | threatfox | 2026-10-21T04:25:48Z | 100 |
+| [`8c503247e0851e81980e1205ad7578b2b39a0d87c6acefb8d2b876206f71d68b`](https://www.virustotal.com/gui/file/8c503247e0851e81980e1205ad7578b2b39a0d87c6acefb8d2b876206f71d68b) | sha256 | AMOS | threatfox | 2026-10-21T04:24:27Z | 100 |
+| [`d9a13c77484e0f62d7db9f224bc87acaa0bb8a8bbccbaaaf96738a9b8f022ecb`](https://www.virustotal.com/gui/file/d9a13c77484e0f62d7db9f224bc87acaa0bb8a8bbccbaaaf96738a9b8f022ecb) | sha256 | AMOS | threatfox | 2026-10-21T04:20:52Z | 100 |
+| [`c[.]9winn[.]org`](https://www.virustotal.com/gui/domain/c.9winn.org) | domain | Vidar | threatfox | 2026-10-21T04:20:48Z | 100 |
+| [`hxxps://c[.]9winn[.]org/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fc.9winn.org%2F) | url | Vidar | threatfox | 2026-10-21T04:20:48Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/kyr/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fkyr%2F) | url | Vidar | threatfox | 2026-10-21T04:20:48Z | 100 |
+| [`612b706f54d148111f20e393792fda57f73590b6bc6865a4e49656e670f9eefd`](https://www.virustotal.com/gui/file/612b706f54d148111f20e393792fda57f73590b6bc6865a4e49656e670f9eefd) | sha256 | AMOS | threatfox | 2026-10-21T04:16:20Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/nc/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fnc%2F) | url | Vidar | threatfox | 2026-10-21T04:15:48Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/wb/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fwb%2F) | url | Vidar | threatfox | 2026-10-21T04:10:48Z | 100 |
+| [`hxxps://yb[.]abblbet[.]org/hq0/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fyb.abblbet.org%2Fhq0%2F) | url | Vidar | threatfox | 2026-10-21T04:05:47Z | 100 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
