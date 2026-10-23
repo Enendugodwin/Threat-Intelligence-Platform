@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-10-23T17:18:43Z",
-  "catalog_version": "2026.10.21",
-  "catalog_count": 1754,
+  "generated_at": "2026-10-23T21:32:01Z",
+  "catalog_version": "2026.10.23",
+  "catalog_count": 1756,
   "entries": [
+    {
+      "cve": "CVE-2026-114625",
+      "vendor": "Arista",
+      "product": "VeloCloud Orchestrator",
+      "name": "Arista VeloCloud Orchestrator SQL Injection Vulnerability",
+      "date_added": "2026-10-23",
+      "due_date": "2026-10-26",
+      "ransomware": false,
+      "description": "Arista VeloCloud Orchestrator on-prem contains a SQL injection vulnerability that may allow a remote attacker to access privileged internal functionality and impact the VCO host. Successful exploitation may compromise the confidentiality, integrity, and availability of the orches",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00555,
+      "epss_percentile": 0.45586
+    },
+    {
+      "cve": "CVE-2026-110447",
+      "vendor": "Collabora",
+      "product": "Collabora Online \u2013 Built-in CODE Server",
+      "name": "Collabora Online \u2013 Built-in CODE Server OS Command Injection Vulnerability",
+      "date_added": "2026-10-23",
+      "due_date": "2026-10-26",
+      "ransomware": false,
+      "description": "Collabora Collabora Online \u2013 Built-in CODE Server when used within the NextCloud platform contains an OS command injection vulnerability that allows for remote code execution when the CODE server isn't running.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01225,
+      "epss_percentile": 0.68615
+    },
     {
       "cve": "CVE-2026-106931",
       "vendor": "EG Secure Solutions",
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.00329,
       "epss_percentile": 0.23704
-    },
-    {
-      "cve": "CVE-2026-5281",
-      "vendor": "Google",
-      "product": "Dawn",
-      "name": "Google Dawn Use-After-Free Vulnerability",
-      "date_added": "2026-04-01",
-      "due_date": "2026-04-15",
-      "ransomware": false,
-      "description": "Google Dawn contains an use-after-free vulnerability that could allow a remote attacker who had compromised the renderer process to execute arbitrary code via a crafted HTML page. This vulnerability could affect multiple Chromium-based products including, but not limited to, Goog",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.00703,
-      "epss_percentile": 0.51629
-    },
-    {
-      "cve": "CVE-2026-3055",
-      "vendor": "Citrix",
-      "product": "NetScaler",
-      "name": "Citrix NetScaler Out-of-Bounds Read Vulnerability",
-      "date_added": "2026-03-30",
-      "due_date": "2026-04-02",
-      "ransomware": false,
-      "description": "Citrix NetScaler ADC (formerly Citrix ADC), NetScaler Gateway (formerly Citrix Gateway) and NetScaler ADC FIPS and NDcPP contain an out-of-bounds reads vulnerability when configured as a SAML IDP leading to memory overread.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.04042,
-      "epss_percentile": 0.9032
     }
   ]
 }
