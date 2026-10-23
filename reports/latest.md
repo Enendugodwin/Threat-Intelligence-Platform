@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-10-22
+# Threat Intel Pulse — 2026-10-23
 
-**Window:** last 7 days · **Generated:** 2026-10-22T21:46:35Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-23T05:04:37Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 87751 |
-| New in window | 19596 |
+| Indicators tracked | 88101 |
+| New in window | 19025 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,17 +19,17 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8639 | ok |
+| tor | 8658 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 36321 | 9348 |
-| sha256 | 17921 | 4778 |
-| domain | 14960 | 3066 |
-| ipv4 | 13228 | 1716 |
-| ipv6 | 3388 | 242 |
+| url | 36617 | 8961 |
+| sha256 | 17921 | 4683 |
+| domain | 14960 | 3039 |
+| ipv4 | 13267 | 1661 |
+| ipv6 | 3403 | 235 |
 | md5 | 980 | 224 |
 | sha1 | 953 | 222 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11775 |
+| Nodes tracked | 11829 |
 | Exit nodes | 2454 |
-| Other relays | 9321 |
-| New in window | 1167 |
+| Other relays | 9375 |
+| New in window | 1114 |
 
-Sample (20 of 11775, source: Tor Project Onionoo):
+Sample (20 of 11829, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,21 +69,21 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 2302 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5710 | 694 | — |
-| Mirai | 5479 | 1112 | T1498, T1071.001 |
+| Vidar | 6184 | 1999 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5710 | 692 | — |
+| Mirai | 5479 | 1093 | T1498, T1071.001 |
 | IClickFix | 2729 | 1237 | — |
-| AsyncRAT | 2339 | 37 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 214 | — |
-| Unknown malware | 1900 | 834 | — |
-| Cobalt Strike | 1375 | 42 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 733 | — |
-| VShell | 995 | 348 | — |
-| php.shin_webshell | 739 | 208 | — |
+| AsyncRAT | 2339 | 36 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 208 | — |
+| Unknown malware | 1900 | 832 | — |
+| Cobalt Strike | 1375 | 41 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1138 | 730 | — |
+| VShell | 995 | 345 | — |
+| php.shin_webshell | 739 | 192 | — |
 | Unknown Stealer | 671 | 43 | — |
 | PureRAT | 460 | 44 | — |
-| Remus | 449 | 218 | — |
-| Remcos | 390 | 104 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Remus | 449 | 216 | — |
+| Remcos | 390 | 103 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | Sliver | 386 | 79 | T1071.001, T1573, T1090, T1055 |
 | AdaptixC2 | 307 | 21 | — |
 | MacSync | 257 | 246 | — |
@@ -94,7 +94,7 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54370 |
+| T1071.001 | Web Protocols | command-and-control | 54424 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
@@ -102,8 +102,8 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | T1204.002 | Malicious File | execution | 9787 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 9625 |
 | T1573 | Encrypted Channel | command-and-control | 9423 |
-| T1566 | Phishing | initial-access | 8924 |
-| T1566.002 | Spearphishing Link | initial-access | 8924 |
+| T1566 | Phishing | initial-access | 9220 |
+| T1566.002 | Spearphishing Link | initial-access | 9220 |
 | T1552.001 | Credentials In Files | credential-access | 5982 |
 | T1056.001 | Keylogging | collection, credential-access | 4176 |
 | T1566.001 | Spearphishing Attachment | initial-access | 3793 |

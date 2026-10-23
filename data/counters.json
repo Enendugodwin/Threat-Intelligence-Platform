@@ -25,29 +25,29 @@
     "circl": 914,
     "feodo": 5,
     "malwarebazaar": 10245,
-    "openphish": 8892,
+    "openphish": 9188,
     "threatfox": 38963,
-    "tor": 11775,
+    "tor": 11829,
     "urlhaus": 20459
   },
   "by_type": {
     "domain": 14960,
-    "ipv4": 13228,
-    "ipv6": 3388,
+    "ipv4": 13267,
+    "ipv6": 3403,
     "md5": 980,
     "sha1": 953,
     "sha256": 17921,
-    "url": 36321
+    "url": 36617
   },
-  "generated_at": "2026-10-22T21:46:25Z",
+  "generated_at": "2026-10-23T05:04:30Z",
   "latest_run": {
     "durations": {
-      "circl": 3.6,
+      "circl": 3.3,
       "feodo": 0.2,
-      "malwarebazaar": 0.1,
+      "malwarebazaar": 2.1,
       "openphish": 0.1,
       "threatfox": 0.1,
-      "tor": 2.1,
+      "tor": 2.2,
       "urlhaus": 0.1
     },
     "errors": {
@@ -59,15 +59,15 @@
       "circl": 914,
       "feodo": 5,
       "openphish": 300,
-      "tor": 8639
+      "tor": 8658
     },
-    "fetched": 9858,
-    "finished_at": "2026-10-22T21:46:25Z",
-    "new": 23,
+    "fetched": 9877,
+    "finished_at": "2026-10-23T05:04:30Z",
+    "new": 350,
     "pruned": 0,
-    "started_at": "2026-10-22T21:46:18Z",
-    "total": 87751,
-    "updated": 9835
+    "started_at": "2026-10-23T05:04:21Z",
+    "total": 88101,
+    "updated": 9527
   },
-  "total": 87751
+  "total": 88101
 }
