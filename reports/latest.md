@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-23
 
-**Window:** last 7 days · **Generated:** 2026-10-23T11:51:33Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-23T17:18:45Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 88154 |
-| New in window | 17925 |
+| Indicators tracked | 88473 |
+| New in window | 17269 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,17 +19,17 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8653 | ok |
+| tor | 8640 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 36617 | 8436 |
-| sha256 | 17921 | 4549 |
-| domain | 14960 | 2789 |
-| ipv4 | 13306 | 1546 |
-| ipv6 | 3417 | 241 |
+| url | 36913 | 8206 |
+| sha256 | 17921 | 4237 |
+| domain | 14960 | 2731 |
+| ipv4 | 13325 | 1487 |
+| ipv6 | 3421 | 244 |
 | md5 | 980 | 183 |
 | sha1 | 953 | 181 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11882 |
-| Exit nodes | 2463 |
-| Other relays | 9419 |
-| New in window | 1072 |
+| Nodes tracked | 11905 |
+| Exit nodes | 2468 |
+| Other relays | 9437 |
+| New in window | 1083 |
 
-Sample (20 of 11882, source: Tor Project Onionoo):
+Sample (20 of 11905, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,41 +69,41 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 1689 | T1555, T1071.001, T1567 |
+| Vidar | 6184 | 1522 | T1555, T1071.001, T1567 |
 | Unknown Loader | 5710 | 690 | — |
-| Mirai | 5479 | 1083 | T1498, T1071.001 |
+| Mirai | 5479 | 1029 | T1498, T1071.001 |
 | IClickFix | 2729 | 1167 | — |
-| AsyncRAT | 2339 | 32 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 191 | — |
-| Unknown malware | 1900 | 628 | — |
-| Cobalt Strike | 1375 | 37 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 694 | — |
-| VShell | 995 | 342 | — |
-| php.shin_webshell | 739 | 179 | — |
+| AsyncRAT | 2339 | 30 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 182 | — |
+| Unknown malware | 1900 | 617 | — |
+| Cobalt Strike | 1375 | 31 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1138 | 680 | — |
+| VShell | 995 | 120 | — |
+| php.shin_webshell | 739 | 171 | — |
 | Unknown Stealer | 671 | 40 | — |
-| PureRAT | 460 | 39 | — |
-| Remus | 449 | 216 | — |
-| Remcos | 390 | 97 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Sliver | 386 | 74 | T1071.001, T1573, T1090, T1055 |
-| AdaptixC2 | 307 | 20 | — |
+| PureRAT | 460 | 38 | — |
+| Remus | 449 | 214 | — |
+| Remcos | 390 | 65 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Sliver | 386 | 70 | T1071.001, T1573, T1090, T1055 |
+| AdaptixC2 | 307 | 19 | — |
 | MacSync | 257 | 246 | — |
 | Unknown RAT | 236 | 31 | — |
-| Formbook | 224 | 39 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
+| Formbook | 224 | 37 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54477 |
+| T1071.001 | Web Protocols | command-and-control | 54500 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 10171 |
 | T1204.002 | Malicious File | execution | 9787 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 9625 |
+| T1566 | Phishing | initial-access | 9516 |
+| T1566.002 | Spearphishing Link | initial-access | 9516 |
 | T1573 | Encrypted Channel | command-and-control | 9423 |
-| T1566 | Phishing | initial-access | 9220 |
-| T1566.002 | Spearphishing Link | initial-access | 9220 |
 | T1552.001 | Credentials In Files | credential-access | 5982 |
 | T1056.001 | Keylogging | collection, credential-access | 4176 |
 | T1566.001 | Spearphishing Attachment | initial-access | 3793 |
