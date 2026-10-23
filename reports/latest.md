@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-23
 
-**Window:** last 7 days · **Generated:** 2026-10-23T05:04:37Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-23T11:51:33Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 88101 |
-| New in window | 19025 |
+| Indicators tracked | 88154 |
+| New in window | 17925 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,30 +19,30 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8658 | ok |
+| tor | 8653 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 36617 | 8961 |
-| sha256 | 17921 | 4683 |
-| domain | 14960 | 3039 |
-| ipv4 | 13267 | 1661 |
-| ipv6 | 3403 | 235 |
-| md5 | 980 | 224 |
-| sha1 | 953 | 222 |
+| url | 36617 | 8436 |
+| sha256 | 17921 | 4549 |
+| domain | 14960 | 2789 |
+| ipv4 | 13306 | 1546 |
+| ipv6 | 3417 | 241 |
+| md5 | 980 | 183 |
+| sha1 | 953 | 181 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11829 |
-| Exit nodes | 2454 |
-| Other relays | 9375 |
-| New in window | 1114 |
+| Nodes tracked | 11882 |
+| Exit nodes | 2463 |
+| Other relays | 9419 |
+| New in window | 1072 |
 
-Sample (20 of 11829, source: Tor Project Onionoo):
+Sample (20 of 11882, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,23 +69,23 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 1999 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5710 | 692 | — |
-| Mirai | 5479 | 1093 | T1498, T1071.001 |
-| IClickFix | 2729 | 1237 | — |
-| AsyncRAT | 2339 | 36 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 208 | — |
-| Unknown malware | 1900 | 832 | — |
-| Cobalt Strike | 1375 | 41 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 730 | — |
-| VShell | 995 | 345 | — |
-| php.shin_webshell | 739 | 192 | — |
-| Unknown Stealer | 671 | 43 | — |
-| PureRAT | 460 | 44 | — |
+| Vidar | 6184 | 1689 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5710 | 690 | — |
+| Mirai | 5479 | 1083 | T1498, T1071.001 |
+| IClickFix | 2729 | 1167 | — |
+| AsyncRAT | 2339 | 32 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 191 | — |
+| Unknown malware | 1900 | 628 | — |
+| Cobalt Strike | 1375 | 37 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1138 | 694 | — |
+| VShell | 995 | 342 | — |
+| php.shin_webshell | 739 | 179 | — |
+| Unknown Stealer | 671 | 40 | — |
+| PureRAT | 460 | 39 | — |
 | Remus | 449 | 216 | — |
-| Remcos | 390 | 103 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Sliver | 386 | 79 | T1071.001, T1573, T1090, T1055 |
-| AdaptixC2 | 307 | 21 | — |
+| Remcos | 390 | 97 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Sliver | 386 | 74 | T1071.001, T1573, T1090, T1055 |
+| AdaptixC2 | 307 | 20 | — |
 | MacSync | 257 | 246 | — |
 | Unknown RAT | 236 | 31 | — |
 | Formbook | 224 | 39 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
@@ -94,7 +94,7 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54424 |
+| T1071.001 | Web Protocols | command-and-control | 54477 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
