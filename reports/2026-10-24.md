@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-24
 
-**Window:** last 7 days · **Generated:** 2026-10-24T11:18:48Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-24T16:06:08Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 88843 |
-| New in window | 15307 |
+| Indicators tracked | 89125 |
+| New in window | 14641 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,36 +19,37 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8639 | ok |
+| tor | 8657 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 37194 | 7718 |
-| sha256 | 17921 | 3403 |
-| domain | 14960 | 2209 |
-| ipv4 | 13407 | 1392 |
-| ipv6 | 3428 | 221 |
-| md5 | 980 | 183 |
-| sha1 | 953 | 181 |
+| url | 37465 | 7511 |
+| sha256 | 17921 | 3174 |
+| domain | 14960 | 2179 |
+| ipv4 | 13415 | 1315 |
+| ipv6 | 3431 | 204 |
+| md5 | 980 | 130 |
+| sha1 | 953 | 128 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11994 |
+| Nodes tracked | 12005 |
 | Exit nodes | 2471 |
-| Other relays | 9523 |
-| New in window | 1038 |
+| Other relays | 9534 |
+| New in window | 973 |
 
-Sample (20 of 11994, source: Tor Project Onionoo):
+Sample (20 of 12005, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
 - `1[.]34[.]44[.]234`
 - `100[.]1[.]157[.]56`
 - `100[.]2[.]63[.]41`
+- `100[.]8[.]53[.]153`
 - `101[.]186[.]157[.]91`
 - `101[.]55[.]125[.]10`
 - `102[.]130[.]113[.]29`
@@ -62,45 +63,44 @@ Sample (20 of 11994, source: Tor Project Onionoo):
 - `102[.]205[.]44[.]36`
 - `102[.]205[.]44[.]5`
 - `102[.]211[.]56[.]20`
-- `102[.]211[.]56[.]25`
 
 Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artifact).
 ## Top malware families
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 1429 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5710 | 543 | — |
-| Mirai | 5479 | 557 | T1498, T1071.001 |
+| Vidar | 6184 | 1350 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5710 | 542 | — |
+| Mirai | 5479 | 497 | T1498, T1071.001 |
 | IClickFix | 2729 | 937 | — |
-| AsyncRAT | 2339 | 25 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 150 | — |
-| Unknown malware | 1900 | 585 | — |
-| Cobalt Strike | 1375 | 28 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 579 | — |
-| VShell | 995 | 115 | — |
-| php.shin_webshell | 739 | 138 | — |
+| AsyncRAT | 2339 | 23 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 145 | — |
+| Unknown malware | 1900 | 533 | — |
+| Cobalt Strike | 1375 | 27 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1138 | 560 | — |
+| VShell | 995 | 113 | — |
+| php.shin_webshell | 739 | 129 | — |
 | Unknown Stealer | 671 | 39 | — |
 | PureRAT | 460 | 29 | — |
-| Remus | 449 | 208 | — |
+| Remus | 449 | 207 | — |
 | Remcos | 390 | 60 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Sliver | 386 | 70 | T1071.001, T1573, T1090, T1055 |
+| Sliver | 386 | 65 | T1071.001, T1573, T1090, T1055 |
 | AdaptixC2 | 307 | 11 | — |
 | MacSync | 257 | 246 | — |
-| Unknown RAT | 236 | 28 | — |
+| Unknown RAT | 236 | 24 | — |
 | Formbook | 224 | 37 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54589 |
+| T1071.001 | Web Protocols | command-and-control | 54600 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 10171 |
-| T1566 | Phishing | initial-access | 9797 |
-| T1566.002 | Spearphishing Link | initial-access | 9797 |
+| T1566 | Phishing | initial-access | 10068 |
+| T1566.002 | Spearphishing Link | initial-access | 10068 |
 | T1204.002 | Malicious File | execution | 9787 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 9625 |
 | T1573 | Encrypted Channel | command-and-control | 9423 |

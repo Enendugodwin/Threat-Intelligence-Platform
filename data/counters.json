@@ -25,30 +25,30 @@
     "circl": 914,
     "feodo": 5,
     "malwarebazaar": 10245,
-    "openphish": 9765,
+    "openphish": 10036,
     "threatfox": 38963,
-    "tor": 11994,
+    "tor": 12005,
     "urlhaus": 20459
   },
   "by_type": {
     "domain": 14960,
-    "ipv4": 13407,
-    "ipv6": 3428,
+    "ipv4": 13415,
+    "ipv6": 3431,
     "md5": 980,
     "sha1": 953,
     "sha256": 17921,
-    "url": 37194
+    "url": 37465
   },
-  "generated_at": "2026-10-24T11:18:41Z",
+  "generated_at": "2026-10-24T16:06:02Z",
   "latest_run": {
     "durations": {
-      "circl": 3.4,
-      "feodo": 0.2,
+      "circl": 4.4,
+      "feodo": 0.3,
       "malwarebazaar": 0.1,
-      "openphish": 0.0,
-      "threatfox": 0.1,
-      "tor": 1.6,
-      "urlhaus": 0.3
+      "openphish": 0.3,
+      "threatfox": 0.2,
+      "tor": 1.4,
+      "urlhaus": 0.1
     },
     "errors": {
       "malwarebazaar": "HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/",
@@ -59,15 +59,15 @@
       "circl": 914,
       "feodo": 5,
       "openphish": 300,
-      "tor": 8639
+      "tor": 8657
     },
-    "fetched": 9858,
-    "finished_at": "2026-10-24T11:18:41Z",
-    "new": 39,
+    "fetched": 9876,
+    "finished_at": "2026-10-24T16:06:02Z",
+    "new": 282,
     "pruned": 0,
-    "started_at": "2026-10-24T11:18:34Z",
-    "total": 88843,
-    "updated": 9819
+    "started_at": "2026-10-24T16:05:54Z",
+    "total": 89125,
+    "updated": 9594
   },
-  "total": 88843
+  "total": 89125
 }
