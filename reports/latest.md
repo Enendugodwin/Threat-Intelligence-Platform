@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-24
 
-**Window:** last 7 days · **Generated:** 2026-10-24T04:49:14Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-24T11:18:48Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 88804 |
-| New in window | 16276 |
+| Indicators tracked | 88843 |
+| New in window | 15307 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,17 +19,17 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8640 | ok |
+| tor | 8639 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 37194 | 7989 |
-| sha256 | 17921 | 3611 |
-| domain | 14960 | 2653 |
-| ipv4 | 13372 | 1433 |
-| ipv6 | 3424 | 226 |
+| url | 37194 | 7718 |
+| sha256 | 17921 | 3403 |
+| domain | 14960 | 2209 |
+| ipv4 | 13407 | 1392 |
+| ipv6 | 3428 | 221 |
 | md5 | 980 | 183 |
 | sha1 | 953 | 181 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11955 |
+| Nodes tracked | 11994 |
 | Exit nodes | 2471 |
-| Other relays | 9484 |
+| Other relays | 9523 |
 | New in window | 1038 |
 
-Sample (20 of 11955, source: Tor Project Onionoo):
+Sample (20 of 11994, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -69,32 +69,32 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6184 | 1510 | T1555, T1071.001, T1567 |
-| Unknown Loader | 5710 | 660 | — |
-| Mirai | 5479 | 578 | T1498, T1071.001 |
-| IClickFix | 2729 | 1159 | — |
-| AsyncRAT | 2339 | 30 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| ClearFake | 2094 | 174 | — |
-| Unknown malware | 1900 | 600 | — |
+| Vidar | 6184 | 1429 | T1555, T1071.001, T1567 |
+| Unknown Loader | 5710 | 543 | — |
+| Mirai | 5479 | 557 | T1498, T1071.001 |
+| IClickFix | 2729 | 937 | — |
+| AsyncRAT | 2339 | 25 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| ClearFake | 2094 | 150 | — |
+| Unknown malware | 1900 | 585 | — |
 | Cobalt Strike | 1375 | 28 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1138 | 643 | — |
-| VShell | 995 | 117 | — |
-| php.shin_webshell | 739 | 151 | — |
-| Unknown Stealer | 671 | 40 | — |
-| PureRAT | 460 | 33 | — |
-| Remus | 449 | 209 | — |
-| Remcos | 390 | 62 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| AMOS | 1138 | 579 | — |
+| VShell | 995 | 115 | — |
+| php.shin_webshell | 739 | 138 | — |
+| Unknown Stealer | 671 | 39 | — |
+| PureRAT | 460 | 29 | — |
+| Remus | 449 | 208 | — |
+| Remcos | 390 | 60 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | Sliver | 386 | 70 | T1071.001, T1573, T1090, T1055 |
-| AdaptixC2 | 307 | 16 | — |
+| AdaptixC2 | 307 | 11 | — |
 | MacSync | 257 | 246 | — |
-| Unknown RAT | 236 | 31 | — |
+| Unknown RAT | 236 | 28 | — |
 | Formbook | 224 | 37 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54550 |
+| T1071.001 | Web Protocols | command-and-control | 54589 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
