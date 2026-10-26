@@ -32,6 +32,14 @@ _TYPE_LABELS = {
 }
 _PLURALS = {"hash": "hashes", "domain": "domains", "IP": "IPs", "URL": "URLs", "email": "emails"}
 
+# Browser-tab icon: brand shield on a dark tile, matching the dashboard palette.
+_FAVICON_SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Threat Intel Pipeline">
+<rect width="64" height="64" rx="14" fill="#000000"/>
+<path d="M32 9.5 48.5 16v15.8c0 10.2-6.8 17.5-16.5 21.4-9.7-3.9-16.5-11.2-16.5-21.4V16L32 9.5Z" fill="none" stroke="#00FF41" stroke-width="4" stroke-linejoin="round"/>
+<path d="m23.5 31.5 6.2 6.2L41 24.5" fill="none" stroke="#00FF41" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+"""
+
 
 def _ioc_summary(iocs) -> str:
     counts = Counter(_TYPE_LABELS.get(i.get("type"), str(i.get("type"))) for i in (iocs or []))
@@ -347,6 +355,8 @@ def build_site(
     )
 
     written: list[pathlib.Path] = []
+    favicon_path = out_dir / "favicon.svg"
+    favicon_path.write_text(_FAVICON_SVG, encoding="utf-8")
     org = context.get("org") or {"enabled": False, "terms": []}
     tor_path = None
     if tor_rows is not None:
@@ -510,4 +520,5 @@ def build_site(
         map_file.write_text(map_html, encoding="utf-8")
         written.append(map_file)
 
+    written.append(favicon_path)
     return written

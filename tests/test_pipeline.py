@@ -139,6 +139,8 @@ def test_offline_pipeline_end_to_end(tmp_path):
     assert "Threat Intel Pipeline" in index
     assert 'href="reports.html"' in index
     assert 'id="refresh-btn"' in index and "Cache-busting" in index
+    assert 'rel="icon"' in index and "favicon.svg" in index
+    assert (site_paths[0].parent / "favicon.svg").is_file()
     assert 'id="theme-toggle"' in index and 'data-theme="light"' in index
     assert 'details class="export-menu"' in index
     assert 'href="iocs.json" download' in index and 'href="iocs.csv" download' in index
