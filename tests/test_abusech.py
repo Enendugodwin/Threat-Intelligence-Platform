@@ -119,9 +119,9 @@ def test_feed_health_marks_skipped_and_retention():
         },
     )
     assert health["ok"] == 1
-    assert health["skipped"] == 1
+    assert health["total"] == 1
+    assert health["skipped"] == 0
+    assert health["optional"] == ["URLhaus"]
     assert health["retention_days"] == 20
     assert health["last_pruned"] == 120
-    skipped = next(f for f in health["feeds"] if f["name"] == "urlhaus")
-    assert skipped["status"] == "skipped"
-    assert skipped["skip_reason"] == "no key"
+    assert all(f["name"] != "urlhaus" for f in health["feeds"])

@@ -76,7 +76,7 @@
   <div class="card{% if feed_health.failed %} card-bad{% endif %}">
     <div class="card-head">{{ icon("pulse") }}Feeds healthy</div>
     <span class="num">{{ feed_health.ok }}/{{ feed_health.total }}</span>
-    <span class="card-sub">{% if feed_health.skipped %}{{ feed_health.skipped }} need a key &middot; {% endif %}{% if feed_health.failed %}{{ feed_health.failed }} failing{% else %}no failures{% endif %}</span>
+    <span class="card-sub">{% if feed_health.optional %}{{ feed_health.optional | length }} optional (no key) &middot; {% endif %}{% if feed_health.failed %}{{ feed_health.failed }} failing{% else %}no failures{% endif %}</span>
   </div>
   <div class="card">
     <div class="card-head">{{ icon("grid") }}Sources</div>
@@ -127,7 +127,7 @@
     </table>
   </div>
   <p class="muted">Last run {{ feed_health.last_run_at or "—" }} UTC &middot; &Delta; compares with the previous run &middot; indicators older than {{ feed_health.retention_days }} days are purged ({{ feed_health.last_pruned }} in the last run).</p>
-  {% if feed_health.skipped %}<p class="muted"><span class="pill warn">needs key</span> Skipped feeds are not failing; they need <code>ABUSECH_AUTH_KEY</code> from <a href="https://auth.abuse.ch/" target="_blank" rel="noopener">auth.abuse.ch</a> because abuse.ch retired keyless exports.</p>{% endif %}
+  {% if feed_health.optional %}<p class="muted">Optional keyed feeds not configured: {{ feed_health.optional | join(", ") }}. They are excluded from the health count; set the matching key in the repository secrets to include them.</p>{% endif %}
 </section>
 {%- endmacro %}
 

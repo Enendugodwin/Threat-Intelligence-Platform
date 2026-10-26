@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from jinja2 import Environment, FileSystemLoader
 
 from .attack import AttackMap
+from .feeds import FEED_CLASSES
 from .normalize import attack_url, defang, slugify, virustotal_url
 from .scoring import ioc_risk, org_profile
 from .store import Store
@@ -48,11 +49,23 @@ def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None 
     skipped = stats.get("skipped") or []
     skipped_reasons = stats.get("skipped_reasons") or {}
     feeds = []
+    optional = []
+    keyed = {
+        name
+        for name, cls in FEED_CLASSES.items()
+        if getattr(cls, "requires_auth", False)
+    }
     for name in enabled:
         count = counts.get(name)
         previous = previous_counts.get(name)
         delta = None if (count is None or previous is None) else int(count) - int(previous)
         is_skipped = name in skipped
+        # Optional keyed feeds that are not configured are not failures - they
+        # are simply not part of this deployment. Keep them out of the health
+        # totals so the dashboard does not show a warning for a missing key.
+        if is_skipped and name in keyed and count is None:
+            optional.append(_FEED_LABELS.get(name, name))
+            continue
         feeds.append(
             {
                 "name": name,
@@ -75,6 +88,7 @@ def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None 
         "skipped": skipped_count,
         "failed": sum(1 for feed in feeds if feed["status"] == "error"),
         "feeds": feeds,
+        "optional": optional,
         "inactive": inactive,
         "last_run_at": (last_run or {}).get("finished_at") or "",
         "retention_days": retention_days,

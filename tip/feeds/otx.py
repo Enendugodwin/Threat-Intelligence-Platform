@@ -29,6 +29,7 @@ _OTX_TYPES = {
 class OTXFeed(Feed):
     name = "otx"
     url = "https://otx.alienvault.com/api/v1/pulses/subscribed"
+    requires_auth = True
 
     def _load(self, session) -> bytes | str:
         local = self.options.get("local_file")

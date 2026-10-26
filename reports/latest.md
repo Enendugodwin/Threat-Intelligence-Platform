@@ -1,6 +1,6 @@
 # Threat Intel Pulse — 2026-10-26
 
-**Window:** last 7 days · **Generated:** 2026-10-26T13:35:46Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-26T13:49:07Z UTC
 
 | Metric | Value |
 | --- | --- |
@@ -52,7 +52,6 @@
 
 Sample (20 of 11849, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
-- `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
 - `1[.]34[.]44[.]234`
 - `100[.]1[.]157[.]56`
