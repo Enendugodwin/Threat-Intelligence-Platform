@@ -21,6 +21,13 @@ _FEED_LABELS = {
     "circl": "CIRCL MISP",
     "tor": "Tor Project",
     "otx": "AlienVault OTX",
+    "blocklist_de": "blocklist.de",
+    "binarydefense": "Binary Defense",
+    "greensnow": "GreenSnow",
+    "phishing_army": "Phishing Army",
+    "et_compromised": "ET Compromised Hosts",
+    "urlhaus_filter": "URLhaus mirror",
+    "tweetfeed": "TweetFeed",
 }
 
 
@@ -38,11 +45,14 @@ def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None 
     previous_counts = previous_stats.get("feeds") or {}
     durations = stats.get("durations") or {}
     errors = stats.get("errors") or {}
+    skipped = stats.get("skipped") or []
+    skipped_reasons = stats.get("skipped_reasons") or {}
     feeds = []
     for name in enabled:
         count = counts.get(name)
         previous = previous_counts.get(name)
         delta = None if (count is None or previous is None) else int(count) - int(previous)
+        is_skipped = name in skipped
         feeds.append(
             {
                 "name": name,
@@ -51,15 +61,24 @@ def _feed_health(config: dict, last_run: dict | None, previous_run: dict | None 
                 "delta": delta,
                 "duration": durations.get(name),
                 "error": errors.get(name, ""),
+                "skipped": is_skipped,
+                "skip_reason": skipped_reasons.get(name, ""),
+                "status": "error" if errors.get(name) else ("skipped" if is_skipped else "ok"),
             }
         )
-    ok = sum(1 for feed in feeds if not feed["error"])
+    ok = sum(1 for feed in feeds if feed["status"] == "ok")
+    skipped_count = sum(1 for feed in feeds if feed["skipped"])
+    retention_days = int((config.get("storage") or {}).get("prune_after_days", 0) or 0)
     return {
         "total": len(feeds),
         "ok": ok,
+        "skipped": skipped_count,
+        "failed": sum(1 for feed in feeds if feed["status"] == "error"),
         "feeds": feeds,
         "inactive": inactive,
         "last_run_at": (last_run or {}).get("finished_at") or "",
+        "retention_days": retention_days,
+        "last_pruned": int(stats.get("pruned") or 0),
     }
 
 

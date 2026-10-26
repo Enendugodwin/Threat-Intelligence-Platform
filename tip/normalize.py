@@ -254,6 +254,9 @@ def norm_ts(ts: str | None) -> str | None:
     if not s:
         return None
     candidate = s.replace("Z", "+00:00")
+    # ThreatFox returns timestamps like "2020-12-08 13:36:27 UTC".
+    if candidate.upper().endswith(" UTC"):
+        candidate = candidate[:-4].strip() + "+00:00"
     try:
         dt = datetime.fromisoformat(candidate)
     except ValueError:

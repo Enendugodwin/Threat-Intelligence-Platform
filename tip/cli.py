@@ -55,6 +55,12 @@ def build_parser() -> argparse.ArgumentParser:
     for name, help_text in commands:
         _add_common(sub.add_parser(name, help=help_text))
 
+    sub.choices["sync"].add_argument(
+        "--prune-days",
+        type=int,
+        default=None,
+        help="purge indicators not re-seen in this many days (default: config value)",
+    )
     sub.choices["report"].add_argument("--out", default="reports")
     sub.choices["export"].add_argument("--out", default="dist")
     sub.choices["site"].add_argument("--out", default="site")
@@ -81,7 +87,21 @@ def main(argv=None) -> int:
         from .vulnintel import fetch_kev
 
         config = load_config(args.config)
+        if args.prune_days is not None:
+            config.setdefault("storage", {})["prune_after_days"] = max(0, args.prune_days)
         stats = run_sync(config, data_dir)
+        if stats.get("skipped"):
+            print(
+                "skipped feeds (no Auth-Key): " + ", ".join(stats["skipped"]),
+                file=sys.stderr,
+            )
+            print(
+                "  abuse.ch data exports need a free key from https://auth.abuse.ch/ "
+                "in ABUSECH_AUTH_KEY",
+                file=sys.stderr,
+            )
+        if stats.get("pruned"):
+            print(f"purged {stats['pruned']} indicator(s) older than the retention window")
         report_stats = fetch_reports(config, data_dir)
         if not report_stats.get("skipped"):
             sources = ", ".join(f"{k}: {v}" for k, v in report_stats["sources"].items())

@@ -83,6 +83,9 @@ nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity
 .theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
 .theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
 .theme-toggle svg{color:var(--color-primary)}
+.refresh-btn.refreshing .refresh-icon{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.refresh-btn.refreshing .refresh-icon{animation:none}}
 .action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 .export-menu{position:relative}
 .export-menu>summary{list-style:none;user-select:none}
@@ -109,7 +112,9 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 .err-text{color:var(--color-destructive);font-size:.85rem}
 
 /* Cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
@@ -136,6 +141,10 @@ td code{background:transparent;border:none;padding:0}
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
 .pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
 .pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.pill.warn{color:#eab308;border-color:rgba(234,179,8,.5);background:rgba(234,179,8,.12)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:start}
+.split>section{min-width:0}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
@@ -292,10 +301,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>90222 indicators</span>
-      <span>268 new / 9622 updated last run &middot; 11737 new / 7d</span>
-      <span>4/7 feeds</span>
-      <span>sync 2026-10-26T13:20:47Z</span>
+      <span><span class="status-dot" aria-hidden="true"></span>36920 indicators</span>
+      <span>18317 new / 18206 updated last run &middot; 28621 new / 7d</span>
+      <span>15/15 feeds &middot; 20d retention</span>
+      <span>sync 2026-10-26T13:21:38Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -305,7 +314,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle refresh-btn" id="refresh-btn" type="button" aria-label="Refresh dashboard data">
+        <svg class="icon refresh-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
         <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
         </svg>
@@ -318,7 +333,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">Malware family: Unknown Loader</h1>
 <p class="muted">
-  5710 indicator(s) attributed to Unknown Loader &middot; showing the top 300 by confidence</p>
+  77 indicator(s) attributed to Unknown Loader</p>
 
 <section>
   <div class="table-wrap">
@@ -332,3004 +347,774 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/0225958080.com" target="_blank" rel="noopener"><code>0225958080[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/alephbookcompany.com" target="_blank" rel="noopener"><code>alephbookcompany[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T20:28:39Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/file/0b33262a923e6eeffe9ea44eb9034b2e86d40f4a45c33d590c837bea79630c57" target="_blank" rel="noopener"><code>0b33262a923e6eeffe9ea44eb9034b2e86d40f4a45c33d590c837bea79630c57</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-14T05:41:27Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/14d07d38c1a6f8625e80568fbe3b081c6c53e42b9f953f84dc18c1bebc92df85" target="_blank" rel="noopener"><code>14d07d38c1a6f8625e80568fbe3b081c6c53e42b9f953f84dc18c1bebc92df85</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-09T06:39:31Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/26television.com" target="_blank" rel="noopener"><code>26television[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/360bayern.de" target="_blank" rel="noopener"><code>360bayern[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/37347580662ae59f7d5b4517475c557261e6be1ee4d6f6babe854b0d91ffe83c" target="_blank" rel="noopener"><code>37347580662ae59f7d5b4517475c557261e6be1ee4d6f6babe854b0d91ffe83c</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-12T06:11:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/3934e228c7afa47c26c656e0b503fb0838c275002d322b0641c20ef9fbcd00fd" target="_blank" rel="noopener"><code>3934e228c7afa47c26c656e0b503fb0838c275002d322b0641c20ef9fbcd00fd</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/419boyz.com" target="_blank" rel="noopener"><code>419boyz[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/42.show" target="_blank" rel="noopener"><code>42[.]show</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:19Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/4reel-charters.com" target="_blank" rel="noopener"><code>4reel-charters[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/546ece6b756923c0d2a9cf21896b1fe6ce4a41ddfab3315b46a73e388f06f795" target="_blank" rel="noopener"><code>546ece6b756923c0d2a9cf21896b1fe6ce4a41ddfab3315b46a73e388f06f795</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:10Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/5548487cc85f38d863c8c68aba3f654ebb9b4d9cbad1404a0d037c0826c4d864" target="_blank" rel="noopener"><code>5548487cc85f38d863c8c68aba3f654ebb9b4d9cbad1404a0d037c0826c4d864</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:10Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/59a9a3911aba2a37c0259523760644acde1497fb2449f8707bf9db0b4805150a" target="_blank" rel="noopener"><code>59a9a3911aba2a37c0259523760644acde1497fb2449f8707bf9db0b4805150a</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/5db583f496b2b77c1129d331a7701440b86e25ce701ba65f2ef5eb98615a1026" target="_blank" rel="noopener"><code>5db583f496b2b77c1129d331a7701440b86e25ce701ba65f2ef5eb98615a1026</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:08Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7ef7a243eab48f63583c72128ed0358c0634488f8b12a353aaa9dfb05bbb30f8" target="_blank" rel="noopener"><code>7ef7a243eab48f63583c72128ed0358c0634488f8b12a353aaa9dfb05bbb30f8</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/7fdc95667509af11c36a822e483b759007a814af3f5793f266ec33922d4ca52f" target="_blank" rel="noopener"><code>7fdc95667509af11c36a822e483b759007a814af3f5793f266ec33922d4ca52f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:10Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/826d37fbdea41e57f92f22b120c77ec3892a376997f8387a6d1570cd27a63d41" target="_blank" rel="noopener"><code>826d37fbdea41e57f92f22b120c77ec3892a376997f8387a6d1570cd27a63d41</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/94.156.152.24" target="_blank" rel="noopener"><code>94[.]156[.]152[.]24</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:11Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/995b08fe31af98a54f378a77572d319ab9f0164f70d299ff2dff64ecf14f0d2f" target="_blank" rel="noopener"><code>995b08fe31af98a54f378a77572d319ab9f0164f70d299ff2dff64ecf14f0d2f</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:08Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aasemiotica.com.ar" target="_blank" rel="noopener"><code>aasemiotica[.]com[.]ar</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/abeandasotie.com" target="_blank" rel="noopener"><code>abeandasotie[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/abundantearthfoundation.org" target="_blank" rel="noopener"><code>abundantearthfoundation[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:19Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/abundantprofessional.com" target="_blank" rel="noopener"><code>abundantprofessional[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/accraphysio.com" target="_blank" rel="noopener"><code>accraphysio[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/achterhoekinformatie.nl" target="_blank" rel="noopener"><code>achterhoekinformatie[.]nl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:19Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/acp-shop.com" target="_blank" rel="noopener"><code>acp-shop[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/adecoco.us" target="_blank" rel="noopener"><code>adecoco[.]us</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/adelinepet.com" target="_blank" rel="noopener"><code>adelinepet[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/admind.fr" target="_blank" rel="noopener"><code>admind[.]fr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/advsalles.com.br" target="_blank" rel="noopener"><code>advsalles[.]com[.]br</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:46Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aestech.al" target="_blank" rel="noopener"><code>aestech[.]al</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aircraftmuseums.com" target="_blank" rel="noopener"><code>aircraftmuseums[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ajilenayat.com" target="_blank" rel="noopener"><code>ajilenayat[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/akarhotel.com.tr" target="_blank" rel="noopener"><code>akarhotel[.]com[.]tr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aksel.no" target="_blank" rel="noopener"><code>aksel[.]no</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/alagammal.org" target="_blank" rel="noopener"><code>alagammal[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/alisaide.com" target="_blank" rel="noopener"><code>alisaide[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/amateateatre.com" target="_blank" rel="noopener"><code>amateateatre[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/amazoniarentacar.com.br" target="_blank" rel="noopener"><code>amazoniarentacar[.]com[.]br</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:46Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/amisosmimarlik.com" target="_blank" rel="noopener"><code>amisosmimarlik[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:46Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/andhotrodshop.com" target="_blank" rel="noopener"><code>andhotrodshop[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/anewhopeministry.org" target="_blank" rel="noopener"><code>anewhopeministry[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/anytime-for-animals.de" target="_blank" rel="noopener"><code>anytime-for-animals[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:03Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/apmsolutionsglobal.com" target="_blank" rel="noopener"><code>apmsolutionsglobal[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/apotheke-rosenthalerplatz.de" target="_blank" rel="noopener"><code>apotheke-rosenthalerplatz[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/appaloosa.cz" target="_blank" rel="noopener"><code>appaloosa[.]cz</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aqweela.com" target="_blank" rel="noopener"><code>aqweela[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/arkirent.it" target="_blank" rel="noopener"><code>arkirent[.]it</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/arkreform.com" target="_blank" rel="noopener"><code>arkreform[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/arthron.si" target="_blank" rel="noopener"><code>arthron[.]si</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/artilda.co.kr" target="_blank" rel="noopener"><code>artilda[.]co[.]kr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/arvandagri.com" target="_blank" rel="noopener"><code>arvandagri[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/atdan.net" target="_blank" rel="noopener"><code>atdan[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/aurafliesen.com" target="_blank" rel="noopener"><code>aurafliesen[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/autoflotte-vergabe.de" target="_blank" rel="noopener"><code>autoflotte-vergabe[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-03T09:09:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/avantgardefr.com" target="_blank" rel="noopener"><code>avantgardefr[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/azadkantha.com" target="_blank" rel="noopener"><code>azadkantha[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/b20-straubing.de" target="_blank" rel="noopener"><code>b20-straubing[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/baainbw-vergabe.de" target="_blank" rel="noopener"><code>baainbw-vergabe[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-03T09:09:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/babatech.store" target="_blank" rel="noopener"><code>babatech[.]store</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-29T11:21:54Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bacsihungthanh.com" target="_blank" rel="noopener"><code>bacsihungthanh[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/balticaviatraining.com" target="_blank" rel="noopener"><code>balticaviatraining[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bancodealimentosrio4.org" target="_blank" rel="noopener"><code>bancodealimentosrio4[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/barriocomercial18.cl" target="_blank" rel="noopener"><code>barriocomercial18[.]cl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bbtti.in" target="_blank" rel="noopener"><code>bbtti[.]in</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bc-maasrhein.eu" target="_blank" rel="noopener"><code>bc-maasrhein[.]eu</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/bea7b5865a47188c1ae8b8def31c006a839c9718cdbaa530ed925e86fa965015" target="_blank" rel="noopener"><code>bea7b5865a47188c1ae8b8def31c006a839c9718cdbaa530ed925e86fa965015</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-14T05:41:28Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/beab42f5ee6afa72fa0dcac076e48523fb0cc6b20692cf4eec2aa1429abad165" target="_blank" rel="noopener"><code>beab42f5ee6afa72fa0dcac076e48523fb0cc6b20692cf4eec2aa1429abad165</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-14T05:41:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/beautyventas.com" target="_blank" rel="noopener"><code>beautyventas[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/beliefworks.cfd" target="_blank" rel="noopener"><code>beliefworks[.]cfd</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-11T14:58:39Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bentausfunds.com" target="_blank" rel="noopener"><code>bentausfunds[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/biodanza-irena.com" target="_blank" rel="noopener"><code>biodanza-irena[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/biostar.mx" target="_blank" rel="noopener"><code>biostar[.]mx</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/blackjackbanter.com" target="_blank" rel="noopener"><code>blackjackbanter[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-08-23T01:07:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/blackscreamfest.com" target="_blank" rel="noopener"><code>blackscreamfest[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:46Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/blankeneser-buergerverein.de" target="_blank" rel="noopener"><code>blankeneser-buergerverein[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bleupelikan.com" target="_blank" rel="noopener"><code>bleupelikan[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/blitha.be" target="_blank" rel="noopener"><code>blitha[.]be</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/blog.bibra.eu" target="_blank" rel="noopener"><code>blog[.]bibra[.]eu</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bloomaffirmations.com" target="_blank" rel="noopener"><code>bloomaffirmations[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bluestarhomewarehouse.com" target="_blank" rel="noopener"><code>bluestarhomewarehouse[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/boehmer-kommunikation.de" target="_blank" rel="noopener"><code>boehmer-kommunikation[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/boxencheck.de" target="_blank" rel="noopener"><code>boxencheck[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/boxinstalaciones.com.ar" target="_blank" rel="noopener"><code>boxinstalaciones[.]com[.]ar</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/breakthroughbreathwork.com" target="_blank" rel="noopener"><code>breakthroughbreathwork[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/brent-logistic.pl" target="_blank" rel="noopener"><code>brent-logistic[.]pl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/btpwa.org" target="_blank" rel="noopener"><code>btpwa[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/buildon.co.in" target="_blank" rel="noopener"><code>buildon[.]co[.]in</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/busanasansor.com" target="_blank" rel="noopener"><code>busanasansor[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/bwproject.net" target="_blank" rel="noopener"><code>bwproject[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/c5f820b23e952ca74f1224941d6e2df39a8ee059f1808c7ed580ec8603710582" target="_blank" rel="noopener"><code>c5f820b23e952ca74f1224941d6e2df39a8ee059f1808c7ed580ec8603710582</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:07Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/canadapainters.ca" target="_blank" rel="noopener"><code>canadapainters[.]ca</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/canalminor.com" target="_blank" rel="noopener"><code>canalminor[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/candleaura.com" target="_blank" rel="noopener"><code>candleaura[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/canwizservices.com" target="_blank" rel="noopener"><code>canwizservices[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/carboldesign.cz" target="_blank" rel="noopener"><code>carboldesign[.]cz</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/caretwentyfour.org" target="_blank" rel="noopener"><code>caretwentyfour[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/carewellphcy.com" target="_blank" rel="noopener"><code>carewellphcy[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/carforsale.ie" target="_blank" rel="noopener"><code>carforsale[.]ie</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/catamaranholidays.gr" target="_blank" rel="noopener"><code>catamaranholidays[.]gr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cavs.es" target="_blank" rel="noopener"><code>cavs[.]es</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/cc9d4b4248a8c8df6ce23831e4649908df062f4456b8e594b4c5f7ea2a9d9ebb" target="_blank" rel="noopener"><code>cc9d4b4248a8c8df6ce23831e4649908df062f4456b8e594b4c5f7ea2a9d9ebb</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/centrehabitation.com" target="_blank" rel="noopener"><code>centrehabitation[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/championlv.com" target="_blank" rel="noopener"><code>championlv[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/chasehotel.com.au" target="_blank" rel="noopener"><code>chasehotel[.]com[.]au</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/chasingrainbowsacademy.com" target="_blank" rel="noopener"><code>chasingrainbowsacademy[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/chateaupomeaux.com" target="_blank" rel="noopener"><code>chateaupomeaux[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/chirca.com" target="_blank" rel="noopener"><code>chirca[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/christchurchretailpark.co.uk" target="_blank" rel="noopener"><code>christchurchretailpark[.]co[.]uk</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ciib.com" target="_blank" rel="noopener"><code>ciib[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cinemart.co.il" target="_blank" rel="noopener"><code>cinemart[.]co[.]il</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/circusproblem.net" target="_blank" rel="noopener"><code>circusproblem[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/citrineapartment.com" target="_blank" rel="noopener"><code>citrineapartment[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ckdac.net" target="_blank" rel="noopener"><code>ckdac[.]net</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/claudverification-id.beer" target="_blank" rel="noopener"><code>claudverification-id[.]beer</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-06-23T06:51:46Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/clementdourlens.com" target="_blank" rel="noopener"><code>clementdourlens[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:21:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/clinicaeusalud.com.co" target="_blank" rel="noopener"><code>clinicaeusalud[.]com[.]co</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cloudplusafrica.com" target="_blank" rel="noopener"><code>cloudplusafrica[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/clownin-unterwegs.de" target="_blank" rel="noopener"><code>clownin-unterwegs[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cnfastener.com" target="_blank" rel="noopener"><code>cnfastener[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cnpaintingcleaning.com" target="_blank" rel="noopener"><code>cnpaintingcleaning[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cocaroman.com" target="_blank" rel="noopener"><code>cocaroman[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/coinlaundryinsurance.com" target="_blank" rel="noopener"><code>coinlaundryinsurance[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/compassbase.cfd" target="_blank" rel="noopener"><code>compassbase[.]cfd</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T12:05:33Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/connorbogart.com" target="_blank" rel="noopener"><code>connorbogart[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/coppertrack.cfd" target="_blank" rel="noopener"><code>coppertrack[.]cfd</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-08T18:10:44Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cornwelltoolsweld.com" target="_blank" rel="noopener"><code>cornwelltoolsweld[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:41Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/counsellorwebdesign.ca" target="_blank" rel="noopener"><code>counsellorwebdesign[.]ca</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cpmohali.in" target="_blank" rel="noopener"><code>cpmohali[.]in</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cryocool.store" target="_blank" rel="noopener"><code>cryocool[.]store</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cubicfun.com" target="_blank" rel="noopener"><code>cubicfun[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cwsasoccer.org" target="_blank" rel="noopener"><code>cwsasoccer[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cybereye.vn" target="_blank" rel="noopener"><code>cybereye[.]vn</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/cybersecnextgen.com" target="_blank" rel="noopener"><code>cybersecnextgen[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/damazyncars.com" target="_blank" rel="noopener"><code>damazyncars[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dasnervetext.com" target="_blank" rel="noopener"><code>dasnervetext[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/datphongcondao.com" target="_blank" rel="noopener"><code>datphongcondao[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/dbed629c5af90e26bc2712eef6a4779e8fcdb4aeef19a9a520ed831ea4a4ef76" target="_blank" rel="noopener"><code>dbed629c5af90e26bc2712eef6a4779e8fcdb4aeef19a9a520ed831ea4a4ef76</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-17T05:31:54Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dcowebify.com" target="_blank" rel="noopener"><code>dcowebify[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/debouche-express.fr" target="_blank" rel="noopener"><code>debouche-express[.]fr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/deconstructionera.com" target="_blank" rel="noopener"><code>deconstructionera[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dehgolansheyda.ir" target="_blank" rel="noopener"><code>dehgolansheyda[.]ir</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dein-berghof.de" target="_blank" rel="noopener"><code>dein-berghof[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/demmiral.com" target="_blank" rel="noopener"><code>demmiral[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-29T11:21:54Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/der-eskapist.de" target="_blank" rel="noopener"><code>der-eskapist[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dereizendegoochelaar.nl" target="_blank" rel="noopener"><code>dereizendegoochelaar[.]nl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dermyslabs.fr" target="_blank" rel="noopener"><code>dermyslabs[.]fr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/desireeleighh.com" target="_blank" rel="noopener"><code>desireeleighh[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/despiegelhaarlem.nl" target="_blank" rel="noopener"><code>despiegelhaarlem[.]nl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dfwcarefinder.com" target="_blank" rel="noopener"><code>dfwcarefinder[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/digitalsparkcreative.com" target="_blank" rel="noopener"><code>digitalsparkcreative[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/distrostation.cfd" target="_blank" rel="noopener"><code>distrostation[.]cfd</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-08T09:02:56Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/djktrassem.de" target="_blank" rel="noopener"><code>djktrassem[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/docs-hemp.com" target="_blank" rel="noopener"><code>docs-hemp[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/docs.css-kunststofftechnik.de" target="_blank" rel="noopener"><code>docs[.]css-kunststofftechnik[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T09:09:12Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dolanlawgroup.com" target="_blank" rel="noopener"><code>dolanlawgroup[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/donghokinhmathieuhao.com" target="_blank" rel="noopener"><code>donghokinhmathieuhao[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:23Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/draumasetrid.is" target="_blank" rel="noopener"><code>draumasetrid[.]is</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drcleaning.com.au" target="_blank" rel="noopener"><code>drcleaning[.]com[.]au</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dreamwoods.com" target="_blank" rel="noopener"><code>dreamwoods[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-25T18:29:55Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drhossambarbary.com" target="_blank" rel="noopener"><code>drhossambarbary[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drjavaherian.com" target="_blank" rel="noopener"><code>drjavaherian[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drmarcocantero.com" target="_blank" rel="noopener"><code>drmarcocantero[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drnugent.com" target="_blank" rel="noopener"><code>drnugent[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/drzoeshaw.com" target="_blank" rel="noopener"><code>drzoeshaw[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/dulichdaohong.com" target="_blank" rel="noopener"><code>dulichdaohong[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:42Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/e-kamp.com" target="_blank" rel="noopener"><code>e-kamp[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/earnwithkatie.com" target="_blank" rel="noopener"><code>earnwithkatie[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/earnwithtb.com" target="_blank" rel="noopener"><code>earnwithtb[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/eastcoasttv.ca" target="_blank" rel="noopener"><code>eastcoasttv[.]ca</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ebluenile.com" target="_blank" rel="noopener"><code>ebluenile[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/eco-consultant.fr" target="_blank" rel="noopener"><code>eco-consultant[.]fr</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/edeka-georg.de" target="_blank" rel="noopener"><code>edeka-georg[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/elektronbv.com" target="_blank" rel="noopener"><code>elektronbv[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/emcoshop.ir" target="_blank" rel="noopener"><code>emcoshop[.]ir</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/emmnockpowercom.com" target="_blank" rel="noopener"><code>emmnockpowercom[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/encargatutfg.com" target="_blank" rel="noopener"><code>encargatutfg[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/eneryouth.eu" target="_blank" rel="noopener"><code>eneryouth[.]eu</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/envisagestudio.com.au" target="_blank" rel="noopener"><code>envisagestudio[.]com[.]au</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/erfolgspaket.com" target="_blank" rel="noopener"><code>erfolgspaket[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-10T19:50:24Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/eufilipedacruz.com" target="_blank" rel="noopener"><code>eufilipedacruz[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/euroimmunus.blog" target="_blank" rel="noopener"><code>euroimmunus[.]blog</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/eurolatino.eu" target="_blank" rel="noopener"><code>eurolatino[.]eu</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ezippe.com" target="_blank" rel="noopener"><code>ezippe[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/file/f90b94c115e8dbbaee659b97b540e66b422cc8826e5c1d0ebaa5cff9fc4a019e" target="_blank" rel="noopener"><code>f90b94c115e8dbbaee659b97b540e66b422cc8826e5c1d0ebaa5cff9fc4a019e</code></a></td>
-          <td>sha256</td>
-          <td><span class="risk risk-high">high 80</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-17T05:31:56Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fahrzeugvergabe.de" target="_blank" rel="noopener"><code>fahrzeugvergabe[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-03T09:09:14Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/faithchampaign.org" target="_blank" rel="noopener"><code>faithchampaign[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/familiaeco.com" target="_blank" rel="noopener"><code>familiaeco[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-22T16:21:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fardin.co" target="_blank" rel="noopener"><code>fardin[.]co</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/feiratecnomoda.com.br" target="_blank" rel="noopener"><code>feiratecnomoda[.]com[.]br</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fepc.bo" target="_blank" rel="noopener"><code>fepc[.]bo</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/feuerwehr-rieblingen.de" target="_blank" rel="noopener"><code>feuerwehr-rieblingen[.]de</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fileworks.cfd" target="_blank" rel="noopener"><code>fileworks[.]cfd</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-07T16:42:27Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/finamiza.com" target="_blank" rel="noopener"><code>finamiza[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/finansepoznan.pl" target="_blank" rel="noopener"><code>finansepoznan[.]pl</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fine-horse.net" target="_blank" rel="noopener"><code>fine-horse[.]net</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/antenniste.nc" target="_blank" rel="noopener"><code>antenniste[.]nc</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:24Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fitato.ir" target="_blank" rel="noopener"><code>fitato[.]ir</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/aueaue.com" target="_blank" rel="noopener"><code>aueaue[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:24Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fixers.de" target="_blank" rel="noopener"><code>fixers[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/auraprog.it" target="_blank" rel="noopener"><code>auraprog[.]it</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fleurdesable.fr" target="_blank" rel="noopener"><code>fleurdesable[.]fr</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/autoeletricaavenidaitu.com.br" target="_blank" rel="noopener"><code>autoeletricaavenidaitu[.]com[.]br</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:43Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fluidorganisation.com" target="_blank" rel="noopener"><code>fluidorganisation[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/bhaibhaifashions.com" target="_blank" rel="noopener"><code>bhaibhaifashions[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T21:23:40Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fooddenmark.com" target="_blank" rel="noopener"><code>fooddenmark[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/businessnews-online.com" target="_blank" rel="noopener"><code>businessnews-online[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/forestretreatlaos.com" target="_blank" rel="noopener"><code>forestretreatlaos[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/chor-baddeckenstedt.de" target="_blank" rel="noopener"><code>chor-baddeckenstedt[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-25T18:29:55Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/forglorysake.com" target="_blank" rel="noopener"><code>forglorysake[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/coolcity.earth" target="_blank" rel="noopener"><code>coolcity[.]earth</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/franchisebatao.in" target="_blank" rel="noopener"><code>franchisebatao[.]in</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/dbmechanical.com" target="_blank" rel="noopener"><code>dbmechanical[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/frozenalien.de" target="_blank" rel="noopener"><code>frozenalien[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/deepbluetech.io" target="_blank" rel="noopener"><code>deepbluetech[.]io</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:05Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fruitcity.africa" target="_blank" rel="noopener"><code>fruitcity[.]africa</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/dgd-cad.com" target="_blank" rel="noopener"><code>dgd-cad[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/funnel.coach" target="_blank" rel="noopener"><code>funnel[.]coach</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/divyvichar.com" target="_blank" rel="noopener"><code>divyvichar[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/fyxify.com" target="_blank" rel="noopener"><code>fyxify[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/drachmann-arkitekter.dk" target="_blank" rel="noopener"><code>drachmann-arkitekter[.]dk</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gack-moebel.de" target="_blank" rel="noopener"><code>gack-moebel[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/egroup.be" target="_blank" rel="noopener"><code>egroup[.]be</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gaia-united.org" target="_blank" rel="noopener"><code>gaia-united[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/emcgsrl.com" target="_blank" rel="noopener"><code>emcgsrl[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gardenofwonders.org" target="_blank" rel="noopener"><code>gardenofwonders[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/eplusarchitecture.com.au" target="_blank" rel="noopener"><code>eplusarchitecture[.]com[.]au</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gazshope.ir" target="_blank" rel="noopener"><code>gazshope[.]ir</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/fastseals.in" target="_blank" rel="noopener"><code>fastseals[.]in</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:18Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gd-kcmco.com" target="_blank" rel="noopener"><code>gd-kcmco[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/filhosdeangola.es" target="_blank" rel="noopener"><code>filhosdeangola[.]es</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gearrak.com" target="_blank" rel="noopener"><code>gearrak[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/georgischerweinkeller.de" target="_blank" rel="noopener"><code>georgischerweinkeller[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/georgeseay.com" target="_blank" rel="noopener"><code>georgeseay[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/gogogo-tour.com" target="_blank" rel="noopener"><code>gogogo-tour[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gep.tn" target="_blank" rel="noopener"><code>gep[.]tn</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/grupa-bgm.pl" target="_blank" rel="noopener"><code>grupa-bgm[.]pl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gitarrlektioner-online.se" target="_blank" rel="noopener"><code>gitarrlektioner-online[.]se</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/hausarztpraxis-reichenhall.de" target="_blank" rel="noopener"><code>hausarztpraxis-reichenhall[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gleamvistaenergysolution.com" target="_blank" rel="noopener"><code>gleamvistaenergysolution[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/hdtherapy.co.uk" target="_blank" rel="noopener"><code>hdtherapy[.]co[.]uk</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:25Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/golfstuds.golf" target="_blank" rel="noopener"><code>golfstuds[.]golf</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/healthcoveragepolicy.com" target="_blank" rel="noopener"><code>healthcoveragepolicy[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gosigmalogistics.com" target="_blank" rel="noopener"><code>gosigmalogistics[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/healthyjeart.com" target="_blank" rel="noopener"><code>healthyjeart[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/graine-idf.org" target="_blank" rel="noopener"><code>graine-idf[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/hejri.com" target="_blank" rel="noopener"><code>hejri[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/graymurray.com" target="_blank" rel="noopener"><code>graymurray[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/houseofformlab.com" target="_blank" rel="noopener"><code>houseofformlab[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/greencitypro.com" target="_blank" rel="noopener"><code>greencitypro[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/instalmark.pl" target="_blank" rel="noopener"><code>instalmark[.]pl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/grefortec.com.br" target="_blank" rel="noopener"><code>grefortec[.]com[.]br</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/it.bridges.pt" target="_blank" rel="noopener"><code>it[.]bridges[.]pt</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/growthboks.com" target="_blank" rel="noopener"><code>growthboks[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/jammdesign.de" target="_blank" rel="noopener"><code>jammdesign[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gujaratgunj.com" target="_blank" rel="noopener"><code>gujaratgunj[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/ladel.fr" target="_blank" rel="noopener"><code>ladel[.]fr</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-11T23:29:40Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/gutemission.org" target="_blank" rel="noopener"><code>gutemission[.]org</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/libertyachts.com" target="_blank" rel="noopener"><code>libertyachts[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hadadian-holding.com" target="_blank" rel="noopener"><code>hadadian-holding[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/litprolaw.com" target="_blank" rel="noopener"><code>litprolaw[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hanniedijk.nl" target="_blank" rel="noopener"><code>hanniedijk[.]nl</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/lubraoil.com.br" target="_blank" rel="noopener"><code>lubraoil[.]com[.]br</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/harmonic-movement.com" target="_blank" rel="noopener"><code>harmonic-movement[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/lucky.gives" target="_blank" rel="noopener"><code>lucky[.]gives</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T21:23:40Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hasicidobrouc.cz" target="_blank" rel="noopener"><code>hasicidobrouc[.]cz</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/lueurexterne.com" target="_blank" rel="noopener"><code>lueurexterne[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/health-kik.com" target="_blank" rel="noopener"><code>health-kik[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/maennertanga.com" target="_blank" rel="noopener"><code>maennertanga[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/heilpraktiker-psychotherapie-upm.de" target="_blank" rel="noopener"><code>heilpraktiker-psychotherapie-upm[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/massagemasteryinstitute.com" target="_blank" rel="noopener"><code>massagemasteryinstitute[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/heimatverein-wesseling.de" target="_blank" rel="noopener"><code>heimatverein-wesseling[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/megthepiper.com" target="_blank" rel="noopener"><code>megthepiper[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:25Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/helsingoercarpenter.dk" target="_blank" rel="noopener"><code>helsingoercarpenter[.]dk</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/mercator-gymnasium.de" target="_blank" rel="noopener"><code>mercator-gymnasium[.]de</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hgwoonidee.nl" target="_blank" rel="noopener"><code>hgwoonidee[.]nl</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/middlecentralkennel.it" target="_blank" rel="noopener"><code>middlecentralkennel[.]it</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hhsta.com" target="_blank" rel="noopener"><code>hhsta[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/mindbugstest.nl" target="_blank" rel="noopener"><code>mindbugstest[.]nl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/himix.com.au" target="_blank" rel="noopener"><code>himix[.]com[.]au</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/mooreacc.com.au" target="_blank" rel="noopener"><code>mooreacc[.]com[.]au</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hof-jeiler.de" target="_blank" rel="noopener"><code>hof-jeiler[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/n-nieruchomosci.pl" target="_blank" rel="noopener"><code>n-nieruchomosci[.]pl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/holzideen.org" target="_blank" rel="noopener"><code>holzideen[.]org</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/homebasedbusinesssite.com" target="_blank" rel="noopener"><code>homebasedbusinesssite[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/naturalfarmingcenter.org" target="_blank" rel="noopener"><code>naturalfarmingcenter[.]org</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:26Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hoteltherivanta.com" target="_blank" rel="noopener"><code>hoteltherivanta[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/nsc-co.com" target="_blank" rel="noopener"><code>nsc-co[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/houstonaviationsupplies.com" target="_blank" rel="noopener"><code>houstonaviationsupplies[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/oceanus-mustique.com" target="_blank" rel="noopener"><code>oceanus-mustique[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T20:47:03Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/hrp.com.pl" target="_blank" rel="noopener"><code>hrp[.]com[.]pl</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/ouacheterlocal.fr" target="_blank" rel="noopener"><code>ouacheterlocal[.]fr</code></a></td>
           <td>domain</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2F138.124.59.179%2Fx" target="_blank" rel="noopener"><code>hxxp://138[.]124[.]59[.]179/x</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-21T05:31:48Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2F918441.studiowaterarts.com%2F" target="_blank" rel="noopener"><code>hxxps://918441[.]studiowaterarts[.]com/</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-12T06:11:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Factivityof.com%2Fdatei" target="_blank" rel="noopener"><code>hxxps://activityof[.]com/datei</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-05-18T07:06:04Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fardinova.digital%2Fmass-dig" target="_blank" rel="noopener"><code>hxxps://ardinova[.]digital/mass-dig</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-12T06:11:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbergmann-automobile.de%2Fapi%2Fcm-token" target="_blank" rel="noopener"><code>hxxps://bergmann-automobile[.]de/api/cm-token</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-08T05:34:07Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbeschaffung-portal.de%2Fapi%2Fcm-token" target="_blank" rel="noopener"><code>hxxps://beschaffung-portal[.]de/api/cm-token</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-08T05:34:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fbeyondorcs.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://beyondorcs[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:15Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fchrisniagara.cc%2F" target="_blank" rel="noopener"><code>hxxps://chrisniagara[.]cc/</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-07T14:55:36Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fdallasbackstage.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://dallasbackstage[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:16Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fevergabe-bund.de%2Fapi%2Fcm-token" target="_blank" rel="noopener"><code>hxxps://evergabe-bund[.]de/api/cm-token</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-08T05:34:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fgemscol.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://gemscol[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:16Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fminnarasanen.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://minnarasanen[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:22Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fminnarasanen.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://minnarasanen[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:21Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fminneapolisseor.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://minneapolisseor[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:15Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fs1w21.comen.store%2Fupdate.sh" target="_blank" rel="noopener"><code>hxxps://s1w21[.]comen[.]store/update[.]sh</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-critical">critical 88</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-12T06:11:15Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fscridea.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://scridea[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fscridea.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://scridea[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:17Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecure-node-protection04.s3.us-west-004.backblazeb2.com%2Fbeacon1.html" target="_blank" rel="noopener"><code>hxxps://secure-node-protection04[.]s3[.]us-west-004[.]backblazeb2[.]com/beacon1[.]html</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-12T06:11:14Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fsecurity-bloom-pw34.pages.dev%2F" target="_blank" rel="noopener"><code>hxxps://security-bloom-pw34[.]pages[.]dev/</code></a></td>
-          <td>url</td>
           <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-12T06:11:16Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fshoeshowshoes.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://shoeshowshoes[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:13Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Ftotebagsforwork.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://totebagsforwork[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:12Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Funalively.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://unalively[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:18Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fyugernaut.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://yugernaut[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fyugernaut.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://yugernaut[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:20Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzgrongbo.com%2Fnback.php" target="_blank" rel="noopener"><code>hxxps://zgrongbo[.]com/nback[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-10-20T08:27:19Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fzgrongbo.com%2Fnfront.php" target="_blank" rel="noopener"><code>hxxps://zgrongbo[.]com/nfront[.]php</code></a></td>
-          <td>url</td>
-          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-20T08:27:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/i-carekids.com" target="_blank" rel="noopener"><code>i-carekids[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/panchiangmai.com" target="_blank" rel="noopener"><code>panchiangmai[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/idaafarchitects.com" target="_blank" rel="noopener"><code>idaafarchitects[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/parsghaem.com" target="_blank" rel="noopener"><code>parsghaem[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/idgaribaldi.paris" target="_blank" rel="noopener"><code>idgaribaldi[.]paris</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/ple21.poznan.pl" target="_blank" rel="noopener"><code>ple21[.]poznan[.]pl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ifamt.de" target="_blank" rel="noopener"><code>ifamt[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/poesiaambiente.com" target="_blank" rel="noopener"><code>poesiaambiente[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/iiwebco.com" target="_blank" rel="noopener"><code>iiwebco[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/praktijkkindinzicht.nl" target="_blank" rel="noopener"><code>praktijkkindinzicht[.]nl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ikonicpr.com" target="_blank" rel="noopener"><code>ikonicpr[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/prohlednuti.cz" target="_blank" rel="noopener"><code>prohlednuti[.]cz</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ikovrsps.com" target="_blank" rel="noopener"><code>ikovrsps[.]com</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 84</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox, urlhaus</td>
-          <td>2026-10-06T16:19:24Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ilpercorso.net" target="_blank" rel="noopener"><code>ilpercorso[.]net</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/reliablefencecompany.com" target="_blank" rel="noopener"><code>reliablefencecompany[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-03T21:04:47Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/immorec24.de" target="_blank" rel="noopener"><code>immorec24[.]de</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/robertloesch.at" target="_blank" rel="noopener"><code>robertloesch[.]at</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/impactfinances.be" target="_blank" rel="noopener"><code>impactfinances[.]be</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/sestitoedilservice.it" target="_blank" rel="noopener"><code>sestitoedilservice[.]it</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Unknown Loader</td>
-          <td>threatfox</td>
-          <td>2026-09-15T22:40:06Z</td>
-          <td class="num-cell">100</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ingridalmeida.adv.br" target="_blank" rel="noopener"><code>ingridalmeida[.]adv[.]br</code></a></td>
-          <td>domain</td>
-          <td><span class="risk risk-high">high 82</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-10-18T16:07:29Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T21:23:40Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/inmobiliariamarycampo.com" target="_blank" rel="noopener"><code>inmobiliariamarycampo[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/sevenseasclub.co.za" target="_blank" rel="noopener"><code>sevenseasclub[.]co[.]za</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/insulation-grant.com" target="_blank" rel="noopener"><code>insulation-grant[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/sgp-edo.com" target="_blank" rel="noopener"><code>sgp-edo[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:26Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ionaphysio.com" target="_blank" rel="noopener"><code>ionaphysio[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/shantykooropwierdeii.nl" target="_blank" rel="noopener"><code>shantykooropwierdeii[.]nl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/iranfoton.com" target="_blank" rel="noopener"><code>iranfoton[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/sith-chat.ovh" target="_blank" rel="noopener"><code>sith-chat[.]ovh</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/italiens.eu" target="_blank" rel="noopener"><code>italiens[.]eu</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/smarthousemagic.com" target="_blank" rel="noopener"><code>smarthousemagic[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:27Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/itelkom.net" target="_blank" rel="noopener"><code>itelkom[.]net</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/specialpaintmike.nl" target="_blank" rel="noopener"><code>specialpaintmike[.]nl</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-15T22:40:07Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/itsimple.cl" target="_blank" rel="noopener"><code>itsimple[.]cl</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/spin-wheel.co" target="_blank" rel="noopener"><code>spin-wheel[.]co</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:44Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T21:23:40Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/ivydubai.com" target="_blank" rel="noopener"><code>ivydubai[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/stpaulelc.com" target="_blank" rel="noopener"><code>stpaulelc[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:27Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jamcharlie.com" target="_blank" rel="noopener"><code>jamcharlie[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/tettrans.com.br" target="_blank" rel="noopener"><code>tettrans[.]com[.]br</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/javierferrara.com" target="_blank" rel="noopener"><code>javierferrara[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/theseohub.com" target="_blank" rel="noopener"><code>theseohub[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:27Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jcmcgroup.com" target="_blank" rel="noopener"><code>jcmcgroup[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/tobiaslehmann.photos" target="_blank" rel="noopener"><code>tobiaslehmann[.]photos</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jeremymosscomposer.com" target="_blank" rel="noopener"><code>jeremymosscomposer[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/toptenis.com.ar" target="_blank" rel="noopener"><code>toptenis[.]com[.]ar</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-22T16:39:19Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jesterlynacandle.fr" target="_blank" rel="noopener"><code>jesterlynacandle[.]fr</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/travimespolu.sk" target="_blank" rel="noopener"><code>travimespolu[.]sk</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jet3c.com" target="_blank" rel="noopener"><code>jet3c[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/ufeelgood.org" target="_blank" rel="noopener"><code>ufeelgood[.]org</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:27Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jetspeedcarwash.com" target="_blank" rel="noopener"><code>jetspeedcarwash[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/viasoldas.com.br" target="_blank" rel="noopener"><code>viasoldas[.]com[.]br</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jhc-oba.org.uk" target="_blank" rel="noopener"><code>jhc-oba[.]org[.]uk</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/vmaa.in" target="_blank" rel="noopener"><code>vmaa[.]in</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-10T19:50:27Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jinekolojikcerrahimerkezi.com" target="_blank" rel="noopener"><code>jinekolojikcerrahimerkezi[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/whiteflowers.be" target="_blank" rel="noopener"><code>whiteflowers[.]be</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/jorhna.com" target="_blank" rel="noopener"><code>jorhna[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/wicklowcommunityservices.ie" target="_blank" rel="noopener"><code>wicklowcommunityservices[.]ie</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T14:22:28Z</td>
+          <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/domain/kadinhastaliklarivedogummerkezi.com" target="_blank" rel="noopener"><code>kadinhastaliklarivedogummerkezi[.]com</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/domain/williamhemphill2.com" target="_blank" rel="noopener"><code>williamhemphill2[.]com</code></a></td>
           <td>domain</td>
           <td><span class="risk risk-high">high 78</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Unknown Loader</td>
           <td>threatfox</td>
-          <td>2026-09-27T15:55:45Z</td>
-          <td class="num-cell">100</td>
+          <td>2026-10-25T20:47:03Z</td>
+          <td class="num-cell">75</td>
         </tr>
       </tbody>
     </table>
@@ -3339,10 +1124,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 </main>
 <footer>
-  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:20:47Z UTC</span></p>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; AlienVault OTX &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed</p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (0 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:21:38Z UTC</span></p>
 </footer>
 <script>
+(function () {
+  var refresh = document.getElementById("refresh-btn");
+  if (!refresh) return;
+  var label = refresh.querySelector("span");
+  refresh.addEventListener("click", function () {
+    refresh.disabled = true;
+    refresh.classList.add("refreshing");
+    refresh.setAttribute("aria-busy", "true");
+    if (label) label.textContent = "Refreshing";
+    // Cache-busting query keeps GitHub Pages / browser caches from serving the
+    // previous build's HTML after a new sync.
+    var url = new URL(window.location.href);
+    url.searchParams.set("refresh", String(Date.now()));
+    window.location.replace(url.toString());
+  });
+})();
 (function () {
   var root = document.documentElement;
   var toggle = document.getElementById("theme-toggle");

@@ -24,6 +24,7 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     env:
       OTX_API_KEY: ${{ secrets.OTX_API_KEY }}
+      ABUSECH_AUTH_KEY: ${{ secrets.ABUSECH_AUTH_KEY }}
     steps:
       - uses: actions/checkout@v4
 

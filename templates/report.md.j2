@@ -14,7 +14,7 @@
 | Feed | Indicators this run | Status |
 | --- | --- | --- |
 {% for f in feed_health.feeds -%}
-| {{ f.name }} | {{ f.count if f.count is not none else "—" }} | {{ "error: " + f.error if f.error else "ok" }} |
+| {{ f.name }} | {{ f.count if f.count is not none else "-" }} | {{ ("error: " + f.error) if f.error else ("skipped (needs key)" if f.skipped else "ok") }} |
 {% endfor %}
 
 ## Indicators by type

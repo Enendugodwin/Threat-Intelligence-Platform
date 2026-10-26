@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T13:20:37Z",
+  "generated_at": "2026-10-26T12:02:05Z",
   "catalog_version": "2026.10.23",
   "catalog_count": 1756,
   "entries": [
@@ -13,8 +13,8 @@
       "ransomware": false,
       "description": "Arista VeloCloud Orchestrator on-prem contains a SQL injection vulnerability that may allow a remote attacker to access privileged internal functionality and impact the VCO host. Successful exploitation may compromise the confidentiality, integrity, and availability of the orches",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00555,
-      "epss_percentile": 0.45586
+      "epss": 0.01025,
+      "epss_percentile": 0.63324
     },
     {
       "cve": "CVE-2026-110447",
@@ -26,8 +26,8 @@
       "ransomware": false,
       "description": "Collabora Collabora Online \u2013 Built-in CODE Server when used within the NextCloud platform contains an OS command injection vulnerability that allows for remote code execution when the CODE server isn't running.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01225,
-      "epss_percentile": 0.68615
+      "epss": 0.12328,
+      "epss_percentile": 0.96163
     },
     {
       "cve": "CVE-2026-106931",
@@ -39,8 +39,8 @@
       "ransomware": false,
       "description": "EG Secure Solutions SiteGuard Server Edition contains an OS command injection vulnerability which may allow an attacker to execute arbitrary OS commands with root or SYSTEM privileges on the system running the affected product.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00662,
-      "epss_percentile": 0.50774
+      "epss": 0.02528,
+      "epss_percentile": 0.8478
     },
     {
       "cve": "CVE-2026-96656",
@@ -52,8 +52,8 @@
       "ransomware": false,
       "description": "Plex Media Server contains an external control of file name or path vulnerability which can allow an admin user to write arbitrary files that may be executed on load. This vulnerability can be chained with CVE-2026-96652, CVE-2026-96654, and CVE-2026-96655.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00396,
-      "epss_percentile": 0.32349
+      "epss": 0.01785,
+      "epss_percentile": 0.78146
     },
     {
       "cve": "CVE-2026-96655",
@@ -65,8 +65,8 @@
       "ransomware": false,
       "description": "Plex Media Server contains a server-side request forgery (SSRF) vulnerability that could allow an authenticated user to request arbitrary internal or external addresses via the '/video/:/transcode/universal' path parameter. This vulnerability can be chained with CVE-2026-96652, C",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00222,
-      "epss_percentile": 0.11974
+      "epss": 0.01637,
+      "epss_percentile": 0.76162
     },
     {
       "cve": "CVE-2026-96654",
@@ -78,8 +78,8 @@
       "ransomware": false,
       "description": "Plex Media Server contains an improper neutralization of encoded URI schemes in a web page vulnerability that could allow an attacker to call other plugins' functions and supply their own parameters. This vulnerability can be chained with CVE-2026-96652, CVE-2026-96655, and CVE-2",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00227,
-      "epss_percentile": 0.12576
+      "epss": 0.01949,
+      "epss_percentile": 0.80085
     },
     {
       "cve": "CVE-2026-96652",
@@ -91,8 +91,8 @@
       "ransomware": false,
       "description": "Plex Media Server contains a server-side request forgery (SSRF) vulnerability which could allow an attacker using any X-Plex-Token value to include a full URL in the 'protocol' parameter and force the Plex server to POST to the attacker's chosen destination. This vulnerability ca",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00222,
-      "epss_percentile": 0.11974
+      "epss": 0.01821,
+      "epss_percentile": 0.78608
     },
     {
       "cve": "CVE-2026-110936",
@@ -104,8 +104,8 @@
       "ransomware": false,
       "description": "Siemens Software Center contains an uncontrolled search path element vulnerability that could allow an authenticated local attacker to place a specially crafted DLL in a directory that the application searches, leading to arbitrary code execution with the privileges of the affect",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00135,
-      "epss_percentile": 0.02673
+      "epss": 0.00967,
+      "epss_percentile": 0.61493
     },
     {
       "cve": "CVE-2026-102764",
@@ -117,8 +117,8 @@
       "ransomware": false,
       "description": "BeyondTrust Remote Support contains an authentication bypass by spoofing vulnerability that could allow a remote attacker to perform file operations on the appliance.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00601,
-      "epss_percentile": 0.47647
+      "epss": 0.20341,
+      "epss_percentile": 0.97462
     },
     {
       "cve": "CVE-2025-61624",
@@ -130,8 +130,8 @@
       "ransomware": false,
       "description": "FortiOS, FortiPAM, FortiProxy, and FortiSwitchManager contain a path traversal vulnerability that may allow an authenticated attacker with admin profile and at least read-write permissions to write or delete arbitrary files via specific CLI commands.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.0058,
-      "epss_percentile": 0.46551
+      "epss": 0.01343,
+      "epss_percentile": 0.71155
     },
     {
       "cve": "CVE-2026-21589",
@@ -143,8 +143,8 @@
       "ransomware": false,
       "description": "Multiple Atlassian products (Bitbucket Data Center ,Confluence Data Center, Jira Service Management Data Center, Jira Software Data Center, Bamboo Data Center, Crowd Data Center, Crucible and Fisheye) contain a files or directories accessible to external parties vulnerability whi",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.02777,
-      "epss_percentile": 0.86118
+      "epss": 0.99477,
+      "epss_percentile": 0.99943
     },
     {
       "cve": "CVE-2026-105134",
@@ -156,8 +156,8 @@
       "ransomware": false,
       "description": "Ahsay AhsayCBS contains a command injection vulnerability that could allow a remote attacker to execute operating system commands via manipulation of the random parameter in the Replication Receiver component\u2019s /rps/api/json/UpdateReceivers.do endpoint. This vulnerability can be ",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01843,
-      "epss_percentile": 0.78594
+      "epss": 0.86266,
+      "epss_percentile": 0.99731
     },
     {
       "cve": "CVE-2026-76519",
@@ -169,8 +169,8 @@
       "ransomware": false,
       "description": "Cisco Secure Email Gateway contains a relative path traversal vulnerability that could allow an unauthenticated, remote attacker to write arbitrary files on the underlying operating system.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01743,
-      "epss_percentile": 0.77354
+      "epss": 0.02152,
+      "epss_percentile": 0.82022
     },
     {
       "cve": "CVE-2026-105133",
@@ -182,8 +182,8 @@
       "ransomware": false,
       "description": "Ahsay AhsayCBS contains an improper authentication vulnerability that could allow a remote attacker to bypass authentication via manipulation of the random parameter in the API component\u2019s checkSysPwd function. This vulnerability can be chained with CVE-2026-105134.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.00383,
-      "epss_percentile": 0.30672
+      "epss": 0.79236,
+      "epss_percentile": 0.99595
     },
     {
       "cve": "CVE-2026-0322",
@@ -195,8 +195,8 @@
       "ransomware": false,
       "description": "Palo Alto Networks PAN-OS contains a code injection vulnerability that could allow an authenticated attacker with network access to execute arbitrary code with root privileges on the firewall.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01076,
-      "epss_percentile": 0.64349
+      "epss": 0.0174,
+      "epss_percentile": 0.77559
     },
     {
       "cve": "CVE-2026-104935",
@@ -208,8 +208,8 @@
       "ransomware": false,
       "description": "Ivanti Connect Secure contains an authentication bypass by spoofing vulnerability that allows a remote unauthenticated attacker to execute arbitrary commands.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.25982,
-      "epss_percentile": 0.97961
+      "epss": 0.86766,
+      "epss_percentile": 0.9974
     },
     {
       "cve": "CVE-2026-96951",
@@ -221,8 +221,8 @@
       "ransomware": false,
       "description": "Microsoft Windows Shell contains a command injection vulnerability that allows an unauthorized attacker to bypass a security feature over a network.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01506,
-      "epss_percentile": 0.73847
+      "epss": 0.09813,
+      "epss_percentile": 0.95515
     },
     {
       "cve": "CVE-2015-5477",
@@ -234,8 +234,8 @@
       "ransomware": false,
       "description": "ISC BIND contains a data processing errors vulnerability that could allow remote attackers to cause a denial of service via TKEY queries.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.91284,
-      "epss_percentile": 0.9981
+      "epss": 0.99584,
+      "epss_percentile": 0.99946
     },
     {
       "cve": "CVE-2016-3081",
@@ -247,8 +247,8 @@
       "ransomware": false,
       "description": "Apache Struts contains a command injection vulnerability that could allow remote attackers to execute arbitrary code via method:prefix when Dynamic Method Invocation is enabled.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.93352,
-      "epss_percentile": 0.99838
+      "epss": 0.96525,
+      "epss_percentile": 0.99881
     },
     {
       "cve": "CVE-2023-22894",
@@ -260,8 +260,8 @@
       "ransomware": false,
       "description": "Strapi contains a cleartext storage of sensitive information vulnerability that could allow attackers with access to the admin panel to discover sensitive user details via the query filter. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are ",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.01658,
-      "epss_percentile": 0.7591
+      "epss": 0.04114,
+      "epss_percentile": 0.90706
     },
     {
       "cve": "CVE-2021-3199",
@@ -273,8 +273,8 @@
       "ransomware": false,
       "description": "ONLYOFFICE Docs contains a path traversal vulnerability that can occur when JWT is used, via a /.. sequence in an image upload parameter and could allow for remote code execution.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.08215,
-      "epss_percentile": 0.9475
+      "epss": 0.30244,
+      "epss_percentile": 0.98208
     },
     {
       "cve": "CVE-2015-3306",
@@ -286,8 +286,8 @@
       "ransomware": false,
       "description": "ProFTPD contains an improper access control vulnerability that could allow remote attackers to read and write to arbitrary files via the site cpfr and site cpto commands.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": 0.96752,
-      "epss_percentile": 0.99887
+      "epss": 0.99497,
+      "epss_percentile": 0.99944
     },
     {
       "cve": "CVE-2026-88779",

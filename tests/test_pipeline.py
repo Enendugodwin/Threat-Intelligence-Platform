@@ -138,6 +138,7 @@ def test_offline_pipeline_end_to_end(tmp_path):
     index = site_paths[0].read_text(encoding="utf-8")
     assert "Threat Intel Pipeline" in index
     assert 'href="reports.html"' in index
+    assert 'id="refresh-btn"' in index and "Cache-busting" in index
     assert 'id="theme-toggle"' in index and 'data-theme="light"' in index
     assert 'details class="export-menu"' in index
     assert 'href="iocs.json" download' in index and 'href="iocs.csv" download' in index

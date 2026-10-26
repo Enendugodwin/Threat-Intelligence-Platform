@@ -47,11 +47,16 @@ intelligence (CISA KEV + FIRST EPSS) renders `site/kev.html`, and high-signal
 C2 IPs are geolocated (cached in `data/geo.json`) for the `site/map.html`
 infrastructure-geolocation map.
 
-- **Feeds** (keyless by default): URLhaus, Feodo Tracker C2 blocklist, ThreatFox,
-  MalwareBazaar (sample hashes), OpenPhish (phishing URLs), the CIRCL MISP OSINT
-  feed, and Tor Project Onionoo (relay/exit node context - kept out of detections
-  by default). AlienVault OTX is supported with a free API key, and CISA KEV +
-  FIRST EPSS power the vulnerability page.
+- **Feeds**: Feodo Tracker C2 blocklist, OpenPhish (phishing URLs), the CIRCL MISP
+  OSINT feed, and Tor Project Onionoo (relay/exit node context - kept out of
+  detections by default), plus keyless community blocklists (blocklist.de,
+  Binary Defense, GreenSnow, Phishing Army, ET compromised hosts). URLhaus,
+  ThreatFox and MalwareBazaar come from abuse.ch and now require a free
+  **Auth-Key** (`ABUSECH_AUTH_KEY`, see below) because abuse.ch retired its
+  keyless exports. AlienVault OTX is supported with a free API key (enabled),
+  and CISA KEV + FIRST EPSS power the vulnerability page. Keyless fallbacks
+  (`urlhaus_filter`, `tweetfeed`) keep URL/domain/hash coverage flowing when no
+  abuse.ch key is present.
 - **Normalization**: refang/defang handling, type detection, private/reserved
   address rejection, dedupe across feeds with source tracking.
 - **ATT&CK mapping**: family table + tag heuristics in `config/attack_map.yaml`.
@@ -78,6 +83,20 @@ Linux/macOS is the same with `python3 -m venv .venv && source .venv/bin/activate
 
 Copy `.env.example` to `.env` if you want to enable OTX or connectors.
 
+### abuse.ch Auth-Key (URLhaus / ThreatFox / MalwareBazaar)
+
+abuse.ch retired its keyless CSV/JSON export URLs in 2026 — they now answer
+**HTTP 410 Gone**. Create a free key at <https://auth.abuse.ch/> and add it to
+`.env`:
+
+```
+ABUSECH_AUTH_KEY=your-key-here
+```
+
+Without a key those three feeds are **skipped** (shown as "needs key" on the
+dashboard), not treated as failures; every other feed keeps working. In GitHub
+Actions, add the same value as a repository secret named `ABUSECH_AUTH_KEY`.
+
 ## Run it online on GitHub (no server)
 
 1. Create a **public** repo (Pages on the free plan needs public) and push this code.
@@ -102,8 +121,9 @@ deploys the dashboard to `https://<user>.github.io/threat-intel-pipeline/`.
 
 - `feeds.*.enabled` - toggle feeds; `urlhaus.max_records` caps how much of the
   CSV is ingested per run; `urlhaus.derive_domains` adds URL hostnames as
-  domain indicators.
-- `storage.prune_after_days` - indicators not re-seen in N days are dropped.
+  domain indicators. Blocklist feeds expose `max_records` too.
+- `storage.prune_after_days` - indicators not re-seen in N days are purged
+  (default **20**; override per run with `python -m tip sync --prune-days N`).
 - `exports.window_days` / `exports.max_rows` / `exports.min_confidence` - what
   goes into STIX/Sigma/Suricata/CSV.
 - `exports.exclude_sources` - sources kept out of those exports (default `tor`;
@@ -233,11 +253,18 @@ MISP/OpenCTI on a VPS later.
 
 ## Data sources & terms
 
-- [URLhaus](https://urlhaus.abuse.ch/) (abuse.ch) - malware URLs
+- [URLhaus](https://urlhaus.abuse.ch/) (abuse.ch) - malware URLs (Auth-Key required)
 - [Feodo Tracker](https://feodotracker.abuse.ch/) (abuse.ch) - botnet C2 blocklist
-- [ThreatFox](https://threatfox.abuse.ch/) (abuse.ch) - IOCs
+- [ThreatFox](https://threatfox.abuse.ch/) (abuse.ch) - IOCs (Auth-Key required)
 - [Tor Project Onionoo](https://onionoo.torproject.org/) - Tor relay/exit node addresses (context data)
-- [MalwareBazaar](https://bazaar.abuse.ch/) (abuse.ch) - recent malware sample hashes
+- [MalwareBazaar](https://bazaar.abuse.ch/) (abuse.ch) - recent malware sample hashes (Auth-Key required)
+- [blocklist.de](https://www.blocklist.de/) - abusive IPs (keyless)
+- [Binary Defense banlist](https://www.binarydefense.com/banlist.txt) - attacker/C2 IPs (keyless)
+- [GreenSnow](https://greensnow.co/) - community abusive-IP list (keyless)
+- [Phishing Army](https://phishing.army/) - phishing domains (keyless)
+- [Emerging Threats](https://rules.emergingthreats.net/) - compromised hosts (keyless)
+- [URLhaus filter mirror](https://gitlab.com/malware-filter/urlhaus-filter) - keyless URLhaus domain fallback
+- [TweetFeed](https://github.com/0xDanielLopez/TweetFeed) - keyless community IOCs (domains/URLs/IPs/hashes)
 - [OpenPhish](https://openphish.com/) - phishing URLs (via the public-feed GitHub mirror)
 - [CIRCL MISP OSINT feed](https://www.circl.lu/doc/misp/feed-osint/) - community indicators
 - [CISA KEV](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) - exploited vulnerabilities

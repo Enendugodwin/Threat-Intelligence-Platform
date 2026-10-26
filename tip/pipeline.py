@@ -8,7 +8,7 @@ import time
 
 import yaml
 
-from .feeds import build_feeds
+from .feeds import SkipFeed, build_feeds
 from .store import Store, utcnow
 
 log = logging.getLogger("tip.pipeline")
@@ -59,6 +59,7 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
     feed_counts: dict[str, int] = {}
     feed_durations: dict[str, float] = {}
     errors: dict[str, str] = {}
+    skipped: dict[str, str] = {}
 
     try:
         for feed in feeds:
@@ -68,6 +69,9 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
                 collected.extend(got)
                 feed_counts[feed.name] = len(got)
                 log.info("feed %s: %d indicators", feed.name, len(got))
+            except SkipFeed as exc:
+                skipped[feed.name] = str(exc)
+                log.info("feed %s skipped: %s", feed.name, exc)
             except Exception as exc:  # noqa: BLE001 - isolate per-feed failures
                 errors[feed.name] = f"{type(exc).__name__}: {exc}"
                 log.warning("feed %s failed: %s", feed.name, exc)
@@ -84,6 +88,8 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
             "feeds": feed_counts,
             "durations": feed_durations,
             "errors": errors,
+            "skipped": sorted(skipped),
+            "skipped_reasons": skipped,
             "fetched": len(collected),
             "new": new,
             "updated": updated,
@@ -103,9 +109,9 @@ def run_sync(config: dict, data_dir: str | pathlib.Path) -> dict:
     finally:
         store.close()
 
-    if len(errors) == len(feeds):
+    if errors and not feed_counts:
         stats["fatal"] = True
-        log.error("all feeds failed")
+        log.error("all attempted feeds failed")
 
     log.info(
         "sync complete: fetched=%d new=%d updated=%d pruned=%d total=%d",

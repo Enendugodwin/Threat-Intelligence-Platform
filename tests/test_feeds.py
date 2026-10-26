@@ -1,5 +1,13 @@
 import pathlib
 
+from tip.feeds.blocklists import (
+    BinaryDefenseFeed,
+    BlocklistDeFeed,
+    EmergingThreatsCompromisedFeed,
+    GreenSnowFeed,
+    PhishingArmyFeed,
+    URLhausFilterFeed,
+)
 from tip.feeds.circl import CIRCLFeed
 from tip.feeds.feodo import FeodoFeed
 from tip.feeds.malwarebazaar import MalwareBazaarFeed
@@ -7,6 +15,7 @@ from tip.feeds.openphish import OpenPhishFeed
 from tip.feeds.otx import OTXFeed
 from tip.feeds.threatfox import ThreatFoxFeed
 from tip.feeds.tor import TorFeed
+from tip.feeds.tweetfeed import TweetFeed
 from tip.feeds.urlhaus import URLhausFeed
 
 FIXTURES = pathlib.Path(__file__).parent / "fixtures"
@@ -19,6 +28,13 @@ _FILES = {
     "circl": "circl_feed.json",
     "tor": "tor.json",
     "otx": "otx.json",
+    "blocklist_de": "blocklist_de.txt",
+    "binarydefense": "binarydefense.txt",
+    "greensnow": "greensnow.txt",
+    "phishing_army": "phishing_army.txt",
+    "et_compromised": "et_compromised.txt",
+    "urlhaus_filter": "urlhaus_filter.txt",
+    "tweetfeed": "tweetfeed.csv",
 }
 
 
@@ -100,3 +116,33 @@ def test_circl_parse():
     assert "circl-bad.net" in values
     assert not any("should-not-import" in v for v in values)  # to_ids=false excluded
     assert all("circl-osint" in i.tags for i in iocs)
+
+def test_blocklist_de_parse():
+    iocs = _fetch(BlocklistDeFeed)
+    assert len(iocs) == 3
+    assert all(i.type == "ipv4" for i in iocs)
+    assert "blocklist" in iocs[0].tags
+
+
+def test_binarydefense_parse():
+    iocs = _fetch(BinaryDefenseFeed)
+    assert len(iocs) == 3
+    assert all(i.type == "ipv4" for i in iocs)
+
+
+def test_greensnow_parse():
+    iocs = _fetch(GreenSnowFeed)
+    assert len(iocs) == 2
+
+
+def test_phishing_army_parse():
+    iocs = _fetch(PhishingArmyFeed)
+    assert len(iocs) == 3
+    assert all(i.type == "domain" for i in iocs)
+    assert "phishing" in iocs[0].tags
+
+
+def test_et_compromised_parse():
+    iocs = _fetch(EmergingThreatsCompromisedFeed)
+    assert len(iocs) == 2
+    assert all(i.type == "ipv4" for i in iocs)

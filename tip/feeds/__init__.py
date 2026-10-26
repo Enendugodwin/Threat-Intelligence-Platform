@@ -1,5 +1,13 @@
 """Feed connectors."""
-from .base import Feed, FeedError
+from .base import AUTH_KEY_ENV, Feed, FeedError, SkipFeed
+from .blocklists import (
+    BinaryDefenseFeed,
+    BlocklistDeFeed,
+    EmergingThreatsCompromisedFeed,
+    GreenSnowFeed,
+    PhishingArmyFeed,
+    URLhausFilterFeed,
+)
 from .circl import CIRCLFeed
 from .feodo import FeodoFeed
 from .malwarebazaar import MalwareBazaarFeed
@@ -7,6 +15,7 @@ from .openphish import OpenPhishFeed
 from .otx import OTXFeed
 from .threatfox import ThreatFoxFeed
 from .tor import TorFeed
+from .tweetfeed import TweetFeed
 from .urlhaus import URLhausFeed
 
 FEED_CLASSES: dict[str, type[Feed]] = {
@@ -18,9 +27,16 @@ FEED_CLASSES: dict[str, type[Feed]] = {
     "circl": CIRCLFeed,
     "tor": TorFeed,
     "otx": OTXFeed,
+    "blocklist_de": BlocklistDeFeed,
+    "binarydefense": BinaryDefenseFeed,
+    "greensnow": GreenSnowFeed,
+    "phishing_army": PhishingArmyFeed,
+    "et_compromised": EmergingThreatsCompromisedFeed,
+    "urlhaus_filter": URLhausFilterFeed,
+    "tweetfeed": TweetFeed,
 }
 
-__all__ = ["Feed", "FeedError", "FEED_CLASSES", "build_feeds"]
+__all__ = ["Feed", "FeedError", "SkipFeed", "AUTH_KEY_ENV", "FEED_CLASSES", "build_feeds"]
 
 
 def build_feeds(config: dict) -> list[Feed]:

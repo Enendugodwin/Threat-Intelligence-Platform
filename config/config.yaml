@@ -24,15 +24,37 @@ feeds:
     exits_only: false   # true = keep only relays carrying the Exit flag
     max_records: 20000  # safety cap across paginated Onionoo requests
   otx:
-    enabled: false         # set true and export OTX_API_KEY to use
+    enabled: true          # key in .env (OTX_API_KEY)
     modified_since_days: 2
     max_pulses: 20
+  # Keyless community blocklists (plain text, no credentials required).
+  blocklist_de:
+    enabled: true
+    max_records: 3000      # IPs reported for brute-force / abuse
+  binarydefense:
+    enabled: true
+    max_records: 2000      # C2 / attacker IPs
+  greensnow:
+    enabled: true
+    max_records: 2000      # community abusive-IP list
+  phishing_army:
+    enabled: true
+    max_records: 3000      # extended phishing domain list
+  et_compromised:
+    enabled: true
+    max_records: 1000      # compromised hosts (ET Open)
+  urlhaus_filter:
+    enabled: true
+    max_records: 5000      # keyless URLhaus domain mirror (fallback)
+  tweetfeed:
+    enabled: true
+    max_records: 4000      # keyless X/Twitter IOC feed (fallback)
 
 storage:
-  prune_after_days: 45     # drop indicators not re-seen in this many days
+  prune_after_days: 20     # purge indicators not re-seen in this many days
 
 exports:
-  window_days: 30          # export lookback window
+  window_days: 20          # export lookback window
   max_rows: 30000          # hard cap for STIX/CSV/Sigma/Suricata exports
   min_confidence: 0
   # Sources kept out of STIX/Sigma/Suricata/CSV exports. Tor nodes are context,

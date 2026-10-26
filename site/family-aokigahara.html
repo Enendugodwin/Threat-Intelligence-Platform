@@ -1,0 +1,2746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: Aokigahara &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.refresh-btn.refreshing .refresh-icon{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.refresh-btn.refreshing .refresh-icon{animation:none}}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
+.export-menu{position:relative}
+.export-menu>summary{list-style:none;user-select:none}
+.export-menu>summary::-webkit-details-marker{display:none}
+.export-menu[open]>summary{background:var(--color-primary-soft)}
+.export-chevron{transition:transform .18s ease}
+.export-menu[open] .export-chevron{transform:rotate(180deg)}
+.export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
+.export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
+.export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
+.export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
+.export-description{font-size:.7rem;color:var(--color-muted-foreground)}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:var(--color-primary-soft)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.pill.warn{color:#eab308;border-color:rgba(234,179,8,.5);background:rgba(234,179,8,.12)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:start}
+.split>section{min-width:0}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
+}
+@media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
+  .export-menu-panel{left:0;right:auto}
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>36920 indicators</span>
+      <span>18317 new / 18206 updated last run &middot; 28621 new / 7d</span>
+      <span>15/15 feeds &middot; 20d retention</span>
+      <span>sync 2026-10-26T13:21:38Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="threats.html">Threats</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle refresh-btn" id="refresh-btn" type="button" aria-label="Refresh dashboard data">
+        <svg class="icon refresh-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: Aokigahara</h1>
+<p class="muted">
+  234 indicator(s) attributed to Aokigahara</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0025a4a2506d18a8637a7e0d53aa274b" target="_blank" rel="noopener"><code>0025a4a2506d18a8637a7e0d53aa274b</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/007137599bc4d69ee952a5228b5fcb2c3b9a95a7" target="_blank" rel="noopener"><code>007137599bc4d69ee952a5228b5fcb2c3b9a95a7</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/00d52c7e759d878f0d8a117502f6d854af13f007" target="_blank" rel="noopener"><code>00d52c7e759d878f0d8a117502f6d854af13f007</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/039240551f88b0064b2615dffdc1321b1e7c58e3f617ac138a65a6d59400b331" target="_blank" rel="noopener"><code>039240551f88b0064b2615dffdc1321b1e7c58e3f617ac138a65a6d59400b331</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/04e40fbf5dfff023a657076c4e0d6f257301da049dd351cb3d7aea64a694aa0d" target="_blank" rel="noopener"><code>04e40fbf5dfff023a657076c4e0d6f257301da049dd351cb3d7aea64a694aa0d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/04eddccb79db41e03a4ee8542e8a33d7f1d9fe18" target="_blank" rel="noopener"><code>04eddccb79db41e03a4ee8542e8a33d7f1d9fe18</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/055791ad0e57354a5bd959c719902339" target="_blank" rel="noopener"><code>055791ad0e57354a5bd959c719902339</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/057a2d1dedeb93b7765c455a9e0c469e7cbe4843" target="_blank" rel="noopener"><code>057a2d1dedeb93b7765c455a9e0c469e7cbe4843</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/079ddf5cc7d6ca2e02f860f87d4d18c83db9d331" target="_blank" rel="noopener"><code>079ddf5cc7d6ca2e02f860f87d4d18c83db9d331</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/07bc2e3a1d14743cc44f1dc4c78d15d0f2b458b39fb48422b13df40fc662ba21" target="_blank" rel="noopener"><code>07bc2e3a1d14743cc44f1dc4c78d15d0f2b458b39fb48422b13df40fc662ba21</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0adc8e83b2416c275b1283916d70568faddeb6d718eb45f9addfb0938db245b3" target="_blank" rel="noopener"><code>0adc8e83b2416c275b1283916d70568faddeb6d718eb45f9addfb0938db245b3</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0b74ce90a39278fb97fe94f6306af71cbe679503" target="_blank" rel="noopener"><code>0b74ce90a39278fb97fe94f6306af71cbe679503</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0c46ac5555cf8f305c1345a21d0802c52bf52cd8" target="_blank" rel="noopener"><code>0c46ac5555cf8f305c1345a21d0802c52bf52cd8</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0cfb9c06d729326e4283cc901deaab3bc1e70a8ec6e6a0933281088819c592c3" target="_blank" rel="noopener"><code>0cfb9c06d729326e4283cc901deaab3bc1e70a8ec6e6a0933281088819c592c3</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0d8d0bad2e08856ba379e425e2e90e49506af631" target="_blank" rel="noopener"><code>0d8d0bad2e08856ba379e425e2e90e49506af631</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0de14e58cc4de3f62c2f01cb48c5826c" target="_blank" rel="noopener"><code>0de14e58cc4de3f62c2f01cb48c5826c</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0e38bd3c30a4ca08641240ce95b5b6ba593e131213ca1b2a28da4e0385fcabc4" target="_blank" rel="noopener"><code>0e38bd3c30a4ca08641240ce95b5b6ba593e131213ca1b2a28da4e0385fcabc4</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0e76150cee3f2b89f0fbe39106ab2898db109f09" target="_blank" rel="noopener"><code>0e76150cee3f2b89f0fbe39106ab2898db109f09</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0f69792cb926a416766d47a30a05009c13be0d64" target="_blank" rel="noopener"><code>0f69792cb926a416766d47a30a05009c13be0d64</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/112c9cfd02438311674d5cb61355a202" target="_blank" rel="noopener"><code>112c9cfd02438311674d5cb61355a202</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1201b88289054110b65ad271d01de586dc59329b8a95367862bd09c15f665e5b" target="_blank" rel="noopener"><code>1201b88289054110b65ad271d01de586dc59329b8a95367862bd09c15f665e5b</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/130f2710cf9863bdd6724e8912600505b6fb7ef2" target="_blank" rel="noopener"><code>130f2710cf9863bdd6724e8912600505b6fb7ef2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/133dc00ad81638e6b0a2f8f163b4d694ce477165" target="_blank" rel="noopener"><code>133dc00ad81638e6b0a2f8f163b4d694ce477165</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/151d8013ca3ab3dab9cd37f4ed9870cc83e87a77" target="_blank" rel="noopener"><code>151d8013ca3ab3dab9cd37f4ed9870cc83e87a77</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/16c07d499717b5ea3a80d672ddd2df29a4513e20784d55485efe2491e2d1bc8b" target="_blank" rel="noopener"><code>16c07d499717b5ea3a80d672ddd2df29a4513e20784d55485efe2491e2d1bc8b</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1701db4fa798b309cb25227408406dde4c69de8a" target="_blank" rel="noopener"><code>1701db4fa798b309cb25227408406dde4c69de8a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/17f7deac47d90eb8b8f10ae9675c7006" target="_blank" rel="noopener"><code>17f7deac47d90eb8b8f10ae9675c7006</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1835f1e0b1eda3dc4b39682ecad3eba88cbbc44e" target="_blank" rel="noopener"><code>1835f1e0b1eda3dc4b39682ecad3eba88cbbc44e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/18e041b5a0c668392ff4d036f3f9660c2698311e" target="_blank" rel="noopener"><code>18e041b5a0c668392ff4d036f3f9660c2698311e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1a6a6e08a01cc3f1455af2c4ecd59a3d7802cd7a" target="_blank" rel="noopener"><code>1a6a6e08a01cc3f1455af2c4ecd59a3d7802cd7a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1a7248720f3ac79082841b006582f20799b314a9" target="_blank" rel="noopener"><code>1a7248720f3ac79082841b006582f20799b314a9</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1a97a18db74f2b6df984c9a188a79b4e65a06b81" target="_blank" rel="noopener"><code>1a97a18db74f2b6df984c9a188a79b4e65a06b81</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1cb6ccfdcb277a0277729443d15f17a441fa0eda" target="_blank" rel="noopener"><code>1cb6ccfdcb277a0277729443d15f17a441fa0eda</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1cb8dc11bdb8baf342b83079fb650cd6bb1b132d" target="_blank" rel="noopener"><code>1cb8dc11bdb8baf342b83079fb650cd6bb1b132d</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1e072236f87cd914dc583ca2163460d656bfcfba" target="_blank" rel="noopener"><code>1e072236f87cd914dc583ca2163460d656bfcfba</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1e20e55588cdac5468a9852ae4cf756b" target="_blank" rel="noopener"><code>1e20e55588cdac5468a9852ae4cf756b</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1e94d7f1d501724076fcf98459e14b68321d45f7" target="_blank" rel="noopener"><code>1e94d7f1d501724076fcf98459e14b68321d45f7</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/2.26.252.48" target="_blank" rel="noopener"><code>2[.]26[.]252[.]48</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2045f165d737f2d43ba603d444dfa5d9e6f05805" target="_blank" rel="noopener"><code>2045f165d737f2d43ba603d444dfa5d9e6f05805</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/211e45f306b84a82cfe736635c176a424e7479dc" target="_blank" rel="noopener"><code>211e45f306b84a82cfe736635c176a424e7479dc</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/21ae4be523cf657ddd7a507846ed31ba" target="_blank" rel="noopener"><code>21ae4be523cf657ddd7a507846ed31ba</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/21ef070e39f651118a804882374dc2dfa3e38666" target="_blank" rel="noopener"><code>21ef070e39f651118a804882374dc2dfa3e38666</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2362a326070d83c167251873b389bd783781cf6c" target="_blank" rel="noopener"><code>2362a326070d83c167251873b389bd783781cf6c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/241e37b8fc5ffeefbd1d89a82b74cf2d92b49eac" target="_blank" rel="noopener"><code>241e37b8fc5ffeefbd1d89a82b74cf2d92b49eac</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/244371fc1642f0548b807b0a4a2e7ea5d7b4c82a" target="_blank" rel="noopener"><code>244371fc1642f0548b807b0a4a2e7ea5d7b4c82a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/25dfcec40265e84a502aa1a969a431f2" target="_blank" rel="noopener"><code>25dfcec40265e84a502aa1a969a431f2</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2758d4b746f74b9d9af353367c4a5fbe" target="_blank" rel="noopener"><code>2758d4b746f74b9d9af353367c4a5fbe</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/27dc29dc12edd4390440944e8c00c0a5" target="_blank" rel="noopener"><code>27dc29dc12edd4390440944e8c00c0a5</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/28099fc5a8cbbd40173f8ac0aded9044fdb4a598" target="_blank" rel="noopener"><code>28099fc5a8cbbd40173f8ac0aded9044fdb4a598</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/29d8149a0e7d6810fd68122d8da10350" target="_blank" rel="noopener"><code>29d8149a0e7d6810fd68122d8da10350</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2b668159e2e26d8851b171d60f71a245" target="_blank" rel="noopener"><code>2b668159e2e26d8851b171d60f71a245</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2cdc77108c585d14b1567053b8f8a58ea78c255f" target="_blank" rel="noopener"><code>2cdc77108c585d14b1567053b8f8a58ea78c255f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2f13729e3ff0d6d11fde51fadae788c2" target="_blank" rel="noopener"><code>2f13729e3ff0d6d11fde51fadae788c2</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2f30b116ca3dc48ff5783c3bb7391d671866e27b" target="_blank" rel="noopener"><code>2f30b116ca3dc48ff5783c3bb7391d671866e27b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/2fb80e2221bd304e7cd5ac04169e71807ad92d19836f1aaf7885295cb90b2d94" target="_blank" rel="noopener"><code>2fb80e2221bd304e7cd5ac04169e71807ad92d19836f1aaf7885295cb90b2d94</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/30737fa46f2ff93e33f45008cf306233954ea898" target="_blank" rel="noopener"><code>30737fa46f2ff93e33f45008cf306233954ea898</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/30ff846551d79cbb2ef01d16cd8a59b822d2743fb8149f326e7aaad81a968f64" target="_blank" rel="noopener"><code>30ff846551d79cbb2ef01d16cd8a59b822d2743fb8149f326e7aaad81a968f64</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/324e0fffc7977f8ff591993819123d33c2970953" target="_blank" rel="noopener"><code>324e0fffc7977f8ff591993819123d33c2970953</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3586eeaf3ffe2c3a4f1d005aee863b7aee7cc7bd" target="_blank" rel="noopener"><code>3586eeaf3ffe2c3a4f1d005aee863b7aee7cc7bd</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3696baa239c479f9f5103618214972890f1a473b" target="_blank" rel="noopener"><code>3696baa239c479f9f5103618214972890f1a473b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/36af3acc78058023cdcf9307bc15be640be9425de97e574fdaf42d03d308725b" target="_blank" rel="noopener"><code>36af3acc78058023cdcf9307bc15be640be9425de97e574fdaf42d03d308725b</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/385e21a96687a33f79f9cab0627aec7218e1a8f4" target="_blank" rel="noopener"><code>385e21a96687a33f79f9cab0627aec7218e1a8f4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/38b2c29b46086b417181deb958e8b276a9d1fbf4" target="_blank" rel="noopener"><code>38b2c29b46086b417181deb958e8b276a9d1fbf4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/396b76713542516f39f41fa3e91cb00a" target="_blank" rel="noopener"><code>396b76713542516f39f41fa3e91cb00a</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3aaeb49864108c92af50feeb5d9e3b3efaa39818" target="_blank" rel="noopener"><code>3aaeb49864108c92af50feeb5d9e3b3efaa39818</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3b4547f0d7549274f366cd9568b3d302c1e80e1b89359da681beb47260ec7975" target="_blank" rel="noopener"><code>3b4547f0d7549274f366cd9568b3d302c1e80e1b89359da681beb47260ec7975</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3c56a0c3c59a1425bfdcdffda9e8b308f478b147" target="_blank" rel="noopener"><code>3c56a0c3c59a1425bfdcdffda9e8b308f478b147</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3ec780496f8b465950a0942aad9e0374f54830f203968f9559ed3ddc256956ae" target="_blank" rel="noopener"><code>3ec780496f8b465950a0942aad9e0374f54830f203968f9559ed3ddc256956ae</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/426bea548a24f7f39c279770b5dd21fbed7f7328" target="_blank" rel="noopener"><code>426bea548a24f7f39c279770b5dd21fbed7f7328</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4417d2645adb6e7e94959daf483f93058500840f" target="_blank" rel="noopener"><code>4417d2645adb6e7e94959daf483f93058500840f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4485feb1385975ef13f08148cdc679f50fa0cc6d" target="_blank" rel="noopener"><code>4485feb1385975ef13f08148cdc679f50fa0cc6d</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/456414c0acf463e06f95f5bd3d8355758fca6b53" target="_blank" rel="noopener"><code>456414c0acf463e06f95f5bd3d8355758fca6b53</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4595d1875441ffb8c076856e366d1f4f5c74a679" target="_blank" rel="noopener"><code>4595d1875441ffb8c076856e366d1f4f5c74a679</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/47326bf512d7339d98a9c9188364f621" target="_blank" rel="noopener"><code>47326bf512d7339d98a9c9188364f621</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/48c6b66dc4b4d40d72b7460e6fd670b6c03d5d40" target="_blank" rel="noopener"><code>48c6b66dc4b4d40d72b7460e6fd670b6c03d5d40</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4b3a4ad0acd43fc8796147381074a98e8e576904" target="_blank" rel="noopener"><code>4b3a4ad0acd43fc8796147381074a98e8e576904</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/4c07021f8b0cdd3ca334a13f9af2bade9e699dc2" target="_blank" rel="noopener"><code>4c07021f8b0cdd3ca334a13f9af2bade9e699dc2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/50060c0fc5fa8932671eb24b03b05d00c2e99951" target="_blank" rel="noopener"><code>50060c0fc5fa8932671eb24b03b05d00c2e99951</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/51ae6cad54f33846f83a352457b9a44ef8b7a61d" target="_blank" rel="noopener"><code>51ae6cad54f33846f83a352457b9a44ef8b7a61d</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/56c93663aaadc4f7604cae8ef89e61e928066f845e21ab6ff2571823760df0b7" target="_blank" rel="noopener"><code>56c93663aaadc4f7604cae8ef89e61e928066f845e21ab6ff2571823760df0b7</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/59bbaca8a848215e7e4af7cec320432c51b0b812" target="_blank" rel="noopener"><code>59bbaca8a848215e7e4af7cec320432c51b0b812</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5ef7eb755f1e3f6bf8586794777466a639057dcb" target="_blank" rel="noopener"><code>5ef7eb755f1e3f6bf8586794777466a639057dcb</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5fadf206dc163f63ebf66f984042b00c67121813" target="_blank" rel="noopener"><code>5fadf206dc163f63ebf66f984042b00c67121813</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5fe11fbb89d33efa712ffb8590626bd88fecab8f" target="_blank" rel="noopener"><code>5fe11fbb89d33efa712ffb8590626bd88fecab8f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/61a024f5a42a9a91b0a9871a1613c7fb3ef5613b" target="_blank" rel="noopener"><code>61a024f5a42a9a91b0a9871a1613c7fb3ef5613b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/62dcc9ba2a5eee9dd941ad08766603c89a45869b" target="_blank" rel="noopener"><code>62dcc9ba2a5eee9dd941ad08766603c89a45869b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6393c0d3fb76f771a9418c2d152c621929ee002b" target="_blank" rel="noopener"><code>6393c0d3fb76f771a9418c2d152c621929ee002b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/63cc5033532cd00bda3d4968b1257629e613505a" target="_blank" rel="noopener"><code>63cc5033532cd00bda3d4968b1257629e613505a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6655b89b9885483d459c73f2a52e3cec121de5c5956172a8676a0f4c2de94999" target="_blank" rel="noopener"><code>6655b89b9885483d459c73f2a52e3cec121de5c5956172a8676a0f4c2de94999</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/66bce9790a4534a2408bdd5676b6243f" target="_blank" rel="noopener"><code>66bce9790a4534a2408bdd5676b6243f</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/682dd6392004e1131b1aa3f2351a0bc7adb84d14" target="_blank" rel="noopener"><code>682dd6392004e1131b1aa3f2351a0bc7adb84d14</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/687bd33f472c2655ee6f1d3cbf785a03" target="_blank" rel="noopener"><code>687bd33f472c2655ee6f1d3cbf785a03</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/699c809a116106da40b3f641c11b0db34d0f1c5e" target="_blank" rel="noopener"><code>699c809a116106da40b3f641c11b0db34d0f1c5e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6a09fffca381f6624d2def1083284ca486306e7c" target="_blank" rel="noopener"><code>6a09fffca381f6624d2def1083284ca486306e7c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6c860007f8f49de8e9848b538bd7acdc6bfcdf55" target="_blank" rel="noopener"><code>6c860007f8f49de8e9848b538bd7acdc6bfcdf55</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6d599f4c27e0fc1e2a05cf8ad04437c2" target="_blank" rel="noopener"><code>6d599f4c27e0fc1e2a05cf8ad04437c2</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6e073a196a9bfa01da418b5783c2395fb22c7ec9" target="_blank" rel="noopener"><code>6e073a196a9bfa01da418b5783c2395fb22c7ec9</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6e63e3a84740395c886c86f5a62f09ba" target="_blank" rel="noopener"><code>6e63e3a84740395c886c86f5a62f09ba</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6eb8f17dba69f6d25b7f5c529b25d199707b69e2" target="_blank" rel="noopener"><code>6eb8f17dba69f6d25b7f5c529b25d199707b69e2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/6f7d5935602c188b1e3066b4ab9aeef7b85a8ec2" target="_blank" rel="noopener"><code>6f7d5935602c188b1e3066b4ab9aeef7b85a8ec2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/70915fac07af4ad7acc1868fe05dc00b98206f0f" target="_blank" rel="noopener"><code>70915fac07af4ad7acc1868fe05dc00b98206f0f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/70d4007b11e56752fffb81f71c90987f4bb441fa" target="_blank" rel="noopener"><code>70d4007b11e56752fffb81f71c90987f4bb441fa</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/70e91644802053cfa68be6ec0f94207282ff27e4" target="_blank" rel="noopener"><code>70e91644802053cfa68be6ec0f94207282ff27e4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7233a15327dc2f0cca0292e6352eebf6e6e090d8" target="_blank" rel="noopener"><code>7233a15327dc2f0cca0292e6352eebf6e6e090d8</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/72aa6417a19c45dabdd6c79087fb13c73ae7b823" target="_blank" rel="noopener"><code>72aa6417a19c45dabdd6c79087fb13c73ae7b823</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/73dbac0907e8a092cd978f2787ab1994946f5da1e08f2bdbd05ea52e80cdb896" target="_blank" rel="noopener"><code>73dbac0907e8a092cd978f2787ab1994946f5da1e08f2bdbd05ea52e80cdb896</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/752c8e64af60960b85cf00e4bd34eb459e24b7939464f718ec18494df43b4b69" target="_blank" rel="noopener"><code>752c8e64af60960b85cf00e4bd34eb459e24b7939464f718ec18494df43b4b69</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/780bbdbb119befd4eb16e0c2ec0c64e7bedc1b53ce4f85804aea091a6e3af519" target="_blank" rel="noopener"><code>780bbdbb119befd4eb16e0c2ec0c64e7bedc1b53ce4f85804aea091a6e3af519</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7cc6c75fad93b2482a9c5f4522530007c72f99e0" target="_blank" rel="noopener"><code>7cc6c75fad93b2482a9c5f4522530007c72f99e0</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7e611b37bf6f9fee0df04759d079a879" target="_blank" rel="noopener"><code>7e611b37bf6f9fee0df04759d079a879</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7ebbcdd872327d991bc675cae4a50e081ff32c966bc905f27814189910666f76" target="_blank" rel="noopener"><code>7ebbcdd872327d991bc675cae4a50e081ff32c966bc905f27814189910666f76</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/82ebfc09c98bd211ff8b08efcd8ec8b9ce1fb4be" target="_blank" rel="noopener"><code>82ebfc09c98bd211ff8b08efcd8ec8b9ce1fb4be</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8370337f9a0d8ae1cc043ebd9e39b21e4ec83cdb0c580bf02643966a661059f3" target="_blank" rel="noopener"><code>8370337f9a0d8ae1cc043ebd9e39b21e4ec83cdb0c580bf02643966a661059f3</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/83b43ce0ee9881201451c0604fb5b792bd4581f5" target="_blank" rel="noopener"><code>83b43ce0ee9881201451c0604fb5b792bd4581f5</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/86230c07e638b85bc8010df1aa9e33ca61fda4cc" target="_blank" rel="noopener"><code>86230c07e638b85bc8010df1aa9e33ca61fda4cc</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8882bbfcf15ade8481e63f086974b03f" target="_blank" rel="noopener"><code>8882bbfcf15ade8481e63f086974b03f</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/89f296aef7988bdd59109e4263d0a31c886770aa" target="_blank" rel="noopener"><code>89f296aef7988bdd59109e4263d0a31c886770aa</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8b0cf62382f620bbbf5d176295d63ed522ab9c2c" target="_blank" rel="noopener"><code>8b0cf62382f620bbbf5d176295d63ed522ab9c2c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8c3111a61fbf30e86b8206397ce3c0017e5ea509" target="_blank" rel="noopener"><code>8c3111a61fbf30e86b8206397ce3c0017e5ea509</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8c4c1d8325adb463c34694ce3a5a851e97b81a6f" target="_blank" rel="noopener"><code>8c4c1d8325adb463c34694ce3a5a851e97b81a6f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8c827ebe6affd13781eba8a6751e4ee90168fe8511faa1e7b26bd96fdb9f281f" target="_blank" rel="noopener"><code>8c827ebe6affd13781eba8a6751e4ee90168fe8511faa1e7b26bd96fdb9f281f</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8d6c86e0af7807f9b5baf15e9f076bb81e012515" target="_blank" rel="noopener"><code>8d6c86e0af7807f9b5baf15e9f076bb81e012515</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8d7a81119ce7be6eb452192f08fa2669228ff597" target="_blank" rel="noopener"><code>8d7a81119ce7be6eb452192f08fa2669228ff597</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8d860ca64ce0cbf40871fd66b9e3a513e73cda90" target="_blank" rel="noopener"><code>8d860ca64ce0cbf40871fd66b9e3a513e73cda90</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8dc40b7208b8c0d95d1ab8dda9a56fff790b3ddd" target="_blank" rel="noopener"><code>8dc40b7208b8c0d95d1ab8dda9a56fff790b3ddd</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8e9fd1274b77ff9726c4637d008a9d599c9d5f1e" target="_blank" rel="noopener"><code>8e9fd1274b77ff9726c4637d008a9d599c9d5f1e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8f1f29d97f283b3589d81b96fbfa1353" target="_blank" rel="noopener"><code>8f1f29d97f283b3589d81b96fbfa1353</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9003310bf73dc337b8b50131f1c0724a79161aac" target="_blank" rel="noopener"><code>9003310bf73dc337b8b50131f1c0724a79161aac</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/90c057dafefbee423e3014266218272d454a0aa3" target="_blank" rel="noopener"><code>90c057dafefbee423e3014266218272d454a0aa3</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/912ed8ce7767f94f62de6a30fb8e9df7c0c512f7" target="_blank" rel="noopener"><code>912ed8ce7767f94f62de6a30fb8e9df7c0c512f7</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/91d8fd94c81c333f87e3a9aec1266cb9814f2ade38033a91131c41b7d1496e1c" target="_blank" rel="noopener"><code>91d8fd94c81c333f87e3a9aec1266cb9814f2ade38033a91131c41b7d1496e1c</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9369e0e5eae22cff71b375ad285ea89471f25101" target="_blank" rel="noopener"><code>9369e0e5eae22cff71b375ad285ea89471f25101</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/97ae2865040c4e8a0a8d37d799f6aeba" target="_blank" rel="noopener"><code>97ae2865040c4e8a0a8d37d799f6aeba</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/97c80e2d382e6e55f61702da3afb838fdec2f4f1" target="_blank" rel="noopener"><code>97c80e2d382e6e55f61702da3afb838fdec2f4f1</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9828dadeadf7cd333a5dd5d3c99f8082" target="_blank" rel="noopener"><code>9828dadeadf7cd333a5dd5d3c99f8082</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/987eabfde3ca735273c9e0f5080bdbb0" target="_blank" rel="noopener"><code>987eabfde3ca735273c9e0f5080bdbb0</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/98c6649cc256dfadf1af939da46f037b05c0f2e5" target="_blank" rel="noopener"><code>98c6649cc256dfadf1af939da46f037b05c0f2e5</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/99b28a20851a3ed29769a469f4dd31ebbb8a83de" target="_blank" rel="noopener"><code>99b28a20851a3ed29769a469f4dd31ebbb8a83de</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9d424ce23753ffddc7b39477222123b0f2c33066" target="_blank" rel="noopener"><code>9d424ce23753ffddc7b39477222123b0f2c33066</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9e0e753c869e28910c8765f4335f7227" target="_blank" rel="noopener"><code>9e0e753c869e28910c8765f4335f7227</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9f05045f5447d79c8c0d0f5cb589fd85c89620d3" target="_blank" rel="noopener"><code>9f05045f5447d79c8c0d0f5cb589fd85c89620d3</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9f20034441e78574aec7ad39842a342f939eaf6a" target="_blank" rel="noopener"><code>9f20034441e78574aec7ad39842a342f939eaf6a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a00da33342a5ea5168d851a5c93109e07cf95c49" target="_blank" rel="noopener"><code>a00da33342a5ea5168d851a5c93109e07cf95c49</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a2abdf1af38da9995a3b6672ce6c34e9e17c39a4" target="_blank" rel="noopener"><code>a2abdf1af38da9995a3b6672ce6c34e9e17c39a4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a4871f4a61faf74e1cceaffe26901f6076c9f37e" target="_blank" rel="noopener"><code>a4871f4a61faf74e1cceaffe26901f6076c9f37e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a63ded811d412cd0f859891b0c1f066b87bb1b80" target="_blank" rel="noopener"><code>a63ded811d412cd0f859891b0c1f066b87bb1b80</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a84148b4d408544325c20ee04299ae95c762b6a2" target="_blank" rel="noopener"><code>a84148b4d408544325c20ee04299ae95c762b6a2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ac10e2b41ab8bcb097724c2fabde73a29ddbe149746d0accf9a6be3212557071" target="_blank" rel="noopener"><code>ac10e2b41ab8bcb097724c2fabde73a29ddbe149746d0accf9a6be3212557071</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ad960d2abb1999a7260c5f498532a5bb8754c2a5" target="_blank" rel="noopener"><code>ad960d2abb1999a7260c5f498532a5bb8754c2a5</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ae9d6b1a32a45b05edb920538e538a3d6a5fe439" target="_blank" rel="noopener"><code>ae9d6b1a32a45b05edb920538e538a3d6a5fe439</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/af196456d2ebf9556ab239661922565e1bca9ac0" target="_blank" rel="noopener"><code>af196456d2ebf9556ab239661922565e1bca9ac0</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/af2dfbd330172e9aaf68802eb98d0dfafacbfded22932bfdad0d0c6325063136" target="_blank" rel="noopener"><code>af2dfbd330172e9aaf68802eb98d0dfafacbfded22932bfdad0d0c6325063136</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b335483800d35a29c25767c917725e24c21b0f2b" target="_blank" rel="noopener"><code>b335483800d35a29c25767c917725e24c21b0f2b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b33e59c598845d2547ddc7f654115df2284bb3ae" target="_blank" rel="noopener"><code>b33e59c598845d2547ddc7f654115df2284bb3ae</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b36d0796e33f808eaeb33b33908327a410680c56" target="_blank" rel="noopener"><code>b36d0796e33f808eaeb33b33908327a410680c56</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b4491f1919a88deedebe7fba56b593e7d6655458" target="_blank" rel="noopener"><code>b4491f1919a88deedebe7fba56b593e7d6655458</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b523d56d82485253f2e3619437c8398b7ee0f20d" target="_blank" rel="noopener"><code>b523d56d82485253f2e3619437c8398b7ee0f20d</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b57099b095ed6f665ea8e768f3c6d1d1" target="_blank" rel="noopener"><code>b57099b095ed6f665ea8e768f3c6d1d1</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b590235493487c51f7050b341c9b2450e4f761ad6055207e4f6daf0cecae271c" target="_blank" rel="noopener"><code>b590235493487c51f7050b341c9b2450e4f761ad6055207e4f6daf0cecae271c</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b607025d3e06d1e8cffcd398c64871d7fcd92bf4" target="_blank" rel="noopener"><code>b607025d3e06d1e8cffcd398c64871d7fcd92bf4</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b615f80067ec582db790f5e49630bf3a6313a8e1037685893799367f263ad7b1" target="_blank" rel="noopener"><code>b615f80067ec582db790f5e49630bf3a6313a8e1037685893799367f263ad7b1</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b6f0dfd3aa2fc7b8b2ad432c4a4276da23ceb46b" target="_blank" rel="noopener"><code>b6f0dfd3aa2fc7b8b2ad432c4a4276da23ceb46b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ba68f386fdf2d8d9a2448f41fc3b4796ea067694" target="_blank" rel="noopener"><code>ba68f386fdf2d8d9a2448f41fc3b4796ea067694</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bab4c910e3c98085bf228519f346d071a75e44e3" target="_blank" rel="noopener"><code>bab4c910e3c98085bf228519f346d071a75e44e3</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bad339c5ad65808285b0e87498f2ea6f669417d9" target="_blank" rel="noopener"><code>bad339c5ad65808285b0e87498f2ea6f669417d9</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bcb060fa1c89e9b07334a12e7891619e" target="_blank" rel="noopener"><code>bcb060fa1c89e9b07334a12e7891619e</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bcd3a843dc9caa5a12abc117b269f497" target="_blank" rel="noopener"><code>bcd3a843dc9caa5a12abc117b269f497</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/bf037920d39b85572ec7e53b51f09c28198c2c0afbc7c7d6cf639b1f047caebf" target="_blank" rel="noopener"><code>bf037920d39b85572ec7e53b51f09c28198c2c0afbc7c7d6cf639b1f047caebf</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c00aceaa40b38e48f662ac927bb86302934aaf96" target="_blank" rel="noopener"><code>c00aceaa40b38e48f662ac927bb86302934aaf96</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c024597208ca641daa18884622a802b6" target="_blank" rel="noopener"><code>c024597208ca641daa18884622a802b6</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c1bc6228b1f8bd610af0947edcef1ef5" target="_blank" rel="noopener"><code>c1bc6228b1f8bd610af0947edcef1ef5</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c2e28ba5523c1f3a545a0b4a00a9d5e9c8ae7583" target="_blank" rel="noopener"><code>c2e28ba5523c1f3a545a0b4a00a9d5e9c8ae7583</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c323c59815082ac842f0bafcc01f537444e1cc5a" target="_blank" rel="noopener"><code>c323c59815082ac842f0bafcc01f537444e1cc5a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c533570fd7cd7eaf5478317b03ea5750d03797aa4d11ebd96555b6cb708c63f2" target="_blank" rel="noopener"><code>c533570fd7cd7eaf5478317b03ea5750d03797aa4d11ebd96555b6cb708c63f2</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c5b50b5e14dfb5e028dfd88a4e4fb960dd650b52" target="_blank" rel="noopener"><code>c5b50b5e14dfb5e028dfd88a4e4fb960dd650b52</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c6b300e371a7b0d3f0525f87d9ee37120d1b370f175e74d2e97669a79bafc240" target="_blank" rel="noopener"><code>c6b300e371a7b0d3f0525f87d9ee37120d1b370f175e74d2e97669a79bafc240</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c810acdf30bcdfc6e8021e7f62a3bcce0828c2ee" target="_blank" rel="noopener"><code>c810acdf30bcdfc6e8021e7f62a3bcce0828c2ee</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c8456bb71a74ed6305455c318295b8a39e9277f3" target="_blank" rel="noopener"><code>c8456bb71a74ed6305455c318295b8a39e9277f3</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ca32987f3e8b6adfeca7b23e66eb75b82b884f9c9cfbe3ba7eb59ee9214252b1" target="_blank" rel="noopener"><code>ca32987f3e8b6adfeca7b23e66eb75b82b884f9c9cfbe3ba7eb59ee9214252b1</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ca47b44161834cb70a224dbe3d92a383" target="_blank" rel="noopener"><code>ca47b44161834cb70a224dbe3d92a383</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/cbdff0df0dbdbc3c1845d208661dd75fd335ef93" target="_blank" rel="noopener"><code>cbdff0df0dbdbc3c1845d208661dd75fd335ef93</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/cc12fcb9e5e6f7afde66f5c3452ed6e3cd6d5390" target="_blank" rel="noopener"><code>cc12fcb9e5e6f7afde66f5c3452ed6e3cd6d5390</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/cc708ae3d7aa084279122c0db7250096f750d6b0" target="_blank" rel="noopener"><code>cc708ae3d7aa084279122c0db7250096f750d6b0</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d34491da5aa159314129c0ff67f957d873703e35" target="_blank" rel="noopener"><code>d34491da5aa159314129c0ff67f957d873703e35</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d3c90275dd7279a791d717676be15789376f7aa7" target="_blank" rel="noopener"><code>d3c90275dd7279a791d717676be15789376f7aa7</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d58b61e9fb0ba9f6e2f547bac2e9e052" target="_blank" rel="noopener"><code>d58b61e9fb0ba9f6e2f547bac2e9e052</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d647a31407f32ba2c494909ab32a4e16" target="_blank" rel="noopener"><code>d647a31407f32ba2c494909ab32a4e16</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d72da4953e4e784bd7526258a6610f7eda0b146090b99416d68cbc48448e9098" target="_blank" rel="noopener"><code>d72da4953e4e784bd7526258a6610f7eda0b146090b99416d68cbc48448e9098</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d8bfff5139b54b6f98f07c051cd25d7aa465fec8" target="_blank" rel="noopener"><code>d8bfff5139b54b6f98f07c051cd25d7aa465fec8</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/da986a3cb2ce67456ef374fbdd957d370a1a4367" target="_blank" rel="noopener"><code>da986a3cb2ce67456ef374fbdd957d370a1a4367</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/daef439e1f110d624ce50fe0f9d9d24f61f7497b" target="_blank" rel="noopener"><code>daef439e1f110d624ce50fe0f9d9d24f61f7497b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/db3332ce75676389b79cf3603d81cb231cb7c19c" target="_blank" rel="noopener"><code>db3332ce75676389b79cf3603d81cb231cb7c19c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/db69c7c930fd5dc5097847979a965fdea4171d5b" target="_blank" rel="noopener"><code>db69c7c930fd5dc5097847979a965fdea4171d5b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dba5fef27b53ff479a4d7046cd1f22710081a16c" target="_blank" rel="noopener"><code>dba5fef27b53ff479a4d7046cd1f22710081a16c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dc3b226aca8cb7f09e3617dfeee1ce84" target="_blank" rel="noopener"><code>dc3b226aca8cb7f09e3617dfeee1ce84</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/de9d152010819c8fb5cb611a4de920399e69cfeb" target="_blank" rel="noopener"><code>de9d152010819c8fb5cb611a4de920399e69cfeb</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/df613899e05b8c476443a59e1c59749337b35ec6e1d22ffcbaa7353726080a48" target="_blank" rel="noopener"><code>df613899e05b8c476443a59e1c59749337b35ec6e1d22ffcbaa7353726080a48</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/dfd1540c0185e74ec65acfcae1af7ba0da36c774" target="_blank" rel="noopener"><code>dfd1540c0185e74ec65acfcae1af7ba0da36c774</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dfwioeiofwr.info" target="_blank" rel="noopener"><code>dfwioeiofwr[.]info</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/dobeqnesmot.cc" target="_blank" rel="noopener"><code>dobeqnesmot[.]cc</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e052ff49190f54e0ffc52f7b3f7b5e7b9e121c4c" target="_blank" rel="noopener"><code>e052ff49190f54e0ffc52f7b3f7b5e7b9e121c4c</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e374f9ff5094f728528efa566c3de1b7fea7d95f497242a01fffa6c70b5eb768" target="_blank" rel="noopener"><code>e374f9ff5094f728528efa566c3de1b7fea7d95f497242a01fffa6c70b5eb768</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e3af6d9e3b35e5e04feda3cde96256dd3b099624" target="_blank" rel="noopener"><code>e3af6d9e3b35e5e04feda3cde96256dd3b099624</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e4d93fa1b2d0fd26e8b877511ea33badb4628169" target="_blank" rel="noopener"><code>e4d93fa1b2d0fd26e8b877511ea33badb4628169</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e5c43abd1c212b2f2a61d5e1cb7821406ca5dc8e" target="_blank" rel="noopener"><code>e5c43abd1c212b2f2a61d5e1cb7821406ca5dc8e</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e8b78420bf7059360a1de0c79b1be21ccbcf47a0b4bf2dd5582ac82274364501" target="_blank" rel="noopener"><code>e8b78420bf7059360a1de0c79b1be21ccbcf47a0b4bf2dd5582ac82274364501</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e8d09eb2e5857fde39b44aeb48078f5396809026" target="_blank" rel="noopener"><code>e8d09eb2e5857fde39b44aeb48078f5396809026</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ea87a850c1269273e700c198e299d7ea" target="_blank" rel="noopener"><code>ea87a850c1269273e700c198e299d7ea</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ec7cd90d56e5b73caa9d4eb0472bfee68d716121" target="_blank" rel="noopener"><code>ec7cd90d56e5b73caa9d4eb0472bfee68d716121</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/eec7ece53d47e50940584f4dec684a24a78f42f2" target="_blank" rel="noopener"><code>eec7ece53d47e50940584f4dec684a24a78f42f2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f0b23f420659babb3a730b122259440091c53c12" target="_blank" rel="noopener"><code>f0b23f420659babb3a730b122259440091c53c12</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f30e9730db0663f87c67a4b9a0cf12ee59b1621a" target="_blank" rel="noopener"><code>f30e9730db0663f87c67a4b9a0cf12ee59b1621a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f35e6d2936c0f6dc26bdc68f6d1599cf438a863a" target="_blank" rel="noopener"><code>f35e6d2936c0f6dc26bdc68f6d1599cf438a863a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f4184e1bb61e19d190555c50fdb9d4591767bf53" target="_blank" rel="noopener"><code>f4184e1bb61e19d190555c50fdb9d4591767bf53</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f47d45eea1c42b066f8537baf72ffa266646bf62" target="_blank" rel="noopener"><code>f47d45eea1c42b066f8537baf72ffa266646bf62</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f5993e64a18e7494b25a185de9f63a1df961b99a" target="_blank" rel="noopener"><code>f5993e64a18e7494b25a185de9f63a1df961b99a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f633fc9fd16dadca2725d3d54aaf13ea1a62174f" target="_blank" rel="noopener"><code>f633fc9fd16dadca2725d3d54aaf13ea1a62174f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f6d950a5a8e5ba336f748b66745c6c1f189d3362" target="_blank" rel="noopener"><code>f6d950a5a8e5ba336f748b66745c6c1f189d3362</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f779314b1a5a0b297fd4e2a5f9c1e40d387b3e7c401d42324b556a70f813840e" target="_blank" rel="noopener"><code>f779314b1a5a0b297fd4e2a5f9c1e40d387b3e7c401d42324b556a70f813840e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f83355c7bdd279e370b1197add66a604" target="_blank" rel="noopener"><code>f83355c7bdd279e370b1197add66a604</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f8cf33b18e9932d285696fee40a7fee2a87341c2" target="_blank" rel="noopener"><code>f8cf33b18e9932d285696fee40a7fee2a87341c2</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f8dbc552c89bef758e4fcbd9942d06bc0c11db0a" target="_blank" rel="noopener"><code>f8dbc552c89bef758e4fcbd9942d06bc0c11db0a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f990bf4f05dfa4d86b3e3bc0a54f62e91b83f2c6" target="_blank" rel="noopener"><code>f990bf4f05dfa4d86b3e3bc0a54f62e91b83f2c6</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fa61cf3bebefd88ea9d06007a4b85791aa851c8a" target="_blank" rel="noopener"><code>fa61cf3bebefd88ea9d06007a4b85791aa851c8a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fbe8708247fabd8a1bc3963db3911b5e77728669" target="_blank" rel="noopener"><code>fbe8708247fabd8a1bc3963db3911b5e77728669</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fc157583cc171c2c82419748390126839a0f8fba317a75f919e785aca3d98f8e" target="_blank" rel="noopener"><code>fc157583cc171c2c82419748390126839a0f8fba317a75f919e785aca3d98f8e</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fe47d18b6ecbcae30425801ed89ce1f95e056b1b3903b8c8c1d24123303ee7f9" target="_blank" rel="noopener"><code>fe47d18b6ecbcae30425801ed89ce1f95e056b1b3903b8c8c1d24123303ee7f9</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fe6b7d6fa8c2424d14a0d465ab78aaf83db0d07b" target="_blank" rel="noopener"><code>fe6b7d6fa8c2424d14a0d465ab78aaf83db0d07b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/ff402e64bc42222c8a4ee703123903c2a2117dd9" target="_blank" rel="noopener"><code>ff402e64bc42222c8a4ee703123903c2a2117dd9</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/gate.dfwioeiofwr.info" target="_blank" rel="noopener"><code>gate[.]dfwioeiofwr[.]info</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/hjazfioe.surf" target="_blank" rel="noopener"><code>hjazfioe[.]surf</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/kkeyyou.cc" target="_blank" rel="noopener"><code>kkeyyou[.]cc</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/neihite.cc" target="_blank" rel="noopener"><code>neihite[.]cc</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/somelitersofblood.pw" target="_blank" rel="noopener"><code>somelitersofblood[.]pw</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Aokigahara</td>
+          <td>otx</td>
+          <td>2026-10-23T16:09:05Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+
+</main>
+<footer>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; AlienVault OTX &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed</p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (0 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:21:38Z UTC</span></p>
+</footer>
+<script>
+(function () {
+  var refresh = document.getElementById("refresh-btn");
+  if (!refresh) return;
+  var label = refresh.querySelector("span");
+  refresh.addEventListener("click", function () {
+    refresh.disabled = true;
+    refresh.classList.add("refreshing");
+    refresh.setAttribute("aria-busy", "true");
+    if (label) label.textContent = "Refreshing";
+    // Cache-busting query keeps GitHub Pages / browser caches from serving the
+    // previous build's HTML after a new sync.
+    var url = new URL(window.location.href);
+    url.searchParams.set("refresh", String(Date.now()));
+    window.location.replace(url.toString());
+  });
+})();
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+(function () {
+  var isReport = /(?:^|\/)report\.html$/.test(window.location.pathname);
+  var shouldPrint = new URLSearchParams(window.location.search).get("print") === "1";
+  if (!isReport || !shouldPrint) return;
+  var printReport = function () { window.setTimeout(function () { window.print(); }, 150); };
+  if (document.readyState === "complete") printReport();
+  else window.addEventListener("load", printReport, {once:true});
+})();
+</script>
+</body>
+</html>

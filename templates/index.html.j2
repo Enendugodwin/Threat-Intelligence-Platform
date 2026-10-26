@@ -1,5 +1,5 @@
 {% extends "base.html.j2" %}
-{% import "_components.j2" as ui %}
+{% import "_components.j2" as ui with context %}
 {% block title %}Dashboard &mdash; Threat Intel Pipeline{% endblock %}
 {% block content %}
 <div class="page-heading">
@@ -11,14 +11,17 @@
     {{ ui.export_menu() }}
   </div>
 </div>
-{{ ui.cards(totals, feed_health, tor, window_days) }}
+{{ ui.cards(totals, feed_health, tor, window_days, by_source) }}
+
+<div class="split">
+  <section>
+    <h2>{{ ui.icon("database") }}Indicators by type</h2>
+    {{ ui.bars(by_type, window_days) }}
+  </section>
+  {{ ui.sources_section(by_source) }}
+</div>
 
 {{ ui.feed_health_section(feed_health) }}
-
-<section>
-  <h2>{{ ui.icon("database") }}Indicators by type</h2>
-  {{ ui.bars(by_type, window_days) }}
-</section>
 
 {{ ui.families_section(families) }}
 

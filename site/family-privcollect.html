@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>
+(function () {
+  try {
+    var theme = localStorage.getItem("tip-theme");
+    if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+  } catch (_) {}
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<title>Malware family: PRIVCOLLECT &mdash; Threat Intel Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  /* Cyberpunk UI palette - Cybersecurity Platform (design-system/threat-intelligence-platform/MASTER.md) */
+  --color-primary:#00FF41; --color-on-primary:#0F172A;
+  --color-secondary:#0D0D0D; --color-on-secondary:#FFFFFF;
+  --color-accent:#FF3333; --color-on-accent:#000000;
+  --color-background:#000000; --color-foreground:#E0E0E0;
+  --color-card:#0C130E; --color-card-foreground:#E0E0E0;
+  --color-muted:#181818; --color-muted-foreground:#94A3B8;
+  --color-border:#1F1F1F; --color-destructive:#EF4444;
+  --color-on-destructive:#000000; --color-ring:#00FF41;
+  --color-header-bg:rgba(0,0,0,.88); --color-table-header:rgba(24,24,24,.55);
+  --color-primary-hover:rgba(0,255,65,.45); --color-primary-soft:rgba(0,255,65,.045);
+  --color-primary-border:rgba(0,255,65,.4); --color-primary-glow:rgba(0,255,65,.28);
+  --color-accent-border:rgba(255,51,51,.45); --color-accent-soft:rgba(255,51,51,.14);
+  --color-accent-glow:rgba(255,51,51,.32);
+  --color-table-glow:rgba(0,255,65,.3);
+  /* Dense dashboard spacing scale */
+  --space-xs:2px; --space-sm:4px; --space-md:8px; --space-lg:12px;
+  --space-xl:16px; --space-2xl:24px; --space-3xl:32px;
+  --shadow-md:0 4px 6px rgba(0,0,0,.4); --shadow-lg:0 10px 15px rgba(0,0,0,.5);
+  --radius:10px;
+  --font-heading:"Fira Code",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --font-body:"Fira Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  --color-primary:#087f23; --color-on-primary:#FFFFFF;
+  --color-secondary:#E8EFEA; --color-on-secondary:#122017;
+  --color-accent:#B42318; --color-on-accent:#FFFFFF;
+  --color-background:#F4F7F5; --color-foreground:#17231A;
+  --color-card:#FFFFFF; --color-card-foreground:#17231A;
+  --color-muted:#EAF0EC; --color-muted-foreground:#536359;
+  --color-border:#D4DED7; --color-destructive:#B42318;
+  --color-on-destructive:#FFFFFF; --color-ring:#087f23;
+  --color-header-bg:rgba(255,255,255,.94); --color-table-header:rgba(234,240,236,.92);
+  --color-primary-hover:rgba(8,127,35,.42); --color-primary-soft:rgba(8,127,35,.055);
+  --color-primary-border:rgba(8,127,35,.42); --color-primary-glow:rgba(8,127,35,.12);
+  --color-accent-border:rgba(180,35,24,.5); --color-accent-soft:rgba(180,35,24,.08);
+  --color-accent-glow:rgba(180,35,24,.12);
+  --color-table-glow:rgba(8,127,35,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-body);background:var(--color-background);color:var(--color-foreground);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--color-primary);text-decoration:none;transition:color .2s ease,opacity .2s ease}
+a:hover{opacity:.85}
+:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px;border-radius:4px}
+.icon{flex:none}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:var(--color-header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--color-border)}
+.header-inner{max-width:1280px;margin:0 auto;padding:var(--space-lg) var(--space-2xl);display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl)}
+.brand{display:flex;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:1rem;font-weight:600;color:var(--color-foreground)}
+.brand:hover{opacity:1}
+.brand svg{color:var(--color-primary)}
+.brand .accent{color:var(--color-primary)}
+.header-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-left:auto;font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 8px var(--color-primary);margin-right:6px;vertical-align:1px}
+nav{display:flex;gap:var(--space-sm);flex-wrap:wrap}
+nav a{font-family:var(--font-heading);font-size:.78rem;padding:5px var(--space-lg);border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);transition:border-color .2s ease,color .2s ease,background .2s ease}
+nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
+.theme-toggle svg{color:var(--color-primary)}
+.refresh-btn.refreshing .refresh-icon{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.refresh-btn.refreshing .refresh-icon{animation:none}}
+.action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
+.export-menu{position:relative}
+.export-menu>summary{list-style:none;user-select:none}
+.export-menu>summary::-webkit-details-marker{display:none}
+.export-menu[open]>summary{background:var(--color-primary-soft)}
+.export-chevron{transition:transform .18s ease}
+.export-menu[open] .export-chevron{transform:rotate(180deg)}
+.export-menu-panel{position:absolute;top:calc(100% + 8px);right:0;z-index:30;min-width:220px;padding:6px;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;box-shadow:var(--shadow-lg)}
+.export-menu-panel a{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:5px;color:var(--color-foreground);transition:background .15s ease,color .15s ease}
+.export-menu-panel a:hover{background:var(--color-primary-soft);color:var(--color-primary);opacity:1}
+.export-menu-panel button{display:flex;flex-direction:column;gap:2px;width:100%;padding:9px 10px;border:0;border-radius:5px;text-align:left;font:inherit;color:var(--color-foreground);background:transparent;cursor:pointer}
+.export-menu-panel button:hover:not(:disabled){background:var(--color-primary-soft);color:var(--color-primary)}
+.export-menu-panel button:disabled{opacity:.45;cursor:not-allowed}
+.export-format{font-family:var(--font-heading);font-size:.78rem;font-weight:600}
+.export-description{font-size:.7rem;color:var(--color-muted-foreground)}
+
+/* Layout */
+main{max-width:1280px;margin:0 auto;padding:var(--space-2xl)}
+section{margin-bottom:var(--space-3xl)}
+h2{font-family:var(--font-heading);font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted-foreground);margin:0 0 var(--space-lg);padding-bottom:var(--space-md);border-bottom:1px solid var(--color-border);display:flex;align-items:center;gap:var(--space-md)}
+h2 svg{color:var(--color-primary)}
+h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
+.muted{color:var(--color-muted-foreground);font-size:.85rem}
+.err-text{color:var(--color-destructive);font-size:.85rem}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.card-head svg{color:var(--color-primary)}
+.card .num{display:block;font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--color-primary);font-variant-numeric:tabular-nums;margin-top:var(--space-md);text-shadow:0 0 14px var(--color-primary-glow);line-height:1.1}
+.card-sub{display:block;font-size:.75rem;color:var(--color-muted-foreground);margin-top:var(--space-sm)}
+.card-bad .num{color:var(--color-accent);text-shadow:0 0 14px var(--color-accent-glow)}
+.card-bad .card-head svg{color:var(--color-accent)}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:560px}
+th,td{text-align:left;padding:var(--space-md) var(--space-lg);border-bottom:1px solid var(--color-border);vertical-align:top}
+th{font-family:var(--font-heading);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted-foreground);background:var(--color-table-header);white-space:nowrap}
+th.num-col,td.num-cell{text-align:right}
+td.num-cell{font-family:var(--font-heading);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr{transition:background .15s ease}
+tbody tr:hover{background:var(--color-primary-soft)}
+tbody tr:last-child td{border-bottom:none}
+code{font-family:var(--font-heading);font-size:.78rem;color:var(--color-foreground);background:var(--color-muted);padding:1px 6px;border-radius:5px;border:1px solid var(--color-border)}
+td code{background:transparent;border:none;padding:0}
+
+/* Status pills */
+.pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
+.pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.pill.warn{color:#eab308;border-color:rgba(234,179,8,.5);background:rgba(234,179,8,.12)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:start}
+.split>section{min-width:0}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+
+/* Bars (indicators by type) */
+.bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
+.bar-row{display:grid;grid-template-columns:110px 1fr 110px;align-items:center;gap:var(--space-lg)}
+.bar-label{font-family:var(--font-heading);font-size:.75rem;color:var(--color-muted-foreground)}
+.bar-track{height:10px;background:var(--color-muted);border-radius:999px;overflow:hidden;border:1px solid var(--color-border)}
+.bar-fill{display:block;height:100%;background:linear-gradient(90deg,var(--color-primary-glow),var(--color-primary));border-radius:999px;min-width:2px}
+.bar-value{font-family:var(--font-heading);font-variant-numeric:tabular-nums;text-align:right;font-size:.85rem}
+.bar-value .new{color:var(--color-primary)}
+.page-heading{display:flex;align-items:center;justify-content:space-between;gap:var(--space-xl);margin:0 0 var(--space-2xl)}
+.page-heading .page-title{margin:0 0 var(--space-xs)}
+.page-heading p{margin:0}
+.page-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:var(--space-md)}
+
+/* Chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.chip{font-family:var(--font-heading);font-size:.72rem;padding:2px 8px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-muted-foreground);background:var(--color-muted)}
+
+/* Report feed */
+.page-title{font-family:var(--font-heading);font-size:1.35rem;font-weight:600;margin:0 0 var(--space-md);line-height:1.3}
+.vh{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.filterbar{display:flex;flex-wrap:wrap;gap:var(--space-sm);margin-bottom:var(--space-xl)}
+.filterbar label{font-family:var(--font-heading);font-size:.75rem;padding:4px var(--space-lg);border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);cursor:pointer;transition:border-color .2s ease,color .2s ease,background .2s ease}
+.filterbar label:hover{border-color:var(--color-primary);color:var(--color-primary)}
+.chip a{color:inherit}
+.chip a:hover{color:var(--color-primary);opacity:1}
+.chip-list.small{gap:var(--space-xs);margin-top:var(--space-xs)}
+.chip-list.small .chip{font-size:.64rem;padding:1px 6px}
+.chip-kev{border-color:var(--color-accent-border);color:var(--color-accent)}
+.risk{font-family:var(--font-heading);font-size:.64rem;padding:1px 7px;border-radius:999px;border:1px solid;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.risk-critical{color:var(--color-accent);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.risk-high{color:var(--color-accent);border-color:var(--color-accent-border)}
+.risk-medium{color:var(--color-primary);border-color:var(--color-primary-border)}
+.risk-low{color:var(--color-muted-foreground);border-color:var(--color-border)}
+.risk-info{color:var(--color-muted-foreground);border-color:var(--color-border);opacity:.75}
+.explorer-controls{display:flex;flex-wrap:wrap;gap:var(--space-md);align-items:center;margin-bottom:var(--space-xl)}
+.explorer-controls input[type="search"],.explorer-controls select{font-family:var(--font-heading);font-size:.82rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:6px;padding:6px var(--space-lg)}
+.explorer-controls input[type="search"]{flex:1 1 320px;min-width:0}
+.explorer-controls input[type="search"]:focus-visible,.explorer-controls select:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.filterbar input[type="search"]{flex:1 1 240px;font-family:var(--font-heading);font-size:.8rem;color:var(--color-foreground);background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:5px var(--space-xl);min-width:0}
+.filterbar input[type="search"]:focus-visible{outline:2px solid var(--color-ring);outline-offset:2px}
+.report-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);align-self:center;white-space:nowrap}
+.badge-env{border-color:var(--color-primary-border);color:var(--color-primary)}
+.env-banner{border-left:3px solid var(--color-primary);background:var(--color-primary-soft);padding:var(--space-lg) var(--space-xl);border-radius:6px;font-size:.85rem;margin:0 0 var(--space-xl)}
+.queue{display:flex;flex-direction:column;gap:var(--space-md)}
+.queue-item{display:flex;gap:var(--space-lg);align-items:center;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-lg) var(--space-xl)}
+.queue-item:hover{border-color:var(--color-primary-hover)}
+.queue-body{flex:1;min-width:0}
+.queue-title{display:block;font-family:var(--font-heading);font-size:.88rem;overflow-wrap:anywhere}
+.queue-why{color:var(--color-muted-foreground);font-size:.78rem}
+.queue-actions{display:flex;gap:var(--space-md);flex:none;font-family:var(--font-heading);font-size:.75rem}
+@media (max-width:640px){.queue-item{flex-wrap:wrap}}
+.report-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-lg)}
+.report-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);display:flex;flex-direction:column;gap:var(--space-md);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.report-card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.report-card h3{margin:0;font-family:var(--font-heading);font-size:.92rem;line-height:1.45;font-weight:600}
+.report-card h3 a{color:var(--color-foreground)}
+.report-card h3 a:hover{color:var(--color-primary);opacity:1}
+.badges{display:flex;flex-wrap:wrap;gap:var(--space-sm)}
+.badge{font-family:var(--font-heading);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--color-border);border-radius:999px;color:var(--color-muted-foreground);white-space:nowrap}
+.badge-cat{border-color:var(--color-primary-border);color:var(--color-primary)}
+.badge-curated{border-color:var(--color-accent-border);color:var(--color-accent)}
+.excerpt{color:var(--color-muted-foreground);font-size:.85rem;margin:0;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground);font-variant-numeric:tabular-nums}
+.print-hint{font-size:.75rem;color:var(--color-muted-foreground);margin:var(--space-sm) 0 0}
+.report-selection-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin:0 0 var(--space-xl);padding:var(--space-lg) var(--space-xl);border:1px solid var(--color-border);border-radius:var(--radius);background:var(--color-card)}
+.select-visible,.report-select{display:inline-flex;align-items:center;gap:7px;color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.72rem;cursor:pointer}
+.report-select{margin-left:auto;white-space:nowrap}
+.select-visible input,.report-select input{width:15px;height:15px;margin:0;accent-color:var(--color-primary)}
+.report-selection-count{font-family:var(--font-heading);font-size:.72rem;color:var(--color-muted-foreground)}
+.report-card.selected{border-color:var(--color-primary);box-shadow:0 0 0 1px var(--color-primary-soft)}
+#selected-printout{display:none}
+.selected-report-print{margin:0 0 24px;padding:0 0 18px;border-bottom:1px solid #bbb;break-inside:avoid-page}
+.selected-report-print h2{font-size:14pt;text-transform:none;letter-spacing:0;color:#111}
+.selected-report-print h3{margin:12px 0 4px;font-size:10pt;color:#111}
+.selected-report-print p,.selected-report-print li{font-size:9pt;color:#222;overflow-wrap:anywhere}
+.selected-report-print ul{margin:4px 0;padding-left:20px}
+.rec-list{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:var(--space-sm);font-size:.88rem}
+.rec-list li::marker{color:var(--color-primary)}
+.back-link{font-family:var(--font-heading);font-size:.8rem;display:inline-block;margin-bottom:var(--space-lg)}
+.detail-text{white-space:pre-line;color:var(--color-foreground);font-size:.9rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);margin:0}
+.meta-table td:first-child{color:var(--color-muted-foreground);width:170px;white-space:nowrap}
+
+/* Footer */
+footer{border-top:1px solid var(--color-border);margin-top:var(--space-3xl);padding:var(--space-2xl);color:var(--color-muted-foreground);font-size:.8rem;text-align:center}
+footer p{margin:var(--space-xs) 0}
+footer .mono{font-family:var(--font-heading);font-size:.72rem}
+
+/* Subtle entrance motion - disabled for reduced motion */
+@media (prefers-reduced-motion:no-preference){
+  main{animation:fadeUp .4s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card:hover{transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media (max-width:768px){
+  main{padding:var(--space-xl)}
+  .header-inner{padding:var(--space-lg) var(--space-xl)}
+  .header-meta{margin-left:0;order:3;width:100%}
+  .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-md)}
+  .card{padding:var(--space-lg)}
+  .card .num{font-size:1.5rem}
+  th,td{padding:var(--space-sm) var(--space-md)}
+  table{min-width:460px;font-size:.8rem}
+  .table-wrap{box-shadow:inset -20px 0 14px -16px var(--color-table-glow)}
+}
+@media (max-width:640px){
+  .page-heading{align-items:flex-start;flex-direction:column}
+  .page-actions{justify-content:flex-start}
+  .export-menu-panel{left:0;right:auto}
+  .bars{padding:var(--space-lg)}
+  .bar-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-sm)}
+  .bar-label{order:1;flex:1 1 auto}
+  .bar-value{order:2;flex:0 0 auto}
+  .bar-track{order:3;flex:1 0 100%;height:8px}
+}
+@media print{
+  @page{margin:14mm}
+  html,body{background:#fff!important;color:#111!important;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  header,footer,.no-print{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  section,.page-heading{break-inside:avoid}
+  h1,h2,h3,p,td,th,li,code,.muted{color:#111!important}
+  h2{border-color:#bbb!important}
+  a{color:#111!important;text-decoration:none}
+  .card,.bars,.table-wrap,.queue-item,.report-card,.detail-text{background:#fff!important;color:#111!important;border:1px solid #bbb!important;box-shadow:none!important;transform:none!important}
+  .card .num,.status-dot{color:#111!important;text-shadow:none!important;box-shadow:none!important}
+  .bar-track{background:#eee!important;border-color:#bbb!important}
+  .bar-fill{background:#555!important}
+  .table-wrap{overflow:visible!important}
+  table{min-width:0!important;font-size:8pt}
+  th,td{padding:5px!important;border-color:#ccc!important}
+  .pill,.risk,.badge,.chip{color:#111!important;background:#fff!important;border-color:#777!important}
+  body.printing-selected-reports main>:not(#selected-printout){display:none!important}
+  body.printing-selected-reports #selected-printout{display:block!important}
+  body.printing-selected-reports #selected-printout>h1{font-family:var(--font-heading);font-size:20pt;color:#111;margin:0 0 4mm}
+  body.printing-selected-reports #selected-printout>.muted{margin:0 0 8mm}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+      <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
+    </a>
+    <span class="header-meta">
+      <span><span class="status-dot" aria-hidden="true"></span>36920 indicators</span>
+      <span>18317 new / 18206 updated last run &middot; 28621 new / 7d</span>
+      <span>15/15 feeds &middot; 20d retention</span>
+      <span>sync 2026-10-26T13:21:38Z</span>
+    </span>
+    <nav aria-label="Sections">
+      <a href="index.html">Overview</a>
+      <a href="explorer.html">IOC Explorer</a>
+      <a href="reports.html">Reports</a>
+      <a href="threats.html">Threats</a>
+      <a href="kev.html">Vulnerabilities</a>
+      <a href="map.html">Infrastructure</a>
+      <a href="report.html">IOC pulse</a>
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle refresh-btn" id="refresh-btn" type="button" aria-label="Refresh dashboard data">
+        <svg class="icon refresh-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
+        </svg>
+        <span>Light mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+<main>
+<a class="back-link" href="index.html">&larr; Dashboard</a>
+<h1 class="page-title">Malware family: PRIVCOLLECT</h1>
+<p class="muted">
+  34 indicator(s) attributed to PRIVCOLLECT</p>
+
+<section>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Indicator (defanged &mdash; click to look up)</th>
+          <th scope="col">Type</th><th scope="col">Risk</th><th scope="col" class="num-col">Hits</th><th scope="col">Family</th><th scope="col">Sources</th>
+          <th scope="col">First seen</th><th scope="col" class="num-col">Conf.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/03ac2a8b752605d1d7710979c17ff18b03dd978203ba23ba97fd8ce3d6f897ea" target="_blank" rel="noopener"><code>03ac2a8b752605d1d7710979c17ff18b03dd978203ba23ba97fd8ce3d6f897ea</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0aaf7ba346d41ef2f40390436738b001180d5a1c03aa093f121078a9969d9a1a" target="_blank" rel="noopener"><code>0aaf7ba346d41ef2f40390436738b001180d5a1c03aa093f121078a9969d9a1a</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/0fe28aac7ffdb8244b1b14b42679c812" target="_blank" rel="noopener"><code>0fe28aac7ffdb8244b1b14b42679c812</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/12122069d48713805d5989dde82a3532dd0ebcab" target="_blank" rel="noopener"><code>12122069d48713805d5989dde82a3532dd0ebcab</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/12d4ccc5c6f8d35cf4f2cf233b7f3e418e863e657d81ff5f5fc9e210005b9484" target="_blank" rel="noopener"><code>12d4ccc5c6f8d35cf4f2cf233b7f3e418e863e657d81ff5f5fc9e210005b9484</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/1bbce8caa94f01c0aaa0b7ddae51553a8a32e1ce53d96d44fe583272aff7ad00" target="_blank" rel="noopener"><code>1bbce8caa94f01c0aaa0b7ddae51553a8a32e1ce53d96d44fe583272aff7ad00</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/34bef04fe88ac9d0aae0475630b1738681d15b94f233ac8aa46eacf5968305fa" target="_blank" rel="noopener"><code>34bef04fe88ac9d0aae0475630b1738681d15b94f233ac8aa46eacf5968305fa</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/381268668e5e7482148556e5fecbe70c" target="_blank" rel="noopener"><code>381268668e5e7482148556e5fecbe70c</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/3d788496e9d15f1e6cf5cebeeafba1c138c0b95a" target="_blank" rel="noopener"><code>3d788496e9d15f1e6cf5cebeeafba1c138c0b95a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/42b277aa22cead04584b530b455a69c9" target="_blank" rel="noopener"><code>42b277aa22cead04584b530b455a69c9</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/462d0c9f67ca522d9e0e4acd245e90b36ce0d5353604a66bb7c43a1ec4a6fcf7" target="_blank" rel="noopener"><code>462d0c9f67ca522d9e0e4acd245e90b36ce0d5353604a66bb7c43a1ec4a6fcf7</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/54e58a35d10771ab50e2eb27b7159d961234047f" target="_blank" rel="noopener"><code>54e58a35d10771ab50e2eb27b7159d961234047f</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/5e19670f1e3e60b2ddfd2cbd8759403d9ac1a50b" target="_blank" rel="noopener"><code>5e19670f1e3e60b2ddfd2cbd8759403d9ac1a50b</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/668169d35b87bf51324080390b1b1c5ab12bd335cfe5f1a99e3689abd5e02ae6" target="_blank" rel="noopener"><code>668169d35b87bf51324080390b1b1c5ab12bd335cfe5f1a99e3689abd5e02ae6</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7598727f209d717041db37f7dca271d3a7d328a279890e0e1d55375729aeb86d" target="_blank" rel="noopener"><code>7598727f209d717041db37f7dca271d3a7d328a279890e0e1d55375729aeb86d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/793bfcd69e590c5a83d6b0e0408b9979" target="_blank" rel="noopener"><code>793bfcd69e590c5a83d6b0e0408b9979</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7c2ab3e333fa55e0ef9201e59c6906ce" target="_blank" rel="noopener"><code>7c2ab3e333fa55e0ef9201e59c6906ce</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/7f191632e7320705d154b85204f1ae546b543acbd7e8861229b76f5042b92bdb" target="_blank" rel="noopener"><code>7f191632e7320705d154b85204f1ae546b543acbd7e8861229b76f5042b92bdb</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/84dc8c82c0a4a4a62552ef826b49fcc86d1a5c4a5d0f2c06665723f93d129d7d" target="_blank" rel="noopener"><code>84dc8c82c0a4a4a62552ef826b49fcc86d1a5c4a5d0f2c06665723f93d129d7d</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/8c2599f96e4f08bcefc4340767bd9eaf2bedc7fc" target="_blank" rel="noopener"><code>8c2599f96e4f08bcefc4340767bd9eaf2bedc7fc</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/9dd0a3926f96a37eb86cf1ee2310d9be93139cc4ebef3ef9e2efe9531390be25" target="_blank" rel="noopener"><code>9dd0a3926f96a37eb86cf1ee2310d9be93139cc4ebef3ef9e2efe9531390be25</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/a9965481b3c029e3cbae6fb1f1090233" target="_blank" rel="noopener"><code>a9965481b3c029e3cbae6fb1f1090233</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/b6122440d0d9cb1eb1ade9933f49214da8c31288de7710c076c2680dfa528465" target="_blank" rel="noopener"><code>b6122440d0d9cb1eb1ade9933f49214da8c31288de7710c076c2680dfa528465</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c2e32d0ce2548aa662c18bf5001911a79fe5b30cf8357132275add02fdcde054" target="_blank" rel="noopener"><code>c2e32d0ce2548aa662c18bf5001911a79fe5b30cf8357132275add02fdcde054</code></a></td>
+          <td>sha256</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/c975717cf8deb511d7226900ac979c7a1485f782" target="_blank" rel="noopener"><code>c975717cf8deb511d7226900ac979c7a1485f782</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/cd09b7b6f2e525188ed330ef7ce1a7475f02ed05" target="_blank" rel="noopener"><code>cd09b7b6f2e525188ed330ef7ce1a7475f02ed05</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/d35c045f290e682d11dccf4eb3e8a93283428844" target="_blank" rel="noopener"><code>d35c045f290e682d11dccf4eb3e8a93283428844</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/e501b00356914ed2aa064cb5debe6924" target="_blank" rel="noopener"><code>e501b00356914ed2aa064cb5debe6924</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/eb9ca072a06bf755a76b132b56153de6" target="_blank" rel="noopener"><code>eb9ca072a06bf755a76b132b56153de6</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/f342aa55a09427136500d507e76f269452af3e1a" target="_blank" rel="noopener"><code>f342aa55a09427136500d507e76f269452af3e1a</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fc33f44263b6e7bae8fcaf8daf48d5cc184a0179" target="_blank" rel="noopener"><code>fc33f44263b6e7bae8fcaf8daf48d5cc184a0179</code></a></td>
+          <td>sha1</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fcb8a99f327c2bf755e3baeb60eff685" target="_blank" rel="noopener"><code>fcb8a99f327c2bf755e3baeb60eff685</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/file/fedf0a9a195c2f636605a73f3f172682" target="_blank" rel="noopener"><code>fedf0a9a195c2f636605a73f3f172682</code></a></td>
+          <td>md5</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.litellm.dev%2Fhealthcheck" target="_blank" rel="noopener"><code>hxxp://www[.]litellm[.]dev/healthcheck</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 70</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>PRIVCOLLECT</td>
+          <td>otx</td>
+          <td>2026-10-23T20:52:25Z</td>
+          <td class="num-cell">50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted">Values are defanged; clicking opens a VirusTotal lookup in a new tab.</p>
+</section>
+
+</main>
+<footer>
+  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; AlienVault OTX &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed</p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (0 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:21:38Z UTC</span></p>
+</footer>
+<script>
+(function () {
+  var refresh = document.getElementById("refresh-btn");
+  if (!refresh) return;
+  var label = refresh.querySelector("span");
+  refresh.addEventListener("click", function () {
+    refresh.disabled = true;
+    refresh.classList.add("refreshing");
+    refresh.setAttribute("aria-busy", "true");
+    if (label) label.textContent = "Refreshing";
+    // Cache-busting query keeps GitHub Pages / browser caches from serving the
+    // previous build's HTML after a new sync.
+    var url = new URL(window.location.href);
+    url.searchParams.set("refresh", String(Date.now()));
+    window.location.replace(url.toString());
+  });
+})();
+(function () {
+  var root = document.documentElement;
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+  var label = toggle.querySelector("span");
+  function update(theme) {
+    root.dataset.theme = theme;
+    var isLight = theme === "light";
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", "Switch to " + (isLight ? "dark" : "light") + " mode");
+    label.textContent = isLight ? "Dark mode" : "Light mode";
+  }
+  update(root.dataset.theme || "dark");
+  toggle.addEventListener("click", function () {
+    var theme = root.dataset.theme === "light" ? "dark" : "light";
+    update(theme);
+    try { localStorage.setItem("tip-theme", theme); } catch (_) {}
+  });
+})();
+(function () {
+  var isReport = /(?:^|\/)report\.html$/.test(window.location.pathname);
+  var shouldPrint = new URLSearchParams(window.location.search).get("print") === "1";
+  if (!isReport || !shouldPrint) return;
+  var printReport = function () { window.setTimeout(function () { window.print(); }, 150); };
+  if (document.readyState === "complete") printReport();
+  else window.addEventListener("load", printReport, {once:true});
+})();
+</script>
+</body>
+</html>

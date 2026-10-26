@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, timezone
 
 from ..models import IOC
 from ..normalize import make_ioc, norm_ts
-from .base import Feed, FeedError
+from .base import Feed, FeedError, SkipFeed
 
 _OTX_TYPES = {
     "IPv4": "ipv4",
@@ -37,7 +37,7 @@ class OTXFeed(Feed):
 
         api_key = self.options.get("api_key") or os.environ.get("OTX_API_KEY", "")
         if not api_key:
-            raise FeedError("otx: OTX_API_KEY is not set")
+            raise SkipFeed("OTX_API_KEY not set - add it to .env or the repository secrets")
         days = int(self.options.get("modified_since_days", 2))
         since = (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%S")
         params = {
