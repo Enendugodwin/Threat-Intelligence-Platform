@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-26
 
-**Window:** last 7 days · **Generated:** 2026-10-26T05:01:16Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-26T13:20:39Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 89954 |
-| New in window | 11469 |
+| Indicators tracked | 90222 |
+| New in window | 11737 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -19,17 +19,17 @@
 | malwarebazaar | — | error: HTTPError: 410 Client Error: Gone for url: https://bazaar.abuse.ch/export/txt/sha256/recent/ |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8651 | ok |
+| tor | 8671 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 38070 | 6039 |
+| url | 38291 | 6260 |
 | sha256 | 17921 | 2474 |
 | domain | 14960 | 1458 |
-| ipv4 | 13560 | 1037 |
-| ipv6 | 3510 | 239 |
+| ipv4 | 13600 | 1077 |
+| ipv6 | 3517 | 246 |
 | md5 | 980 | 112 |
 | sha1 | 953 | 110 |
 
@@ -37,12 +37,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 12229 |
-| Exit nodes | 2521 |
-| Other relays | 9708 |
-| New in window | 973 |
+| Nodes tracked | 12276 |
+| Exit nodes | 2524 |
+| Other relays | 9752 |
+| New in window | 1020 |
 
-Sample (20 of 12229, source: Tor Project Onionoo):
+Sample (20 of 12276, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -94,11 +94,11 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 54824 |
+| T1071.001 | Web Protocols | command-and-control | 54871 |
 | T1105 | Ingress Tool Transfer | command-and-control | 25714 |
 | T1498 | Network Denial of Service | impact | 13189 |
-| T1566 | Phishing | initial-access | 10673 |
-| T1566.002 | Spearphishing Link | initial-access | 10673 |
+| T1566 | Phishing | initial-access | 10894 |
+| T1566.002 | Spearphishing Link | initial-access | 10894 |
 | T1555 | Credentials from Password Stores | credential-access | 10371 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 10171 |
 | T1204.002 | Malicious File | execution | 9787 |
