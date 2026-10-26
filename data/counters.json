@@ -23,11 +23,11 @@
   },
   "by_source": {
     "binarydefense": 540,
-    "blocklist_de": 3000,
+    "blocklist_de": 3011,
     "circl": 914,
     "et_compromised": 482,
     "feodo": 5,
-    "greensnow": 2000,
+    "greensnow": 2009,
     "malwarebazaar": 9465,
     "openphish": 10155,
     "phishing_army": 3000,
@@ -39,29 +39,29 @@
   },
   "by_type": {
     "domain": 16162,
-    "ipv4": 25213,
+    "ipv4": 25231,
     "ipv6": 3404,
     "md5": 948,
     "sha1": 896,
     "sha256": 13034,
     "url": 30808
   },
-  "generated_at": "2026-10-26T13:35:37Z",
+  "generated_at": "2026-10-26T13:51:22Z",
   "latest_run": {
     "durations": {
-      "binarydefense": 0.5,
+      "binarydefense": 0.3,
       "blocklist_de": 0.3,
       "circl": 3.8,
       "et_compromised": 0.2,
       "feodo": 0.1,
-      "greensnow": 10.7,
+      "greensnow": 7.6,
       "malwarebazaar": 0.0,
-      "openphish": 0.1,
+      "openphish": 0.0,
       "otx": 0.0,
       "phishing_army": 0.6,
       "threatfox": 0.0,
-      "tor": 1.3,
-      "tweetfeed": 0.4,
+      "tor": 1.8,
+      "tweetfeed": 0.1,
       "urlhaus": 0.0,
       "urlhaus_filter": 0.4
     },
@@ -80,9 +80,9 @@
       "urlhaus_filter": 5000
     },
     "fetched": 27912,
-    "finished_at": "2026-10-26T13:35:37Z",
-    "new": 17584,
-    "pruned": 17341,
+    "finished_at": "2026-10-26T13:51:22Z",
+    "new": 18,
+    "pruned": 0,
     "skipped": [
       "malwarebazaar",
       "otx",
@@ -95,9 +95,9 @@
       "threatfox": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/",
       "urlhaus": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/"
     },
-    "started_at": "2026-10-26T13:35:17Z",
-    "total": 90465,
-    "updated": 9958
+    "started_at": "2026-10-26T13:51:06Z",
+    "total": 90483,
+    "updated": 27523
   },
-  "total": 90465
+  "total": 90483
 }
