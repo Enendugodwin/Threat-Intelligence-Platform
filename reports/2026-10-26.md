@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-26
 
-**Window:** last 7 days · **Generated:** 2026-10-26T13:51:30Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-26T17:01:08Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 90483 |
-| New in window | 27930 |
+| Indicators tracked | 90837 |
+| New in window | 28284 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,7 +16,7 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8671 | ok |
+| tor | 8684 | ok |
 | blocklist_de | 3000 | ok |
 | binarydefense | 540 | ok |
 | greensnow | 2000 | ok |
@@ -30,10 +30,10 @@
 | Type | Total | New |
 | --- | --- | --- |
 | url | 30808 | 6899 |
-| ipv4 | 25231 | 13074 |
-| domain | 16162 | 5535 |
+| ipv4 | 25547 | 13390 |
+| domain | 16197 | 5570 |
 | sha256 | 13034 | 2046 |
-| ipv6 | 3404 | 238 |
+| ipv6 | 3407 | 241 |
 | md5 | 948 | 82 |
 | sha1 | 896 | 56 |
 
@@ -41,12 +41,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11849 |
+| Nodes tracked | 11862 |
 | Exit nodes | 2292 |
-| Other relays | 9557 |
-| New in window | 977 |
+| Other relays | 9570 |
+| New in window | 990 |
 
-Sample (20 of 11849, source: Tor Project Onionoo):
+Sample (20 of 11862, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -98,10 +98,10 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 56291 |
+| T1071.001 | Web Protocols | command-and-control | 56610 |
 | T1105 | Ingress Tool Transfer | command-and-control | 17618 |
-| T1566 | Phishing | initial-access | 15111 |
-| T1566.002 | Spearphishing Link | initial-access | 15111 |
+| T1566 | Phishing | initial-access | 15146 |
+| T1566.002 | Spearphishing Link | initial-access | 15146 |
 | T1555 | Credentials from Password Stores | credential-access | 10088 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 9889 |
 | T1573 | Encrypted Channel | command-and-control | 7832 |
