@@ -301,10 +301,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>36920 indicators</span>
-      <span>18317 new / 18206 updated last run &middot; 28621 new / 7d</span>
-      <span>15/15 feeds &middot; 20d retention</span>
-      <span>sync 2026-10-26T13:21:38Z</span>
+      <span><span class="status-dot" aria-hidden="true"></span>90465 indicators</span>
+      <span>17584 new / 9958 updated last run &middot; 29321 new / 7d</span>
+      <span><span class="pill warn">needs key</span> 11/15 feeds &middot; 20d retention</span>
+      <span>sync 2026-10-26T13:35:53Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -335,9 +335,9 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <div class="badges" style="margin-bottom: var(--space-2xl)">
   <span class="badge badge-cat">Linux</span>
   <span class="badge">Ubuntu Security Notices</span>
-<span class="badge">4 CVE(s)</span></div>
+<span class="badge">2 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 4 CVE(s), none in KEV</div>
+  <strong>Assessment:</strong> risk <span class="risk risk-info">info</span> &middot; 2 CVE(s), none in KEV</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
@@ -368,20 +368,20 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>References</h2>
   <div class="chip-list">
-<span class="chip">CVE-2025-70290</span><span class="chip">CVE-2025-70293</span><span class="chip">CVE-2026-15390</span><span class="chip">CVE-2026-71971</span>  </div>
+<span class="chip">CVE-2026-109618</span><span class="chip">CVE-2026-109619</span>  </div>
   <p class="muted">CVE identifiers are searchable on NVD; technique links open attack.mitre.org.</p>
 </section>
 
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Assess exposure and patch affected systems: CVE-2025-70290, CVE-2025-70293, CVE-2026-15390, CVE-2026-71971</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2026-109618, CVE-2026-109619</li><li>Ensure PAN-OS updates plus Apps &amp; Threats content updates are current; check the advisory&#39;s fixed versions.</li><li>Apply the vendor&#39;s mitigation guidance until patching completes and monitor traffic logs for the indicators.</li><li>Keep management interfaces internal-only with admin MFA/RBAC.</li><li>Read the full Unit 42 report for detections and additional context beyond the extracted indicators.</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li><li>Confirm whether affected packages run on the listed hosts before scheduling the update window.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
 <footer>
-  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; AlienVault OTX &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed</p>
-  <p>Retention: indicators not re-seen for 20 days are purged on every sync (0 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:21:38Z UTC</span></p>
+  <p>Active sources: URLhaus (needs key) &middot; Feodo Tracker &middot; ThreatFox (needs key) &middot; MalwareBazaar (needs key) &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; AlienVault OTX (needs key) &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed</p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (17341 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T13:35:53Z UTC</span></p>
 </footer>
 <script>
 (function () {
