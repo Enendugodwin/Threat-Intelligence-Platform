@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-10-26
+# Threat Intel Pulse — 2026-10-27
 
-**Window:** last 7 days · **Generated:** 2026-10-26T22:47:05Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-27T05:18:14Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 90093 |
-| New in window | 28151 |
+| Indicators tracked | 91435 |
+| New in window | 28764 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,37 +16,37 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8665 | ok |
+| tor | 8676 | ok |
 | blocklist_de | 3000 | ok |
-| binarydefense | 540 | ok |
+| binarydefense | 390 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 504 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 4000 | ok |
+| tweetfeed | 2916 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 30442 | 6657 |
-| ipv4 | 25947 | 13818 |
-| domain | 16104 | 5546 |
-| sha256 | 12432 | 1753 |
-| ipv6 | 3397 | 239 |
-| md5 | 900 | 82 |
+| url | 30866 | 6684 |
+| ipv4 | 26648 | 14465 |
+| domain | 16284 | 5705 |
+| sha256 | 12458 | 1527 |
+| ipv6 | 3400 | 237 |
+| md5 | 908 | 90 |
 | sha1 | 871 | 56 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11795 |
-| Exit nodes | 2278 |
-| Other relays | 9517 |
-| New in window | 975 |
+| Nodes tracked | 11839 |
+| Exit nodes | 2282 |
+| Other relays | 9557 |
+| New in window | 972 |
 
-Sample (20 of 11795, source: Tor Project Onionoo):
+Sample (20 of 11839, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -73,38 +73,38 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6130 | 611 | T1555, T1071.001, T1567 |
-| Unknown Loader | 3638 | 283 | — |
-| Mirai | 3070 | 279 | T1498, T1071.001 |
+| Vidar | 6134 | 522 | T1555, T1071.001, T1567 |
+| Unknown Loader | 3638 | 268 | — |
+| Mirai | 3070 | 237 | T1498, T1071.001 |
 | IClickFix | 2478 | 625 | — |
-| ClearFake | 1825 | 65 | — |
-| Unknown malware | 1740 | 247 | — |
-| Cobalt Strike | 1355 | 12 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1073 | 319 | — |
-| VShell | 903 | 90 | — |
-| php.shin_webshell | 677 | 55 | — |
+| ClearFake | 1825 | 48 | — |
+| Unknown malware | 1740 | 239 | — |
+| Cobalt Strike | 1355 | 10 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1073 | 271 | — |
+| VShell | 903 | 84 | — |
+| php.shin_webshell | 677 | 47 | — |
 | Unknown Stealer | 511 | 27 | — |
 | PureRAT | 438 | 5 | — |
 | Sliver | 384 | 9 | T1071.001, T1573, T1090, T1055 |
-| Remus | 377 | 190 | — |
-| Remcos | 375 | 31 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Remus | 377 | 187 | — |
+| Remcos | 375 | 27 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | AsyncRAT | 348 | 16 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | AdaptixC2 | 298 | 4 | — |
 | MacSync | 257 | 240 | — |
-| Formbook | 218 | 26 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
+| Formbook | 218 | 25 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 | DanaBot | 194 | 1 | T1566.001, T1071.001, T1555, T1041 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 56356 |
+| T1071.001 | Web Protocols | command-and-control | 57339 |
 | T1105 | Ingress Tool Transfer | command-and-control | 17452 |
-| T1566 | Phishing | initial-access | 14985 |
-| T1566.002 | Spearphishing Link | initial-access | 14985 |
-| T1555 | Credentials from Password Stores | credential-access | 10033 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 9835 |
-| T1573 | Encrypted Channel | command-and-control | 7820 |
+| T1566 | Phishing | initial-access | 15312 |
+| T1566.002 | Spearphishing Link | initial-access | 15312 |
+| T1555 | Credentials from Password Stores | credential-access | 10037 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 9839 |
+| T1573 | Encrypted Channel | command-and-control | 8068 |
 | T1498 | Network Denial of Service | impact | 7258 |
 | T1204.002 | Malicious File | execution | 6934 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 6772 |
@@ -120,10 +120,10 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | T1189 | Drive-by Compromise | initial-access | 177 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 177 |
 | T1059.005 | Visual Basic | execution | 38 |
+| T1486 | Data Encrypted for Impact | impact | 27 |
+| T1490 | Inhibit System Recovery | impact | 27 |
+| T1562.001 | Disable or Modify Tools | defense-evasion | 27 |
 | T1190 | Exploit Public-Facing Application | initial-access | 21 |
-| T1486 | Data Encrypted for Impact | impact | 21 |
-| T1490 | Inhibit System Recovery | impact | 21 |
-| T1562.001 | Disable or Modify Tools | defense-evasion | 21 |
 | T1021.001 | Remote Desktop Protocol | lateral-movement | 12 |
 | T1003 | OS Credential Dumping | credential-access | 4 |
 
