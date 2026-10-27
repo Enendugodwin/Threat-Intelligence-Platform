@@ -1,6 +1,6 @@
 {
   "schema": "threat-intel-platform/iocs/v1",
-  "generated_at": "2026-10-27T05:18:20Z",
+  "generated_at": "2026-10-27T12:28:50Z",
   "count": 30000,
   "indicators": [
     {
@@ -102664,16 +102664,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1957499/"
     },
     {
-      "value": "a45e7396cd5e64cf9ea7567f0e8d56d4a41c4b1b168981f8f0fb33e7e2a3dce5",
-      "type": "sha256",
-      "malware": "Mirai",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-08T14:40:02Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/a45e7396cd5e64cf9ea7567f0e8d56d4a41c4b1b168981f8f0fb33e7e2a3dce5/"
-    },
-    {
       "value": "128.90.102.224",
       "type": "ipv4",
       "malware": "Remcos",
@@ -107004,56 +106994,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1955703/"
     },
     {
-      "value": "128.90.102.194",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:50Z",
-      "last_seen": "2026-10-07T03:28:42Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1955704/"
-    },
-    {
-      "value": "128.90.108.50",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:50Z",
-      "last_seen": "2026-10-06T19:29:26Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1955723/"
-    },
-    {
-      "value": "285216ad44f6cf4c8b70dcdbcbaeb9807ca83d217f6bf48a834e20de6a882708",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:49Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1955729/"
-    },
-    {
-      "value": "204.44.93.119",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1955733/"
-    },
-    {
-      "value": "db528a6c9b4eea0d095c69f85a181676c7de77fc564da78f83ea4babcc04b080",
-      "type": "sha256",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:46Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956003/"
-    },
-    {
       "value": "87.232.123.60",
       "type": "ipv4",
       "malware": "Remus",
@@ -107062,116 +107002,6 @@
       "first_seen": "2026-10-07T04:37:46Z",
       "last_seen": "2026-10-08T09:15:12Z",
       "reference": "https://threatfox.abuse.ch/ioc/1956018/"
-    },
-    {
-      "value": "dd11fdaa68ac849eea117fea352c2436a9aecedb974a0bd9fe108d8792165c07",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:44Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956053/"
-    },
-    {
-      "value": "https://rosemaryballad.co/proxy/public-hook",
-      "type": "url",
-      "malware": "SmartApeSG",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:43Z",
-      "last_seen": "2026-10-06T23:08:27Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1956058/"
-    },
-    {
-      "value": "rosemaryballad.co",
-      "type": "domain",
-      "malware": "SmartApeSG",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:43Z",
-      "last_seen": "2026-10-06T23:08:29Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1956059/"
-    },
-    {
-      "value": "https://rosemaryballad.co/proxy/alias-client.js",
-      "type": "url",
-      "malware": "SmartApeSG",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:43Z",
-      "last_seen": "2026-10-06T23:08:28Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1956060/"
-    },
-    {
-      "value": "https://vv.3toto.com",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:42Z",
-      "last_seen": "2026-10-06T22:45:21Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1956061/"
-    },
-    {
-      "value": "1d9fd698ccfcc4cd0f8f8f66df82da734b9f341ae47f489d7ccc6732400dcefd",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:41Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956070/"
-    },
-    {
-      "value": "746e37c45296c42d8bbd1f0c0aff7b6b20ecd14c1108e9899cc6cc78c2573fec",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:41Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956077/"
-    },
-    {
-      "value": "1ebbe1479d2be9b5ddae584a2d987e5f6f4ce14c1f002bb8bd1fb7e13046969e",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:38Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956083/"
-    },
-    {
-      "value": "cc85c7eff50e4df105b28b300fae9603ad3d1653408c6bdc5a2665a16c379103",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:37Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956085/"
-    },
-    {
-      "value": "128.90.108.89",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:37Z",
-      "last_seen": "2026-10-07T10:35:33Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1956092/"
-    },
-    {
-      "value": "match.sitefulia.com",
-      "type": "domain",
-      "malware": "FAKEUPDATES",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:37Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956096/"
     },
     {
       "value": "https://172.233.174.218",
@@ -107194,26 +107024,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956106/"
     },
     {
-      "value": "23f6b48ec53b6490d06722b49a54aaaf855f63c15bde3c32cb90db432d8fcb96",
-      "type": "sha256",
-      "malware": "AMOS",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:33Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956109/"
-    },
-    {
-      "value": "46.246.14.21",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:37:32Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956120/"
-    },
-    {
       "value": "https://fo.333vip.org",
       "type": "url",
       "malware": "Vidar",
@@ -107224,26 +107034,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956134/"
     },
     {
-      "value": "ruut.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:20:22Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956139/"
-    },
-    {
-      "value": "154.12.17.20",
-      "type": "ipv4",
-      "malware": "Cobalt Strike",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T04:05:07Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956143/"
-    },
-    {
       "value": "fog.blacklabelfremont.com",
       "type": "domain",
       "malware": "ClearFake",
@@ -107252,16 +107042,6 @@
       "first_seen": "2026-10-07T03:46:26Z",
       "last_seen": "2026-10-16T09:06:12Z",
       "reference": "https://threatfox.abuse.ch/ioc/1956132/"
-    },
-    {
-      "value": "kpxypqg0.kalem.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T03:45:55Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956129/"
     },
     {
       "value": "89.32.41.111",
@@ -107344,16 +107124,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956117/"
     },
     {
-      "value": "94.143.143.253",
-      "type": "ipv4",
-      "malware": "DCRat",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T03:05:06Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956116/"
-    },
-    {
       "value": "89.32.41.59",
       "type": "ipv4",
       "malware": "Potassium",
@@ -107362,176 +107132,6 @@
       "first_seen": "2026-10-07T03:04:05Z",
       "last_seen": "2026-10-21T04:43:46Z",
       "reference": "https://threatfox.abuse.ch/ioc/1956114/"
-    },
-    {
-      "value": "2ell0jzk.lacek.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T03:00:46Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956113/"
-    },
-    {
-      "value": "rihan.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T02:20:24Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956107/"
-    },
-    {
-      "value": "fo.3toto.com",
-      "type": "domain",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956099/"
-    },
-    {
-      "value": "https://fo.3toto.com/",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956100/"
-    },
-    {
-      "value": "fo.333vip.org",
-      "type": "domain",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956101/"
-    },
-    {
-      "value": "https://fo.333vip.org/",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956102/"
-    },
-    {
-      "value": "tiq3luyb.pattysole.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:35:53Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956097/"
-    },
-    {
-      "value": "8.210.166.12",
-      "type": "ipv4",
-      "malware": "VShell",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T01:05:05Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956095/"
-    },
-    {
-      "value": "reyos.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T00:19:26Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956089/"
-    },
-    {
-      "value": "baldreamloans.com.au",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-07T00:10:15Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956084/"
-    },
-    {
-      "value": "6pf8j0h7.kundu.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T22:53:18Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956069/"
-    },
-    {
-      "value": "uahel3js.jorda.store",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T22:53:10Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956068/"
-    },
-    {
-      "value": "vv.3toto.com",
-      "type": "domain",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T21:15:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956044/"
-    },
-    {
-      "value": "https://vv.3toto.com/",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T21:15:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956045/"
-    },
-    {
-      "value": "vv.333vip.org",
-      "type": "domain",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T20:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956038/"
-    },
-    {
-      "value": "https://vv.333vip.org/",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T20:50:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956039/"
-    },
-    {
-      "value": "cjwdj7hx.roseanne.id",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T20:32:29Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956034/"
     },
     {
       "value": "130.94.16.10",
@@ -107562,16 +107162,6 @@
       "first_seen": "2026-10-06T20:17:47Z",
       "last_seen": "2026-10-11T20:30:13Z",
       "reference": "https://threatfox.abuse.ch/ioc/1956029/"
-    },
-    {
-      "value": "djbpmstudio.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T20:09:49Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956017/"
     },
     {
       "value": "47.94.56.71",
@@ -107754,26 +107344,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1954647/"
     },
     {
-      "value": "0g-auth-check.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:40Z",
-      "last_seen": "2026-10-07T10:09:31Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954648/"
-    },
-    {
-      "value": "vscode-load-config.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:34Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954655/"
-    },
-    {
       "value": "vscode-settings-bootstrap.vercel.app",
       "type": "domain",
       "malware": "ContagiousDrop",
@@ -107782,16 +107352,6 @@
       "first_seen": "2026-10-06T12:29:31Z",
       "last_seen": "2026-10-08T08:47:31Z",
       "reference": "https://threatfox.abuse.ch/ioc/1954656/"
-    },
-    {
-      "value": "vscode-toolkit-settings.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:29Z",
-      "last_seen": "2026-10-07T10:09:33Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954658/"
     },
     {
       "value": "vscode-settings-config.vercel.app",
@@ -107804,56 +107364,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1954659/"
     },
     {
-      "value": "vscode-extensions-bootstrap.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:26Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954661/"
-    },
-    {
-      "value": "isvalid-regions.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:26Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954662/"
-    },
-    {
-      "value": "task-hrec.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:25Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954663/"
-    },
-    {
-      "value": "codeviewer-three.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:24Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954664/"
-    },
-    {
-      "value": "default-configuration.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:23Z",
-      "last_seen": "2026-10-07T10:09:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954666/"
-    },
-    {
       "value": "ipcheck-vm.vercel.app",
       "type": "domain",
       "malware": "ContagiousDrop",
@@ -107862,16 +107372,6 @@
       "first_seen": "2026-10-06T12:29:21Z",
       "last_seen": "2026-10-14T10:35:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1954669/"
-    },
-    {
-      "value": "gamboracle.vercel.app",
-      "type": "domain",
-      "malware": "ContagiousDrop",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T12:29:18Z",
-      "last_seen": "2026-10-07T10:19:11Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954673/"
     },
     {
       "value": "194.116.236.83",
@@ -108022,16 +107522,6 @@
       "first_seen": "2026-10-06T08:27:52Z",
       "last_seen": "2026-10-21T07:48:09Z",
       "reference": "https://threatfox.abuse.ch/ioc/1954492/"
-    },
-    {
-      "value": "https://188.245.231.9",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T08:05:13Z",
-      "last_seen": "2026-10-07T12:14:14Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954476/"
     },
     {
       "value": "wind.cafemartinezsa.com",
@@ -108322,16 +107812,6 @@
       "first_seen": "2026-10-05T14:38:17Z",
       "last_seen": "2026-10-19T10:10:00Z",
       "reference": "https://threatfox.abuse.ch/ioc/1952884/"
-    },
-    {
-      "value": "https://cdn.jsdelivr.net/gh/20fd0ae3e004/0d377d00-78a8-4d8d-90b1-243adcb9e9fd/84e8-38f0a7270d68",
-      "type": "url",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-05T13:29:04Z",
-      "last_seen": "2026-10-07T11:56:05Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1952821/"
     },
     {
       "value": "102.117.175.209",
@@ -108662,16 +108142,6 @@
       "first_seen": "2026-10-04T06:54:49Z",
       "last_seen": "2026-10-13T21:59:20Z",
       "reference": "https://threatfox.abuse.ch/ioc/1949063/"
-    },
-    {
-      "value": "132.243.187.112",
-      "type": "ipv4",
-      "malware": "Potassium",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-04T06:54:45Z",
-      "last_seen": "2026-10-07T06:28:52Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1949185/"
     },
     {
       "value": "217.60.103.131",
@@ -109032,16 +108502,6 @@
       "first_seen": "2026-10-03T19:07:07Z",
       "last_seen": "2026-10-09T14:16:51Z",
       "reference": "https://threatfox.abuse.ch/ioc/1948988/"
-    },
-    {
-      "value": "https://217.60.102.185",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-03T17:28:12Z",
-      "last_seen": "2026-10-07T12:24:47Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1948720/"
     },
     {
       "value": "49.235.158.141",
@@ -109432,16 +108892,6 @@
       "first_seen": "2026-10-02T13:36:29Z",
       "last_seen": "2026-10-11T10:20:18Z",
       "reference": "https://threatfox.abuse.ch/ioc/1945346/"
-    },
-    {
-      "value": "https://217.60.102.236",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-02T08:27:46Z",
-      "last_seen": "2026-10-07T12:25:37Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1945201/"
     },
     {
       "value": "https://zu.332toto.net",
@@ -110254,16 +109704,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1942793/"
     },
     {
-      "value": "https://217.60.103.200",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-30T09:38:04Z",
-      "last_seen": "2026-10-07T12:23:47Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1942777/"
-    },
-    {
       "value": "165.245.250.162",
       "type": "ipv4",
       "malware": "Aisuru",
@@ -110644,16 +110084,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1942743/"
     },
     {
-      "value": "140.233.190.110",
-      "type": "ipv4",
-      "malware": "Aisuru",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-29T06:28:44Z",
-      "last_seen": "2026-10-07T12:28:07Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1943365/"
-    },
-    {
       "value": "140.233.190.114",
       "type": "ipv4",
       "malware": "Aisuru",
@@ -110702,16 +110132,6 @@
       "first_seen": "2026-09-29T06:28:35Z",
       "last_seen": "2026-10-09T04:26:45Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941256/"
-    },
-    {
-      "value": "140.233.190.115",
-      "type": "ipv4",
-      "malware": "Aisuru",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-29T06:28:31Z",
-      "last_seen": "2026-10-07T12:27:45Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1948993/"
     },
     {
       "value": "196.251.121.249",
@@ -111024,16 +110444,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1935059/"
     },
     {
-      "value": "https://217.60.103.158",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-27T06:38:35Z",
-      "last_seen": "2026-10-07T12:23:47Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1935679/"
-    },
-    {
       "value": "https://xx.234-e.com",
       "type": "url",
       "malware": "Vidar",
@@ -111244,16 +110654,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1932841/"
     },
     {
-      "value": "schinner.icu",
-      "type": "domain",
-      "malware": "KongTuke",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-26T06:20:48Z",
-      "last_seen": "2026-10-06T23:56:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1932857/"
-    },
-    {
       "value": "171.22.130.121",
       "type": "ipv4",
       "malware": "Drifter",
@@ -111372,16 +110772,6 @@
       "first_seen": "2026-09-25T08:10:00Z",
       "last_seen": "2026-10-12T18:22:53Z",
       "reference": "https://threatfox.abuse.ch/ioc/1932721/"
-    },
-    {
-      "value": "191.124.5.229",
-      "type": "ipv4",
-      "malware": "Cobalt Strike",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-25T07:52:18Z",
-      "last_seen": "2026-10-07T08:20:40Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1949526/"
     },
     {
       "value": "217.217.97.60",
@@ -112254,16 +111644,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1924685/"
     },
     {
-      "value": "43.166.252.222",
-      "type": "ipv4",
-      "malware": "Jackskid",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-19T15:47:21Z",
-      "last_seen": "2026-10-07T11:52:25Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924434/"
-    },
-    {
       "value": "91.92.241.149",
       "type": "ipv4",
       "malware": "AsyncRAT",
@@ -112702,16 +112082,6 @@
       "first_seen": "2026-09-16T03:05:05Z",
       "last_seen": "2026-10-08T16:20:08Z",
       "reference": "https://threatfox.abuse.ch/ioc/1920859/"
-    },
-    {
-      "value": "www.visionsite.it",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-15T20:39:53Z",
-      "last_seen": "2026-10-06T22:29:59Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1920654/"
     },
     {
       "value": "sharjahtodip.com",
@@ -114052,16 +113422,6 @@
       "first_seen": "2026-09-07T04:50:59Z",
       "last_seen": "2026-10-21T07:12:44Z",
       "reference": "https://threatfox.abuse.ch/ioc/1903281/"
-    },
-    {
-      "value": "www.yelkenapartoren.com",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-07T04:50:08Z",
-      "last_seen": "2026-10-06T22:30:00Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1903267/"
     },
     {
       "value": "badger-kuis-vnex5.life",
@@ -116664,16 +116024,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1924407/"
     },
     {
-      "value": "175.43.223.199",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-08-31T13:05:08Z",
-      "last_seen": "2026-10-07T08:43:53Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1891867/"
-    },
-    {
       "value": "150.158.102.111",
       "type": "ipv4",
       "malware": "Cobalt Strike",
@@ -116712,16 +116062,6 @@
       "first_seen": "2026-08-30T06:05:05Z",
       "last_seen": "2026-10-21T11:44:06Z",
       "reference": "https://threatfox.abuse.ch/ioc/1932220/"
-    },
-    {
-      "value": "159.198.75.180",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-08-29T19:05:06Z",
-      "last_seen": "2026-10-07T08:43:43Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1891143/"
     },
     {
       "value": "https://playmounthdom.top/",
@@ -122954,16 +122294,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1750783/"
     },
     {
-      "value": "168.245.203.173",
-      "type": "ipv4",
-      "malware": "Meterpreter",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-02-18T04:02:14Z",
-      "last_seen": "2026-10-07T01:05:02Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1750186/"
-    },
-    {
       "value": "fonts-fontawesome.cfd",
       "type": "domain",
       "malware": "Unknown malware",
@@ -124457,7 +123787,7 @@
       "value": "195.178.110.135",
       "type": "ipv4",
       "malware": "Cobalt Strike",
-      "sources": "threatfox",
+      "sources": "greensnow,threatfox",
       "confidence": 100,
       "first_seen": "2025-09-11T20:01:36Z",
       "last_seen": "2026-10-21T11:42:09Z",
@@ -152524,16 +151854,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956610/"
     },
     {
-      "value": "5ec4c1ecaf67ba48a7f6ccebc065e587e7629654e455b15f67894240e63ac704",
-      "type": "sha256",
-      "malware": "WannaCryptor",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:12Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/5ec4c1ecaf67ba48a7f6ccebc065e587e7629654e455b15f67894240e63ac704/"
-    },
-    {
       "value": "d3fd6ee9651ff08f2cd0a945365bd5b984f7cb54",
       "type": "sha1",
       "malware": "WannaCryptor",
@@ -152552,16 +151872,6 @@
       "first_seen": "2026-10-07T16:34:12Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956607/"
-    },
-    {
-      "value": "cd3158bdde5b7145a69e72579fb14577c0f8eb1e49de549968a8ecbf6c3c4701",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:11Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/cd3158bdde5b7145a69e72579fb14577c0f8eb1e49de549968a8ecbf6c3c4701/"
     },
     {
       "value": "05f8f93fb8a821aade444de558350595",
@@ -152594,16 +151904,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956604/"
     },
     {
-      "value": "ffce7a3896c7e9e8172737d45c1eaed7f62b0a09b65ce22c5eeff9f25b7ace9d",
-      "type": "sha256",
-      "malware": "Stealc",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:10Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/ffce7a3896c7e9e8172737d45c1eaed7f62b0a09b65ce22c5eeff9f25b7ace9d/"
-    },
-    {
       "value": "e7baec9e0a38ba52d7a8a545e9dbf6c9",
       "type": "md5",
       "malware": "Vidar",
@@ -152622,16 +151922,6 @@
       "first_seen": "2026-10-07T16:34:10Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956600/"
-    },
-    {
-      "value": "24abb4702809d350ec17986d645a0d453efc0fd6d499d87fb01e0b5cb1a65160",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:09Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/24abb4702809d350ec17986d645a0d453efc0fd6d499d87fb01e0b5cb1a65160/"
     },
     {
       "value": "d60a47075c410509c0bc77eab2ea58dc759487e6",
@@ -152664,26 +151954,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956597/"
     },
     {
-      "value": "77a8d1bcbc9c79e76e64b5fd50aeda23d4d9a0ca42299f0f7a72f8da032fcc54",
-      "type": "sha256",
-      "malware": "Kuiper",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:08Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/77a8d1bcbc9c79e76e64b5fd50aeda23d4d9a0ca42299f0f7a72f8da032fcc54/"
-    },
-    {
-      "value": "b106a8b8ffa1c67e0e8f21a2015d0f0935e16e9e710c95b1bef3f924d532bd76",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:08Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/b106a8b8ffa1c67e0e8f21a2015d0f0935e16e9e710c95b1bef3f924d532bd76/"
-    },
-    {
       "value": "7749c4f833ed400b43cb2188de2e45420a06d441",
       "type": "sha1",
       "malware": "Kuiper",
@@ -152702,16 +151972,6 @@
       "first_seen": "2026-10-07T16:34:08Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956592/"
-    },
-    {
-      "value": "7ffa8ceaba695ecb58868eac30c83433b87854f8ef6ba6d97938bbd462d486a9",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:07Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/7ffa8ceaba695ecb58868eac30c83433b87854f8ef6ba6d97938bbd462d486a9/"
     },
     {
       "value": "c756d5f25076629543879497dbd7e70a",
@@ -152744,16 +152004,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956589/"
     },
     {
-      "value": "a36fbc117b0582e076f28cb9c81680c61f45a2ab9eac0f99ddb75a59537aab7a",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:06Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/a36fbc117b0582e076f28cb9c81680c61f45a2ab9eac0f99ddb75a59537aab7a/"
-    },
-    {
       "value": "5c0a4a06faf3adff3fad5722cb124751daee20a6",
       "type": "sha1",
       "malware": "Vidar",
@@ -152784,26 +152034,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956585/"
     },
     {
-      "value": "eff4b583d6a3e0743b7ad853a8227cc04b83eb4d855cac31bdef4fb0185326a9",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:05Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/eff4b583d6a3e0743b7ad853a8227cc04b83eb4d855cac31bdef4fb0185326a9/"
-    },
-    {
-      "value": "187089dffb448a9fc3d858e1d539ea70ba06a706d2b63dd44afc89d2ef1d2f8a",
-      "type": "sha256",
-      "malware": "Vidar",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:05Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/187089dffb448a9fc3d858e1d539ea70ba06a706d2b63dd44afc89d2ef1d2f8a/"
-    },
-    {
       "value": "6fbd4c488024b13f36ddcd0eeb73403fca6758bf",
       "type": "sha1",
       "malware": "stealler",
@@ -152824,16 +152054,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956580/"
     },
     {
-      "value": "372f8a434264575c7adeaf66ffc090b454fab89a1ac5f49986f2a9ed8d25d357",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:04Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/372f8a434264575c7adeaf66ffc090b454fab89a1ac5f49986f2a9ed8d25d357/"
-    },
-    {
       "value": "fef8480dfb33cc24d8299905c9a9db00ae78e58c",
       "type": "sha1",
       "malware": "stealler",
@@ -152852,16 +152072,6 @@
       "first_seen": "2026-10-07T16:34:04Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956577/"
-    },
-    {
-      "value": "d16d828d6538f903ab4b487994ced8f19a7cffc23944d30b7b724a194628b443",
-      "type": "sha256",
-      "malware": "Kuiper",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:03Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/d16d828d6538f903ab4b487994ced8f19a7cffc23944d30b7b724a194628b443/"
     },
     {
       "value": "dcf3b88561b92b4edb0682c8b799b37b",
@@ -152894,16 +152104,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956574/"
     },
     {
-      "value": "b17689e3da2c11a8034dee9389c5577366a3b4cbdfc77419c997713d5082dfc5",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:02Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/b17689e3da2c11a8034dee9389c5577366a3b4cbdfc77419c997713d5082dfc5/"
-    },
-    {
       "value": "f54b4f48c6661e798e28c2213fc1007e",
       "type": "md5",
       "malware": "stealler",
@@ -152924,16 +152124,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956570/"
     },
     {
-      "value": "dba820c1f2c4778166063b0a20563b51c160ee6a3b08e4d5c2d4d7153a3ec081",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:01Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/dba820c1f2c4778166063b0a20563b51c160ee6a3b08e4d5c2d4d7153a3ec081/"
-    },
-    {
       "value": "4b35c97702037bcd235041c6bc786da1",
       "type": "md5",
       "malware": "Venus Stealer",
@@ -152952,16 +152142,6 @@
       "first_seen": "2026-10-07T16:34:01Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956567/"
-    },
-    {
-      "value": "27c743d1ff6531bcd8fb09f0a91caea95ad72c34e83782660236b6b34b81cde5",
-      "type": "sha256",
-      "malware": "Venus Stealer",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:34:00Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/27c743d1ff6531bcd8fb09f0a91caea95ad72c34e83782660236b6b34b81cde5/"
     },
     {
       "value": "586cdd83d9f149e59e9d10547cd228ee35870503",
@@ -152994,26 +152174,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956564/"
     },
     {
-      "value": "2c195b625dee9271f543a9be087c9fb1b641255be29cc7c88fd811f7e1fe71d5",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:59Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/2c195b625dee9271f543a9be087c9fb1b641255be29cc7c88fd811f7e1fe71d5/"
-    },
-    {
-      "value": "2dbc1c3920315f24899eb0f9574d0c5e2e0c5b42d280b6a7a506b176305f7b09",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:59Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/2dbc1c3920315f24899eb0f9574d0c5e2e0c5b42d280b6a7a506b176305f7b09/"
-    },
-    {
       "value": "cb7e46f215d6bd8f121ebb4685c7e282a2090b9c",
       "type": "sha1",
       "malware": "stealler",
@@ -153032,16 +152192,6 @@
       "first_seen": "2026-10-07T16:33:59Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956559/"
-    },
-    {
-      "value": "749009376b352dfd21f7289f549c0ed3ff515f813eb1eaf2e604ba75be02c9c2",
-      "type": "sha256",
-      "malware": "YiBackdoor",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:58Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/749009376b352dfd21f7289f549c0ed3ff515f813eb1eaf2e604ba75be02c9c2/"
     },
     {
       "value": "36c20408877494fe44a04809a7730efc0d0a323a",
@@ -153064,16 +152214,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1956556/"
     },
     {
-      "value": "dc978cecad6e55b168f42ffcaab296a4513c3a46af58707fb1f6af5d162a69e0",
-      "type": "sha256",
-      "malware": "SalatStealer",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:57Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/dc978cecad6e55b168f42ffcaab296a4513c3a46af58707fb1f6af5d162a69e0/"
-    },
-    {
       "value": "10b0b5bbc48e6b9bfc70eba5e3d099b68e96c802",
       "type": "sha1",
       "malware": "SalatStealer",
@@ -153092,16 +152232,6 @@
       "first_seen": "2026-10-07T16:33:57Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956553/"
-    },
-    {
-      "value": "8c65239167f3ec609a5a992ed143b68b3c1b3a5985cf8a6d3f528081de15d0ee",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:56Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/8c65239167f3ec609a5a992ed143b68b3c1b3a5985cf8a6d3f528081de15d0ee/"
     },
     {
       "value": "954d1293832b5296971ed38e973a9203",
@@ -153132,16 +152262,6 @@
       "first_seen": "2026-10-07T16:33:56Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956550/"
-    },
-    {
-      "value": "fed1a1556b70e2d634b05a951a4c5f89617d80e1b1cde5c620f7cf7b2970fdd5",
-      "type": "sha256",
-      "malware": "stealler",
-      "sources": "malwarebazaar,threatfox",
-      "confidence": 95,
-      "first_seen": "2026-10-07T16:33:55Z",
-      "last_seen": "",
-      "reference": "https://bazaar.abuse.ch/sample/fed1a1556b70e2d634b05a951a4c5f89617d80e1b1cde5c620f7cf7b2970fdd5/"
     },
     {
       "value": "19e62a6656a739f189d7b3ed9347a860e07ffb11",
@@ -182932,336 +182052,6 @@
       "first_seen": "2026-10-07T18:12:23Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1956647/"
-    },
-    {
-      "value": "botsportscanning.duckdns.org",
-      "type": "domain",
-      "malware": "Mirai",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-07T04:37:51Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1955694/"
-    },
-    {
-      "value": "www.therapie-zentrum-dortmund.de",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-07T03:27:29Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956119/"
-    },
-    {
-      "value": "cashin24.ca",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-07T02:22:15Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956108/"
-    },
-    {
-      "value": "zijpestijl.nl",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T23:06:59Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956074/"
-    },
-    {
-      "value": "www.wood-fermetures.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:56:58Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956071/"
-    },
-    {
-      "value": "www.yourbestmarriageblog.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:56:58Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956072/"
-    },
-    {
-      "value": "www.waypointagency.net",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:30:03Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956067/"
-    },
-    {
-      "value": "www.wonderfulecuador.org",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:30:01Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956065/"
-    },
-    {
-      "value": "www.zakazkovestolarstvo.sk",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:30:01Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956066/"
-    },
-    {
-      "value": "www.tsas-usa.org",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:30:00Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956064/"
-    },
-    {
-      "value": "www.viniveri.net",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T22:29:59Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956063/"
-    },
-    {
-      "value": "www.twiscouter.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:49:18Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956056/"
-    },
-    {
-      "value": "www.villa-gamrang.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:49:18Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956057/"
-    },
-    {
-      "value": "ncmotores.com.br",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:49:17Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956055/"
-    },
-    {
-      "value": "www.talentr.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:19:10Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956049/"
-    },
-    {
-      "value": "www.tanetting.co.th",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:19:10Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956050/"
-    },
-    {
-      "value": "www.topgunpressurewashing.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:19:09Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956047/"
-    },
-    {
-      "value": "www.techlinksystems.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:19:09Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956048/"
-    },
-    {
-      "value": "www.thalamuscharles.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T21:19:08Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956046/"
-    },
-    {
-      "value": "www.escuelaloca.it",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:32:57Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956036/"
-    },
-    {
-      "value": "tofselkenapsetayer.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:32:55Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956035/"
-    },
-    {
-      "value": "www.spinmovie.it",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:22:52Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956030/"
-    },
-    {
-      "value": "www.sportveiculoscontagem.com.br",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:22:52Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956031/"
-    },
-    {
-      "value": "www.strongboxsecurityservices.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:22:52Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956032/"
-    },
-    {
-      "value": "www.stromcheckup.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:22:52Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956033/"
-    },
-    {
-      "value": "www.snapplusstudio.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:49Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956026/"
-    },
-    {
-      "value": "www.doppio-click.it",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956020/"
-    },
-    {
-      "value": "www.stychnohumanitarianfoundation.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956021/"
-    },
-    {
-      "value": "www.stv24.net",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956022/"
-    },
-    {
-      "value": "www.spachmelnice.cz",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956023/"
-    },
-    {
-      "value": "www.socrateinlove.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956024/"
-    },
-    {
-      "value": "www.skylarfinserv.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:48Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956025/"
-    },
-    {
-      "value": "www.styleamakaco.com",
-      "type": "domain",
-      "malware": "ClearFake",
-      "sources": "threatfox",
-      "confidence": 90,
-      "first_seen": "2026-10-06T20:12:47Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956019/"
     },
     {
       "value": "37dd737a342729c7b8c4e6f28140f2ff977a433793482b6bd488efd56a20812e",
@@ -267124,16 +265914,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944136/"
     },
     {
-      "value": "http://59.97.252.95:51706/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T05:32:44Z",
-      "last_seen": "2026-10-07T05:32:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944137/"
-    },
-    {
       "value": "http://175.147.94.199:51805/bin.sh",
       "type": "url",
       "malware": "",
@@ -267154,16 +265934,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944134/"
     },
     {
-      "value": "http://123.9.200.156:42154/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T05:02:35Z",
-      "last_seen": "2026-10-07T05:02:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944132/"
-    },
-    {
       "value": "http://119.187.197.115:57303/i",
       "type": "url",
       "malware": "",
@@ -267174,16 +265944,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944133/"
     },
     {
-      "value": "http://95.9.35.137:40441/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:55:51Z",
-      "last_seen": "2026-10-07T04:55:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944131/"
-    },
-    {
       "value": "https://donutclients.st/TotemCounter-26.2.jar",
       "type": "url",
       "malware": "",
@@ -267192,16 +265952,6 @@
       "first_seen": "2026-10-07T04:55:41Z",
       "last_seen": "2026-10-10T06:15:01Z",
       "reference": "https://urlhaus.abuse.ch/url/3944130/"
-    },
-    {
-      "value": "http://154.242.13.34:43259/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:55:39Z",
-      "last_seen": "2026-10-07T04:55:39Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944128/"
     },
     {
       "value": "http://115.62.186.251:52572/i",
@@ -267244,16 +265994,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944125/"
     },
     {
-      "value": "https://www.dropbox.com/scl/fi/dcbo57pem0pjqzx65giot/MateFalls-Setup-1.0.0.exe?rlkey=yc7kc4vm6iy1urr0wh1xwta91&dl=1",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:49:44Z",
-      "last_seen": "2026-10-07T04:49:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944124/"
-    },
-    {
       "value": "https://xiazailianjie.com/WPS_Setup_X64.zip",
       "type": "url",
       "malware": "",
@@ -267262,16 +266002,6 @@
       "first_seen": "2026-10-07T04:49:18Z",
       "last_seen": "2026-10-10T11:32:37Z",
       "reference": "https://urlhaus.abuse.ch/url/3944123/"
-    },
-    {
-      "value": "https://www.dropbox.com/scl/fi/jwhb6vojim0cfxrxip9fk/Docsend.exe?rlkey=zgpwwjbtsrnatafb9g24pjnxu&st=gwds3ryx&dl=1",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:49:14Z",
-      "last_seen": "2026-10-07T04:49:14Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944122/"
     },
     {
       "value": "http://23.254.195.48:8099/beacon_x",
@@ -267544,16 +266274,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944094/"
     },
     {
-      "value": "https://docs.cs-supplements.de/api/cm-token",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:41:08Z",
-      "last_seen": "2026-10-07T04:41:08Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944090/"
-    },
-    {
       "value": "https://donutclients.st/Zoomify-26.2.jar",
       "type": "url",
       "malware": "",
@@ -267664,66 +266384,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944075/"
     },
     {
-      "value": "rooertson.top",
-      "type": "domain",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:37:40Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956078/"
-    },
-    {
-      "value": "brownpelicanwifi.com",
-      "type": "domain",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:37:40Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956079/"
-    },
-    {
-      "value": "https://rooertson.top/p/wm.zip",
-      "type": "url",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:37:40Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956080/"
-    },
-    {
-      "value": "https://schinner.icu/dfmf7342.js",
-      "type": "url",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:37:39Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956081/"
-    },
-    {
-      "value": "https://brownpelicanwifi.com",
-      "type": "url",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:37:39Z",
-      "last_seen": "",
-      "reference": "https://threatfox.abuse.ch/ioc/1956082/"
-    },
-    {
-      "value": "http://123.9.200.156:42154/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:32:56Z",
-      "last_seen": "2026-10-07T04:32:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944074/"
-    },
-    {
       "value": "http://117.146.92.46:54853/i",
       "type": "url",
       "malware": "",
@@ -267734,26 +266394,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944073/"
     },
     {
-      "value": "http://120.28.194.92:51526/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:32:50Z",
-      "last_seen": "2026-10-07T04:32:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944072/"
-    },
-    {
-      "value": "http://221.15.187.244:35517/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:32:49Z",
-      "last_seen": "2026-10-07T04:32:49Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944071/"
-    },
-    {
       "value": "http://182.118.189.126:40792/i",
       "type": "url",
       "malware": "",
@@ -267762,36 +266402,6 @@
       "first_seen": "2026-10-07T04:17:40Z",
       "last_seen": "2026-10-07T23:57:36Z",
       "reference": "https://urlhaus.abuse.ch/url/3944070/"
-    },
-    {
-      "value": "http://210.97.100.192:33082/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:17:38Z",
-      "last_seen": "2026-10-07T04:17:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944067/"
-    },
-    {
-      "value": "http://221.15.187.244:35517/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:17:38Z",
-      "last_seen": "2026-10-07T04:17:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944068/"
-    },
-    {
-      "value": "http://123.14.88.160:36914/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:17:38Z",
-      "last_seen": "2026-10-07T04:17:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944069/"
     },
     {
       "value": "http://42.224.98.161:41233/bin.sh",
@@ -267814,16 +266424,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944066/"
     },
     {
-      "value": "http://125.161.250.191:33986/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:02:32Z",
-      "last_seen": "2026-10-07T05:05:07Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944064/"
-    },
-    {
       "value": "http://60.18.37.74:39377/i",
       "type": "url",
       "malware": "",
@@ -267842,16 +266442,6 @@
       "first_seen": "2026-10-07T04:02:31Z",
       "last_seen": "2026-10-09T07:54:15Z",
       "reference": "https://urlhaus.abuse.ch/url/3944062/"
-    },
-    {
-      "value": "http://120.28.194.92:51526/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T04:02:31Z",
-      "last_seen": "2026-10-07T07:19:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944063/"
     },
     {
       "value": "http://42.239.238.224:40215/bin.sh",
@@ -267924,66 +266514,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944055/"
     },
     {
-      "value": "http://194.26.220.214:34097/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:26:27Z",
-      "last_seen": "2026-10-07T03:26:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944053/"
-    },
-    {
-      "value": "http://60.23.238.68:48081/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:17:33Z",
-      "last_seen": "2026-10-07T10:15:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944052/"
-    },
-    {
-      "value": "http://42.227.46.64:39218/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:17:29Z",
-      "last_seen": "2026-10-07T03:17:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944050/"
-    },
-    {
-      "value": "http://105.224.12.172:32809/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:17:29Z",
-      "last_seen": "2026-10-07T07:05:18Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944051/"
-    },
-    {
-      "value": "http://27.210.7.195:44939/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:17:28Z",
-      "last_seen": "2026-10-07T03:17:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944049/"
-    },
-    {
-      "value": "http://39.77.172.19:45028/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:09:27Z",
-      "last_seen": "2026-10-07T07:45:03Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944048/"
-    },
-    {
       "value": "http://123.11.98.224:37931/bin.sh",
       "type": "url",
       "malware": "",
@@ -267992,36 +266522,6 @@
       "first_seen": "2026-10-07T03:02:29Z",
       "last_seen": "2026-10-10T00:30:31Z",
       "reference": "https://urlhaus.abuse.ch/url/3944047/"
-    },
-    {
-      "value": "http://42.238.246.42:35356/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T03:02:28Z",
-      "last_seen": "2026-10-07T03:02:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944046/"
-    },
-    {
-      "value": "http://176.213.86.238:31654/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:56:33Z",
-      "last_seen": "2026-10-07T02:56:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944045/"
-    },
-    {
-      "value": "http://60.23.235.155:58165/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:55:32Z",
-      "last_seen": "2026-10-07T07:26:09Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944044/"
     },
     {
       "value": "http://123.130.203.216:45701/i",
@@ -268044,16 +266544,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944041/"
     },
     {
-      "value": "http://117.253.155.54:60752/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:47:32Z",
-      "last_seen": "2026-10-07T12:14:53Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944042/"
-    },
-    {
       "value": "http://91.190.84.93:58846/i",
       "type": "url",
       "malware": "",
@@ -268062,16 +266552,6 @@
       "first_seen": "2026-10-07T02:47:31Z",
       "last_seen": "2026-10-08T17:08:21Z",
       "reference": "https://urlhaus.abuse.ch/url/3944039/"
-    },
-    {
-      "value": "http://60.23.238.68:48081/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:47:31Z",
-      "last_seen": "2026-10-07T02:47:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944040/"
     },
     {
       "value": "http://103.68.95.197:55385/bin.sh",
@@ -268124,16 +266604,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944033/"
     },
     {
-      "value": "http://115.55.223.110:54371/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:17:45Z",
-      "last_seen": "2026-10-07T02:17:45Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944034/"
-    },
-    {
       "value": "http://39.79.138.192:39415/i",
       "type": "url",
       "malware": "",
@@ -268152,16 +266622,6 @@
       "first_seen": "2026-10-07T02:07:37Z",
       "last_seen": "2026-10-08T17:44:03Z",
       "reference": "https://urlhaus.abuse.ch/url/3944031/"
-    },
-    {
-      "value": "http://165.98.243.83:55771/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T02:02:31Z",
-      "last_seen": "2026-10-07T09:48:45Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944030/"
     },
     {
       "value": "http://115.50.235.154:51244/i",
@@ -268244,16 +266704,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944019/"
     },
     {
-      "value": "http://115.50.221.110:42445/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:32:35Z",
-      "last_seen": "2026-10-07T12:18:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944020/"
-    },
-    {
       "value": "http://123.14.55.235:38277/i",
       "type": "url",
       "malware": "",
@@ -268262,16 +266712,6 @@
       "first_seen": "2026-10-07T01:32:35Z",
       "last_seen": "2026-10-08T01:39:07Z",
       "reference": "https://urlhaus.abuse.ch/url/3944021/"
-    },
-    {
-      "value": "http://27.210.7.195:44939/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:32:35Z",
-      "last_seen": "2026-10-07T01:32:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944022/"
     },
     {
       "value": "http://210.208.111.26:44817/bin.sh",
@@ -268314,16 +266754,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944014/"
     },
     {
-      "value": "http://59.96.139.237:48296/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:17:31Z",
-      "last_seen": "2026-10-07T01:17:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944015/"
-    },
-    {
       "value": "http://108.170.136.155:50255/i",
       "type": "url",
       "malware": "",
@@ -268342,16 +266772,6 @@
       "first_seen": "2026-10-07T01:17:29Z",
       "last_seen": "2026-10-09T00:04:30Z",
       "reference": "https://urlhaus.abuse.ch/url/3944013/"
-    },
-    {
-      "value": "http://196.189.198.173:37807/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:15:36Z",
-      "last_seen": "2026-10-07T01:15:36Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944011/"
     },
     {
       "value": "http://175.147.200.123:48168/i",
@@ -268404,26 +266824,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944009/"
     },
     {
-      "value": "http://182.114.34.109:51716/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:02:35Z",
-      "last_seen": "2026-10-07T01:02:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944004/"
-    },
-    {
-      "value": "http://164.163.26.124:35610/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T01:02:35Z",
-      "last_seen": "2026-10-07T01:02:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944005/"
-    },
-    {
       "value": "http://222.142.247.47:41616/bin.sh",
       "type": "url",
       "malware": "",
@@ -268432,16 +266832,6 @@
       "first_seen": "2026-10-07T00:55:28Z",
       "last_seen": "2026-10-07T15:57:52Z",
       "reference": "https://urlhaus.abuse.ch/url/3944003/"
-    },
-    {
-      "value": "http://196.189.198.173:37807/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:47:27Z",
-      "last_seen": "2026-10-07T00:47:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944001/"
     },
     {
       "value": "http://182.126.126.199:39682/bin.sh",
@@ -268454,16 +266844,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3944002/"
     },
     {
-      "value": "http://175.148.159.44:55227/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:32:36Z",
-      "last_seen": "2026-10-07T00:32:36Z",
-      "reference": "https://urlhaus.abuse.ch/url/3944000/"
-    },
-    {
       "value": "http://123.13.85.107:44397/i",
       "type": "url",
       "malware": "",
@@ -268474,26 +266854,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943998/"
     },
     {
-      "value": "http://105.184.177.149:33409/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:32:35Z",
-      "last_seen": "2026-10-07T10:20:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943999/"
-    },
-    {
-      "value": "http://42.239.254.29:45947/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:32:34Z",
-      "last_seen": "2026-10-07T00:32:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943997/"
-    },
-    {
       "value": "http://179.49.213.85:32815/bin.sh",
       "type": "url",
       "malware": "",
@@ -268502,26 +266862,6 @@
       "first_seen": "2026-10-07T00:19:38Z",
       "last_seen": "2026-10-07T16:12:12Z",
       "reference": "https://urlhaus.abuse.ch/url/3943996/"
-    },
-    {
-      "value": "http://210.57.226.6:3125/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:17:33Z",
-      "last_seen": "2026-10-07T00:17:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943994/"
-    },
-    {
-      "value": "http://42.239.254.29:45947/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:17:33Z",
-      "last_seen": "2026-10-07T00:17:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943995/"
     },
     {
       "value": "http://45.148.148.31:51458/i",
@@ -268542,16 +266882,6 @@
       "first_seen": "2026-10-07T00:02:37Z",
       "last_seen": "2026-10-07T23:36:27Z",
       "reference": "https://urlhaus.abuse.ch/url/3943992/"
-    },
-    {
-      "value": "http://123.129.56.38:56147/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:02:36Z",
-      "last_seen": "2026-10-07T11:04:05Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943987/"
     },
     {
       "value": "http://222.141.122.53:40331/bin.sh",
@@ -268604,16 +266934,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943985/"
     },
     {
-      "value": "http://179.49.213.85:32815/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-07T00:02:35Z",
-      "last_seen": "2026-10-07T07:10:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943986/"
-    },
-    {
       "value": "http://115.59.88.197:58691/i",
       "type": "url",
       "malware": "",
@@ -268624,16 +266944,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943984/"
     },
     {
-      "value": "http://42.232.235.138:39170/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:47:28Z",
-      "last_seen": "2026-10-07T05:21:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943982/"
-    },
-    {
       "value": "http://187.62.243.142:58551/i",
       "type": "url",
       "malware": "",
@@ -268642,26 +266952,6 @@
       "first_seen": "2026-10-06T23:47:28Z",
       "last_seen": "2026-10-07T20:00:40Z",
       "reference": "https://urlhaus.abuse.ch/url/3943983/"
-    },
-    {
-      "value": "http://78.188.196.206:40890/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:47:27Z",
-      "last_seen": "2026-10-06T23:47:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943979/"
-    },
-    {
-      "value": "http://78.188.196.206:40890/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:47:27Z",
-      "last_seen": "2026-10-06T23:47:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943980/"
     },
     {
       "value": "http://123.5.169.0:44704/bin.sh",
@@ -268684,16 +266974,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943978/"
     },
     {
-      "value": "http://42.234.163.19:43965/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:42:43Z",
-      "last_seen": "2026-10-06T23:42:43Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943977/"
-    },
-    {
       "value": "http://185.89.156.101:35112/i",
       "type": "url",
       "malware": "",
@@ -268714,16 +266994,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943974/"
     },
     {
-      "value": "http://123.129.56.38:56147/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:32:49Z",
-      "last_seen": "2026-10-07T11:08:08Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943975/"
-    },
-    {
       "value": "http://92.42.134.80:38229/i",
       "type": "url",
       "malware": "",
@@ -268732,26 +267002,6 @@
       "first_seen": "2026-10-06T23:32:48Z",
       "last_seen": "2026-10-07T18:44:58Z",
       "reference": "https://urlhaus.abuse.ch/url/3943971/"
-    },
-    {
-      "value": "http://105.225.13.115:42157/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:32:48Z",
-      "last_seen": "2026-10-06T23:32:48Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943972/"
-    },
-    {
-      "value": "http://59.96.139.69:42178/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:32:48Z",
-      "last_seen": "2026-10-06T23:32:48Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943973/"
     },
     {
       "value": "http://119.179.30.73:43717/i",
@@ -268774,26 +267024,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943970/"
     },
     {
-      "value": "http://42.234.163.19:43965/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:19:37Z",
-      "last_seen": "2026-10-06T23:19:37Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943968/"
-    },
-    {
-      "value": "http://222.127.170.183:45331/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:17:28Z",
-      "last_seen": "2026-10-06T23:17:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943967/"
-    },
-    {
       "value": "http://120.28.167.203:50009/i",
       "type": "url",
       "malware": "",
@@ -268802,16 +267032,6 @@
       "first_seen": "2026-10-06T23:17:26Z",
       "last_seen": "2026-10-09T00:06:23Z",
       "reference": "https://urlhaus.abuse.ch/url/3943966/"
-    },
-    {
-      "value": "http://182.121.16.69:49873/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:14:28Z",
-      "last_seen": "2026-10-06T23:14:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943964/"
     },
     {
       "value": "http://103.111.23.13:59651/i",
@@ -268824,16 +267044,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943963/"
     },
     {
-      "value": "http://119.179.254.148:40760/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T23:02:28Z",
-      "last_seen": "2026-10-06T23:02:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943961/"
-    },
-    {
       "value": "http://120.28.167.203:50009/bin.sh",
       "type": "url",
       "malware": "",
@@ -268844,66 +267054,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943962/"
     },
     {
-      "value": "http://117.131.92.150:54561/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:47:27Z",
-      "last_seen": "2026-10-06T22:47:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943959/"
-    },
-    {
-      "value": "http://117.253.155.54:60752/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:47:26Z",
-      "last_seen": "2026-10-07T12:16:52Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943958/"
-    },
-    {
-      "value": "http://113.229.80.225:57356/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:32:34Z",
-      "last_seen": "2026-10-06T22:32:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943955/"
-    },
-    {
-      "value": "http://222.127.170.183:45331/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:17:37Z",
-      "last_seen": "2026-10-06T22:17:37Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943952/"
-    },
-    {
-      "value": "http://196.189.35.226:40424/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:17:37Z",
-      "last_seen": "2026-10-06T22:17:37Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943953/"
-    },
-    {
-      "value": "http://112.248.29.124:35682/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:03:34Z",
-      "last_seen": "2026-10-06T22:03:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943951/"
-    },
-    {
       "value": "http://222.136.231.249:32917/i",
       "type": "url",
       "malware": "",
@@ -268912,46 +267062,6 @@
       "first_seen": "2026-10-06T22:02:30Z",
       "last_seen": "2026-10-08T07:36:53Z",
       "reference": "https://urlhaus.abuse.ch/url/3943950/"
-    },
-    {
-      "value": "http://113.229.80.225:57356/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T22:02:29Z",
-      "last_seen": "2026-10-06T22:02:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943949/"
-    },
-    {
-      "value": "http://42.224.102.171:36007/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T21:47:27Z",
-      "last_seen": "2026-10-06T21:47:27Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943948/"
-    },
-    {
-      "value": "http://42.177.57.76:56907/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T21:46:23Z",
-      "last_seen": "2026-10-07T12:07:43Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943947/"
-    },
-    {
-      "value": "http://125.41.77.54:35908/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T21:32:25Z",
-      "last_seen": "2026-10-06T21:32:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943946/"
     },
     {
       "value": "http://182.126.126.199:39682/i",
@@ -269014,16 +267124,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943940/"
     },
     {
-      "value": "http://124.94.246.227:41356/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T21:02:24Z",
-      "last_seen": "2026-10-06T21:02:24Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943939/"
-    },
-    {
       "value": "http://200.115.102.16:53505/i",
       "type": "url",
       "malware": "",
@@ -269034,16 +267134,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943937/"
     },
     {
-      "value": "http://124.94.246.227:41356/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T20:47:26Z",
-      "last_seen": "2026-10-06T20:47:26Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943936/"
-    },
-    {
       "value": "http://222.137.97.203:41864/bin.sh",
       "type": "url",
       "malware": "",
@@ -269052,26 +267142,6 @@
       "first_seen": "2026-10-06T20:47:25Z",
       "last_seen": "2026-10-07T16:03:47Z",
       "reference": "https://urlhaus.abuse.ch/url/3943935/"
-    },
-    {
-      "value": "http://115.54.108.137:38442/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T20:33:29Z",
-      "last_seen": "2026-10-06T20:33:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943934/"
-    },
-    {
-      "value": "http://39.90.144.60:37749/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T20:32:24Z",
-      "last_seen": "2026-10-06T23:03:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943931/"
     },
     {
       "value": "http://113.231.232.203:33385/bin.sh",
@@ -269092,26 +267162,6 @@
       "first_seen": "2026-10-06T20:32:24Z",
       "last_seen": "2026-10-08T23:32:38Z",
       "reference": "https://urlhaus.abuse.ch/url/3943933/"
-    },
-    {
-      "value": "http://45.183.184.74:49148/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T20:20:29Z",
-      "last_seen": "2026-10-06T20:20:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943930/"
-    },
-    {
-      "value": "http://39.90.144.60:37749/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T20:16:25Z",
-      "last_seen": "2026-10-06T20:16:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943929/"
     },
     {
       "value": "http://120.28.194.160:57302/i",
@@ -269212,16 +267262,6 @@
       "first_seen": "2026-10-06T19:17:24Z",
       "last_seen": "2026-10-08T12:44:49Z",
       "reference": "https://urlhaus.abuse.ch/url/3943914/"
-    },
-    {
-      "value": "http://196.191.231.12:51800/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T19:02:39Z",
-      "last_seen": "2026-10-07T09:50:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943912/"
     },
     {
       "value": "http://42.224.151.147:43912/bin.sh",
@@ -269402,26 +267442,6 @@
       "first_seen": "2026-10-06T17:32:27Z",
       "last_seen": "2026-10-08T11:58:48Z",
       "reference": "https://urlhaus.abuse.ch/url/3943884/"
-    },
-    {
-      "value": "http://222.127.50.102:60961/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T17:32:26Z",
-      "last_seen": "2026-10-07T11:08:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943883/"
-    },
-    {
-      "value": "http://222.127.50.102:60961/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T17:01:25Z",
-      "last_seen": "2026-10-07T11:21:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943881/"
     },
     {
       "value": "http://27.222.45.79:37024/i",
@@ -269714,16 +267734,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943824/"
     },
     {
-      "value": "http://176.65.139.204/iran.m68k",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:57:24Z",
-      "last_seen": "2026-10-07T11:23:39Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943825/"
-    },
-    {
       "value": "http://176.65.139.204/iran.sh4",
       "type": "url",
       "malware": "",
@@ -269744,16 +267754,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943816/"
     },
     {
-      "value": "http://176.65.139.204/mips",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:57:23Z",
-      "last_seen": "2026-10-07T11:02:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943817/"
-    },
-    {
       "value": "http://176.65.139.204/iran.x86_64",
       "type": "url",
       "malware": "",
@@ -269764,16 +267764,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943818/"
     },
     {
-      "value": "http://176.65.139.204/iran.sparc",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:57:23Z",
-      "last_seen": "2026-10-07T11:03:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943820/"
-    },
-    {
       "value": "http://176.65.139.204/iran.armv4l",
       "type": "url",
       "malware": "",
@@ -269782,26 +267772,6 @@
       "first_seen": "2026-10-06T15:57:23Z",
       "last_seen": "2026-10-07T17:05:16Z",
       "reference": "https://urlhaus.abuse.ch/url/3943821/"
-    },
-    {
-      "value": "http://176.65.139.204/iran.mipsrouter",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:57:23Z",
-      "last_seen": "2026-10-07T10:39:24Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943822/"
-    },
-    {
-      "value": "http://176.65.139.204/iran.armv7l",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:56:36Z",
-      "last_seen": "2026-10-07T07:20:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943813/"
     },
     {
       "value": "http://176.65.139.204/iran.aarch64",
@@ -269824,16 +267794,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943815/"
     },
     {
-      "value": "http://176.65.139.204/iran.arc",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:56:35Z",
-      "last_seen": "2026-10-07T11:21:16Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943811/"
-    },
-    {
       "value": "http://176.65.139.204/cat.sh",
       "type": "url",
       "malware": "",
@@ -269842,16 +267802,6 @@
       "first_seen": "2026-10-06T15:56:35Z",
       "last_seen": "2026-10-07T17:21:09Z",
       "reference": "https://urlhaus.abuse.ch/url/3943812/"
-    },
-    {
-      "value": "http://176.65.139.204/bins/mipsel",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T15:56:28Z",
-      "last_seen": "2026-10-07T12:28:06Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943808/"
     },
     {
       "value": "http://176.65.139.204/telnet.sh",
@@ -269984,16 +267934,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943775/"
     },
     {
-      "value": "https://pub-6a90252f6d70443d960d6ac029dbd446.r2.dev/HiBitUninstaller-setup-4.0.10.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T14:31:44Z",
-      "last_seen": "2026-10-07T10:14:09Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943773/"
-    },
-    {
       "value": "https://pub-ecb7161ffc7a4a67bdd8761583e21d16.r2.dev/miners/srbminer-3.5.6.zip",
       "type": "url",
       "malware": "",
@@ -270012,16 +267952,6 @@
       "first_seen": "2026-10-06T14:31:26Z",
       "last_seen": "2026-10-08T23:38:25Z",
       "reference": "https://urlhaus.abuse.ch/url/3943771/"
-    },
-    {
-      "value": "http://175.165.82.252:42556/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T14:31:21Z",
-      "last_seen": "2026-10-07T07:43:08Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943766/"
     },
     {
       "value": "http://27.24.87.31:36523/i",
@@ -270132,16 +268062,6 @@
       "first_seen": "2026-10-06T13:16:20Z",
       "last_seen": "2026-10-07T18:49:10Z",
       "reference": "https://urlhaus.abuse.ch/url/3943749/"
-    },
-    {
-      "value": "http://112.248.29.124:35682/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T13:01:34Z",
-      "last_seen": "2026-10-07T12:11:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943748/"
     },
     {
       "value": "http://119.117.76.203:33541/bin.sh",
@@ -270264,16 +268184,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3943724/"
     },
     {
-      "value": "http://115.56.151.141:46589/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T12:17:13Z",
-      "last_seen": "2026-10-07T10:53:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943723/"
-    },
-    {
       "value": "http://123.172.82.253:53359/i",
       "type": "url",
       "malware": "",
@@ -270382,16 +268292,6 @@
       "first_seen": "2026-10-06T10:49:25Z",
       "last_seen": "2026-10-08T00:57:16Z",
       "reference": "https://urlhaus.abuse.ch/url/3943701/"
-    },
-    {
-      "value": "http://115.50.221.110:42445/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T10:47:13Z",
-      "last_seen": "2026-10-07T11:05:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3943699/"
     },
     {
       "value": "http://60.176.8.34:50001/i",
@@ -277682,16 +275582,6 @@
       "first_seen": "2026-10-06T09:08:39Z",
       "last_seen": "2026-10-07T23:00:46Z",
       "reference": "https://urlhaus.abuse.ch/url/3942959/"
-    },
-    {
-      "value": "https://github.com/StanLeyJ03/mcp-for-security/raw/refs/heads/main/nmap-mcp/src/for-security-mcp-3.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T09:08:38Z",
-      "last_seen": "2026-10-07T11:09:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3942953/"
     },
     {
       "value": "https://github.com/SenSeiSGS/FasoMovies/raw/refs/heads/main/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir/values-vi/Faso_Movies_springly.zip",
@@ -286344,16 +284234,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3942092/"
     },
     {
-      "value": "https://github.com/Naveenkm007/Automated-Resume-Relevance-Check-System/raw/refs/heads/main/api/__pycache__/System-Relevance-Check-Resume-Automated-v2.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T08:57:19Z",
-      "last_seen": "2026-10-07T11:17:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3942084/"
-    },
-    {
       "value": "https://github.com/giffiepenurious252/agent-launch-scripts/raw/refs/heads/main/atrocha/scripts_agent_launch_benzotetrazine.zip",
       "type": "url",
       "malware": "",
@@ -290562,16 +288442,6 @@
       "first_seen": "2026-10-06T08:53:51Z",
       "last_seen": "2026-10-07T19:21:43Z",
       "reference": "https://urlhaus.abuse.ch/url/3941662/"
-    },
-    {
-      "value": "https://github.com/inseries-latten115/ai-comic-manga-generator/raw/refs/heads/main/epicentral/generator_comic_manga_ai_1.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-06T08:53:21Z",
-      "last_seen": "2026-10-07T05:54:15Z",
-      "reference": "https://urlhaus.abuse.ch/url/3941598/"
     },
     {
       "value": "20.56.70.245",
@@ -300002,6 +297872,2136 @@
       "first_seen": "2026-10-18T15:30:00Z",
       "last_seen": "",
       "reference": "https://threatfox.abuse.ch/ioc/1973164/"
+    },
+    {
+      "value": "touslesregimes.fr",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973165/"
+    },
+    {
+      "value": "trudy-agin.ru",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973166/"
+    },
+    {
+      "value": "truelabs.in",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973167/"
+    },
+    {
+      "value": "unaster.com.tw",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973168/"
+    },
+    {
+      "value": "ung-videre.dk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973169/"
+    },
+    {
+      "value": "unitedgulfsahab.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973170/"
+    },
+    {
+      "value": "vasikotras.hu",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973171/"
+    },
+    {
+      "value": "vipbet789-z.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973172/"
+    },
+    {
+      "value": "vuphongrestaurant.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973173/"
+    },
+    {
+      "value": "wadirumhappytourandcamp.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:30:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973174/"
+    },
+    {
+      "value": "mumuworkshop.site",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973113/"
+    },
+    {
+      "value": "myuniversetravel.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973114/"
+    },
+    {
+      "value": "nagoagencia.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973115/"
+    },
+    {
+      "value": "nasirullah.org",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973116/"
+    },
+    {
+      "value": "neumaticosmarsili.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973117/"
+    },
+    {
+      "value": "nickarnett.net",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973118/"
+    },
+    {
+      "value": "nitab.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973119/"
+    },
+    {
+      "value": "omo11-12.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973120/"
+    },
+    {
+      "value": "open88.tv",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973121/"
+    },
+    {
+      "value": "operationalsurgical.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973122/"
+    },
+    {
+      "value": "paxmilenium.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973123/"
+    },
+    {
+      "value": "personalloanshub.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973124/"
+    },
+    {
+      "value": "petroleumtube.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973125/"
+    },
+    {
+      "value": "pft-plastinnov.fr",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973126/"
+    },
+    {
+      "value": "pixopainting.com.au",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973127/"
+    },
+    {
+      "value": "polcasarosa.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973128/"
+    },
+    {
+      "value": "polygonalnonsense.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973129/"
+    },
+    {
+      "value": "poprazzi.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973130/"
+    },
+    {
+      "value": "powderskiartistry.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973131/"
+    },
+    {
+      "value": "powerbikes.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973132/"
+    },
+    {
+      "value": "prishay.co.il",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973133/"
+    },
+    {
+      "value": "proexsa.cl",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973134/"
+    },
+    {
+      "value": "radiosantateresa.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973135/"
+    },
+    {
+      "value": "rallypass.hu",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973136/"
+    },
+    {
+      "value": "rbarcia.pt",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973137/"
+    },
+    {
+      "value": "residencialbarreto.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973138/"
+    },
+    {
+      "value": "restaurant-polite.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973139/"
+    },
+    {
+      "value": "restaurant.punkthotel.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973140/"
+    },
+    {
+      "value": "rlr.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973141/"
+    },
+    {
+      "value": "rmbatiment.fr",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973142/"
+    },
+    {
+      "value": "robattini.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973143/"
+    },
+    {
+      "value": "seeandboss.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:59Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973144/"
+    },
+    {
+      "value": "inr18650.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973082/"
+    },
+    {
+      "value": "joyforce-tech.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973083/"
+    },
+    {
+      "value": "jpeletricidade.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973084/"
+    },
+    {
+      "value": "k10kplastik.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973085/"
+    },
+    {
+      "value": "kdobox.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973086/"
+    },
+    {
+      "value": "keithkloor.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973087/"
+    },
+    {
+      "value": "kimia.fkip.unila.ac.id",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973088/"
+    },
+    {
+      "value": "kovok.at",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973089/"
+    },
+    {
+      "value": "lalerya.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973090/"
+    },
+    {
+      "value": "lambayecano.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973091/"
+    },
+    {
+      "value": "lapiscina.tv",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973092/"
+    },
+    {
+      "value": "leowebdesign.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973093/"
+    },
+    {
+      "value": "liifa.co.za",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973094/"
+    },
+    {
+      "value": "lukasspricht.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973095/"
+    },
+    {
+      "value": "maiditcleanfl.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973096/"
+    },
+    {
+      "value": "mangxop.info",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973097/"
+    },
+    {
+      "value": "manuelstuerkat.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973098/"
+    },
+    {
+      "value": "martakaras.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973099/"
+    },
+    {
+      "value": "mccorklerealestategroup.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973100/"
+    },
+    {
+      "value": "mechtild-tellmann.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973101/"
+    },
+    {
+      "value": "meetmorse.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973102/"
+    },
+    {
+      "value": "megadress.at",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973103/"
+    },
+    {
+      "value": "mehmetcancan.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973104/"
+    },
+    {
+      "value": "melekcollection.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973105/"
+    },
+    {
+      "value": "mesh-stoffe.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973106/"
+    },
+    {
+      "value": "methanogon.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973107/"
+    },
+    {
+      "value": "mgcal.in",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973108/"
+    },
+    {
+      "value": "mineniches.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973109/"
+    },
+    {
+      "value": "morganaorvokki.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973110/"
+    },
+    {
+      "value": "mountainviewframing-design.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973111/"
+    },
+    {
+      "value": "msml.co.ke",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:58Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973112/"
+    },
+    {
+      "value": "duocphamquocte.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973051/"
+    },
+    {
+      "value": "eaioc.shop",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973052/"
+    },
+    {
+      "value": "ecom.pk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973053/"
+    },
+    {
+      "value": "emineozmete.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973054/"
+    },
+    {
+      "value": "epworld.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973055/"
+    },
+    {
+      "value": "equidream.be",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973056/"
+    },
+    {
+      "value": "eshop.tiles-kupelne.sk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973057/"
+    },
+    {
+      "value": "espacoluzenergia.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973058/"
+    },
+    {
+      "value": "evenstor.in",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973059/"
+    },
+    {
+      "value": "fest-thailand.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973060/"
+    },
+    {
+      "value": "fibraimpresa.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973061/"
+    },
+    {
+      "value": "findmyperfecthome.co.uk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973062/"
+    },
+    {
+      "value": "finelinecard.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973063/"
+    },
+    {
+      "value": "gasthof.punkthotel.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973064/"
+    },
+    {
+      "value": "gateless-gate.info",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973065/"
+    },
+    {
+      "value": "gb69s.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973066/"
+    },
+    {
+      "value": "gdrludica.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973067/"
+    },
+    {
+      "value": "gfbuilding.co.uk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973068/"
+    },
+    {
+      "value": "gibertpaul.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973069/"
+    },
+    {
+      "value": "gitctech.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973070/"
+    },
+    {
+      "value": "gloriadiosconstruction.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973071/"
+    },
+    {
+      "value": "gm4u.co.uk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973072/"
+    },
+    {
+      "value": "go2fuzzy.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973073/"
+    },
+    {
+      "value": "graphicalinsights.co.za",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973074/"
+    },
+    {
+      "value": "gulfexgroup.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973075/"
+    },
+    {
+      "value": "hacopt.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973076/"
+    },
+    {
+      "value": "hail.hu",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973077/"
+    },
+    {
+      "value": "hbo77slot.net",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973078/"
+    },
+    {
+      "value": "idealgestaoeseguranca.com.br",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973079/"
+    },
+    {
+      "value": "iglesiacasademisericordia.org",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973080/"
+    },
+    {
+      "value": "imrcllp.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:57Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973081/"
+    },
+    {
+      "value": "anti-hornhaut.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973019/"
+    },
+    {
+      "value": "aptekabc.ru",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973020/"
+    },
+    {
+      "value": "arsenalnow.co",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973021/"
+    },
+    {
+      "value": "atodu.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973022/"
+    },
+    {
+      "value": "avardrone.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973023/"
+    },
+    {
+      "value": "bcdevelopment.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973024/"
+    },
+    {
+      "value": "birdbeauty.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973025/"
+    },
+    {
+      "value": "blancora.kz",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973026/"
+    },
+    {
+      "value": "blog.clanfamily.de",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973027/"
+    },
+    {
+      "value": "blossomcreation.in",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973028/"
+    },
+    {
+      "value": "boloin.shop",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973029/"
+    },
+    {
+      "value": "captaintec.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973030/"
+    },
+    {
+      "value": "cdrklaw.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973031/"
+    },
+    {
+      "value": "centreoptic.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973032/"
+    },
+    {
+      "value": "chapalote69.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973033/"
+    },
+    {
+      "value": "chetnastailors.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973034/"
+    },
+    {
+      "value": "cinquequarti.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973035/"
+    },
+    {
+      "value": "cjbookmarks.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973036/"
+    },
+    {
+      "value": "cleanveins.org",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973037/"
+    },
+    {
+      "value": "cloudespacios.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973038/"
+    },
+    {
+      "value": "cmsvn.vn",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973039/"
+    },
+    {
+      "value": "confessionscoffee24.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973040/"
+    },
+    {
+      "value": "consegna-express.it",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973041/"
+    },
+    {
+      "value": "cordonbleu.ci",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973042/"
+    },
+    {
+      "value": "dailyhealthtips.blog",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973043/"
+    },
+    {
+      "value": "danabagroup.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973044/"
+    },
+    {
+      "value": "dar-alyasmin.net",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973045/"
+    },
+    {
+      "value": "desaprendiendodigital.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973046/"
+    },
+    {
+      "value": "dezabau.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973047/"
+    },
+    {
+      "value": "disnely1234.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973048/"
+    },
+    {
+      "value": "distiraevents.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973049/"
+    },
+    {
+      "value": "drchristos.gr",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:56Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973050/"
+    },
+    {
+      "value": "1015fest.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973006/"
+    },
+    {
+      "value": "10mand.dk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973007/"
+    },
+    {
+      "value": "126260.xyz",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973008/"
+    },
+    {
+      "value": "4x4sport.nl",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973009/"
+    },
+    {
+      "value": "9uh.ru",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973010/"
+    },
+    {
+      "value": "adawwa.lk",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973011/"
+    },
+    {
+      "value": "adrenalinedesign.ca",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973012/"
+    },
+    {
+      "value": "adumax.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973013/"
+    },
+    {
+      "value": "aestheticphotopresetsstore.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973014/"
+    },
+    {
+      "value": "agropol.ar",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973015/"
+    },
+    {
+      "value": "aimano.nl",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973016/"
+    },
+    {
+      "value": "ananthmulgund.com",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973017/"
+    },
+    {
+      "value": "annesophie-montpied.fr",
+      "type": "domain",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T15:29:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1973018/"
+    },
+    {
+      "value": "45.153.34.79",
+      "type": "ipv4",
+      "malware": "Cobalt Strike",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T13:45:57Z",
+      "last_seen": "2026-10-21T11:46:06Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972759/"
+    },
+    {
+      "value": "42.193.174.245",
+      "type": "ipv4",
+      "malware": "Cobalt Strike",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T13:45:56Z",
+      "last_seen": "2026-10-21T11:46:04Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972758/"
+    },
+    {
+      "value": "103.117.136.32",
+      "type": "ipv4",
+      "malware": "Cobalt Strike",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T13:45:46Z",
+      "last_seen": "2026-10-21T11:45:54Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972755/"
+    },
+    {
+      "value": "47.252.13.1",
+      "type": "ipv4",
+      "malware": "Xtreme RAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T12:40:00Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972708/"
+    },
+    {
+      "value": "http://182.117.28.216:45408/Mozi.m",
+      "type": "url",
+      "malware": "Mozi",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T12:19:12Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972693/"
+    },
+    {
+      "value": "216.158.94.75",
+      "type": "ipv4",
+      "malware": "PureRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:48:48Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972661/"
+    },
+    {
+      "value": "193.233.75.115",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:34:52Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972653/"
+    },
+    {
+      "value": "102.220.161.230",
+      "type": "ipv4",
+      "malware": "Tofsee",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:31:25Z",
+      "last_seen": "2026-10-21T08:18:40Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972642/"
+    },
+    {
+      "value": "46.151.182.129",
+      "type": "ipv4",
+      "malware": "Tofsee",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:31:25Z",
+      "last_seen": "2026-10-21T08:18:40Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972643/"
+    },
+    {
+      "value": "156.251.16.147",
+      "type": "ipv4",
+      "malware": "ValleyRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:17:23Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972624/"
+    },
+    {
+      "value": "47.242.154.94",
+      "type": "ipv4",
+      "malware": "ValleyRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T11:16:14Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972623/"
+    },
+    {
+      "value": "95.133.230.193",
+      "type": "ipv4",
+      "malware": "Evilginx",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:45:40Z",
+      "last_seen": "2026-10-21T11:45:47Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972565/"
+    },
+    {
+      "value": "87.253.104.147",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:45:32Z",
+      "last_seen": "2026-10-21T11:45:39Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972564/"
+    },
+    {
+      "value": "47.121.216.109",
+      "type": "ipv4",
+      "malware": "Chaos",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:45:14Z",
+      "last_seen": "2026-10-21T11:45:22Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972562/"
+    },
+    {
+      "value": "45.139.104.48",
+      "type": "ipv4",
+      "malware": "PureRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:45:00Z",
+      "last_seen": "2026-10-21T11:45:09Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972561/"
+    },
+    {
+      "value": "45.137.194.219",
+      "type": "ipv4",
+      "malware": "Evilginx",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:58Z",
+      "last_seen": "2026-10-21T11:45:07Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972560/"
+    },
+    {
+      "value": "34.58.3.174",
+      "type": "ipv4",
+      "malware": "AsyncRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:51Z",
+      "last_seen": "2026-10-21T11:44:56Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972559/"
+    },
+    {
+      "value": "31.76.96.157",
+      "type": "ipv4",
+      "malware": "AdaptixC2",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:50Z",
+      "last_seen": "2026-10-21T11:44:55Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972558/"
+    },
+    {
+      "value": "202.146.222.229",
+      "type": "ipv4",
+      "malware": "PureRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:16Z",
+      "last_seen": "2026-10-21T11:44:19Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972556/"
+    },
+    {
+      "value": "202.146.222.48",
+      "type": "ipv4",
+      "malware": "PureRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:16Z",
+      "last_seen": "2026-10-21T11:44:19Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972557/"
+    },
+    {
+      "value": "192.253.229.14",
+      "type": "ipv4",
+      "malware": "PureRAT",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:44:06Z",
+      "last_seen": "2026-10-21T11:44:09Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972555/"
+    },
+    {
+      "value": "159.223.126.127",
+      "type": "ipv4",
+      "malware": "AdaptixC2",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:43:43Z",
+      "last_seen": "2026-10-21T11:43:45Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972552/"
+    },
+    {
+      "value": "104.239.66.89",
+      "type": "ipv4",
+      "malware": "DCRat",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:43:10Z",
+      "last_seen": "2026-10-21T11:43:11Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972550/"
+    },
+    {
+      "value": "102.117.169.36",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T09:43:03Z",
+      "last_seen": "2026-10-21T11:43:04Z",
+      "reference": "https://threatfox.abuse.ch/ioc/1972549/"
+    },
+    {
+      "value": "http://jxewele.shop:4262/folders",
+      "type": "url",
+      "malware": "Remus",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:52:23Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972366/"
+    },
+    {
+      "value": "104.168.4.206",
+      "type": "ipv4",
+      "malware": "Bashlite",
+      "sources": "threatfox,urlhaus_filter",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:30:22Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972350/"
+    },
+    {
+      "value": "193.233.20.122",
+      "type": "ipv4",
+      "malware": "Mirai",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:29:17Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972349/"
+    },
+    {
+      "value": "145.63.134.94",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:26:17Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972294/"
+    },
+    {
+      "value": "http://153.117.32.82:40061/Mozi.a",
+      "type": "url",
+      "malware": "Mozi",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:19:24Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972287/"
+    },
+    {
+      "value": "0cb352b4b0aa7039af5ad26fb9cdf491ee852ce34bdaecd1dc84f2173846355b",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:41Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971793/"
+    },
+    {
+      "value": "1f6e9dd9baebb5c7d8cd21074a9e0487a456ada3640d9416bb47cb20782d0825",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:39Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971798/"
+    },
+    {
+      "value": "2077b5bf06f645fa7d299f0bec157a160f1ecd8b3865c820e981a70c44aed9c3",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:38Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971799/"
+    },
+    {
+      "value": "282ccb60f5c8454087c2f3a62787f39336eb9e8bf48a29bcbc9e4ac0f15d5d27",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:38Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971800/"
+    },
+    {
+      "value": "2949ca0c47fd28586de3191ccdc21ef354b992f541cf2f9d4e5d997f08378515",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:37Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971801/"
+    },
+    {
+      "value": "2b31057104798767958a5242f936b402a75fb4ffdd021b32e523bb1e5eebb1d4",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:37Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971802/"
+    },
+    {
+      "value": "2ca6c3778cac6b6c5f81f3188d73c714ba9d23b3f94dd4158c2fac717a6415d0",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:37Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971803/"
+    },
+    {
+      "value": "30705c34d871a91ae2b99345590654a3474fafc17c273a133c698a734da9182d",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:36Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971804/"
+    },
+    {
+      "value": "35b19d784da3b80d53fbdbae42caf30590d3918e344121e4a46f10120ca62ba5",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:36Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971805/"
+    },
+    {
+      "value": "39b93a4a4f77129314f2450934d25036cb1da73eb5239bbeed29deeac2ecdfe1",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:35Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971806/"
+    },
+    {
+      "value": "3e0ef1f05c39829aa28cb3c54b8715d196af7d4fc3a0093a0c619fad63801fce",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:34Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971807/"
+    },
+    {
+      "value": "3fa70d4b0c947d8cc223209ed701fbe2eeab9a2d62d2c67547e531fe190fe8e4",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:34Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971808/"
+    },
+    {
+      "value": "youshouldvecomeover.lol",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:32Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971697/"
+    },
+    {
+      "value": "tooyoungtoholdon.world",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:31Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971698/"
+    },
+    {
+      "value": "cdn.youshouldvecomeover.lol",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:31Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971699/"
+    },
+    {
+      "value": "cdn.tooyoungtoholdon.world",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:30Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971700/"
+    },
+    {
+      "value": "4d05b7ecd6db6ed76e6e5597f4e8a3f36ac3b55dd16874977b4b0db365291e6c",
+      "type": "sha256",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:30Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971703/"
+    },
+    {
+      "value": "maximalmaxing.com",
+      "type": "domain",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:26Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971775/"
+    },
+    {
+      "value": "098f270041bdcb7b0b69a48fc8e026ea53e757525a699adf2a86c79a4fcc4655",
+      "type": "sha256",
+      "malware": "CLOUDHAZE",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:26Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971777/"
+    },
+    {
+      "value": "176.65.139.168",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:25Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971780/"
+    },
+    {
+      "value": "https://pastebin.com/raw/qdBy3x3N",
+      "type": "url",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:23Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971740/"
+    },
+    {
+      "value": "103.179.142.155",
+      "type": "ipv4",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:22Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971739/"
+    },
+    {
+      "value": "api.recapcha.fun",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox,urlhaus",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:10Z",
+      "last_seen": "2026-10-19T23:10:57Z",
+      "reference": "https://urlhaus.abuse.ch/url/3951693/"
+    },
+    {
+      "value": "https://status-handler-sage.vercel.app/api/entered-site",
+      "type": "url",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:07Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971867/"
+    },
+    {
+      "value": "tokenmetrics.org",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:07Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971868/"
+    },
+    {
+      "value": "https://status-handler-sage.vercel.app/api/get-status",
+      "type": "url",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:06Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971866/"
+    },
+    {
+      "value": "mops.to",
+      "type": "domain",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:10:04Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1971817/"
+    },
+    {
+      "value": "http://217.60.194.116/plex",
+      "type": "url",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:09:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972168/"
+    },
+    {
+      "value": "http://217.60.194.116/x",
+      "type": "url",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:09:55Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972169/"
+    },
+    {
+      "value": "http://217.60.194.116/lmaoi686",
+      "type": "url",
+      "malware": "Unknown Loader",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:09:53Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972170/"
+    },
+    {
+      "value": "195.58.146.210",
+      "type": "ipv4",
+      "malware": "Unknown malware",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T06:07:11Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972282/"
+    },
+    {
+      "value": "http://175.107.228.54:39724/Mozi.m",
+      "type": "url",
+      "malware": "Mozi",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T00:19:37Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972130/"
+    },
+    {
+      "value": "http://190.196.253.85:10213/Mozi.m",
+      "type": "url",
+      "malware": "Mozi",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-18T00:19:37Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972131/"
+    },
+    {
+      "value": "http://teculse.click:9210/categories",
+      "type": "url",
+      "malware": "Remus",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-17T22:56:13Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972096/"
+    },
+    {
+      "value": "http://spiohop.shop:9932/workspaces",
+      "type": "url",
+      "malware": "Remus",
+      "sources": "threatfox",
+      "confidence": 75,
+      "first_seen": "2026-10-17T22:56:13Z",
+      "last_seen": "",
+      "reference": "https://threatfox.abuse.ch/ioc/1972097/"
     }
   ]
 }
