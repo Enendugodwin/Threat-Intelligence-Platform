@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-10-27
+# Threat Intel Pulse — 2026-10-28
 
-**Window:** last 7 days · **Generated:** 2026-10-27T22:26:15Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-28T05:57:33Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 90876 |
-| New in window | 27587 |
+| Indicators tracked | 89623 |
+| New in window | 27550 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,24 +16,24 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8677 | ok |
+| tor | 8667 | ok |
 | blocklist_de | 3000 | ok |
-| binarydefense | 390 | ok |
+| binarydefense | 525 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 515 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 3025 | ok |
+| tweetfeed | 1229 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| url | 30735 | 5738 |
-| ipv4 | 27471 | 15279 |
-| domain | 16198 | 5439 |
-| sha256 | 11306 | 838 |
-| ipv6 | 3406 | 247 |
+| url | 29367 | 5567 |
+| ipv4 | 28023 | 15842 |
+| domain | 16150 | 5362 |
+| sha256 | 10918 | 483 |
+| ipv6 | 3405 | 250 |
 | md5 | 904 | 46 |
 | sha1 | 856 | 0 |
 
@@ -41,12 +41,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11833 |
-| Exit nodes | 2262 |
-| Other relays | 9571 |
-| New in window | 980 |
+| Nodes tracked | 11820 |
+| Exit nodes | 2267 |
+| Other relays | 9553 |
+| New in window | 986 |
 
-Sample (20 of 11833, source: Tor Project Onionoo):
+Sample (20 of 11820, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -73,24 +73,24 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6115 | 257 | T1555, T1071.001, T1567 |
-| Unknown Loader | 3629 | 248 | — |
-| IClickFix | 2466 | 622 | — |
-| Mirai | 2377 | 51 | T1498, T1071.001 |
-| Unknown malware | 1724 | 36 | — |
-| ClearFake | 1666 | 19 | — |
-| Cobalt Strike | 1346 | 6 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 1037 | 139 | — |
-| VShell | 899 | 58 | — |
-| php.shin_webshell | 659 | 24 | — |
-| Unknown Stealer | 507 | 9 | — |
+| Vidar | 6111 | 131 | T1555, T1071.001, T1567 |
+| Unknown Loader | 3511 | 217 | — |
+| IClickFix | 2430 | 543 | — |
+| Mirai | 2217 | 17 | T1498, T1071.001 |
+| Unknown malware | 1699 | 31 | — |
+| ClearFake | 1608 | 12 | — |
+| Cobalt Strike | 1345 | 6 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 1026 | 71 | — |
+| VShell | 897 | 33 | — |
+| php.shin_webshell | 651 | 7 | — |
+| Unknown Stealer | 504 | 9 | — |
 | PureRAT | 434 | 2 | — |
 | Sliver | 384 | 4 | T1071.001, T1573, T1090, T1055 |
-| Remus | 372 | 23 | — |
-| Remcos | 370 | 17 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| Remus | 367 | 12 | — |
+| Remcos | 366 | 11 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | AsyncRAT | 334 | 5 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | AdaptixC2 | 297 | 1 | — |
-| MacSync | 257 | 0 | — |
+| MacSync | 256 | 0 | — |
 | Formbook | 217 | 11 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 | DanaBot | 192 | 1 | T1566.001, T1071.001, T1555, T1041 |
 
@@ -98,31 +98,31 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 57250 |
-| T1105 | Ingress Tool Transfer | command-and-control | 17182 |
-| T1566 | Phishing | initial-access | 15508 |
-| T1566.002 | Spearphishing Link | initial-access | 15508 |
-| T1555 | Credentials from Password Stores | credential-access | 9969 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 9773 |
-| T1573 | Encrypted Channel | command-and-control | 8027 |
-| T1204.002 | Malicious File | execution | 6675 |
-| T1498 | Network Denial of Service | impact | 6519 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 6513 |
-| T1552.001 | Credentials In Files | credential-access | 5682 |
-| T1056.001 | Keylogging | collection, credential-access | 1955 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1867 |
-| T1090 | Proxy | command-and-control | 1767 |
-| T1566.001 | Spearphishing Attachment | initial-access | 1598 |
-| T1059.001 | PowerShell | execution | 1358 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 1051 |
-| T1113 | Screen Capture | collection | 1003 |
-| T1041 | Exfiltration Over C2 Channel | exfiltration | 306 |
-| T1189 | Drive-by Compromise | initial-access | 176 |
-| T1218 | System Binary Proxy Execution | defense-evasion | 176 |
+| T1071.001 | Web Protocols | command-and-control | 57485 |
+| T1105 | Ingress Tool Transfer | command-and-control | 15693 |
+| T1566 | Phishing | initial-access | 15648 |
+| T1566.002 | Spearphishing Link | initial-access | 15648 |
+| T1555 | Credentials from Password Stores | credential-access | 9923 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 9727 |
+| T1573 | Encrypted Channel | command-and-control | 8280 |
+| T1498 | Network Denial of Service | impact | 6340 |
+| T1552.001 | Credentials In Files | credential-access | 5640 |
+| T1204.002 | Malicious File | execution | 5184 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 5032 |
+| T1056.001 | Keylogging | collection, credential-access | 1931 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1864 |
+| T1090 | Proxy | command-and-control | 1766 |
+| T1566.001 | Spearphishing Attachment | initial-access | 1591 |
+| T1059.001 | PowerShell | execution | 1357 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 1045 |
+| T1113 | Screen Capture | collection | 997 |
+| T1041 | Exfiltration Over C2 Channel | exfiltration | 305 |
+| T1189 | Drive-by Compromise | initial-access | 166 |
+| T1218 | System Binary Proxy Execution | defense-evasion | 166 |
 | T1059.005 | Visual Basic | execution | 38 |
-| T1486 | Data Encrypted for Impact | impact | 31 |
-| T1490 | Inhibit System Recovery | impact | 31 |
-| T1562.001 | Disable or Modify Tools | defense-evasion | 31 |
+| T1486 | Data Encrypted for Impact | impact | 35 |
+| T1490 | Inhibit System Recovery | impact | 35 |
+| T1562.001 | Disable or Modify Tools | defense-evasion | 35 |
 | T1190 | Exploit Public-Facing Application | initial-access | 21 |
 | T1021.001 | Remote Desktop Protocol | lateral-movement | 12 |
 | T1003 | OS Credential Dumping | credential-access | 4 |
