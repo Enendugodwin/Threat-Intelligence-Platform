@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-10-28T13:14:54Z",
-  "catalog_version": "2026.10.27",
-  "catalog_count": 1760,
+  "generated_at": "2026-10-28T22:43:17Z",
+  "catalog_version": "2026.10.28",
+  "catalog_count": 1762,
   "entries": [
+    {
+      "cve": "CVE-2026-41709",
+      "vendor": "Broadcom",
+      "product": "VMware ESX",
+      "name": "Broadcom VMWare ESX Insufficient Logging Vulnerability",
+      "date_added": "2026-10-28",
+      "due_date": "2026-11-11",
+      "ransomware": false,
+      "description": "Broadcom VMWare ESX contains an insufficient logging vulnerability that could allow a malicious actor with admin access to perform certain operations without being logged.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00297,
+      "epss_percentile": 0.22291
+    },
+    {
+      "cve": "CVE-2026-46300",
+      "vendor": "Linux",
+      "product": "Kernel",
+      "name": "Linux Kernel Missing Initialization of a Variable Vulnerability",
+      "date_added": "2026-10-28",
+      "due_date": "2026-10-31",
+      "ransomware": false,
+      "description": "Linux Kernel contains a missing initialization of a variable vulnerability that could allow for unintended modification of page-cache-backed data via failure to preserve the shared-fragment marker during socket buffer coalescing, causing ESP input processing to decrypt shared fra",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.10192,
+      "epss_percentile": 0.95651
+    },
     {
       "cve": "CVE-2026-48356",
       "vendor": "Adobe",
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.12184,
       "epss_percentile": 0.9605
-    },
-    {
-      "cve": "CVE-2020-9715",
-      "vendor": "Adobe",
-      "product": "Acrobat",
-      "name": "Adobe Acrobat Use-After-Free Vulnerability",
-      "date_added": "2026-04-13",
-      "due_date": "2026-04-27",
-      "ransomware": false,
-      "description": "Adobe Acrobat contains a use-after-free vulnerability that allows for code execution",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.48595,
-      "epss_percentile": 0.98838
-    },
-    {
-      "cve": "CVE-2026-21643",
-      "vendor": "Fortinet",
-      "product": "FortiClient EMS",
-      "name": "Fortinet FortiClient EMS SQL Injection Vulnerability",
-      "date_added": "2026-04-13",
-      "due_date": "2026-04-16",
-      "ransomware": false,
-      "description": "Fortinet FortiClient EMS contains a SQL injection vulnerability that may allow an unauthenticated attacker to execute unauthorized code or commands via specifically crafted HTTP requests.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.93871,
-      "epss_percentile": 0.99843
     }
   ]
 }
