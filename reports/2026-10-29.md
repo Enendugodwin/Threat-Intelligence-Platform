@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-29
 
-**Window:** last 7 days · **Generated:** 2026-10-29T06:03:34Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-29T13:22:28Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 87381 |
-| New in window | 27553 |
+| Indicators tracked | 87692 |
+| New in window | 28091 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,37 +16,37 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 914 | ok |
-| tor | 8673 | ok |
+| tor | 8679 | ok |
 | blocklist_de | 3000 | ok |
 | binarydefense | 430 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 524 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 1298 | ok |
+| tweetfeed | 1368 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 29191 | 17018 |
-| url | 29158 | 5254 |
-| domain | 14072 | 4845 |
-| sha256 | 9967 | 146 |
-| ipv6 | 3392 | 232 |
-| md5 | 831 | 58 |
+| ipv4 | 29553 | 17408 |
+| url | 29219 | 5315 |
+| domain | 14046 | 4921 |
+| sha256 | 9873 | 159 |
+| ipv6 | 3398 | 228 |
+| md5 | 833 | 60 |
 | sha1 | 770 | 0 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11789 |
+| Nodes tracked | 11816 |
 | Exit nodes | 2268 |
-| Other relays | 9521 |
-| New in window | 948 |
+| Other relays | 9548 |
+| New in window | 952 |
 
-Sample (20 of 11789, source: Tor Project Onionoo):
+Sample (20 of 11816, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -73,23 +73,23 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 6045 | 4 | T1555, T1071.001, T1567 |
+| Vidar | 6033 | 4 | T1555, T1071.001, T1567 |
 | Mirai | 2196 | 0 | T1498, T1071.001 |
-| IClickFix | 2066 | 0 | — |
-| Unknown Loader | 2025 | 0 | — |
-| Unknown malware | 1652 | 0 | — |
-| Cobalt Strike | 1341 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| ClearFake | 1091 | 0 | — |
-| AMOS | 1005 | 0 | — |
-| VShell | 887 | 0 | — |
-| php.shin_webshell | 620 | 0 | — |
+| IClickFix | 2065 | 0 | — |
+| Unknown Loader | 1982 | 0 | — |
+| Unknown malware | 1646 | 0 | — |
+| Cobalt Strike | 1338 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| ClearFake | 1080 | 0 | — |
+| AMOS | 999 | 0 | — |
+| VShell | 886 | 0 | — |
+| php.shin_webshell | 609 | 0 | — |
 | Unknown Stealer | 492 | 0 | — |
-| PureRAT | 429 | 0 | — |
+| PureRAT | 425 | 0 | — |
 | Sliver | 375 | 0 | T1071.001, T1573, T1090, T1055 |
-| Remus | 357 | 0 | — |
-| Remcos | 345 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| AsyncRAT | 314 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
-| AdaptixC2 | 292 | 0 | — |
+| Remus | 354 | 0 | — |
+| Remcos | 342 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| AsyncRAT | 312 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| AdaptixC2 | 291 | 0 | — |
 | MacSync | 256 | 0 | — |
 | DanaBot | 192 | 0 | T1566.001, T1071.001, T1555, T1041 |
 | Formbook | 184 | 11 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
@@ -98,24 +98,24 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 56185 |
-| T1566 | Phishing | initial-access | 16131 |
-| T1566.002 | Spearphishing Link | initial-access | 16131 |
-| T1105 | Ingress Tool Transfer | command-and-control | 15115 |
-| T1555 | Credentials from Password Stores | credential-access | 9782 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 9586 |
-| T1573 | Encrypted Channel | command-and-control | 8383 |
-| T1498 | Network Denial of Service | impact | 6279 |
-| T1552.001 | Credentials In Files | credential-access | 5594 |
-| T1204.002 | Malicious File | execution | 4615 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 4463 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1847 |
-| T1056.001 | Keylogging | collection, credential-access | 1827 |
-| T1090 | Proxy | command-and-control | 1753 |
-| T1566.001 | Spearphishing Attachment | initial-access | 1499 |
-| T1059.001 | PowerShell | execution | 1353 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 989 |
-| T1113 | Screen Capture | collection | 941 |
+| T1071.001 | Web Protocols | command-and-control | 56462 |
+| T1566 | Phishing | initial-access | 16344 |
+| T1566.002 | Spearphishing Link | initial-access | 16344 |
+| T1105 | Ingress Tool Transfer | command-and-control | 15021 |
+| T1555 | Credentials from Password Stores | credential-access | 9762 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 9566 |
+| T1573 | Encrypted Channel | command-and-control | 8355 |
+| T1498 | Network Denial of Service | impact | 6261 |
+| T1552.001 | Credentials In Files | credential-access | 5580 |
+| T1204.002 | Malicious File | execution | 4525 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 4373 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1844 |
+| T1056.001 | Keylogging | collection, credential-access | 1813 |
+| T1090 | Proxy | command-and-control | 1750 |
+| T1566.001 | Spearphishing Attachment | initial-access | 1491 |
+| T1059.001 | PowerShell | execution | 1350 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 981 |
+| T1113 | Screen Capture | collection | 933 |
 | T1041 | Exfiltration Over C2 Channel | exfiltration | 302 |
 | T1189 | Drive-by Compromise | initial-access | 165 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 165 |
@@ -133,29 +133,29 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | --- | --- | --- | --- | --- | --- |
 | [`hxxps://allegrolokalnie[.]aukcja865637302[.]cfd/oferta/1984-mz-etz-250/80344`](https://www.virustotal.com/gui/search/https%3A%2F%2Fallegrolokalnie.aukcja865637302.cfd%2Foferta%2F1984-mz-etz-250%2F80344) | url | — | openphish, tweetfeed | 2026-10-27T05:18:21Z | 70 |
 | [`hxxp://echallan[.]party/install`](https://www.virustotal.com/gui/search/http%3A%2F%2Fechallan.party%2Finstall) | url | — | openphish, tweetfeed | 2026-10-21T19:01:12Z | 70 |
-| [`hxxps://my-top-juno-webmail-site[.]webflow[.]io/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmy-top-juno-webmail-site.webflow.io%2F) | url | — | openphish | — | 70 |
-| [`hxxps://g5[.]lu/tyc4k`](https://www.virustotal.com/gui/search/https%3A%2F%2Fg5.lu%2Ftyc4k) | url | — | openphish | — | 70 |
-| [`hxxp://bridge-browser[.]framer[.]website/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fbridge-browser.framer.website%2F) | url | — | openphish | — | 70 |
-| [`hxxp://new-indexproject[.]vercel[.]app/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fnew-indexproject.vercel.app%2F) | url | — | openphish | — | 70 |
-| [`hxxps://sp25ct-zunelo-biz-mareku-vorik[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp25ct-zunelo-biz-mareku-vorik.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://sp28ct-gazur-biz-zemav-vitek[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp28ct-gazur-biz-zemav-vitek.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://zktp25c80sk-mvrn8wur-1r6p8d-yw611a[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fzktp25c80sk-mvrn8wur-1r6p8d-yw611a.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://trezorbridge[.]framer[.]website/`](https://www.virustotal.com/gui/search/http%3A%2F%2Ftrezorbridge.framer.website%2F) | url | — | openphish | — | 70 |
-| [`hxxp://sp28ct-farel-biz-vumel-zitek[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fsp28ct-farel-biz-vumel-zitek.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://marlavi-kxt-belfeta-c5x7dp83[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmarlavi-kxt-belfeta-c5x7dp83.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://vnxld71dran-ylktp55lpw-1m3k8d-qj2294m[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fvnxld71dran-ylktp55lpw-1m3k8d-qj2294m.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://qbxj552skrp-ywsd7yw-3p6p0e-qbx99c[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fqbxj552skrp-ywsd7yw-3p6p0e-qbx99c.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://zktp28fdran-ywsd7lpw-1n4l6d-yw288a[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fzktp28fdran-ywsd7lpw-1n4l6d-yw288a.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://sp18ct10-wulvak-biz-qenari[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp18ct10-wulvak-biz-qenari.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://sp26ct-zumki-biz-rulen-mavko[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp26ct-zumki-biz-rulen-mavko.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://qbxj52b68dr-ywsd7pli-3n4l8g-qbx29c[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fqbxj52b68dr-ywsd7pli-3n4l8g-qbx29c.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://sp28ct-gunem-biz-zorel-ranek[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fsp28ct-gunem-biz-zorel-ranek.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://qbxj54avstr-hlgf4mja-3q2p4g-qbx03c[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fqbxj54avstr-hlgf4mja-3q2p4g-qbx03c.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://mvrn8625nhw-hlgf4fyn-5q0p2g-zk166a[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmvrn8625nhw-hlgf4fyn-5q0p2g-zk166a.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://ql3e20-jmpl91-61tvz-re4o8[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fql3e20-jmpl91-61tvz-re4o8.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://vnxld72cqjr-ylktp64ylk-0q4n2d-bcf51t[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fvnxld72cqjr-ylktp64ylk-0q4n2d-bcf51t.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://quitarhojecomdesconto[.]shop/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fquitarhojecomdesconto.shop%2F) | url | — | openphish | — | 70 |
-| [`hxxp://repairing[.]game-en[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Frepairing.game-en.com%2F) | url | — | openphish | — | 70 |
+| [`hxxps://system-update-account-ilpro[.]vercel[.]app/account-center-support`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsystem-update-account-ilpro.vercel.app%2Faccount-center-support) | url | — | openphish | — | 70 |
+| [`hxxps://www[.]roblox[.]com[.]et/users/1654175985/profile`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.et%2Fusers%2F1654175985%2Fprofile) | url | — | openphish | — | 70 |
+| [`hxxp://bc23[.]primus[.]rcassocies[.]com/W_PRIMUS_WINE_PROD/SignIn?ReturnUrl=%2FW_PRIMUS_WINE_PROD%2F`](https://www.virustotal.com/gui/search/http%3A%2F%2Fbc23.primus.rcassocies.com%2FW_PRIMUS_WINE_PROD%2FSignIn%3FReturnUrl%3D%252FW_PRIMUS_WINE_PROD%252F) | url | — | openphish | — | 70 |
+| [`hxxp://accueilboitear24seconnecte77[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Faccueilboitear24seconnecte77.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxps://accueilsurlespacear24-8744[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Faccueilsurlespacear24-8744.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxp://webnailar24[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fwebnailar24.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxp://accueil-servicear24boite7080[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Faccueil-servicear24boite7080.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxp://accueilservicear24boite9704[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Faccueilservicear24boite9704.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxps://accueilservicear24boite97044[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Faccueilservicear24boite97044.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxp://claud[.]vazbi[.]autos/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fclaud.vazbi.autos%2F) | url | — | openphish | — | 70 |
+| [`hxxps://ipana[.]fwh[.]is/?page_id=15`](https://www.virustotal.com/gui/search/https%3A%2F%2Fipana.fwh.is%2F%3Fpage_id%3D15) | url | — | openphish | — | 70 |
+| [`hxxp://simple-armadillo-6051f0[.]instawp[.]site/wp-content/plugins/indexDSAR24[.]html`](https://www.virustotal.com/gui/search/http%3A%2F%2Fsimple-armadillo-6051f0.instawp.site%2Fwp-content%2Fplugins%2FindexDSAR24.html) | url | — | openphish | — | 70 |
+| [`hxxp://luiz-doc-ref[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fluiz-doc-ref.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxps://auth-ar24espc-web[.]vercel[.]app/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fauth-ar24espc-web.vercel.app%2F) | url | — | openphish | — | 70 |
+| [`hxxps://allergro[.]shop/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fallergro.shop%2F) | url | — | openphish | — | 70 |
+| [`hxxps://ec2-3-11-243-50[.]eu-west-2[.]compute[.]amazonaws[.]com/wp-content/plugins/filester/assets/css/wells/signon[.]php?activity=&client_id=3%2A%24%29%23gNGZsn%2AqPVKtFh%29_MaM%5E5jbz7mr_gQL%21JNE%5EeSqsF2WiS&cmd=signon_submit&crumb=%28jE2Or2uXgruQnLxCeh%21p8Zi7bdAy%2B&done=&email=&id=efc1a9d099203246bf2c87b2caf22b78efc1a9d099203246bf2c87b2caf22b78&intl=&redirect_uri=&session=efc1a9d099203246bf2c87b2caf22b78efc1a9d099203246bf2c87b2caf22b78%3Fsrc%3Dq%2Bm7%5E7bEhz%24ykR_H1XGq`](https://www.virustotal.com/gui/search/https%3A%2F%2Fec2-3-11-243-50.eu-west-2.compute.amazonaws.com%2Fwp-content%2Fplugins%2Ffilester%2Fassets%2Fcss%2Fwells%2Fsignon.php%3Factivity%3D%26client_id%3D3%252A%2524%2529%2523gNGZsn%252AqPVKtFh%2529_MaM%255E5jbz7mr_gQL%2521JNE%255EeSqsF2WiS%26cmd%3Dsignon_submit%26crumb%3D%2528jE2Or2uXgruQnLxCeh%2521p8Zi7bdAy%252B%26done%3D%26email%3D%26id%3Defc1a9d099203246bf2c87b2caf22b78efc1a9d099203246bf2c87b2caf22b78%26intl%3D%26redirect_uri%3D%26session%3Defc1a9d099203246bf2c87b2caf22b78efc1a9d099203246bf2c87b2caf22b78%253Fsrc%253Dq%252Bm7%255E7bEhz%2524ykR_H1XGq) | url | — | openphish | — | 70 |
+| [`hxxps://mvrn80dqtwil-zktp2nnx-5o4m1e-zk477a[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmvrn80dqtwil-zktp2nnx-5o4m1e-zk477a.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxps://ywsd780gpx-qbxj528zkt-5r0p3c-qbx91k[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fywsd780gpx-qbxj528zkt-5r0p3c-qbx91k.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxp://ywsd71b20pz-qbxj5lsi-7r4p8b-ywsq57c[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fywsd71b20pz-qbxj5lsi-7r4p8b-ywsq57c.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxps://sp30ct10-korlevo-biz-zanumi[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp30ct10-korlevo-biz-zanumi.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxp://sp29ct-vemru-biz-lonak-trefu[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fsp29ct-vemru-biz-lonak-trefu.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxp://wlzgb4avstr-fscdhmja-1o0m2g-wlq03c[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fwlzgb4avstr-fscdhmja-1o0m2g-wlq03c.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxps://sp30ct10-kavzako-biz-lunemi[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsp30ct10-kavzako-biz-lunemi.pages.dev%2F) | url | — | openphish | — | 70 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
