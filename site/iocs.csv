@@ -3170,7 +3170,7 @@ de8ff8c9634a91032d66fc10056f11aadf0350d4f6653447476a5535f09c8997,sha256,AMOS,thr
 ba902ec4c0c4aa948c6e64cf3a750472f7db8d21ffe89a841a80622a4fb9744c,sha256,AMOS,threatfox,100,2026-10-17T15:25:49Z,,https://threatfox.abuse.ch/ioc/1971536/
 https://v61.8mytogel.org/c9/,url,Vidar,threatfox,100,2026-10-17T15:25:48Z,,https://threatfox.abuse.ch/ioc/1971535/
 3b65af2a918dee97fcda1c67ad5fd3ff4358ca0a86d06edb09b1971fd6d62ba6,sha256,AMOS,threatfox,100,2026-10-17T15:24:44Z,,https://threatfox.abuse.ch/ioc/1971534/
-130.12.180.32,ipv4,Unknown malware,"et_compromised,threatfox,tweetfeed",100,2026-10-17T15:21:10Z,2026-10-17T20:04:29Z,https://threatfox.abuse.ch/ioc/1971470/
+130.12.180.32,ipv4,Unknown malware,"blocklist_de,et_compromised,threatfox,tweetfeed",100,2026-10-17T15:21:10Z,2026-10-17T20:04:29Z,https://threatfox.abuse.ch/ioc/1971470/
 39rwd49tgi9.xyz,domain,Unknown malware,threatfox,100,2026-10-17T15:21:09Z,,https://threatfox.abuse.ch/ioc/1971471/
 9egu923jfsdf.pro,domain,Unknown malware,threatfox,100,2026-10-17T15:21:09Z,,https://threatfox.abuse.ch/ioc/1971472/
 dfisjqef0s.app,domain,Unknown malware,threatfox,100,2026-10-17T15:21:08Z,,https://threatfox.abuse.ch/ioc/1971473/
@@ -7888,7 +7888,6 @@ https://e9.73kcom.org/ia,url,Vidar,threatfox,100,2026-10-13T18:58:28Z,2026-10-13
 https://e9.73kcom.org/on,url,Vidar,threatfox,100,2026-10-13T18:56:44Z,2026-10-13T18:58:18Z,https://threatfox.abuse.ch/ioc/1963799/
 https://e9.73kcom.org/gg/,url,Vidar,threatfox,100,2026-10-13T18:55:48Z,,https://threatfox.abuse.ch/ioc/1963798/
 https://e9.73kcom.org/gg,url,Vidar,threatfox,100,2026-10-13T18:54:20Z,2026-10-13T18:56:11Z,https://threatfox.abuse.ch/ioc/1963797/
-b5647c0fd1277af2013a25e1f741c742edb64ddd33fcec597855798001bbc02d,sha256,Mirai,"malwarebazaar,threatfox",100,2026-10-13T18:53:17Z,,https://bazaar.abuse.ch/sample/b5647c0fd1277af2013a25e1f741c742edb64ddd33fcec597855798001bbc02d/
 9db3c8bb24468265cc0fb59f20942107059589938de2f0771cbeaee767e73073,sha256,Mirai,"malwarebazaar,threatfox",100,2026-10-13T18:53:15Z,,https://bazaar.abuse.ch/sample/9db3c8bb24468265cc0fb59f20942107059589938de2f0771cbeaee767e73073/
 f113a4ae767e40de26049548cf4ce353031f6459721d51b469bcc907376cf5a9,sha256,Mirai,"malwarebazaar,threatfox",100,2026-10-13T18:53:12Z,,https://bazaar.abuse.ch/sample/f113a4ae767e40de26049548cf4ce353031f6459721d51b469bcc907376cf5a9/
 https://e9.73kcom.org/g7,url,Vidar,threatfox,100,2026-10-13T18:52:16Z,2026-10-13T18:52:42Z,https://threatfox.abuse.ch/ioc/1963777/
@@ -7982,7 +7981,6 @@ https://v.73kcom.org/ewc,url,Vidar,threatfox,100,2026-10-13T16:56:44Z,2026-10-13
 https://v.73kcom.org/w2/,url,Vidar,threatfox,100,2026-10-13T16:55:48Z,,https://threatfox.abuse.ch/ioc/1963488/
 https://v.73kcom.org/w2,url,Vidar,threatfox,100,2026-10-13T16:54:39Z,2026-10-13T16:55:45Z,https://threatfox.abuse.ch/ioc/1963487/
 https://v.73kcom.org/fz,url,Vidar,threatfox,100,2026-10-13T16:54:10Z,,https://threatfox.abuse.ch/ioc/1963485/
-511e48979f24ea79abf1650411ce0ad2dc4830b53fc009dacdc966ac75f81639,sha256,Mirai,"malwarebazaar,threatfox",100,2026-10-13T16:53:12Z,,https://bazaar.abuse.ch/sample/511e48979f24ea79abf1650411ce0ad2dc4830b53fc009dacdc966ac75f81639/
 128.90.108.73,ipv4,Remcos,threatfox,100,2026-10-13T16:52:15Z,,https://threatfox.abuse.ch/ioc/1963449/
 https://v.73kcom.org/un/,url,Vidar,threatfox,100,2026-10-13T16:50:48Z,,https://threatfox.abuse.ch/ioc/1963448/
 https://v.73kcom.org/un,url,Vidar,threatfox,100,2026-10-13T16:50:15Z,2026-10-13T16:52:06Z,https://threatfox.abuse.ch/ioc/1963447/
@@ -9491,19 +9489,15 @@ https://217.60.103.161,url,Vidar,threatfox,100,2026-10-11T07:02:56Z,2026-10-15T2
 0890d39cd6af6f3d6d99ae32e4d05649eb472b6d7d5d1726a0473633fe715e5f,sha256,AMOS,threatfox,100,2026-10-11T07:02:52Z,,https://threatfox.abuse.ch/ioc/1960334/
 fable-shine.com,domain,AMOS,"threatfox,urlhaus",100,2026-10-11T07:02:51Z,2026-10-18T01:15:49Z,https://urlhaus.abuse.ch/url/3947856/
 https://fable-shine.com/curl/g0xsutkb0/iwsnry04os3w6i7z3ufc.dat,url,AMOS,"threatfox,urlhaus",100,2026-10-11T07:02:51Z,,https://urlhaus.abuse.ch/url/3947840/
-8d4fc1e1797743dec4c00583dfe989820eb3c2785cf414feaaf440e54719bd6b,sha256,AMOS,"malwarebazaar,threatfox",100,2026-10-11T07:02:50Z,,https://bazaar.abuse.ch/sample/8d4fc1e1797743dec4c00583dfe989820eb3c2785cf414feaaf440e54719bd6b/
 https://fable-shine.com/f/9ksbxnvwoj7pts0uxop4sa/01pemlfd,url,AMOS,"threatfox,urlhaus",100,2026-10-11T07:02:50Z,2026-10-18T01:15:49Z,https://urlhaus.abuse.ch/url/3947856/
 1d6cd5411bcbfea3f5328b40c62a57b9788a557efc00d927d9d921afe994c19e,sha256,AMOS,"malwarebazaar,threatfox",100,2026-10-11T07:02:50Z,,https://threatfox.abuse.ch/ioc/1960377/
 d1bf789e50cfc13b638867c290f589039eba36f38e3a07aa18ed3ba61e47a80c,sha256,AMOS,threatfox,100,2026-10-11T07:02:49Z,,https://threatfox.abuse.ch/ioc/1960378/
 loop-88.com,domain,AMOS,threatfox,100,2026-10-11T07:02:49Z,,https://threatfox.abuse.ch/ioc/1960379/
 e8ff0ba3bfd76048aca15fb2fc417840ed93991a0e012435e290f520741c523d,sha256,AMOS,threatfox,100,2026-10-11T07:02:49Z,,https://threatfox.abuse.ch/ioc/1960383/
-e2605e9e08fa9f7b1cc23497fec745f290a97a212cc7056c87459544325ac048,sha256,AMOS,"malwarebazaar,threatfox",100,2026-10-11T07:02:48Z,,https://bazaar.abuse.ch/sample/e2605e9e08fa9f7b1cc23497fec745f290a97a212cc7056c87459544325ac048/
 2bff53f12b4bd8a1f4a061b849f7f044b1fedc1dc778cda4f15c1897ca9f5d03,sha256,AMOS,threatfox,100,2026-10-11T07:02:41Z,,https://threatfox.abuse.ch/ioc/1960416/
 396cb8333cfb215f01da97994b7fe070c02fd58b80192090d3e52a647b77fd0f,sha256,AMOS,threatfox,100,2026-10-11T07:02:41Z,,https://threatfox.abuse.ch/ioc/1960421/
 cc84973917d7089aa43eab0b5307b1bb052da6c68931be0ba20444a9ae84d9d5,sha256,VShell,"malwarebazaar,threatfox",100,2026-10-11T07:02:40Z,2026-10-12T22:55:05Z,https://bazaar.abuse.ch/sample/cc84973917d7089aa43eab0b5307b1bb052da6c68931be0ba20444a9ae84d9d5/
 9697dead9eada8f60adf9a7855c8bdf1468f151ebf91089acb1c4bcb52b26aa0,sha256,VShell,"malwarebazaar,threatfox",100,2026-10-11T07:02:40Z,2026-10-12T22:55:06Z,https://bazaar.abuse.ch/sample/9697dead9eada8f60adf9a7855c8bdf1468f151ebf91089acb1c4bcb52b26aa0/
-a9fc1e7b49f06d3d5161c78da1821de4849de3a9994955e0c9660d14e7031220,sha256,VShell,"malwarebazaar,threatfox",100,2026-10-11T07:02:38Z,,https://bazaar.abuse.ch/sample/a9fc1e7b49f06d3d5161c78da1821de4849de3a9994955e0c9660d14e7031220/
-eec3cf8a0e22c37a3f3faa406d01d5a3d39dedc15de1b60a9947764f1c02d028,sha256,VShell,"malwarebazaar,threatfox",100,2026-10-11T07:02:38Z,,https://bazaar.abuse.ch/sample/eec3cf8a0e22c37a3f3faa406d01d5a3d39dedc15de1b60a9947764f1c02d028/
 http://110.42.232.120:8897/?h=110.42.232.120&p=8897&t=tcp&a=a64&stage=true&k=b41bfef6tcp,url,VShell,"threatfox,urlhaus",100,2026-10-11T07:02:37Z,2026-10-14T07:52:47Z,https://threatfox.abuse.ch/ioc/1960434/
 http://110.42.232.120:8897/?h=110.42.232.120&p=8897&t=tcp&a=l64&stage=true&k=b41bfef6tcp,url,VShell,threatfox,100,2026-10-11T07:02:36Z,,https://threatfox.abuse.ch/ioc/1960432/
 http://110.42.232.120:8897/?h=110.42.232.120&p=8897&t=tcp&a=a32&stage=true&k=b41bfef6tcp,url,VShell,"threatfox,urlhaus",100,2026-10-11T07:02:36Z,2026-10-14T11:49:12Z,https://threatfox.abuse.ch/ioc/1960435/
@@ -9527,40 +9521,11 @@ d0f2273f828b10391adcf877ff0775924e4b63435ec240b1047d89a1fa95a229,sha256,SeroRAT,
 webrat.es,domain,SalatStealer,threatfox,100,2026-10-11T07:02:23Z,,https://threatfox.abuse.ch/ioc/1960468/
 https://gp.54toto.org,url,Vidar,threatfox,100,2026-10-11T07:02:22Z,2026-10-11T06:51:03Z,https://threatfox.abuse.ch/ioc/1960478/
 656c960966c12f507a7d80c59bb377be09ac14c16903f7a933d3ef32a4210c53,sha256,AMOS,threatfox,100,2026-10-11T07:02:22Z,,https://threatfox.abuse.ch/ioc/1960486/
-27.50.63.50,ipv4,VShell,threatfox,100,2026-10-11T05:05:05Z,,https://threatfox.abuse.ch/ioc/1960472/
-199.102.217.211,ipv4,VShell,threatfox,100,2026-10-11T05:05:04Z,,https://threatfox.abuse.ch/ioc/1960471/
 77.232.43.21,ipv4,Jackskid,threatfox,100,2026-10-11T04:47:00Z,2026-10-21T04:41:20Z,https://threatfox.abuse.ch/ioc/1960469/
-g5wm6nzi.kulonprogo.org,domain,ClearFake,threatfox,100,2026-10-11T03:03:43Z,,https://threatfox.abuse.ch/ioc/1960441/
 101.34.239.216,ipv4,Jackskid,threatfox,100,2026-10-11T02:44:22Z,2026-10-17T03:06:54Z,https://threatfox.abuse.ch/ioc/1960428/
 119.45.12.154,ipv4,Jackskid,threatfox,100,2026-10-11T02:44:22Z,2026-10-21T04:41:19Z,https://threatfox.abuse.ch/ioc/1960429/
 43.136.129.131,ipv4,Jackskid,threatfox,100,2026-10-11T02:44:22Z,2026-10-21T04:41:19Z,https://threatfox.abuse.ch/ioc/1960430/
 82.157.209.41,ipv4,Jackskid,threatfox,100,2026-10-11T02:44:22Z,2026-10-21T04:41:20Z,https://threatfox.abuse.ch/ioc/1960431/
-3bse5c5d.b00kself.com,domain,ClearFake,threatfox,100,2026-10-11T02:40:00Z,,https://threatfox.abuse.ch/ioc/1960422/
-gp.4-win.org,domain,Vidar,threatfox,100,2026-10-11T00:55:48Z,,https://threatfox.abuse.ch/ioc/1960388/
-https://gp.4-win.org/,url,Vidar,threatfox,100,2026-10-11T00:55:48Z,,https://threatfox.abuse.ch/ioc/1960389/
-gp.54toto.org,domain,Vidar,threatfox,100,2026-10-11T00:40:48Z,,https://threatfox.abuse.ch/ioc/1960385/
-https://gp.54toto.org/,url,Vidar,threatfox,100,2026-10-11T00:40:48Z,,https://threatfox.abuse.ch/ioc/1960386/
-tcea.top,domain,IClickFix,threatfox,100,2026-10-10T23:20:57Z,2026-10-11T00:33:02Z,https://threatfox.abuse.ch/ioc/1960368/
-tennis-forecast.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:57Z,2026-10-11T07:32:02Z,https://threatfox.abuse.ch/ioc/1960369/
-unigadgetz.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:57Z,2026-10-11T00:43:05Z,https://threatfox.abuse.ch/ioc/1960370/
-activesummary.us,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,,https://threatfox.abuse.ch/ioc/1960351/
-amberbriefs.au,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,,https://threatfox.abuse.ch/ioc/1960352/
-asongforyou.cool,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:27:42Z,https://threatfox.abuse.ch/ioc/1960353/
-bakarmandi.online,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:27:53Z,https://threatfox.abuse.ch/ioc/1960354/
-boxingready.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:28:00Z,https://threatfox.abuse.ch/ioc/1960355/
-comomudarsuamente.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:28:14Z,https://threatfox.abuse.ch/ioc/1960356/
-deception52.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:28:27Z,https://threatfox.abuse.ch/ioc/1960357/
-dogbraintrainingpro.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:28:20Z,https://threatfox.abuse.ch/ioc/1960358/
-interiorhomedesignsbylianna.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T00:02:54Z,https://threatfox.abuse.ch/ioc/1960359/
-kohxiv.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:28:34Z,https://threatfox.abuse.ch/ioc/1960360/
-miei.education,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:29:28Z,https://threatfox.abuse.ch/ioc/1960361/
-miit-s.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:29:34Z,https://threatfox.abuse.ch/ioc/1960362/
-orlaproperties.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,,https://threatfox.abuse.ch/ioc/1960363/
-parajulis.com.np,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:29:57Z,https://threatfox.abuse.ch/ioc/1960364/
-playasdealmeria.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:29:41Z,https://threatfox.abuse.ch/ioc/1960365/
-realestateeg.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:31:05Z,https://threatfox.abuse.ch/ioc/1960366/
-revumaster.com,domain,IClickFix,threatfox,100,2026-10-10T23:20:56Z,2026-10-11T07:30:58Z,https://threatfox.abuse.ch/ioc/1960367/
-baboa502.rtplive-miliarbet.online,domain,ClearFake,threatfox,100,2026-10-10T23:07:57Z,,https://threatfox.abuse.ch/ioc/1960346/
 zoastklaeon.pro,domain,IClickFix,threatfox,100,2026-10-10T22:28:45Z,2026-10-20T22:55:08Z,https://threatfox.abuse.ch/ioc/1960340/
 analyze-me2.xyz,domain,IClickFix,threatfox,100,2026-10-10T22:28:44Z,2026-10-12T18:22:52Z,https://threatfox.abuse.ch/ioc/1960336/
 mellow-flicker-comet-pluio.pro,domain,IClickFix,threatfox,100,2026-10-10T22:28:44Z,2026-10-19T15:47:33Z,https://threatfox.abuse.ch/ioc/1960337/
@@ -9587,15 +9552,6 @@ aoclbl1a7jy7swo9b0kk.beer,domain,IClickFix,threatfox,100,2026-10-10T08:24:55Z,20
 rur3c58hk2l6b4wspfaewp.beer,domain,IClickFix,threatfox,100,2026-10-10T08:22:51Z,2026-10-17T20:58:22Z,https://threatfox.abuse.ch/ioc/1959860/
 bm45m70ol5ave2fopggr4q.beer,domain,IClickFix,threatfox,100,2026-10-10T08:15:27Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1959858/
 7wm8zvijixjvah2obebyh.beer,domain,IClickFix,threatfox,100,2026-10-10T08:06:39Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1959852/
-195.20.19.82,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959797/
-195.20.19.88,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959798/
-195.20.19.89,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959799/
-43.156.29.177,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959800/
-43.173.6.125,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959801/
-8.213.238.72,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:14Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959802/
-124.156.214.122,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:13Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959794/
-195.20.19.103,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:13Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959795/
-195.20.19.105,ipv4,Jackskid,threatfox,100,2026-10-10T06:21:13Z,2026-10-11T06:24:43Z,https://threatfox.abuse.ch/ioc/1959796/
 https://hp.333vip.org,url,Vidar,threatfox,100,2026-10-10T06:01:50Z,2026-10-11T14:25:15Z,https://threatfox.abuse.ch/ioc/1959672/
 91.193.43.38,ipv4,Quasar RAT,threatfox,100,2026-10-10T06:00:04Z,2026-10-13T05:05:05Z,https://threatfox.abuse.ch/ioc/1959776/
 penislandrocket.gov.com,domain,IClickFix,threatfox,100,2026-10-10T05:49:27Z,2026-10-17T20:58:22Z,https://threatfox.abuse.ch/ioc/1959772/
@@ -9614,9 +9570,7 @@ mustleadschools.ac.tz,domain,IClickFix,threatfox,100,2026-10-09T21:02:46Z,2026-1
 2.50.131.185,ipv4,AsyncRAT,threatfox,100,2026-10-09T19:44:19Z,2026-10-21T11:44:16Z,https://threatfox.abuse.ch/ioc/1958995/
 https://77.42.10.33,url,Vidar,threatfox,100,2026-10-09T19:32:50Z,2026-10-12T06:16:43Z,https://threatfox.abuse.ch/ioc/1958935/
 https://osmb.net/OSMB.jar,url,Unknown Stealer,"threatfox,urlhaus",100,2026-10-09T19:32:50Z,2026-10-16T01:55:12Z,https://threatfox.abuse.ch/ioc/1958960/
-156.67.105.187,ipv4,Cobalt Strike,threatfox,100,2026-10-09T19:05:05Z,2026-10-11T08:17:50Z,https://threatfox.abuse.ch/ioc/1959039/
 38.247.148.179,ipv4,Remcos,threatfox,100,2026-10-09T18:29:44Z,2026-10-11T23:12:14Z,https://threatfox.abuse.ch/ioc/1958367/
-https://nr.333vip.org,url,Vidar,threatfox,100,2026-10-09T18:29:43Z,2026-10-11T07:28:45Z,https://threatfox.abuse.ch/ioc/1958619/
 boouwer.lol,domain,KongTuke,threatfox,100,2026-10-09T18:29:42Z,2026-10-12T13:42:30Z,https://threatfox.abuse.ch/ioc/1958626/
 bed.camp-cantina.com,domain,ClearFake,threatfox,100,2026-10-09T18:28:40Z,2026-10-16T09:06:11Z,https://threatfox.abuse.ch/ioc/1958897/
 sanxuatmay.com,domain,IClickFix,threatfox,100,2026-10-09T15:17:40Z,2026-10-17T20:47:26Z,https://threatfox.abuse.ch/ioc/1958368/
@@ -9641,7 +9595,6 @@ anwhinweudee.com,domain,DeerStealer,threatfox,100,2026-10-09T10:48:28Z,2026-10-1
 j9af4sr.guru,domain,IClickFix,threatfox,100,2026-10-09T07:46:45Z,2026-10-12T11:03:05Z,https://threatfox.abuse.ch/ioc/1958210/
 https://unalively.com/nfront.php,url,Satacom,threatfox,100,2026-10-09T06:33:26Z,2026-10-20T07:15:47Z,https://threatfox.abuse.ch/ioc/1958188/
 https://westbeavers.com/quarry/deposit,url,Unknown malware,threatfox,100,2026-10-09T06:16:16Z,2026-10-18T17:52:03Z,https://threatfox.abuse.ch/ioc/1958184/
-https://kl.3toto.com,url,Vidar,threatfox,100,2026-10-09T06:04:55Z,2026-10-11T07:31:49Z,https://threatfox.abuse.ch/ioc/1957899/
 http://193.178.158.71/b894jfjw/index.php,url,Amadey,threatfox,100,2026-10-09T06:04:52Z,2026-10-21T11:27:23Z,https://threatfox.abuse.ch/ioc/1957976/
 141.98.10.127,ipv4,Remcos,threatfox,100,2026-10-09T06:04:52Z,2026-10-13T16:39:07Z,https://threatfox.abuse.ch/ioc/1957985/
 a448b2e0b20011a925ff2cdf27b12932dfd331a274b51849f7ab2016954b1063,sha256,AMOS,threatfox,100,2026-10-09T06:04:51Z,2026-10-12T00:32:05Z,https://threatfox.abuse.ch/ioc/1957997/
@@ -9650,8 +9603,6 @@ a448b2e0b20011a925ff2cdf27b12932dfd331a274b51849f7ab2016954b1063,sha256,AMOS,thr
 https://172.105.93.106,url,Vidar,threatfox,100,2026-10-09T06:04:50Z,2026-10-15T14:53:12Z,https://threatfox.abuse.ch/ioc/1958024/
 9d733d1f2fca83a4a407769566fcdf29720fb27495a4b6951bf663a5b978055f,sha256,AMOS,threatfox,100,2026-10-09T06:04:49Z,2026-10-12T00:34:13Z,https://threatfox.abuse.ch/ioc/1958031/
 https://172.238.108.43,url,Vidar,threatfox,100,2026-10-09T06:04:49Z,2026-10-15T14:54:45Z,https://threatfox.abuse.ch/ioc/1958105/
-https://ik.333vip.org,url,Vidar,threatfox,100,2026-10-09T06:04:47Z,2026-10-11T07:30:40Z,https://threatfox.abuse.ch/ioc/1958111/
-https://ik.3toto.com,url,Vidar,threatfox,100,2026-10-09T06:04:46Z,2026-10-11T07:32:57Z,https://threatfox.abuse.ch/ioc/1958133/
 ski.blacklabelfremont.com,domain,ClearFake,threatfox,100,2026-10-09T05:37:32Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1958174/
 172.111.139.12,ipv4,Remcos,threatfox,100,2026-10-09T03:05:05Z,2026-10-21T11:43:51Z,https://threatfox.abuse.ch/ioc/1958156/
 50.114.184.76,ipv4,VShell,threatfox,100,2026-10-09T01:05:05Z,2026-10-15T10:55:14Z,https://threatfox.abuse.ch/ioc/1958106/
@@ -9675,12 +9626,9 @@ lavendertome.co,domain,SmartApeSG,threatfox,100,2026-10-08T14:06:18Z,2026-10-15T
 luck.blacklabelfremont.com,domain,ClearFake,threatfox,100,2026-10-08T06:51:22Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1957014/
 74.241.250.35,ipv4,Havoc,threatfox,100,2026-10-08T06:05:06Z,2026-10-21T11:45:33Z,https://threatfox.abuse.ch/ioc/1957002/
 152.42.197.255,ipv4,Remus,threatfox,100,2026-10-08T05:34:09Z,2026-10-14T21:02:34Z,https://threatfox.abuse.ch/ioc/1956862/
-https://gy.333vip.org,url,Vidar,threatfox,100,2026-10-08T05:34:00Z,2026-10-11T07:32:54Z,https://threatfox.abuse.ch/ioc/1956882/
 194.59.31.200,ipv4,Unknown Stealer,threatfox,100,2026-10-08T05:33:59Z,2026-10-17T06:23:17Z,https://threatfox.abuse.ch/ioc/1956885/
 45.128.234.124,ipv4,Remcos,threatfox,100,2026-10-08T05:33:59Z,2026-10-13T18:24:26Z,https://threatfox.abuse.ch/ioc/1956892/
-https://kl.333vip.org,url,Vidar,threatfox,100,2026-10-08T05:33:50Z,2026-10-11T07:28:55Z,https://threatfox.abuse.ch/ioc/1956936/
 moitruongdothi.com.vn,domain,IClickFix,threatfox,100,2026-10-08T05:23:48Z,2026-10-21T07:12:44Z,https://threatfox.abuse.ch/ioc/1956974/
-skinmyth.pk,domain,IClickFix,threatfox,100,2026-10-08T05:23:48Z,2026-10-11T11:17:06Z,https://threatfox.abuse.ch/ioc/1956986/
 ridge-goalmduix.pro,domain,IClickFix,threatfox,100,2026-10-08T05:23:01Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1956947/
 kraeldskiynlucid.pro,domain,IClickFix,threatfox,100,2026-10-08T05:23:00Z,2026-10-14T11:18:59Z,https://threatfox.abuse.ch/ioc/1956945/
 krioldflaeara-willow.pro,domain,IClickFix,threatfox,100,2026-10-08T05:23:00Z,2026-10-12T18:22:52Z,https://threatfox.abuse.ch/ioc/1956946/
@@ -9699,7 +9647,6 @@ https://ilia-from-izhevsk.club/,url,Unknown Stealer,threatfox,100,2026-10-07T15:
 188.166.229.242,ipv4,Aisuru,threatfox,100,2026-10-07T14:28:47Z,2026-10-17T14:54:48Z,https://threatfox.abuse.ch/ioc/1956312/
 201.79.48.108,ipv4,Aisuru,threatfox,100,2026-10-07T14:28:47Z,2026-10-17T14:54:48Z,https://threatfox.abuse.ch/ioc/1956313/
 207.154.219.20,ipv4,Aisuru,threatfox,100,2026-10-07T14:28:47Z,2026-10-17T10:00:10Z,https://threatfox.abuse.ch/ioc/1956314/
-https://xs.3toto.com,url,Vidar,threatfox,100,2026-10-07T14:27:33Z,2026-10-11T07:21:49Z,https://threatfox.abuse.ch/ioc/1956304/
 102.117.168.65,ipv4,Unknown malware,threatfox,100,2026-10-07T13:05:05Z,2026-10-21T11:43:04Z,https://threatfox.abuse.ch/ioc/1956290/
 cfcher.biz,domain,Remus,threatfox,100,2026-10-07T11:56:18Z,2026-10-15T19:00:47Z,https://threatfox.abuse.ch/ioc/1956283/
 103.83.86.40,ipv4,Remcos,threatfox,100,2026-10-07T11:44:51Z,2026-10-16T15:16:56Z,https://threatfox.abuse.ch/ioc/1956272/
@@ -9718,7 +9665,6 @@ checkyoubrowse.codes,domain,IClickFix,threatfox,100,2026-10-07T09:25:27Z,2026-10
 9d9a2f7efc1c1254af10c9f16dad65235da5b4746ec6d1a4438d11d34a113027,sha256,AMOS,threatfox,100,2026-10-07T07:14:07Z,2026-10-12T00:30:58Z,https://threatfox.abuse.ch/ioc/1956148/
 31.56.19.70,ipv4,Potassium,threatfox,100,2026-10-07T06:57:26Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1956160/
 45.55.202.73,ipv4,Remus,threatfox,100,2026-10-07T04:37:50Z,2026-10-13T18:05:36Z,https://threatfox.abuse.ch/ioc/1955703/
-https://fo.333vip.org,url,Vidar,threatfox,100,2026-10-07T04:37:31Z,2026-10-11T07:45:08Z,https://threatfox.abuse.ch/ioc/1956134/
 fog.blacklabelfremont.com,domain,ClearFake,threatfox,100,2026-10-07T03:46:26Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1956132/
 89.32.41.111,ipv4,Potassium,threatfox,100,2026-10-07T03:45:22Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1956124/
 89.32.41.114,ipv4,Potassium,threatfox,100,2026-10-07T03:45:22Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1956125/
@@ -9736,7 +9682,6 @@ fog.blacklabelfremont.com,domain,ClearFake,threatfox,100,2026-10-07T03:46:26Z,20
 89.32.41.19,ipv4,Potassium,threatfox,100,2026-10-06T16:57:12Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1955698/
 43.228.157.72,ipv4,Remcos,threatfox,100,2026-10-06T16:18:30Z,2026-10-21T07:43:30Z,https://threatfox.abuse.ch/ioc/1955693/
 89.32.41.49,ipv4,Potassium,threatfox,100,2026-10-06T16:03:36Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1955692/
-https://hi.333vip.org,url,Vidar,threatfox,100,2026-10-06T15:21:44Z,2026-10-11T07:45:47Z,https://threatfox.abuse.ch/ioc/1955677/
 102.220.163.130,ipv4,Remcos,threatfox,100,2026-10-06T15:21:43Z,2026-10-18T23:23:58Z,https://threatfox.abuse.ch/ioc/1955683/
 91.92.242.19,ipv4,Potassium,threatfox,100,2026-10-06T15:17:46Z,2026-10-21T04:43:46Z,https://threatfox.abuse.ch/ioc/1955684/
 leaf.cafemartinezsa.com,domain,ClearFake,threatfox,100,2026-10-06T13:26:26Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1954705/
@@ -9756,15 +9701,12 @@ mail0.runport23.lat,domain,RevStealer,threatfox,100,2026-10-06T08:38:09Z,2026-10
 64.89.160.50,ipv4,Remcos,threatfox,100,2026-10-06T08:27:52Z,2026-10-21T07:48:09Z,https://threatfox.abuse.ch/ioc/1954492/
 wind.cafemartinezsa.com,domain,ClearFake,threatfox,100,2026-10-06T06:54:33Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1954409/
 rovgruien.pro,domain,IClickFix,threatfox,100,2026-10-06T05:52:51Z,2026-10-14T11:18:59Z,https://threatfox.abuse.ch/ioc/1954335/
-https://fu.333pwk.org,url,Vidar,threatfox,100,2026-10-06T05:28:13Z,2026-10-11T07:33:23Z,https://threatfox.abuse.ch/ioc/1953319/
-https://fu.396zk.net,url,Vidar,threatfox,100,2026-10-06T05:28:12Z,2026-10-11T07:34:52Z,https://threatfox.abuse.ch/ioc/1953342/
 165.22.244.100,ipv4,Aisuru,threatfox,100,2026-10-06T05:28:08Z,2026-10-12T19:49:44Z,https://threatfox.abuse.ch/ioc/1953366/
 46.101.164.65,ipv4,Aisuru,threatfox,100,2026-10-06T05:28:06Z,2026-10-12T19:49:44Z,https://threatfox.abuse.ch/ioc/1953367/
 134.122.22.105,ipv4,Aisuru,threatfox,100,2026-10-06T05:27:59Z,2026-10-17T08:15:32Z,https://threatfox.abuse.ch/ioc/1953344/
 159.89.95.185,ipv4,Aisuru,threatfox,100,2026-10-06T05:27:55Z,2026-10-12T19:49:44Z,https://threatfox.abuse.ch/ioc/1953365/
 61580abb0483fd27865d711360b3948c76488a472b3ae080c6e2d9fcb8c5b377,sha256,AMOS,"malwarebazaar,threatfox",100,2026-10-06T05:27:29Z,2026-10-12T00:28:55Z,https://threatfox.abuse.ch/ioc/1953900/
 138.68.101.133,ipv4,Aisuru,threatfox,100,2026-10-06T05:27:23Z,2026-10-12T19:49:44Z,https://threatfox.abuse.ch/ioc/1953363/
-https://xg.333pwk.org,url,Vidar,threatfox,100,2026-10-06T05:27:21Z,2026-10-11T07:32:30Z,https://threatfox.abuse.ch/ioc/1954077/
 139.59.101.166,ipv4,Aisuru,threatfox,100,2026-10-06T05:27:18Z,2026-10-12T21:01:46Z,https://threatfox.abuse.ch/ioc/1953364/
 186.194.50.58,ipv4,Remus,threatfox,100,2026-10-06T05:27:15Z,2026-10-20T11:02:40Z,https://threatfox.abuse.ch/ioc/1954248/
 64.227.35.8,ipv4,Havoc,threatfox,100,2026-10-05T20:05:07Z,2026-10-21T11:45:29Z,https://threatfox.abuse.ch/ioc/1953451/
@@ -9775,11 +9717,9 @@ https://xg.333pwk.org,url,Vidar,threatfox,100,2026-10-06T05:27:21Z,2026-10-11T07
 217.60.76.249,ipv4,Unknown RAT,threatfox,100,2026-10-05T12:18:49Z,2026-10-18T10:52:09Z,https://threatfox.abuse.ch/ioc/1952742/
 37.120.206.166,ipv4,Remcos,threatfox,100,2026-10-05T12:12:28Z,2026-10-12T05:00:34Z,https://threatfox.abuse.ch/ioc/1952735/
 216.9.225.162,ipv4,Remcos,threatfox,100,2026-10-05T11:29:21Z,2026-10-19T06:30:07Z,https://threatfox.abuse.ch/ioc/1952684/
-https://ax.396zk.net,url,Vidar,threatfox,100,2026-10-05T09:54:58Z,2026-10-11T07:34:41Z,https://threatfox.abuse.ch/ioc/1952634/
 ciao.nu,domain,IClickFix,threatfox,100,2026-10-05T08:37:10Z,2026-10-21T07:10:45Z,https://threatfox.abuse.ch/ioc/1952489/
 kkeyyou.cc,domain,Unknown Stealer,threatfox,100,2026-10-05T08:26:52Z,2026-10-12T19:44:54Z,https://threatfox.abuse.ch/ioc/1952490/
 64.227.100.23,ipv4,Remus,threatfox,100,2026-10-05T06:15:36Z,2026-10-15T04:08:12Z,https://threatfox.abuse.ch/ioc/1950368/
-https://kh.333pwk.org,url,Vidar,threatfox,100,2026-10-05T06:15:33Z,2026-10-11T06:51:02Z,https://threatfox.abuse.ch/ioc/1951535/
 102.220.163.203,ipv4,CECbot,threatfox,100,2026-10-05T06:15:29Z,2026-10-21T00:08:55Z,https://threatfox.abuse.ch/ioc/1951892/
 https://libraryadvances.com/os,url,FAKEUPDATES,threatfox,100,2026-10-04T16:28:22Z,2026-10-15T04:49:39Z,https://threatfox.abuse.ch/ioc/1950438/
 100.61.249.34,ipv4,Havoc,threatfox,100,2026-10-04T15:05:05Z,2026-10-21T11:43:02Z,https://threatfox.abuse.ch/ioc/1950365/
@@ -9795,8 +9735,6 @@ https://91.92.243.218/,url,Vidar,threatfox,100,2026-10-04T08:21:57Z,2026-10-17T0
 https://217.60.102.236/,url,Vidar,threatfox,100,2026-10-04T08:21:57Z,2026-10-17T08:59:27Z,https://threatfox.abuse.ch/ioc/1949902/
 https://217.60.103.200/,url,Vidar,threatfox,100,2026-10-04T08:21:57Z,2026-10-17T08:59:27Z,https://threatfox.abuse.ch/ioc/1949904/
 106.55.253.229,ipv4,Cobalt Strike,threatfox,100,2026-10-04T08:05:07Z,2026-10-21T11:45:54Z,https://threatfox.abuse.ch/ioc/1950042/
-https://al.396zk.net,url,Vidar,threatfox,100,2026-10-04T08:00:40Z,2026-10-11T07:35:19Z,https://threatfox.abuse.ch/ioc/1949876/
-https://al.333pwk.org,url,Vidar,threatfox,100,2026-10-04T07:17:55Z,2026-10-11T07:32:45Z,https://threatfox.abuse.ch/ioc/1949811/
 checkmybtrobot.cc,domain,IClickFix,threatfox,100,2026-10-04T06:54:49Z,2026-10-13T21:59:20Z,https://threatfox.abuse.ch/ioc/1949063/
 217.60.103.131,ipv4,Remcos,threatfox,100,2026-10-04T06:54:18Z,2026-10-17T03:37:40Z,https://threatfox.abuse.ch/ioc/1949643/
 45.83.182.68,ipv4,Unknown malware,threatfox,100,2026-10-04T06:05:05Z,2026-10-21T11:45:16Z,https://threatfox.abuse.ch/ioc/1949761/
@@ -9807,13 +9745,11 @@ misty-ripple-lark-kraiara.top,domain,IClickFix,threatfox,100,2026-10-03T21:26:40
 49.235.158.141,ipv4,VShell,threatfox,100,2026-10-03T15:05:06Z,2026-10-21T11:46:09Z,https://threatfox.abuse.ch/ioc/1948780/
 87.120.107.15,ipv4,Unknown malware,threatfox,100,2026-10-03T15:05:04Z,2026-10-21T11:45:39Z,https://threatfox.abuse.ch/ioc/1948779/
 144.172.68.200,ipv4,Cobalt Strike,threatfox,100,2026-10-03T13:45:51Z,2026-10-21T11:45:58Z,https://threatfox.abuse.ch/ioc/1948833/
-vale-quaeum-a4hc9.top,domain,IClickFix,threatfox,100,2026-10-03T11:30:04Z,2026-10-11T10:20:19Z,https://threatfox.abuse.ch/ioc/1948506/
 bladehostpi.life,domain,IClickFix,threatfox,100,2026-10-03T11:30:01Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1948504/
 jrxciw2.xyz,domain,AMOS,threatfox,100,2026-10-03T07:31:54Z,2026-10-12T11:03:05Z,https://threatfox.abuse.ch/ioc/1949198/
 a15002c3a3e03145f920c609116f53bbb6648348f037ce93b5abfcf88ecd1b47,sha256,AMOS,threatfox,100,2026-10-03T06:23:13Z,2026-10-12T00:25:34Z,https://threatfox.abuse.ch/ioc/1947397/
 e46343d8d655ef167dc73c4b78b9b52d522f4d07b5558271b0097ff4fdc80502,sha256,AMOS,threatfox,100,2026-10-03T06:14:36Z,2026-10-12T00:23:19Z,https://threatfox.abuse.ch/ioc/1947393/
 752e72d6e61bfa4dcd55c6e82d429e09e798f96ca2415e2b852321edf7807b52,sha256,AMOS,threatfox,100,2026-10-03T06:04:06Z,2026-10-12T00:19:03Z,https://threatfox.abuse.ch/ioc/1946047/
-https://rz.333pwk.org,url,Vidar,threatfox,100,2026-10-03T06:04:05Z,2026-10-11T07:35:09Z,https://threatfox.abuse.ch/ioc/1946053/
 4458ab2eb26c8c155cf530136e0a7cf1ddee41f26547a56bc093d61a83c0a382,sha256,AMOS,"malwarebazaar,threatfox",100,2026-10-03T06:04:03Z,2026-10-12T00:20:09Z,https://threatfox.abuse.ch/ioc/1946115/
 630a1981d41c83fb56574730ca7f45b60170f34d01503136c8e52a32fb4433d5,sha256,AMOS,threatfox,100,2026-10-03T06:04:01Z,2026-10-12T00:21:13Z,https://threatfox.abuse.ch/ioc/1946131/
 94.26.68.68,ipv4,Remcos,threatfox,100,2026-10-03T06:04:01Z,2026-10-12T11:24:18Z,https://threatfox.abuse.ch/ioc/1946187/
@@ -9821,7 +9757,6 @@ https://104.105.28.52,url,Vidar,threatfox,100,2026-10-03T06:03:56Z,2026-10-15T14
 87628449837f593339b85a759140b7de5a37310ed6053b2b0fcb109b422644d3,sha256,AMOS,threatfox,100,2026-10-03T06:03:56Z,2026-10-12T00:22:16Z,https://threatfox.abuse.ch/ioc/1946248/
 51.79.220.125,ipv4,Unknown malware,threatfox,100,2026-10-02T23:05:04Z,2026-10-21T11:45:25Z,https://threatfox.abuse.ch/ioc/1946056/
 31275278d814286082558c6db575872275fcc00f6342844bbeaf3a3227c98ae1,sha256,AMOS,threatfox,100,2026-10-02T21:24:23Z,2026-10-12T00:17:59Z,https://threatfox.abuse.ch/ioc/1945911/
-https://ti.332toto.net,url,Vidar,threatfox,100,2026-10-02T20:44:41Z,2026-10-11T07:34:19Z,https://threatfox.abuse.ch/ioc/1945535/
 099db2b63d103e42ae3f69417dbfdddb1540960b1bb2da777e7b4e3d99a7e444,sha256,AMOS,threatfox,100,2026-10-02T20:44:37Z,2026-10-12T00:16:56Z,https://threatfox.abuse.ch/ioc/1945831/
 9481366073d7b44c96bc7d72dfcd6d1c1409c0d52b5b8518d3c0dcd8515a920d,sha256,AMOS,threatfox,100,2026-10-02T20:44:36Z,2026-10-12T00:15:53Z,https://threatfox.abuse.ch/ioc/1945625/
 154.92.252.59,ipv4,AdaptixC2,threatfox,100,2026-10-02T20:05:04Z,2026-10-21T11:43:38Z,https://threatfox.abuse.ch/ioc/1945913/
@@ -9831,10 +9766,7 @@ velvetreoskslaon.pro,domain,IClickFix,threatfox,100,2026-10-02T18:55:38Z,2026-10
 102.117.170.218,ipv4,Unknown malware,threatfox,100,2026-10-02T17:05:07Z,2026-10-21T11:43:04Z,https://threatfox.abuse.ch/ioc/1945539/
 1fcdc5f768132b249a6920104a495fa348141bf6dcd9d05b10032580e066b2c6,sha256,AMOS,threatfox,100,2026-10-02T15:54:51Z,2026-10-12T00:14:50Z,https://threatfox.abuse.ch/ioc/1945502/
 141.255.166.178,ipv4,Cobalt Strike,threatfox,100,2026-10-02T13:46:24Z,2026-10-21T11:45:58Z,https://threatfox.abuse.ch/ioc/1945758/
-coral-thistle-kilmkruon.top,domain,IClickFix,threatfox,100,2026-10-02T13:36:29Z,2026-10-11T10:20:18Z,https://threatfox.abuse.ch/ioc/1945346/
-https://zu.332toto.net,url,Vidar,threatfox,100,2026-10-02T08:27:46Z,2026-10-11T07:45:43Z,https://threatfox.abuse.ch/ioc/1945218/
 191.124.5.50,ipv4,Cobalt Strike,threatfox,100,2026-10-02T07:41:39Z,2026-10-21T05:23:51Z,https://threatfox.abuse.ch/ioc/1946294/
-https://st.332toto.net,url,Vidar,threatfox,100,2026-10-02T06:30:51Z,2026-10-11T07:45:39Z,https://threatfox.abuse.ch/ioc/1944246/
 amber-weave-otter-luor.pro,domain,IClickFix,threatfox,100,2026-10-01T23:21:26Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1944797/
 relitorin.com,domain,IClickFix,threatfox,100,2026-10-01T22:04:01Z,2026-10-20T15:07:23Z,https://threatfox.abuse.ch/ioc/1944607/
 www.barrycassidyrarebooks.com,domain,Unknown Webinject,threatfox,100,2026-10-01T18:27:18Z,2026-10-15T16:16:24Z,https://threatfox.abuse.ch/ioc/1944059/
@@ -9851,25 +9783,13 @@ www.thelibrarium.com,domain,Unknown Webinject,threatfox,100,2026-10-01T18:27:18Z
 www.author-author.net,domain,Unknown Webinject,threatfox,100,2026-10-01T18:27:17Z,2026-10-15T16:16:24Z,https://threatfox.abuse.ch/ioc/1944058/
 b20f39fc00d242e706b6c30367ad811c676e0575050a4ec2f30104b696944b49,sha256,Mirai,threatfox,100,2026-10-01T16:45:50Z,2026-10-18T10:00:25Z,https://threatfox.abuse.ch/ioc/1944004/
 13.61.179.31,ipv4,Havoc,threatfox,100,2026-10-01T13:05:09Z,2026-10-21T11:43:21Z,https://threatfox.abuse.ch/ioc/1943852/
-https://zi.332toto.net,url,Vidar,threatfox,100,2026-10-01T11:03:46Z,2026-10-11T07:45:35Z,https://threatfox.abuse.ch/ioc/1943779/
 93.185.165.104,ipv4,Cobalt Strike,threatfox,100,2026-10-01T10:05:05Z,2026-10-13T08:21:55Z,https://threatfox.abuse.ch/ioc/1943746/
-https://af.332toto.net,url,Vidar,threatfox,100,2026-10-01T08:14:22Z,2026-10-11T07:44:33Z,https://threatfox.abuse.ch/ioc/1943618/
 217.64.148.147,ipv4,Remcos,threatfox,100,2026-10-01T08:14:20Z,2026-10-13T18:51:00Z,https://threatfox.abuse.ch/ioc/1943672/
-134.122.68.238,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:38Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943602/
 137.184.100.23,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:37Z,2026-10-12T06:40:43Z,https://threatfox.abuse.ch/ioc/1943603/
-138.68.128.163,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:37Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943604/
-157.230.254.212,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:36Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943605/
-157.245.188.54,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:36Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943606/
-167.172.93.168,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:34Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943607/
-168.144.113.82,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:34Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943608/
 206.189.2.86,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:32Z,2026-10-12T06:40:43Z,https://threatfox.abuse.ch/ioc/1943610/
-209.38.240.44,ipv4,Jackskid,threatfox,100,2026-10-01T06:00:31Z,2026-10-11T06:37:17Z,https://threatfox.abuse.ch/ioc/1943611/
-https://lo.332toto.net,url,Vidar,threatfox,100,2026-10-01T05:17:44Z,2026-10-11T07:35:57Z,https://threatfox.abuse.ch/ioc/1943366/
-https://up.332toto.net,url,Vidar,threatfox,100,2026-10-01T05:17:23Z,2026-10-11T07:34:26Z,https://threatfox.abuse.ch/ioc/1943507/
 113.20.0.225,ipv4,VShell,threatfox,100,2026-10-01T02:05:07Z,2026-10-16T13:05:14Z,https://threatfox.abuse.ch/ioc/1943462/
 130.94.67.107,ipv4,Unknown malware,threatfox,100,2026-10-01T02:05:04Z,2026-10-21T11:43:22Z,https://threatfox.abuse.ch/ioc/1943459/
 190.144.146.90,ipv4,Remcos,threatfox,100,2026-09-30T19:00:27Z,2026-10-20T23:52:21Z,https://threatfox.abuse.ch/ioc/1943175/
-https://x2.332toto.net,url,Vidar,threatfox,100,2026-09-30T14:49:40Z,2026-10-11T07:36:21Z,https://threatfox.abuse.ch/ioc/1942921/
 91.92.41.39,ipv4,Remcos,threatfox,100,2026-09-30T14:49:39Z,2026-10-21T07:23:54Z,https://threatfox.abuse.ch/ioc/1942927/
 172.111.138.100,ipv4,Unknown Stealer,threatfox,100,2026-09-30T13:07:34Z,2026-10-11T18:15:22Z,https://threatfox.abuse.ch/ioc/1960895/
 browscheck.codes,domain,IClickFix,threatfox,100,2026-09-30T11:04:12Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1942839/
@@ -9889,7 +9809,6 @@ http://bescaphoto.ga/,url,SmokeLoader,threatfox,100,2026-09-30T09:28:46Z,2026-10
 45.142.142.252,ipv4,AdaptixC2,threatfox,100,2026-09-30T06:01:53Z,2026-10-18T04:05:07Z,https://threatfox.abuse.ch/ioc/1972231/
 45.142.143.152,ipv4,AdaptixC2,threatfox,100,2026-09-30T06:01:52Z,2026-10-18T07:05:05Z,https://threatfox.abuse.ch/ioc/1942481/
 45.86.60.114,ipv4,AdaptixC2,threatfox,100,2026-09-30T06:01:49Z,2026-10-21T11:45:17Z,https://threatfox.abuse.ch/ioc/1951637/
-https://bw.32naga.net,url,Vidar,threatfox,100,2026-09-30T05:49:50Z,2026-10-11T07:37:03Z,https://threatfox.abuse.ch/ioc/1942050/
 http://144.31.151.8/,url,Stealc,threatfox,100,2026-09-30T05:49:38Z,2026-10-21T11:26:02Z,https://threatfox.abuse.ch/ioc/1942167/
 159.89.166.50,ipv4,Remus,threatfox,100,2026-09-30T05:49:36Z,2026-10-12T07:52:05Z,https://threatfox.abuse.ch/ioc/1942168/
 124.198.131.136,ipv4,Remcos,threatfox,100,2026-09-30T05:49:35Z,2026-10-19T23:24:49Z,https://threatfox.abuse.ch/ioc/1942169/
@@ -9899,7 +9818,6 @@ http://144.31.151.8/,url,Stealc,threatfox,100,2026-09-30T05:49:38Z,2026-10-21T11
 155.103.69.249,ipv4,Remcos,threatfox,100,2026-09-30T05:48:53Z,2026-10-21T11:53:06Z,https://threatfox.abuse.ch/ioc/1942554/
 172.111.139.78,ipv4,Remcos,threatfox,100,2026-09-29T19:43:53Z,2026-10-21T11:43:51Z,https://threatfox.abuse.ch/ioc/1942203/
 104.219.238.196,ipv4,AsyncRAT,threatfox,100,2026-09-29T19:05:04Z,2026-10-21T11:43:10Z,https://threatfox.abuse.ch/ioc/1942051/
-https://ed.32naga.net,url,Vidar,threatfox,100,2026-09-29T12:10:35Z,2026-10-11T07:33:09Z,https://threatfox.abuse.ch/ioc/1941664/
 babatech.store,domain,Unknown Loader,threatfox,100,2026-09-29T11:21:54Z,2026-10-17T10:26:46Z,https://threatfox.abuse.ch/ioc/1941678/
 lustkliondruara.space,domain,IClickFix,threatfox,100,2026-09-29T10:49:09Z,2026-10-14T11:18:59Z,https://threatfox.abuse.ch/ioc/1941661/
 46.246.6.15,ipv4,DCRat,threatfox,100,2026-09-29T09:45:40Z,2026-10-21T11:45:20Z,https://threatfox.abuse.ch/ioc/1941642/
@@ -9910,8 +9828,6 @@ https://smashshape.com/nfront.php,url,Unknown malware,threatfox,100,2026-09-29T0
 187.145.62.206,ipv4,Unknown malware,threatfox,100,2026-09-29T07:05:05Z,2026-10-21T11:44:05Z,https://threatfox.abuse.ch/ioc/1941557/
 102.117.165.210,ipv4,Unknown malware,threatfox,100,2026-09-29T07:05:04Z,2026-10-21T11:43:03Z,https://threatfox.abuse.ch/ioc/1941556/
 94.154.40.119,ipv4,Remcos,threatfox,100,2026-09-29T06:28:39Z,2026-10-19T14:25:16Z,https://threatfox.abuse.ch/ioc/1941250/
-https://bh.32naga.net,url,Vidar,threatfox,100,2026-09-29T06:28:38Z,2026-10-11T07:35:20Z,https://threatfox.abuse.ch/ioc/1941251/
-https://pz.32naga.net,url,Vidar,threatfox,100,2026-09-29T06:28:38Z,2026-10-11T07:36:53Z,https://threatfox.abuse.ch/ioc/1941252/
 196.251.121.249,ipv4,CECbot,threatfox,100,2026-09-29T06:28:28Z,2026-10-21T00:08:55Z,https://threatfox.abuse.ch/ioc/1941307/
 104.143.204.78,ipv4,Cobalt Strike,threatfox,100,2026-09-29T04:05:06Z,2026-10-21T11:45:54Z,https://threatfox.abuse.ch/ioc/1941467/
 51.54.125.210,ipv4,Unknown malware,threatfox,100,2026-09-28T19:46:23Z,2026-10-21T11:45:25Z,https://threatfox.abuse.ch/ioc/1941558/
@@ -9934,24 +9850,10 @@ www.somcaregt.com,domain,IClickFix,threatfox,100,2026-09-27T12:42:27Z,2026-10-14
 vivid-roam-cove-gleon.life,domain,IClickFix,threatfox,100,2026-09-27T12:12:32Z,2026-10-14T11:18:59Z,https://threatfox.abuse.ch/ioc/1938955/
 glacial-bloom-wren-croaon.life,domain,IClickFix,threatfox,100,2026-09-27T12:12:31Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1938953/
 64.188.59.224,ipv4,Unknown malware,threatfox,100,2026-09-27T07:05:05Z,2026-10-21T11:45:28Z,https://threatfox.abuse.ch/ioc/1935835/
-https://xx.234-e.com,url,Vidar,threatfox,100,2026-09-26T15:32:09Z,2026-10-11T07:34:25Z,https://threatfox.abuse.ch/ioc/1934828/
-https://hj.234-e.com,url,Vidar,threatfox,100,2026-09-26T15:06:17Z,2026-10-11T07:34:53Z,https://threatfox.abuse.ch/ioc/1934804/
 193.161.193.99,ipv4,AsyncRAT,threatfox,100,2026-09-26T12:44:45Z,2026-10-21T11:44:10Z,https://threatfox.abuse.ch/ioc/1934751/
 http://31.56.19.29/,url,Stealc,threatfox,100,2026-09-26T12:20:26Z,2026-10-18T13:52:43Z,https://threatfox.abuse.ch/ioc/1934711/
 https://2.29.15.189,url,Vidar,threatfox,100,2026-09-26T12:20:25Z,2026-10-21T11:59:47Z,https://threatfox.abuse.ch/ioc/1934702/
 https://2.29.7.186,url,Vidar,threatfox,100,2026-09-26T12:20:24Z,2026-10-21T11:57:46Z,https://threatfox.abuse.ch/ioc/1934692/
-https://az.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:20:23Z,2026-10-11T07:34:27Z,https://threatfox.abuse.ch/ioc/1934700/
-https://bg.177betwin.org,url,Vidar,threatfox,100,2026-09-26T12:20:23Z,2026-10-11T07:34:45Z,https://threatfox.abuse.ch/ioc/1934703/
-https://ge.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:20:22Z,2026-10-11T07:34:05Z,https://threatfox.abuse.ch/ioc/1934683/
-https://ku.16dewaslot.org,url,Vidar,threatfox,100,2026-09-26T12:20:21Z,2026-10-11T07:37:13Z,https://threatfox.abuse.ch/ioc/1934707/
-https://lb.334v.org,url,Vidar,threatfox,100,2026-09-26T12:13:13Z,2026-10-11T07:37:44Z,https://threatfox.abuse.ch/ioc/1934688/
-https://ms.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:13:12Z,2026-10-11T07:47:04Z,https://threatfox.abuse.ch/ioc/1934686/
-https://nw.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:13:11Z,2026-10-11T07:44:16Z,https://threatfox.abuse.ch/ioc/1934687/
-https://nu.234-e.com,url,Vidar,threatfox,100,2026-09-26T12:13:11Z,2026-10-11T07:47:19Z,https://threatfox.abuse.ch/ioc/1934729/
-https://nx.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:13:10Z,2026-10-11T07:44:31Z,https://threatfox.abuse.ch/ioc/1934710/
-https://ze.zk89.net,url,Vidar,threatfox,100,2026-09-26T12:13:08Z,2026-10-11T07:35:42Z,https://threatfox.abuse.ch/ioc/1934699/
-https://xx.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:13:08Z,2026-10-11T07:43:01Z,https://threatfox.abuse.ch/ioc/1934704/
-https://sm.hg77.org,url,Vidar,threatfox,100,2026-09-26T12:13:08Z,2026-10-11T07:44:06Z,https://threatfox.abuse.ch/ioc/1934709/
 46.250.228.119,ipv4,Cobalt Strike,threatfox,100,2026-09-26T08:05:21Z,2026-10-21T11:46:07Z,https://threatfox.abuse.ch/ioc/1934534/
 172.94.46.114,ipv4,Remcos,threatfox,100,2026-09-26T06:20:49Z,2026-10-21T11:43:53Z,https://threatfox.abuse.ch/ioc/1932841/
 2.25.246.239,ipv4,Remcos,threatfox,100,2026-09-26T06:20:26Z,2026-10-20T20:21:36Z,https://threatfox.abuse.ch/ioc/1934260/
@@ -9979,7 +9881,6 @@ barn.blinqueofficial.com,domain,IClickFix,threatfox,100,2026-09-24T14:51:51Z,202
 23.132.164.72,ipv4,AsyncRAT,threatfox,100,2026-09-24T13:05:06Z,2026-10-21T11:44:48Z,https://threatfox.abuse.ch/ioc/1946186/
 84.38.133.167,ipv4,Remcos,threatfox,100,2026-09-24T12:35:43Z,2026-10-21T07:22:31Z,https://threatfox.abuse.ch/ioc/1932247/
 155.103.71.242,ipv4,Remcos,threatfox,100,2026-09-24T09:11:10Z,2026-10-21T09:31:26Z,https://threatfox.abuse.ch/ioc/1932209/
-https://gt.234-e.com,url,Vidar,threatfox,100,2026-09-24T08:07:24Z,2026-10-11T08:02:54Z,https://threatfox.abuse.ch/ioc/1931306/
 155.103.69.57,ipv4,Remcos,threatfox,100,2026-09-24T08:07:23Z,2026-10-21T07:21:29Z,https://threatfox.abuse.ch/ioc/1931310/
 102.117.173.122,ipv4,Unknown malware,threatfox,100,2026-09-24T07:05:08Z,2026-10-21T11:43:04Z,https://threatfox.abuse.ch/ioc/1931305/
 85.11.182.104,ipv4,Cobalt Strike,threatfox,100,2026-09-24T07:05:05Z,2026-10-21T11:46:10Z,https://threatfox.abuse.ch/ioc/1931302/
@@ -10018,8 +9919,6 @@ http://178.16.54.165/,url,Stealc,threatfox,100,2026-09-22T06:39:09Z,2026-10-21T1
 114.132.91.156,ipv4,VShell,threatfox,100,2026-09-21T05:05:06Z,2026-10-20T00:50:10Z,https://threatfox.abuse.ch/ioc/1926297/
 8.133.188.132,ipv4,VShell,threatfox,100,2026-09-21T01:05:06Z,2026-10-19T20:20:09Z,https://threatfox.abuse.ch/ioc/1926209/
 skaedbraearaquiet.life,domain,IClickFix,threatfox,100,2026-09-20T22:19:11Z,2026-10-14T11:18:59Z,https://threatfox.abuse.ch/ioc/1926234/
-https://xd.hg77.org,url,Vidar,threatfox,100,2026-09-20T16:36:19Z,2026-10-11T07:56:34Z,https://threatfox.abuse.ch/ioc/1925903/
-https://oi.hg77.org,url,Vidar,threatfox,100,2026-09-20T14:52:20Z,2026-10-11T07:39:07Z,https://threatfox.abuse.ch/ioc/1925881/
 94.183.235.11,ipv4,Jackskid,threatfox,100,2026-09-20T14:52:16Z,2026-10-17T03:01:18Z,https://threatfox.abuse.ch/ioc/1924863/
 94.183.235.159,ipv4,Jackskid,threatfox,100,2026-09-20T14:52:16Z,2026-10-17T03:01:18Z,https://threatfox.abuse.ch/ioc/1924864/
 94.183.235.249,ipv4,Jackskid,threatfox,100,2026-09-20T14:52:15Z,2026-10-16T15:43:05Z,https://threatfox.abuse.ch/ioc/1924865/
@@ -10034,10 +9933,8 @@ http://193.178.158.107/Bjsw3DlG1/index.php,url,Amadey,threatfox,100,2026-09-20T1
 123.57.146.34,ipv4,Cobalt Strike,threatfox,100,2026-09-19T09:18:59Z,2026-10-21T11:45:57Z,https://threatfox.abuse.ch/ioc/1924396/
 kiln-skioi-c29up.com,domain,IClickFix,threatfox,100,2026-09-19T09:06:06Z,2026-10-19T15:47:33Z,https://threatfox.abuse.ch/ioc/1924393/
 trilliot6776.icu,domain,IClickFix,threatfox,100,2026-09-19T09:06:06Z,2026-10-17T17:17:53Z,https://threatfox.abuse.ch/ioc/1924394/
-https://ma.1hoki.org,url,Vidar,threatfox,100,2026-09-19T06:25:37Z,2026-10-11T07:39:06Z,https://threatfox.abuse.ch/ioc/1924357/
 https://192.142.37.129,url,Vidar,threatfox,100,2026-09-19T05:52:21Z,2026-10-12T07:40:04Z,https://threatfox.abuse.ch/ioc/1924325/
 82.29.92.60,ipv4,Remcos,threatfox,100,2026-09-18T18:19:57Z,2026-10-19T05:50:40Z,https://threatfox.abuse.ch/ioc/1924109/
-https://ma.zk89.net,url,Vidar,threatfox,100,2026-09-18T17:23:47Z,2026-10-11T07:39:02Z,https://threatfox.abuse.ch/ioc/1924001/
 62.60.226.173,ipv4,CECbot,threatfox,100,2026-09-18T13:17:38Z,2026-10-20T14:05:13Z,https://threatfox.abuse.ch/ioc/1923944/
 gaezskoynbrisk.com,domain,IClickFix,threatfox,100,2026-09-18T11:08:56Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1923913/
 81.70.21.163,ipv4,Cobalt Strike,threatfox,100,2026-09-18T08:03:15Z,2026-10-21T11:46:10Z,https://threatfox.abuse.ch/ioc/1926149/
@@ -10049,7 +9946,6 @@ studiokasa.com.br,domain,IClickFix,threatfox,100,2026-09-17T09:22:34Z,2026-10-14
 94.154.43.235,ipv4,CECbot,threatfox,100,2026-09-17T05:41:44Z,2026-10-20T13:54:02Z,https://threatfox.abuse.ch/ioc/1921417/
 http://91.92.242.57/,url,Stealc,threatfox,100,2026-09-17T05:41:36Z,2026-10-13T09:03:14Z,https://threatfox.abuse.ch/ioc/1921459/
 47.238.116.190,ipv4,Unknown malware,threatfox,100,2026-09-17T02:05:06Z,2026-10-18T16:16:06Z,https://threatfox.abuse.ch/ioc/1921441/
-https://k3.zk89.net,url,Vidar,threatfox,100,2026-09-16T16:43:51Z,2026-10-11T07:34:57Z,https://threatfox.abuse.ch/ioc/1921176/
 https://fide45felhs.com/work/,url,Latrodectus,threatfox,100,2026-09-16T15:07:01Z,2026-10-21T11:43:09Z,https://threatfox.abuse.ch/ioc/1921148/
 103.83.86.147,ipv4,Remcos,threatfox,100,2026-09-16T11:47:10Z,2026-10-16T06:16:06Z,https://threatfox.abuse.ch/ioc/1921082/
 www.lambayecano.com,domain,IClickFix,threatfox,100,2026-09-16T09:56:42Z,2026-10-11T07:07:24Z,https://threatfox.abuse.ch/ioc/1921039/
@@ -10059,7 +9955,6 @@ speedpi12321.xyz,domain,IClickFix,threatfox,100,2026-09-16T09:55:55Z,2026-10-14T
 https://5.9.73.173/,url,Vidar,threatfox,100,2026-09-16T08:25:10Z,2026-10-17T08:59:27Z,https://threatfox.abuse.ch/ioc/1920938/
 175.43.223.203,ipv4,Unknown malware,threatfox,100,2026-09-16T03:05:06Z,2026-10-16T18:43:55Z,https://threatfox.abuse.ch/ioc/1920860/
 softgenics.net,domain,IClickFix,threatfox,100,2026-09-15T20:39:52Z,2026-10-17T10:27:28Z,https://threatfox.abuse.ch/ioc/1920634/
-positiveawards.co.uk,domain,IClickFix,threatfox,100,2026-09-15T20:39:51Z,2026-10-11T01:03:09Z,https://threatfox.abuse.ch/ioc/1920626/
 102.220.163.36,ipv4,AsyncRAT,threatfox,100,2026-09-15T19:43:07Z,2026-10-21T11:43:06Z,https://threatfox.abuse.ch/ioc/1934744/
 8.146.227.247,ipv4,Cobalt Strike,threatfox,100,2026-09-15T17:05:06Z,2026-10-21T11:46:10Z,https://threatfox.abuse.ch/ioc/1920429/
 47.108.225.4,ipv4,Cobalt Strike,threatfox,100,2026-09-15T14:05:05Z,2026-10-21T11:46:07Z,https://threatfox.abuse.ch/ioc/1920385/
@@ -10112,7 +10007,6 @@ workworm1412.buzz,domain,IClickFix,threatfox,100,2026-09-13T12:09:12Z,2026-10-20
 longslimpi.life,domain,IClickFix,threatfox,100,2026-09-13T12:09:11Z,2026-10-20T22:55:07Z,https://threatfox.abuse.ch/ioc/1916408/
 130.12.181.199,ipv4,CECbot,threatfox,100,2026-09-13T11:45:55Z,2026-10-20T13:37:49Z,https://threatfox.abuse.ch/ioc/1916263/
 8.134.110.251,ipv4,VShell,threatfox,100,2026-09-13T07:05:05Z,2026-10-13T02:04:59Z,https://threatfox.abuse.ch/ioc/1916153/
-148.66.17.125,ipv4,VShell,threatfox,100,2026-09-13T04:05:07Z,2026-10-11T02:49:15Z,https://threatfox.abuse.ch/ioc/1916115/
 42.194.137.92,ipv4,VShell,threatfox,100,2026-09-13T03:05:06Z,2026-10-13T02:05:26Z,https://threatfox.abuse.ch/ioc/1916093/
 124.221.1.207,ipv4,VShell,threatfox,100,2026-09-13T02:05:05Z,2026-10-13T02:04:50Z,https://threatfox.abuse.ch/ioc/1916072/
 31.70.103.174,ipv4,Cobalt Strike,threatfox,100,2026-09-12T07:55:31Z,2026-10-15T10:46:28Z,https://threatfox.abuse.ch/ioc/1915577/
@@ -10128,7 +10022,6 @@ cee2003.com,domain,IClickFix,threatfox,100,2026-09-10T17:24:09Z,2026-10-17T10:26
 38.76.190.209,ipv4,Cobalt Strike,threatfox,100,2026-09-10T13:48:51Z,2026-10-21T11:46:04Z,https://threatfox.abuse.ch/ioc/1949699/
 216.9.225.150,ipv4,Remcos,threatfox,100,2026-09-10T13:24:15Z,2026-10-20T17:01:44Z,https://threatfox.abuse.ch/ioc/1907156/
 115.159.72.17,ipv4,VShell,threatfox,100,2026-09-10T10:05:04Z,2026-10-13T02:05:17Z,https://threatfox.abuse.ch/ioc/1907080/
-102.220.161.94,ipv4,AsyncRAT,threatfox,100,2026-09-10T02:40:03Z,2026-10-11T08:43:06Z,https://threatfox.abuse.ch/ioc/1906837/
 podnamiot.eu,domain,Unknown RAT,threatfox,100,2026-09-09T20:54:21Z,2026-10-13T19:11:11Z,https://threatfox.abuse.ch/ioc/1906606/
 hetadvieskantoor.nl,domain,Unknown RAT,threatfox,100,2026-09-09T20:54:16Z,2026-10-13T19:10:25Z,https://threatfox.abuse.ch/ioc/1906535/
 darkoobedu.ir,domain,Unknown RAT,threatfox,100,2026-09-09T20:54:15Z,2026-10-13T19:10:24Z,https://threatfox.abuse.ch/ioc/1906504/
@@ -10395,7 +10288,7 @@ gate.albaikmenuonline.com,domain,IClickFix,threatfox,100,2026-09-02T12:37:10Z,20
 mole.albaikmenuonline.com,domain,IClickFix,threatfox,100,2026-09-01T20:37:02Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1892671/
 114.66.27.110,ipv4,Cobalt Strike,threatfox,100,2026-09-01T19:05:04Z,2026-10-21T11:45:55Z,https://threatfox.abuse.ch/ioc/1928356/
 rain.afghankabobgrill.com,domain,IClickFix,threatfox,100,2026-09-01T15:03:06Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1892566/
-109.233.21.109,ipv4,Sliver,"blocklist_de,threatfox",100,2026-09-01T13:37:12Z,2026-10-12T16:00:02Z,https://threatfox.abuse.ch/ioc/1892506/
+109.233.21.109,ipv4,Sliver,"blocklist_de,greensnow,threatfox",100,2026-09-01T13:37:12Z,2026-10-12T16:00:02Z,https://threatfox.abuse.ch/ioc/1892506/
 170.64.162.117,ipv4,Sliver,threatfox,100,2026-09-01T13:37:09Z,2026-10-12T16:00:15Z,https://threatfox.abuse.ch/ioc/1892512/
 49.232.183.87,ipv4,VShell,threatfox,100,2026-09-01T01:05:05Z,2026-10-13T02:04:55Z,https://threatfox.abuse.ch/ioc/1892069/
 102.220.160.198,ipv4,AsyncRAT,threatfox,100,2026-08-31T19:43:05Z,2026-10-21T11:43:05Z,https://threatfox.abuse.ch/ioc/1924407/
@@ -10531,9 +10424,7 @@ verif-key-code.info,domain,IClickFix,threatfox,100,2026-08-11T13:20:00Z,2026-10-
 moniskk.live,domain,IClickFix,threatfox,100,2026-08-11T13:19:54Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1872284/
 132.232.245.164,ipv4,VShell,threatfox,100,2026-08-11T04:05:08Z,2026-10-13T02:06:48Z,https://threatfox.abuse.ch/ioc/1871981/
 180.76.53.183,ipv4,VShell,threatfox,100,2026-08-11T03:05:05Z,2026-10-13T02:06:33Z,https://threatfox.abuse.ch/ioc/1871965/
-192.252.185.78,ipv4,Cobalt Strike,threatfox,100,2026-08-10T20:05:05Z,2026-10-11T10:46:33Z,https://threatfox.abuse.ch/ioc/1871881/
 38.97.63.243,ipv4,vo1d,threatfox,100,2026-08-10T19:31:02Z,2026-10-21T00:33:06Z,https://threatfox.abuse.ch/ioc/1871806/
-192.252.179.24,ipv4,Cobalt Strike,threatfox,100,2026-08-10T19:05:07Z,2026-10-11T10:46:33Z,https://threatfox.abuse.ch/ioc/1871851/
 38.97.63.242,ipv4,vo1d,threatfox,100,2026-08-10T14:24:09Z,2026-10-21T11:37:24Z,https://threatfox.abuse.ch/ioc/1871717/
 volrko.pro,domain,IClickFix,threatfox,100,2026-08-10T09:31:55Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1871610/
 124.222.104.163,ipv4,VShell,threatfox,100,2026-08-09T13:05:07Z,2026-10-13T02:06:39Z,https://threatfox.abuse.ch/ioc/1871329/
@@ -10570,11 +10461,9 @@ vanlife-planner.com,domain,IClickFix,threatfox,100,2026-07-31T07:14:38Z,2026-10-
 xxxmovies.vip,domain,IClickFix,threatfox,100,2026-07-31T07:12:38Z,2026-10-18T15:31:16Z,https://threatfox.abuse.ch/ioc/1865269/
 ebdaatechnology.com,domain,IClickFix,threatfox,100,2026-07-30T07:02:05Z,2026-10-17T10:26:47Z,https://threatfox.abuse.ch/ioc/1864198/
 dk-bat.fr,domain,IClickFix,threatfox,100,2026-07-30T07:01:59Z,2026-10-13T06:35:03Z,https://threatfox.abuse.ch/ioc/1864171/
-victororsolin.com,domain,IClickFix,threatfox,100,2026-07-29T08:57:56Z,2026-10-11T05:21:59Z,https://threatfox.abuse.ch/ioc/1863163/
 therealitalianfood.com,domain,IClickFix,threatfox,100,2026-07-29T08:57:54Z,2026-10-20T22:53:34Z,https://threatfox.abuse.ch/ioc/1863129/
 tesladiagnosticclinic.com,domain,IClickFix,threatfox,100,2026-07-29T08:57:53Z,2026-10-15T17:54:14Z,https://threatfox.abuse.ch/ioc/1863121/
 sdc.contact,domain,IClickFix,threatfox,100,2026-07-29T08:57:51Z,2026-10-18T15:29:59Z,https://threatfox.abuse.ch/ioc/1863070/
-orionplus.biz,domain,IClickFix,threatfox,100,2026-07-29T08:57:07Z,2026-10-11T00:53:07Z,https://threatfox.abuse.ch/ioc/1862993/
 chogonfacilities.com,domain,IClickFix,threatfox,100,2026-07-29T08:55:50Z,2026-10-13T20:13:06Z,https://threatfox.abuse.ch/ioc/1862752/
 enter-code-cdn.info,domain,Unknown malware,threatfox,100,2026-07-29T08:52:59Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1862664/
 cheloks.pro,domain,Unknown malware,threatfox,100,2026-07-29T08:50:21Z,2026-10-16T09:06:11Z,https://threatfox.abuse.ch/ioc/1862645/
@@ -10601,7 +10490,6 @@ krabochel.pro,domain,Unknown malware,threatfox,100,2026-07-23T10:03:07Z,2026-10-
 malekos.pro,domain,Unknown Webinject,threatfox,100,2026-07-22T00:50:31Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1855118/
 152.136.253.101,ipv4,Cobalt Strike,threatfox,100,2026-07-21T12:05:05Z,2026-10-21T11:45:59Z,https://threatfox.abuse.ch/ioc/1906134/
 markdl.pro,domain,Unknown malware,threatfox,100,2026-07-21T06:56:06Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1854771/
-cucumber-oslo.cc,domain,Unknown Stealer,threatfox,100,2026-07-19T20:39:00Z,2026-10-10T21:59:15Z,https://threatfox.abuse.ch/ioc/1853923/
 markol.pro,domain,Unknown Webinject,threatfox,100,2026-07-19T12:22:05Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1853765/
 auth-id-browser.info,domain,Unknown malware,threatfox,100,2026-07-18T09:33:31Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1853327/
 babelo.pro,domain,Unknown malware,threatfox,100,2026-07-18T09:32:40Z,2026-10-16T09:06:11Z,https://threatfox.abuse.ch/ioc/1853326/
@@ -10650,7 +10538,6 @@ https://thisisafalsepositive.st/shard/submitMinecraftLog,url,Unknown malware,thr
 idverification-code.beer,domain,Unknown malware,threatfox,100,2026-06-22T08:24:12Z,2026-10-17T20:58:22Z,https://threatfox.abuse.ch/ioc/1835471/
 holopebamiy.bond,domain,Unknown malware,threatfox,100,2026-06-19T09:52:20Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1834071/
 mamamiadomio.cfd,domain,Unknown malware,threatfox,100,2026-06-19T09:52:19Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1834070/
-110.42.232.120,ipv4,VShell,"threatfox,urlhaus_filter",100,2026-06-19T09:00:14Z,2026-10-11T02:49:13Z,https://threatfox.abuse.ch/ioc/1834041/
 birdybird.rest,domain,Unknown malware,threatfox,100,2026-06-18T10:09:59Z,2026-10-16T09:06:11Z,https://threatfox.abuse.ch/ioc/1833759/
 codecerification.beer,domain,Unknown malware,threatfox,100,2026-06-18T10:09:58Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1833758/
 20.39.60.137,ipv4,Havoc,threatfox,100,2026-06-17T17:00:15Z,2026-10-21T11:44:17Z,https://threatfox.abuse.ch/ioc/1833500/
@@ -10669,7 +10556,6 @@ slivkishow.asia,domain,Unknown malware,threatfox,100,2026-06-12T14:54:58Z,2026-1
 misterslivker.asia,domain,Unknown malware,threatfox,100,2026-06-12T12:25:54Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1830890/
 thisismine.asia,domain,Unknown malware,threatfox,100,2026-06-11T09:16:22Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1830047/
 120.55.3.157,ipv4,Cobalt Strike,threatfox,100,2026-06-11T06:43:04Z,2026-10-21T11:45:57Z,https://threatfox.abuse.ch/ioc/1830006/
-34.92.128.98,ipv4,Cobalt Strike,threatfox,100,2026-06-10T07:18:53Z,2026-10-11T10:46:35Z,https://threatfox.abuse.ch/ioc/1825788/
 ethercdnns.beer,domain,Unknown malware,threatfox,100,2026-06-10T06:47:20Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1825773/
 mylovedomen.asia,domain,Unknown malware,threatfox,100,2026-06-10T06:45:05Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1825762/
 8.163.59.20,ipv4,Cobalt Strike,threatfox,100,2026-06-10T06:00:25Z,2026-10-21T11:46:10Z,https://threatfox.abuse.ch/ioc/1825703/
@@ -10733,7 +10619,6 @@ kineticnode.shop,domain,Unknown malware,threatfox,100,2026-04-28T19:26:28Z,2026-
 etomoe.cfd,domain,Unknown malware,threatfox,100,2026-04-28T06:21:52Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1801406/
 http://91.92.242.236/oPvjr94jfe/index.php,url,Amadey,threatfox,100,2026-04-26T18:11:00Z,2026-10-21T11:57:11Z,https://threatfox.abuse.ch/ioc/1800411/
 ivangay.bond,domain,Unknown malware,threatfox,100,2026-04-25T20:45:41Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1800148/
-sa1atik.cn,domain,SalatStealer,threatfox,100,2026-04-25T16:07:23Z,2026-10-11T03:46:56Z,https://threatfox.abuse.ch/ioc/1800052/
 document-share-id382929992933.sisregcel.com,domain,Unknown malware,threatfox,100,2026-04-24T06:20:28Z,2026-10-12T13:55:15Z,https://threatfox.abuse.ch/ioc/1797008/
 etomoidomen.cfd,domain,Unknown malware,threatfox,100,2026-04-23T22:45:07Z,2026-10-16T09:06:12Z,https://threatfox.abuse.ch/ioc/1796886/
 prokladka.lol,domain,Unknown malware,threatfox,100,2026-04-23T19:55:22Z,2026-10-16T09:06:13Z,https://threatfox.abuse.ch/ioc/1796755/
@@ -11060,7 +10945,6 @@ pensi.me,domain,Cobalt Strike,threatfox,100,2025-08-23T04:00:06Z,2026-10-21T11:4
 129.28.85.210,ipv4,Cobalt Strike,threatfox,100,2025-05-30T08:00:11Z,2026-10-21T11:42:10Z,https://threatfox.abuse.ch/ioc/1536831/
 161.35.176.231,ipv4,Havoc,threatfox,100,2025-05-29T22:26:34Z,2026-10-21T11:43:46Z,https://threatfox.abuse.ch/ioc/1536683/
 217.154.212.25,ipv4,Cobalt Strike,threatfox,100,2025-05-28T08:01:49Z,2026-10-21T11:46:03Z,https://threatfox.abuse.ch/ioc/1549426/
-101.37.236.20,ipv4,Cobalt Strike,threatfox,100,2025-05-27T16:54:47Z,2026-10-11T10:46:22Z,https://threatfox.abuse.ch/ioc/1739277/
 38.54.23.241,ipv4,pupy,threatfox,100,2025-05-26T06:29:51Z,2026-10-21T11:45:01Z,https://threatfox.abuse.ch/ioc/1534703/
 221.132.29.137,ipv4,Unknown malware,threatfox,100,2025-05-24T20:01:31Z,2026-10-21T11:44:47Z,https://threatfox.abuse.ch/ioc/1533613/
 117.72.206.39,ipv4,Cobalt Strike,threatfox,100,2025-05-21T08:00:35Z,2026-10-21T11:42:17Z,https://threatfox.abuse.ch/ioc/1527752/
@@ -12130,7 +12014,6 @@ f417ce91cb83439e3ca4a8b2fe15420ace2a6de0bc5ac628525842b3812cb3c8,sha256,Mirai,th
 b3f2ff2437ceb642bafa11c804bf648ac9cb96abe85483ae7cb3e9fc9701796e,sha256,Mirai,threatfox,95,2026-10-16T23:53:44Z,,https://threatfox.abuse.ch/ioc/1970555/
 5c93a036c695dfba618e2df0dcdd28be50a352f1f7fea01803298a6876e72b6b,sha256,Mirai,threatfox,95,2026-10-16T23:53:43Z,,https://threatfox.abuse.ch/ioc/1970554/
 2ee3959ef6364452ba6c61e4d70052842c1c6218b5cf64a519f15698047907ba,sha256,Mirai,threatfox,95,2026-10-16T23:53:42Z,,https://threatfox.abuse.ch/ioc/1970553/
-2be31561bd8f52525db38009dc5c6730e82441b907960e617bff97ded4fe602c,sha256,Mirai,"malwarebazaar,threatfox",95,2026-10-16T22:54:22Z,,https://bazaar.abuse.ch/sample/2be31561bd8f52525db38009dc5c6730e82441b907960e617bff97ded4fe602c/
 448eefd781b3b6ecee0658169cf957924c985e578af5d94745f1c7460044c637,sha256,Mirai,"malwarebazaar,threatfox",95,2026-10-16T22:54:20Z,,https://threatfox.abuse.ch/ioc/1970530/
 852a35927d9139c21ed8528085d22b03d0b7dc905fc4b09edb08870a92cdaa07,sha256,Mirai,threatfox,95,2026-10-16T22:54:06Z,,https://threatfox.abuse.ch/ioc/1970516/
 70bc01bc4d6bd607c2cd07d88f8b22055db912deeda8baab4b05b48c28c23ac0,sha256,Mirai,threatfox,95,2026-10-16T22:54:05Z,,https://threatfox.abuse.ch/ioc/1970515/
@@ -12202,7 +12085,6 @@ fc09cf6556d51f47fac884e51c4eff76d43bf44ab9dba7578123d8aa19dd3585,sha256,Mirai,th
 f52824d120c097cbca20a105bfef128d103b9ee54c9ba9cafe38c8d79a95bfea,sha256,Mirai,threatfox,95,2026-10-16T19:54:18Z,,https://threatfox.abuse.ch/ioc/1970379/
 eb2ee7f82fbb97e22c940a837e3544f9d0ebee6ca4e875cd45eb36f546154635,sha256,Mirai,threatfox,95,2026-10-16T19:54:17Z,,https://threatfox.abuse.ch/ioc/1970378/
 c151368e6297fcd311f548fe124e6e41b7c14986465bc558b8ebc69e9265b26c,sha256,Mirai,threatfox,95,2026-10-16T19:54:16Z,,https://threatfox.abuse.ch/ioc/1970377/
-a0a03d5fb69f31799f722a1b6ea113b0a53bc4bb3fde026609d17a33c2898d0e,sha256,Mirai,"malwarebazaar,threatfox",95,2026-10-16T19:54:15Z,,https://bazaar.abuse.ch/sample/a0a03d5fb69f31799f722a1b6ea113b0a53bc4bb3fde026609d17a33c2898d0e/
 81d7dffda57efaf6b0c2f288aaf741b2e15252da07a9c5dc6f29ff1aedee58a0,sha256,Mirai,threatfox,95,2026-10-16T19:53:58Z,,https://threatfox.abuse.ch/ioc/1970358/
 02fae52adc28a56c65b55feef0ed6814d26627bb95d772fde7d586c45aead8fd,sha256,Mirai,threatfox,95,2026-10-16T19:53:51Z,,https://threatfox.abuse.ch/ioc/1970351/
 c0692c79ce61f72e5e7b52bf2d8ad49e060c01c5c0a351da8caf16bdc942acdf,sha256,Mirai,threatfox,95,2026-10-16T19:53:50Z,,https://threatfox.abuse.ch/ioc/1970350/
@@ -13287,8 +13169,6 @@ adcb75520b9e7cc05a1236844453005064fa2131,sha1,stealler,threatfox,95,2026-10-11T1
 af75f43a0311eda6a3aa5da8adfd80fdb61b343a90694563d439a28b1cc68d9f,sha256,RN Stealer,"malwarebazaar,threatfox",95,2026-10-11T15:46:28Z,2026-10-12T22:54:48Z,https://threatfox.abuse.ch/ioc/1960725/
 1475d06a0d05e2e48c5a324015ab39e72fefbfbb,sha1,RN Stealer,threatfox,95,2026-10-11T15:46:28Z,2026-10-12T22:54:48Z,https://threatfox.abuse.ch/ioc/1960726/
 http://31.77.144.86:49104/ddb64.dll,url,Coinminer,"threatfox,urlhaus",95,2026-10-10T23:07:04Z,2026-10-21T09:29:49Z,https://threatfox.abuse.ch/ioc/1960345/
-cb4c28fdc8a1bc5671a48cd81c5aac5438d64001ca1ad2a2ef6b133d3c79493a,sha256,Mirai,"malwarebazaar,threatfox",95,2026-10-10T22:12:44Z,,https://threatfox.abuse.ch/ioc/1960327/
-cbdb650d0d991d2102d4bbe24130c63130908c0e50ee381c4c9ca495d4cdf08c,sha256,Mirai,"malwarebazaar,threatfox",95,2026-10-10T22:12:43Z,,https://threatfox.abuse.ch/ioc/1960326/
 45b8c5064a92c60ea747e3bdd7dbe201fe8577942c048f1e942e9237e3b9a6ec,sha256,GCleaner,"malwarebazaar,threatfox",95,2026-10-10T21:09:06Z,2026-10-11T15:47:23Z,https://bazaar.abuse.ch/sample/45b8c5064a92c60ea747e3bdd7dbe201fe8577942c048f1e942e9237e3b9a6ec/
 82967b6c24f52664a3b9399f853ea812,md5,Coinminer,threatfox,95,2026-10-10T21:09:06Z,2026-10-11T15:47:23Z,https://threatfox.abuse.ch/ioc/1960284/
 c4404f65fe9d57709f0a0387fe1dd741e1b8fbc3,sha1,GCleaner,threatfox,95,2026-10-10T21:09:06Z,2026-10-11T15:47:23Z,https://threatfox.abuse.ch/ioc/1960286/
@@ -15029,13 +14909,9 @@ turbo-rs.ch,domain,ClearFake,threatfox,90,2026-10-11T08:18:01Z,,https://threatfo
 www.seinfor.pe,domain,ClearFake,threatfox,90,2026-10-11T08:18:01Z,,https://threatfox.abuse.ch/ioc/1960532/
 80163426481ee9c85839da927aa861ff55021680a7e836653054bd1092463072,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:58Z,,https://threatfox.abuse.ch/ioc/1960529/
 b821afb910005d067ad8ec2708ddb10727db728ccc28958a18f6a240e594af51,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:57Z,,https://threatfox.abuse.ch/ioc/1960528/
-d674e3bba48c3f07da03f2f16acecaaf07299922f17ac3c50ed4708bc7c99260,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:56Z,,https://bazaar.abuse.ch/sample/d674e3bba48c3f07da03f2f16acecaaf07299922f17ac3c50ed4708bc7c99260/
 690e5586023270cbdf3bbef3a2206d3fb3bce08c5950c81969ab55056f0324bc,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:55Z,,https://threatfox.abuse.ch/ioc/1960526/
 118385e79114cb138d99509523ec8288069f5a04479428ade0c5b2f95a080b99,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:54Z,,https://threatfox.abuse.ch/ioc/1960525/
-9ea1f8e83c99a88df3c938529d76d343cca7fbb37c3948f1560a2b39da2bd4ab,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:53Z,,https://bazaar.abuse.ch/sample/9ea1f8e83c99a88df3c938529d76d343cca7fbb37c3948f1560a2b39da2bd4ab/
 6e28fc6c91da0bd6028f5148f9dfd9ddd873079eb887046d9f309a9b86e61ae4,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:52Z,,https://threatfox.abuse.ch/ioc/1960523/
-729238bab5e3bb8ada801a6389cf2ebcbf1d6313d772ac20f998771248f9556f,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:51Z,,https://bazaar.abuse.ch/sample/729238bab5e3bb8ada801a6389cf2ebcbf1d6313d772ac20f998771248f9556f/
-de6a0b3f76eda0589d0bcd6f4308f1ba5287acd153b74d2c06af1899dabc0252,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:49Z,,https://bazaar.abuse.ch/sample/de6a0b3f76eda0589d0bcd6f4308f1ba5287acd153b74d2c06af1899dabc0252/
 3f4a3cbf20414848a9a37f1ac3f642faab9d693b75c3dd1a72fdf336c0ee2ce8,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:45Z,,https://threatfox.abuse.ch/ioc/1960518/
 7661c8eda1654c01a5d449ff89cd9102d5298aaf74351d13eb29749f471d3b8e,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:44Z,,https://threatfox.abuse.ch/ioc/1960517/
 e31a8269293613c46da61382464d32102fab048169a326294800f8e322e92fde,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:43Z,,https://threatfox.abuse.ch/ioc/1960516/
@@ -15048,38 +14924,6 @@ a04b451463f7814783e4d8350ae7aabf27dad1ceb9a7165b22a4cc07aff317b2,sha256,Mirai,"m
 23b0a91bd40db32e324467945bd595e3bb3d66561949801ec1e931aa36b3f8c4,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-11T08:12:34Z,,https://threatfox.abuse.ch/ioc/1960508/
 https://wssc.flavorroute.cc/,url,Unknown malware,threatfox,90,2026-10-11T07:02:29Z,,https://threatfox.abuse.ch/ioc/1960452/
 payload1717.pro,domain,ClearFake,"threatfox,tweetfeed",90,2026-10-11T06:56:30Z,2026-10-12T11:03:05Z,https://threatfox.abuse.ch/ioc/1960487/
-https://web.aloha-hk.com/,url,Unknown malware,threatfox,90,2026-10-11T05:30:54Z,,https://threatfox.abuse.ch/ioc/1960474/
-https://trazoseguro.com/,url,Unknown malware,threatfox,90,2026-10-11T04:30:54Z,,https://threatfox.abuse.ch/ioc/1960463/
-https://taazaproducts.com/,url,Unknown malware,threatfox,90,2026-10-11T03:30:53Z,,https://threatfox.abuse.ch/ioc/1960443/
-https://blaze-x.com/Brazzers.msi,url,Unknown malware,"threatfox,urlhaus",90,2026-10-11T03:08:58Z,2026-10-11T07:04:12Z,https://threatfox.abuse.ch/ioc/1960442/
-https://orlaproperties.com/,url,Unknown malware,threatfox,90,2026-10-11T02:00:54Z,,https://threatfox.abuse.ch/ioc/1960415/
-https://miit-s.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960395/
-https://comomudarsuamente.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960396/
-https://amberbriefs.au/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960397/
-https://activesummary.us/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960398/
-https://asongforyou.cool/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960399/
-https://deception52.com/cgi-sys/defaultwebpage.cgi,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960400/
-https://kohxiv.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960401/
-https://www.miei.education/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960402/
-https://interiorhomedesignsbylianna.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960403/
-https://parajulis.com.np/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960404/
-https://revumaster.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960405/
-https://tcea.top/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960406/
-https://realestateeg.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960407/
-https://playasdealmeria.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960408/
-https://tennis-forecast.com/,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960409/
-https://bakarmandi.online/?i=1,url,Unknown malware,threatfox,90,2026-10-11T01:30:53Z,,https://threatfox.abuse.ch/ioc/1960410/
-www.miei.education,domain,ClearFake,threatfox,90,2026-10-11T00:43:05Z,,https://threatfox.abuse.ch/ioc/1960387/
-https://boxingready.com/,url,Unknown malware,threatfox,90,2026-10-10T23:30:52Z,,https://threatfox.abuse.ch/ioc/1960371/
-https://unigadgetz.com/,url,Unknown malware,threatfox,90,2026-10-10T23:30:52Z,,https://threatfox.abuse.ch/ioc/1960372/
-amberchronicles.store,domain,ClearFake,threatfox,90,2026-10-10T23:12:02Z,2026-10-10T23:20:56Z,https://threatfox.abuse.ch/ioc/1960349/
-agentificial.com,domain,ClearFake,threatfox,90,2026-10-10T23:12:02Z,2026-10-10T23:20:56Z,https://threatfox.abuse.ch/ioc/1960350/
-https://lydigital.com.br/,url,Unknown malware,threatfox,90,2026-10-10T22:30:57Z,,https://threatfox.abuse.ch/ioc/1960341/
-bafa2a82ec1bf371ef0c28e94730091c43302f50492a72fcc429403ba0889f49,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-10T22:12:50Z,,https://threatfox.abuse.ch/ioc/1960332/
-ee08d74477ee187ac5694e07f6deace4f1cec4b8955468df9cc9059ee20bc63f,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-10T22:12:49Z,,https://threatfox.abuse.ch/ioc/1960331/
-e81982006eb1a6643b10b103c8e94b5ee63d6ef293cc21d53a2b3ba9a93ba0fa,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-10T22:12:48Z,,https://threatfox.abuse.ch/ioc/1960330/
-972a8e1eb9cfa81b96888ba74120917eed6a2d9c9b77c4de8105026e4fc04787,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-10T22:12:47Z,,https://threatfox.abuse.ch/ioc/1960329/
-f4e87418b810b69cf43ef33d876c7b119718f15a3cbc8562e344c32a74e2c26c,sha256,Mirai,"malwarebazaar,threatfox",90,2026-10-10T22:12:46Z,,https://threatfox.abuse.ch/ioc/1960328/
 f8e41136e3b1ef6daaff98f665139a528978bb375431014efd996de9ae79ec93,sha256,Mirai,threatfox,90,2026-10-10T14:12:36Z,2026-10-12T10:41:40Z,https://threatfox.abuse.ch/ioc/1960032/
 76c3ad51a52899878a89cb49cbfc034aa810f837d893a8bff63dfa6af788f4ef,sha256,Mirai,threatfox,90,2026-10-10T13:12:50Z,2026-10-12T10:41:31Z,https://threatfox.abuse.ch/ioc/1960012/
 f87a3f6bd5b29ccef54d8d32847993288c60289effe935519593aff5038eef0f,sha256,Mirai,threatfox,90,2026-10-10T13:12:38Z,2026-10-12T10:41:01Z,https://threatfox.abuse.ch/ioc/1960001/
@@ -15408,8 +15252,6 @@ c50aaeeb818ba3fd2ff56ff05702286ee3700461f84d2b499a0de2a4c99f5cdc,sha256,Unknown 
 http://101.43.115.8:7777/?h=101.43.115.8&p=7777&t=ws&a=w32&stage=true,url,Unknown malware,threatfox,85,2026-10-11T22:54:17Z,,https://threatfox.abuse.ch/ioc/1961094/
 365d1b01cd5e605f6e7d39b192aaf56040176f2bce6eaec0fc11584850793a83,sha256,SmartLoader,threatfox,85,2026-10-11T11:12:47Z,,https://threatfox.abuse.ch/ioc/1960630/
 2def5f3586564612e03fa8b57bf3e8f2c4aede6f3be47001890c472b87ff79ee,sha256,SmartLoader,threatfox,85,2026-10-11T11:12:45Z,,https://threatfox.abuse.ch/ioc/1960629/
-a4b1e1a980e7d870df771f0f9e15a456dce9632ea95fd01a3a9d3ce53adc0b9b,sha256,SmartLoader,threatfox,85,2026-10-11T02:12:39Z,,https://threatfox.abuse.ch/ioc/1960417/
-d14856969df860a679ad1060c7d2a81dd60180d0f5fd22988a4c09de0a6de11b,sha256,SmartLoader,threatfox,85,2026-10-10T22:12:51Z,,https://threatfox.abuse.ch/ioc/1960333/
 a505de0af54408dcde2f869608398a409908543a43fad15397a342b2200f8a52,sha256,Payload ,threatfox,85,2026-09-12T13:44:25Z,2026-10-20T16:59:26Z,https://threatfox.abuse.ch/ioc/1915664/
 https://checkout.bloamnu.shop/wp-admin/css/colors/sunrise/securedz_stub.ps1,url,,urlhaus,80,2026-10-21T11:58:10Z,2026-10-21T11:58:10Z,https://urlhaus.abuse.ch/url/3953435/
 http://107.172.238.46/Decorousness.ocx,url,,urlhaus,80,2026-10-21T11:58:07Z,2026-10-21T11:58:07Z,https://urlhaus.abuse.ch/url/3953434/
@@ -20246,7 +20088,6 @@ http://42.231.65.187:33162/i,url,,urlhaus,80,2026-10-11T05:32:11Z,2026-10-13T07:
 http://151.234.36.221:38747/i,url,,urlhaus,80,2026-10-11T05:02:07Z,2026-10-12T11:30:47Z,https://urlhaus.abuse.ch/url/3947787/
 http://125.45.67.66:58929/i,url,,urlhaus,80,2026-10-11T05:02:07Z,2026-10-11T23:20:29Z,https://urlhaus.abuse.ch/url/3947788/
 http://124.6.169.54:60212/i,url,,urlhaus,80,2026-10-11T05:02:07Z,2026-10-11T17:53:55Z,https://urlhaus.abuse.ch/url/3947789/
-http://124.234.246.166:43392/i,url,,urlhaus,80,2026-10-11T05:02:06Z,2026-10-11T06:21:36Z,https://urlhaus.abuse.ch/url/3947786/
 http://175.149.67.216:46495/bin.sh,url,,urlhaus,80,2026-10-11T05:00:14Z,2026-10-13T02:13:21Z,https://urlhaus.abuse.ch/url/3947785/
 http://182.117.163.106:60149/bin.sh,url,,urlhaus,80,2026-10-11T04:33:13Z,2026-10-12T23:37:12Z,https://urlhaus.abuse.ch/url/3947784/
 http://123.11.179.154:53385/i,url,,urlhaus,80,2026-10-11T04:32:06Z,2026-10-11T17:42:08Z,https://urlhaus.abuse.ch/url/3947783/
@@ -20264,25 +20105,19 @@ http://216.126.74.218:33541/i,url,,urlhaus,80,2026-10-11T02:47:17Z,2026-10-18T00
 http://222.141.73.146:57830/i,url,,urlhaus,80,2026-10-11T02:32:06Z,2026-10-13T00:05:49Z,https://urlhaus.abuse.ch/url/3947771/
 http://117.63.227.203:44848/i,url,,urlhaus,80,2026-10-11T02:17:07Z,2026-10-11T17:19:18Z,https://urlhaus.abuse.ch/url/3947770/
 http://60.19.222.107:49101/i,url,,urlhaus,80,2026-10-11T02:15:17Z,2026-10-12T18:08:47Z,https://urlhaus.abuse.ch/url/3947769/
-http://27.204.199.141:42258/i,url,,urlhaus,80,2026-10-11T02:02:06Z,2026-10-11T06:42:20Z,https://urlhaus.abuse.ch/url/3947768/
 http://85.185.55.80:56473/i,url,,urlhaus,80,2026-10-11T01:57:13Z,2026-10-12T11:36:51Z,https://urlhaus.abuse.ch/url/3947767/
 http://222.137.77.98:37558/bin.sh,url,,urlhaus,80,2026-10-11T01:47:07Z,2026-10-11T13:38:18Z,https://urlhaus.abuse.ch/url/3947766/
 http://85.185.55.80:56473/bin.sh,url,,urlhaus,80,2026-10-11T01:39:14Z,2026-10-12T06:27:39Z,https://urlhaus.abuse.ch/url/3947765/
-http://119.166.65.199:53016/i,url,,urlhaus,80,2026-10-11T01:32:07Z,2026-10-11T12:42:51Z,https://urlhaus.abuse.ch/url/3947764/
 http://222.137.97.203:53364/i,url,,urlhaus,80,2026-10-11T01:32:06Z,2026-10-12T19:54:46Z,https://urlhaus.abuse.ch/url/3947763/
 http://123.7.227.193:49853/i,url,,urlhaus,80,2026-10-11T01:26:08Z,2026-10-12T13:10:24Z,https://urlhaus.abuse.ch/url/3947762/
 http://115.57.239.216:55215/i,url,,urlhaus,80,2026-10-11T01:17:07Z,2026-10-11T20:12:38Z,https://urlhaus.abuse.ch/url/3947760/
-http://182.121.185.230:37370/i,url,,urlhaus,80,2026-10-11T01:17:07Z,2026-10-11T12:44:01Z,https://urlhaus.abuse.ch/url/3947761/
-http://59.96.138.194:34405/i,url,,urlhaus,80,2026-10-11T01:10:20Z,2026-10-11T01:10:20Z,https://urlhaus.abuse.ch/url/3947759/
 http://123.7.227.193:49853/bin.sh,url,,urlhaus,80,2026-10-11T01:05:21Z,2026-10-12T14:15:55Z,https://urlhaus.abuse.ch/url/3947758/
 http://182.113.203.175:59417/bin.sh,url,,urlhaus,80,2026-10-11T01:02:07Z,2026-10-12T16:30:53Z,https://urlhaus.abuse.ch/url/3947756/
-http://123.5.190.28:39075/i,url,,urlhaus,80,2026-10-11T01:01:18Z,2026-10-11T05:30:54Z,https://urlhaus.abuse.ch/url/3947755/
 http://113.206.97.32:54393/i,url,,urlhaus,80,2026-10-11T00:47:16Z,2026-10-17T12:58:46Z,https://urlhaus.abuse.ch/url/3947754/
 http://115.55.31.152:49253/bin.sh,url,,urlhaus,80,2026-10-11T00:47:07Z,2026-10-11T19:37:06Z,https://urlhaus.abuse.ch/url/3947752/
 http://115.55.236.179:49862/i,url,,urlhaus,80,2026-10-11T00:47:07Z,2026-10-12T06:08:33Z,https://urlhaus.abuse.ch/url/3947753/
 http://42.59.247.94:45590/bin.sh,url,,urlhaus,80,2026-10-11T00:42:18Z,2026-10-14T01:51:16Z,https://urlhaus.abuse.ch/url/3947751/
 http://218.24.252.208:47504/bin.sh,url,,urlhaus,80,2026-10-11T00:41:16Z,2026-10-14T17:52:38Z,https://urlhaus.abuse.ch/url/3947750/
-http://123.5.190.28:39075/bin.sh,url,,urlhaus,80,2026-10-11T00:34:18Z,2026-10-11T00:34:18Z,https://urlhaus.abuse.ch/url/3947749/
 http://175.151.180.248:33943/i,url,,urlhaus,80,2026-10-11T00:32:07Z,2026-10-18T01:36:37Z,https://urlhaus.abuse.ch/url/3947746/
 http://180.191.16.24:33057/i,url,,urlhaus,80,2026-10-11T00:32:07Z,2026-10-16T17:52:34Z,https://urlhaus.abuse.ch/url/3947747/
 http://115.55.31.152:49253/i,url,,urlhaus,80,2026-10-11T00:32:07Z,2026-10-11T19:35:53Z,https://urlhaus.abuse.ch/url/3947748/
@@ -20293,35 +20128,25 @@ http://182.127.70.192:40331/bin.sh,url,,urlhaus,80,2026-10-11T00:02:05Z,2026-10-
 http://115.62.177.67:57569/bin.sh,url,,urlhaus,80,2026-10-10T23:57:15Z,2026-10-11T19:43:26Z,https://urlhaus.abuse.ch/url/3947739/
 http://113.206.97.32:54393/bin.sh,url,,urlhaus,80,2026-10-10T23:47:16Z,2026-10-17T15:55:50Z,https://urlhaus.abuse.ch/url/3947738/
 http://202.1.26.13:40289/bin.sh,url,,urlhaus,80,2026-10-10T23:47:07Z,2026-10-14T01:06:10Z,https://urlhaus.abuse.ch/url/3947736/
-http://82.114.178.6:51897/i,url,,urlhaus,80,2026-10-10T23:47:07Z,2026-10-10T23:47:07Z,https://urlhaus.abuse.ch/url/3947737/
 http://95.237.154.159:51303/i,url,,urlhaus,80,2026-10-10T23:32:06Z,2026-10-18T01:48:31Z,https://urlhaus.abuse.ch/url/3947735/
 http://60.24.126.151:45260/bin.sh,url,,urlhaus,80,2026-10-10T23:25:13Z,2026-10-12T18:28:39Z,https://urlhaus.abuse.ch/url/3947734/
 http://103.125.31.101:38195/i,url,,urlhaus,80,2026-10-10T23:02:06Z,2026-10-12T19:55:11Z,https://urlhaus.abuse.ch/url/3947732/
-http://182.126.90.240:41878/i,url,,urlhaus,80,2026-10-10T23:00:08Z,2026-10-11T07:18:04Z,https://urlhaus.abuse.ch/url/3947731/
 http://27.215.89.229:49916/bin.sh,url,,urlhaus,80,2026-10-10T22:59:07Z,2026-10-11T23:17:15Z,https://urlhaus.abuse.ch/url/3947730/
-http://182.126.90.240:41878/bin.sh,url,,urlhaus,80,2026-10-10T22:54:09Z,2026-10-10T23:17:11Z,https://urlhaus.abuse.ch/url/3947729/
 http://115.49.75.50:51236/i,url,,urlhaus,80,2026-10-10T22:53:19Z,2026-10-13T11:23:38Z,https://urlhaus.abuse.ch/url/3947728/
 http://119.166.241.219:33688/i,url,,urlhaus,80,2026-10-10T22:51:11Z,2026-10-12T04:21:06Z,https://urlhaus.abuse.ch/url/3947727/
 http://115.55.7.254:57618/i,url,,urlhaus,80,2026-10-10T22:47:07Z,2026-10-12T17:57:29Z,https://urlhaus.abuse.ch/url/3947724/
-http://196.74.47.206:34746/i,url,,urlhaus,80,2026-10-10T22:47:07Z,2026-10-11T06:04:00Z,https://urlhaus.abuse.ch/url/3947726/
-http://196.189.96.59:55280/i,url,,urlhaus,80,2026-10-10T22:47:05Z,2026-10-11T11:29:24Z,https://urlhaus.abuse.ch/url/3947723/
-http://182.116.34.137:46080/bin.sh,url,,urlhaus,80,2026-10-10T22:40:18Z,2026-10-10T23:17:19Z,https://urlhaus.abuse.ch/url/3947722/
 http://115.49.75.50:51236/bin.sh,url,,urlhaus,80,2026-10-10T22:32:18Z,2026-10-13T08:31:58Z,https://urlhaus.abuse.ch/url/3947721/
 http://115.56.157.201:48194/i,url,,urlhaus,80,2026-10-10T22:32:07Z,2026-10-11T19:49:19Z,https://urlhaus.abuse.ch/url/3947717/
 http://203.177.251.31:45494/i,url,,urlhaus,80,2026-10-10T22:32:07Z,2026-10-18T00:15:03Z,https://urlhaus.abuse.ch/url/3947718/
 http://201.110.101.29:38216/i,url,,urlhaus,80,2026-10-10T22:32:07Z,2026-10-12T00:31:08Z,https://urlhaus.abuse.ch/url/3947719/
 http://119.166.241.219:33688/bin.sh,url,,urlhaus,80,2026-10-10T22:22:09Z,2026-10-11T23:49:11Z,https://urlhaus.abuse.ch/url/3947716/
-http://115.57.194.125:35763/i,url,,urlhaus,80,2026-10-10T22:17:07Z,2026-10-11T12:39:57Z,https://urlhaus.abuse.ch/url/3947714/
 http://42.52.233.42:57947/bin.sh,url,,urlhaus,80,2026-10-10T22:08:17Z,2026-10-16T12:16:38Z,https://urlhaus.abuse.ch/url/3947712/
 http://222.138.150.84:39894/i,url,,urlhaus,80,2026-10-10T22:03:08Z,2026-10-12T00:18:47Z,https://urlhaus.abuse.ch/url/3947711/
 http://221.202.71.212:41190/i,url,,urlhaus,80,2026-10-10T22:02:07Z,2026-10-12T11:39:56Z,https://urlhaus.abuse.ch/url/3947710/
 http://61.54.41.100:59180/i,url,,urlhaus,80,2026-10-10T22:02:06Z,2026-10-13T08:07:57Z,https://urlhaus.abuse.ch/url/3947709/
 http://115.58.179.240:40854/bin.sh,url,,urlhaus,80,2026-10-10T21:57:15Z,2026-10-12T12:32:25Z,https://urlhaus.abuse.ch/url/3947708/
 http://42.56.140.178:35036/i,url,,urlhaus,80,2026-10-10T21:53:21Z,2026-10-16T00:33:21Z,https://urlhaus.abuse.ch/url/3947707/
-http://115.57.60.50:55893/i,url,,urlhaus,80,2026-10-10T21:47:06Z,2026-10-11T11:37:06Z,https://urlhaus.abuse.ch/url/3947705/
 http://115.55.129.129:55799/bin.sh,url,,urlhaus,80,2026-10-10T21:45:21Z,2026-10-12T11:43:25Z,https://urlhaus.abuse.ch/url/3947704/
-http://222.139.44.122:60548/i,url,,urlhaus,80,2026-10-10T21:32:07Z,2026-10-11T11:21:52Z,https://urlhaus.abuse.ch/url/3947703/
-http://115.63.148.118:43590/i,url,,urlhaus,80,2026-10-10T21:00:12Z,2026-10-11T06:36:19Z,https://urlhaus.abuse.ch/url/3947702/
 http://27.44.147.91:49005/i,url,,urlhaus,80,2026-10-10T20:47:08Z,2026-10-16T23:52:54Z,https://urlhaus.abuse.ch/url/3947701/
 http://42.224.251.249:49409/i,url,,urlhaus,80,2026-10-10T20:32:05Z,2026-10-12T19:50:46Z,https://urlhaus.abuse.ch/url/3947700/
 http://46.236.65.235:49018/bin.sh,url,,urlhaus,80,2026-10-10T20:27:21Z,2026-10-18T03:16:12Z,https://urlhaus.abuse.ch/url/3947699/
@@ -20330,7 +20155,6 @@ http://42.233.253.2:45263/i,url,,urlhaus,80,2026-10-10T20:17:10Z,2026-10-12T12:5
 http://115.58.179.240:40854/i,url,,urlhaus,80,2026-10-10T20:17:08Z,2026-10-12T13:45:16Z,https://urlhaus.abuse.ch/url/3947696/
 http://175.150.176.206:45980/bin.sh,url,,urlhaus,80,2026-10-10T20:15:23Z,2026-10-12T02:05:24Z,https://urlhaus.abuse.ch/url/3947694/
 http://116.207.223.13:59439/i,url,,urlhaus,80,2026-10-10T20:02:08Z,2026-10-14T17:37:02Z,https://urlhaus.abuse.ch/url/3947693/
-http://115.61.115.27:49429/bin.sh,url,,urlhaus,80,2026-10-10T19:44:19Z,2026-10-11T06:16:35Z,https://urlhaus.abuse.ch/url/3947691/
 http://123.233.198.83:52155/bin.sh,url,,urlhaus,80,2026-10-10T19:41:20Z,2026-10-18T04:10:01Z,https://urlhaus.abuse.ch/url/3947690/
 http://58.22.19.96:48437/i,url,,urlhaus,80,2026-10-10T19:32:21Z,2026-10-15T17:53:40Z,https://urlhaus.abuse.ch/url/3947689/
 http://42.6.56.231:34029/i,url,,urlhaus,80,2026-10-10T19:22:19Z,2026-10-15T19:51:43Z,https://urlhaus.abuse.ch/url/3947688/
@@ -20350,23 +20174,15 @@ http://120.28.195.161:54301/bin.sh,url,,urlhaus,80,2026-10-10T17:51:20Z,2026-10-
 http://119.179.238.153:48300/bin.sh,url,,urlhaus,80,2026-10-10T17:47:06Z,2026-10-11T23:47:32Z,https://urlhaus.abuse.ch/url/3947664/
 http://193.178.158.57/bin/0d96f1b3812d6a4c_build_x64.exe,url,,urlhaus,80,2026-10-10T17:40:07Z,2026-10-18T00:46:23Z,https://urlhaus.abuse.ch/url/3947663/
 http://219.154.155.199:35205/bin.sh,url,,urlhaus,80,2026-10-10T17:39:16Z,2026-10-11T20:06:32Z,https://urlhaus.abuse.ch/url/3947662/
-http://115.58.33.104:43613/i,url,,urlhaus,80,2026-10-10T17:17:20Z,2026-10-11T06:28:07Z,https://urlhaus.abuse.ch/url/3947660/
 http://60.23.77.13:58315/bin.sh,url,,urlhaus,80,2026-10-10T17:17:07Z,2026-10-13T16:07:16Z,https://urlhaus.abuse.ch/url/3947659/
 http://45.135.194.116/i686,url,,urlhaus,80,2026-10-10T17:07:17Z,2026-10-13T16:28:27Z,https://urlhaus.abuse.ch/url/3947658/
-http://105.186.68.166:35551/bin.sh,url,,urlhaus,80,2026-10-10T16:53:11Z,2026-10-11T06:01:21Z,https://urlhaus.abuse.ch/url/3947656/
 http://117.245.138.57:51324/i,url,,urlhaus,80,2026-10-10T16:47:07Z,2026-10-18T01:19:26Z,https://urlhaus.abuse.ch/url/3947655/
 https://cdn.discordapp.com/attachments/1558100015321317546/1558470943750488164/bundle.zip?ex=6acb8eab&is=6aca3d2b&hm=823d4ec1eb00862e82c5e1faf5a96c73640a9be12593792012549921e2548d60&,url,,urlhaus,80,2026-10-10T16:40:39Z,2026-10-11T13:27:09Z,https://urlhaus.abuse.ch/url/3947654/
 https://github.com/akkcoc521-blip/honeyrobloxx/releases/download/downladoa/dsalkasdkadl.zip,url,,urlhaus,80,2026-10-10T16:40:37Z,2026-10-18T02:43:41Z,https://urlhaus.abuse.ch/url/3947653/
-http://78.187.104.169:35406/i,url,,urlhaus,80,2026-10-10T16:40:27Z,2026-10-11T07:03:17Z,https://urlhaus.abuse.ch/url/3947652/
-https://cdn.discordapp.com/attachments/1519428468599951424/1558507756103663817/bundle.zip?ex=6acbb0f4&is=6aca5f74&hm=19eb8260b081867593529f72653fb354cb2c749336e2a685ec2a240e9c797df3&,url,,urlhaus,80,2026-10-10T16:40:17Z,2026-10-11T12:21:09Z,https://urlhaus.abuse.ch/url/3947651/
 https://niggersmp.net/downloads/Radium_Client.jar,url,,urlhaus,80,2026-10-10T16:40:09Z,2026-10-11T13:39:24Z,https://urlhaus.abuse.ch/url/3947645/
-https://niggersmp.net/downloads/krypton.jar,url,,urlhaus,80,2026-10-10T16:40:09Z,2026-10-11T11:27:10Z,https://urlhaus.abuse.ch/url/3947647/
 https://niggersmp.net/downloads/4E_Client.jar,url,,urlhaus,80,2026-10-10T16:40:09Z,2026-10-11T13:27:22Z,https://urlhaus.abuse.ch/url/3947649/
-https://niggersmp.net/downloads/Zyphers_Rig_Mod.jar,url,,urlhaus,80,2026-10-10T16:40:09Z,2026-10-11T11:42:56Z,https://urlhaus.abuse.ch/url/3947650/
 http://222.137.250.123:48113/bin.sh,url,,urlhaus,80,2026-10-10T16:36:11Z,2026-10-13T19:33:01Z,https://urlhaus.abuse.ch/url/3947643/
 http://42.177.163.57:23509/i,url,,urlhaus,80,2026-10-10T16:09:16Z,2026-10-13T18:02:24Z,https://urlhaus.abuse.ch/url/3947642/
-http://78.187.104.169:35406/bin.sh,url,,urlhaus,80,2026-10-10T16:09:15Z,2026-10-11T06:07:01Z,https://urlhaus.abuse.ch/url/3947641/
-http://123.9.196.5:57018/i,url,,urlhaus,80,2026-10-10T16:02:07Z,2026-10-11T11:26:05Z,https://urlhaus.abuse.ch/url/3947640/
 http://222.138.150.224:42834/i,url,,urlhaus,80,2026-10-10T15:48:17Z,2026-10-12T03:48:12Z,https://urlhaus.abuse.ch/url/3947639/
 http://124.6.167.113:52683/bin.sh,url,,urlhaus,80,2026-10-10T15:40:10Z,2026-10-13T23:32:17Z,https://urlhaus.abuse.ch/url/3947638/
 http://27.44.146.163:33792/i,url,,urlhaus,80,2026-10-10T15:39:10Z,2026-10-12T17:23:46Z,https://urlhaus.abuse.ch/url/3947637/
@@ -20379,11 +20195,9 @@ http://182.117.151.7:55978/i,url,,urlhaus,80,2026-10-10T14:47:09Z,2026-10-13T01:
 http://218.28.150.23:42949/i,url,,urlhaus,80,2026-10-10T14:47:07Z,2026-10-12T00:20:39Z,https://urlhaus.abuse.ch/url/3947624/
 http://27.44.146.163:33792/bin.sh,url,,urlhaus,80,2026-10-10T14:40:33Z,2026-10-12T17:47:30Z,https://urlhaus.abuse.ch/url/3947622/
 http://113.239.65.72:38982/i,url,,urlhaus,80,2026-10-10T14:32:20Z,2026-10-14T18:34:54Z,https://urlhaus.abuse.ch/url/3947620/
-http://123.190.242.241:43839/i,url,,urlhaus,80,2026-10-10T14:32:13Z,2026-10-11T07:54:55Z,https://urlhaus.abuse.ch/url/3947619/
 http://175.148.152.16:54623/bin.sh,url,,urlhaus,80,2026-10-10T14:32:09Z,2026-10-11T19:54:46Z,https://urlhaus.abuse.ch/url/3947618/
 http://123.14.185.42:42844/i,url,,urlhaus,80,2026-10-10T14:32:08Z,2026-10-11T17:54:04Z,https://urlhaus.abuse.ch/url/3947617/
 http://170.254.10.219:51354/i,url,,urlhaus,80,2026-10-10T14:32:07Z,2026-10-14T12:41:03Z,https://urlhaus.abuse.ch/url/3947615/
-http://61.52.230.84:48028/i,url,,urlhaus,80,2026-10-10T14:32:07Z,2026-10-11T06:11:35Z,https://urlhaus.abuse.ch/url/3947616/
 http://119.117.251.43:56180/i,url,,urlhaus,80,2026-10-10T14:17:09Z,2026-10-16T07:31:59Z,https://urlhaus.abuse.ch/url/3947614/
 http://119.117.251.43:56180/bin.sh,url,,urlhaus,80,2026-10-10T14:17:08Z,2026-10-16T09:29:19Z,https://urlhaus.abuse.ch/url/3947613/
 http://42.230.38.184:40155/bin.sh,url,,urlhaus,80,2026-10-10T14:17:06Z,2026-10-12T05:44:34Z,https://urlhaus.abuse.ch/url/3947610/
@@ -20413,14 +20227,11 @@ http://130.12.180.212/t/mpsl,url,,urlhaus,80,2026-10-10T13:03:10Z,2026-10-17T20:
 https://modhollow.netlify.app/files/meteor-client/meteor-client-1.21.11-86.jar,url,,urlhaus,80,2026-10-10T13:03:09Z,2026-10-12T13:56:45Z,https://urlhaus.abuse.ch/url/3947580/
 https://modhollow.netlify.app/files/krypton-client/Krypton%20Client%201.21.11_1.jar,url,,urlhaus,80,2026-10-10T13:03:09Z,2026-10-12T13:35:05Z,https://urlhaus.abuse.ch/url/3947581/
 https://modhollow.netlify.app/files/opsec/opsec-1.21.11%2Bv1.1.7.1.jar,url,,urlhaus,80,2026-10-10T13:03:07Z,2026-10-12T11:33:47Z,https://urlhaus.abuse.ch/url/3947579/
-https://goobaaclient.com/downloads/GoobaaClient.1.21.11.jar,url,,urlhaus,80,2026-10-10T13:02:25Z,2026-10-11T12:26:16Z,https://urlhaus.abuse.ch/url/3947575/
-http://2.27.14.196:889/champ,url,,urlhaus,80,2026-10-10T13:02:21Z,2026-10-11T06:13:30Z,https://urlhaus.abuse.ch/url/3947574/
 http://130.12.180.212/t/arm7,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-17T19:31:17Z,https://urlhaus.abuse.ch/url/3947565/
 https://campus-engine-neural-chorus.trycloudflare.com/svc/u.sh?h=dexec,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-13T19:02:07Z,https://urlhaus.abuse.ch/url/3947566/
 http://130.12.180.212/M68K,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-17T17:48:20Z,https://urlhaus.abuse.ch/url/3947567/
 http://130.12.180.212/riscv64,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-17T19:56:10Z,https://urlhaus.abuse.ch/url/3947568/
 http://130.12.180.212/riscv,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-17T18:47:24Z,https://urlhaus.abuse.ch/url/3947569/
-https://cdn.discordapp.com/attachments/1558100015321317546/1558450520358654023/bundle_2.zip?ex=6acb7ba6&is=6aca2a26&hm=e00f5777b997bfc71b50b385a548d80bb293af88436931c918351cf9ac471c15&,url,,urlhaus,80,2026-10-10T13:02:19Z,2026-10-11T07:53:43Z,https://urlhaus.abuse.ch/url/3947570/
 http://130.12.180.212/mips64el,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T14:27:21Z,https://urlhaus.abuse.ch/url/3947558/
 http://130.12.180.212/I586,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T13:15:58Z,https://urlhaus.abuse.ch/url/3947559/
 http://130.12.180.212/arm64,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T13:32:50Z,https://urlhaus.abuse.ch/url/3947560/
@@ -20428,7 +20239,6 @@ http://130.12.180.212/amd64,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T11:5
 http://130.12.180.212/ppc64,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T14:40:59Z,https://urlhaus.abuse.ch/url/3947562/
 http://130.12.180.212/mips64le,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T14:30:04Z,https://urlhaus.abuse.ch/url/3947563/
 http://130.12.180.212/mpsl,url,,urlhaus,80,2026-10-10T13:02:18Z,2026-10-17T15:17:06Z,https://urlhaus.abuse.ch/url/3947564/
-https://hylrukrxwfwbooknmtyx.supabase.co/storage/v1/object/sign/Krypton%20Client%201.21x/Krypton%20Client%201.21x.jar?token=eyJraWQiOiIzODI0ZTg5NS04MjY5LTRmZGEtYWNlZC02M2NhYjY5YWM1MDAiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJLcnlwdG9uIENsaWVudCAxLjIxeC9LcnlwdG9uIENsaWVudCAxLjIxeC5qYXIiLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzkxNTkyOTkyLCJleHAiOjE4MjMxMjg5OTJ9.7WTbEWdrQ0KLBQ_UMhaHarlOky5CmOTWPQeSGG8J110mPcGm_9PXZeSeoBUdxV99h1ydJeq7cP-nA1QL4vmbTQ,url,,urlhaus,80,2026-10-10T13:02:17Z,2026-10-11T12:48:31Z,https://urlhaus.abuse.ch/url/3947556/
 http://130.12.180.212/t/mipsel,url,,urlhaus,80,2026-10-10T13:02:16Z,2026-10-17T15:22:17Z,https://urlhaus.abuse.ch/url/3947553/
 http://130.12.180.212/armv7,url,,urlhaus,80,2026-10-10T13:02:16Z,2026-10-17T14:20:41Z,https://urlhaus.abuse.ch/url/3947554/
 http://130.12.180.212/i386,url,,urlhaus,80,2026-10-10T13:02:16Z,2026-10-17T12:50:37Z,https://urlhaus.abuse.ch/url/3947555/
@@ -20450,7 +20260,6 @@ http://176.65.139.41/mips,url,,urlhaus,80,2026-10-10T12:58:16Z,2026-10-17T14:30:
 http://176.65.139.41/aarch64,url,,urlhaus,80,2026-10-10T12:58:16Z,2026-10-17T14:07:49Z,https://urlhaus.abuse.ch/url/3947525/
 http://42.238.143.132:56801/i,url,,urlhaus,80,2026-10-10T12:47:07Z,2026-10-12T01:01:51Z,https://urlhaus.abuse.ch/url/3947521/
 http://120.84.212.113:55570/i,url,,urlhaus,80,2026-10-10T12:17:08Z,2026-10-14T18:32:02Z,https://urlhaus.abuse.ch/url/3947518/
-http://123.11.0.252:47057/bin.sh,url,,urlhaus,80,2026-10-10T12:17:08Z,2026-10-11T11:47:48Z,https://urlhaus.abuse.ch/url/3947519/
 http://176.65.139.169/riscv32,url,,urlhaus,80,2026-10-10T12:12:21Z,2026-10-17T15:17:16Z,https://urlhaus.abuse.ch/url/3947516/
 http://176.65.139.169/s390x,url,,urlhaus,80,2026-10-10T12:12:21Z,2026-10-17T14:43:06Z,https://urlhaus.abuse.ch/url/3947517/
 http://176.65.139.169/x86,url,,urlhaus,80,2026-10-10T12:12:11Z,2026-10-17T13:47:59Z,https://urlhaus.abuse.ch/url/3947514/
@@ -20494,22 +20303,15 @@ http://176.65.139.166:8080/iran.sh4,url,,urlhaus,80,2026-10-10T11:50:21Z,2026-10
 http://176.65.139.166:8080/iran.armv5l,url,,urlhaus,80,2026-10-10T11:50:21Z,2026-10-14T09:30:52Z,https://urlhaus.abuse.ch/url/3947486/
 http://176.65.139.166:8080/iran.aarch64,url,,urlhaus,80,2026-10-10T11:50:15Z,2026-10-14T12:38:58Z,https://urlhaus.abuse.ch/url/3947473/
 http://112.198.195.40:50762/i,url,,urlhaus,80,2026-10-10T11:47:07Z,2026-10-12T17:35:54Z,https://urlhaus.abuse.ch/url/3947470/
-http://115.48.152.62:47861/bin.sh,url,,urlhaus,80,2026-10-10T11:47:06Z,2026-10-11T11:38:01Z,https://urlhaus.abuse.ch/url/3947469/
-http://105.186.68.166:35551/i,url,,urlhaus,80,2026-10-10T11:32:08Z,2026-10-11T06:13:55Z,https://urlhaus.abuse.ch/url/3947468/
 http://58.21.122.54:53319/i,url,,urlhaus,80,2026-10-10T11:17:08Z,2026-10-13T19:24:32Z,https://urlhaus.abuse.ch/url/3947466/
-http://151.233.145.221:51986/i,url,,urlhaus,80,2026-10-10T11:17:07Z,2026-10-11T06:03:09Z,https://urlhaus.abuse.ch/url/3947465/
 http://222.141.97.98:39460/i,url,,urlhaus,80,2026-10-10T11:14:21Z,2026-10-12T05:36:21Z,https://urlhaus.abuse.ch/url/3947464/
 http://115.207.84.249:33401/i,url,,urlhaus,80,2026-10-10T11:02:13Z,2026-10-12T06:04:57Z,https://urlhaus.abuse.ch/url/3947463/
-http://115.49.203.91:54144/i,url,,urlhaus,80,2026-10-10T11:02:06Z,2026-10-11T11:20:52Z,https://urlhaus.abuse.ch/url/3947462/
-http://60.23.239.46:47895/i,url,,urlhaus,80,2026-10-10T11:00:20Z,2026-10-11T06:50:55Z,https://urlhaus.abuse.ch/url/3947461/
 http://222.141.97.98:39460/bin.sh,url,,urlhaus,80,2026-10-10T10:51:17Z,2026-10-12T05:49:49Z,https://urlhaus.abuse.ch/url/3947460/
 http://77.79.160.210:59889/i,url,,urlhaus,80,2026-10-10T10:47:06Z,2026-10-14T00:28:16Z,https://urlhaus.abuse.ch/url/3947459/
-http://60.23.239.46:47895/bin.sh,url,,urlhaus,80,2026-10-10T10:44:20Z,2026-10-11T07:19:47Z,https://urlhaus.abuse.ch/url/3947458/
 http://116.10.133.42:48435/bin.sh,url,,urlhaus,80,2026-10-10T10:14:17Z,2026-10-12T19:34:57Z,https://urlhaus.abuse.ch/url/3947456/
 http://120.28.189.218:59232/bin.sh,url,,urlhaus,80,2026-10-10T10:13:18Z,2026-10-12T16:21:22Z,https://urlhaus.abuse.ch/url/3947455/
 http://182.126.240.218:54207/i,url,,urlhaus,80,2026-10-10T10:02:07Z,2026-10-12T00:30:45Z,https://urlhaus.abuse.ch/url/3947449/
 http://63.245.153.71:46253/i,url,,urlhaus,80,2026-10-10T10:02:07Z,2026-10-13T18:05:23Z,https://urlhaus.abuse.ch/url/3947450/
-http://180.245.62.121:48408/i,url,,urlhaus,80,2026-10-10T10:02:07Z,2026-10-11T11:48:44Z,https://urlhaus.abuse.ch/url/3947451/
 http://182.121.156.64:56808/i,url,,urlhaus,80,2026-10-10T10:02:06Z,2026-10-11T20:04:00Z,https://urlhaus.abuse.ch/url/3947448/
 http://47.105.74.195:7047/linux,url,,urlhaus,80,2026-10-10T10:01:14Z,2026-10-17T07:59:08Z,https://urlhaus.abuse.ch/url/3947447/
 http://47.102.102.45:9006/linux,url,,urlhaus,80,2026-10-10T10:01:08Z,2026-10-17T07:14:28Z,https://urlhaus.abuse.ch/url/3947446/
@@ -20518,16 +20320,12 @@ http://66.116.196.142/ezo,url,,urlhaus,80,2026-10-10T10:01:06Z,2026-10-16T19:08:
 http://96.246.230.97:34605/i,url,,urlhaus,80,2026-10-10T09:47:06Z,2026-10-12T01:55:48Z,https://urlhaus.abuse.ch/url/3947438/
 http://98.36.141.73:49467/i,url,,urlhaus,80,2026-10-10T09:47:06Z,2026-10-17T07:08:54Z,https://urlhaus.abuse.ch/url/3947439/
 http://175.150.255.147:45190/bin.sh,url,,urlhaus,80,2026-10-10T09:47:06Z,2026-10-12T00:02:00Z,https://urlhaus.abuse.ch/url/3947440/
-http://110.136.60.67:37161/bin.sh,url,,urlhaus,80,2026-10-10T09:47:06Z,2026-10-11T12:01:22Z,https://urlhaus.abuse.ch/url/3947441/
 http://123.14.152.127:46530/bin.sh,url,,urlhaus,80,2026-10-10T09:47:05Z,2026-10-11T19:47:17Z,https://urlhaus.abuse.ch/url/3947437/
 http://175.149.80.109:35787/i,url,,urlhaus,80,2026-10-10T09:32:09Z,2026-10-17T00:33:13Z,https://urlhaus.abuse.ch/url/3947428/
 http://42.230.218.97:45408/i,url,,urlhaus,80,2026-10-10T09:32:09Z,2026-10-13T05:30:21Z,https://urlhaus.abuse.ch/url/3947431/
 http://123.5.126.90:51252/i,url,,urlhaus,80,2026-10-10T09:32:09Z,2026-10-11T17:51:37Z,https://urlhaus.abuse.ch/url/3947432/
 http://125.45.137.35:34953/i,url,,urlhaus,80,2026-10-10T09:32:09Z,2026-10-12T17:56:36Z,https://urlhaus.abuse.ch/url/3947433/
-http://123.156.81.230:56868/i,url,,urlhaus,80,2026-10-10T09:32:09Z,2026-10-11T11:26:07Z,https://urlhaus.abuse.ch/url/3947435/
 http://123.14.152.127:46530/i,url,,urlhaus,80,2026-10-10T09:32:07Z,2026-10-11T19:42:09Z,https://urlhaus.abuse.ch/url/3947425/
-http://105.225.69.120:46879/i,url,,urlhaus,80,2026-10-10T09:17:07Z,2026-10-11T11:20:19Z,https://urlhaus.abuse.ch/url/3947423/
-http://105.184.8.241:41871/bin.sh,url,,urlhaus,80,2026-10-10T09:17:06Z,2026-10-11T11:43:09Z,https://urlhaus.abuse.ch/url/3947422/
 http://115.59.228.174:52120/i,url,,urlhaus,80,2026-10-10T08:47:06Z,2026-10-16T18:26:04Z,https://urlhaus.abuse.ch/url/3947421/
 http://182.127.111.22:56903/i,url,,urlhaus,80,2026-10-10T08:32:06Z,2026-10-11T18:44:45Z,https://urlhaus.abuse.ch/url/3947418/
 http://115.59.228.174:52120/bin.sh,url,,urlhaus,80,2026-10-10T08:17:20Z,2026-10-16T18:56:39Z,https://urlhaus.abuse.ch/url/3947416/
@@ -20572,7 +20370,6 @@ https://dttjjkkllzbvesjzndtp.vercel.app/?download=1,url,,urlhaus,80,2026-10-10T0
 https://gibddru.vercel.app/?download=1,url,,urlhaus,80,2026-10-10T06:07:10Z,2026-10-12T13:22:55Z,https://urlhaus.abuse.ch/url/3947370/
 http://182.240.194.49:57733/bin.sh,url,,urlhaus,80,2026-10-10T06:02:10Z,2026-10-15T17:50:49Z,https://urlhaus.abuse.ch/url/3947367/
 http://113.221.76.194:49812/i,url,,urlhaus,80,2026-10-10T06:00:18Z,2026-10-14T19:01:58Z,https://urlhaus.abuse.ch/url/3947366/
-http://61.52.92.74:36216/bin.sh,url,,urlhaus,80,2026-10-10T05:49:21Z,2026-10-11T12:08:21Z,https://urlhaus.abuse.ch/url/3947356/
 http://201.159.91.2:41978/bin.sh,url,,urlhaus,80,2026-10-10T05:49:21Z,2026-10-15T23:49:18Z,https://urlhaus.abuse.ch/url/3947357/
 https://pole-mother-visiting-trinity.trycloudflare.com/svc/u.sh?h=dexec,url,,urlhaus,80,2026-10-10T05:47:23Z,2026-10-13T19:47:26Z,https://urlhaus.abuse.ch/url/3947333/
 http://176.65.139.217/bins/sora.x86_64,url,,urlhaus,80,2026-10-10T05:47:15Z,2026-10-15T02:25:28Z,https://urlhaus.abuse.ch/url/3947331/
@@ -20612,11 +20409,9 @@ http://176.65.139.169/m68k,url,,urlhaus,80,2026-10-10T03:18:10Z,2026-10-15T00:33
 http://176.65.139.169/arm7,url,,urlhaus,80,2026-10-10T03:18:10Z,2026-10-15T04:07:02Z,https://urlhaus.abuse.ch/url/3947285/
 http://221.203.206.182:43811/bin.sh,url,,urlhaus,80,2026-10-10T03:06:21Z,2026-10-14T20:00:54Z,https://urlhaus.abuse.ch/url/3947279/
 http://117.85.190.91:53554/i,url,,urlhaus,80,2026-10-10T03:02:21Z,2026-10-17T04:23:45Z,https://urlhaus.abuse.ch/url/3947277/
-http://222.139.77.4:45368/i,url,,urlhaus,80,2026-10-10T03:02:12Z,2026-10-11T06:55:51Z,https://urlhaus.abuse.ch/url/3947276/
 http://39.90.146.150:35293/i,url,,urlhaus,80,2026-10-10T02:47:07Z,2026-10-12T01:07:52Z,https://urlhaus.abuse.ch/url/3947273/
 http://96.246.230.97:34605/bin.sh,url,,urlhaus,80,2026-10-10T02:32:05Z,2026-10-11T21:05:00Z,https://urlhaus.abuse.ch/url/3947270/
 http://118.250.1.203:55215/i,url,,urlhaus,80,2026-10-10T02:27:06Z,2026-10-17T00:13:23Z,https://urlhaus.abuse.ch/url/3947268/
-http://115.57.84.137:46458/i,url,,urlhaus,80,2026-10-10T02:25:08Z,2026-10-11T11:55:32Z,https://urlhaus.abuse.ch/url/3947267/
 http://91.190.84.93:15661/i,url,,urlhaus,80,2026-10-10T02:17:05Z,2026-10-12T18:16:15Z,https://urlhaus.abuse.ch/url/3947263/
 http://77.79.160.210:59889/bin.sh,url,,urlhaus,80,2026-10-10T02:17:05Z,2026-10-14T01:04:10Z,https://urlhaus.abuse.ch/url/3947264/
 http://120.28.135.254:60043/i,url,,urlhaus,80,2026-10-10T02:15:18Z,2026-10-11T23:23:14Z,https://urlhaus.abuse.ch/url/3947262/
@@ -20625,13 +20420,9 @@ http://61.166.61.44:39284/i,url,,urlhaus,80,2026-10-10T01:47:09Z,2026-10-16T01:0
 http://119.179.238.153:48300/i,url,,urlhaus,80,2026-10-10T01:47:08Z,2026-10-11T23:29:56Z,https://urlhaus.abuse.ch/url/3947258/
 http://119.102.60.44:43236/i,url,,urlhaus,80,2026-10-10T01:47:07Z,2026-10-13T18:46:13Z,https://urlhaus.abuse.ch/url/3947256/
 http://91.190.84.93:15661/bin.sh,url,,urlhaus,80,2026-10-10T01:47:05Z,2026-10-12T18:48:58Z,https://urlhaus.abuse.ch/url/3947255/
-http://42.232.238.114:40830/bin.sh,url,,urlhaus,80,2026-10-10T01:32:07Z,2026-10-11T08:08:24Z,https://urlhaus.abuse.ch/url/3947252/
-http://115.57.84.137:46458/bin.sh,url,,urlhaus,80,2026-10-10T01:30:14Z,2026-10-11T11:16:41Z,https://urlhaus.abuse.ch/url/3947250/
 http://120.28.161.60:60477/i,url,,urlhaus,80,2026-10-10T01:22:17Z,2026-10-12T07:27:53Z,https://urlhaus.abuse.ch/url/3947249/
-http://123.14.36.48:37791/bin.sh,url,,urlhaus,80,2026-10-10T01:17:06Z,2026-10-11T11:23:08Z,https://urlhaus.abuse.ch/url/3947247/
 9845c245686ccf24c72044fd6d1f6d0be7a4ee528efc0194b39741c51f330bce,sha256,Mirai,"malwarebazaar,threatfox",80,2026-10-10T01:13:01Z,2026-10-12T22:55:33Z,https://threatfox.abuse.ch/ioc/1959706/
 http://120.28.161.60:60477/bin.sh,url,,urlhaus,80,2026-10-10T01:04:15Z,2026-10-12T05:28:11Z,https://urlhaus.abuse.ch/url/3947245/
-http://180.190.243.27:50849/bin.sh,url,,urlhaus,80,2026-10-10T01:03:10Z,2026-10-11T06:02:22Z,https://urlhaus.abuse.ch/url/3947244/
 http://222.127.71.141:36118/i,url,,urlhaus,80,2026-10-10T01:02:08Z,2026-10-12T05:37:58Z,https://urlhaus.abuse.ch/url/3947243/
 http://182.240.194.49:57733/i,url,,urlhaus,80,2026-10-10T00:56:37Z,2026-10-15T17:50:11Z,https://urlhaus.abuse.ch/url/3947241/
 http://45.5.88.205:51385/i,url,,urlhaus,80,2026-10-10T00:47:07Z,2026-10-13T00:16:24Z,https://urlhaus.abuse.ch/url/3947237/
@@ -20646,19 +20437,15 @@ http://222.137.85.203:48268/i,url,,urlhaus,80,2026-10-10T00:32:09Z,2026-10-13T19
 http://27.36.243.82:43173/i,url,,urlhaus,80,2026-10-10T00:32:09Z,2026-10-12T11:59:05Z,https://urlhaus.abuse.ch/url/3947231/
 http://42.52.233.42:57947/i,url,,urlhaus,80,2026-10-10T00:32:08Z,2026-10-16T12:06:47Z,https://urlhaus.abuse.ch/url/3947220/
 http://120.28.194.92:57851/i,url,,urlhaus,80,2026-10-10T00:32:08Z,2026-10-12T01:06:43Z,https://urlhaus.abuse.ch/url/3947222/
-http://42.235.86.173:33127/i,url,,urlhaus,80,2026-10-10T00:32:08Z,2026-10-11T07:43:17Z,https://urlhaus.abuse.ch/url/3947223/
 http://42.5.16.160:56683/i,url,,urlhaus,80,2026-10-10T00:32:08Z,2026-10-14T13:13:13Z,https://urlhaus.abuse.ch/url/3947224/
 http://120.28.199.24:34811/i,url,,urlhaus,80,2026-10-10T00:32:08Z,2026-10-11T18:27:43Z,https://urlhaus.abuse.ch/url/3947225/
 http://27.215.176.193:56630/bin.sh,url,,urlhaus,80,2026-10-10T00:28:19Z,2026-10-14T23:47:58Z,https://urlhaus.abuse.ch/url/3947219/
 http://105.184.8.241:41871/i,url,,urlhaus,80,2026-10-09T23:40:15Z,2026-10-11T13:09:50Z,https://urlhaus.abuse.ch/url/3947213/
 http://125.104.214.25:53839/bin.sh,url,,urlhaus,80,2026-10-09T23:17:08Z,2026-10-11T19:52:47Z,https://urlhaus.abuse.ch/url/3947211/
 http://42.238.143.132:56801/bin.sh,url,,urlhaus,80,2026-10-09T23:17:07Z,2026-10-12T03:40:22Z,https://urlhaus.abuse.ch/url/3947209/
-http://125.43.47.191:34845/i,url,,urlhaus,80,2026-10-09T23:02:07Z,2026-10-11T06:58:11Z,https://urlhaus.abuse.ch/url/3947203/
-http://61.52.92.74:36216/i,url,,urlhaus,80,2026-10-09T22:47:07Z,2026-10-11T11:34:44Z,https://urlhaus.abuse.ch/url/3947198/
 http://101.23.127.18:59328/i,url,,urlhaus,80,2026-10-09T22:32:20Z,2026-10-14T12:40:28Z,https://urlhaus.abuse.ch/url/3947195/
 http://120.28.194.92:57851/bin.sh,url,,urlhaus,80,2026-10-09T22:32:07Z,2026-10-12T00:17:01Z,https://urlhaus.abuse.ch/url/3947186/
 http://42.228.218.119:58691/i,url,,urlhaus,80,2026-10-09T22:32:07Z,2026-10-11T13:01:50Z,https://urlhaus.abuse.ch/url/3947191/
-http://42.239.228.53:46459/i,url,,urlhaus,80,2026-10-09T22:17:06Z,2026-10-11T12:31:06Z,https://urlhaus.abuse.ch/url/3947175/
 http://154.223.128.222:52867/i,url,,urlhaus,80,2026-10-09T22:17:06Z,2026-10-11T17:59:09Z,https://urlhaus.abuse.ch/url/3947176/
 http://42.239.228.53:46459/bin.sh,url,,urlhaus,80,2026-10-09T22:17:06Z,2026-10-11T12:55:20Z,https://urlhaus.abuse.ch/url/3947177/
 http://42.59.247.94:45590/i,url,,urlhaus,80,2026-10-09T22:02:08Z,2026-10-14T03:17:06Z,https://urlhaus.abuse.ch/url/3947173/
@@ -20667,7 +20454,6 @@ http://178.206.171.51:45243/i,url,,urlhaus,80,2026-10-09T22:02:07Z,2026-10-15T05
 http://121.202.142.137:23188/bin.sh,url,,urlhaus,80,2026-10-09T21:54:06Z,2026-10-13T01:43:50Z,https://urlhaus.abuse.ch/url/3947171/
 http://123.5.153.79:37201/i,url,,urlhaus,80,2026-10-09T21:47:06Z,2026-10-11T19:08:47Z,https://urlhaus.abuse.ch/url/3947169/
 http://123.5.153.79:37201/bin.sh,url,,urlhaus,80,2026-10-09T21:32:06Z,2026-10-11T17:19:51Z,https://urlhaus.abuse.ch/url/3947168/
-http://123.7.222.24:54253/i,url,,urlhaus,80,2026-10-09T21:18:07Z,2026-10-11T06:30:55Z,https://urlhaus.abuse.ch/url/3947166/
 http://60.22.51.222:45629/i,url,,urlhaus,80,2026-10-09T21:02:07Z,2026-10-16T17:51:19Z,https://urlhaus.abuse.ch/url/3947161/
 http://130.12.180.212/aarch64,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T18:25:00Z,https://urlhaus.abuse.ch/url/3947153/
 http://130.12.180.212/arm,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T18:03:15Z,https://urlhaus.abuse.ch/url/3947154/
@@ -20675,7 +20461,6 @@ http://130.12.180.212/i486,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T19:17
 http://130.12.180.212/mipsel,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T18:24:24Z,https://urlhaus.abuse.ch/url/3947156/
 http://130.12.180.212/mips64,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T18:20:32Z,https://urlhaus.abuse.ch/url/3947157/
 http://36.50.134.86/spc,url,,urlhaus,80,2026-10-09T20:48:07Z,2026-10-16T20:29:01Z,https://urlhaus.abuse.ch/url/3947158/
-http://123.8.25.70:33893/i,url,,urlhaus,80,2026-10-09T20:47:08Z,2026-10-11T06:09:04Z,https://urlhaus.abuse.ch/url/3947151/
 http://154.223.128.222:52867/bin.sh,url,,urlhaus,80,2026-10-09T20:47:07Z,2026-10-11T19:46:23Z,https://urlhaus.abuse.ch/url/3947150/
 http://182.127.111.22:56903/bin.sh,url,,urlhaus,80,2026-10-09T20:32:07Z,2026-10-11T20:04:05Z,https://urlhaus.abuse.ch/url/3947146/
 http://182.117.76.135:52817/bin.sh,url,,urlhaus,80,2026-10-09T20:32:06Z,2026-10-11T23:41:10Z,https://urlhaus.abuse.ch/url/3947145/
@@ -20703,16 +20488,13 @@ https://github.com/Nine23423423/Reload1/raw/refs/heads/main/loader.exe,url,,urlh
 https://github.com/Nine23423423/Reload1/raw/refs/heads/main/RtkAudUService.exe,url,,urlhaus,80,2026-10-09T18:36:06Z,2026-10-16T11:57:27Z,https://urlhaus.abuse.ch/url/3947096/
 http://114.226.200.81:37474/bin.sh,url,,urlhaus,80,2026-10-09T18:35:18Z,2026-10-15T06:49:43Z,https://urlhaus.abuse.ch/url/3947095/
 http://219.155.200.85:53694/i,url,,urlhaus,80,2026-10-09T18:32:08Z,2026-10-11T23:49:12Z,https://urlhaus.abuse.ch/url/3947091/
-http://42.232.179.113:45539/bin.sh,url,,urlhaus,80,2026-10-09T18:31:15Z,2026-10-11T11:39:34Z,https://urlhaus.abuse.ch/url/3947090/
 https://filegoat.s3.de.io.cloud.ovh.net/7c961ce9-af0a-499d-ae15-a860978354a0/dupe-mod_1.0.0_0.jar?download=true,url,,urlhaus,80,2026-10-09T18:30:09Z,2026-10-16T12:23:44Z,https://urlhaus.abuse.ch/url/3947085/
 https://briannacorporation.com/cap/Chored.cur,url,,urlhaus,80,2026-10-09T18:29:08Z,2026-10-16T12:07:19Z,https://urlhaus.abuse.ch/url/3947080/
 https://briannacorporation.com/cap/eZlHodoWq46.bin,url,,urlhaus,80,2026-10-09T18:29:08Z,2026-10-16T14:33:17Z,https://urlhaus.abuse.ch/url/3947081/
 http://212.54.86.171:51213/bin.sh,url,,urlhaus,80,2026-10-09T18:17:13Z,2026-10-16T09:24:00Z,https://urlhaus.abuse.ch/url/3947079/
-http://27.202.215.185:51039/i,url,,urlhaus,80,2026-10-09T18:03:11Z,2026-10-11T12:12:44Z,https://urlhaus.abuse.ch/url/3947077/
 http://94.28.39.38:43692/i,url,,urlhaus,80,2026-10-09T18:02:08Z,2026-10-16T08:21:29Z,https://urlhaus.abuse.ch/url/3947076/
 http://78.188.196.206:55677/bin.sh,url,,urlhaus,80,2026-10-09T18:02:05Z,2026-10-11T17:21:18Z,https://urlhaus.abuse.ch/url/3947072/
 http://42.228.41.178:36712/i,url,,urlhaus,80,2026-10-09T17:17:08Z,2026-10-11T18:37:14Z,https://urlhaus.abuse.ch/url/3947064/
-http://42.232.238.114:40830/i,url,,urlhaus,80,2026-10-09T17:02:07Z,2026-10-11T07:29:38Z,https://urlhaus.abuse.ch/url/3947060/
 http://42.232.179.113:45539/i,url,,urlhaus,80,2026-10-09T17:02:07Z,2026-10-11T13:47:55Z,https://urlhaus.abuse.ch/url/3947061/
 http://42.237.253.32:32917/i,url,,urlhaus,80,2026-10-09T16:47:07Z,2026-10-14T00:16:01Z,https://urlhaus.abuse.ch/url/3947059/
 http://42.53.2.94:56286/bin.sh,url,,urlhaus,80,2026-10-09T16:47:06Z,2026-10-16T06:29:04Z,https://urlhaus.abuse.ch/url/3947058/
@@ -20766,7 +20548,6 @@ https://github.com/dirlands/EulenCheats/raw/HEAD/Loader.exe,url,,urlhaus,80,2026
 https://github.com/hannertMAX/EulenCheats/raw/HEAD/Loader.exe,url,,urlhaus,80,2026-10-09T14:52:06Z,2026-10-16T00:18:17Z,https://urlhaus.abuse.ch/url/3946997/
 https://github.com/rarr1ve/EulenCheats/raw/HEAD/Loader.exe,url,,urlhaus,80,2026-10-09T14:52:06Z,2026-10-16T01:17:41Z,https://urlhaus.abuse.ch/url/3946998/
 https://github.com/fansyhook/EulenCheats/raw/HEAD/Loader.exe,url,,urlhaus,80,2026-10-09T14:52:06Z,2026-10-16T01:16:24Z,https://urlhaus.abuse.ch/url/3946999/
-http://61.52.35.140:40669/i,url,,urlhaus,80,2026-10-09T14:32:07Z,2026-10-11T06:43:00Z,https://urlhaus.abuse.ch/url/3946993/
 http://175.165.237.83:34866/i,url,,urlhaus,80,2026-10-09T14:32:06Z,2026-10-11T17:34:09Z,https://urlhaus.abuse.ch/url/3946990/
 http://123.14.36.48:37791/i,url,,urlhaus,80,2026-10-09T14:32:06Z,2026-10-11T17:44:34Z,https://urlhaus.abuse.ch/url/3946991/
 http://130.12.180.212/mips,url,,urlhaus,80,2026-10-09T14:17:24Z,2026-10-16T01:46:48Z,https://urlhaus.abuse.ch/url/3946985/
@@ -20784,9 +20565,7 @@ http://130.12.180.212/arm7,url,,urlhaus,80,2026-10-09T14:17:11Z,2026-10-16T00:17
 http://130.12.180.212/armv7l,url,,urlhaus,80,2026-10-09T14:17:11Z,2026-10-16T01:48:49Z,https://urlhaus.abuse.ch/url/3946971/
 https://raw.githubusercontent.com/Karinatt0/file/d5c3219dfcec05e58843f4c4b6e5bd78cbed634d/img_053520.png,url,,urlhaus,80,2026-10-09T14:03:09Z,2026-10-16T01:05:30Z,https://urlhaus.abuse.ch/url/3946967/
 https://raw.githubusercontent.com/Karinatt0/file/d5c3219dfcec05e58843f4c4b6e5bd78cbed634d/img_065109.png,url,,urlhaus,80,2026-10-09T14:03:07Z,2026-10-16T02:19:29Z,https://urlhaus.abuse.ch/url/3946966/
-http://112.248.185.24:36088/bin.sh,url,,urlhaus,80,2026-10-09T14:02:06Z,2026-10-11T06:37:10Z,https://urlhaus.abuse.ch/url/3946965/
 https://raw.githubusercontent.com/Karinatt0/file/d5c3219dfcec05e58843f4c4b6e5bd78cbed634d/img_015611.png,url,,urlhaus,80,2026-10-09T14:00:10Z,2026-10-16T01:42:25Z,https://urlhaus.abuse.ch/url/3946964/
-http://182.121.81.61:40929/bin.sh,url,,urlhaus,80,2026-10-09T13:47:07Z,2026-10-11T11:28:41Z,https://urlhaus.abuse.ch/url/3946960/
 https://github.com/stylyshconc/Swift-Executor/raw/HEAD/Swift.exe,url,,urlhaus,80,2026-10-09T13:06:15Z,2026-10-16T01:18:07Z,https://urlhaus.abuse.ch/url/3946941/
 https://github.com/voicesinari/Warzone-Dominator/raw/HEAD/Loader.exe,url,,urlhaus,80,2026-10-09T13:06:14Z,2026-10-16T01:18:09Z,https://urlhaus.abuse.ch/url/3946938/
 https://github.com/hallermsy/Exodus-Larp-Tool/raw/HEAD/Exodus.exe,url,,urlhaus,80,2026-10-09T13:06:14Z,2026-10-16T00:36:45Z,https://urlhaus.abuse.ch/url/3946939/
@@ -20797,8 +20576,6 @@ https://github.com/B3at1z/Umbrella-HWID-Tool/raw/HEAD/Umbrella/Umbrella.exe,url,
 https://github.com/jehhn1l/FiveM-Spoofer/raw/HEAD/CFXBypass.exe,url,,urlhaus,80,2026-10-09T13:06:05Z,2026-10-16T03:51:35Z,https://urlhaus.abuse.ch/url/3946922/
 http://42.177.29.94:45783/i,url,,urlhaus,80,2026-10-09T12:08:20Z,2026-10-16T00:31:35Z,https://urlhaus.abuse.ch/url/3946912/
 http://42.57.180.68:33329/i,url,,urlhaus,80,2026-10-09T11:48:18Z,2026-10-15T14:21:43Z,https://urlhaus.abuse.ch/url/3946909/
-http://112.240.255.10:44529/bin.sh,url,,urlhaus,80,2026-10-09T11:47:26Z,2026-10-11T12:28:39Z,https://urlhaus.abuse.ch/url/3946908/
-http://182.113.191.78:59405/i,url,,urlhaus,80,2026-10-09T11:17:27Z,2026-10-11T12:07:15Z,https://urlhaus.abuse.ch/url/3946905/
 http://27.219.118.7:41917/i,url,,urlhaus,80,2026-10-09T11:17:07Z,2026-10-16T00:12:15Z,https://urlhaus.abuse.ch/url/3946904/
 http://219.154.155.199:35205/i,url,,urlhaus,80,2026-10-09T11:05:24Z,2026-10-11T19:21:57Z,https://urlhaus.abuse.ch/url/3946902/
 http://5.83.134.80:24331/tadashi.arm7,url,,urlhaus,80,2026-10-09T10:49:05Z,2026-10-16T04:40:02Z,https://urlhaus.abuse.ch/url/3946898/
@@ -20843,7 +20620,6 @@ http://182.116.115.77:46115/bin.sh,url,,urlhaus,80,2026-10-09T06:05:20Z,2026-10-
 http://27.215.89.229:49916/i,url,,urlhaus,80,2026-10-09T05:51:17Z,2026-10-12T00:37:32Z,https://urlhaus.abuse.ch/url/3946780/
 http://222.141.112.238:57491/bin.sh,url,,urlhaus,80,2026-10-09T05:28:16Z,2026-10-12T19:11:18Z,https://urlhaus.abuse.ch/url/3946775/
 http://180.103.174.195:47196/i,url,,urlhaus,80,2026-10-09T05:02:06Z,2026-10-15T11:42:52Z,https://urlhaus.abuse.ch/url/3946769/
-http://116.140.187.113:44269/bin.sh,url,,urlhaus,80,2026-10-09T05:01:22Z,2026-10-11T11:39:03Z,https://urlhaus.abuse.ch/url/3946768/
 http://27.215.215.163:37611/i,url,,urlhaus,80,2026-10-09T04:17:05Z,2026-10-11T17:25:31Z,https://urlhaus.abuse.ch/url/3946764/
 http://42.4.127.9:48434/bin.sh,url,,urlhaus,80,2026-10-09T04:02:20Z,2026-10-13T18:38:37Z,https://urlhaus.abuse.ch/url/3946763/
 http://42.177.29.94:45783/bin.sh,url,,urlhaus,80,2026-10-09T04:02:06Z,2026-10-15T13:03:00Z,https://urlhaus.abuse.ch/url/3946759/
@@ -20852,11 +20628,9 @@ http://60.22.8.194:38407/i,url,,urlhaus,80,2026-10-09T03:27:12Z,2026-10-15T13:13
 http://27.215.176.193:56630/i,url,,urlhaus,80,2026-10-09T03:17:07Z,2026-10-15T00:05:08Z,https://urlhaus.abuse.ch/url/3946747/
 http://27.215.215.163:37611/bin.sh,url,,urlhaus,80,2026-10-09T03:17:06Z,2026-10-12T00:09:00Z,https://urlhaus.abuse.ch/url/3946743/
 http://42.7.122.114:58373/i,url,,urlhaus,80,2026-10-09T03:17:06Z,2026-10-15T12:57:17Z,https://urlhaus.abuse.ch/url/3946744/
-http://182.121.81.61:40929/i,url,,urlhaus,80,2026-10-09T02:47:07Z,2026-10-11T12:43:23Z,https://urlhaus.abuse.ch/url/3946732/
 http://42.6.56.231:34029/bin.sh,url,,urlhaus,80,2026-10-09T02:18:07Z,2026-10-15T13:27:49Z,https://urlhaus.abuse.ch/url/3946723/
 http://42.85.162.250:52853/i,url,,urlhaus,80,2026-10-09T02:18:07Z,2026-10-15T12:53:24Z,https://urlhaus.abuse.ch/url/3946724/
 http://42.7.84.109:37440/i,url,,urlhaus,80,2026-10-09T02:17:08Z,2026-10-11T13:05:40Z,https://urlhaus.abuse.ch/url/3946722/
-http://42.7.84.109:37440/bin.sh,url,,urlhaus,80,2026-10-09T02:17:07Z,2026-10-11T12:13:07Z,https://urlhaus.abuse.ch/url/3946721/
 http://103.111.23.12:49200/bin.sh,url,,urlhaus,80,2026-10-09T01:47:06Z,2026-10-12T01:59:53Z,https://urlhaus.abuse.ch/url/3946712/
 http://222.127.50.108:41701/i,url,,urlhaus,80,2026-10-09T01:17:07Z,2026-10-15T13:37:37Z,https://urlhaus.abuse.ch/url/3946689/
 http://222.127.76.40:53819/bin.sh,url,,urlhaus,80,2026-10-09T01:17:07Z,2026-10-14T18:04:56Z,https://urlhaus.abuse.ch/url/3946690/
@@ -20970,7 +20744,6 @@ http://58.98.230.152:50741/bin.sh,url,,urlhaus,80,2026-10-08T14:28:18Z,2026-10-1
 http://217.60.195.187/LjEZs/Services.apk,url,,urlhaus,80,2026-10-08T14:07:06Z,2026-10-11T19:56:47Z,https://urlhaus.abuse.ch/url/3946263/
 http://60.13.84.124:42261/bin.sh,url,,urlhaus,80,2026-10-08T13:58:16Z,2026-10-14T20:38:11Z,https://urlhaus.abuse.ch/url/3946259/
 http://2.187.248.206:52598/i,url,,urlhaus,80,2026-10-08T13:50:10Z,2026-10-14T18:15:29Z,https://urlhaus.abuse.ch/url/3946258/
-http://27.202.215.185:51039/bin.sh,url,,urlhaus,80,2026-10-08T13:47:06Z,2026-10-11T11:36:40Z,https://urlhaus.abuse.ch/url/3946256/
 http://123.189.176.51:48431/i,url,,urlhaus,80,2026-10-08T13:32:08Z,2026-10-14T13:14:39Z,https://urlhaus.abuse.ch/url/3946252/
 http://115.196.0.230:36365/bin.sh,url,,urlhaus,80,2026-10-08T13:02:08Z,2026-10-11T19:42:58Z,https://urlhaus.abuse.ch/url/3946246/
 http://112.246.228.19:33953/bin.sh,url,,urlhaus,80,2026-10-08T12:58:45Z,2026-10-13T01:11:32Z,https://urlhaus.abuse.ch/url/3946241/
@@ -20995,7 +20768,6 @@ http://204.194.50.3/bins/sora.m68k,url,,urlhaus,80,2026-10-08T12:27:18Z,2026-10-
 http://204.194.50.3/bins/sora.arm5,url,,urlhaus,80,2026-10-08T12:27:18Z,2026-10-14T11:34:54Z,https://urlhaus.abuse.ch/url/3946215/
 http://204.194.50.3/bins/sora.spc,url,,urlhaus,80,2026-10-08T12:27:18Z,2026-10-14T13:31:08Z,https://urlhaus.abuse.ch/url/3946216/
 http://204.194.50.3/bins/sora.arm6,url,,urlhaus,80,2026-10-08T12:27:18Z,2026-10-14T12:33:12Z,https://urlhaus.abuse.ch/url/3946217/
-http://116.140.187.113:44269/i,url,,urlhaus,80,2026-10-08T12:17:06Z,2026-10-11T11:16:00Z,https://urlhaus.abuse.ch/url/3946196/
 http://182.127.34.173:57928/i,url,,urlhaus,80,2026-10-08T12:02:08Z,2026-10-13T05:59:24Z,https://urlhaus.abuse.ch/url/3946189/
 http://119.178.216.181:56386/i,url,,urlhaus,80,2026-10-08T11:16:07Z,2026-10-12T05:18:30Z,https://urlhaus.abuse.ch/url/3946166/
 http://220.201.98.115:48279/i,url,,urlhaus,80,2026-10-08T11:02:15Z,2026-10-13T12:10:26Z,https://urlhaus.abuse.ch/url/3946158/
@@ -21013,9 +20785,7 @@ http://23.132.164.15/FAST/GG.ps1,url,,urlhaus,80,2026-10-08T09:41:09Z,2026-10-14
 http://23.132.164.15/FAST/secured_stub.ps1,url,,urlhaus,80,2026-10-08T09:41:09Z,2026-10-14T08:21:30Z,https://urlhaus.abuse.ch/url/3946119/
 http://23.132.164.15/FAST/ttessttt.ps1,url,,urlhaus,80,2026-10-08T09:41:06Z,2026-10-14T08:19:52Z,https://urlhaus.abuse.ch/url/3946117/
 http://23.132.164.15/FAST/SS.ps1,url,,urlhaus,80,2026-10-08T09:40:08Z,2026-10-14T11:27:04Z,https://urlhaus.abuse.ch/url/3946116/
-http://112.248.162.236:47557/bin.sh,url,,urlhaus,80,2026-10-08T09:31:26Z,2026-10-11T06:53:04Z,https://urlhaus.abuse.ch/url/3946115/
 http://219.157.239.239:35642/bin.sh,url,,urlhaus,80,2026-10-08T09:31:07Z,2026-10-12T17:37:38Z,https://urlhaus.abuse.ch/url/3946112/
-http://117.88.227.121:34379/i,url,,urlhaus,80,2026-10-08T09:17:08Z,2026-10-11T06:07:47Z,https://urlhaus.abuse.ch/url/3946110/
 http://81.229.105.156:4906/bin.sh,url,,urlhaus,80,2026-10-08T09:17:07Z,2026-10-14T07:42:07Z,https://urlhaus.abuse.ch/url/3946109/
 http://nd.tdpqnf.com/fps/oocjafe.txt,url,,urlhaus,80,2026-10-08T09:11:11Z,2026-10-12T05:25:42Z,https://urlhaus.abuse.ch/url/3946107/
 http://91.92.242.236/files-129312398/files/file_7df6c134d8cd42cd.exe,url,,urlhaus,80,2026-10-08T08:59:07Z,2026-10-14T01:52:06Z,https://urlhaus.abuse.ch/url/3946105/
@@ -21030,8 +20800,6 @@ http://176.65.139.40/jklx86,url,,urlhaus,80,2026-10-08T08:14:20Z,2026-10-14T10:1
 http://176.65.139.40/jklmips,url,,urlhaus,80,2026-10-08T08:14:20Z,2026-10-14T08:55:11Z,https://urlhaus.abuse.ch/url/3946095/
 http://42.85.120.118:36599/i,url,,urlhaus,80,2026-10-08T07:47:07Z,2026-10-14T08:06:36Z,https://urlhaus.abuse.ch/url/3946059/
 http://42.85.165.214:60329/i,url,,urlhaus,80,2026-10-08T07:32:09Z,2026-10-14T09:32:03Z,https://urlhaus.abuse.ch/url/3946057/
-http://187.110.223.227:52319/i,url,,urlhaus,80,2026-10-08T07:32:08Z,2026-10-11T12:49:23Z,https://urlhaus.abuse.ch/url/3946056/
-http://187.110.223.227:52319/bin.sh,url,,urlhaus,80,2026-10-08T07:17:07Z,2026-10-11T11:15:12Z,https://urlhaus.abuse.ch/url/3946049/
 http://58.255.43.208:38478/i,url,,urlhaus,80,2026-10-08T07:02:08Z,2026-10-13T13:43:40Z,https://urlhaus.abuse.ch/url/3946034/
 http://175.169.236.217:36453/bin.sh,url,,urlhaus,80,2026-10-08T07:02:06Z,2026-10-12T05:45:28Z,https://urlhaus.abuse.ch/url/3946031/
 http://119.179.30.73:43717/bin.sh,url,,urlhaus,80,2026-10-08T06:42:10Z,2026-10-14T00:52:14Z,https://urlhaus.abuse.ch/url/3946027/
@@ -22039,55 +21807,12 @@ https://raw.githubusercontent.com/bitstackdev/ValorantExternalCheat/HEAD/Loader.
 https://gitlab.com/mopies/temp-spoofer-lifetime/-/raw/main/Temp-Spoofer.zip,url,,urlhaus,80,2026-10-08T05:36:33Z,2026-10-11T17:42:15Z,https://urlhaus.abuse.ch/url/3944716/
 https://raw.githubusercontent.com/vangerbit/Pubg-DESYNC-Menu/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:33Z,2026-10-11T18:32:39Z,https://urlhaus.abuse.ch/url/3944717/
 https://gitlab.com/frankblazz/redengine-fivem/-/raw/main/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:33Z,2026-10-11T17:54:41Z,https://urlhaus.abuse.ch/url/3944721/
-https://raw.githubusercontent.com/all1and/C2Panel/HEAD/C2Panel.exe,url,,urlhaus,80,2026-10-08T05:36:32Z,2026-10-11T12:16:51Z,https://urlhaus.abuse.ch/url/3944715/
 https://gitlab.com/stevehook/fortnitespoofer/-/raw/main/FortniteSpoofer.zip,url,,urlhaus,80,2026-10-08T05:36:31Z,2026-10-11T12:52:28Z,https://urlhaus.abuse.ch/url/3944714/
-https://gitlab.com/hexxycally/code/-/raw/main/stage_2.exe,url,,urlhaus,80,2026-10-08T05:36:30Z,2026-10-11T11:33:56Z,https://urlhaus.abuse.ch/url/3944713/
-https://raw.githubusercontent.com/lucklords/Temp-Spoofer-LifeTime/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:29Z,2026-10-11T11:18:34Z,https://urlhaus.abuse.ch/url/3944711/
-https://raw.githubusercontent.com/honsyxx/FortniteExternalCheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:29Z,2026-10-11T11:23:28Z,https://urlhaus.abuse.ch/url/3944712/
-https://raw.githubusercontent.com/fierrids/SkriptGG/HEAD/SkriptGG.exe,url,,urlhaus,80,2026-10-08T05:36:27Z,2026-10-11T12:50:20Z,https://urlhaus.abuse.ch/url/3944709/
-https://raw.githubusercontent.com/gracerivals/Warzone-Dominator/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:25Z,2026-10-11T11:35:14Z,https://urlhaus.abuse.ch/url/3944708/
-https://raw.githubusercontent.com/nikkyhalk/FortniteSpoofer/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:24Z,2026-10-11T07:24:24Z,https://urlhaus.abuse.ch/url/3944707/
-https://raw.githubusercontent.com/sophyeess/FortniteSpoofer/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:23Z,2026-10-11T12:31:36Z,https://urlhaus.abuse.ch/url/3944704/
-https://raw.githubusercontent.com/forrel1s/Pubg-DESYNC-Menu/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:23Z,2026-10-11T12:40:30Z,https://urlhaus.abuse.ch/url/3944705/
-https://raw.githubusercontent.com/harribes/Temp-Spoofer-LifeTime/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:22Z,2026-10-11T11:28:58Z,https://urlhaus.abuse.ch/url/3944703/
-https://gitlab.com/ChrisDior/temp-spoofer-lifetime/-/raw/main/Temp-Spoofer.zip,url,,urlhaus,80,2026-10-08T05:36:19Z,2026-10-11T11:55:21Z,https://urlhaus.abuse.ch/url/3944702/
-https://raw.githubusercontent.com/cxdleer/FiveM-External-Cheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:18Z,2026-10-11T12:45:51Z,https://urlhaus.abuse.ch/url/3944701/
 https://gitlab.com/sheffhallow/fivem-spoofer/-/raw/main/FiveMSpoofer.zip,url,,urlhaus,80,2026-10-08T05:36:13Z,2026-10-11T12:54:49Z,https://urlhaus.abuse.ch/url/3944697/
-https://gitlab.com/changehort/synapsex/-/raw/main/SynapseX.zip,url,,urlhaus,80,2026-10-08T05:36:12Z,2026-10-11T11:26:03Z,https://urlhaus.abuse.ch/url/3944695/
-https://raw.githubusercontent.com/downesx/FiveM-External-Cheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:47:26Z,https://urlhaus.abuse.ch/url/3944681/
-https://raw.githubusercontent.com/jaellds/FiveM-External-Cheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:44:03Z,https://urlhaus.abuse.ch/url/3944682/
 https://raw.githubusercontent.com/skannyhampt/FortniteExternalCheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:51:38Z,https://urlhaus.abuse.ch/url/3944683/
-https://raw.githubusercontent.com/addels7/Warzone-Dominator/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:41:51Z,https://urlhaus.abuse.ch/url/3944684/
-https://raw.githubusercontent.com/essywh/FiveM-External-Cheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T06:06:32Z,https://urlhaus.abuse.ch/url/3944685/
-https://raw.githubusercontent.com/nicthlans/Warzone-Dominator/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T11:51:42Z,https://urlhaus.abuse.ch/url/3944686/
-https://raw.githubusercontent.com/limmomixxs/FortniteSpoofer/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T11:22:00Z,https://urlhaus.abuse.ch/url/3944687/
-https://raw.githubusercontent.com/misserlys/Temp-Spoofer-LifeTime/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T06:12:35Z,https://urlhaus.abuse.ch/url/3944688/
-https://raw.githubusercontent.com/sillentl0vely/Swift-Executor/HEAD/Swift.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T11:29:17Z,https://urlhaus.abuse.ch/url/3944689/
-https://raw.githubusercontent.com/bittlanes/Fluxus-Roblox-Executor/HEAD/Fluxus%20V7.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:24:54Z,https://urlhaus.abuse.ch/url/3944690/
-https://raw.githubusercontent.com/lakecase/redENGINE-FiveM/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T12:07:17Z,https://urlhaus.abuse.ch/url/3944691/
-https://raw.githubusercontent.com/kesslyy27/Temp-Spoofer-LifeTime/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T07:38:24Z,https://urlhaus.abuse.ch/url/3944692/
 https://raw.githubusercontent.com/mallymeyh/FortniteExternalCheat/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T13:04:59Z,https://urlhaus.abuse.ch/url/3944693/
-https://raw.githubusercontent.com/arilles99/Temp-Spoofer-LifeTime/HEAD/TempSpoofer.exe,url,,urlhaus,80,2026-10-08T05:36:11Z,2026-10-11T11:57:30Z,https://urlhaus.abuse.ch/url/3944694/
-https://raw.githubusercontent.com/exgraphs/Swift-Executor/HEAD/Swift.exe,url,,urlhaus,80,2026-10-08T05:36:10Z,2026-10-11T07:43:14Z,https://urlhaus.abuse.ch/url/3944679/
-https://raw.githubusercontent.com/LPisStuck/SkriptGG/HEAD/SkriptGG.exe,url,,urlhaus,80,2026-10-08T05:36:10Z,2026-10-11T11:48:41Z,https://urlhaus.abuse.ch/url/3944680/
-https://raw.githubusercontent.com/nrevv1lad/Pubg-DESYNC-Menu/HEAD/Loader.exe,url,,urlhaus,80,2026-10-08T05:36:09Z,2026-10-11T11:17:27Z,https://urlhaus.abuse.ch/url/3944676/
 https://raw.githubusercontent.com/mOFFb/C2Panel/HEAD/C2Panel.exe,url,,urlhaus,80,2026-10-08T05:36:09Z,2026-10-11T12:58:59Z,https://urlhaus.abuse.ch/url/3944677/
-https://raw.githubusercontent.com/badd1lucky/Xeno-Executor/HEAD/Xeno.exe,url,,urlhaus,80,2026-10-08T05:36:09Z,2026-10-11T12:37:17Z,https://urlhaus.abuse.ch/url/3944678/
-http://42.87.145.61:38450/i,url,,urlhaus,80,2026-10-08T03:47:07Z,2026-10-11T07:12:09Z,https://urlhaus.abuse.ch/url/3944643/
-http://62.60.226.140/files/sofa/file.exe,url,,urlhaus,80,2026-10-08T03:36:07Z,2026-10-11T11:26:36Z,https://urlhaus.abuse.ch/url/3944639/
-http://42.53.1.177:44215/i,url,,urlhaus,80,2026-10-08T03:02:06Z,2026-10-11T07:39:14Z,https://urlhaus.abuse.ch/url/3944627/
-http://42.4.127.9:48434/i,url,,urlhaus,80,2026-10-08T02:47:07Z,2026-10-11T06:59:08Z,https://urlhaus.abuse.ch/url/3944622/
-http://120.84.214.178:36474/i,url,,urlhaus,80,2026-10-08T02:47:07Z,2026-10-11T11:18:43Z,https://urlhaus.abuse.ch/url/3944623/
-http://175.175.27.178:46890/bin.sh,url,,urlhaus,80,2026-10-08T02:47:06Z,2026-10-11T11:17:14Z,https://urlhaus.abuse.ch/url/3944620/
-http://42.53.1.177:44215/bin.sh,url,,urlhaus,80,2026-10-08T02:32:07Z,2026-10-11T07:06:28Z,https://urlhaus.abuse.ch/url/3944614/
-http://175.175.27.178:46890/i,url,,urlhaus,80,2026-10-08T02:17:07Z,2026-10-11T11:55:30Z,https://urlhaus.abuse.ch/url/3944607/
 http://175.167.87.144:56600/bin.sh,url,,urlhaus,80,2026-10-08T02:02:07Z,2026-10-11T12:52:05Z,https://urlhaus.abuse.ch/url/3944600/
-http://175.174.15.183:53135/i,url,,urlhaus,80,2026-10-08T01:47:20Z,2026-10-11T11:51:37Z,https://urlhaus.abuse.ch/url/3944597/
-http://175.175.239.99:39285/i,url,,urlhaus,80,2026-10-08T01:17:07Z,2026-10-11T11:50:48Z,https://urlhaus.abuse.ch/url/3944587/
-http://112.228.200.135:55841/i,url,,urlhaus,80,2026-10-08T00:32:07Z,2026-10-11T11:36:50Z,https://urlhaus.abuse.ch/url/3944576/
-http://113.221.78.113:53829/bin.sh,url,,urlhaus,80,2026-10-08T00:19:12Z,2026-10-11T07:32:46Z,https://urlhaus.abuse.ch/url/3944572/
-http://220.161.100.55:59476/i,url,,urlhaus,80,2026-10-08T00:02:06Z,2026-10-11T11:15:35Z,https://urlhaus.abuse.ch/url/3944560/
-http://117.91.113.150:43659/i,url,,urlhaus,80,2026-10-07T23:47:08Z,2026-10-11T12:48:21Z,https://urlhaus.abuse.ch/url/3944557/
 20.56.70.245,ipv4,Cobalt Strike,threatfox,80,2024-02-02T06:00:13Z,2026-10-21T11:42:21Z,https://threatfox.abuse.ch/ioc/1236276/
 62.234.27.204,ipv4,Cobalt Strike,threatfox,80,2023-12-18T05:00:11Z,2026-10-21T11:42:21Z,https://threatfox.abuse.ch/ioc/1221451/
 111.229.187.212,ipv4,Cobalt Strike,threatfox,80,2023-09-30T16:12:13Z,2026-10-21T11:42:19Z,https://threatfox.abuse.ch/ioc/1180378/
@@ -24459,14 +24184,6 @@ https://mathang.club/,url,Unknown Stealer,threatfox,75,2026-10-11T07:12:05Z,,htt
 http://saganlive.com:5747,url,Remus,threatfox,75,2026-10-11T06:31:23Z,,https://threatfox.abuse.ch/ioc/1960485/
 http://59.103.119.88:58644/Mozi.m,url,Mozi,threatfox,75,2026-10-11T06:18:51Z,,https://threatfox.abuse.ch/ioc/1960482/
 http://arqtsop.shop:9932/reviews,url,Remus,threatfox,75,2026-10-11T06:00:07Z,,https://threatfox.abuse.ch/ioc/1960479/
-alladie.store,domain,AsyncRAT,threatfox,75,2026-10-11T05:45:22Z,,https://threatfox.abuse.ch/ioc/1960477/
-ufabet88.vip,domain,Quasar RAT,threatfox,75,2026-10-11T05:40:17Z,,https://threatfox.abuse.ch/ioc/1960476/
-uvach.in,domain,Quasar RAT,threatfox,75,2026-10-11T05:10:19Z,,https://threatfox.abuse.ch/ioc/1960473/
-ghyu.in,domain,Quasar RAT,threatfox,75,2026-10-11T04:30:21Z,,https://threatfox.abuse.ch/ioc/1960462/
-lovecasino.co,domain,AsyncRAT,threatfox,75,2026-10-11T02:40:19Z,,https://threatfox.abuse.ch/ioc/1960423/
-http://153.117.66.231:54098/Mozi.m,url,Mozi,threatfox,75,2026-10-11T00:18:48Z,,https://threatfox.abuse.ch/ioc/1960380/
-http://118.175.206.237:56655/Mozi.a,url,Mozi,threatfox,75,2026-10-11T00:18:48Z,,https://threatfox.abuse.ch/ioc/1960381/
-http://hkealop.shop:9932/sessions,url,Remus,threatfox,75,2026-10-10T22:35:23Z,,https://threatfox.abuse.ch/ioc/1960342/
 94.154.43.64,ipv4,AdaptixC2,threatfox,75,2026-10-10T19:45:55Z,2026-10-21T11:45:46Z,https://threatfox.abuse.ch/ioc/1960148/
 91.92.41.151,ipv4,PureRAT,threatfox,75,2026-10-10T19:45:52Z,2026-10-21T11:45:43Z,https://threatfox.abuse.ch/ioc/1960147/
 89.47.99.241,ipv4,DanaBot,threatfox,75,2026-10-10T19:45:49Z,2026-10-21T11:45:41Z,https://threatfox.abuse.ch/ioc/1960146/
@@ -24477,7 +24194,6 @@ http://hkealop.shop:9932/sessions,url,Remus,threatfox,75,2026-10-10T22:35:23Z,,h
 20.98.57.24,ipv4,Hook,threatfox,75,2026-10-10T19:44:26Z,2026-10-21T11:44:18Z,https://threatfox.abuse.ch/ioc/1960134/
 2.56.166.25,ipv4,AdaptixC2,threatfox,75,2026-10-10T19:44:23Z,2026-10-21T11:44:16Z,https://threatfox.abuse.ch/ioc/1960133/
 176.96.137.76,ipv4,PureRAT,threatfox,75,2026-10-10T19:43:58Z,2026-10-21T11:43:55Z,https://threatfox.abuse.ch/ioc/1960129/
-http://45.2.24.40:59399/Mozi.m,url,Mozi,"threatfox,urlhaus",75,2026-10-10T18:18:44Z,2026-10-11T07:04:14Z,https://threatfox.abuse.ch/ioc/1960108/
 43.139.173.26,ipv4,Cobalt Strike,threatfox,75,2026-10-10T13:46:25Z,2026-10-21T11:46:05Z,https://threatfox.abuse.ch/ioc/1960026/
 94.158.187.146,ipv4,DanaBot,threatfox,75,2026-10-10T09:45:41Z,2026-10-21T11:45:46Z,https://threatfox.abuse.ch/ioc/1959920/
 68.166.230.226,ipv4,DanaBot,threatfox,75,2026-10-10T09:45:26Z,2026-10-21T11:45:31Z,https://threatfox.abuse.ch/ioc/1959919/
@@ -24530,8 +24246,6 @@ http://45.2.24.40:59399/Mozi.m,url,Mozi,"threatfox,urlhaus",75,2026-10-10T18:18:
 128.1.121.209,ipv4,DanaBot,threatfox,75,2026-10-09T19:43:19Z,2026-10-21T11:43:18Z,https://threatfox.abuse.ch/ioc/1958977/
 103.215.216.8,ipv4,pupy,threatfox,75,2026-10-09T19:43:08Z,2026-10-21T11:43:08Z,https://threatfox.abuse.ch/ioc/1958973/
 102.117.164.49,ipv4,Unknown malware,threatfox,75,2026-10-09T19:43:03Z,2026-10-21T11:43:03Z,https://threatfox.abuse.ch/ioc/1958972/
-https://xt.33pedia.org,url,Vidar,threatfox,75,2026-10-09T17:28:52Z,2026-10-11T07:30:23Z,https://threatfox.abuse.ch/ioc/1958798/
-https://xt.4toto.net,url,Vidar,threatfox,75,2026-10-09T17:28:52Z,2026-10-11T07:32:16Z,https://threatfox.abuse.ch/ioc/1958799/
 xn--42cga1id4d9c7co1e.com,domain,Unknown Loader,threatfox,75,2026-10-09T17:11:45Z,2026-10-18T15:30:01Z,https://threatfox.abuse.ch/ioc/1958785/
 xn--rotulosydiseo-tkb.es,domain,Unknown Loader,threatfox,75,2026-10-09T17:11:45Z,2026-10-18T15:30:01Z,https://threatfox.abuse.ch/ioc/1958786/
 zainyapparels.com,domain,Unknown Loader,threatfox,75,2026-10-09T17:11:45Z,2026-10-18T15:31:17Z,https://threatfox.abuse.ch/ioc/1958787/
@@ -24770,7 +24484,6 @@ www.rarebookshonolulu.com,domain,Unknown Loader,threatfox,75,2026-10-07T20:34:00
 128.90.105.180,ipv4,AsyncRAT,threatfox,75,2026-10-07T19:43:18Z,2026-10-21T11:43:18Z,https://threatfox.abuse.ch/ioc/1956688/
 103.181.177.61,ipv4,PureRAT,threatfox,75,2026-10-07T19:43:08Z,2026-10-21T11:43:07Z,https://threatfox.abuse.ch/ioc/1956687/
 102.220.161.177,ipv4,PureRAT,threatfox,75,2026-10-07T19:43:05Z,2026-10-21T11:43:06Z,https://threatfox.abuse.ch/ioc/1956686/
-https://xs.333vip.org,url,Vidar,threatfox,75,2026-10-07T16:58:53Z,2026-10-11T07:42:31Z,https://threatfox.abuse.ch/ioc/1956622/
 52.246.183.133,ipv4,Havoc,threatfox,75,2026-10-07T09:45:27Z,2026-10-21T11:45:25Z,https://threatfox.abuse.ch/ioc/1956221/
 46.246.12.6,ipv4,AsyncRAT,threatfox,75,2026-10-07T09:45:21Z,2026-10-21T11:45:19Z,https://threatfox.abuse.ch/ioc/1956219/
 23.92.20.189,ipv4,Chaos,threatfox,75,2026-10-07T09:44:52Z,2026-10-21T11:44:50Z,https://threatfox.abuse.ch/ioc/1956218/
@@ -25704,15 +25417,11 @@ networkness.com,domain,Cobalt Strike,threatfox,75,2026-09-12T03:47:11Z,2026-10-1
 16.5.7.159,ipv4,Havoc,threatfox,75,2026-09-11T09:44:06Z,2026-10-11T18:43:48Z,https://threatfox.abuse.ch/ioc/1912171/
 154.205.175.206,ipv4,DanaBot,threatfox,75,2026-09-11T09:43:55Z,2026-10-13T08:43:43Z,https://threatfox.abuse.ch/ioc/1912170/
 144.126.218.78,ipv4,Evilginx,threatfox,75,2026-09-11T09:43:44Z,2026-10-21T11:43:28Z,https://threatfox.abuse.ch/ioc/1912169/
-45.144.136.97,ipv4,Cobalt Strike,threatfox,75,2026-09-11T03:48:17Z,2026-10-11T12:46:27Z,https://threatfox.abuse.ch/ioc/1911853/
 111.228.5.127,ipv4,Cobalt Strike,threatfox,75,2026-09-11T03:47:53Z,2026-10-21T11:45:55Z,https://threatfox.abuse.ch/ioc/1911851/
 72.14.136.90,ipv4,PureRAT,threatfox,75,2026-09-10T21:47:09Z,2026-10-20T08:45:34Z,https://threatfox.abuse.ch/ioc/1911432/
 45.192.211.126,ipv4,PureRAT,threatfox,75,2026-09-10T21:46:40Z,2026-10-21T11:45:11Z,https://threatfox.abuse.ch/ioc/1924207/
-195.177.94.98,ipv4,PureRAT,threatfox,75,2026-09-10T21:45:02Z,2026-10-11T08:44:19Z,https://threatfox.abuse.ch/ioc/1911430/
-193.168.175.69,ipv4,PureRAT,threatfox,75,2026-09-10T21:44:53Z,2026-10-11T08:44:14Z,https://threatfox.abuse.ch/ioc/1911429/
 163.5.210.247,ipv4,PureRAT,threatfox,75,2026-09-10T21:44:10Z,2026-10-21T11:43:48Z,https://threatfox.abuse.ch/ioc/1911427/
 153.56.180.134,ipv4,PureRAT,threatfox,75,2026-09-10T21:43:53Z,2026-10-16T08:43:36Z,https://threatfox.abuse.ch/ioc/1916934/
-104.249.10.118,ipv4,PureRAT,threatfox,75,2026-09-10T21:43:17Z,2026-10-11T08:43:13Z,https://threatfox.abuse.ch/ioc/1911423/
 tamccfoundation.org,domain,Unknown Loader,threatfox,75,2026-09-10T21:03:56Z,2026-10-17T10:27:28Z,https://threatfox.abuse.ch/ioc/1911303/
 ranklocalhq.com,domain,Unknown Loader,threatfox,75,2026-09-10T20:26:37Z,2026-10-17T10:27:27Z,https://threatfox.abuse.ch/ioc/1911260/
 prestige-solution.com,domain,Unknown Loader,threatfox,75,2026-09-10T20:25:28Z,2026-10-17T10:27:27Z,https://threatfox.abuse.ch/ioc/1911250/
@@ -25733,12 +25442,8 @@ baychatadanceacademy.com,domain,Unknown Loader,threatfox,75,2026-09-10T20:14:56Z
 45.202.0.24,ipv4,DCRat,threatfox,75,2026-09-10T19:46:48Z,2026-10-11T18:45:19Z,https://threatfox.abuse.ch/ioc/1912182/
 193.233.131.97,ipv4,DCRat,threatfox,75,2026-09-10T19:44:56Z,2026-10-12T08:44:24Z,https://threatfox.abuse.ch/ioc/1910834/
 158.158.17.236,ipv4,AdaptixC2,threatfox,75,2026-09-10T19:44:04Z,2026-10-21T11:43:44Z,https://threatfox.abuse.ch/ioc/1910833/
-154.46.30.12,ipv4,Havoc,threatfox,75,2026-09-10T19:43:58Z,2026-10-11T08:43:40Z,https://threatfox.abuse.ch/ioc/1910832/
 146.70.87.218,ipv4,AdaptixC2,threatfox,75,2026-09-10T19:43:48Z,2026-10-21T11:43:30Z,https://threatfox.abuse.ch/ioc/1910831/
 129.153.57.179,ipv4,DanaBot,threatfox,75,2026-09-10T19:43:34Z,2026-10-15T08:43:23Z,https://threatfox.abuse.ch/ioc/1910830/
-128.90.167.181,ipv4,AsyncRAT,threatfox,75,2026-09-10T19:43:33Z,2026-10-11T08:43:22Z,https://threatfox.abuse.ch/ioc/1910829/
-128.90.105.231,ipv4,DCRat,threatfox,75,2026-09-10T19:43:32Z,2026-10-11T08:43:21Z,https://threatfox.abuse.ch/ioc/1910828/
-102.117.168.34,ipv4,Unknown malware,threatfox,75,2026-09-10T19:43:05Z,2026-10-11T08:43:04Z,https://threatfox.abuse.ch/ioc/1910826/
 209.200.246.80,ipv4,Cobalt Strike,threatfox,75,2026-09-10T13:48:48Z,2026-10-12T12:46:23Z,https://threatfox.abuse.ch/ioc/1907179/
 95.31.213.79,ipv4,Unknown malware,threatfox,75,2026-09-10T09:47:48Z,2026-10-14T08:45:55Z,https://threatfox.abuse.ch/ioc/1907068/
 80.96.108.225,ipv4,AdaptixC2,threatfox,75,2026-09-10T09:47:25Z,2026-10-21T11:45:36Z,https://threatfox.abuse.ch/ioc/1907067/
@@ -25749,7 +25454,6 @@ baychatadanceacademy.com,domain,Unknown Loader,threatfox,75,2026-09-10T20:14:56Z
 184.176.151.16,ipv4,DeimosC2,threatfox,75,2026-09-10T09:44:38Z,2026-10-16T18:43:59Z,https://threatfox.abuse.ch/ioc/1907055/
 144.172.65.54,ipv4,AdaptixC2,threatfox,75,2026-09-10T09:43:48Z,2026-10-11T18:43:32Z,https://threatfox.abuse.ch/ioc/1907050/
 143.246.217.103,ipv4,AdaptixC2,threatfox,75,2026-09-10T09:43:46Z,2026-10-21T11:43:27Z,https://threatfox.abuse.ch/ioc/1907049/
-38.190.198.56,ipv4,Cobalt Strike,threatfox,75,2026-09-10T03:48:54Z,2026-10-11T10:46:35Z,https://threatfox.abuse.ch/ioc/1906864/
 79.76.35.195,ipv4,DanaBot,threatfox,75,2026-09-09T19:47:17Z,2026-10-15T18:45:39Z,https://threatfox.abuse.ch/ioc/1906420/
 65.87.7.11,ipv4,Unknown malware,threatfox,75,2026-09-09T19:47:12Z,2026-10-12T08:45:55Z,https://threatfox.abuse.ch/ioc/1906419/
 31.76.103.200,ipv4,PureRAT,threatfox,75,2026-09-09T19:46:24Z,2026-10-11T18:45:02Z,https://threatfox.abuse.ch/ioc/1906417/
@@ -25774,8 +25478,6 @@ baychatadanceacademy.com,domain,Unknown Loader,threatfox,75,2026-09-10T20:14:56Z
 45.192.214.55,ipv4,PureRAT,threatfox,75,2026-09-08T19:46:53Z,2026-10-21T11:45:12Z,https://threatfox.abuse.ch/ioc/1905618/
 37.72.168.163,ipv4,AdaptixC2,threatfox,75,2026-09-08T19:46:36Z,2026-10-21T11:44:58Z,https://threatfox.abuse.ch/ioc/1905611/
 2.56.222.17,ipv4,AdaptixC2,threatfox,75,2026-09-08T19:45:21Z,2026-10-21T11:44:16Z,https://threatfox.abuse.ch/ioc/1905606/
-186.240.202.85,ipv4,PureRAT,threatfox,75,2026-09-08T19:44:48Z,2026-10-11T08:44:07Z,https://threatfox.abuse.ch/ioc/1906410/
-186.240.202.89,ipv4,PureRAT,threatfox,75,2026-09-08T19:44:48Z,2026-10-11T08:44:07Z,https://threatfox.abuse.ch/ioc/1906411/
 170.64.183.242,ipv4,Unknown malware,threatfox,75,2026-09-08T19:44:16Z,2026-10-20T18:43:48Z,https://threatfox.abuse.ch/ioc/1905598/
 147.124.214.219,ipv4,PureRAT,threatfox,75,2026-09-08T19:43:47Z,2026-10-19T08:43:30Z,https://threatfox.abuse.ch/ioc/1924194/
 107.150.72.199,ipv4,PureRAT,threatfox,75,2026-09-08T19:43:19Z,2026-10-12T08:43:15Z,https://threatfox.abuse.ch/ioc/1905591/
@@ -25891,7 +25593,6 @@ www.qkshhdjrbd.work,domain,Cobalt Strike,threatfox,75,2026-09-04T15:47:55Z,2026-
 185.112.59.115,ipv4,PureRAT,threatfox,75,2026-08-30T19:44:14Z,2026-10-21T11:43:59Z,https://threatfox.abuse.ch/ioc/1891537/
 160.119.69.30,ipv4,AsyncRAT,threatfox,75,2026-08-30T19:43:51Z,2026-10-19T08:43:45Z,https://threatfox.abuse.ch/ioc/1891534/
 144.31.106.168,ipv4,Chaos,threatfox,75,2026-08-30T19:43:36Z,2026-10-15T08:43:33Z,https://threatfox.abuse.ch/ioc/1891529/
-31.57.38.7,ipv4,PureRAT,threatfox,75,2026-08-30T09:46:20Z,2026-10-11T08:45:03Z,https://threatfox.abuse.ch/ioc/1903047/
 194.59.30.96,ipv4,HypeAgent,threatfox,75,2026-08-30T09:44:54Z,2026-10-14T08:44:15Z,https://threatfox.abuse.ch/ioc/1891538/
 47.86.9.253,ipv4,Cobalt Strike,threatfox,75,2026-08-29T23:47:01Z,2026-10-17T12:45:56Z,https://threatfox.abuse.ch/ioc/1891222/
 38.180.250.214,ipv4,Tsundere,threatfox,75,2026-08-29T19:46:14Z,2026-10-21T11:45:01Z,https://threatfox.abuse.ch/ioc/1891167/
@@ -25911,7 +25612,6 @@ www.qkshhdjrbd.work,domain,Cobalt Strike,threatfox,75,2026-09-04T15:47:55Z,2026-
 185.212.128.96,ipv4,Evilginx,threatfox,75,2026-08-27T19:44:38Z,2026-10-21T11:44:00Z,https://threatfox.abuse.ch/ioc/1889498/
 134.122.187.68,ipv4,PureRAT,threatfox,75,2026-08-27T19:43:39Z,2026-10-21T11:43:23Z,https://threatfox.abuse.ch/ioc/1889487/
 8.162.1.240,ipv4,Cobalt Strike,threatfox,75,2026-08-27T11:48:55Z,2026-10-21T11:46:10Z,https://threatfox.abuse.ch/ioc/1889245/
-47.79.21.106,ipv4,Cobalt Strike,threatfox,75,2026-08-27T11:48:51Z,2026-10-11T10:46:41Z,https://threatfox.abuse.ch/ioc/1889244/
 39.97.57.155,ipv4,Cobalt Strike,threatfox,75,2026-08-27T11:48:44Z,2026-10-21T11:46:04Z,https://threatfox.abuse.ch/ioc/1889243/
 106.15.10.2,ipv4,Cobalt Strike,threatfox,75,2026-08-27T11:48:21Z,2026-10-16T20:45:59Z,https://threatfox.abuse.ch/ioc/1889239/
 c-proxy-xjmkjgbsdn.cn-hangzhou.fcapp.run,domain,Cobalt Strike,threatfox,75,2026-08-27T11:48:13Z,2026-10-21T11:45:49Z,https://threatfox.abuse.ch/ioc/1889238/
@@ -25923,7 +25623,6 @@ c-proxy-xjmkjgbsdn.cn-hangzhou.fcapp.run,domain,Cobalt Strike,threatfox,75,2026-
 103.121.92.249,ipv4,Sliver,threatfox,75,2026-08-26T22:02:43Z,2026-10-12T16:00:12Z,https://threatfox.abuse.ch/ioc/1888810/
 172.94.9.81,ipv4,Sliver,threatfox,75,2026-08-26T22:02:43Z,2026-10-12T16:00:05Z,https://threatfox.abuse.ch/ioc/1888812/
 193.111.117.26,ipv4,AdaptixC2,threatfox,75,2026-08-26T19:44:32Z,2026-10-12T18:44:18Z,https://threatfox.abuse.ch/ioc/1888472/
-188.23.175.25,ipv4,Eye Pyramid,threatfox,75,2026-08-26T19:44:28Z,2026-10-11T08:44:08Z,https://threatfox.abuse.ch/ioc/1888470/
 178.208.169.166,ipv4,AsyncRAT,threatfox,75,2026-08-26T12:03:30Z,2026-10-21T11:43:56Z,https://threatfox.abuse.ch/ioc/1888158/
 http://cryptovectorhub3.lol:5478/accounts,url,Remus,threatfox,75,2026-08-26T10:05:24Z,2026-10-17T07:26:03Z,https://threatfox.abuse.ch/ioc/1888117/
 64.89.160.77,ipv4,HypeAgent,threatfox,75,2026-08-26T09:46:43Z,2026-10-14T08:45:34Z,https://threatfox.abuse.ch/ioc/1888108/
@@ -25931,7 +25630,6 @@ http://cryptovectorhub3.lol:5478/accounts,url,Remus,threatfox,75,2026-08-26T10:0
 193.233.220.65,ipv4,AdaptixC2,threatfox,75,2026-08-26T09:44:43Z,2026-10-21T11:44:10Z,https://threatfox.abuse.ch/ioc/1888101/
 104.105.15.96,ipv4,Evilginx,threatfox,75,2026-08-26T09:43:10Z,2026-10-21T11:43:09Z,https://threatfox.abuse.ch/ioc/1888090/
 101.99.92.134,ipv4,AsyncRAT,threatfox,75,2026-08-26T09:43:04Z,2026-10-14T18:43:02Z,https://threatfox.abuse.ch/ioc/1888089/
-199.245.176.147,ipv4,AsyncRAT,threatfox,75,2026-08-26T09:23:04Z,2026-10-11T08:44:20Z,https://threatfox.abuse.ch/ioc/1889171/
 207.180.29.85,ipv4,Remcos,threatfox,75,2026-08-26T08:00:43Z,2026-10-20T10:30:27Z,https://threatfox.abuse.ch/ioc/1888054/
 160.25.140.132,ipv4,AsyncRAT,threatfox,75,2026-08-25T22:15:51Z,2026-10-12T15:59:49Z,https://threatfox.abuse.ch/ioc/1887861/
 196.188.116.63,ipv4,Sliver,threatfox,75,2026-08-25T22:15:05Z,2026-10-12T16:00:08Z,https://threatfox.abuse.ch/ioc/1887859/
@@ -26238,7 +25936,6 @@ superstarlog.click,domain,Unknown malware,threatfox,75,2026-06-26T07:18:39Z,2026
 45.192.211.59,ipv4,PureRAT,threatfox,75,2026-06-25T15:17:44Z,2026-10-16T18:45:11Z,https://threatfox.abuse.ch/ioc/1837441/
 146.190.80.105,ipv4,Havoc,threatfox,75,2026-06-24T19:43:22Z,2026-10-21T11:43:29Z,https://threatfox.abuse.ch/ioc/1837080/
 thesoccerarena.com,domain,IClickFix,threatfox,75,2026-06-24T11:04:25Z,2026-10-13T06:55:06Z,https://threatfox.abuse.ch/ioc/1836901/
-physiothetics.com,domain,IClickFix,threatfox,75,2026-06-24T11:04:21Z,2026-10-11T01:13:11Z,https://threatfox.abuse.ch/ioc/1836876/
 38.207.177.71,ipv4,Unknown malware,threatfox,75,2026-06-24T09:45:14Z,2026-10-21T11:45:01Z,https://threatfox.abuse.ch/ioc/1836781/
 107.172.140.187,ipv4,AdaptixC2,threatfox,75,2026-06-24T09:43:12Z,2026-10-21T11:43:14Z,https://threatfox.abuse.ch/ioc/1836771/
 156.239.47.147,ipv4,AdaptixC2,threatfox,75,2026-06-23T19:43:29Z,2026-10-21T11:43:40Z,https://threatfox.abuse.ch/ioc/1836662/
@@ -26246,7 +25943,6 @@ verification-code-js.beer,domain,Unknown malware,threatfox,75,2026-06-23T10:31:1
 code.verification-claude-cdn.beer,domain,Unknown malware,threatfox,75,2026-06-23T10:31:16Z,2026-10-17T20:58:21Z,https://threatfox.abuse.ch/ioc/1836311/
 102.220.160.250,ipv4,AsyncRAT,threatfox,75,2026-06-22T09:43:03Z,2026-10-21T11:43:05Z,https://threatfox.abuse.ch/ioc/1836768/
 196.251.121.90,ipv4,Tofsee,threatfox,75,2026-06-22T07:00:13Z,2026-10-21T08:18:41Z,https://threatfox.abuse.ch/ioc/1848481/
-vitimadetransito.com.br,domain,Remus,threatfox,75,2026-06-21T22:58:30Z,2026-10-11T05:21:58Z,https://threatfox.abuse.ch/ioc/1835280/
 http://khabarraja.com:4437,url,Remus,threatfox,75,2026-06-19T09:45:36Z,2026-10-15T05:06:18Z,https://threatfox.abuse.ch/ioc/1834061/
 103.153.254.32,ipv4,Unknown malware,threatfox,75,2026-06-19T09:43:05Z,2026-10-21T11:43:07Z,https://threatfox.abuse.ch/ioc/1834051/
 106.13.189.138,ipv4,Cobalt Strike,threatfox,75,2026-06-17T23:45:31Z,2026-10-21T11:45:54Z,https://threatfox.abuse.ch/ioc/1833622/
@@ -26286,7 +25982,6 @@ megamegalodon.click,domain,Unknown malware,threatfox,75,2026-05-29T06:26:01Z,202
 91.215.85.212,ipv4,AdaptixC2,threatfox,75,2026-05-28T09:46:09Z,2026-10-21T11:45:41Z,https://threatfox.abuse.ch/ioc/1819406/
 85.209.90.132,ipv4,AdaptixC2,threatfox,75,2026-05-28T09:46:05Z,2026-10-21T11:45:39Z,https://threatfox.abuse.ch/ioc/1819405/
 202.95.8.97,ipv4,AdaptixC2,threatfox,75,2026-05-28T09:44:19Z,2026-10-11T18:44:26Z,https://threatfox.abuse.ch/ioc/1819396/
-202.95.8.98,ipv4,AdaptixC2,threatfox,75,2026-05-28T09:44:19Z,2026-10-11T08:44:25Z,https://threatfox.abuse.ch/ioc/1819397/
 91.92.41.94,ipv4,Remcos,threatfox,75,2026-05-28T06:35:37Z,2026-10-21T06:17:28Z,https://threatfox.abuse.ch/ioc/1819344/
 91.200.84.198,ipv4,AdaptixC2,threatfox,75,2026-05-27T19:45:55Z,2026-10-21T11:45:41Z,https://threatfox.abuse.ch/ioc/1819225/
 ns1.deepsekapi.cn,domain,Cobalt Strike,threatfox,75,2026-05-27T13:46:00Z,2026-10-21T11:45:51Z,https://threatfox.abuse.ch/ioc/1819104/
@@ -26457,7 +26152,6 @@ lcowpowerlite.italynorth.cloudapp.azure.com,domain,Cobalt Strike,threatfox,75,20
 47.115.193.52,ipv4,DeimosC2,threatfox,75,2026-01-30T18:54:11Z,2026-10-21T11:45:22Z,https://threatfox.abuse.ch/ioc/1739209/
 209.145.63.3,ipv4,AsyncRAT,threatfox,75,2026-01-29T18:55:17Z,2026-10-21T11:44:22Z,https://threatfox.abuse.ch/ioc/1738855/
 158.158.8.193,ipv4,BianLian,threatfox,75,2026-01-23T08:45:57Z,2026-10-21T11:43:44Z,https://threatfox.abuse.ch/ioc/1736034/
-test.dnslogger.site,domain,Cobalt Strike,threatfox,75,2026-01-16T14:56:19Z,2026-10-11T10:46:19Z,https://threatfox.abuse.ch/ioc/1733583/
 123.249.100.226,ipv4,Cobalt Strike,threatfox,75,2026-01-08T08:51:57Z,2026-10-21T11:45:57Z,https://threatfox.abuse.ch/ioc/1693090/
 101.34.205.214,ipv4,Cobalt Strike,threatfox,75,2025-12-30T16:21:16Z,2026-10-21T11:42:12Z,https://threatfox.abuse.ch/ioc/1688739/
 103.171.35.66,ipv4,Cobalt Strike,threatfox,75,2025-12-30T16:21:15Z,2026-10-21T11:42:11Z,https://threatfox.abuse.ch/ioc/1688738/
@@ -27056,8 +26750,6 @@ mobiletoolapp.com,domain,,urlhaus,70,2026-10-10T15:31:13Z,2026-10-16T14:01:58Z,h
 coreprotector.org,domain,,urlhaus,70,2026-10-10T15:31:08Z,2026-10-16T00:59:53Z,https://urlhaus.abuse.ch/url/3947634/
 swervimgbackj.top,domain,,urlhaus,70,2026-10-10T13:05:48Z,2026-10-11T23:16:57Z,https://urlhaus.abuse.ch/url/3947588/
 modhollow.netlify.app,domain,,urlhaus,70,2026-10-10T13:03:07Z,2026-10-12T13:56:45Z,https://urlhaus.abuse.ch/url/3947580/
-goobaaclient.com,domain,,urlhaus,70,2026-10-10T13:02:25Z,2026-10-11T12:26:16Z,https://urlhaus.abuse.ch/url/3947575/
-hylrukrxwfwbooknmtyx.supabase.co,domain,,urlhaus,70,2026-10-10T13:02:17Z,2026-10-11T12:48:31Z,https://urlhaus.abuse.ch/url/3947556/
 situations-clarity-pill-preceding.trycloudflare.com,domain,,urlhaus,70,2026-10-10T07:12:43Z,2026-10-12T08:12:14Z,https://urlhaus.abuse.ch/url/3947404/
 dttjjkkllzbvesjzndtp.vercel.app,domain,,urlhaus,70,2026-10-10T06:07:10Z,2026-10-12T12:09:54Z,https://urlhaus.abuse.ch/url/3947369/
 gibddru.vercel.app,domain,,urlhaus,70,2026-10-10T06:07:10Z,2026-10-12T13:22:55Z,https://urlhaus.abuse.ch/url/3947370/
@@ -27084,199 +26776,6 @@ drive.google.com,domain,,urlhaus,70,2026-09-30T04:14:15Z,2026-10-20T03:42:44Z,ht
 github.com,domain,,urlhaus,70,2026-09-28T20:47:34Z,2026-10-21T11:58:59Z,https://urlhaus.abuse.ch/url/3928575/
 cdn.discordapp.com,domain,,urlhaus,70,2026-09-28T18:40:29Z,2026-10-18T06:13:45Z,https://urlhaus.abuse.ch/url/3928560/
 www.dropbox.com,domain,,urlhaus,70,2026-09-28T09:13:49Z,2026-10-21T11:09:06Z,https://urlhaus.abuse.ch/url/3927868/
-http://kxt8244z.demox.site/,url,,openphish,70,,,
-https://sp1ct10-dorval-biz-zulzo-pelri.pages.dev/,url,,openphish,70,,,
-https://voicemail.tsisd.ca/index.html,url,,openphish,70,,,
-https://diskcacambasdetroit.com.br/auth/rackespace/,url,,openphish,70,,,
-https://b592af96.click.kit-mail3.com/lmup7gdw6khmhn9nv4wu6h8wko4wkugh4ozgo/qvh8h7hdpek6edbl/aHR0cHM6Ly9kaXNrY2FjYW1iYXNkZXRyb2l0LmNvbS5ici9hdXRoL3JhY2tlc3BhY2U=/,url,,openphish,70,,,
-http://therealbackporch.com/a/pages/login.php,url,,openphish,70,,,
-http://pzhxr7fvyc.hdply.com/,url,,openphish,70,,,
-https://www.violationverificationgroup186.vercel.app/,url,,openphish,70,,,
-http://www-deliverthewin-wpe-stage.usps.mrm-client.com/,url,,openphish,70,,,
-http://www.fllicensehealthpdf-viewer.vercel.app/,url,,openphish,70,,,
-http://www.gang-1.vercel.app/,url,,openphish,70,,,
-http://gang-1.vercel.app/,url,,openphish,70,,,
-http://start-io-trzre.typedream.app/,url,,openphish,70,,,
-http://roblox-4kx.pages.dev/,url,,openphish,70,,,
-http://fllicensehealthpdf-viewer.vercel.app/,url,,openphish,70,,,
-https://whatsapp.acceso.me/,url,,openphish,70,,,
-https://www.roblox.com.bi/games/121165298854655/DONT-LET-HIM-IN-NEW-MAP?privateServerLinkCode=65227985513451888732300630201761,url,,openphish,70,,,
-https://g5.lu/favkx,url,,openphish,70,,,
-https://zufefutiw.webhop.me/ococi/,url,,openphish,70,,,
-https://hulobag.servehalflife.com/awigot/,url,,openphish,70,,,
-https://nadaku.onthewifi.com/movegu/,url,,openphish,70,,,
-https://ravniko-zul594207.vercel.app/index1.html,url,,openphish,70,,,
-https://ravniko-zul594207.vercel.app/,url,,openphish,70,,,
-https://kv-cont-blared.pages.dev/help/contact/317928204491396%2525252525252525252CN/A%2525252525252525252Chttps%2525252525252525253A/openphis/,url,,openphish,70,,,
-https://nihalaneesh.github.io/amazon-homepage-clone/,url,,openphish,70,,,
-https://lnk.ink/jt1ff,url,,openphish,70,,,
-https://adobeinstaller-virid.vercel.app/,url,,openphish,70,,,
-https://signin-adobe-x4ou12j0f7c-3d031dfa-9ygwqx748489-4a60f031a-b62a.vercel.app/,url,,openphish,70,,,
-https://kebemus.serveirc.com/wodaje/,url,,openphish,70,,,
-https://security-check-secure.cfd/,url,,openphish,70,,,
-https://online-portal-bzst.cfd/,url,,openphish,70,,,
-https://theguesstimate.com/camcam,url,,openphish,70,,,
-https://hp9316.craftum.io/,url,,openphish,70,,,
-https://121jio.senes.at/stakings?b=YTo0OntzOjU6ImxhYmVsIjtzOjE6IjkiO3M6MzoidXNyIjtpOjE1NjtzOjQ6Im5vcGQiO3M6MTU6InJzczMucmVhZGxlcy5hdCI7czoxOiJvIjtpOjExMzY7fQ==,url,,openphish,70,,,
-https://spotify.assetdeploy.com/,url,,openphish,70,,,
-http://treursuite.square.site/,url,,openphish,70,,,
-https://hizecida.zapto.org/heton/,url,,openphish,70,,,
-https://udorofuse.zapto.org/mufo/,url,,openphish,70,,,
-https://palet.com.ua/de/app/login.php,url,,openphish,70,,,
-https://palet.com.ua/de/app,url,,openphish,70,,,
-https://cuhatar.webhop.me/dike/,url,,openphish,70,,,
-https://tevofo.redirectme.net/supime/,url,,openphish,70,,,
-https://not-enought-feeding-animals.vercel.app/,url,,openphish,70,,,
-http://roblox.com.bn/communities/577644623018/One-Time-YT,url,,openphish,70,,,
-https://that.is.maleare.121z3.ralind.at/trs/,url,,openphish,70,,,
-https://thatismaleare.121z3.ralind.at/trs/,url,,openphish,70,,,
-https://thatismaleare121z3.ralind.at/trs/,url,,openphish,70,,,
-http://perfumenapromo.lovable.app/,url,,openphish,70,,,
-http://mercadopaneladrepressao.lovable.app/,url,,openphish,70,,,
-https://faecbook.vn/sakuarastudio-tuyen-dung-chuyen-nghiep-79?d8,url,,openphish,70,,,
-https://www-deliverthewin-wpe-stage.usps.mrm-client.com/research-center/political-planning-tool/#/question/1,url,,openphish,70,,,
-https://34abx.anixas.at:443/newtransfer,url,,openphish,70,,,
-https://rss2.sayler.at/go/y2C4Y254/z264X254,url,,openphish,70,,,
-https://www.roblox.com.gr/games/8737602449/PLS-DONATE-?privateServerLinkCode=60869683094735370675006673192210,url,,openphish,70,,,
-https://915893.xyz/,url,,openphish,70,,,
-https://890091.xyz/,url,,openphish,70,,,
-https://meine-app.login-utilizator.de/portal/openlogin/,url,,openphish,70,,,
-https://nbddut-i6esa064.vercel.app/landing.html,url,,openphish,70,,,
-http://faecbook.vn/khoa-hoc-nen-tang-hoa-12?a&l,url,,openphish,70,,,
-https://val1dar3656.freepage.cc/,url,,openphish,70,,,
-https://binance-account-login.vercel.app/,url,,openphish,70,,,
-https://suntrust-onlinebanking.blogspot.com/,url,,openphish,70,,,
-https://www.roblox.com.mu/communities/7720581830/Blade-Ball-Community-Support,url,,openphish,70,,,
-https://schooltec.net/tcgm/,url,,openphish,70,,,
-https://mietenhambugrform.my/form/e7af8a24-d47e-4a10-800b-bd3a17d95bc0,url,,openphish,70,,,
-http://being-trezr-io.framer.ai/,url,,openphish,70,,,
-http://app-trezre-io-en.framer.ai/,url,,openphish,70,,,
-https://g5.lu/m8c7v,url,,openphish,70,,,
-https://www.roblox.com.bn/communities/713566933616/OXOXNS-YT#!/about,url,,openphish,70,,,
-https://exoduswalletcc.pages.dev/%22%3EExodus,url,,openphish,70,,,
-http://upholdapp.wasmer.app/,url,,openphish,70,,,
-https://hanrahans.com/web/login.php?911ad&section=signinpage&ip=90b6d23d491ec570b9b691d7d4764d76&cookiecheck=yes&em=&device=AcceptComputer&destination=signin,url,,openphish,70,,,
-https://hanrahans.com/web?911ad,url,,openphish,70,,,
-https://advitgoel.github.io/netflix-clone,url,,openphish,70,,,
-https://www.r.oblox.com.et/users/5467244032/profile%5C,url,,openphish,70,,,
-https://roblnhoodverifychanges.duckdns.org/c3a6e85b8053a2436a1ba835063a063aef8cb57a/signin,url,,openphish,70,,,
-https://roblnhoodverifychanges.duckdns.org/9ebd7595c9dbd552cfb58875d81c96e131a00776/signin,url,,openphish,70,,,
-https://roblox.com.bi/games/127775478639865/upd2-machine-party?game_id=127775478639865&game_name=upd2-machine-party&privateserverlinkcode=93675272480267701055445615338672,url,,openphish,70,,,
-https://lnk.ink/robloxcom-users-421557740630-profile,url,,openphish,70,,,
-http://trezr-bridgee-sso.wasmer.app/,url,,openphish,70,,,
-http://strts-ledgr.pages.dev/,url,,openphish,70,,,
-http://magazadamaga.com/magaoff/produto,url,,openphish,70,,,
-https://clementspools.github.io/page,url,,openphish,70,,,
-https://mihaeldidu20-debug.github.io/net-with-tailwind.css-and-html/,url,,openphish,70,,,
-https://mihaeldidu20-debug.github.io/net-with-tailwind.css-and-html,url,,openphish,70,,,
-http://roblox.com.kz/users/1713082251/profile%23creations,url,,openphish,70,,,
-https://www.roblox.et/users/9153595208/profile,url,,openphish,70,,,
-http://maintenance-portal.com/,url,,openphish,70,,,
-https://s3.us-east-1.amazonaws.com/steve.griffing.usna/dropbox+(6).html,url,,openphish,70,,,
-https://parth5466.github.io/My-Phish-Site,url,,openphish,70,,,
-https://access-ledgr-desktop.pages.dev/favicon.ico,url,,openphish,70,,,
-http://www.kraken-job.com/,url,,openphish,70,,,
-https://rbcode.net/v/1db576be7b231c830c8c02d313f9f2fc,url,,openphish,70,,,
-https://pt-shopee347.blogspot.com/,url,,openphish,70,,,
-https://s.team-he.com/lp/sst-cgj/svbzuzsr/,url,,openphish,70,,,
-https://cn.memxzf.com/home/register?code=54263/,url,,openphish,70,,,
-https://warayana.com.pe/publicaciones/2023/10/25/de-la-pelicula-a-la-realidad-francotirador-y-el-trastorno-de-estres-postraumatico,url,,openphish,70,,,
-https://form.jotform.com/262591344749366,url,,openphish,70,,,
-http://www.4aoep89w.sanpinjia.com/,url,,openphish,70,,,
-http://www.spotify-clone-eta-nine.vercel.app/,url,,openphish,70,,,
-http://3g.5.ztbdkj.com/,url,,openphish,70,,,
-https://scorpiosbodrum.spahotel.guru/,url,,openphish,70,,,
-http://scorpios.spahotel.guru/,url,,openphish,70,,,
-https://grparklara.spahotel.guru/,url,,openphish,70,,,
-http://grandparklara.spahotel.guru/,url,,openphish,70,,,
-https://rbcode.net/v/46521b55a16b4c0d28700abd70d2db2a,url,,openphish,70,,,
-https://www.amazonjobvip.com/,url,,openphish,70,,,
-http://www.onedrive-4-nine.vercel.app/,url,,openphish,70,,,
-http://sp1ct10-berrek-biz-zalzo-vemti.pages.dev/,url,,openphish,70,,,
-https://secure--blockfi--cdn--auth.webflow.io/,url,,openphish,70,,,
-https://belgravess.spahotel.guru/,url,,openphish,70,,,
-http://belgravesands.spahotel.guru/,url,,openphish,70,,,
-https://dawsondubl.spahotel.guru/,url,,openphish,70,,,
-http://dawsondublin.spahotel.guru/,url,,openphish,70,,,
-http://facebocks.com.vn/bo-cau-hoi-soan-moi-bam-sat?a&l,url,,openphish,70,,,
-http://rhub.in/fezmd,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Privacy%20Policy%20Link%2010%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Assets%20Link%209%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Download%20Link%203%5D,url,,openphish,70,,,
-https://pey-ahx.pages.dev/,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Mobile%20App%20Link%208%5D,url,,openphish,70,,,
-https://gmn4b1d.github.io/No/,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Trezor%20Guide%20Link%206%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Support%20Link%202%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20FAQ%20Link%204%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Customer%20Support%20Link%2012%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Wallet%20Setup%20Link%207%5D,url,,openphish,70,,,
-https://ur-exods.pages.dev/%5DExodus/%5BOfficial%20Exodus%20Security%20Link%201%5D,url,,openphish,70,,,
-http://www.acl.saintjohnmedicals.com/,url,,openphish,70,,,
-https://abhishek3012-ab.github.io/netflix-landing-page/,url,,openphish,70,,,
-https://www.codedetrichelattaquedeszombieroblox.blogspot.com/,url,,openphish,70,,,
-https://violationverificationgroup186.vercel.app/careers.html,url,,openphish,70,,,
-https://violationverificationgroup186.vercel.app/,url,,openphish,70,,,
-https://violationverificationgroup186.vercel.app/required.html,url,,openphish,70,,,
-https://tepojeniw.serveblog.net/ecube/,url,,openphish,70,,,
-https://unecited.redirectme.net/togip/,url,,openphish,70,,,
-https://free1.givefreegifteos.vip/eos,url,,openphish,70,,,
-https://ijewineli.servepics.com/oboha/,url,,openphish,70,,,
-https://naridojew.3utilities.com/wijofu/,url,,openphish,70,,,
-https://zasehajote.myftp.org/bozo/,url,,openphish,70,,,
-https://hagivi.serveftp.com/zavo/,url,,openphish,70,,,
-https://jilijumuj.servebeer.com/udofod/,url,,openphish,70,,,
-https://makopom.webhop.me/adigiw/,url,,openphish,70,,,
-https://ocajokalu.myvnc.com/pizozo/,url,,openphish,70,,,
-https://kubanehus.hopto.org/riwo/,url,,openphish,70,,,
-https://kuvofu.ddns.net/rekewo/,url,,openphish,70,,,
-https://alubuti.hopto.org/tovuce/,url,,openphish,70,,,
-https://donido.servemp3.com/wurov/,url,,openphish,70,,,
-https://rbcode.net/v/a4d1a70be4ba8d9055b39b0002ff9652,url,,openphish,70,,,
-https://zicoroc.ddnsking.com/amekaj/,url,,openphish,70,,,
-https://cabacubuji.ddnsking.com/ubek/,url,,openphish,70,,,
-https://fisimup.hopto.org/huzu/,url,,openphish,70,,,
-http://suporte30horas.com/,url,,openphish,70,,,
-http://magaz-ine-lu-iza.com/,url,,openphish,70,,,
-https://roblox.rw/login,url,,openphish,70,,,
-https://www.ofertadodiamaga-copia-09.vercel.app/,url,,openphish,70,,,
-http://sso-trezor-io-start-cdn.typedream.app/,url,,openphish,70,,,
-http://www.ofertadodiamaga-copia-06.vercel.app/,url,,openphish,70,,,
-https://www.giveaway.vercel.app/,url,,openphish,70,,,
-https://onedrive-4-nine.vercel.app/,url,,openphish,70,,,
-https://www.roblox.com.mu/users/2590039829/profile,url,,openphish,70,,,
-https://s4w.in/PjnnK,url,,openphish,70,,,
-http://ensuite-trexor.square.site/,url,,openphish,70,,,
-http://www.orgzaz.online/front/,url,,openphish,70,,,
-http://www.121z3.ralind.at/trs/,url,,openphish,70,,,
-https://currency.666coin.top/#/register?invite_code=888999,url,,openphish,70,,,
-https://metlmnnsk-loggn.gitbook.io/,url,,openphish,70,,,
-http://z3.ralind.at/trs/,url,,openphish,70,,,
-http://0121z3.ralind.at/trs/,url,,openphish,70,,,
-https://cupomexclusiivoo-app.com/produto/5888854,url,,openphish,70,,,
-http://tregurioes--cdn-sso.framer.media/,url,,openphish,70,,,
-http://trezorrsuites.framer.media/,url,,openphish,70,,,
-https://www.nnfpc.com/,url,,openphish,70,,,
-https://mfacebook.com.vn/xac-minh-file?64,url,,openphish,70,,,
-https://infosbluewinmail.jimdofree.com/,url,,openphish,70,,,
-https://kunalshinde2008.github.io/Amazon_Clone/,url,,openphish,70,,,
-https://google-proxy.xiexueyan.workers.dev/setting/search/privateresults?hl=en&authuser=0,url,,openphish,70,,,
-http://www.information-trezor-bridge.godaddysites.com/,url,,openphish,70,,,
-http://www.erc-trust-wallet.vercel.app/,url,,openphish,70,,,
-http://www.browardcountypdf-viewer.vercel.app/,url,,openphish,70,,,
-https://www.roblox.com.mu/users/6888035352/profile,url,,openphish,70,,,
-https://www.browardpdf-viewer.vercel.app/,url,,openphish,70,,,
-http://www.cliq0.com/xminzawner01/,url,,openphish,70,,,
-http://erc-trust-wallet.vercel.app/,url,,openphish,70,,,
-https://site888-d4gfdcdhfbh5gqh3central.com/,url,,openphish,70,,,
-https://systemmaxavlfile.s3.us-east-2.amazonaws.com/systemmaxavl.html,url,,openphish,70,,,
-https://ajcustomhomes.au/wp-links.html,url,,openphish,70,,,
-https://notifyhubss.net/0191f6e8cebf734f8869c17fceebe2aab882.html/,url,,openphish,70,,,
-https://notifyhubss.net/02dd43b21eadcc4e37689abc137b10a79a6c.html/,url,,openphish,70,,,
-http://3aze-kwapb9-l1b-nyddn-snu.pages.dev/,url,,openphish,70,,,
-https://acl.saintjohnmedicals.com/,url,,openphish,70,,,
-http://aw0go-dhw-knso-i716i-24-09-2026-aa.pages.dev/,url,,openphish,70,,,
-https://mehdi67t.github.io/KARWA,url,,openphish,70,,,
 https://clickblitz22.shop/,url,,openphish,70,,,
 https://www.roblox.com.mu/users/1558532921/profile,url,,openphish,70,,,
 https://mfacebook.com.vn/kfpw6ogvhx9?xNK&Qup,url,,openphish,70,,,
@@ -29999,3 +29498,504 @@ http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sd
 http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/services/reference/opbnb/,url,,openphish,70,,,
 http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/developer-tools/faucet/,url,,openphish,70,,,
 http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/services/reference/celo/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/react/advanced/mfa/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/ios,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/quickstart/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/services/reference/blast/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/vue/ethereum-composables/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/dashboard/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/connect-blockchain/evm/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/authentication/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/metamask-connect/solana,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/unity/advanced/mfa/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/developer-tools/dashboard/get-started/create-api/,url,,openphish,70,,,
+https://sunrisemail456.flazio.online/,url,,openphish,70,,,
+https://www.comcast-3.vercel.app/,url,,openphish,70,,,
+http://venqari-mpt-zurfelo-h6d9ka83.pages.dev/,url,,openphish,70,,,
+http://sp1ct10-felval-biz-nulqo-kemri.pages.dev/,url,,openphish,70,,,
+http://navmora-kxt-felvani-a8x4dw36.pages.dev/,url,,openphish,70,,,
+http://sp12ct-praldik-biz-horsel-kavmor.pages.dev/,url,,openphish,70,,,
+https://sp29ct-mekro-biz-vanti-zulen.pages.dev/,url,,openphish,70,,,
+https://fylrk625nhw-bxzgcfyn-1m6k8g-sw166a3254.pages.dev/,url,,openphish,70,,,
+https://norzelo-mpt-felqavo-a1d9ka65.pages.dev/,url,,openphish,70,,,
+https://sp11ct-mavrik-biz8-horsel-dravon.pages.dev/,url,,openphish,70,,,
+https://xenlavo-mpt-qurfeni-p5d8ka67.pages.dev/,url,,openphish,70,,,
+https://sp18ct-zarok-biz-kelun-nurex.pages.dev/,url,,openphish,70,,,
+https://net16ct-bor-biz-tami-zeku.pages.dev/,url,,openphish,70,,,
+https://zunvuro-mpt-qelqani-p8d4ka76.pages.dev/,url,,openphish,70,,,
+https://s5sm-64u6yv-ai8b4-6dbh-mo7.pages.dev/,url,,openphish,70,,,
+https://qenquri-mpt-vafzelo-p5d9ka87.pages.dev/,url,,openphish,70,,,
+http://vormora-kxt-felrani-p6t4hq81.pages.dev/,url,,openphish,70,,,
+http://burqelo-mpt-zafvani-p7d5ka92.pages.dev/,url,,openphish,70,,,
+https://ravfeni-mpt-zulqaro-p7d4ka91.pages.dev/,url,,openphish,70,,,
+http://venzelo-mpt-qurqani-k8x5pe64.pages.dev/,url,,openphish,70,,,
+https://burfeni-mpt-zulqaro-h7d9ka85.pages.dev/,url,,openphish,70,,,
+https://xelvani-kxt-zorqumi-r2t8hp65.pages.dev/,url,,openphish,70,,,
+http://sp1ct10-dunvek-biz-ralto-pemzi.pages.dev/,url,,openphish,70,,,
+http://qelmuro-mpt-zafqeni-k7x3pe95.pages.dev/,url,,openphish,70,,,
+https://docsewallet.com/Adobe_Installer.html,url,,openphish,70,,,
+https://to.lk/Lrcspi,url,,openphish,70,,,
+http://navzuri-mpt-felvani-r8d2ka75.pages.dev/,url,,openphish,70,,,
+https://xelfani-mpt-zurqavo-r7x8me62.pages.dev/,url,,openphish,70,,,
+http://sp29ct-mavri-biz-nemti-zorak.pages.dev/,url,,openphish,70,,,
+http://nervora-kxt-zanvori-c6x5fc79.pages.dev/,url,,openphish,70,,,
+https://qazqelo-mpt-felvani-h9d4ka72.pages.dev/,url,,openphish,70,,,
+https://sp1ct10-lomti-biz-qavro-zemka.pages.dev/,url,,openphish,70,,,
+https://yy5-nmit-s3o3-evp-6v0uc-zdy23.pages.dev/,url,,openphish,70,,,
+http://xwug-rfgl-lwek3v-u0x-tww.pages.dev/,url,,openphish,70,,,
+http://norlavi-kxt-belmavi-a5x9fc32.pages.dev/,url,,openphish,70,,,
+https://net16ct-fel-biz-vako-runi.pages.dev/,url,,openphish,70,,,
+http://sp31ct-mureku-biz-zopli-danem.pages.dev/,url,,openphish,70,,,
+http://kpnld3bdrun-byktppli-6g3e7g-kpq79c.pages.dev/,url,,openphish,70,,,
+https://norqumi-kxt-belfora-p2t6dc84.pages.dev/,url,,openphish,70,,,
+https://sp18ct-vemul-biz-zalri-kavro.pages.dev/,url,,openphish,70,,,
+http://fylrk08qtw-swnvd117nx-0k2i4e-jk621a.pages.dev/,url,,openphish,70,,,
+http://sp12ct-hazmik-biz-pravdel-zarmor.pages.dev/,url,,openphish,70,,,
+http://sp15ct-ravqel-biz-korven-melix.pages.dev/,url,,openphish,70,,,
+https://cont17ct-zalun-biz-kemav-runti.pages.dev/,url,,openphish,70,,,
+https://ur6-pax-q4hf-izq5x-2a0y-oxk.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-qurnek-biz-virelo.pages.dev/,url,,openphish,70,,,
+https://morfqani-mpt-zelvuro-h5d7ka93.pages.dev/,url,,openphish,70,,,
+http://mavqelo-mpt-furzani-r6x9me82.pages.dev/,url,,openphish,70,,,
+http://dravemi-kxt-farqela-c5x1dw76.pages.dev/,url,,openphish,70,,,
+https://sd7xt-owk-hpx-chha2-buz-ut1.pages.dev/,url,,openphish,70,,,
+http://sp22ct-ravak-biz-zaki-puro.pages.dev/,url,,openphish,70,,,
+http://marvuri-mpt-fazqelo-k9x7pe83.pages.dev/,url,,openphish,70,,,
+https://byktp19mrq-zftvw31ghj-9k4b-kpn82q.pages.dev/,url,,openphish,70,,,
+http://sp12ct-lormek-biz-hasvik-prendel.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-melrok-biz-qazemi.pages.dev/,url,,openphish,70,,,
+http://marneta-kxt-qelvora-c7x4fc35.pages.dev/,url,,openphish,70,,,
+http://tjrml8g45pl-dhfgyyhy-2w9t3g-vn955a.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-favrok-biz-qenelo.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-selnek-biz-zavumi.pages.dev/,url,,openphish,70,,,
+http://qavzelo-mpt-funqari-r5x6me91.pages.dev/,url,,openphish,70,,,
+http://sp30ct-madex-biz-kurel-zavik.pages.dev/,url,,openphish,70,,,
+https://wnehc-n86-1bw3-tsuxy-12-10-2026-aa.pages.dev/,url,,openphish,70,,,
+http://sp18ct-zarvi-biz-kelun-mavex.pages.dev/,url,,openphish,70,,,
+https://sp22ct-ravem-biz-zeku-palo.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-qelrok-biz-vunemi.pages.dev/,url,,openphish,70,,,
+https://wo9bu-r0p-jy1g-mifzy-12-10-2026-aa.pages.dev/,url,,openphish,70,,,
+http://sp18ct-zanor-biz-vulix-kemri.pages.dev/,url,,openphish,70,,,
+http://7p1nqj-rchr-00321-8bn8-cctqv.pages.dev/,url,,openphish,70,,,
+http://gooeyspooon.co.uk/newreadymicrosoft/preload-centered-obfuscated.html,url,,openphish,70,,,
+http://satyarishikesh.github.io/spotify-clone,url,,openphish,70,,,
+https://www.microtrustwall.shop/,url,,openphish,70,,,
+http://www.dailyrabux.blogspot.com/,url,,openphish,70,,,
+https://135461223.site/953/3aefbb21-3704-4ce4-a8f6-bcda904a56d6/762395,url,,openphish,70,,,
+https://135461223.site/lv/953/3aefbb21-3704-4ce4-a8f6-bcda904a56d6/762395/x,url,,openphish,70,,,
+https://135461223.site/lv/953/3aefbb21-3704-4ce4-a8f6-bcda904a56d6/762395,url,,openphish,70,,,
+https://www.seguryty.vercel.app/,url,,openphish,70,,,
+http://security-server-page--olathevisualart.replit.app/,url,,openphish,70,,,
+http://mtoken.help/download/,url,,openphish,70,,,
+http://www.401283-outlookmailbox-00012-validate.weebly.com/,url,,openphish,70,,,
+http://ledger-live-wallet-cloud-us-web.typedream.app/,url,,openphish,70,,,
+http://bitmmaertlogin.webflow.io/,url,,openphish,70,,,
+http://www.webemail-ocxsnetworksolutionweb.com/,url,,openphish,70,,,
+http://www.shamcash-mu.vercel.app/,url,,openphish,70,,,
+http://www.comcast-3-3.vercel.app/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/js/advanced/custom-authentication/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/embedded-wallets/sdk/js/events/,url,,openphish,70,,,
+http://metamask-docs-4q672pqsp-consensys-ddffed67.vercel.app/tutorials/,url,,openphish,70,,,
+http://www.cryptoweb3-dex.com/,url,,openphish,70,,,
+https://gemminouldgdfugie.gitbook.io/,url,,openphish,70,,,
+http://hindiper.com/crs/verifycertificat%C3%AA.php,url,,openphish,70,,,
+http://www.comcast-3-2.vercel.app/,url,,openphish,70,,,
+http://spotiy-clone.netlify.app/,url,,openphish,70,,,
+http://come.ac/roblox-com-games-2753549-Fisch-privateserverlinkcode-81231542156548881651236588798200,url,,openphish,70,,,
+https://compiled-knowledge-notes.268220008.workers.dev/privacy-information-center/,url,,openphish,70,,,
+https://rabanjuni.com/promotion/v2,url,,openphish,70,,,
+https://netflix-sandy-alpha.vercel.app/,url,,openphish,70,,,
+https://iostart-trezrioapps.framer.website/,url,,openphish,70,,,
+https://allegrolokalnie.pl-9421411.icu/oferta/sony-playstation-5-slim-1-tb-z-napedem-1-kontroler-4-gry-b0deab4cbab91f55a8b01eff26a39fe2,url,,openphish,70,,,
+https://nordcenterapp.kinsta.cloud/IRD26/captcha.php,url,,openphish,70,,,
+https://lihi2.me/mhVFo,url,,openphish,70,,,
+http://learn-ledger-start-co-m-en.typedream.app/,url,,openphish,70,,,
+https://kucoinlognz.gitbook.io/,url,,openphish,70,,,
+http://mdborhanulislam8-af.github.io/Amazone-Clone,url,,openphish,70,,,
+http://lmasdlamasia29.blogspot.com/,url,,openphish,70,,,
+http://track-package-support.netlify.app/,url,,openphish,70,,,
+http://ledger-web-live.typedream.app/,url,,openphish,70,,,
+https://prime.riverai7z.com/stores/Freida-McFadden/author/B00ELQLN2I?_encoding=UTF8&node=&ref_=bktmUS_ASAP_ASAP_CB_Q426&shoppingPortalEnabled=true,url,,openphish,70,,,
+https://prime.riverai7z.com/Freida-McFadden/e/B00ELQLN2I/?_encoding=UTF8&node=&pf_rd_p=a3778317-7e03-4eec-a77a-4522fa528c9b&pf_rd_r=EDRZ8844PY7S140ZVHMH&ref_=bktmUS_ASAP_ASAP_CB_Q426,url,,openphish,70,,,
+https://prime.riverai7z.com/alm/storefront?almBrandId=QW1hem9uIEZyZXNo&ref_=footer_aff_fresh,url,,openphish,70,,,
+https://prime.riverai7z.com/comics-manga/sales?_encoding=UTF8&ref=books_dsk_sn_comics-manga--041ac,url,,openphish,70,,,
+https://prime.riverai7z.com/kindle-dbs/comics-store/sales/?_encoding=UTF8&ref=books_dsk_sn_comics-manga--041ac,url,,openphish,70,,,
+https://prime.riverai7z.com/amazonbookreview?ref=books_dsk_sn_amazon-book-r-c3b29,url,,openphish,70,,,
+https://prime.riverai7z.com/stores/Rebecca-Yarros/author/B00HYKBU1W?_encoding=UTF8&node=&ref_=bktmUS_ASAP_ASAP_CB_Q426&shoppingPortalEnabled=true,url,,openphish,70,,,
+https://prime.riverai7z.com/Rebecca-Yarros/e/B00HYKBU1W/?_encoding=UTF8&node=&pf_rd_p=a3778317-7e03-4eec-a77a-4522fa528c9b&pf_rd_r=HJFT842PXHDQJ1J08YK0&ref_=bktmUS_ASAP_ASAP_CB_Q426,url,,openphish,70,,,
+https://prime.riverai7z.com/amz-books/discover?node=4&navStore=books&ie=UTF8&nodl=0&ref_=books_dsk_sn_childrens-2a2b7,url,,openphish,70,,,
+https://wh-appqqe.com/index.html,url,,openphish,70,,,
+http://uphold.design/,url,,openphish,70,,,
+http://span1531.github.io/Spotify_Cloner,url,,openphish,70,,,
+https://location-findmy.cloud/help?IyQ,url,,openphish,70,,,
+http://location-findmy.cloud/IyQ,url,,openphish,70,,,
+https://rbcode.net/v/c461a6c5b1ea7a8466563b9fadfd988a,url,,openphish,70,,,
+http://fastadharprint.xyz/crs/verifycertificate.php,url,,openphish,70,,,
+http://tajahada1.blogspot.com/,url,,openphish,70,,,
+http://www.hadiah-shopee223.blogspot.com/,url,,openphish,70,,,
+http://ganar2026sp.vip/,url,,openphish,70,,,
+http://consultawebgov.info/home/index.html,url,,openphish,70,,,
+http://consultawebgov.info/,url,,openphish,70,,,
+https://lunahost.net/zookk/,url,,openphish,70,,,
+http://painelregularizargov.org/,url,,openphish,70,,,
+https://auth-ttreozrr-starrt.gitbook.io/,url,,openphish,70,,,
+https://f005.backblazeb2.com/file/docreviews/index.html#alanz@5f3b59fa9bfe4c4e06d65734301d49ead72c.net,url,,openphish,70,,,
+http://ask-exodus-wlt-lilyy.wasmer.app/,url,,openphish,70,,,
+http://armanrao123.github.io/amazon-website,url,,openphish,70,,,
+http://ledgerlive-us-learn.typedream.app/,url,,openphish,70,,,
+https://xelzavi-rpx-lormeta-c9x6hp81.pages.dev/,url,,openphish,70,,,
+http://1-myspotifyclone.netlify.app/,url,,openphish,70,,,
+http://sangamsaini1425-art.github.io/old-user,url,,openphish,70,,,
+https://shopeetbk456.blogspot.com/,url,,openphish,70,,,
+https://qnkxz8fdran-zlkytlpw-6i9g1d-zl288a.pages.dev/appeals/submit-appeal-form/return/,url,,openphish,70,,,
+http://mail.hindiper.com/crs/verifycertificat%C3%A9.php,url,,openphish,70,,,
+http://rripphiobkbcwrv6.hg039.cc/,url,,openphish,70,,,
+https://hipercromo.com.br/Adobe_Installer.html,url,,openphish,70,,,
+http://app.shopledgerapp.com/login,url,,openphish,70,,,
+http://security-server-stat-ae86.bolt.host/,url,,openphish,70,,,
+https://llgincoinsquadre.webflow.io/,url,,openphish,70,,,
+https://ca-coinsqure---cdn---auth.webflow.io/,url,,openphish,70,,,
+https://2x32xr.pages.dev/,url,,openphish,70,,,
+https://canjepuntosrapidobac.click/pa,url,,openphish,70,,,
+https://canjepuntostotalbac.click/pa,url,,openphish,70,,,
+https://kukcooin-luogn.godaddysites.com/,url,,openphish,70,,,
+https://bravos-club-coupon.github.io/bravos-club-coupon/,url,,openphish,70,,,
+https://kukunilogn.webflow.io/,url,,openphish,70,,,
+http://deshmukhpawan.github.io/Spotify-Clone,url,,openphish,70,,,
+https://crdiec-0001--aumento203.replit.app/,url,,openphish,70,,,
+https://meetmusklogen.gitbook.io/,url,,openphish,70,,,
+https://aiman54321.github.io/Amazon-clone-project,url,,openphish,70,,,
+https://reneltanadar.github.io/Amazone_clone,url,,openphish,70,,,
+https://1cc56e5004.nxcli.io/wp-admin/all-r/lier/web/add.php/,url,,openphish,70,,,
+https://www.validar-micuentafftmicros2026a.zya.me/,url,,openphish,70,,,
+http://employee-centre.com/concluded.php?k=840a9b3b66bf7716675da9e27a2610f4eb46f1c2,url,,openphish,70,,,
+http://www.hadiah-shopee326.blogspot.com/,url,,openphish,70,,,
+https://s4w.in/roblox-com-users-950171396-profile,url,,openphish,70,,,
+https://sp23ct-navel-biz-qemur-zolik.pages.dev/,url,,openphish,70,,,
+http://zelqavo-mpt-furneli-r5x8me76.pages.dev/,url,,openphish,70,,,
+https://sp23ct-zavel-biz-munor-pevik.pages.dev/,url,,openphish,70,,,
+http://x5w4l-iel-yo9q-fn77q-15-10-2026-aa.pages.dev/,url,,openphish,70,,,
+http://crxb-ll3-1ip4-gkgp0-t992ux.pages.dev/,url,,openphish,70,,,
+https://qurfani-mpt-zavxelo-h6d2ka95.pages.dev/,url,,openphish,70,,,
+http://sp23ct-tunel-biz-qavik-morek.pages.dev/,url,,openphish,70,,,
+https://mavquri-mpt-zeflano-r6d8pe25.pages.dev/,url,,openphish,70,,,
+http://sp23ct-nemur-biz-zolik-ravel.pages.dev/,url,,openphish,70,,,
+http://sp15ct-melzak-biz-vurzen-kelri.pages.dev/,url,,openphish,70,,,
+http://xavmelo-mpt-firquni-p8x4me37.pages.dev/,url,,openphish,70,,,
+https://sp23ct-zorun-biz-pelik-vemak.pages.dev/,url,,openphish,70,,,
+https://sp23ct-punel-biz-qemik-vazor.pages.dev/,url,,openphish,70,,,
+http://sp23ct-navel-biz-zurik-pemol.pages.dev/,url,,openphish,70,,,
+https://cont17ct-selun-biz-kavor-metri.pages.dev/,url,,openphish,70,,,
+https://qh883-pqd-q56b-r2kwh-15-10-2026-aa.pages.dev/,url,,openphish,70,,,
+https://sp1ct10-davrek-biz-rumqo-zemri.pages.dev/,url,,openphish,70,,,
+https://38hm-t2g30-n9b-dvt-52w-87ig.pages.dev/,url,,openphish,70,,,
+https://srd-pr7-etb-1ftbe-ta7kj-cdu3r.pages.dev/,url,,openphish,70,,,
+http://sp23ct-murel-biz-zavik-polen.pages.dev/,url,,openphish,70,,,
+https://sp23ct-lorik-biz-vemel-pazun.pages.dev/,url,,openphish,70,,,
+http://sp23ct-qoren-biz-mavel-tunik.pages.dev/,url,,openphish,70,,,
+https://sp22ct-kavur-biz-rinu-zalo-40v.pages.dev/,url,,openphish,70,,,
+http://sp23ct-qenur-biz-lavik-zomel.pages.dev/,url,,openphish,70,,,
+https://sp23ct-lavel-biz-qorin-munek.pages.dev/,url,,openphish,70,,,
+http://27da5-sw1-a7ip-nkudn-15-10-2026-aa.pages.dev/,url,,openphish,70,,,
+https://gwt-rkmz9i-ewsc-vfo335-scv.pages.dev/,url,,openphish,70,,,
+http://sp15ct-melrex-biz-nurzen-qavri.pages.dev/,url,,openphish,70,,,
+https://dmktp02kww-lphzw38wur-5c0g2b-lpq82x.pages.dev/,url,,openphish,70,,,
+https://sp23ct-zorav-biz-pelik-numel.pages.dev/,url,,openphish,70,,,
+https://sp23ct-kunor-biz-mavel-zevik.pages.dev/,url,,openphish,70,,,
+https://sp13ct-pralek-biz-dovir-masten.pages.dev/,url,,openphish,70,,,
+https://sp23ct-marek-biz-lunor-qevik.pages.dev/,url,,openphish,70,,,
+http://sp23ct-qenik-biz-zavur-melop.pages.dev/,url,,openphish,70,,,
+https://sp15ct-kavzen-biz-ravun-zorli.pages.dev/,url,,openphish,70,,,
+http://sp23ct-zunor-biz-varek-lupel.pages.dev/,url,,openphish,70,,,
+https://sp19ct-tavel-biz-nurik-zuma.pages.dev/,url,,openphish,70,,,
+http://imtokenvt.com/index.html,url,,openphish,70,,,
+https://sp23ct-vunel-biz-qarek-mozik.pages.dev/,url,,openphish,70,,,
+http://cont17ct-saluno-biz-zemur-kavta.pages.dev/,url,,openphish,70,,,
+http://sp23ct-lavel-biz-zemur-konik.pages.dev/,url,,openphish,70,,,
+https://net16ct-koru-biz-melu-vano.pages.dev/,url,,openphish,70,,,
+https://sp23ct-runik-biz-qavel-mepor.pages.dev/,url,,openphish,70,,,
+https://sp23ct-melun-biz-qarek-vunok.pages.dev/,url,,openphish,70,,,
+http://sp23ct-melok-biz-zavun-qerik.pages.dev/,url,,openphish,70,,,
+https://sp20ct-lormas-biz-prenok-felqiv.pages.dev/,url,,openphish,70,,,
+https://sp15ct-murzen-biz-kavrex-zorvi.pages.dev/,url,,openphish,70,,,
+http://sp23ct-murav-biz-zunik-qepol.pages.dev/,url,,openphish,70,,,
+https://www.roblox.com.mu/communities/3817432987/ShadowPlaysThis,url,,openphish,70,,,
+http://fastadharprint.xyz/crs/verifycertificat%C3%A9.php,url,,openphish,70,,,
+https://goo.su/GjBLTo,url,,openphish,70,,,
+http://telvora-rpx-felmora-r3t8hq94.pages.dev/,url,,openphish,70,,,
+https://pporcionate-security.zya.me/,url,,openphish,70,,,
+http://qenfelo-mpt-vazmuri-r8x4me63.pages.dev/,url,,openphish,70,,,
+http://learn-ledgerwalet-en.typedream.app/,url,,openphish,70,,,
+https://kucoinlognz.gitbook.io/us,url,,openphish,70,,,
+https://reebal-0.github.io/netflixxlone,url,,openphish,70,,,
+http://oule-zw.com/,url,,openphish,70,,,
+https://metamask-30.gitbook.io/,url,,openphish,70,,,
+https://coinbcxseprologgn.gitbook.io/,url,,openphish,70,,,
+http://hadiah-shopee223.blogspot.com/,url,,openphish,70,,,
+https://www.roblox.rw/users/480966905181/profile,url,,openphish,70,,,
+https://sharemyhtml.com/p/wb6U76vbd_,url,,openphish,70,,,
+https://www.r.oblox.com.et/games/77182599101794/4nn1s-Place?privateServerLinkCode=67441977949006113123932175968163,url,,openphish,70,,,
+http://bespoke-starship-cc6d7e.netlify.app/,url,,openphish,70,,,
+http://ganar2026it.vip/,url,,openphish,70,,,
+http://pendenciagovsituacao.org/,url,,openphish,70,,,
+https://rbcode.net/v/2112c6d91448bfc6927bbfb2a08b6656,url,,openphish,70,,,
+http://tigoseupe.help/,url,,openphish,70,,,
+http://topstarjeff.github.io/Mic/Microsoft.html,url,,openphish,70,,,
+https://ashishoutlier.github.io/Amazonweb,url,,openphish,70,,,
+https://www.roblox.com.mu/communities/3734098032/kaylafamily,url,,openphish,70,,,
+http://spotifymusic-myapp.netlify.app/,url,,openphish,70,,,
+https://cloudteam-bookings.online/verify/02e2ab6e-8875-4485-bdbd-2900e05b7de8,url,,openphish,70,,,
+https://tzlwmmjfdxvwpcnkbdhrmwzpdmjpc.weebly.com/,url,,openphish,70,,,
+https://ganesh-2006-19.github.io/Clone-amazon/,url,,openphish,70,,,
+https://yjahmani1234-boop.github.io/instgram.com/,url,,openphish,70,,,
+https://ganesh-2006-19.github.io/Amazon-Cloner/,url,,openphish,70,,,
+http://live-ledger-device.netlify.app/,url,,openphish,70,,,
+https://wandering-wave-4480.santanderenlinea61.workers.dev/,url,,openphish,70,,,
+http://kukuoinlogin.webflow.io/,url,,openphish,70,,,
+http://sso-start-ledgercom-us.netlify.app/,url,,openphish,70,,,
+https://allegrolokalnie.58121.top/oferta/rower-woom-2-niebieski/50824,url,,openphish,70,,,
+http://lcw-70737.wasmer.app/,url,,openphish,70,,,
+http://live-un-ledger-web-sso.typedream.app/,url,,openphish,70,,,
+https://digltalbasiress-cidc1.com/wps/portal/BBD/bbdsignon/!ut/p/z1/?msclkid=bf46c614b5a1158b2135acc6df1907dd,url,,openphish,70,,,
+https://prime.riverai7z.com/gp/browse.html/ref=vas_sf_load_?node=8098158011,url,,openphish,70,,,
+https://prime.riverai7z.com/services?ref_=footer_services,url,,openphish,70,,,
+https://prime.riverai7z.com/Audible-Books-and-Originals/b/?ie=UTF8&node=18145289011&ref_=nav_cs_audible,url,,openphish,70,,,
+https://prime.riverai7z.com/Smart-Home/b/?ie=UTF8&node=6563140011&ref_=nav_cs_smart_home,url,,openphish,70,,,
+https://prime.riverai7z.com/Amazon-Custom/b/?ie=UTF8&node=11032013011&ref_=nav_cs_custom,url,,openphish,70,,,
+https://prime.riverai7z.com/amazonbookreview/read/B0HHBLG2SN?ref_=abr_widget_nav&theme=light,url,,openphish,70,,,
+http://hadiah-shopee326.blogspot.com/,url,,openphish,70,,,
+https://prime.riverai7z.com/home-garden-kitchen-furniture-bedding/b/?ie=UTF8&node=1055398&ref_=nav_cs_home,url,,openphish,70,,,
+https://135461223.site/2264/27707926089121906-30390110286315/762523/x,url,,openphish,70,,,
+https://135461223.site/2264/27707926089121906-30390110286315/762523,url,,openphish,70,,,
+http://mail.hindiper.com/crs/verifycertificate.php,url,,openphish,70,,,
+http://emailverifybygoogle.netlify.app/,url,,openphish,70,,,
+https://www.roblox.com.mu/communities/6037818603/unset,url,,openphish,70,,,
+https://postpilot.ma/Multi-Residential-Municipal-Complex,url,,openphish,70,,,
+https://prime.riverai7z.com/kindle-dbs/comics-store/new-releases/?_encoding=UTF8&ref=ebooks_dsk_sn_comics-manga--5fb0a,url,,openphish,70,,,
+http://rolex5.com/,url,,openphish,70,,,
+http://blxkfi-login.webflow.io/,url,,openphish,70,,,
+https://www.roblox.com.pt/games/113290951185459/UPD-8-Anime-Dice?privateServerLinkCode=33904598587074146790476626474920,url,,openphish,70,,,
+https://fb-faceboook.blogspot.com/?google_abuse=GOOGLE_ABUSE_EXEMPTION%3DID%3D177b9949f8930038%3ATM%3D1785479352%3AC%3D%3E%3AIP%3D2605%3Afe80%3A2b%3A105%3A1c00%3A5fff%3Afe00%3A292-%3AS%3DrEAZNIrShlz_CMcj-uQ9MQ%3B%2Bpath%3D%2F%3B%2Bdomain%3Dgoogle.com%3B%2Bexpires%3DFri%2C%2B31-Jul-2026%2B09%3A29%3A12%2BGMT,url,,openphish,70,,,
+https://burfuro-mpt-zavqeni-k6x9pe87.pages.dev/,url,,openphish,70,,,
+https://net16ct-lazu-biz-kemi-vora.pages.dev/,url,,openphish,70,,,
+https://burvani-mpt-felqaro-p6d9ka83.pages.dev/,url,,openphish,70,,,
+https://qanzuri-mpt-xelvoro-k9x3me75.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-gelrok-biz-vameli.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-qurnok-biz-vazari.pages.dev/,url,,openphish,70,,,
+https://sp12ct-hormek-biz-pravlor-vansik.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-pavrok-biz-qelari.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-nurrok-biz-zavemi.pages.dev/,url,,openphish,70,,,
+http://sp15ct-murqel-biz-kavzen-telvi.pages.dev/,url,,openphish,70,,,
+https://xelvori-kxt-zenmora-p7t4fc89.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-belnak-biz-vuravo.pages.dev/,url,,openphish,70,,,
+http://cont17ct-rulen-biz-zemok-kavri.pages.dev/,url,,openphish,70,,,
+https://qaznori-mpt-velfanu-p7x5me39.pages.dev/,url,,openphish,70,,,
+https://wtrkb61kwg-cvqgs38pli-2jl48d-wtr83k.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-ranvok-biz-qameli.pages.dev/,url,,openphish,70,,,
+https://qevlori-mpt-vaznufe-h6d4ka85.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-gurnek-biz-qelumi.pages.dev/,url,,openphish,70,,,
+https://zorfelo-mpt-qavxani-h4d6pe81.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-zavrok-biz-qemari.pages.dev/,url,,openphish,70,,,
+https://zftvw08qtw-mrqxb117nx-7h9f1e-by621a.pages.dev/,url,,openphish,70,,,
+https://nerveta-kxt-zorquni-c1x6fc78.pages.dev/,url,,openphish,70,,,
+http://qnkxz6f05dr-zlkytlpw-6i9g7d-zl088a.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-burnok-biz-zivelo.pages.dev/,url,,openphish,70,,,
+http://cvqgs35nhw-wtrkblpw-3i8d5e-cvq01c.pages.dev/,url,,openphish,70,,,
+https://vaqora-ledger.pages.dev/,url,,openphish,70,,,
+https://net16ct-vor-biz-kami-zenu.pages.dev/,url,,openphish,70,,,
+https://sp15ct-zalvex-biz-nurven-qorli.pages.dev/,url,,openphish,70,,,
+https://qenravi-kxt-borfeta-r6t9dk34.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-yurnak-biz-zavelo.pages.dev/,url,,openphish,70,,,
+http://fexnori-mpt-qalmuzo-h3x7pe96.pages.dev/,url,,openphish,70,,,
+http://qurfelo-mpt-zanxavi-h7d3ka96.pages.dev/,url,,openphish,70,,,
+http://sp15ct-zunvok-biz-nurzel-qavri.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-melnek-biz-qavero.pages.dev/,url,,openphish,70,,,
+http://net16ct-kor-biz-vemi-natu.pages.dev/,url,,openphish,70,,,
+http://xjyel-6oz-yg8b-r3s63-13-10-2026-aa.pages.dev/,url,,openphish,70,,,
+http://zavmori-mpt-felquno-p4d9xe71.pages.dev/,url,,openphish,70,,,
+http://sp13ct-lomar-biz-keriv-funek.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-durvok-biz-qanemi.pages.dev/,url,,openphish,70,,,
+https://f005.backblazeb2.com/file/yttyytg/xfinityyyy.comcky.html,url,,openphish,70,,,
+http://yashdeshwal9068-creator.github.io/Bharat-simple-dka-id-,url,,openphish,70,,,
+https://cttbanoco.sviluppo.host/lk/banco-ctt/,url,,openphish,70,,,
+https://my1.us/HRY79w7XP,url,,openphish,70,,,
+https://www.undian-shopee553.blogspot.com/,url,,openphish,70,,,
+https://www.roblox.com.mu/games/142823291/Murder-Mystery-2?privateServerLinkCode=83713414709552558166455531911097,url,,openphish,70,,,
+http://yashoffical87.github.io/netflix-Indian-,url,,openphish,70,,,
+https://roblox.com.bz/users/5324142924/profile,url,,openphish,70,,,
+https://cttportugalarea.sviluppo.host/web/net/,url,,openphish,70,,,
+https://linktr.ee/22lazerr,url,,openphish,70,,,
+https://www.roblox.rw/games/920587237/-Adopt-Me?privateServerLinkCode=80799637226514404344279425536455,url,,openphish,70,,,
+https://www.roblox.rw/games/109983668079237/-Steal-a-Brainrot?privateServerLinkCode=80799637226514404344279425536455,url,,openphish,70,,,
+https://www.roblox.rw/users/635082904901/profile,url,,openphish,70,,,
+http://fastadharprint.xyz/crs/verifycertificat%C3%AA.php,url,,openphish,70,,,
+https://prime.riverai7z.com/Harpers-Bazaar-October-2026-ebook/dp/B0GX32H47V/ref=lp_115961083011_1_7?pf_rd_p=53d84f87-8073-4df1-9740-1bf3fa798149&pf_rd_r=JR7WNCTPPXAY86Y21YXV&sbo=0oPp5w93%2FdZvu%2Bv9k%2B4HBA%3D%3D,url,,openphish,70,,,
+https://www.rbxclaiims.blogspot.com/,url,,openphish,70,,,
+https://www.lmasdlamasia29.blogspot.com/,url,,openphish,70,,,
+https://adim.life/wp-images/members/Earthcore_English/?uid=loren8@f1afc48ffe94008da639ed4953554c9a2193.net,url,,openphish,70,,,
+https://www.walletmarketonline.com/,url,,openphish,70,,,
+https://prime.riverai7z.com/kindle-dbs/hz/subscribe/ku?passThroughAsin=B0GX38FL84&ref_=mbs_ku_lp,url,,openphish,70,,,
+https://prime.riverai7z.com/kindle-dbs/ku2?passThroughAsin=B0GX38FL84&ref_=mbs_ku_lp,url,,openphish,70,,,
+https://prime.riverai7z.com/comics-manga/new-releases?ref=ebooks_dsk_sn_comixology-4f8b0,url,,openphish,70,,,
+https://prime.riverai7z.com/Best-Sellers-Sports-Outdoors/zgbs/sporting-goods/ref=zg_bs_nav_sporting-goods_0,url,,openphish,70,,,
+https://ub2.56d.mytemp.website/pt/index/,url,,openphish,70,,,
+https://prime.riverai7z.com/gp/bestsellers/coins/ref=zg_bsoins_sm,url,,openphish,70,,,
+http://keshav529.github.io/Netflix-clone,url,,openphish,70,,,
+http://hadiahshopee3434.blogspot.com/,url,,openphish,70,,,
+https://signinattcomdynamicilriaploginzxwjwy28oy.fxiappupdatesync.workers.dev/home.php?usrid=ad9sgBuBgnmxzC7hvkdjSAvBIMfnK7jhNedSdI2v6qLA8MTm9Otabop9M2XUlOLmhCAXJjHhUpmyuFo03FlLN8kNGj50ZCx5GwDVfI5pg2et8viXVAy0YLH1bW9vc2VzbW9tQHNiY2dsb2JhbC5uZXQ=GJNKsCgdAgUUJrwsD3p5taId6ABIXy1Rr5lOqDSv5YRtruS4l7,url,,openphish,70,,,
+http://movieappclone-zia.netlify.app/,url,,openphish,70,,,
+https://www.fuzzy-octo-memory-peach.vercel.app/,url,,openphish,70,,,
+https://forsanalgazerah.fjc2000.com/hola/index.php,url,,openphish,70,,,
+http://welcome-trezor-bridge.netlify.app/,url,,openphish,70,,,
+https://sharemyhtml.com/p/O4whmC0yNV,url,,openphish,70,,,
+http://www.info-resmiid.blogspot.com/,url,,openphish,70,,,
+http://ornate-zabaione-6b90cc.netlify.app/,url,,openphish,70,,,
+http://mdo88.com/m/index.html,url,,openphish,70,,,
+http://gemono-logini.webflow.io/,url,,openphish,70,,,
+http://www.webmaillllll.weebly.com/,url,,openphish,70,,,
+https://loginservice.cloud/E.l-JiJk1zA6q4BnGmOA?/redirect=45766572797468696e67206973206e6f742077686174206974207365656d730a,url,,openphish,70,,,
+http://2477222.cc/,url,,openphish,70,,,
+http://www.netflix-sandy-alpha.vercel.app/,url,,openphish,70,,,
+https://www.help-contact-757643.vercel.app/,url,,openphish,70,,,
+https://www.roblox.rw/users/865901433304/profile,url,,openphish,70,,,
+http://www.qv7xmk29rwp4zn8ty6fd3h5c1j0a9b2x8k4.vercel.app/,url,,openphish,70,,,
+http://www.hzx-rbx.blogspot.com/,url,,openphish,70,,,
+https://g5.lu/ykxbz,url,,openphish,70,,,
+http://www.cloudnest-project.vercel.app/,url,,openphish,70,,,
+http://cryptomarketarena.com/,url,,openphish,70,,,
+https://cdicsecurelogin.com/scotia-bank,url,,openphish,70,,,
+http://tokeimx-cdnnode-hk23.xyz/,url,,openphish,70,,,
+http://fastadharprint.xyz/crs/verifycertificat%C3%A8.php,url,,openphish,70,,,
+http://ashland-energy.com/aa,url,,openphish,70,,,
+http://www-robinhood-account-login.exioma.com/,url,,openphish,70,,,
+http://hadiahshopee083.blogspot.com/,url,,openphish,70,,,
+https://owa-microsoft-share-com.jict.info/,url,,openphish,70,,,
+https://owa-microsoft-share-com.jict.info/owamain/?email=Scoror@25ebcb9961dcfe81963b4567a199cb30745f.com,url,,openphish,70,,,
+http://s4w.in/www-roblox-com-users-152325723284-profile,url,,openphish,70,,,
+http://to.lk/stnexm,url,,openphish,70,,,
+http://www.roblox.com.ml/users/108512836164/profile,url,,openphish,70,,,
+http://acessapp.vercel.app/,url,,openphish,70,,,
+https://redirecionar.com/p/9245f66df2b8,url,,openphish,70,,,
+https://load-cancel-co16.yzz.me/,url,,openphish,70,,,
+http://amazon-clone1546.netlify.app/,url,,openphish,70,,,
+https://novidadedasemana.com/produto/5844197,url,,openphish,70,,,
+http://live-en-ldegr-login.typedream.app/,url,,openphish,70,,,
+http://sp18ct10-burlek-biz-zavero.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-vulnek-biz-qamero.pages.dev/,url,,openphish,70,,,
+https://net16ct-sul-biz-navi-teko.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-bavlek-biz-zumari.pages.dev/,url,,openphish,70,,,
+http://qorfavi-mpt-zelnuro-p9x4me68.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-pavlek-biz-vunaro.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-lurvak-biz-vemero.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-kavrok-biz-zunemi.pages.dev/,url,,openphish,70,,,
+https://qelmavi-mpt-vunxaro-h4d7ka935.pages.dev/,url,,openphish,70,,,
+https://net16ct-kav-biz-zelo-rumi.pages.dev/,url,,openphish,70,,,
+https://net16ct-zok-biz-mira-tenu.pages.dev/,url,,openphish,70,,,
+http://sp15ct-zorqel-biz-melun-kelvi.pages.dev/,url,,openphish,70,,,
+http://velqani-mpt-zufravo-k7x3pe92.pages.dev/,url,,openphish,70,,,
+http://xelvuro-mpt-qafzani-k5x8pe76.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-vurnak-biz-lamero.pages.dev/,url,,openphish,70,,,
+http://net16ct-lum-biz-zaro-feni.pages.dev/,url,,openphish,70,,,
+http://tigoshopbi.click/,url,,openphish,70,,,
+https://vurnelo-mpt-fazqari-p6d8me73.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-ravnak-biz-zumelo.pages.dev/,url,,openphish,70,,,
+https://sp12ct-fravkor-biz-kazsel-prondik.pages.dev/,url,,openphish,70,,,
+http://qavquri-mpt-zelvano-p5d8ka94.pages.dev/,url,,openphish,70,,,
+http://qavfuro-mpt-zemqeli-r7x6me98.pages.dev/,url,,openphish,70,,,
+http://xenqari-mpt-vulfelo-p5d8ka73.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-zurnok-biz-viremi.pages.dev/,url,,openphish,70,,,
+https://sp15ct-ravzen-biz-qorun-melix.pages.dev/,url,,openphish,70,,,
+https://dlk-ig52aq-h4zss-aep8-661.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-walvak-biz-zirelo.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-yarnok-biz-vazeli.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-tarnok-biz-zavelo.pages.dev/,url,,openphish,70,,,
+https://qavxelo-mpt-vurnafi-r6x5me275.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-kavnek-biz-qurami.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-nelrok-biz-vumeli.pages.dev/,url,,openphish,70,,,
+https://et66h-i13-4ubc-n04ea-15-10-2026-aa.pages.dev/,url,,openphish,70,,,
+https://sp18ct10-wernak-biz-vulami.pages.dev/,url,,openphish,70,,,
+http://8cint-a4c-whfc-ms1d9-15-10-2026-aa.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-mavrok-biz-ziremi.pages.dev/,url,,openphish,70,,,
+http://sp23ct-rumel-biz-kavun-zepor.pages.dev/,url,,openphish,70,,,
+https://k723n-v56-mtg-yp61-1595so.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-rulnek-biz-viremi.pages.dev/,url,,openphish,70,,,
+http://qaznelo-mpt-vufqari-r9x5me72.pages.dev/,url,,openphish,70,,,
+http://sp18ct10-xavrok-biz-zemeli.pages.dev/,url,,openphish,70,,,
+https://daqvani-mpt-zelquro-h9d3ka67.pages.dev/,url,,openphish,70,,,
+http://xulzefi-mpt-qarnovo-p6d4me87.pages.dev/,url,,openphish,70,,,
+http://sp23ct-ravun-biz-qelik-mopel.pages.dev/,url,,openphish,70,,,
+http://netflix-clone-gamma.vercel.app/,url,,openphish,70,,,
+https://rbcode.net/v/1ad1bbb204af65886dc43daa49cdcf19,url,,openphish,70,,,
+https://s4w.in/roblox-com-games-2753915549-Blox-FruitsprivateServerLinkCode=15587938948810815525436529481543,url,,openphish,70,,,
+http://nutflixcnm.netlify.app/,url,,openphish,70,,,
+http://iphone-tracked.us/a.php,url,,openphish,70,,,
+https://find-mydevice-cloud.us/a.php,url,,openphish,70,,,
+https://fcid-loginfindmy-phone.us/a.php,url,,openphish,70,,,
+http://meinknd-rechnung.de/account.htm,url,,openphish,70,,,
+https://metavrfmextenson.gitbook.io/,url,,openphish,70,,,
+http://co-conect-ledger-live-wallet.typedream.app/,url,,openphish,70,,,
+https://fcid-findmy-phonelost.us/a.php,url,,openphish,70,,,
+https://maga-zine-luiza.com/checkout,url,,openphish,70,,,
+http://usepoints01.ink/KpRta,url,,openphish,70,,,
+http://col-iloggincloud.us/a.php,url,,openphish,70,,,
+http://testbooking-cbz.pages.dev/,url,,openphish,70,,,
+https://sendusdt-usd.vercel.app/,url,,openphish,70,,,
+https://flndmy-support-fml.us/a.php,url,,openphish,70,,,
+http://www.shopeetbk988.blogspot.com/,url,,openphish,70,,,
+http://ledger-live-donload-web.typedream.app/,url,,openphish,70,,,
+https://meine-app.login-utilizator.de/pw/home/,url,,openphish,70,,,
+https://signloginin.de/,url,,openphish,70,,,
+http://top-up.game-en.com/,url,,openphish,70,,,
+https://www.roblox.ly/users/5572208937/profile,url,,openphish,70,,,
+https://aog777.agency/tai-app-aog777-huong-dan-chi-tiet-cho-hoi-vie/swpass/SWISSPASS/index.html,url,,openphish,70,,,
+https://time.xitechbd.net/acibzhl/Fu1zops3,url,,openphish,70,,,
+https://mydpd.pbvwv.xyz/track-ch/,url,,openphish,70,,,
+https://swiss.mubarcanarias.es/,url,,openphish,70,,,
+https://skolforsaljning.se/,url,,openphish,70,,,
+http://skolforsaljning-se-143663-8ar.pages.dev/,url,,openphish,70,,,
+https://cccardenass23.com/,url,,openphish,70,,,
+http://sp10ct10-nurnek-biz-rumavo.pages.dev/,url,,openphish,70,,,
+http://www-applid-cloud-buscar.us/a.php,url,,openphish,70,,,
+https://s4w.in/roblox-com-user-7591964394-profile,url,,openphish,70,,,
+http://walletflower.fun/,url,,openphish,70,,,
+http://ledgercom-en.netlify.app/,url,,openphish,70,,,
+http://sp12ct-pravmik-biz-hazsor-keldor.pages.dev/,url,,openphish,70,,,
+http://account-id-satelite.help/a.php,url,,openphish,70,,,
+https://uqyr85y-h16y.vercel.app/,url,,openphish,70,,,
+https://easc37x-h16x.vercel.app/,url,,openphish,70,,,
+https://kzzj78v-h16v.vercel.app/,url,,openphish,70,,,
+https://efkb69a-h16a.vercel.app/,url,,openphish,70,,,
+https://n2cknem.github.io/microsoft/,url,,openphish,70,,,
+https://naman-gudhka-1912.github.io/amazon-clone/,url,,openphish,70,,,
+https://shopee-pay77.blogspot.com/,url,,openphish,70,,,
+https://eday.item.com.login.secured.karapapati.com/,url,,openphish,70,,,
+https://hariprasad522.github.io/AmazonClone/,url,,openphish,70,,,
+https://curated-content-briefing.shrill-heart-3ff9.workers.dev/privacy-information-center/,url,,openphish,70,,,
+https://lakshayxaim.github.io/Netflix-Clone.github.io/,url,,openphish,70,,,
+https://gps-los27-location.us/a.php,url,,openphish,70,,,
+https://ecuador-apple.help/a.php,url,,openphish,70,,,
+http://bittemartlogine.webflow.io/,url,,openphish,70,,,
+http://finessa.za-jpjt.xyz/a,url,,openphish,70,,,
+https://fcid-encontrar-apple.us/a.php,url,,openphish,70,,,
+https://restore-ios-lphone.us/a.php,url,,openphish,70,,,
+https://iphone-localizar-apagado.us/a.php,url,,openphish,70,,,
+http://scvip.art/ijYdeCXp,url,,openphish,70,,,
+https://nlink.at/OFts,url,,openphish,70,,,
+https://maps-account-fyndme.help/a.php,url,,openphish,70,,,
+https://korozyondernegi.org.tr/hudst/ntjklmnetworkserverfdsaokjnwdcvbgfrewoiuyghj.html,url,,openphish,70,,,
+http://shopee1355.blogspot.com/,url,,openphish,70,,,
+http://tetes-air.pages.dev/product-reviews/b0dg4wzzpv/ref=acr_dp_hist_5?ie=utf8&filterbystar=five_star&reviewertype=all_reviews,url,,openphish,70,,,
+http://tetes-air.pages.dev/dp/b0cp31qs6r?ref=marsfs_kindle_rs,url,,openphish,70,,,
+http://nishika1505.github.io/Amazon-clone,url,,openphish,70,,,
+https://155aes.senes.at/mining/?b=yto0ontzoju6imxhymvsijtzoja6iii7czozoij1c3iio2k6mty5ottzojq6im5vcgqio3m6mtq6injzcziuc2f5bgvylmf0ijtzoje6im8io2k6mte1ntt9,url,,openphish,70,,,
+http://sockscheker.ru/config/config/bits225/session/?search=search&q=,url,,openphish,70,,,
+https://outlook-login.github.io/Validar,url,,openphish,70,,,
+http://www.rripphiobkbcwrv6.hg039.cc/,url,,openphish,70,,,
+https://vmi3535754.contaboserver.net/ft/track/track.php,url,,openphish,70,,,
+https://vmi3535754.contaboserver.net/ft,url,,openphish,70,,,
+https://urlz.fr/viTj,url,,openphish,70,,,
+http://lnk.ink/dhl-us,url,,openphish,70,,,
+https://vodafone-business-berlin.com/,url,,openphish,70,,,
+https://www.roblox.com.bi/games/119475035626185/stormys-spelling-bee?privateserverlinkcode=06713340521095578656367400665464&game_id=119475035626185&game_name=stormys-spelling-bee,url,,openphish,70,,,
+https://www.roblox.com.bi/communities/411721888093/nova-society%e2%84%a2,url,,openphish,70,,,

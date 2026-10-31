@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-10-31
 
-**Window:** last 7 days · **Generated:** 2026-10-31T05:58:34Z UTC
+**Window:** last 7 days · **Generated:** 2026-10-31T12:50:16Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 87537 |
-| New in window | 30648 |
+| Indicators tracked | 87877 |
+| New in window | 31498 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,24 +16,24 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 614 | ok |
-| tor | 8687 | ok |
+| tor | 8700 | ok |
 | blocklist_de | 3000 | ok |
 | binarydefense | 372 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 542 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 1021 | ok |
+| tweetfeed | 1034 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 31504 | 19489 |
-| url | 28482 | 5420 |
-| domain | 13782 | 5289 |
-| sha256 | 9003 | 179 |
-| ipv6 | 3405 | 205 |
+| ipv4 | 31993 | 20008 |
+| url | 28409 | 5715 |
+| domain | 13770 | 5318 |
+| sha256 | 8939 | 180 |
+| ipv6 | 3405 | 211 |
 | md5 | 715 | 66 |
 | sha1 | 646 | 0 |
 
@@ -41,12 +41,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11813 |
-| Exit nodes | 2266 |
-| Other relays | 9547 |
-| New in window | 912 |
+| Nodes tracked | 11913 |
+| Exit nodes | 2265 |
+| Other relays | 9648 |
+| New in window | 1008 |
 
-Sample (20 of 11813, source: Tor Project Onionoo):
+Sample (20 of 11913, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -73,53 +73,53 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| Vidar | 5941 | 4 | T1555, T1071.001, T1567 |
-| Mirai | 2031 | 0 | T1498, T1071.001 |
-| IClickFix | 1976 | 0 | — |
-| Unknown Loader | 1829 | 0 | — |
-| Unknown malware | 1593 | 0 | — |
-| Cobalt Strike | 1332 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
-| AMOS | 979 | 0 | — |
-| ClearFake | 957 | 0 | — |
-| VShell | 876 | 0 | — |
-| php.shin_webshell | 515 | 0 | — |
-| PureRAT | 416 | 0 | — |
+| Vidar | 5936 | 4 | T1555, T1071.001, T1567 |
+| Mirai | 2012 | 0 | T1498, T1071.001 |
+| IClickFix | 1975 | 0 | — |
+| Unknown Loader | 1827 | 0 | — |
+| Unknown malware | 1584 | 0 | — |
+| Cobalt Strike | 1327 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| AMOS | 967 | 0 | — |
+| ClearFake | 950 | 0 | — |
+| VShell | 870 | 0 | — |
+| php.shin_webshell | 504 | 0 | — |
+| PureRAT | 410 | 0 | — |
 | Sliver | 375 | 0 | T1071.001, T1573, T1090, T1055 |
-| Remcos | 321 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Remus | 321 | 0 | — |
-| AsyncRAT | 306 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
+| Remus | 319 | 0 | — |
+| Remcos | 315 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
+| AsyncRAT | 305 | 0 | T1566.001, T1547.001, T1056.001, T1113, T1071.001 |
 | AdaptixC2 | 286 | 0 | — |
 | MacSync | 256 | 0 | — |
-| Unknown Stealer | 240 | 0 | — |
-| DanaBot | 191 | 0 | T1566.001, T1071.001, T1555, T1041 |
+| Unknown Stealer | 225 | 0 | — |
+| DanaBot | 190 | 0 | T1566.001, T1071.001, T1555, T1041 |
 | Formbook | 166 | 11 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 57042 |
-| T1566 | Phishing | initial-access | 16980 |
-| T1566.002 | Spearphishing Link | initial-access | 16980 |
-| T1105 | Ingress Tool Transfer | command-and-control | 14139 |
-| T1555 | Credentials from Password Stores | credential-access | 9396 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 9201 |
-| T1573 | Encrypted Channel | command-and-control | 8694 |
-| T1498 | Network Denial of Service | impact | 5614 |
-| T1552.001 | Credentials In Files | credential-access | 5336 |
-| T1204.002 | Malicious File | execution | 4365 |
-| T1027 | Obfuscated Files or Information | defense-evasion | 4213 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 1835 |
-| T1090 | Proxy | command-and-control | 1742 |
-| T1056.001 | Keylogging | collection, credential-access | 1733 |
-| T1566.001 | Spearphishing Attachment | initial-access | 1428 |
-| T1059.001 | PowerShell | execution | 1342 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 941 |
-| T1113 | Screen Capture | collection | 900 |
-| T1041 | Exfiltration Over C2 Channel | exfiltration | 295 |
+| T1071.001 | Web Protocols | command-and-control | 57378 |
+| T1566 | Phishing | initial-access | 17139 |
+| T1566.002 | Spearphishing Link | initial-access | 17139 |
+| T1105 | Ingress Tool Transfer | command-and-control | 13940 |
+| T1555 | Credentials from Password Stores | credential-access | 9362 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 9168 |
+| T1573 | Encrypted Channel | command-and-control | 8659 |
+| T1498 | Network Denial of Service | impact | 5508 |
+| T1552.001 | Credentials In Files | credential-access | 5305 |
+| T1204.002 | Malicious File | execution | 4324 |
+| T1027 | Obfuscated Files or Information | defense-evasion | 4172 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 1827 |
+| T1090 | Proxy | command-and-control | 1737 |
+| T1056.001 | Keylogging | collection, credential-access | 1707 |
+| T1566.001 | Spearphishing Attachment | initial-access | 1413 |
+| T1059.001 | PowerShell | execution | 1337 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 928 |
+| T1113 | Screen Capture | collection | 887 |
+| T1041 | Exfiltration Over C2 Channel | exfiltration | 293 |
 | T1189 | Drive-by Compromise | initial-access | 162 |
 | T1218 | System Binary Proxy Execution | defense-evasion | 162 |
-| T1059.005 | Visual Basic | execution | 38 |
+| T1059.005 | Visual Basic | execution | 36 |
 | T1486 | Data Encrypted for Impact | impact | 36 |
 | T1490 | Inhibit System Recovery | impact | 36 |
 | T1562.001 | Disable or Modify Tools | defense-evasion | 36 |
