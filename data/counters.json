@@ -23,44 +23,44 @@
   },
   "by_source": {
     "binarydefense": 1970,
-    "blocklist_de": 7665,
+    "blocklist_de": 7736,
     "circl": 914,
     "et_compromised": 605,
     "feodo": 5,
-    "greensnow": 3971,
+    "greensnow": 4007,
     "malwarebazaar": 5940,
     "openphish": 10972,
-    "phishing_army": 3961,
+    "phishing_army": 3977,
     "threatfox": 21745,
-    "tor": 11963,
-    "tweetfeed": 5250,
+    "tor": 11990,
+    "tweetfeed": 5258,
     "urlhaus": 8142,
     "urlhaus_filter": 5452
   },
   "by_type": {
-    "domain": 12473,
-    "ipv4": 32980,
-    "ipv6": 3426,
+    "domain": 12491,
+    "ipv4": 33096,
+    "ipv6": 3431,
     "md5": 617,
     "sha1": 547,
-    "sha256": 8105,
-    "url": 27077
+    "sha256": 8107,
+    "url": 27080
   },
-  "generated_at": "2026-11-01T17:59:39Z",
+  "generated_at": "2026-11-01T22:13:18Z",
   "latest_run": {
     "durations": {
-      "binarydefense": 0.5,
+      "binarydefense": 0.6,
       "blocklist_de": 0.2,
-      "circl": 3.1,
+      "circl": 3.6,
       "et_compromised": 0.3,
-      "feodo": 0.4,
-      "greensnow": 5.7,
+      "feodo": 0.2,
+      "greensnow": 4.7,
       "malwarebazaar": 0.0,
       "openphish": 0.0,
       "otx": 0.0,
-      "phishing_army": 0.4,
+      "phishing_army": 0.7,
       "threatfox": 0.0,
-      "tor": 2.8,
+      "tor": 2.5,
       "tweetfeed": 0.1,
       "urlhaus": 0.0,
       "urlhaus_filter": 0.5
@@ -75,14 +75,14 @@
       "greensnow": 2000,
       "openphish": 300,
       "phishing_army": 3000,
-      "tor": 8752,
-      "tweetfeed": 1048,
+      "tor": 8754,
+      "tweetfeed": 1056,
       "urlhaus_filter": 5000
     },
-    "fetched": 24992,
-    "finished_at": "2026-11-01T17:59:39Z",
-    "new": 777,
-    "pruned": 811,
+    "fetched": 25002,
+    "finished_at": "2026-11-01T22:13:18Z",
+    "new": 144,
+    "pruned": 0,
     "skipped": [
       "malwarebazaar",
       "otx",
@@ -95,9 +95,9 @@
       "threatfox": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/",
       "urlhaus": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/"
     },
-    "started_at": "2026-11-01T17:59:23Z",
-    "total": 85225,
-    "updated": 23689
+    "started_at": "2026-11-01T22:13:04Z",
+    "total": 85369,
+    "updated": 24337
   },
-  "total": 85225
+  "total": 85369
 }

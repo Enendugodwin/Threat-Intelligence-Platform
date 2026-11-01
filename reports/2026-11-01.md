@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-11-01
 
-**Window:** last 7 days · **Generated:** 2026-11-01T17:59:50Z UTC
+**Window:** last 7 days · **Generated:** 2026-11-01T22:13:27Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 85225 |
-| New in window | 32703 |
+| Indicators tracked | 85369 |
+| New in window | 32830 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 28 |
 
@@ -16,24 +16,24 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 614 | ok |
-| tor | 8752 | ok |
+| tor | 8754 | ok |
 | blocklist_de | 3000 | ok |
 | binarydefense | 731 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 542 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 1048 | ok |
+| tweetfeed | 1056 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 32980 | 21127 |
-| url | 27077 | 5633 |
-| domain | 12473 | 5497 |
-| sha256 | 8105 | 187 |
-| ipv6 | 3426 | 191 |
+| ipv4 | 33096 | 21229 |
+| url | 27080 | 5636 |
+| domain | 12491 | 5515 |
+| sha256 | 8107 | 189 |
+| ipv6 | 3431 | 193 |
 | md5 | 617 | 68 |
 | sha1 | 547 | 0 |
 
@@ -41,12 +41,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 11963 |
-| Exit nodes | 2282 |
-| Other relays | 9681 |
-| New in window | 1038 |
+| Nodes tracked | 11990 |
+| Exit nodes | 2286 |
+| Other relays | 9704 |
+| New in window | 1048 |
 
-Sample (20 of 11963, source: Tor Project Onionoo):
+Sample (20 of 11990, source: Tor Project Onionoo):
 - `1[.]201[.]176[.]176`
 - `1[.]235[.]159[.]83`
 - `1[.]248[.]96[.]163`
@@ -98,9 +98,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1071.001 | Web Protocols | command-and-control | 56279 |
-| T1566 | Phishing | initial-access | 17260 |
-| T1566.002 | Spearphishing Link | initial-access | 17260 |
+| T1071.001 | Web Protocols | command-and-control | 56402 |
+| T1566 | Phishing | initial-access | 17279 |
+| T1566.002 | Spearphishing Link | initial-access | 17279 |
 | T1105 | Ingress Tool Transfer | command-and-control | 12811 |
 | T1573 | Encrypted Channel | command-and-control | 8872 |
 | T1555 | Credentials from Password Stores | credential-access | 8738 |
