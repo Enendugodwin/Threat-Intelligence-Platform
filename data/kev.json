@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-11-03T19:39:33Z",
-  "catalog_version": "2026.10.30",
-  "catalog_count": 1766,
+  "generated_at": "2026-11-04T06:44:14Z",
+  "catalog_version": "2026.11.03",
+  "catalog_count": 1767,
   "entries": [
+    {
+      "cve": "CVE-2026-119977",
+      "vendor": "WordPress",
+      "product": "WordPress Core",
+      "name": "WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability",
+      "date_added": "2026-11-03",
+      "due_date": "2026-11-06",
+      "ransomware": false,
+      "description": "WordPress WordPress Core contains a time-of-check time-of-use (TOCTOU) race condition vulnerability that could allow unauthenticated attackers to execute code on the server during the upgrade window. This is due to predictable, web-accessible staging paths used during full-packag",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.006,
+      "epss_percentile": 0.48751
+    },
     {
       "cve": "CVE-2026-118527",
       "vendor": "Ivanti",
@@ -2589,19 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.43212,
       "epss_percentile": 0.9869
-    },
-    {
-      "cve": "CVE-2026-32201",
-      "vendor": "Microsoft",
-      "product": "SharePoint Server",
-      "name": "Microsoft SharePoint Server Improper Input Validation Vulnerability",
-      "date_added": "2026-04-14",
-      "due_date": "2026-04-28",
-      "ransomware": false,
-      "description": "Microsoft SharePoint Server contains an improper input validation vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.43378,
-      "epss_percentile": 0.98696
     }
   ]
 }

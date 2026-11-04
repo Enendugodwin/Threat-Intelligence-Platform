@@ -304,10 +304,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>85838 indicators</span>
-      <span>1213 new / 24387 updated last run &middot; 16266 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>85165 indicators</span>
+      <span>1139 new / 23289 updated last run &middot; 15776 new / 7d</span>
       <span>11/11 feeds &middot; 4 optional &middot; 20d retention</span>
-      <span>sync 2026-11-03T19:39:44Z</span>
+      <span>sync 2026-11-04T06:44:25Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -336,7 +336,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <h1 class="page-title">Known exploited vulnerabilities</h1>
 <p class="muted">
   CISA's KEV catalog (vulnerabilities confirmed exploited in the wild), enriched with FIRST EPSS
-  exploit-probability scores. Catalog 2026.10.30 &middot; updated 2026-11-03T19:39:33Z UTC.
+  exploit-probability scores. Catalog 2026.11.03 &middot; updated 2026-11-04T06:44:14Z UTC.
   EPSS data may lag by a day.
 </p>
 
@@ -344,7 +344,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   <div class="card">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 7.5-7 9-4.1-1.5-7-4.6-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>Tracked</div>
     <span class="num">200</span>
-    <span class="card-sub">of 1766 in the catalog</span>
+    <span class="card-sub">of 1767 in the catalog</span>
   </div>
   <div class="card card-bad">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Ransomware</div>
@@ -353,7 +353,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
   </div>
   <div class="card card-bad">
     <div class="card-head"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Overdue</div>
-    <span class="num">193</span>
+    <span class="num">195</span>
     <span class="card-sub">past the KEV due date</span>
   </div>
   <div class="card">
@@ -376,6 +376,17 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         </tr>
       </thead>
       <tbody>
+        <tr id="CVE-2026-119977">
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119977" target="_blank" rel="noopener"><code>CVE-2026-119977</code></a></td>
+          <td><a href="https://nvd.nist.gov/vuln/search/results?query=WordPress&amp;search_type=all" target="_blank" rel="noopener">WordPress</a></td>
+          <td><a href="https://nvd.nist.gov/vuln/search/results?query=WordPress%20Core&amp;search_type=all" target="_blank" rel="noopener">WordPress Core</a></td>
+          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-119977" target="_blank" rel="noopener">WordPress WordPress Core Time-of-check Time-of-use (TOCTOU) Race Condition Vulnerability</a></td>
+          <td>2026-11-03</td>
+          <td>2026-11-06</td>
+          <td><span class="muted">&mdash;</span></td>
+          <td class="num-cell">0.6%</td>
+          <td><span class="muted">&mdash;</span></td>
+        </tr>
         <tr id="CVE-2026-118527">
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-118527" target="_blank" rel="noopener"><code>CVE-2026-118527</code></a></td>
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Ivanti&amp;search_type=all" target="_blank" rel="noopener">Ivanti</a></td>
@@ -536,7 +547,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Media%20Server&amp;search_type=all" target="_blank" rel="noopener">Media Server</a></td>
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-96655" target="_blank" rel="noopener">Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability</a></td>
           <td>2026-10-20</td>
-          <td>2026-11-03</td>
+          <td>2026-11-03 <span class="pill err">overdue</span></td>
           <td><span class="muted">&mdash;</span></td>
           <td class="num-cell">1.6%</td>
           <td><span class="muted">&mdash;</span></td>
@@ -558,7 +569,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Media%20Server&amp;search_type=all" target="_blank" rel="noopener">Media Server</a></td>
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-96652" target="_blank" rel="noopener">Plex Media Server Server-Side Request Forgery (SSRF) Vulnerability</a></td>
           <td>2026-10-20</td>
-          <td>2026-11-03</td>
+          <td>2026-11-03 <span class="pill err">overdue</span></td>
           <td><span class="muted">&mdash;</span></td>
           <td class="num-cell">1.8%</td>
           <td><span class="muted">&mdash;</span></td>
@@ -569,7 +580,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td><a href="https://nvd.nist.gov/vuln/search/results?query=Software%20Center&amp;search_type=all" target="_blank" rel="noopener">Software Center</a></td>
           <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-110936" target="_blank" rel="noopener">Siemens Software Center Uncontrolled Search Path Element Vulnerability</a></td>
           <td>2026-10-20</td>
-          <td>2026-11-03</td>
+          <td>2026-11-03 <span class="pill err">overdue</span></td>
           <td><span class="muted">&mdash;</span></td>
           <td class="num-cell">1.0%</td>
           <td><span class="muted">&mdash;</span></td>
@@ -2565,17 +2576,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">43.2%</td>
           <td><span class="muted">&mdash;</span></td>
         </tr>
-        <tr id="CVE-2026-32201">
-          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32201" target="_blank" rel="noopener"><code>CVE-2026-32201</code></a></td>
-          <td><a href="https://nvd.nist.gov/vuln/search/results?query=Microsoft&amp;search_type=all" target="_blank" rel="noopener">Microsoft</a></td>
-          <td><a href="https://nvd.nist.gov/vuln/search/results?query=SharePoint%20Server&amp;search_type=all" target="_blank" rel="noopener">SharePoint Server</a></td>
-          <td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-32201" target="_blank" rel="noopener">Microsoft SharePoint Server Improper Input Validation Vulnerability</a></td>
-          <td>2026-04-14</td>
-          <td>2026-04-28 <span class="pill err">overdue</span></td>
-          <td><span class="muted">&mdash;</span></td>
-          <td class="num-cell">43.4%</td>
-          <td><span class="muted">&mdash;</span></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -2584,7 +2584,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 </main>
 <footer>
   <p>Active sources: Feodo Tracker &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed &middot; Optional (no key): URLhaus, ThreatFox, MalwareBazaar, AlienVault OTX</p>
-  <p>Retention: indicators not re-seen for 20 days are purged on every sync (1042 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-03T19:39:44Z UTC</span></p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (1812 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-04T06:44:25Z UTC</span></p>
 </footer>
 <script>
 (function () {
