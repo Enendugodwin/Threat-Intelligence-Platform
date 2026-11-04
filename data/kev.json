@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T06:44:14Z",
+  "generated_at": "2026-11-04T19:54:56Z",
   "catalog_version": "2026.11.03",
   "catalog_count": 1767,
   "entries": [
@@ -26,8 +26,8 @@
       "ransomware": false,
       "description": "Ivanti Connect Secure contains a generation of predictable numbers or identifiers vulnerability that allows a remote authenticated attacker to upload files with attacker-controlled content to a known location on disk. This vulnerability can be chained with CVE-2026-104935 and CVE",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.00822,
+      "epss_percentile": 0.57429
     },
     {
       "cve": "CVE-2026-111357",
