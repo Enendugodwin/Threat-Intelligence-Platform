@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-11-04T19:54:56Z",
-  "catalog_version": "2026.11.03",
-  "catalog_count": 1767,
+  "generated_at": "2026-11-05T07:02:43Z",
+  "catalog_version": "2026.11.04",
+  "catalog_count": 1768,
   "entries": [
+    {
+      "cve": "CVE-2024-27834",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "name": "Apple Multiple Products Improper Authentication Vulnerability",
+      "date_added": "2026-11-04",
+      "due_date": "2026-11-18",
+      "ransomware": false,
+      "description": "Apple iOS, iPadOS, macOS, Safari, tvOS and watchOS 10.5 contain an improper authentication vulnerability which could allow an attacker with arbitrary read and write capability to bypass pointer authentication.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00598,
+      "epss_percentile": 0.4875
+    },
     {
       "cve": "CVE-2026-119977",
       "vendor": "WordPress",
@@ -2589,19 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.15492,
       "epss_percentile": 0.96712
-    },
-    {
-      "cve": "CVE-2009-0238",
-      "vendor": "Microsoft",
-      "product": "Office",
-      "name": "Microsoft Office Remote Code Execution",
-      "date_added": "2026-04-14",
-      "due_date": "2026-04-28",
-      "ransomware": false,
-      "description": "Microsoft Office Excel contains a remote code execution vulnerability that could allow an attacker to take complete control of an affected system if a user opens a specially crafted Excel file that includes a malformed object.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.43212,
-      "epss_percentile": 0.9869
     }
   ]
 }
