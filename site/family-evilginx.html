@@ -12,7 +12,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#000000">
 <meta name="description" content="Threat intelligence dashboard: aggregated indicators, ATT&CK coverage, Tor nodes and detection exports.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 <title>Malware family: Evilginx &mdash; Threat Intel Pipeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,6 +86,9 @@ nav a:hover{border-color:var(--color-primary);color:var(--color-primary);opacity
 .theme-toggle,.action-link,.action-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:var(--font-heading);font-size:.74rem;font-weight:500;padding:6px 11px;border:1px solid var(--color-border);border-radius:6px;color:var(--color-foreground);background:var(--color-card);cursor:pointer;white-space:nowrap;transition:border-color .2s ease,color .2s ease,background .2s ease}
 .theme-toggle:hover,.action-link:hover,.action-button:hover{border-color:var(--color-primary);color:var(--color-primary);opacity:1}
 .theme-toggle svg{color:var(--color-primary)}
+.refresh-btn.refreshing .refresh-icon{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.refresh-btn.refreshing .refresh-icon{animation:none}}
 .action-link.primary,.action-button.primary{border-color:var(--color-primary);color:var(--color-primary)}
 .export-menu{position:relative}
 .export-menu>summary{list-style:none;user-select:none}
@@ -109,7 +115,9 @@ h2 .count{color:var(--color-foreground);font-weight:400;letter-spacing:0}
 .err-text{color:var(--color-destructive);font-size:.85rem}
 
 /* Cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin-bottom:var(--space-3xl)}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
 .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl);transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
 .card:hover{border-color:var(--color-primary-hover);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .card-head{display:flex;align-items:center;gap:var(--space-md);color:var(--color-muted-foreground);font-family:var(--font-heading);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
@@ -136,6 +144,10 @@ td code{background:transparent;border:none;padding:0}
 .pill{display:inline-flex;align-items:center;font-family:var(--font-heading);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 10px;border-radius:999px;border:1px solid;white-space:nowrap}
 .pill.ok{color:var(--color-primary);border-color:var(--color-primary-border);background:var(--color-primary-soft)}
 .pill.err{color:var(--color-destructive);border-color:var(--color-accent-border);background:var(--color-accent-soft)}
+.pill.warn{color:#eab308;border-color:rgba(234,179,8,.5);background:rgba(234,179,8,.12)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2xl);align-items:start}
+.split>section{min-width:0}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
 
 /* Bars (indicators by type) */
 .bars{display:flex;flex-direction:column;gap:var(--space-md);background:var(--color-card);border:1px solid var(--color-border);border-radius:var(--radius);padding:var(--space-xl)}
@@ -292,10 +304,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>25853 indicators</span>
-      <span>2276 new / 23417 updated last run &middot; 0 new / 7d</span>
-      <span>7/7 feeds</span>
-      <span>sync 2026-10-26T11:10:18Z</span>
+      <span><span class="status-dot" aria-hidden="true"></span>81943 indicators</span>
+      <span>1223 new / 25411 updated last run &middot; 15408 new / 7d</span>
+      <span>11/11 feeds &middot; 4 optional &middot; 20d retention</span>
+      <span>sync 2026-11-06T07:03:13Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -305,7 +317,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <a href="kev.html">Vulnerabilities</a>
       <a href="map.html">Infrastructure</a>
       <a href="report.html">IOC pulse</a>
-<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+<a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">GitHub</a>      <button class="theme-toggle refresh-btn" id="refresh-btn" type="button" aria-label="Refresh dashboard data">
+        <svg class="icon refresh-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/>
+        </svg>
+        <span>Refresh</span>
+      </button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
         <svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>
         </svg>
@@ -318,7 +336,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="index.html">&larr; Dashboard</a>
 <h1 class="page-title">Malware family: Evilginx</h1>
 <p class="muted">
-  91 indicator(s) attributed to Evilginx</p>
+  95 indicator(s) attributed to Evilginx</p>
 
 <section>
   <div class="table-wrap">
@@ -352,6 +370,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.194.155.6" target="_blank" rel="noopener"><code>104[.]194[.]155[.]6</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-06T19:43:10Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/104.207.132.238" target="_blank" rel="noopener"><code>104[.]207[.]132[.]238</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -372,23 +400,33 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/129.212.163.157" target="_blank" rel="noopener"><code>129[.]212[.]163[.]157</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.234.177.138" target="_blank" rel="noopener"><code>104[.]234[.]177[.]138</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-03T09:43:32Z</td>
+          <td>2026-10-19T09:43:11Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/136.118.7.65" target="_blank" rel="noopener"><code>136[.]118[.]7[.]65</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/104.234.177.45" target="_blank" rel="noopener"><code>104[.]234[.]177[.]45</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-05T19:43:35Z</td>
+          <td>2026-10-11T09:43:12Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/137.184.22.189" target="_blank" rel="noopener"><code>137[.]184[.]22[.]189</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-21T09:43:25Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -402,13 +440,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/142.93.49.30" target="_blank" rel="noopener"><code>142[.]93[.]49[.]30</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/141.227.129.90" target="_blank" rel="noopener"><code>141[.]227[.]129[.]90</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-03T09:43:41Z</td>
+          <td>2026-10-15T09:43:43Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -442,23 +480,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/144.172.106.62" target="_blank" rel="noopener"><code>144[.]172[.]106[.]62</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/144.31.80.85" target="_blank" rel="noopener"><code>144[.]31[.]80[.]85</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-13T09:43:43Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/147.182.220.95" target="_blank" rel="noopener"><code>147[.]182[.]220[.]95</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-09-03T19:43:44Z</td>
+          <td>2026-10-14T19:43:28Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -469,6 +497,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Evilginx</td>
           <td>threatfox</td>
           <td>2026-09-05T09:43:49Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/151.244.30.155" target="_blank" rel="noopener"><code>151[.]244[.]30[.]155</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-15T19:43:31Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -522,13 +560,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/162.35.105.100" target="_blank" rel="noopener"><code>162[.]35[.]105[.]100</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/162.33.178.248" target="_blank" rel="noopener"><code>162[.]33[.]178[.]248</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-08-21T09:44:04Z</td>
+          <td>2026-10-14T19:43:47Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -542,23 +580,23 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/162.35.161.206" target="_blank" rel="noopener"><code>162[.]35[.]161[.]206</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/166.0.22.206" target="_blank" rel="noopener"><code>166[.]0[.]22[.]206</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-02T09:44:01Z</td>
+          <td>2026-10-16T09:43:49Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/169.58.12.228" target="_blank" rel="noopener"><code>169[.]58[.]12[.]228</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/170.205.52.199" target="_blank" rel="noopener"><code>170[.]205[.]52[.]199</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-07-20T09:43:51Z</td>
+          <td>2026-10-19T09:43:51Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -574,11 +612,21 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/172.105.110.70" target="_blank" rel="noopener"><code>172[.]105[.]110[.]70</code></a></td>
           <td>ipv4</td>
-          <td><span class="risk risk-high">high 78</span></td>
+          <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
           <td>2026-10-07T19:43:46Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/172.245.97.237" target="_blank" rel="noopener"><code>172[.]245[.]97[.]237</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-05-11T09:43:26Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -592,13 +640,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/178.128.171.71" target="_blank" rel="noopener"><code>178[.]128[.]171[.]71</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/178.16.52.191" target="_blank" rel="noopener"><code>178[.]16[.]52[.]191</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-04T09:44:57Z</td>
+          <td>2026-10-04T19:43:56Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -772,6 +820,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/185.212.129.149" target="_blank" rel="noopener"><code>185[.]212[.]129[.]149</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-05T19:44:08Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/185.212.129.170" target="_blank" rel="noopener"><code>185[.]212[.]129[.]170</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -789,16 +847,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>Evilginx</td>
           <td>threatfox</td>
           <td>2026-05-01T02:43:13Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/185.212.129.25" target="_blank" rel="noopener"><code>185[.]212[.]129[.]25</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-08-05T19:44:30Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -842,33 +890,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/185.212.131.27" target="_blank" rel="noopener"><code>185[.]212[.]131[.]27</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/185.93.221.10" target="_blank" rel="noopener"><code>185[.]93[.]221[.]10</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-07-13T19:43:57Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/185.212.131.28" target="_blank" rel="noopener"><code>185[.]212[.]131[.]28</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-07-20T09:44:09Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/192.208.12.91" target="_blank" rel="noopener"><code>192[.]208[.]12[.]91</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-06-10T09:44:00Z</td>
+          <td>2026-10-16T19:44:09Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -892,6 +920,16 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/193.23.137.40" target="_blank" rel="noopener"><code>193[.]23[.]137[.]40</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-05-01T02:43:15Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/194.32.142.225" target="_blank" rel="noopener"><code>194[.]32[.]142[.]225</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -912,13 +950,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/195.242.119.86" target="_blank" rel="noopener"><code>195[.]242[.]119[.]86</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/195.242.118.102" target="_blank" rel="noopener"><code>195[.]242[.]118[.]102</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-08-08T09:44:30Z</td>
+          <td>2026-10-14T19:44:13Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -972,16 +1010,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/204.152.217.122" target="_blank" rel="noopener"><code>204[.]152[.]217[.]122</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-08-29T09:45:09Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/209.74.86.250" target="_blank" rel="noopener"><code>209[.]74[.]86[.]250</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -1022,23 +1050,23 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/34.122.131.42" target="_blank" rel="noopener"><code>34[.]122[.]131[.]42</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.137.194.219" target="_blank" rel="noopener"><code>45[.]137[.]194[.]219</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-04T09:47:31Z</td>
+          <td>2026-10-18T09:44:58Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/45.154.98.207" target="_blank" rel="noopener"><code>45[.]154[.]98[.]207</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/45.155.249.220" target="_blank" rel="noopener"><code>45[.]155[.]249[.]220</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-08-15T09:45:51Z</td>
+          <td>2026-10-13T19:45:05Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -1092,16 +1120,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/64.20.61.215" target="_blank" rel="noopener"><code>64[.]20[.]61[.]215</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-08-01T19:46:16Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/64.225.102.218" target="_blank" rel="noopener"><code>64[.]225[.]102[.]218</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -1142,16 +1160,6 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/69.164.245.180" target="_blank" rel="noopener"><code>69[.]164[.]245[.]180</code></a></td>
-          <td>ipv4</td>
-          <td><span class="risk risk-high">high 71</span></td>
-          <td class="num-cell">&mdash;</td>
-          <td>Evilginx</td>
-          <td>threatfox</td>
-          <td>2026-08-09T09:46:39Z</td>
-          <td class="num-cell">75</td>
-        </tr>
-        <tr>
           <td><a href="https://www.virustotal.com/gui/ip-address/74.0.32.137" target="_blank" rel="noopener"><code>74[.]0[.]32[.]137</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
@@ -1182,13 +1190,23 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td class="num-cell">75</td>
         </tr>
         <tr>
-          <td><a href="https://www.virustotal.com/gui/ip-address/86.54.29.65" target="_blank" rel="noopener"><code>86[.]54[.]29[.]65</code></a></td>
+          <td><a href="https://www.virustotal.com/gui/ip-address/85.121.215.148" target="_blank" rel="noopener"><code>85[.]121[.]215[.]148</code></a></td>
           <td>ipv4</td>
           <td><span class="risk risk-high">high 71</span></td>
           <td class="num-cell">&mdash;</td>
           <td>Evilginx</td>
           <td>threatfox</td>
-          <td>2026-09-08T09:47:17Z</td>
+          <td>2026-10-21T09:45:42Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/88.119.168.238" target="_blank" rel="noopener"><code>88[.]119[.]168[.]238</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-20T19:46:20Z</td>
           <td class="num-cell">75</td>
         </tr>
         <tr>
@@ -1251,6 +1269,36 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
           <td>2026-10-01T19:45:49Z</td>
           <td class="num-cell">75</td>
         </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/ip-address/95.133.230.193" target="_blank" rel="noopener"><code>95[.]133[.]230[.]193</code></a></td>
+          <td>ipv4</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>threatfox</td>
+          <td>2026-10-18T09:45:40Z</td>
+          <td class="num-cell">75</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fpussycat.online%3A8443" target="_blank" rel="noopener"><code>hxxps://pussycat[.]online:8443</code></a></td>
+          <td>url</td>
+          <td><span class="risk risk-high">high 71</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>tweetfeed</td>
+          <td>2026-11-02T07:19:44Z</td>
+          <td class="num-cell">55</td>
+        </tr>
+        <tr>
+          <td><a href="https://www.virustotal.com/gui/domain/pussycat.online" target="_blank" rel="noopener"><code>pussycat[.]online</code></a></td>
+          <td>domain</td>
+          <td><span class="risk risk-high">high 72</span></td>
+          <td class="num-cell">&mdash;</td>
+          <td>Evilginx</td>
+          <td>tweetfeed</td>
+          <td>2026-11-02T07:19:44Z</td>
+          <td class="num-cell">55</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -1259,10 +1307,26 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 </main>
 <footer>
-  <p>Active sources: URLhaus &middot; Feodo Tracker &middot; ThreatFox &middot; MalwareBazaar &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; Optional: AlienVault OTX (disabled)</p>
-  <p>Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-10-26T11:10:18Z UTC</span></p>
+  <p>Active sources: Feodo Tracker &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed &middot; Optional (no key): URLhaus, ThreatFox, MalwareBazaar, AlienVault OTX</p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (2093 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-06T07:03:13Z UTC</span></p>
 </footer>
 <script>
+(function () {
+  var refresh = document.getElementById("refresh-btn");
+  if (!refresh) return;
+  var label = refresh.querySelector("span");
+  refresh.addEventListener("click", function () {
+    refresh.disabled = true;
+    refresh.classList.add("refreshing");
+    refresh.setAttribute("aria-busy", "true");
+    if (label) label.textContent = "Refreshing";
+    // Cache-busting query keeps GitHub Pages / browser caches from serving the
+    // previous build's HTML after a new sync.
+    var url = new URL(window.location.href);
+    url.searchParams.set("refresh", String(Date.now()));
+    window.location.replace(url.toString());
+  });
+})();
 (function () {
   var root = document.documentElement;
   var toggle = document.getElementById("theme-toggle");
