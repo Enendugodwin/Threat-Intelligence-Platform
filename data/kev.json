@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-11-06T19:34:23Z",
-  "catalog_version": "2026.11.04",
-  "catalog_count": 1768,
+  "generated_at": "2026-11-07T06:16:01Z",
+  "catalog_version": "2026.11.06",
+  "catalog_count": 1769,
   "entries": [
+    {
+      "cve": "CVE-2026-19868",
+      "vendor": "SonicWall",
+      "product": "SonicOS SSLVPN",
+      "name": "SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability",
+      "date_added": "2026-11-06",
+      "due_date": "2026-11-20",
+      "ransomware": false,
+      "description": "SonicWall SonicOS SSLVPN contains a use of single-factor authentication vulnerability that may allow a user with valid credentials for an alternate authentication method to bypass SAML authentication controls. Successful exploitation may also bypass SAML-enforced multi-factor aut",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
     {
       "cve": "CVE-2024-27834",
       "vendor": "Apple",
@@ -2589,19 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.99991,
       "epss_percentile": 0.99986
-    },
-    {
-      "cve": "CVE-2026-34197",
-      "vendor": "Apache",
-      "product": "ActiveMQ",
-      "name": "Apache ActiveMQ Improper Input Validation Vulnerability",
-      "date_added": "2026-04-16",
-      "due_date": "2026-04-30",
-      "ransomware": false,
-      "description": "Apache ActiveMQ contains an improper input validation vulnerability that allows for code injection.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.15492,
-      "epss_percentile": 0.96712
     }
   ]
 }
