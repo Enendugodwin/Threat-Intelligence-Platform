@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T13:20:09Z",
+  "generated_at": "2026-11-07T22:04:06Z",
   "catalog_version": "2026.11.06",
   "catalog_count": 1769,
   "entries": [
@@ -13,8 +13,8 @@
       "ransomware": false,
       "description": "SonicWall SonicOS SSLVPN contains a use of single-factor authentication vulnerability that may allow a user with valid credentials for an alternate authentication method to bypass SAML authentication controls. Successful exploitation may also bypass SAML-enforced multi-factor aut",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.00621,
+      "epss_percentile": 0.50027
     },
     {
       "cve": "CVE-2024-27834",
