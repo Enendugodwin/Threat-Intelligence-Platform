@@ -1,6 +1,6 @@
 {
   "schema": "threat-intel-platform/iocs/v1",
-  "generated_at": "2026-11-08T13:43:06Z",
+  "generated_at": "2026-11-08T22:17:22Z",
   "count": 30000,
   "indicators": [
     {
@@ -19424,36 +19424,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1974321/"
     },
     {
-      "value": "checkgwfwtg465.art",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-19T12:03:05Z",
-      "last_seen": "2026-10-19T14:52:39Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1974271/"
-    },
-    {
-      "value": "https://q.88qr.org/z",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-19T10:51:47Z",
-      "last_seen": "2026-10-19T14:01:29Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1974232/"
-    },
-    {
-      "value": "https://ieo.88idr.org/q",
-      "type": "url",
-      "malware": "Vidar",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-19T10:24:06Z",
-      "last_seen": "2026-10-19T14:01:20Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1974220/"
-    },
-    {
       "value": "runelight.net",
       "type": "domain",
       "malware": "Unknown Stealer",
@@ -19482,16 +19452,6 @@
       "first_seen": "2026-10-19T06:01:45Z",
       "last_seen": "2026-10-21T04:50:22Z",
       "reference": "https://threatfox.abuse.ch/ioc/1973908/"
-    },
-    {
-      "value": "195.177.94.15",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-19T05:03:01Z",
-      "last_seen": "2026-10-19T15:08:49Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1973880/"
     },
     {
       "value": "https://n.88qr.org/e",
@@ -20382,16 +20342,6 @@
       "first_seen": "2026-10-15T19:10:29Z",
       "last_seen": "2026-10-21T10:43:03Z",
       "reference": "https://threatfox.abuse.ch/ioc/1968294/"
-    },
-    {
-      "value": "45.133.174.164",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-15T19:10:12Z",
-      "last_seen": "2026-10-19T18:35:35Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1968291/"
     },
     {
       "value": "91.92.41.56",
@@ -21324,16 +21274,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1960340/"
     },
     {
-      "value": "mellow-flicker-comet-pluio.pro",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-10T22:28:44Z",
-      "last_seen": "2026-10-19T15:47:33Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1960337/"
-    },
-    {
       "value": "216.9.224.115",
       "type": "ipv4",
       "malware": "AsyncRAT",
@@ -21894,16 +21834,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1954592/"
     },
     {
-      "value": "217.60.242.27",
-      "type": "ipv4",
-      "malware": "Aisuru",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-10-06T08:27:52Z",
-      "last_seen": "2026-10-19T20:26:25Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1954702/"
-    },
-    {
       "value": "64.89.160.50",
       "type": "ipv4",
       "malware": "Remcos",
@@ -22382,16 +22312,6 @@
       "first_seen": "2026-09-29T07:05:04Z",
       "last_seen": "2026-10-21T11:43:03Z",
       "reference": "https://threatfox.abuse.ch/ioc/1941556/"
-    },
-    {
-      "value": "94.154.40.119",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-29T06:28:39Z",
-      "last_seen": "2026-10-19T14:25:16Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1941250/"
     },
     {
       "value": "196.251.121.249",
@@ -23004,16 +22924,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1924396/"
     },
     {
-      "value": "kiln-skioi-c29up.com",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-19T09:06:06Z",
-      "last_seen": "2026-10-19T15:47:33Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924393/"
-    },
-    {
       "value": "62.60.226.173",
       "type": "ipv4",
       "malware": "CECbot",
@@ -23202,16 +23112,6 @@
       "first_seen": "2026-09-14T16:53:23Z",
       "last_seen": "2026-10-20T22:55:07Z",
       "reference": "https://threatfox.abuse.ch/ioc/1917881/"
-    },
-    {
-      "value": "closegate21.xyz",
-      "type": "domain",
-      "malware": "IClickFix",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-09-14T16:53:23Z",
-      "last_seen": "2026-10-19T15:47:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1917882/"
     },
     {
       "value": "evrything-pix.icu",
@@ -26232,16 +26132,6 @@
       "first_seen": "2026-08-05T16:20:59Z",
       "last_seen": "2026-10-20T22:55:07Z",
       "reference": "https://threatfox.abuse.ch/ioc/1868916/"
-    },
-    {
-      "value": "bloodhorn8123.icu",
-      "type": "domain",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 100,
-      "first_seen": "2026-08-05T13:40:55Z",
-      "last_seen": "2026-10-19T15:47:32Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1868878/"
     },
     {
       "value": "https://shoeshowshoes.com/nfront.php",
@@ -47614,16 +47504,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952341/"
     },
     {
-      "value": "http://182.116.115.240:58067/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T13:22:13Z",
-      "last_seen": "2026-10-19T16:38:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952340/"
-    },
-    {
       "value": "http://27.215.80.183:48431/i",
       "type": "url",
       "malware": "",
@@ -47662,16 +47542,6 @@
       "first_seen": "2026-10-19T13:02:15Z",
       "last_seen": "2026-10-21T11:12:46Z",
       "reference": "https://urlhaus.abuse.ch/url/3952336/"
-    },
-    {
-      "value": "http://123.11.71.189:41300/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T12:47:13Z",
-      "last_seen": "2026-10-19T21:39:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952335/"
     },
     {
       "value": "http://27.215.120.128:53670/i",
@@ -47714,16 +47584,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952331/"
     },
     {
-      "value": "http://123.14.222.102:42072/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T12:20:12Z",
-      "last_seen": "2026-10-19T17:13:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952330/"
-    },
-    {
       "value": "http://61.53.140.104:41091/bin.sh",
       "type": "url",
       "malware": "",
@@ -47762,16 +47622,6 @@
       "first_seen": "2026-10-19T12:02:11Z",
       "last_seen": "2026-10-21T09:49:43Z",
       "reference": "https://urlhaus.abuse.ch/url/3952325/"
-    },
-    {
-      "value": "https://download.vertex-software.digital/Toolbox_Core.rar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T11:58:45Z",
-      "last_seen": "2026-10-19T15:40:11Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952323/"
     },
     {
       "value": "http://61.53.152.158:38801/bin.sh",
@@ -47892,26 +47742,6 @@
       "first_seen": "2026-10-19T11:47:11Z",
       "last_seen": "2026-10-21T05:51:08Z",
       "reference": "https://urlhaus.abuse.ch/url/3952309/"
-    },
-    {
-      "value": "http://120.28.196.74:58782/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T11:47:10Z",
-      "last_seen": "2026-10-19T21:27:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952307/"
-    },
-    {
-      "value": "http://27.36.190.182:40923/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T11:40:24Z",
-      "last_seen": "2026-10-19T17:28:45Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952306/"
     },
     {
       "value": "http://61.53.152.158:38801/i",
@@ -48104,16 +47934,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952286/"
     },
     {
-      "value": "http://59.96.136.108:46282/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T10:02:10Z",
-      "last_seen": "2026-10-19T15:56:06Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952284/"
-    },
-    {
       "value": "http://45.137.180.155:6311/linux",
       "type": "url",
       "malware": "",
@@ -48132,16 +47952,6 @@
       "first_seen": "2026-10-19T09:51:13Z",
       "last_seen": "2026-10-20T09:17:02Z",
       "reference": "https://urlhaus.abuse.ch/url/3952281/"
-    },
-    {
-      "value": "http://61.52.67.151:52327/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T09:47:13Z",
-      "last_seen": "2026-10-19T21:20:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952280/"
     },
     {
       "value": "http://182.116.10.230:54101/bin.sh",
@@ -48174,16 +47984,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952276/"
     },
     {
-      "value": "http://60.23.234.57:36591/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T09:16:25Z",
-      "last_seen": "2026-10-19T19:24:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952275/"
-    },
-    {
       "value": "http://175.146.163.152:34039/bin.sh",
       "type": "url",
       "malware": "",
@@ -48202,16 +48002,6 @@
       "first_seen": "2026-10-19T09:02:09Z",
       "last_seen": "2026-10-21T05:34:42Z",
       "reference": "https://urlhaus.abuse.ch/url/3952271/"
-    },
-    {
-      "value": "http://27.211.230.107:43475/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T08:47:10Z",
-      "last_seen": "2026-10-19T16:29:39Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952269/"
     },
     {
       "value": "http://27.204.193.209:56082/i",
@@ -48352,26 +48142,6 @@
       "first_seen": "2026-10-19T07:39:59Z",
       "last_seen": "2026-10-21T07:55:08Z",
       "reference": "https://urlhaus.abuse.ch/url/3952253/"
-    },
-    {
-      "value": "http://27.216.174.183:52609/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T07:39:15Z",
-      "last_seen": "2026-10-19T21:54:06Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952252/"
-    },
-    {
-      "value": "http://27.216.174.183:52609/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T07:31:14Z",
-      "last_seen": "2026-10-19T22:05:43Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952250/"
     },
     {
       "value": "http://123.4.251.57:35535/i",
@@ -48714,16 +48484,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952192/"
     },
     {
-      "value": "http://222.127.48.186:51744/Mozi.m",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T06:37:13Z",
-      "last_seen": "2026-10-19T22:00:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952189/"
-    },
-    {
       "value": "https://github.com/LightningCardinal/castlevania-belmonts-curse-steam-deck-display-helper/releases/download/v1.8.5/SteamDeckDisplayHelper.zip",
       "type": "url",
       "malware": "",
@@ -49034,16 +48794,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952145/"
     },
     {
-      "value": "https://power-shell.cc/powershell/Loader.ps1",
-      "type": "url",
-      "malware": "Unknown malware",
-      "sources": "threatfox,urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T06:20:14Z",
-      "last_seen": "2026-10-19T15:23:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952210/"
-    },
-    {
       "value": "https://ps-ps.cc/powershell/Loader.ps1",
       "type": "url",
       "malware": "Unknown malware",
@@ -49074,16 +48824,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952134/"
     },
     {
-      "value": "http://119.179.248.202:39731/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T05:46:16Z",
-      "last_seen": "2026-10-19T21:26:59Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952132/"
-    },
-    {
       "value": "http://210.208.111.100:56979/i",
       "type": "url",
       "malware": "",
@@ -49092,26 +48832,6 @@
       "first_seen": "2026-10-19T05:32:13Z",
       "last_seen": "2026-10-21T11:07:44Z",
       "reference": "https://urlhaus.abuse.ch/url/3952131/"
-    },
-    {
-      "value": "http://123.14.238.189:52224/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T05:18:18Z",
-      "last_seen": "2026-10-19T16:57:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952130/"
-    },
-    {
-      "value": "http://119.179.248.202:39731/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T05:07:16Z",
-      "last_seen": "2026-10-19T16:33:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952128/"
     },
     {
       "value": "http://42.243.133.104:39671/i",
@@ -49234,16 +48954,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952114/"
     },
     {
-      "value": "http://115.50.173.159:49116/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T03:32:11Z",
-      "last_seen": "2026-10-19T21:33:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952110/"
-    },
-    {
       "value": "http://42.55.63.35:56286/bin.sh",
       "type": "url",
       "malware": "",
@@ -49344,16 +49054,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952098/"
     },
     {
-      "value": "http://119.152.232.95:42092/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T02:02:15Z",
-      "last_seen": "2026-10-19T15:17:11Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952089/"
-    },
-    {
       "value": "http://118.253.80.15:55655/i",
       "type": "url",
       "malware": "",
@@ -49444,16 +49144,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952084/"
     },
     {
-      "value": "http://115.56.115.51:43473/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T01:17:17Z",
-      "last_seen": "2026-10-19T18:06:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952082/"
-    },
-    {
       "value": "http://125.45.67.167:36693/bin.sh",
       "type": "url",
       "malware": "",
@@ -49472,16 +49162,6 @@
       "first_seen": "2026-10-19T00:44:17Z",
       "last_seen": "2026-10-21T11:46:06Z",
       "reference": "https://urlhaus.abuse.ch/url/3952079/"
-    },
-    {
-      "value": "http://27.36.190.182:40923/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T00:32:31Z",
-      "last_seen": "2026-10-19T17:33:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952078/"
     },
     {
       "value": "http://125.47.236.175:55498/bin.sh",
@@ -49534,16 +49214,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952065/"
     },
     {
-      "value": "http://123.13.118.252:41167/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T00:19:18Z",
-      "last_seen": "2026-10-19T16:35:21Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952064/"
-    },
-    {
       "value": "http://222.173.239.186:54755/bin.sh",
       "type": "url",
       "malware": "",
@@ -49552,16 +49222,6 @@
       "first_seen": "2026-10-19T00:18:19Z",
       "last_seen": "2026-10-21T10:59:32Z",
       "reference": "https://urlhaus.abuse.ch/url/3952063/"
-    },
-    {
-      "value": "http://175.165.64.64:35397/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-19T00:08:20Z",
-      "last_seen": "2026-10-19T21:18:04Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952061/"
     },
     {
       "value": "http://116.139.202.60:37667/bin.sh",
@@ -49634,16 +49294,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952049/"
     },
     {
-      "value": "http://115.51.89.179:55424/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T23:17:13Z",
-      "last_seen": "2026-10-19T21:19:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952045/"
-    },
-    {
       "value": "http://58.208.147.148:60323/i",
       "type": "url",
       "malware": "",
@@ -49652,16 +49302,6 @@
       "first_seen": "2026-10-18T23:17:13Z",
       "last_seen": "2026-10-21T09:28:27Z",
       "reference": "https://urlhaus.abuse.ch/url/3952046/"
-    },
-    {
-      "value": "http://125.46.142.75:37129/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T23:17:13Z",
-      "last_seen": "2026-10-19T16:17:45Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952047/"
     },
     {
       "value": "http://110.178.52.149:58989/i",
@@ -49744,16 +49384,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952032/"
     },
     {
-      "value": "http://130.12.209.153:53341/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T22:34:20Z",
-      "last_seen": "2026-10-19T15:23:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952031/"
-    },
-    {
       "value": "http://202.166.165.60:38230/i",
       "type": "url",
       "malware": "",
@@ -49774,16 +49404,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952026/"
     },
     {
-      "value": "http://182.127.69.150:44146/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T22:02:13Z",
-      "last_seen": "2026-10-19T16:12:15Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952022/"
-    },
-    {
       "value": "http://115.51.89.179:55424/bin.sh",
       "type": "url",
       "malware": "",
@@ -49792,16 +49412,6 @@
       "first_seen": "2026-10-18T22:02:13Z",
       "last_seen": "2026-10-19T23:04:45Z",
       "reference": "https://urlhaus.abuse.ch/url/3952023/"
-    },
-    {
-      "value": "http://5.29.200.0:36167/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T22:02:13Z",
-      "last_seen": "2026-10-19T15:21:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952024/"
     },
     {
       "value": "http://185.228.72.128/bins/ppc",
@@ -49964,26 +49574,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952001/"
     },
     {
-      "value": "http://113.237.61.46:34289/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T21:35:14Z",
-      "last_seen": "2026-10-19T16:12:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952000/"
-    },
-    {
-      "value": "http://219.157.37.29:56530/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T21:32:18Z",
-      "last_seen": "2026-10-19T21:24:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951999/"
-    },
-    {
       "value": "http://42.225.205.23:45755/bin.sh",
       "type": "url",
       "malware": "",
@@ -50024,16 +49614,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951995/"
     },
     {
-      "value": "http://115.50.38.196:33047/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T21:32:17Z",
-      "last_seen": "2026-10-19T19:36:18Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951996/"
-    },
-    {
       "value": "http://113.238.193.62:33943/i",
       "type": "url",
       "malware": "",
@@ -50064,16 +49644,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951991/"
     },
     {
-      "value": "http://119.186.211.144:42069/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T21:07:17Z",
-      "last_seen": "2026-10-19T21:37:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951988/"
-    },
-    {
       "value": "http://123.10.70.112:36801/i",
       "type": "url",
       "malware": "",
@@ -50094,26 +49664,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951985/"
     },
     {
-      "value": "http://123.11.11.175:38595/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T21:02:13Z",
-      "last_seen": "2026-10-19T21:20:58Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951983/"
-    },
-    {
-      "value": "http://115.58.96.86:53524/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T20:47:16Z",
-      "last_seen": "2026-10-19T16:09:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951982/"
-    },
-    {
       "value": "http://115.48.163.254:44939/i",
       "type": "url",
       "malware": "",
@@ -50132,16 +49682,6 @@
       "first_seen": "2026-10-18T20:47:11Z",
       "last_seen": "2026-10-20T04:12:43Z",
       "reference": "https://urlhaus.abuse.ch/url/3951981/"
-    },
-    {
-      "value": "http://123.14.238.189:52224/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T20:32:12Z",
-      "last_seen": "2026-10-19T21:29:43Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951979/"
     },
     {
       "value": "http://125.42.33.227:57063/i",
@@ -50254,16 +49794,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951959/"
     },
     {
-      "value": "http://115.50.38.196:33047/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T18:24:27Z",
-      "last_seen": "2026-10-19T18:07:54Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951958/"
-    },
-    {
       "value": "http://42.226.69.140:56903/i",
       "type": "url",
       "malware": "",
@@ -50354,16 +49884,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951945/"
     },
     {
-      "value": "http://61.53.135.7:46609/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T16:49:19Z",
-      "last_seen": "2026-10-19T22:00:41Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951943/"
-    },
-    {
       "value": "http://46.163.181.104:54484/i",
       "type": "url",
       "malware": "",
@@ -50432,16 +49952,6 @@
       "first_seen": "2026-10-18T16:09:23Z",
       "last_seen": "2026-10-21T11:50:29Z",
       "reference": "https://urlhaus.abuse.ch/url/3951933/"
-    },
-    {
-      "value": "http://115.58.96.86:53524/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T15:33:13Z",
-      "last_seen": "2026-10-19T17:10:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951929/"
     },
     {
       "value": "http://115.55.246.245:32771/i",
@@ -50634,16 +50144,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951892/"
     },
     {
-      "value": "http://182.127.69.150:44146/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T13:31:25Z",
-      "last_seen": "2026-10-19T17:45:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951893/"
-    },
-    {
       "value": "http://39.74.86.102:54002/i",
       "type": "url",
       "malware": "",
@@ -50782,16 +50282,6 @@
       "first_seen": "2026-10-18T13:02:18Z",
       "last_seen": "2026-10-21T09:40:20Z",
       "reference": "https://urlhaus.abuse.ch/url/3951876/"
-    },
-    {
-      "value": "http://175.165.85.155:60873/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T12:31:35Z",
-      "last_seen": "2026-10-19T21:19:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951869/"
     },
     {
       "value": "http://60.22.43.108:55415/i",
@@ -51184,26 +50674,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951815/"
     },
     {
-      "value": "http://222.136.53.140:55114/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T10:16:24Z",
-      "last_seen": "2026-10-19T15:52:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951813/"
-    },
-    {
-      "value": "http://222.140.182.244:54878/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T10:16:23Z",
-      "last_seen": "2026-10-19T21:16:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951812/"
-    },
-    {
       "value": "http://47.122.122.41:9162/linux",
       "type": "url",
       "malware": "",
@@ -51244,16 +50714,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951800/"
     },
     {
-      "value": "http://182.126.124.178:59375/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T08:47:15Z",
-      "last_seen": "2026-10-19T21:58:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951795/"
-    },
-    {
       "value": "http://27.215.48.147:46895/i",
       "type": "url",
       "malware": "",
@@ -51272,16 +50732,6 @@
       "first_seen": "2026-10-18T08:47:15Z",
       "last_seen": "2026-10-19T22:29:08Z",
       "reference": "https://urlhaus.abuse.ch/url/3951797/"
-    },
-    {
-      "value": "http://182.113.2.249:32869/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T08:47:15Z",
-      "last_seen": "2026-10-19T15:42:14Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951798/"
     },
     {
       "value": "http://178.207.227.232:4073/i",
@@ -51354,56 +50804,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951772/"
     },
     {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/XHP3.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:16:12Z",
-      "last_seen": "2026-10-19T17:03:18Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951762/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/y0Xc9Og1lghX.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:16:07Z",
-      "last_seen": "2026-10-19T15:46:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951760/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/S8D70IPCZNAA.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:16:07Z",
-      "last_seen": "2026-10-19T15:28:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951761/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/R70V8YC00102.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:15:25Z",
-      "last_seen": "2026-10-19T17:09:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951758/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/W52UE52XBY31.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:15:11Z",
-      "last_seen": "2026-10-19T15:23:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951751/"
-    },
-    {
       "value": "http://45.133.73.61:8000/hydra-arm64",
       "type": "url",
       "malware": "",
@@ -51414,16 +50814,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951752/"
     },
     {
-      "value": "http://45.115.26.23:8012/wsvc_linux_386",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:15:10Z",
-      "last_seen": "2026-10-19T15:25:52Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951749/"
-    },
-    {
       "value": "http://45.133.73.61:8000/hydra-x86_64",
       "type": "url",
       "malware": "",
@@ -51432,26 +50822,6 @@
       "first_seen": "2026-10-18T06:15:09Z",
       "last_seen": "2026-10-20T17:33:23Z",
       "reference": "https://urlhaus.abuse.ch/url/3951741/"
-    },
-    {
-      "value": "http://45.115.26.23:8012/wsvc_linux386_v2",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:15:08Z",
-      "last_seen": "2026-10-19T15:23:08Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951736/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/ZPHX0SR08XD4.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:15:00Z",
-      "last_seen": "2026-10-19T16:17:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951720/"
     },
     {
       "value": "http://96.246.230.97:33953/bin.sh",
@@ -51494,16 +50864,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951685/"
     },
     {
-      "value": "http://45.115.26.23:8012/wsvc_old.exe.bak1011",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:42Z",
-      "last_seen": "2026-10-19T15:20:18Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951665/"
-    },
-    {
       "value": "http://39.74.86.151:42520/bin.sh",
       "type": "url",
       "malware": "",
@@ -51514,126 +50874,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951667/"
     },
     {
-      "value": "http://45.115.26.23:8012/wsvc_ppc64_v2",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:40Z",
-      "last_seen": "2026-10-19T15:20:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951658/"
-    },
-    {
-      "value": "https://api.recapcha.fun/auth/v2?token=304",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:40Z",
-      "last_seen": "2026-10-19T21:17:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951660/"
-    },
-    {
-      "value": "https://api.recapcha.fun/auth/v1?token=304",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:40Z",
-      "last_seen": "2026-10-19T21:36:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951661/"
-    },
-    {
-      "value": "http://45.115.26.23:8012/wsvc_nobeacon_386",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:40Z",
-      "last_seen": "2026-10-19T15:17:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951662/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/3Qz7AatRN_q.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:16Z",
-      "last_seen": "2026-10-19T16:41:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951631/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/79ERS.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:14:14Z",
-      "last_seen": "2026-10-19T16:30:34Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951630/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/EM1S573K9Q2C.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:59Z",
-      "last_seen": "2026-10-19T17:33:09Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951626/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/E4J3Q5825I7F.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:59Z",
-      "last_seen": "2026-10-19T17:58:52Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951627/"
-    },
-    {
-      "value": "https://gitlab.com/sixtons/edge/-/raw/main/W52UE52XBY31.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:20Z",
-      "last_seen": "2026-10-19T17:38:03Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951620/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/74L814BW31FX.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:20Z",
-      "last_seen": "2026-10-19T16:36:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951621/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/505HFZIN80F5.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:19Z",
-      "last_seen": "2026-10-19T16:22:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951619/"
-    },
-    {
-      "value": "https://gitlab.com/brisslands/decode/-/raw/main/7M260NMM3NQF.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:16Z",
-      "last_seen": "2026-10-19T17:22:37Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951613/"
-    },
-    {
       "value": "https://donutbasefinder.com/DonutBaseFinder-26.2.jar",
       "type": "url",
       "malware": "",
@@ -51642,16 +50882,6 @@
       "first_seen": "2026-10-18T06:12:16Z",
       "last_seen": "2026-10-21T10:03:53Z",
       "reference": "https://urlhaus.abuse.ch/url/3951614/"
-    },
-    {
-      "value": "https://gitlab.com/sixtons/edge/-/raw/main/stage_2.exe",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T06:12:15Z",
-      "last_seen": "2026-10-19T16:05:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951612/"
     },
     {
       "value": "http://61.137.201.221:42178/bin.sh",
@@ -51724,16 +50954,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951592/"
     },
     {
-      "value": "http://182.117.27.188:59670/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T04:47:16Z",
-      "last_seen": "2026-10-19T21:18:53Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951590/"
-    },
-    {
       "value": "http://180.173.73.242:58381/i",
       "type": "url",
       "malware": "",
@@ -51774,26 +50994,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951580/"
     },
     {
-      "value": "http://182.113.2.249:32869/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T03:47:13Z",
-      "last_seen": "2026-10-19T15:22:59Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951581/"
-    },
-    {
-      "value": "http://182.116.115.240:58067/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T03:47:12Z",
-      "last_seen": "2026-10-19T16:06:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951575/"
-    },
-    {
       "value": "http://115.60.201.254:45190/i",
       "type": "url",
       "malware": "",
@@ -51802,16 +51002,6 @@
       "first_seen": "2026-10-18T03:47:12Z",
       "last_seen": "2026-10-20T03:32:44Z",
       "reference": "https://urlhaus.abuse.ch/url/3951577/"
-    },
-    {
-      "value": "http://180.244.10.33:40613/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-18T03:47:12Z",
-      "last_seen": "2026-10-19T21:52:32Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951578/"
     },
     {
       "value": "http://115.151.137.9:40994/i",
@@ -51994,16 +51184,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951532/"
     },
     {
-      "value": "http://42.239.226.49:42402/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T22:32:12Z",
-      "last_seen": "2026-10-19T21:39:11Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951522/"
-    },
-    {
       "value": "http://201.110.99.103:38216/i",
       "type": "url",
       "malware": "",
@@ -52022,16 +51202,6 @@
       "first_seen": "2026-10-17T22:17:10Z",
       "last_seen": "2026-10-21T11:27:44Z",
       "reference": "https://urlhaus.abuse.ch/url/3951517/"
-    },
-    {
-      "value": "http://42.225.205.23:45755/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T21:47:17Z",
-      "last_seen": "2026-10-19T21:45:06Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951512/"
     },
     {
       "value": "http://182.115.77.251:52274/i",
@@ -52154,26 +51324,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951481/"
     },
     {
-      "value": "http://182.121.236.237:42289/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T19:17:10Z",
-      "last_seen": "2026-10-19T15:27:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951475/"
-    },
-    {
-      "value": "http://39.74.82.186:60392/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T19:17:09Z",
-      "last_seen": "2026-10-19T15:34:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951474/"
-    },
-    {
       "value": "http://124.6.165.86:34669/i",
       "type": "url",
       "malware": "",
@@ -52184,16 +51334,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951469/"
     },
     {
-      "value": "http://182.121.159.82:36890/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T18:25:19Z",
-      "last_seen": "2026-10-19T15:44:54Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951456/"
-    },
-    {
       "value": "http://27.152.54.9:56205/i",
       "type": "url",
       "malware": "",
@@ -52202,16 +51342,6 @@
       "first_seen": "2026-10-17T18:17:14Z",
       "last_seen": "2026-10-21T09:44:48Z",
       "reference": "https://urlhaus.abuse.ch/url/3951453/"
-    },
-    {
-      "value": "http://115.58.96.41:57047/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T18:17:14Z",
-      "last_seen": "2026-10-19T17:55:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951454/"
     },
     {
       "value": "http://125.47.236.175:55498/i",
@@ -52232,16 +51362,6 @@
       "first_seen": "2026-10-17T18:17:08Z",
       "last_seen": "2026-10-21T11:48:47Z",
       "reference": "https://urlhaus.abuse.ch/url/3951451/"
-    },
-    {
-      "value": "http://182.121.159.82:36890/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T18:01:23Z",
-      "last_seen": "2026-10-19T17:28:32Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951449/"
     },
     {
       "value": "http://96.246.230.97:33953/i",
@@ -52272,16 +51392,6 @@
       "first_seen": "2026-10-17T17:17:08Z",
       "last_seen": "2026-10-21T10:25:14Z",
       "reference": "https://urlhaus.abuse.ch/url/3951436/"
-    },
-    {
-      "value": "http://123.11.11.175:38595/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T17:17:08Z",
-      "last_seen": "2026-10-19T21:21:07Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951437/"
     },
     {
       "value": "http://42.57.202.127:56945/i",
@@ -52324,16 +51434,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951430/"
     },
     {
-      "value": "http://125.106.120.245:45341/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T16:17:27Z",
-      "last_seen": "2026-10-19T16:24:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951421/"
-    },
-    {
       "value": "http://27.206.175.175:40190/i",
       "type": "url",
       "malware": "",
@@ -52364,16 +51464,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951417/"
     },
     {
-      "value": "http://42.178.20.17:51555/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T15:47:09Z",
-      "last_seen": "2026-10-19T17:20:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951416/"
-    },
-    {
       "value": "http://113.231.117.160:41737/bin.sh",
       "type": "url",
       "malware": "",
@@ -52384,16 +51474,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951415/"
     },
     {
-      "value": "http://222.243.95.50:40784/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T15:34:16Z",
-      "last_seen": "2026-10-19T16:18:14Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951414/"
-    },
-    {
       "value": "http://42.179.97.86:59004/bin.sh",
       "type": "url",
       "malware": "",
@@ -52402,16 +51482,6 @@
       "first_seen": "2026-10-17T15:30:17Z",
       "last_seen": "2026-10-20T04:44:20Z",
       "reference": "https://urlhaus.abuse.ch/url/3951413/"
-    },
-    {
-      "value": "http://222.243.95.50:40784/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T15:22:30Z",
-      "last_seen": "2026-10-19T17:26:10Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951410/"
     },
     {
       "value": "https://autohaus-bender.de/api/poly-token",
@@ -52442,16 +51512,6 @@
       "first_seen": "2026-10-17T15:22:09Z",
       "last_seen": "2026-10-21T10:23:46Z",
       "reference": "https://urlhaus.abuse.ch/url/3951404/"
-    },
-    {
-      "value": "http://42.55.66.161:60039/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T15:09:16Z",
-      "last_seen": "2026-10-19T15:17:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951403/"
     },
     {
       "value": "http://115.61.119.59:40112/bin.sh",
@@ -52572,16 +51632,6 @@
       "first_seen": "2026-10-17T11:45:21Z",
       "last_seen": "2026-10-21T09:22:27Z",
       "reference": "https://urlhaus.abuse.ch/url/3951367/"
-    },
-    {
-      "value": "http://42.55.66.161:60039/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T11:17:12Z",
-      "last_seen": "2026-10-19T21:29:54Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951362/"
     },
     {
       "value": "http://175.100.31.198:41745/bin.sh",
@@ -52884,26 +51934,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951219/"
     },
     {
-      "value": "http://130.12.180.32/sora.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T07:35:18Z",
-      "last_seen": "2026-10-19T17:36:16Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951216/"
-    },
-    {
-      "value": "http://130.12.180.32/xmrig",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T07:35:18Z",
-      "last_seen": "2026-10-19T15:35:03Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951217/"
-    },
-    {
       "value": "http://170.84.133.234:49286/i",
       "type": "url",
       "malware": "",
@@ -52954,16 +51984,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951138/"
     },
     {
-      "value": "http://175.148.148.232:51064/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-17T03:32:14Z",
-      "last_seen": "2026-10-19T21:56:26Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951126/"
-    },
-    {
       "value": "http://98.36.141.73:49467/bin.sh",
       "type": "url",
       "malware": "",
@@ -52994,16 +52014,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3951095/"
     },
     {
-      "value": "http://130.12.180.32/arm64",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:34:14Z",
-      "last_seen": "2026-10-19T16:34:49Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951040/"
-    },
-    {
       "value": "http://185.228.72.128/jklarm",
       "type": "url",
       "malware": "",
@@ -53012,26 +52022,6 @@
       "first_seen": "2026-10-16T19:34:06Z",
       "last_seen": "2026-10-20T16:04:31Z",
       "reference": "https://urlhaus.abuse.ch/url/3951037/"
-    },
-    {
-      "value": "http://130.12.180.32/armv5",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:34:06Z",
-      "last_seen": "2026-10-19T17:41:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951038/"
-    },
-    {
-      "value": "http://130.12.180.32/armv7l",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:58Z",
-      "last_seen": "2026-10-19T17:03:17Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951036/"
     },
     {
       "value": "http://45.130.191.2:53241/i",
@@ -53052,36 +52042,6 @@
       "first_seen": "2026-10-16T19:33:50Z",
       "last_seen": "2026-10-20T16:31:06Z",
       "reference": "https://urlhaus.abuse.ch/url/3951034/"
-    },
-    {
-      "value": "http://130.12.180.32/x86",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:49Z",
-      "last_seen": "2026-10-19T16:45:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951033/"
-    },
-    {
-      "value": "http://130.12.180.32/x64",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:45Z",
-      "last_seen": "2026-10-19T17:00:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951030/"
-    },
-    {
-      "value": "http://130.12.180.32/mips64",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:45Z",
-      "last_seen": "2026-10-19T15:30:09Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951031/"
     },
     {
       "value": "http://185.228.72.128/jklppc",
@@ -53132,26 +52092,6 @@
       "first_seen": "2026-10-16T19:33:34Z",
       "last_seen": "2026-10-20T15:42:44Z",
       "reference": "https://urlhaus.abuse.ch/url/3951025/"
-    },
-    {
-      "value": "http://130.12.180.32/mips",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:30Z",
-      "last_seen": "2026-10-19T15:53:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951024/"
-    },
-    {
-      "value": "http://130.12.180.32/mipsle",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T19:33:29Z",
-      "last_seen": "2026-10-19T15:49:21Z",
-      "reference": "https://urlhaus.abuse.ch/url/3951023/"
     },
     {
       "value": "http://185.228.72.128/jklm68k",
@@ -53272,26 +52212,6 @@
       "first_seen": "2026-10-16T17:36:40Z",
       "last_seen": "2026-10-21T11:54:19Z",
       "reference": "https://urlhaus.abuse.ch/url/3950977/"
-    },
-    {
-      "value": "http://222.140.182.244:54878/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T17:17:07Z",
-      "last_seen": "2026-10-19T16:48:42Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950973/"
-    },
-    {
-      "value": "http://123.13.118.252:41167/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T17:10:18Z",
-      "last_seen": "2026-10-19T15:42:35Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950971/"
     },
     {
       "value": "http://171.104.126.3:51926/i",
@@ -53454,16 +52374,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3950802/"
     },
     {
-      "value": "https://mc-modhub.vercel.app/mods/LarpClient-1.21.11.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:13:09Z",
-      "last_seen": "2026-10-19T15:19:59Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950793/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/contimillsy/WarZone-Dominator/HEAD/Loader.exe",
       "type": "url",
       "malware": "",
@@ -53534,26 +52444,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3950792/"
     },
     {
-      "value": "https://mc-modhub.vercel.app/mods/OrchardClient-1.21.11.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:12:22Z",
-      "last_seen": "2026-10-19T15:24:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950780/"
-    },
-    {
-      "value": "https://mc-modhub.vercel.app/mods/GrimClient-1.21.11.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:12:21Z",
-      "last_seen": "2026-10-19T15:58:24Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950779/"
-    },
-    {
       "value": "https://runelite.cc/2026scrill/client.jar",
       "type": "url",
       "malware": "",
@@ -53562,36 +52452,6 @@
       "first_seen": "2026-10-16T06:12:13Z",
       "last_seen": "2026-10-21T11:03:01Z",
       "reference": "https://urlhaus.abuse.ch/url/3950777/"
-    },
-    {
-      "value": "https://mc-modhub.vercel.app/mods/DqrkisClient-1.21.11.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:12:12Z",
-      "last_seen": "2026-10-19T16:03:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950773/"
-    },
-    {
-      "value": "https://mc-modhub.vercel.app/mods/67client-1.21.11.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:12:12Z",
-      "last_seen": "2026-10-19T16:38:49Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950774/"
-    },
-    {
-      "value": "https://mc-modhub.vercel.app/mods/ClarityClient-26.1.2.jar",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-16T06:12:12Z",
-      "last_seen": "2026-10-19T16:33:12Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950775/"
     },
     {
       "value": "http://180.131.167.125:2859/i",
@@ -54124,16 +52984,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3950125/"
     },
     {
-      "value": "http://42.4.97.14:55031/bin.sh",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-14T14:58:16Z",
-      "last_seen": "2026-10-19T15:17:37Z",
-      "reference": "https://urlhaus.abuse.ch/url/3950115/"
-    },
-    {
       "value": "http://27.44.144.146:45931/i",
       "type": "url",
       "malware": "",
@@ -54554,16 +53404,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3949857/"
     },
     {
-      "value": "http://130.12.209.153:53341/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-14T01:47:06Z",
-      "last_seen": "2026-10-19T15:23:50Z",
-      "reference": "https://urlhaus.abuse.ch/url/3949851/"
-    },
-    {
       "value": "http://78.38.19.164:43794/i",
       "type": "url",
       "malware": "",
@@ -54834,16 +53674,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3949501/"
     },
     {
-      "value": "http://113.238.173.112:33698/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-13T11:40:20Z",
-      "last_seen": "2026-10-19T16:31:48Z",
-      "reference": "https://urlhaus.abuse.ch/url/3949500/"
-    },
-    {
       "value": "http://153.56.180.69/main_x86_64",
       "type": "url",
       "malware": "",
@@ -54922,16 +53752,6 @@
       "first_seen": "2026-10-13T10:01:05Z",
       "last_seen": "2026-10-21T10:51:26Z",
       "reference": "https://urlhaus.abuse.ch/url/3949452/"
-    },
-    {
-      "value": "http://120.84.214.199:34472/i",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-13T09:32:08Z",
-      "last_seen": "2026-10-19T21:32:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3949440/"
     },
     {
       "value": "http://www.tribot.co.uk/Tribot.jar",
@@ -55874,16 +54694,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948807/"
     },
     {
-      "value": "https://raw.githubusercontent.com/lmoudamir/thalamus/HEAD/integration-tests/calorie-cam/Software-v1.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:59:03Z",
-      "last_seen": "2026-10-19T21:23:24Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948808/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/chantalmiriane19/advanced-discord-music-bot/HEAD/settings/advanced-music-bot-discord-1.6.zip",
       "type": "url",
       "malware": "",
@@ -55902,16 +54712,6 @@
       "first_seen": "2026-10-12T06:59:02Z",
       "last_seen": "2026-10-20T04:35:55Z",
       "reference": "https://urlhaus.abuse.ch/url/3948799/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/richardm7399/WallWhisper/HEAD/examples/openclaw-config/Whisper_Wall_v3.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:59:02Z",
-      "last_seen": "2026-10-19T21:24:39Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948800/"
     },
     {
       "value": "https://raw.githubusercontent.com/Katerinalves752/hay-star/HEAD/native/src/v1.4-alpha.3.zip",
@@ -55962,16 +54762,6 @@
       "first_seen": "2026-10-12T06:59:01Z",
       "last_seen": "2026-10-19T23:25:55Z",
       "reference": "https://urlhaus.abuse.ch/url/3948795/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/frendel2004/connect-plugin/HEAD/Commands/plugin-connect-Canaanitish.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:59:01Z",
-      "last_seen": "2026-10-19T21:35:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948796/"
     },
     {
       "value": "https://raw.githubusercontent.com/Workpennisetumcenchroides181/safe-refactor-engine/HEAD/references/refactor_engine_safe_Dutchy.zip",
@@ -56054,16 +54844,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948787/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Johnnytec2024/ytm-keep-alive/HEAD/boist/alive_keep_ytm_3.5-beta.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:58Z",
-      "last_seen": "2026-10-19T21:38:24Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948788/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/bdbetterweb/Memebership-Plan-Component/HEAD/Guide/Memebership_Component_Plan_v2.3.zip",
       "type": "url",
       "malware": "",
@@ -56082,16 +54862,6 @@
       "first_seen": "2026-10-12T06:58:56Z",
       "last_seen": "2026-10-20T03:28:29Z",
       "reference": "https://urlhaus.abuse.ch/url/3948785/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/sonchimto111/SQLVulnInjector/HEAD/api/SQL_Vuln_Injector_3.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:56Z",
-      "last_seen": "2026-10-19T21:22:52Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948786/"
     },
     {
       "value": "https://raw.githubusercontent.com/bs779517/story-skills/HEAD/skills/worldbuilding/references/skills_story_1.3.zip",
@@ -56154,16 +54924,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948780/"
     },
     {
-      "value": "https://raw.githubusercontent.com/BillyGames123/Phone-Number-Lookup/HEAD/sialaden/Phone-Number-Lookup-v3.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:53Z",
-      "last_seen": "2026-10-19T21:55:52Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948775/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/Chineseyamgrossprofit190/aegis/HEAD/scripts/check_stats/Software-guestwise.zip",
       "type": "url",
       "malware": "",
@@ -56172,26 +54932,6 @@
       "first_seen": "2026-10-12T06:58:53Z",
       "last_seen": "2026-10-20T04:35:07Z",
       "reference": "https://urlhaus.abuse.ch/url/3948776/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/raulika223/ecommerce-product-service/HEAD/alembic/versions/service-product-ecommerce-1.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:52Z",
-      "last_seen": "2026-10-19T21:46:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948769/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/itandi5191/TomodachiPC/HEAD/Port/Tomodachi_PC_v2.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:52Z",
-      "last_seen": "2026-10-19T22:05:23Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948770/"
     },
     {
       "value": "https://raw.githubusercontent.com/droftgamer-wq/researcher-skill/HEAD/researcher/references/researcher-skill-inebriative.zip",
@@ -56212,16 +54952,6 @@
       "first_seen": "2026-10-12T06:58:52Z",
       "last_seen": "2026-10-20T03:30:51Z",
       "reference": "https://urlhaus.abuse.ch/url/3948772/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/erikceballos/nano-banana-cli/HEAD/internal/nano_cli_banana_1.9-alpha.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:52Z",
-      "last_seen": "2026-10-19T21:53:26Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948773/"
     },
     {
       "value": "https://raw.githubusercontent.com/Somersetunderstood190/dayz-trainer-menu-script/HEAD/bluefish/2.7.zip",
@@ -56262,16 +54992,6 @@
       "first_seen": "2026-10-12T06:58:51Z",
       "last_seen": "2026-10-20T03:37:03Z",
       "reference": "https://urlhaus.abuse.ch/url/3948766/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/xbxh6452/-ARP-Spoofing-Detection-Active-Injection-Technique/HEAD/docs/Technique_Spoofing_AR_Injection_Detection_Active_v3.8-alpha.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:51Z",
-      "last_seen": "2026-10-19T21:19:31Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948767/"
     },
     {
       "value": "https://raw.githubusercontent.com/ayushgowda121/opencode-anthropic-oauth/HEAD/herniology/oauth-anthropic-opencode-v1.9.zip",
@@ -56322,16 +55042,6 @@
       "first_seen": "2026-10-12T06:58:50Z",
       "last_seen": "2026-10-20T03:52:04Z",
       "reference": "https://urlhaus.abuse.ch/url/3948761/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/HoodxSp5dda/Domain-Executor/HEAD/Assets/Sounds/Domain_Executor_v3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:50Z",
-      "last_seen": "2026-10-19T21:24:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948762/"
     },
     {
       "value": "https://raw.githubusercontent.com/darkgrey-curmudgeon671/github-star-organizer/HEAD/src/organizer_star_github_1.2.zip",
@@ -56664,16 +55374,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948730/"
     },
     {
-      "value": "https://raw.githubusercontent.com/piroplayers69-ops/S3T-Former/HEAD/spiking-topo-transformer-code/config/Former-v3.4.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:38Z",
-      "last_seen": "2026-10-19T21:43:14Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948720/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/rhomirafernando/fuzzbox/HEAD/src/Software-1.6-alpha.5.zip",
       "type": "url",
       "malware": "",
@@ -56734,16 +55434,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948716/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Singhalesebradycardia99/Polymarket-Copy-Trade-Bot/HEAD/frontend/src/api/Copy-Polymarket-Bot-Trade-3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:37Z",
-      "last_seen": "2026-10-19T21:33:21Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948717/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/rick97julho/do-i-have-the-vram/HEAD/do_i_have_the_vram/__pycache__/have_do_vram_the_i_v3.2.zip",
       "type": "url",
       "malware": "",
@@ -56752,16 +55442,6 @@
       "first_seen": "2026-10-12T06:58:37Z",
       "last_seen": "2026-10-20T03:45:58Z",
       "reference": "https://urlhaus.abuse.ch/url/3948718/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Luciuscloaked100/OpenManus-Max/HEAD/openmanus_max/tool/builtin/Open-Max-Manus-untwinned.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:37Z",
-      "last_seen": "2026-10-19T21:47:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948719/"
     },
     {
       "value": "https://raw.githubusercontent.com/ngatran302018/dotnet-task-management-system/HEAD/TaskSphere/packages/Guna.UI2.WinForms.2.0.4.6/lib/net45/system-task-management-dotnet-1.3.zip",
@@ -56802,16 +55482,6 @@
       "first_seen": "2026-10-12T06:58:36Z",
       "last_seen": "2026-10-20T03:33:01Z",
       "reference": "https://urlhaus.abuse.ch/url/3948714/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/mpahlevi64/LowLevelBanana/HEAD/eval/deshadowing/basicsr/metrics/__pycache__/Level_Low_Banana_1.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:35Z",
-      "last_seen": "2026-10-19T21:24:53Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948709/"
     },
     {
       "value": "https://raw.githubusercontent.com/Erfundamentalist881/ABSENKU/HEAD/Allium/Software-v1.1-beta.5.zip",
@@ -56912,16 +55582,6 @@
       "first_seen": "2026-10-12T06:58:30Z",
       "last_seen": "2026-10-20T04:42:24Z",
       "reference": "https://urlhaus.abuse.ch/url/3948696/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Alexcomplementary40/ELF-pytorch/HEAD/pytorch_lightning/encoders/pytorch-EL-v1.5-alpha.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:30Z",
-      "last_seen": "2026-10-19T21:39:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948697/"
     },
     {
       "value": "https://raw.githubusercontent.com/showy-headteacher114/cve-2025-66398/HEAD/docker/vendor/cve_v1.2.zip",
@@ -57094,16 +55754,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948682/"
     },
     {
-      "value": "https://raw.githubusercontent.com/corse7e/temm1e/HEAD/crates/temm1e-gateway/e-temm-pretty.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:26Z",
-      "last_seen": "2026-10-19T21:15:08Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948683/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/Oasisincoherence641/glm-5.3/HEAD/core/v3.4-alpha.4.zip",
       "type": "url",
       "malware": "",
@@ -57162,16 +55812,6 @@
       "first_seen": "2026-10-12T06:58:24Z",
       "last_seen": "2026-10-19T22:47:46Z",
       "reference": "https://urlhaus.abuse.ch/url/3948672/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/felipedeso7za4444/scientific-thinking-general/HEAD/agents/thinking-scientific-general-1.7.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:22Z",
-      "last_seen": "2026-10-19T22:13:54Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948670/"
     },
     {
       "value": "https://raw.githubusercontent.com/agencytribuneship732/any-buddy/HEAD/src/config/buddy-any-v1.8.zip",
@@ -57234,16 +55874,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948665/"
     },
     {
-      "value": "https://raw.githubusercontent.com/khisag4704/claude-code-ollama-local/HEAD/src/code_local_ollama_claude_v2.8.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:20Z",
-      "last_seen": "2026-10-19T21:20:12Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948666/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/BINbzzzzz/league-of-legends-hack-lab/HEAD/pivalic/of-hack-league-lab-legends-3.5.zip",
       "type": "url",
       "malware": "",
@@ -57262,16 +55892,6 @@
       "first_seen": "2026-10-12T06:58:19Z",
       "last_seen": "2026-10-20T03:16:16Z",
       "reference": "https://urlhaus.abuse.ch/url/3948662/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/moynaastir205/SkyRoads-Codex/HEAD/crates/skyroads-audio-ref/Codex-Sky-Roads-v1.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:19Z",
-      "last_seen": "2026-10-19T21:34:14Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948663/"
     },
     {
       "value": "https://raw.githubusercontent.com/reenahot496/claude-code/HEAD/src/tools/ExitPlanModeTool/code-claude-v2.5.zip",
@@ -57302,16 +55922,6 @@
       "first_seen": "2026-10-12T06:58:18Z",
       "last_seen": "2026-10-19T23:16:42Z",
       "reference": "https://urlhaus.abuse.ch/url/3948658/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Autistic-antidiuretichormone154/Windows-Optimizer/HEAD/proxeny/Windows_Optimizer_v1.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:18Z",
-      "last_seen": "2026-10-19T21:21:21Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948659/"
     },
     {
       "value": "https://raw.githubusercontent.com/LouisPROgramm/ECU-Bypass-Framework-XRS9000/HEAD/camber/Bypass-XR-EC-Framework-2.7.zip",
@@ -57404,16 +56014,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948643/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Waterinsoluble-orderplatyctenea746/book2skills/HEAD/skills/harness-step2-fill-docs/book_skills_3.5-alpha.4.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:14Z",
-      "last_seen": "2026-10-19T21:20:56Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948644/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/sai1987s/youtube-blur-remover/HEAD/scripts/blur_remover_youtube_v1.4.zip",
       "type": "url",
       "malware": "",
@@ -57482,16 +56082,6 @@
       "first_seen": "2026-10-12T06:58:13Z",
       "last_seen": "2026-10-20T04:07:10Z",
       "reference": "https://urlhaus.abuse.ch/url/3948639/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Marinaflagrant322/ICRA2026-Paper-List/HEAD/synthronoi/List-Paper-ICR-2.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:13Z",
-      "last_seen": "2026-10-19T21:34:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948640/"
     },
     {
       "value": "https://raw.githubusercontent.com/ILikeThaiFood/argus/HEAD/frontend/app/Software-3.4-beta.3.zip",
@@ -57604,16 +56194,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948626/"
     },
     {
-      "value": "https://raw.githubusercontent.com/hossamesam/Vue-mitm-poc/HEAD/ios/Runner/Base.lproj/mitm_Vue_poc_3.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:09Z",
-      "last_seen": "2026-10-19T21:26:29Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948627/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/adelinom2952/restaurant-tycoon-script-hub/HEAD/myelotherapy/v2.8.zip",
       "type": "url",
       "malware": "",
@@ -57632,16 +56212,6 @@
       "first_seen": "2026-10-12T06:58:08Z",
       "last_seen": "2026-10-20T04:49:34Z",
       "reference": "https://urlhaus.abuse.ch/url/3948624/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/danteanterior266/lerobot-genesis/HEAD/examples/genesis_lerobot_1.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:07Z",
-      "last_seen": "2026-10-19T21:49:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948621/"
     },
     {
       "value": "https://raw.githubusercontent.com/jazzman08/Adopt-Me-Script/HEAD/cornification/Me_Adopt_Script_2.0.zip",
@@ -57684,16 +56254,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948620/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Ranpops/SpamShield/HEAD/.devcontainer/Shield_Spam_1.0-beta.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:05Z",
-      "last_seen": "2026-10-19T21:27:48Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948615/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/KungBugFuOnYou/tubescrape/HEAD/src/tubescrape/api/routes/Software-magistrality.zip",
       "type": "url",
       "malware": "",
@@ -57722,16 +56282,6 @@
       "first_seen": "2026-10-12T06:58:04Z",
       "last_seen": "2026-10-19T23:07:15Z",
       "reference": "https://urlhaus.abuse.ch/url/3948614/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/shahi405/enkastela/HEAD/fuzz/fuzz_targets/Software_v3.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:03Z",
-      "last_seen": "2026-10-19T21:52:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948609/"
     },
     {
       "value": "https://raw.githubusercontent.com/Leesan080425/mssqlbof/HEAD/src/tds/Software-3.5.zip",
@@ -57782,16 +56332,6 @@
       "first_seen": "2026-10-12T06:58:02Z",
       "last_seen": "2026-10-20T03:42:07Z",
       "reference": "https://urlhaus.abuse.ch/url/3948603/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/EngerING/RemoteDownloaderPHP/HEAD/reviewal/Downloader_Remote_PHP_3.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:58:02Z",
-      "last_seen": "2026-10-19T21:19:01Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948604/"
     },
     {
       "value": "https://raw.githubusercontent.com/kamzy01/TG-WebApp-Proxy/HEAD/src/App_T_Proxy_Web_2.2.zip",
@@ -58044,16 +56584,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948582/"
     },
     {
-      "value": "https://raw.githubusercontent.com/confirmed-asiancoralsnake620/bobbie-releases/HEAD/megasclere/releases-bobbie-1.7.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:54Z",
-      "last_seen": "2026-10-19T21:18:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948579/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/bridgepartnershoe860/harness-engineering-from-cc-to-ai-coding/HEAD/examples/coding-ai-cc-to-harness-from-engineering-v2.4.zip",
       "type": "url",
       "malware": "",
@@ -58102,16 +56632,6 @@
       "first_seen": "2026-10-12T06:57:52Z",
       "last_seen": "2026-10-20T04:46:06Z",
       "reference": "https://urlhaus.abuse.ch/url/3948577/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/squaretoed-manholecover705/pdf-password-unlocker/HEAD/ameliorate/pdf_password_unlocker_subvirate.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:51Z",
-      "last_seen": "2026-10-19T21:14:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948569/"
     },
     {
       "value": "https://raw.githubusercontent.com/AshwiniP05/WerZatSonGUI/HEAD/Scaphites/2.8.zip",
@@ -58212,16 +56732,6 @@
       "first_seen": "2026-10-12T06:57:49Z",
       "last_seen": "2026-10-20T03:40:28Z",
       "reference": "https://urlhaus.abuse.ch/url/3948558/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Shourya0609/forecasting_the_US_treasury_yield_curve/HEAD/troner/yield-curve-treasury-forecasting-the-U-1.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:49Z",
-      "last_seen": "2026-10-19T22:17:19Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948559/"
     },
     {
       "value": "https://raw.githubusercontent.com/bryanppa5478/-Discord-OSINT-Transform-for-Maltego/HEAD/ghostish/OSIN_Transform_Maltego_Discord_for_1.1.zip",
@@ -58354,16 +56864,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948552/"
     },
     {
-      "value": "https://raw.githubusercontent.com/melabase781/StartupSpy/HEAD/ViewModels/Startup_Spy_3.8-alpha.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:46Z",
-      "last_seen": "2026-10-19T21:35:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948547/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/nunzioaccording289/ai-skill-hub/HEAD/subpiston/hub_skill_ai_1.6.zip",
       "type": "url",
       "malware": "",
@@ -58372,16 +56872,6 @@
       "first_seen": "2026-10-12T06:57:46Z",
       "last_seen": "2026-10-20T03:24:16Z",
       "reference": "https://urlhaus.abuse.ch/url/3948548/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Seamed-boardroom443/jump-steal-script-hub-2026/HEAD/coevally/steal-script-jump-hub-v3.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:45Z",
-      "last_seen": "2026-10-19T21:43:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948544/"
     },
     {
       "value": "https://raw.githubusercontent.com/Elseysidebyside696/rust-recoil-pattern-research/HEAD/contemplator/pattern_research_recoil_rust_3.1.zip",
@@ -58672,16 +57162,6 @@
       "first_seen": "2026-10-12T06:57:37Z",
       "last_seen": "2026-10-20T03:57:27Z",
       "reference": "https://urlhaus.abuse.ch/url/3948522/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/MaruScheffer/J2ME-Web-Core/HEAD/games/archive/Web_M_Core_3.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:37Z",
-      "last_seen": "2026-10-19T21:55:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948523/"
     },
     {
       "value": "https://raw.githubusercontent.com/zainow000/claudecodeui/HEAD/src/components/task-master/context/Software_3.3-beta.4.zip",
@@ -58994,16 +57474,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948483/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Armillary-italy713/Smart-Config-Kit/HEAD/FlClash/Config_Kit_Smart_v1.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:26Z",
-      "last_seen": "2026-10-19T21:17:07Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948484/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/Isometrical-selection572/claude_code_cli/HEAD/src/components/LspRecommendation/code-claude-cli-1.5.zip",
       "type": "url",
       "malware": "",
@@ -59224,16 +57694,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948457/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Fazechristian00/FilzaJailedDS/HEAD/XPF/external/ChOma/include/DS_Filza_Jailed_v2.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:16Z",
-      "last_seen": "2026-10-19T21:25:16Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948458/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/AngelicaArabe/OTA-IOT/HEAD/include/IOT_OT_1.3.zip",
       "type": "url",
       "malware": "",
@@ -59304,16 +57764,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948451/"
     },
     {
-      "value": "https://raw.githubusercontent.com/nathanie9256/Marvel_Rivals_Premium_Menu_2026/HEAD/modules/Premium_Marvel_Menu_Rivals_v2.4.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:15Z",
-      "last_seen": "2026-10-19T21:42:46Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948452/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/rextern/Telegram-channel-member-adder/HEAD/data/member_adder_channel_Telegram_v2.9.zip",
       "type": "url",
       "malware": "",
@@ -59322,16 +57772,6 @@
       "first_seen": "2026-10-12T06:57:15Z",
       "last_seen": "2026-10-20T04:33:28Z",
       "reference": "https://urlhaus.abuse.ch/url/3948453/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Eldino162/ReMe/HEAD/reme/core/llm/Re-Me-v1.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:15Z",
-      "last_seen": "2026-10-19T21:49:09Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948454/"
     },
     {
       "value": "https://raw.githubusercontent.com/tullextraterrestrial3175/ClaudeCode-Model-Rotator/HEAD/Spatula/Claude-Rotator-Model-Code-v1.5.zip",
@@ -59434,16 +57874,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948434/"
     },
     {
-      "value": "https://raw.githubusercontent.com/Guilhermepelido/hermes-optimization-guide/HEAD/screenshots/optimization-hermes-guide-v2.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:13Z",
-      "last_seen": "2026-10-19T21:24:03Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948435/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/archontelemetered604/clash-for-windows/HEAD/Tool/for-clash-windows-3.2.zip",
       "type": "url",
       "malware": "",
@@ -59494,16 +57924,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948440/"
     },
     {
-      "value": "https://raw.githubusercontent.com/dadadad274/yandex-search-php/HEAD/src/Laravel/search_yandex_php_extracalendar.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:12Z",
-      "last_seen": "2026-10-19T21:58:58Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948432/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/Flore5605/sailor-piece-pc-script-hub/HEAD/stercophagous/sailor-script-piece-pc-hub-3.0.zip",
       "type": "url",
       "malware": "",
@@ -59512,16 +57932,6 @@
       "first_seen": "2026-10-12T06:57:12Z",
       "last_seen": "2026-10-20T03:16:09Z",
       "reference": "https://urlhaus.abuse.ch/url/3948433/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Cryosurgeryblabber9314/booking-microservices/HEAD/src/BuildingBlocks/OpenTelemetryCollector/CoreDiagnostics/Commands/microservices_booking_v1.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:11Z",
-      "last_seen": "2026-10-19T22:13:16Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948430/"
     },
     {
       "value": "https://raw.githubusercontent.com/Katsuratreemiddle524/southern-mudding-vvl22-hub/HEAD/stealage/vvl-southern-mudding-hub-v1.4-alpha.5.zip",
@@ -59564,16 +57974,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948427/"
     },
     {
-      "value": "https://raw.githubusercontent.com/maximus0411/BorisChernyClaudeMarkdown/HEAD/mensual/Boris_Cherny_Markdown_Claude_1.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:04Z",
-      "last_seen": "2026-10-19T21:14:54Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948424/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/Indraparama940/ai-ffmpeg-cli/HEAD/tests/performance/ffmpeg_cli_ai_2.8.zip",
       "type": "url",
       "malware": "",
@@ -59584,296 +57984,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3948425/"
     },
     {
-      "value": "https://raw.githubusercontent.com/BangWoul/Zorara-Executor/HEAD/Oocystaceae/Executor_Zorara_v2.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:04Z",
-      "last_seen": "2026-10-19T21:46:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948426/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/tjagnade27/intellij-lumos/HEAD/src/main/resources/META-INF/intellij_lumos_v2.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:03Z",
-      "last_seen": "2026-10-19T21:49:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948422/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/aurearobotic610/Claude-free-api-bot/HEAD/app/src/main/res/drawable-hdpi/api-bot-free-Claude-2.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:03Z",
-      "last_seen": "2026-10-19T17:27:06Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948423/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Equivocal-tank993/AnyUnlock-iOS-Unlocker/HEAD/revitalize/Any-O-i-Unlocker-Unlock-v3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:19:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948407/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/asikur2745/HurtWorldToolkit/HEAD/boondoggle/World-Toolkit-Hurt-1.8.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T22:12:01Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948408/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/unfed-turnstone35/WordCount98/HEAD/hashy/Word_Count_1.8.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T15:35:38Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948409/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/edobreque/clens/HEAD/agentic/Software-3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:18:40Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948410/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/roh68210/A-Plague-Tale-Resonance-Trainer/HEAD/semitransverse/v1.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:22:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948411/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Kotty2998/claude-plugins-official/HEAD/external_plugins/laravel-boost/.claude-plugin/claude-official-plugins-1.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T17:36:25Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948412/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Mikeldead1351/CS2-FPS-Boost/HEAD/pochette/FP_Boost_C_2.8-beta.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:25:11Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948413/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/vannastretch507/ikaicms/HEAD/cilioretinal/Software-v2.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T16:41:33Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948414/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Mizan031998/openyida/HEAD/prd/Software-Manobo.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:30:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948415/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Arjun99291/telemt-panel/HEAD/src/telemt_panel_1.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:59:22Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948416/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/lokynhoz/copy-trading-bot/HEAD/config/trading-bot-copy-2.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T16:03:44Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948417/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/usryoo/openclaw-newsroom/HEAD/becalm/openclaw-newsroom-taxology.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:42:53Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948418/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/freedr5964/rivals-script-hub-windows/HEAD/stylolite/2.1.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T21:31:12Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948419/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/rightist-acme5061/omarchy-evergreen-theme/HEAD/merosymmetrical/omarchy_evergreen_theme_v2.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T17:49:12Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948420/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/xzfu/remover/HEAD/confidently/Software_1.8.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:02Z",
-      "last_seen": "2026-10-19T22:06:21Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948421/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Mutagenic-ballast630/url-shortener-fastapi/HEAD/app/services/url_fastapi_shortener_3.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T15:49:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948397/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Unfamiliar-sphacelus329/halo-campaign-evolved/HEAD/model/evolved-halo-campaign-1.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T15:43:47Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948398/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Osbertbilled424/macros-log/HEAD/celibacy/log-macros-v2.7.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T17:07:05Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948399/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/kiminmonaco/ClaudeBar/HEAD/Sources/App/Resources/Bar-Claude-1.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T16:06:51Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948400/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/kareem-hany1/Anti-Procrastination/HEAD/app/Mail/Anti-Procrastination-v3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T18:01:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948401/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Corymbonagraceae706/GitHub-Dota-2-Skin-Changer-Lightweight-Free-One-Click-Apply/HEAD/yelp/Hub_Apply_Git_Dota_Lightweight_One_Free_Changer_Skin_Click_v2.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T21:30:11Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948403/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Ashik245-commits/LLM-Filter-Probe/HEAD/frontend/src/Filter-LL-Probe-v1.6-beta.4.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T21:27:13Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948404/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/obtuse-subordernematocera773/Edgenuity-AI-Helper/HEAD/rebuke/A_Helper_Edgenuity_v2.0-beta.2.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T15:58:55Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948405/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/cursorjerry01-source/renodx/HEAD/tests/3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:01Z",
-      "last_seen": "2026-10-19T21:35:43Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948406/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/Dorciaa443/Roblox-Grow-A-Garden-Script/HEAD/nonrefrigerant/v3.6-beta.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:57:00Z",
-      "last_seen": "2026-10-19T19:51:26Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948396/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/revenantguttaperchatree773/Onvoyage-Ai-Testnet-farm/HEAD/tractorization/farm-Onvoyage-Ai-Testnet-v3.9.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:59Z",
-      "last_seen": "2026-10-19T16:37:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948394/"
-    },
-    {
       "value": "https://raw.githubusercontent.com/AaronNadelman/option-pricing-montecarlo/HEAD/.vscode/pricing-montecarlo-option-v1.3.zip",
       "type": "url",
       "malware": "",
@@ -59882,56 +57992,6 @@
       "first_seen": "2026-10-12T06:56:58Z",
       "last_seen": "2026-10-19T22:18:27Z",
       "reference": "https://urlhaus.abuse.ch/url/3948393/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/kim-san-web/toki/HEAD/src/main/Software-1.6.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:56Z",
-      "last_seen": "2026-10-19T21:18:00Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948391/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/nayrut2757/Valorant-External-Assistant-2026/HEAD/molpe/Assistant-External-Valorant-v1.3.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:56Z",
-      "last_seen": "2026-10-19T17:05:20Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948392/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/nikunj1169/car-damage-detection-yolov5/HEAD/Tytonidae/detection_damage_yolov_car_1.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:55Z",
-      "last_seen": "2026-10-19T21:44:32Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948390/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/nevatry6660/telbot/HEAD/telkomsel/Software_1.0-alpha.5.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:54Z",
-      "last_seen": "2026-10-19T21:43:28Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948388/"
-    },
-    {
-      "value": "https://raw.githubusercontent.com/maudieworking197/owlin-script-hub-windows/HEAD/palaeoencephalon/owlin_hub_windows_script_2.0.zip",
-      "type": "url",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 80,
-      "first_seen": "2026-10-12T06:56:54Z",
-      "last_seen": "2026-10-19T21:24:57Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948389/"
     },
     {
       "value": "20.56.70.245",
@@ -70244,16 +68304,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1962030/"
     },
     {
-      "value": "216.9.225.213",
-      "type": "ipv4",
-      "malware": "Remcos",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-10-12T18:55:25Z",
-      "last_seen": "2026-10-19T19:02:09Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1962008/"
-    },
-    {
       "value": "106.75.7.239",
       "type": "ipv4",
       "malware": "Cobalt Strike",
@@ -77224,16 +75274,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1924425/"
     },
     {
-      "value": "64.84.56.233",
-      "type": "ipv4",
-      "malware": "DanaBot",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-19T09:46:50Z",
-      "last_seen": "2026-10-19T18:45:27Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924422/"
-    },
-    {
       "value": "209.38.224.48",
       "type": "ipv4",
       "malware": "Unknown malware",
@@ -77264,36 +75304,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1924416/"
     },
     {
-      "value": "154.86.14.17",
-      "type": "ipv4",
-      "malware": "DanaBot",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-19T09:43:54Z",
-      "last_seen": "2026-10-19T18:43:37Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924415/"
-    },
-    {
-      "value": "154.216.139.17",
-      "type": "ipv4",
-      "malware": "DanaBot",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-19T09:43:53Z",
-      "last_seen": "2026-10-19T18:43:35Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924414/"
-    },
-    {
-      "value": "146.70.51.74",
-      "type": "ipv4",
-      "malware": "DCRat",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-19T09:43:43Z",
-      "last_seen": "2026-10-19T18:43:29Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924413/"
-    },
-    {
       "value": "128.241.244.7",
       "type": "ipv4",
       "malware": "DCRat",
@@ -77312,16 +75322,6 @@
       "first_seen": "2026-09-19T09:43:28Z",
       "last_seen": "2026-10-21T11:43:18Z",
       "reference": "https://threatfox.abuse.ch/ioc/1924408/"
-    },
-    {
-      "value": "167.179.67.162",
-      "type": "ipv4",
-      "malware": "Cobalt Strike",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-19T03:47:32Z",
-      "last_seen": "2026-10-19T16:45:59Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1924323/"
     },
     {
       "value": "94.154.43.211",
@@ -77854,26 +75854,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1920493/"
     },
     {
-      "value": "95.158.131.142",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-15T19:47:26Z",
-      "last_seen": "2026-10-19T18:45:46Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1920494/"
-    },
-    {
-      "value": "95.158.131.147",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-15T19:47:26Z",
-      "last_seen": "2026-10-19T18:45:46Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1920495/"
-    },
-    {
       "value": "94.26.81.135",
       "type": "ipv4",
       "malware": "PureRAT",
@@ -77882,16 +75862,6 @@
       "first_seen": "2026-09-15T19:47:25Z",
       "last_seen": "2026-10-21T11:45:47Z",
       "reference": "https://threatfox.abuse.ch/ioc/1920490/"
-    },
-    {
-      "value": "95.158.131.135",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-15T19:47:25Z",
-      "last_seen": "2026-10-19T18:45:46Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1920491/"
     },
     {
       "value": "95.158.131.139",
@@ -79224,16 +77194,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1893496/"
     },
     {
-      "value": "135.84.210.197",
-      "type": "ipv4",
-      "malware": "PureRAT",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-02T19:44:04Z",
-      "last_seen": "2026-10-19T18:43:23Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1893491/"
-    },
-    {
       "value": "180.76.250.42",
       "type": "ipv4",
       "malware": "Cobalt Strike",
@@ -79272,16 +77232,6 @@
       "first_seen": "2026-09-02T09:44:28Z",
       "last_seen": "2026-10-21T11:44:00Z",
       "reference": "https://threatfox.abuse.ch/ioc/1893144/"
-    },
-    {
-      "value": "158.69.213.104",
-      "type": "ipv4",
-      "malware": "Evilginx",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-09-02T09:43:56Z",
-      "last_seen": "2026-10-19T18:43:44Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1893142/"
     },
     {
       "value": "153.75.235.15",
@@ -79402,16 +77352,6 @@
       "first_seen": "2026-08-29T19:46:14Z",
       "last_seen": "2026-10-21T11:45:01Z",
       "reference": "https://threatfox.abuse.ch/ioc/1891167/"
-    },
-    {
-      "value": "3.113.147.16",
-      "type": "ipv4",
-      "malware": "AsyncRAT",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-08-29T19:46:03Z",
-      "last_seen": "2026-10-19T18:44:50Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1891164/"
     },
     {
       "value": "194.9.6.35",
@@ -80474,16 +78414,6 @@
       "reference": "https://threatfox.abuse.ch/ioc/1868737/"
     },
     {
-      "value": "172.81.132.75",
-      "type": "ipv4",
-      "malware": "PureRAT",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-08-05T09:44:12Z",
-      "last_seen": "2026-10-19T18:43:52Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1868734/"
-    },
-    {
       "value": "160.20.109.52",
       "type": "ipv4",
       "malware": "AdaptixC2",
@@ -80742,16 +78672,6 @@
       "first_seen": "2026-07-29T19:43:42Z",
       "last_seen": "2026-10-21T11:43:35Z",
       "reference": "https://threatfox.abuse.ch/ioc/1863569/"
-    },
-    {
-      "value": "142.93.52.11",
-      "type": "ipv4",
-      "malware": "Unknown malware",
-      "sources": "threatfox",
-      "confidence": 75,
-      "first_seen": "2026-07-29T19:43:33Z",
-      "last_seen": "2026-10-19T18:43:26Z",
-      "reference": "https://threatfox.abuse.ch/ioc/1863567/"
     },
     {
       "value": "103.97.131.179",
@@ -88484,16 +86404,6 @@
       "reference": "https://urlhaus.abuse.ch/url/3952212/"
     },
     {
-      "value": "power-shell.cc",
-      "type": "domain",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 70,
-      "first_seen": "2026-10-19T06:37:19Z",
-      "last_seen": "2026-10-19T15:23:30Z",
-      "reference": "https://urlhaus.abuse.ch/url/3952210/"
-    },
-    {
       "value": "zimzar.site",
       "type": "domain",
       "malware": "",
@@ -88752,16 +86662,6 @@
       "first_seen": "2026-10-12T07:19:15Z",
       "last_seen": "2026-10-20T03:47:22Z",
       "reference": "https://urlhaus.abuse.ch/url/3948867/"
-    },
-    {
-      "value": "mc-modhub.vercel.app",
-      "type": "domain",
-      "malware": "",
-      "sources": "urlhaus",
-      "confidence": 70,
-      "first_seen": "2026-10-11T14:31:20Z",
-      "last_seen": "2026-10-19T16:38:49Z",
-      "reference": "https://urlhaus.abuse.ch/url/3948038/"
     },
     {
       "value": "briannacorporation.com",
@@ -211084,6 +208984,766 @@
       "reference": ""
     },
     {
+      "value": "75f95037c962b4c4ccde50de6d0ac908714441c4da0296c1e89f4abb2a1468ed",
+      "type": "sha256",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T21:17:47Z",
+      "last_seen": "",
+      "reference": "https://x.com/skocherhan/status/2119539907328651628"
+    },
+    {
+      "value": "http://94.103.2.76",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "http://188.253.24.154",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "http://46.29.166.104",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "94.103.2.76",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "188.253.24.154",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "46.29.166.104",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "3f9ff88a084df0a5d38f0b54ee915a693b3c94d11f26b9ba39a52641d78cb64a",
+      "type": "sha256",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:57:53Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119534899258392627"
+    },
+    {
+      "value": "https://hendakhelifi.com/3425e1f59a11e52b",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:52:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119533538513211808"
+    },
+    {
+      "value": "73e9d01712aad280a03b16a0dc38728b86cac9f0e6f4a601a6af77ea8b5d974a",
+      "type": "sha256",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:52:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/smica83/status/2119533538513211808"
+    },
+    {
+      "value": "docuxsign.com",
+      "type": "domain",
+      "malware": "infostealer",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:52:20Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119533502584758514"
+    },
+    {
+      "value": "http://docuxsign.com",
+      "type": "url",
+      "malware": "infostealer",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:52:20Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119533502584758514"
+    },
+    {
+      "value": "echalla.xyz",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.xyz",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "echalla.cfd",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.cfd",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "echalla.cam",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.cam",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "echalla.shop",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.shop",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "echalla.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "echalla.bar",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "http://echalla.bar",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T20:22:28Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119525983783149672"
+    },
+    {
+      "value": "microsoft-winupdate.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:38:11Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119514842755424489"
+    },
+    {
+      "value": "http://microsoft-winupdate.com/login",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:38:11Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119514842755424489"
+    },
+    {
+      "value": "http://23.94.145.224/login",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:38:11Z",
+      "last_seen": "",
+      "reference": "https://x.com/malwrhunterteam/status/2105577064761852336"
+    },
+    {
+      "value": "23.94.145.224",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:38:11Z",
+      "last_seen": "",
+      "reference": "https://x.com/malwrhunterteam/status/2105577064761852336"
+    },
+    {
+      "value": "http://208.84.100.64",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:12:22Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508345791156249"
+    },
+    {
+      "value": "http://170.205.28.251",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:12:22Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508345791156249"
+    },
+    {
+      "value": "http://api.cerysoi.ink/data/google-update-support-*",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:12:22Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508345791156249"
+    },
+    {
+      "value": "208.84.100.64",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:12:22Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508345791156249"
+    },
+    {
+      "value": "170.205.28.251",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:12:22Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508345791156249"
+    },
+    {
+      "value": "lime-s.club",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "http://lime-s.club",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "samsung.beer",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "http://samsung.beer",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "dule-vip.top",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "http://dule-vip.top",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T19:11:29Z",
+      "last_seen": "",
+      "reference": "https://x.com/scanmalware/status/2119508120833499176"
+    },
+    {
+      "value": "msteams-ai.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:59:59Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119505228802465857"
+    },
+    {
+      "value": "http://msteams-ai.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:59:59Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119505228802465857"
+    },
+    {
+      "value": "binanceai.fun",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:52:41Z",
+      "last_seen": "",
+      "reference": "https://x.com/skocherhan/status/2119503392380994024"
+    },
+    {
+      "value": "http://binanceai.fun",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:52:41Z",
+      "last_seen": "",
+      "reference": "https://x.com/skocherhan/status/2119503392380994024"
+    },
+    {
+      "value": "shamcash-mu.vercel.app",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "http://shamcash-mu.vercel.app",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "http://64.29.17.195",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "web-cn-whatsapp.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "http://web-cn-whatsapp.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "http://45.207.194.93",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "64.29.17.195",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "45.207.194.93",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:36:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/TIE__SUN/status/2119499428566548799"
+    },
+    {
+      "value": "kittyrdp.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:20:04Z",
+      "last_seen": "",
+      "reference": "https://x.com/banthisguy9349/status/2119495183243104364"
+    },
+    {
+      "value": "http://kittyrdp.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:20:04Z",
+      "last_seen": "",
+      "reference": "https://x.com/banthisguy9349/status/2119495183243104364"
+    },
+    {
+      "value": "m-facebookk.com.vn",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:03:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/phishunt_io/status/2119490956537852367"
+    },
+    {
+      "value": "http://m-facebookk.com.vn/5u0e1rsrqbe?wl",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:03:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/phishunt_io/status/2119490956537852367"
+    },
+    {
+      "value": "206.206.126.131",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T18:03:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/phishunt_io/status/2119490956537852367"
+    },
+    {
+      "value": "my-settings-google.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "http://my-settings-google.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "http://www.my-settings-google.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "soswwsvunulnhlcitpwl.supabase.co",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "http://soswwsvunulnhlcitpwl.supabase.co",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "mu4lkdtjszjvio9g.public.blob.vercel-storage.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "http://mu4lkdtjszjvio9g.public.blob.vercel-storage.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T17:39:16Z",
+      "last_seen": "",
+      "reference": "https://x.com/Malwarehunterr/status/2119484913053519885"
+    },
+    {
+      "value": "https://dunlop-ya.top/login/index",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T16:57:37Z",
+      "last_seen": "",
+      "reference": "https://x.com/PhishStats/status/2119474435170476347"
+    },
+    {
+      "value": "163.181.214.22",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T16:57:37Z",
+      "last_seen": "",
+      "reference": "https://x.com/PhishStats/status/2119474435170476347"
+    },
+    {
+      "value": "85c4605c22601156105fc2e98982e5da",
+      "type": "md5",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:27:23Z",
+      "last_seen": "",
+      "reference": "https://x.com/Now_on_VT/status/2119451724205195279"
+    },
+    {
+      "value": "3b71d721c39fad92a44ddd764bbb34afeae44a5db886d0a4827a399a5fbd367f",
+      "type": "sha256",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:26:56Z",
+      "last_seen": "",
+      "reference": "https://x.com/Now_on_VT/status/2119451613513351577"
+    },
+    {
+      "value": "http://45.61.157.22",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:24:00Z",
+      "last_seen": "",
+      "reference": "https://x.com/phatomcandle/status/2119450872896012346"
+    },
+    {
+      "value": "dns.educationportals.biz",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:24:00Z",
+      "last_seen": "",
+      "reference": "https://x.com/phatomcandle/status/2119450872896012346"
+    },
+    {
+      "value": "http://dns.educationportals.biz",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:24:00Z",
+      "last_seen": "",
+      "reference": "https://x.com/phatomcandle/status/2119450872896012346"
+    },
+    {
+      "value": "45.61.157.22",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T15:24:00Z",
+      "last_seen": "",
+      "reference": "https://x.com/phatomcandle/status/2119450872896012346"
+    },
+    {
+      "value": "ambercouncil.xyz",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T13:59:03Z",
+      "last_seen": "",
+      "reference": "https://x.com/Alopsis/status/2119429494310043803"
+    },
+    {
+      "value": "http://ambercouncil.xyz",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T13:59:03Z",
+      "last_seen": "",
+      "reference": "https://x.com/Alopsis/status/2119429494310043803"
+    },
+    {
+      "value": "ee346d1b288a620b6be253f8158deff3ff5ab44105c604eb14d7a7519139a9c9",
+      "type": "sha256",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T13:57:37Z",
+      "last_seen": "",
+      "reference": "https://x.com/skocherhan/status/2119429133730295987"
+    },
+    {
+      "value": "api.gaganata.ink",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T13:43:51Z",
+      "last_seen": "",
+      "reference": "https://x.com/Alopsis/status/2119425668450849138"
+    },
+    {
+      "value": "http://api.gaganata.ink",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T13:43:51Z",
+      "last_seen": "",
+      "reference": "https://x.com/Alopsis/status/2119425668450849138"
+    },
+    {
       "value": "samsung2026.sbs",
       "type": "domain",
       "malware": "cryptoscam",
@@ -211262,6 +209922,26 @@
       "first_seen": "2026-11-08T12:51:31Z",
       "last_seen": "",
       "reference": "https://x.com/Malwarehunterr/status/2119412501750448421"
+    },
+    {
+      "value": "halonatalents.com",
+      "type": "domain",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T12:15:03Z",
+      "last_seen": "",
+      "reference": "https://x.com/banthisguy9349/status/2119403323619229805"
+    },
+    {
+      "value": "http://halonatalents.com",
+      "type": "url",
+      "malware": "",
+      "sources": "tweetfeed",
+      "confidence": 55,
+      "first_seen": "2026-11-08T12:15:03Z",
+      "last_seen": "",
+      "reference": "https://x.com/banthisguy9349/status/2119403323619229805"
     },
     {
       "value": "boost.tanmath.shop",
@@ -299995,6 +298675,1326 @@
     },
     {
       "value": "113.221.27.47",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.33.248",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.36.208",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.36.67",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.37.230",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.37.245",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.38.148",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.44.204",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.44.37",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.45.157",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.118",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.119",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.208",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.225",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.46",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.46.92",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.47.202",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.47.252",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.58.195",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.58.41",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.72.124",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.72.254",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.74.1",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.74.28",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.75.123",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.75.174",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.76.194",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.78.113",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.8.44",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.9.116",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.9.63",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.96.116",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.96.161",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.96.223",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.97.64",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.98.181",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.98.30",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.98.69",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.99.175",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.221.99.33",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.224.184.155",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.224.226.173",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.224.75.59",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.224.86.177",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.225.35.229",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.225.45.51",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.226.77.192",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.101.177",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.103.193",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.106.96",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.108.53",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.113.161",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.117.193",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.122.83",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.132.214",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.134.22",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.135.163",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.140.10",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.140.43",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.146.66",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.148.143",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.149.193",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.149.83",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.153.175",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.155.194",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.155.216",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.156.219",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.158.110",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.158.111",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.158.139",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.159.111",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.159.76",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.159.79",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.159.90",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.208.46",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.209.236",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.216.110",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.216.246",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.233.233",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.253.15",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.254.228",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.43.194",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.85.214",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.228.97.87",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.117.181",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.120.108",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.177.51",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.179.117",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.179.183",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.188.243",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.190.135",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.227.60",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.28.199",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.36.102",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.44.118",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.46.13",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.49.112",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.49.154",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.54.12",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.80.151",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.80.225",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.229.95.172",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.101.41",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.103.110",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.103.187",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.197.154",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.20.133",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.20.235",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.22.214",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.23.232",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.23.74",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.235.85",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.24.226",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.242.151",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.27.216",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.30.175",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.51.234",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.51.31",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.55.249",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.63.237",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.63.71",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.65.104",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.68.198",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.80.216",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.80.220",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.81.126",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.81.174",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.82.33",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.83.154",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.230.94.34",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.231.100.15",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.231.108.98",
+      "type": "ipv4",
+      "malware": "",
+      "sources": "urlhaus_filter",
+      "confidence": 55,
+      "first_seen": "",
+      "last_seen": "",
+      "reference": ""
+    },
+    {
+      "value": "113.231.116.128",
       "type": "ipv4",
       "malware": "",
       "sources": "urlhaus_filter",

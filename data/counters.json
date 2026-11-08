@@ -23,47 +23,47 @@
   },
   "by_source": {
     "binarydefense": 3616,
-    "blocklist_de": 12182,
+    "blocklist_de": 12300,
     "circl": 914,
     "et_compromised": 696,
     "feodo": 5,
-    "greensnow": 5543,
+    "greensnow": 5592,
     "malwarebazaar": 2547,
     "openphish": 10755,
-    "phishing_army": 4823,
+    "phishing_army": 4890,
     "threatfox": 9301,
-    "tor": 13139,
-    "tweetfeed": 7048,
+    "tor": 13193,
+    "tweetfeed": 7126,
     "urlhaus": 5279,
     "urlhaus_filter": 5870
   },
   "by_type": {
-    "domain": 10765,
-    "ipv4": 40522,
-    "ipv6": 3757,
-    "md5": 231,
+    "domain": 10856,
+    "ipv4": 40724,
+    "ipv6": 3768,
+    "md5": 232,
     "sha1": 135,
-    "sha256": 3586,
-    "url": 19978
+    "sha256": 3591,
+    "url": 20015
   },
-  "generated_at": "2026-11-08T13:42:52Z",
+  "generated_at": "2026-11-08T22:17:09Z",
   "latest_run": {
     "durations": {
-      "binarydefense": 0.3,
-      "blocklist_de": 0.2,
-      "circl": 2.3,
-      "et_compromised": 0.1,
+      "binarydefense": 0.6,
+      "blocklist_de": 0.3,
+      "circl": 3.4,
+      "et_compromised": 0.3,
       "feodo": 0.1,
-      "greensnow": 5.9,
+      "greensnow": 0.8,
       "malwarebazaar": 0.0,
-      "openphish": 0.1,
+      "openphish": 0.0,
       "otx": 0.0,
       "phishing_army": 0.5,
       "threatfox": 0.0,
-      "tor": 1.7,
-      "tweetfeed": 0.1,
+      "tor": 2.6,
+      "tweetfeed": 0.2,
       "urlhaus": 0.0,
-      "urlhaus_filter": 0.3
+      "urlhaus_filter": 0.5
     },
     "errors": {},
     "feeds": {
@@ -75,14 +75,14 @@
       "greensnow": 2000,
       "openphish": 300,
       "phishing_army": 3000,
-      "tor": 8762,
-      "tweetfeed": 1850,
+      "tor": 10178,
+      "tweetfeed": 1925,
       "urlhaus_filter": 5000
     },
-    "fetched": 26672,
-    "finished_at": "2026-11-08T13:42:52Z",
-    "new": 739,
-    "pruned": 907,
+    "fetched": 28163,
+    "finished_at": "2026-11-08T22:17:09Z",
+    "new": 347,
+    "pruned": 0,
     "skipped": [
       "malwarebazaar",
       "otx",
@@ -95,9 +95,9 @@
       "threatfox": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/",
       "urlhaus": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/"
     },
-    "started_at": "2026-11-08T13:42:39Z",
-    "total": 78974,
-    "updated": 25519
+    "started_at": "2026-11-08T22:16:58Z",
+    "total": 79321,
+    "updated": 27375
   },
-  "total": 78974
+  "total": 79321
 }
