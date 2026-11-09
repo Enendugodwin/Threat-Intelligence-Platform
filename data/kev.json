@@ -1,8 +1,60 @@
 {
-  "generated_at": "2026-11-09T06:55:05Z",
-  "catalog_version": "2026.11.06",
-  "catalog_count": 1769,
+  "generated_at": "2026-11-09T22:32:35Z",
+  "catalog_version": "2026.11.09",
+  "catalog_count": 1773,
   "entries": [
+    {
+      "cve": "CVE-2026-102895",
+      "vendor": "GPUStack",
+      "product": "GPUStack",
+      "name": "GPUStack Improper Authentication Vulnerability",
+      "date_added": "2026-11-09",
+      "due_date": "2026-11-12",
+      "ransomware": false,
+      "description": "GPUStack contains an improper authentication vulnerability which could allow unauthenticated administrative access, including user and model changes, persistent administrator API-key creation, disclosure of worker and cloud-provider secrets, and code execution through POST /v2/in",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00331,
+      "epss_percentile": 0.2646
+    },
+    {
+      "cve": "CVE-2026-123158",
+      "vendor": "OpenBSD",
+      "product": "OpenSSH",
+      "name": "OpenBSD OpenSSH Unexpected Status Code or Return Value Vulnerability",
+      "date_added": "2026-11-09",
+      "due_date": "2026-11-12",
+      "ransomware": false,
+      "description": "OpenBSD OpenSSH on Linux contains an unexpected status code or return value vulnerability that could allow for authentication bypass.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01014,
+      "epss_percentile": 0.63482
+    },
+    {
+      "cve": "CVE-2026-116779",
+      "vendor": "SignalWire",
+      "product": "FreeSwitch",
+      "name": "SignalWire FreeSwitch Code Injection Vulnerability",
+      "date_added": "2026-11-09",
+      "due_date": "2026-11-12",
+      "ransomware": false,
+      "description": "SignalWire FreeSwitch contains a code injection vulnerability that permits configuration and credential disclosure, arbitrary call control, and command execution.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01299,
+      "epss_percentile": 0.70632
+    },
+    {
+      "cve": "CVE-2026-123218",
+      "vendor": "IBM",
+      "product": "Aspera Faspex",
+      "name": "IBM Aspera Faspex Incorrect Authorization Vulnerability",
+      "date_added": "2026-11-09",
+      "due_date": "2026-11-12",
+      "ransomware": false,
+      "description": "IBM Aspera Faspex contains an incorrect authorization vulnerability that could allow an authenticated user to craft a specific message to bypass authorization, causing privilege escalations.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00396,
+      "epss_percentile": 0.34123
+    },
     {
       "cve": "CVE-2026-19868",
       "vendor": "SonicWall",
@@ -2550,58 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.78052,
       "epss_percentile": 0.99566
-    },
-    {
-      "cve": "CVE-2025-48700",
-      "vendor": "Synacor",
-      "product": "Zimbra Collaboration Suite (ZCS)",
-      "name": "Synacor Zimbra Collaboration Suite (ZCS) Cross-site Scripting Vulnerability",
-      "date_added": "2026-04-20",
-      "due_date": "2026-04-23",
-      "ransomware": false,
-      "description": "Synacor Zimbra Collaboration Suite (ZCS) contains a cross-site scripting vulnerability that could allow attackers to execute arbitrary JavaScript within the user's session, potentially leading to unauthorized access to sensitive information.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.01713,
-      "epss_percentile": 0.76585
-    },
-    {
-      "cve": "CVE-2026-20128",
-      "vendor": "Cisco",
-      "product": "Catalyst SD-WAN Manager",
-      "name": "Cisco Catalyst SD-WAN Manager Storing Passwords in a Recoverable Format Vulnerability",
-      "date_added": "2026-04-20",
-      "due_date": "2026-04-23",
-      "ransomware": false,
-      "description": "Cisco Catalyst SD-WAN Manager contains a storing passwords in a recoverable format vulnerability that allows an authenticated, local attacker to gain DCA user privileges by accessing a credential file for the DCA user on the filesystem as a low-privileged user.",
-      "required_action": "Please adhere to CISA\u2019s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlines in CISA\u2019s Emergency Directive 26-03 (URL listed below in Notes) and CISA\u2019s \u201cHu",
-      "epss": 0.07064,
-      "epss_percentile": 0.94023
-    },
-    {
-      "cve": "CVE-2025-32975",
-      "vendor": "Quest",
-      "product": "KACE Systems Management Appliance (SMA)",
-      "name": "Quest KACE Systems Management Appliance (SMA) Improper Authentication Vulnerability",
-      "date_added": "2026-04-20",
-      "due_date": "2026-05-04",
-      "ransomware": false,
-      "description": "Quest KACE Systems Management Appliance (SMA) contains an improper authentication vulnerability that could allow attackers to impersonate legitimate users without valid credentials.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.02487,
-      "epss_percentile": 0.84079
-    },
-    {
-      "cve": "CVE-2024-27199",
-      "vendor": "JetBrains",
-      "product": "TeamCity",
-      "name": "JetBrains TeamCity Relative Path Traversal Vulnerability",
-      "date_added": "2026-04-20",
-      "due_date": "2026-05-04",
-      "ransomware": true,
-      "description": "JetBrains TeamCity contains a relative path traversal vulnerability that could allow limited admin actions to be performed.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.99991,
-      "epss_percentile": 0.99986
     }
   ]
 }
