@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T07:26:56Z",
+  "generated_at": "2026-11-12T20:09:59Z",
   "catalog_version": "2026.11.10",
   "catalog_count": 1779,
   "entries": [
@@ -13,8 +13,8 @@
       "ransomware": false,
       "description": "Microsoft Office Outlook contains a missing user interaction for potentially unsafe action vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.0162,
+      "epss_percentile": 0.76419
     },
     {
       "cve": "CVE-2026-111793",
@@ -78,8 +78,8 @@
       "ransomware": false,
       "description": "Google Chromium contains a use-after-free vulnerability in the XML component that could allow a remote attacker to execute arbitrary code inside the sandbox via a specially crafted webpage. This vulnerability could affect multiple web browsers that utilize Chromium, including, bu",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.00962,
+      "epss_percentile": 0.62112
     },
     {
       "cve": "CVE-2026-102895",
