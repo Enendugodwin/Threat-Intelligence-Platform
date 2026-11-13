@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-11-12
+# Threat Intel Pulse — 2026-11-13
 
-**Window:** last 7 days · **Generated:** 2026-11-12T20:10:00Z UTC
+**Window:** last 7 days · **Generated:** 2026-11-13T06:58:26Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 67860 |
-| New in window | 14164 |
+| Indicators tracked | 68265 |
+| New in window | 14925 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 23 |
 
@@ -16,23 +16,23 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 314 | ok |
-| tor | 8835 | ok |
+| tor | 8882 | ok |
 | blocklist_de | 3000 | ok |
-| binarydefense | 1001 | ok |
+| binarydefense | 343 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
-| et_compromised | 487 | ok |
+| et_compromised | 566 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 1242 | ok |
+| tweetfeed | 777 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 41728 | 8179 |
-| url | 13163 | 3981 |
-| domain | 8553 | 1595 |
-| ipv6 | 3812 | 266 |
+| ipv4 | 42075 | 8597 |
+| url | 13182 | 4279 |
+| domain | 8588 | 1630 |
+| ipv6 | 3816 | 276 |
 | sha256 | 497 | 128 |
 | md5 | 107 | 15 |
 
@@ -40,12 +40,12 @@
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 13277 |
-| Exit nodes | 2462 |
-| Other relays | 10815 |
-| New in window | 1192 |
+| Nodes tracked | 13262 |
+| Exit nodes | 2468 |
+| Other relays | 10794 |
+| New in window | 1254 |
 
-Sample (20 of 13277, source: Tor Project Onionoo):
+Sample (20 of 13262, source: Tor Project Onionoo):
 - `1[.]161[.]130[.]49`
 - `1[.]201[.]176[.]169`
 - `1[.]201[.]176[.]176`
@@ -97,10 +97,10 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1566 | Phishing | initial-access | 19069 |
-| T1566.002 | Spearphishing Link | initial-access | 19069 |
-| T1071.001 | Web Protocols | command-and-control | 48197 |
-| T1573 | Encrypted Channel | command-and-control | 4761 |
+| T1566 | Phishing | initial-access | 19123 |
+| T1566.002 | Spearphishing Link | initial-access | 19123 |
+| T1071.001 | Web Protocols | command-and-control | 48548 |
+| T1573 | Encrypted Channel | command-and-control | 4823 |
 | T1555 | Credentials from Password Stores | credential-access | 137 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 137 |
 | T1056.001 | Keylogging | collection, credential-access | 83 |
