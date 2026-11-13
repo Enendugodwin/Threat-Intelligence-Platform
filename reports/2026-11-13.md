@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-11-13
 
-**Window:** last 7 days · **Generated:** 2026-11-13T06:58:26Z UTC
+**Window:** last 7 days · **Generated:** 2026-11-13T19:54:18Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 68265 |
-| New in window | 14925 |
+| Indicators tracked | 68565 |
+| New in window | 13111 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 23 |
 
@@ -16,36 +16,36 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 314 | ok |
-| tor | 8882 | ok |
-| blocklist_de | 3000 | ok |
+| tor | 8831 | ok |
+| blocklist_de | 0 | ok |
 | binarydefense | 343 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 566 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 777 | ok |
+| tweetfeed | 797 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 42075 | 8597 |
-| url | 13182 | 4279 |
-| domain | 8588 | 1630 |
-| ipv6 | 3816 | 276 |
-| sha256 | 497 | 128 |
-| md5 | 107 | 15 |
+| ipv4 | 42281 | 7648 |
+| url | 13212 | 3769 |
+| domain | 8639 | 1314 |
+| ipv6 | 3826 | 262 |
+| sha256 | 500 | 105 |
+| md5 | 107 | 13 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 13262 |
-| Exit nodes | 2468 |
-| Other relays | 10794 |
-| New in window | 1254 |
+| Nodes tracked | 13297 |
+| Exit nodes | 2472 |
+| Other relays | 10825 |
+| New in window | 1151 |
 
-Sample (20 of 13262, source: Tor Project Onionoo):
+Sample (20 of 13297, source: Tor Project Onionoo):
 - `1[.]161[.]130[.]49`
 - `1[.]201[.]176[.]169`
 - `1[.]201[.]176[.]176`
@@ -65,7 +65,7 @@ Sample (20 of 13262, source: Tor Project Onionoo):
 - `102[.]130[.]117[.]167`
 - `102[.]130[.]119[.]48`
 - `102[.]130[.]127[.]117`
-- `102[.]205[.]44[.]36`
+- `102[.]130[.]49[.]203`
 
 Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artifact).
 ## Top malware families
@@ -73,14 +73,15 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
 | ClickFix | 236 | 70 | — |
-| cryptoscam | 104 | 40 | — |
+| cryptoscam | 104 | 27 | — |
 | Formbook | 52 | 40 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 | NetSupport | 32 | 0 | — |
 | PHP2Shell | 26 | 0 | — |
 | Vidar | 25 | 21 | T1555, T1071.001, T1567 |
-| Kimsuky | 24 | 8 | — |
+| Kimsuky | 24 | 0 | — |
 | ValleyRAT | 23 | 0 | — |
 | DPRK | 18 | 0 | — |
+| Remcos | 15 | 13 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 | Sliver | 14 | 0 | T1071.001, T1573, T1090, T1055 |
 | Cobalt Strike | 10 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
 | AiTM | 8 | 0 | — |
@@ -91,65 +92,64 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | Mythic | 6 | 0 | — |
 | SpyNote | 6 | 0 | — |
 | infostealer | 6 | 4 | — |
-| Remcos | 5 | 3 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1566 | Phishing | initial-access | 19123 |
-| T1566.002 | Spearphishing Link | initial-access | 19123 |
-| T1071.001 | Web Protocols | command-and-control | 48548 |
-| T1573 | Encrypted Channel | command-and-control | 4823 |
+| T1566 | Phishing | initial-access | 19195 |
+| T1566.002 | Spearphishing Link | initial-access | 19195 |
+| T1071.001 | Web Protocols | command-and-control | 48773 |
+| T1573 | Encrypted Channel | command-and-control | 4838 |
 | T1555 | Credentials from Password Stores | credential-access | 137 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 137 |
-| T1056.001 | Keylogging | collection, credential-access | 83 |
+| T1056.001 | Keylogging | collection, credential-access | 93 |
 | T1552.001 | Credentials In Files | credential-access | 81 |
-| T1566.001 | Spearphishing Attachment | initial-access | 63 |
+| T1566.001 | Spearphishing Attachment | initial-access | 73 |
 | T1486 | Data Encrypted for Impact | impact | 44 |
 | T1490 | Inhibit System Recovery | impact | 44 |
 | T1562.001 | Disable or Modify Tools | defense-evasion | 44 |
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 38 |
 | T1105 | Ingress Tool Transfer | command-and-control | 31 |
 | T1090 | Proxy | command-and-control | 25 |
+| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 16 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 15 |
+| T1113 | Screen Capture | collection | 15 |
 | T1204.002 | Malicious File | execution | 15 |
 | T1498 | Network Denial of Service | impact | 11 |
 | T1059.001 | PowerShell | execution | 10 |
 | T1059.005 | Visual Basic | execution | 9 |
-| T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 6 |
 | T1041 | Exfiltration Over C2 Channel | exfiltration | 5 |
-| T1113 | Screen Capture | collection | 5 |
 
 ## Notable new indicators
 
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
-| [`hxxps://smcparral[.]com/Xplrs/?gate=031`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsmcparral.com%2FXplrs%2F%3Fgate%3D031) | url | — | openphish | — | 70 |
-| [`hxxps://2h[.]ae/eJceI`](https://www.virustotal.com/gui/search/https%3A%2F%2F2h.ae%2FeJceI) | url | — | openphish | — | 70 |
-| [`hxxps://ios[.]app-lmaxex[.]top/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fios.app-lmaxex.top%2F) | url | — | openphish | — | 70 |
-| [`hxxps://e3x4x3w[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fe3x4x3w.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://394834binance[.]com/icloud/signin?client_id=5d914e33-bf66-4f0e-b`](https://www.virustotal.com/gui/search/https%3A%2F%2F394834binance.com%2Ficloud%2Fsignin%3Fclient_id%3D5d914e33-bf66-4f0e-b) | url | — | openphish | — | 70 |
-| [`hxxps://icloud-appleinc[.]com/verify[.]php`](https://www.virustotal.com/gui/search/https%3A%2F%2Ficloud-appleinc.com%2Fverify.php) | url | — | openphish | — | 70 |
-| [`hxxps://icloud-appleinc[.]com/Thayna`](https://www.virustotal.com/gui/search/https%3A%2F%2Ficloud-appleinc.com%2FThayna) | url | — | openphish | — | 70 |
-| [`hxxp://pmh-ledger[.]pages[.]dev/v/mama`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpmh-ledger.pages.dev%2Fv%2Fmama) | url | — | openphish | — | 70 |
-| [`hxxp://pmh-ledger[.]pages[.]dev/v/may-may`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpmh-ledger.pages.dev%2Fv%2Fmay-may) | url | — | openphish | — | 70 |
-| [`hxxp://pmh-ledger[.]pages[.]dev/v/papa`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpmh-ledger.pages.dev%2Fv%2Fpapa) | url | — | openphish | — | 70 |
-| [`hxxp://pmh-ledger[.]pages[.]dev/v/kyi-kyi`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpmh-ledger.pages.dev%2Fv%2Fkyi-kyi) | url | — | openphish | — | 70 |
-| [`hxxp://pmh-ledger[.]pages[.]dev/v/sai-kham`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpmh-ledger.pages.dev%2Fv%2Fsai-kham) | url | — | openphish | — | 70 |
-| [`hxxp://zerobit497-zkku[.]blogspot[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fzerobit497-zkku.blogspot.com%2F) | url | — | openphish | — | 70 |
-| [`hxxps://help-docs-metamask[.]gitbook[.]io/us`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhelp-docs-metamask.gitbook.io%2Fus) | url | — | openphish | — | 70 |
-| [`hxxp://help-docs-metamask[.]gitbook[.]io/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fhelp-docs-metamask.gitbook.io%2F) | url | — | openphish | — | 70 |
-| [`hxxps://shared-documents-access[.]shared-object-038572[.]workers[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fshared-documents-access.shared-object-038572.workers.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxp://web-trezor-io-start-trezor-suite-app-cdn[.]typedream[.]app/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fweb-trezor-io-start-trezor-suite-app-cdn.typedream.app%2F) | url | — | openphish | — | 70 |
-| [`hxxps://370941383545690465507436650778[.]roomcaronmoons[.]sbs/`](https://www.virustotal.com/gui/search/https%3A%2F%2F370941383545690465507436650778.roomcaronmoons.sbs%2F) | url | — | openphish | — | 70 |
-| [`hxxp://www[.]telstramail-kyc-trial[.]weebly[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.telstramail-kyc-trial.weebly.com%2F) | url | — | openphish | — | 70 |
-| [`hxxps://higbkr[.]vercel[.]app/m0c8mn865q9kmkq9/oewxlj34p722d2cr/kr2vd4700wtzunuk/sroh34oautzjs3gl/danor2@8680dc57d9c3e96f6e7ff97bd8d8fe0bc897[.]org`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhigbkr.vercel.app%2Fm0c8mn865q9kmkq9%2Foewxlj34p722d2cr%2Fkr2vd4700wtzunuk%2Fsroh34oautzjs3gl%2Fdanor2%408680dc57d9c3e96f6e7ff97bd8d8fe0bc897.org) | url | — | openphish | — | 70 |
-| [`hxxp://dfjhdfjhdf[.]weebly[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fdfjhdfjhdf.weebly.com%2F) | url | — | openphish | — | 70 |
-| [`hxxps://wmbrnq[.]eventzones[.]de/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwmbrnq.eventzones.de%2F) | url | — | openphish | — | 70 |
-| [`hxxps://instagram-login00[.]blogspot[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Finstagram-login00.blogspot.com%2F) | url | — | openphish | — | 70 |
-| [`hxxps://taskportal-aelvorith-475c[.]s2499574[.]workers[.]dev/Trust_Account_Center/`](https://www.virustotal.com/gui/search/https%3A%2F%2Ftaskportal-aelvorith-475c.s2499574.workers.dev%2FTrust_Account_Center%2F) | url | — | openphish | — | 70 |
-| [`hxxps://somewhatshreya[.]github[.]io/Amazon_clone/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsomewhatshreya.github.io%2FAmazon_clone%2F) | url | — | openphish | — | 70 |
+| [`hxxps://www[.]roblox[.]com[.]ml/users/206830307895/profile`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.com.ml%2Fusers%2F206830307895%2Fprofile) | url | — | openphish | — | 70 |
+| [`hxxps://s4w[.]in/www-roblox-com-users-2068330307895-profile`](https://www.virustotal.com/gui/search/https%3A%2F%2Fs4w.in%2Fwww-roblox-com-users-2068330307895-profile) | url | — | openphish | — | 70 |
+| [`hxxp://hometown-herbal-ledger-13[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fhometown-herbal-ledger-13.pages.dev%2F) | url | — | openphish | — | 70 |
+| [`hxxps://www[.]roblox[.]rw/users/441698548140/profile`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.rw%2Fusers%2F441698548140%2Fprofile) | url | — | openphish | — | 70 |
+| [`hxxps://g5[.]lu/52ecz`](https://www.virustotal.com/gui/search/https%3A%2F%2Fg5.lu%2F52ecz) | url | — | openphish | — | 70 |
+| [`hxxps://vaibhavinayak10[.]github[.]io/AmazonProject[.]github[.]io/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fvaibhavinayak10.github.io%2FAmazonProject.github.io%2F) | url | — | openphish | — | 70 |
+| [`hxxps://vaibhavinayak10[.]github[.]io/AmazonProject[.]github[.]io`](https://www.virustotal.com/gui/search/https%3A%2F%2Fvaibhavinayak10.github.io%2FAmazonProject.github.io) | url | — | openphish | — | 70 |
+| [`hxxps://redysel[.]com/img/TL-WR840N/47684uyjkhv67954[.]html`](https://www.virustotal.com/gui/search/https%3A%2F%2Fredysel.com%2Fimg%2FTL-WR840N%2F47684uyjkhv67954.html) | url | — | openphish | — | 70 |
+| [`hxxps://hmilp09kod[.]flazio[.]online/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhmilp09kod.flazio.online%2F) | url | — | openphish | — | 70 |
+| [`hxxps://railbuyer[.]sbb[.]b-op[.]com/railbuyer`](https://www.virustotal.com/gui/search/https%3A%2F%2Frailbuyer.sbb.b-op.com%2Frailbuyer) | url | — | openphish | — | 70 |
+| [`hxxps://hispeed-ch70[.]jimdofree[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhispeed-ch70.jimdofree.com%2F) | url | — | openphish | — | 70 |
+| [`hxxp://www[.]shopee77bombastis[.]blogspot[.]com/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fwww.shopee77bombastis.blogspot.com%2F) | url | — | openphish | — | 70 |
+| [`hxxps://roblox[.]com[.]gr/games/125538696653169/Showdown-Anime-FPS-Jutsu-Shooter`](https://www.virustotal.com/gui/search/https%3A%2F%2Froblox.com.gr%2Fgames%2F125538696653169%2FShowdown-Anime-FPS-Jutsu-Shooter) | url | — | openphish | — | 70 |
+| [`hxxps://vaibhavinayak10[.]github[.]io/AmazonDarkMode[.]github[.]io/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fvaibhavinayak10.github.io%2FAmazonDarkMode.github.io%2F) | url | — | openphish | — | 70 |
+| [`hxxps://vaibhavinayak10[.]github[.]io/AmazonDarkMode[.]github[.]io`](https://www.virustotal.com/gui/search/https%3A%2F%2Fvaibhavinayak10.github.io%2FAmazonDarkMode.github.io) | url | — | openphish | — | 70 |
+| [`hxxps://helpledger[.]live/login[.]php`](https://www.virustotal.com/gui/search/https%3A%2F%2Fhelpledger.live%2Flogin.php) | url | — | openphish | — | 70 |
+| [`hxxps://meinhostingfa14r-qqhgpqtwdl[.]live-website[.]com/esat/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmeinhostingfa14r-qqhgpqtwdl.live-website.com%2Fesat%2F) | url | — | openphish | — | 70 |
+| [`hxxps://pncverify[.]pagekite[.]me/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fpncverify.pagekite.me%2F) | url | — | openphish | — | 70 |
+| [`hxxp://fresh-experiences-537560[.]framer[.]app/`](https://www.virustotal.com/gui/search/http%3A%2F%2Ffresh-experiences-537560.framer.app%2F) | url | — | openphish | — | 70 |
+| [`hxxp://pichinch-web--juanpila22222[.]replit[.]app/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fpichinch-web--juanpila22222.replit.app%2F) | url | — | openphish | — | 70 |
+| [`hxxps://sokiogh[.]kesug[.]com/?naps`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsokiogh.kesug.com%2F%3Fnaps) | url | — | openphish | — | 70 |
+| [`hxxps://bjohrtpuy[.]freehosting[.]dev/?naps`](https://www.virustotal.com/gui/search/https%3A%2F%2Fbjohrtpuy.freehosting.dev%2F%3Fnaps) | url | — | openphish | — | 70 |
+| [`hxxps://www[.]ptshopeeei[.]blogspot[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.ptshopeeei.blogspot.com%2F) | url | — | openphish | — | 70 |
+| [`hxxps://www[.]roblox[.]ly/users/7280036217/profile`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.roblox.ly%2Fusers%2F7280036217%2Fprofile) | url | — | openphish | — | 70 |
+| [`hxxps://kk365756[.]com/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fkk365756.com%2F) | url | — | openphish | — | 70 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>

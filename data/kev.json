@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-11-13T06:58:25Z",
-  "catalog_version": "2026.11.10",
-  "catalog_count": 1779,
+  "generated_at": "2026-11-13T19:54:16Z",
+  "catalog_version": "2026.11.13",
+  "catalog_count": 1781,
   "entries": [
+    {
+      "cve": "CVE-2026-114713",
+      "vendor": "UnrealIRCd",
+      "product": "UnrealIRCd",
+      "name": "UnrealIRCd Improper Neutralization of Delimiters Vulnerability",
+      "date_added": "2026-11-13",
+      "due_date": "2026-11-16",
+      "ransomware": false,
+      "description": "UnrealIRCd UnrealIRCd contains an improper neutralization of delimiters vulnerability that allows any user on a network with two or more linked servers to inject server-to-server commands that are executed with server authority.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00302,
+      "epss_percentile": 0.23297
+    },
+    {
+      "cve": "CVE-2026-123039",
+      "vendor": "Check Point",
+      "product": "Multiple Products",
+      "name": "Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability",
+      "date_added": "2026-11-13",
+      "due_date": "2026-11-16",
+      "ransomware": false,
+      "description": "Check Point Firewall, Multi-Domain Security Management Server, Scalable Platforms, Security Gateway, and Security Management Server contain an incorrect permissions assignment for critical resources vulnerability when the Gaia OS DynamicCLI daemon runs as root and listens on a wo",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01274,
+      "epss_percentile": 0.70349
+    },
     {
       "cve": "CVE-2026-124194",
       "vendor": "Microsoft",
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.91941,
       "epss_percentile": 0.99818
-    },
-    {
-      "cve": "CVE-2024-57728",
-      "vendor": "SimpleHelp ",
-      "product": "SimpleHelp",
-      "name": "SimpleHelp Path Traversal Vulnerability",
-      "date_added": "2026-04-24",
-      "due_date": "2026-05-08",
-      "ransomware": true,
-      "description": "SimpleHelp contains a path traversal vulnerability that allows admin users to upload arbitrary files anywhere on the file system by uploading a crafted zip file (i.e. zip slip). This can be exploited to execute arbitrary code on the host in the context of the SimpleHelp server us",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.64664,
-      "epss_percentile": 0.99223
-    },
-    {
-      "cve": "CVE-2024-57726",
-      "vendor": "SimpleHelp ",
-      "product": "SimpleHelp",
-      "name": "SimpleHelp Missing Authorization Vulnerability",
-      "date_added": "2026-04-24",
-      "due_date": "2026-05-08",
-      "ransomware": true,
-      "description": "SimpleHelp contains a missing authorization vulnerability that could allow low-privileged technicians to create API keys with excessive permissions. These API keys can be used to escalate privileges to the server admin role.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.66601,
-      "epss_percentile": 0.9927
     }
   ]
 }
