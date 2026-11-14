@@ -1,11 +1,11 @@
 # Threat Intel Pulse — 2026-11-14
 
-**Window:** last 7 days · **Generated:** 2026-11-14T18:19:31Z UTC
+**Window:** last 7 days · **Generated:** 2026-11-14T22:37:33Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 69589 |
-| New in window | 12855 |
+| Indicators tracked | 70199 |
+| New in window | 13068 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 23 |
 
@@ -16,36 +16,36 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 314 | ok |
-| tor | 8795 | ok |
+| tor | 8771 | ok |
 | blocklist_de | 3000 | ok |
 | binarydefense | 324 | ok |
 | greensnow | 2000 | ok |
 | phishing_army | 3000 | ok |
 | et_compromised | 584 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 760 | ok |
+| tweetfeed | 1312 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 43112 | 7530 |
-| url | 13371 | 3783 |
-| domain | 8729 | 1173 |
-| ipv6 | 3763 | 253 |
-| sha256 | 502 | 98 |
-| md5 | 112 | 18 |
+| ipv4 | 43585 | 7486 |
+| url | 13338 | 3946 |
+| domain | 8865 | 1244 |
+| ipv6 | 3761 | 240 |
+| sha256 | 531 | 127 |
+| md5 | 119 | 25 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 13218 |
-| Exit nodes | 2423 |
-| Other relays | 10795 |
-| New in window | 1090 |
+| Nodes tracked | 13200 |
+| Exit nodes | 2424 |
+| Other relays | 10776 |
+| New in window | 1050 |
 
-Sample (20 of 13218, source: Tor Project Onionoo):
+Sample (20 of 13200, source: Tor Project Onionoo):
 - `1[.]161[.]130[.]49`
 - `1[.]201[.]176[.]169`
 - `1[.]201[.]176[.]176`
@@ -72,9 +72,9 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| ClickFix | 236 | 70 | — |
+| ClickFix | 238 | 72 | — |
 | cryptoscam | 104 | 27 | — |
-| Formbook | 52 | 40 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
+| Formbook | 53 | 41 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 | NetSupport | 32 | 0 | — |
 | PHP2Shell | 26 | 0 | — |
 | Vidar | 25 | 21 | T1555, T1071.001, T1567 |
@@ -97,18 +97,18 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1566 | Phishing | initial-access | 19439 |
-| T1566.002 | Spearphishing Link | initial-access | 19439 |
-| T1071.001 | Web Protocols | command-and-control | 49548 |
-| T1573 | Encrypted Channel | command-and-control | 4913 |
-| T1555 | Credentials from Password Stores | credential-access | 137 |
-| T1567 | Exfiltration Over Web Service | exfiltration | 137 |
-| T1056.001 | Keylogging | collection, credential-access | 97 |
-| T1552.001 | Credentials In Files | credential-access | 81 |
-| T1566.001 | Spearphishing Attachment | initial-access | 73 |
-| T1486 | Data Encrypted for Impact | impact | 44 |
-| T1490 | Inhibit System Recovery | impact | 44 |
-| T1562.001 | Disable or Modify Tools | defense-evasion | 44 |
+| T1566 | Phishing | initial-access | 19420 |
+| T1566.002 | Spearphishing Link | initial-access | 19420 |
+| T1071.001 | Web Protocols | command-and-control | 50137 |
+| T1573 | Encrypted Channel | command-and-control | 4919 |
+| T1555 | Credentials from Password Stores | credential-access | 142 |
+| T1567 | Exfiltration Over Web Service | exfiltration | 142 |
+| T1056.001 | Keylogging | collection, credential-access | 98 |
+| T1552.001 | Credentials In Files | credential-access | 85 |
+| T1566.001 | Spearphishing Attachment | initial-access | 74 |
+| T1486 | Data Encrypted for Impact | impact | 65 |
+| T1490 | Inhibit System Recovery | impact | 65 |
+| T1562.001 | Disable or Modify Tools | defense-evasion | 65 |
 | T1055 | Process Injection | defense-evasion, privilege-escalation | 38 |
 | T1105 | Ingress Tool Transfer | command-and-control | 31 |
 | T1090 | Proxy | command-and-control | 25 |
@@ -126,6 +126,7 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | Indicator (defanged) | Type | Family | Sources | First seen | Confidence |
 | --- | --- | --- | --- | --- | --- |
 | [`hxxps://lapaca[.]webdirecto[.]com/wp-includes/Text/tdweain/yogsqwj/gmehpir/ggg/adobe/adobe[.]html`](https://www.virustotal.com/gui/search/https%3A%2F%2Flapaca.webdirecto.com%2Fwp-includes%2FText%2Ftdweain%2Fyogsqwj%2Fgmehpir%2Fggg%2Fadobe%2Fadobe.html) | url | — | openphish, tweetfeed | 2026-11-14T16:01:48Z | 70 |
+| [`hxxps://mifidelidad[.]click/bac[.]pa`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmifidelidad.click%2Fbac.pa) | url | — | openphish, tweetfeed | 2026-11-12T01:03:17Z | 70 |
 | [`hxxps://www[.]ucsg365[.]vercel[.]app/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.ucsg365.vercel.app%2F) | url | — | openphish | — | 70 |
 | [`hxxps://www[.]365973[.]top/downapp`](https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.365973.top%2Fdownapp) | url | — | openphish | — | 70 |
 | [`hxxps://sprl[.]me/aZlTSEN`](https://www.virustotal.com/gui/search/https%3A%2F%2Fsprl.me%2FaZlTSEN) | url | — | openphish | — | 70 |
@@ -149,7 +150,6 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 | [`hxxps://f7m93-qcr-kv7u-7gxjf-07-09-2026-hh[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Ff7m93-qcr-kv7u-7gxjf-07-09-2026-hh.pages.dev%2F) | url | — | openphish | — | 70 |
 | [`hxxp://sp10ct10-dormani-biz-zorkelo[.]pages[.]dev/`](https://www.virustotal.com/gui/search/http%3A%2F%2Fsp10ct10-dormani-biz-zorkelo.pages.dev%2F) | url | — | openphish | — | 70 |
 | [`hxxps://pynkj78rfv1-wlzgbwur-2m1m3b-pynk63p[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fpynkj78rfv1-wlzgbwur-2m1m3b-pynk63p.pages.dev%2F) | url | — | openphish | — | 70 |
-| [`hxxps://morvaxim-biz-lomqureta-y2m5pz43[.]pages[.]dev/`](https://www.virustotal.com/gui/search/https%3A%2F%2Fmorvaxim-biz-lomqureta-y2m5pz43.pages.dev%2F) | url | — | openphish | — | 70 |
 ---
 
 <sub>Generated by [threat-intel-pipeline](https://github.com/Enendugodwin/Threat-Intelligence-Platform) · Sources: URLhaus, Feodo Tracker, ThreatFox, Tor Project, AlienVault OTX · Indicators are defanged for safe display · Outputs: `dist/stix/bundle.json`, `dist/sigma/`, `dist/suricata/ti.rules`, `dist/iocs.csv`, `dist/tor/tor_nodes.txt` (published as the workflow artifact `threat-intel-output`).</sub>
