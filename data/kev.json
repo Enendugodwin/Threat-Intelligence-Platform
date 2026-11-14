@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T19:54:16Z",
+  "generated_at": "2026-11-14T06:45:58Z",
   "catalog_version": "2026.11.13",
   "catalog_count": 1781,
   "entries": [
@@ -553,7 +553,7 @@
       "cve": "CVE-2015-5477",
       "vendor": "ISC",
       "product": "BIND",
-      "name": " ISC BIND Data Processing Errors Vulnerability",
+      "name": "ISC BIND Data Processing Errors Vulnerability",
       "date_added": "2026-10-08",
       "due_date": "2026-10-11",
       "ransomware": false,
@@ -761,11 +761,11 @@
       "cve": "CVE-2026-5430",
       "vendor": "WSO2",
       "product": "Multiple Products",
-      "name": "WSO2 Multiple Products Path Traversal Vulnerability ",
+      "name": "WSO2 Multiple Products Path Traversal Vulnerability",
       "date_added": "2026-09-24",
       "due_date": "2026-09-27",
       "ransomware": false,
-      "description": "WSO2 API Control Plane, API Manager, Traffic Manager & Universal Gateway contain a path traversal vulnerability that could allow for unrestricted file upload and lead to remote code execution. ",
+      "description": "WSO2 API Control Plane, API Manager, Traffic Manager & Universal Gateway contain a path traversal vulnerability that could allow for unrestricted file upload and lead to remote code execution.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.00588,
       "epss_percentile": 0.4625
@@ -773,12 +773,12 @@
     {
       "cve": "CVE-2026-71362",
       "vendor": "Adobe",
-      "product": "Commerce and Magento ",
-      "name": "Adobe Commerce and Magento Incorrect Authorization Vulnerability ",
+      "product": "Commerce and Magento",
+      "name": "Adobe Commerce and Magento Incorrect Authorization Vulnerability",
       "date_added": "2026-09-24",
       "due_date": "2026-09-27",
       "ransomware": false,
-      "description": "Adobe Commerce and Magento contains an incorrect authorization vulnerability that could allow an attacker to leverage this vulnerability to gain elevated access to sensitive resources without any user interaction. ",
+      "description": "Adobe Commerce and Magento contains an incorrect authorization vulnerability that could allow an attacker to leverage this vulnerability to gain elevated access to sensitive resources without any user interaction.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.87507,
       "epss_percentile": 0.99755
@@ -1181,7 +1181,7 @@
       "date_added": "2026-09-02",
       "due_date": "2026-09-05",
       "ransomware": false,
-      "description": "JFrog Artifactory contains an improper authentication vulnerability that under default configuration can allow an unauthenticated attacker with network access to obtain administrative privileges. ",
+      "description": "JFrog Artifactory contains an improper authentication vulnerability that under default configuration can allow an unauthenticated attacker with network access to obtain administrative privileges.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.14121,
       "epss_percentile": 0.96473
@@ -1272,7 +1272,7 @@
       "date_added": "2026-08-27",
       "due_date": "2026-08-30",
       "ransomware": false,
-      "description": "Linux Kernel contains an unspecified vulnerability that can allow for privilege escalation via IPv6 networking subsystem. This vulnerability can impact multiple products, including but not limited to Suse, Red Hat, and other products using Linux. ",
+      "description": "Linux Kernel contains an unspecified vulnerability that can allow for privilege escalation via IPv6 networking subsystem. This vulnerability can impact multiple products, including but not limited to Suse, Red Hat, and other products using Linux.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.00709,
       "epss_percentile": 0.51872
@@ -1311,7 +1311,7 @@
       "date_added": "2026-08-26",
       "due_date": "2026-09-09",
       "ransomware": false,
-      "description": "Red Hat libuser contains a race condition vulnerability that allows authenticated local users to corrupt the /etc/passwd file to cause a denial of service or privilege escalation. ",
+      "description": "Red Hat libuser contains a race condition vulnerability that allows authenticated local users to corrupt the /etc/passwd file to cause a denial of service or privilege escalation.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.08434,
       "epss_percentile": 0.94847
@@ -1350,7 +1350,7 @@
       "date_added": "2026-08-26",
       "due_date": "2026-08-29",
       "ransomware": false,
-      "description": "Citrix NetScaler ADC and NetScaler Gateway contain an improper restriction of operations within the bounds of a memory buffer vulnerability which could lead to denial of service. ",
+      "description": "Citrix NetScaler ADC and NetScaler Gateway contain an improper restriction of operations within the bounds of a memory buffer vulnerability which could lead to denial of service.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.01011,
       "epss_percentile": 0.61916
@@ -1514,7 +1514,7 @@
     {
       "cve": "CVE-2026-20349",
       "vendor": "Cisco",
-      "product": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) ",
+      "product": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD)",
       "name": "Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability",
       "date_added": "2026-08-11",
       "due_date": "2026-08-14",
@@ -1527,7 +1527,7 @@
     {
       "cve": "CVE-2026-68820",
       "vendor": "Microsoft",
-      "product": "Windows Ancillary Function Driver for WinSock ",
+      "product": "Windows Ancillary Function Driver for WinSock",
       "name": "Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability",
       "date_added": "2026-08-11",
       "due_date": "2026-08-25",
@@ -1684,7 +1684,7 @@
       "cve": "CVE-2026-50522",
       "vendor": "Microsoft",
       "product": "SharePoint",
-      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability ",
+      "name": "Microsoft SharePoint Deserialization of Untrusted Data Vulnerability",
       "date_added": "2026-07-22",
       "due_date": "2026-07-25",
       "ransomware": false,
@@ -1727,7 +1727,7 @@
       "date_added": "2026-07-21",
       "due_date": "2026-07-24",
       "ransomware": false,
-      "description": "Langflow contains an inclusion of functionality from untrusted control sphere vulnerability that allows remote attackers to execute arbitrary code on affected installations. ",
+      "description": "Langflow contains an inclusion of functionality from untrusted control sphere vulnerability that allows remote attackers to execute arbitrary code on affected installations.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.63013,
       "epss_percentile": 0.9918
@@ -1805,7 +1805,7 @@
       "date_added": "2026-07-15",
       "due_date": "2026-07-29",
       "ransomware": false,
-      "description": "KNX Association KNX Protocol Connection Authorization Option 1 contains an overly restrictive account lockout mechanism vulnerability that could allow an attacker to purge all devices without additional security options enabled and set a BCU key to lock the device. ",
+      "description": "KNX Association KNX Protocol Connection Authorization Option 1 contains an overly restrictive account lockout mechanism vulnerability that could allow an attacker to purge all devices without additional security options enabled and set a BCU key to lock the device.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.01294,
       "epss_percentile": 0.69324
@@ -1814,7 +1814,7 @@
       "cve": "CVE-2026-56155",
       "vendor": "Microsoft",
       "product": "Active Directory Federation Services",
-      "name": "Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability ",
+      "name": "Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability",
       "date_added": "2026-07-14",
       "due_date": "2026-07-28",
       "ransomware": false,
@@ -2073,12 +2073,12 @@
     {
       "cve": "CVE-2026-48907",
       "vendor": "Widget Factory",
-      "product": "Joomla Content Editor ",
+      "product": "Joomla Content Editor",
       "name": "Widget Factory Joomla Content Editor Improper Access Control Vulnerability",
       "date_added": "2026-06-16",
       "due_date": "2026-06-19",
       "ransomware": false,
-      "description": "Widget Factory Joomla Content Editor contains an improper access control vulnerability which could allow for upload and execution of PHP code via the creation of new editor profiles for unauthenticated users. ",
+      "description": "Widget Factory Joomla Content Editor contains an improper access control vulnerability which could allow for upload and execution of PHP code via the creation of new editor profiles for unauthenticated users.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.1619,
       "epss_percentile": 0.96849
@@ -2112,7 +2112,7 @@
     {
       "cve": "CVE-2026-35273",
       "vendor": "Oracle",
-      "product": " PeopleSoft Enterprise PeopleTools",
+      "product": "PeopleSoft Enterprise PeopleTools",
       "name": "Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability",
       "date_added": "2026-06-12",
       "due_date": "2026-06-15",
