@@ -22,66 +22,67 @@
     "infostealer": 6
   },
   "by_source": {
-    "binarydefense": 4700,
-    "blocklist_de": 15632,
+    "binarydefense": 4932,
+    "blocklist_de": 15905,
     "circl": 914,
     "et_compromised": 908,
     "feodo": 5,
     "greensnow": 6413,
     "malwarebazaar": 21,
-    "openphish": 10463,
-    "phishing_army": 5568,
+    "openphish": 10541,
+    "phishing_army": 5604,
     "threatfox": 62,
-    "tor": 13200,
-    "tweetfeed": 8220,
+    "tor": 13212,
+    "tweetfeed": 8239,
     "urlhaus": 6,
-    "urlhaus_filter": 6216
+    "urlhaus_filter": 6245
   },
   "by_type": {
-    "domain": 8865,
-    "ipv4": 43585,
-    "ipv6": 3761,
+    "domain": 8907,
+    "ipv4": 44105,
+    "ipv6": 3760,
     "md5": 119,
-    "sha256": 531,
-    "url": 13338
+    "sha256": 533,
+    "url": 13423
   },
-  "generated_at": "2026-11-14T22:37:26Z",
+  "generated_at": "2026-11-15T06:51:06Z",
   "latest_run": {
     "durations": {
-      "binarydefense": 0.5,
-      "blocklist_de": 0.2,
-      "circl": 2.6,
-      "et_compromised": 0.5,
+      "binarydefense": 0.3,
+      "blocklist_de": 0.1,
+      "circl": 2.5,
+      "et_compromised": 0.1,
       "feodo": 0.2,
-      "greensnow": 0.7,
+      "greensnow": 10.8,
       "malwarebazaar": 0.0,
       "openphish": 0.1,
       "otx": 0.0,
       "phishing_army": 0.6,
       "threatfox": 0.0,
-      "tor": 1.3,
+      "tor": 1.8,
       "tweetfeed": 0.1,
       "urlhaus": 0.0,
-      "urlhaus_filter": 0.4
+      "urlhaus_filter": 0.3
     },
-    "errors": {},
+    "errors": {
+      "greensnow": "RetryError: HTTPSConnectionPool(host='blocklist.greensnow.co', port=443): Max retries exceeded with url: /greensnow.txt (Caused by ResponseError('too many 503 error responses'))"
+    },
     "feeds": {
-      "binarydefense": 324,
+      "binarydefense": 752,
       "blocklist_de": 3000,
       "circl": 314,
       "et_compromised": 584,
       "feodo": 5,
-      "greensnow": 2000,
       "openphish": 300,
       "phishing_army": 3000,
-      "tor": 8771,
-      "tweetfeed": 1312,
+      "tor": 8791,
+      "tweetfeed": 1184,
       "urlhaus_filter": 5000
     },
-    "fetched": 24610,
-    "finished_at": "2026-11-14T22:37:26Z",
-    "new": 845,
-    "pruned": 235,
+    "fetched": 22930,
+    "finished_at": "2026-11-15T06:51:06Z",
+    "new": 913,
+    "pruned": 265,
     "skipped": [
       "malwarebazaar",
       "otx",
@@ -94,9 +95,9 @@
       "threatfox": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/",
       "urlhaus": "ABUSECH_AUTH_KEY not set. abuse.ch now requires a free Auth-Key (keyless exports return HTTP 410); set ABUSECH_AUTH_KEY or add it to .env - create one at https://auth.abuse.ch/"
     },
-    "started_at": "2026-11-14T22:37:17Z",
-    "total": 70199,
-    "updated": 23326
+    "started_at": "2026-11-15T06:50:48Z",
+    "total": 70847,
+    "updated": 21914
   },
-  "total": 70199
+  "total": 70847
 }
