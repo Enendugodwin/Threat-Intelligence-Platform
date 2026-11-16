@@ -1,11 +1,11 @@
-# Threat Intel Pulse — 2026-11-15
+# Threat Intel Pulse — 2026-11-16
 
-**Window:** last 7 days · **Generated:** 2026-11-15T18:59:16Z UTC
+**Window:** last 7 days · **Generated:** 2026-11-16T06:51:12Z UTC
 
 | Metric | Value |
 | --- | --- |
-| Indicators tracked | 71264 |
-| New in window | 13072 |
+| Indicators tracked | 69599 |
+| New in window | 13838 |
 | Malware families (annotated) | 20 |
 | ATT&CK techniques (heuristic) | 23 |
 
@@ -16,36 +16,36 @@
 | feodo | 5 | ok |
 | openphish | 300 | ok |
 | circl | 314 | ok |
-| tor | 8781 | ok |
+| tor | 8770 | ok |
 | blocklist_de | 3000 | ok |
-| binarydefense | 752 | ok |
+| binarydefense | 1100 | ok |
 | greensnow | - | error: RetryError: HTTPSConnectionPool(host='blocklist.greensnow.co', port=443): Max retries exceeded with url: /greensnow.txt (Caused by ResponseError('too many 503 error responses')) |
 | phishing_army | 3000 | ok |
 | et_compromised | 584 | ok |
 | urlhaus_filter | 5000 | ok |
-| tweetfeed | 1311 | ok |
+| tweetfeed | 1481 | ok |
 
 ## Indicators by type
 
 | Type | Total | New |
 | --- | --- | --- |
-| ipv4 | 44164 | 7435 |
-| url | 13777 | 4114 |
-| domain | 8902 | 1143 |
-| ipv6 | 3763 | 228 |
-| sha256 | 539 | 127 |
-| md5 | 119 | 25 |
+| ipv4 | 44070 | 7803 |
+| url | 12860 | 4444 |
+| domain | 8245 | 1185 |
+| ipv6 | 3758 | 224 |
+| sha256 | 526 | 130 |
+| md5 | 140 | 52 |
 
 ## Tor relay / exit nodes
 
 | Metric | Value |
 | --- | --- |
-| Nodes tracked | 13215 |
-| Exit nodes | 2420 |
-| Other relays | 10795 |
-| New in window | 1011 |
+| Nodes tracked | 13201 |
+| Exit nodes | 2417 |
+| Other relays | 10784 |
+| New in window | 1019 |
 
-Sample (20 of 13215, source: Tor Project Onionoo):
+Sample (20 of 13201, source: Tor Project Onionoo):
 - `1[.]161[.]130[.]49`
 - `1[.]201[.]176[.]169`
 - `1[.]201[.]176[.]176`
@@ -72,52 +72,52 @@ Full list: `dist/tor/tor_nodes.txt` (in the `threat-intel-output` workflow artif
 
 | Family | Indicators | New | ATT&CK (heuristic) |
 | --- | --- | --- | --- |
-| ClickFix | 253 | 53 | — |
+| ClickFix | 259 | 63 | — |
 | cryptoscam | 104 | 9 | — |
 | Formbook | 53 | 41 | T1566.001, T1056.001, T1555, T1071.001, T1567 |
 | NetSupport | 32 | 0 | — |
 | PHP2Shell | 26 | 0 | — |
 | Vidar | 25 | 21 | T1555, T1071.001, T1567 |
-| Kimsuky | 24 | 0 | — |
-| ValleyRAT | 23 | 0 | — |
+| Kimsuky | 20 | 0 | — |
+| ValleyRAT | 19 | 0 | — |
 | DPRK | 18 | 0 | — |
 | Remcos | 15 | 13 | T1566.001, T1547.001, T1056.001, T1113, T1071.001, T1573 |
-| Sliver | 14 | 0 | T1071.001, T1573, T1090, T1055 |
-| Cobalt Strike | 10 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
+| Sliver | 10 | 0 | T1071.001, T1573, T1090, T1055 |
+| Cobalt Strike | 9 | 0 | T1071.001, T1573, T1055, T1059.001, T1105, T1090 |
 | AiTM | 8 | 0 | — |
 | GuLoader | 8 | 0 | T1027, T1059.005, T1055, T1105 |
 | Mirai | 8 | 0 | T1498, T1071.001 |
 | ClearFake | 7 | 0 | — |
 | Unknown malware | 7 | 0 | — |
-| infostealer | 7 | 5 | — |
-| Mythic | 6 | 0 | — |
+| infostealer | 7 | 3 | — |
 | SpyNote | 6 | 0 | — |
+| Evilginx | 4 | 2 | — |
 
 ## ATT&CK coverage (heuristic)
 
 | Technique | Name | Tactics | Indicators |
 | --- | --- | --- | --- |
-| T1566 | Phishing | initial-access | 19857 |
-| T1566.002 | Spearphishing Link | initial-access | 19857 |
-| T1071.001 | Web Protocols | command-and-control | 50760 |
-| T1573 | Encrypted Channel | command-and-control | 5155 |
+| T1566 | Phishing | initial-access | 18203 |
+| T1566.002 | Spearphishing Link | initial-access | 18203 |
+| T1071.001 | Web Protocols | command-and-control | 50741 |
+| T1573 | Encrypted Channel | command-and-control | 5137 |
 | T1555 | Credentials from Password Stores | credential-access | 143 |
 | T1567 | Exfiltration Over Web Service | exfiltration | 143 |
-| T1056.001 | Keylogging | collection, credential-access | 98 |
+| T1056.001 | Keylogging | collection, credential-access | 93 |
 | T1552.001 | Credentials In Files | credential-access | 86 |
 | T1566.001 | Spearphishing Attachment | initial-access | 74 |
-| T1486 | Data Encrypted for Impact | impact | 67 |
-| T1490 | Inhibit System Recovery | impact | 67 |
-| T1562.001 | Disable or Modify Tools | defense-evasion | 67 |
-| T1055 | Process Injection | defense-evasion, privilege-escalation | 38 |
-| T1105 | Ingress Tool Transfer | command-and-control | 31 |
-| T1090 | Proxy | command-and-control | 25 |
+| T1486 | Data Encrypted for Impact | impact | 65 |
+| T1490 | Inhibit System Recovery | impact | 65 |
+| T1562.001 | Disable or Modify Tools | defense-evasion | 65 |
+| T1055 | Process Injection | defense-evasion, privilege-escalation | 33 |
+| T1105 | Ingress Tool Transfer | command-and-control | 30 |
+| T1090 | Proxy | command-and-control | 20 |
 | T1547.001 | Registry Run Keys / Startup Folder | persistence, privilege-escalation | 16 |
 | T1027 | Obfuscated Files or Information | defense-evasion | 15 |
 | T1113 | Screen Capture | collection | 15 |
 | T1204.002 | Malicious File | execution | 15 |
 | T1498 | Network Denial of Service | impact | 11 |
-| T1059.001 | PowerShell | execution | 10 |
+| T1059.001 | PowerShell | execution | 9 |
 | T1059.005 | Visual Basic | execution | 9 |
 | T1041 | Exfiltration Over C2 Channel | exfiltration | 5 |
 
