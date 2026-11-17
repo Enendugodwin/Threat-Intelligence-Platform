@@ -1,8 +1,21 @@
 {
-  "generated_at": "2026-11-17T08:10:19Z",
-  "catalog_version": "2026.11.13",
-  "catalog_count": 1781,
+  "generated_at": "2026-11-17T21:07:10Z",
+  "catalog_version": "2026.11.17",
+  "catalog_count": 1782,
   "entries": [
+    {
+      "cve": "CVE-2026-115731",
+      "vendor": "Perforce",
+      "product": "Puppet Enterprise",
+      "name": "Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-17",
+      "due_date": "2026-12-01",
+      "ransomware": false,
+      "description": "Perforce Puppet Enterprise contains a deserialization of untrusted data vulnerability in Puppet\u2019s report-processing code that allows a client with any CA-signed agent certificate to execute arbitrary code on the Puppet Server as the service user by submitting a report containing ",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00366,
+      "epss_percentile": 0.30882
+    },
     {
       "cve": "CVE-2026-114713",
       "vendor": "UnrealIRCd",
@@ -1968,7 +1981,7 @@
     },
     {
       "cve": "CVE-2026-48558",
-      "vendor": "SimpleHelp ",
+      "vendor": "SimpleHelp",
       "product": "SimpleHelp",
       "name": "SimpleHelp Authentication Bypass Vulnerability",
       "date_added": "2026-06-29",
@@ -2589,19 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.87944,
       "epss_percentile": 0.99762
-    },
-    {
-      "cve": "CVE-2024-7399",
-      "vendor": "Samsung",
-      "product": "MagicINFO 9 Server",
-      "name": "Samsung MagicINFO 9 Server Path Traversal Vulnerability",
-      "date_added": "2026-04-24",
-      "due_date": "2026-05-08",
-      "ransomware": false,
-      "description": "Samsung MagicINFO 9 Server contains a path traversal vulnerability that could allow an attacker to write arbitrary files as system authority.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.91941,
-      "epss_percentile": 0.99818
     }
   ]
 }

@@ -304,10 +304,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>68612 indicators</span>
-      <span>1126 new / 25727 updated last run &middot; 13751 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>69091 indicators</span>
+      <span>1118 new / 26429 updated last run &middot; 13922 new / 7d</span>
       <span>11/11 feeds &middot; 4 optional &middot; 20d retention</span>
-      <span>sync 2026-11-17T08:10:27Z</span>
+      <span>sync 2026-11-17T21:07:15Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -336,11 +336,11 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="reports.html">&larr; Report feed</a>
 <h1 class="page-title">Rapid7 Detected Exploitation of CVE-2026-90436 against Atlassian Confluence Data Center, N-able N-central also Exploited</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">General</span>
+  <span class="badge badge-cat">Windows</span>
   <span class="badge">Rapid7 Cybersecurity Blog</span>
 <span class="badge">1 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 1 CVE(s), none in KEV &middot; 16 indicator(s)</div>
+  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 1 CVE(s), none in KEV &middot; 18 indicator(s)</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
@@ -348,7 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
     <table class="meta-table">
       <tbody>
         <tr><td>Source</td><td>Rapid7 Cybersecurity Blog</td></tr>
-        <tr><td>Category</td><td>General</td></tr>
+        <tr><td>Category</td><td>Windows</td></tr>
         <tr><td>Published</td><td>2026-11-16</td></tr>
         <tr><td>Report ID</td><td><code>1928c420c5ba3015</code></td></tr>
         <tr><td>Original</td><td><a href="https://www.rapid7.com/blog/post/etr-rapid7-detected-exploitation-of-cve-2026-90436-against-atlassian-confluence-data-center-n-able-n-central-also-exploited" rel="noopener">https://www.rapid7.com/blog/post/etr-rapid7-detected-exploitation-of-cve-2026-90436-against-atlassian-confluence-data-center-n-able-n-central-also-exploited</a></td></tr>
@@ -359,12 +359,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Overview On November 6, 2026, the Apache Software Foundation disclosed CVE-2026-90436 , a critical unsafe reflection vulnerability ( CWE-470 ) in Axis 1.x that allows for unauthenticated remote code execution (RCE). Apache Axis is a Simple Object Access Protocol (SOAP) implementation used for the creation of Java Web services. CISA has assigned CVE-2026-90436 a CVSS score of 9.8 Critical . Since the initial November 6 disclosure, it has transpired that some versions of Atlassian Confluence Data Center and N-able N-central use the affected Axis library and are vulnerable to CVE-2026-90436. Both products require a non-default configuration in order to be vulnerable. CVE-2026-90436 is now being actively exploited in the wild against both known affected products. On November 13, 2026, Rapid7 MDR detected exploitation of CVE-2026-90436 against Atlassian Confluence Data Center in a customer environment. Separately, on November 13, 2026, N-able reported exploitation in the wild against N-central for a vulnerability that strongly correlates to CVE-2026-90436. A proof-of-concept exploit that leverages CVE-2026-90436 and targets N-central was published on November 12, 2026, as part of a series of public zero-day disclosures against N-central. Rapid7 recommends remediating exposed systems on an emergency basis outside of normal patching cycles. Mitigation guidance Prioritize internet-accessible instances with the relevant APIs enabled, and check internal deployments as well. Apply the product-specific actions below, then investigate systems that were exposed for evidence of compromise. Axis 1.x through 1.4 is affected but has reached end of life (EOL) and Apache does not plan to publish a fixed Axis 1.x release. Apache recommends moving to another SOAP engine (for example, Apache Axis 2) or using an Axis 1.x build with this patch applied. Organizations using products that are affected by this issue should follow the product vendor&#39;s specific remediation instructions. Atlassian Confluence Data Center Atlassian lists versions 1.x through to 9.x as affected when “Remote API (XML-RPC &amp; SOAP)” is enabled. Version 9.2.28 is the fixed release. The setting has been off by default for new installations since version 3.0. Confluence version 10.x and later removed the feature so are not vulnerable, and Atlassian Cloud is unaffected. Affected users should upgrade to version 9.2.28 or a current unaffected 10.x release. If patching must wait, an administrator can open “General Con</p>
+  <p class="detail-text">Overview On November 6, 2026, the Apache Software Foundation disclosed CVE-2026-90436 , a critical unsafe reflection vulnerability ( CWE-470 ) in Axis 1.x that allows for unauthenticated remote code execution (RCE). Apache Axis is a Simple Object Access Protocol (SOAP) implementation used for the creation of Java Web services. CISA has assigned CVE-2026-90436 a CVSS score of 9.8 Critical . Since the initial November 6 disclosure, it has transpired that some versions of Atlassian Confluence Data Center and N-able N-central use the affected Axis library and are vulnerable to CVE-2026-90436. Both products require a non-default configuration in order to be vulnerable. CVE-2026-90436 is now being actively exploited in the wild against both known affected products. On November 13, 2026, Rapid7 MDR detected exploitation of CVE-2026-90436 against Atlassian Confluence Data Center in a customer environment. Separately, on November 13, 2026, N-able reported exploitation in the wild against N-central for a vulnerability that strongly correlates to CVE-2026-90436. A proof-of-concept exploit that leverages CVE-2026-90436 and targets N-central was published on November 12, 2026, as part of a series of public zero-day disclosures against N-central. Rapid7 recommends remediating exposed systems on an emergency basis outside of normal patching cycles. MDR observed exploitation On November 13, 2026, Rapid7&#39;s MDR team responded to a surge of alerts firing on the abnormal child processes launched by an Atlassian Confluence server. A review of the Confluence access logs revealed unauthenticated POST requests to /plugins/servlet/soap-axis1/confluenceservice-v2 , each returning an HTTP 500 (Internal Server Error). Despite the error responses, endpoint telemetry showed Confluence&#39;s Java process launching Bash and curl as the dedicated confluence service account, within seconds of these requests. The attacker proceeded to run hundreds of hex-encoded shell commands and scripts fetched from temporary Pinggy and Cloudflare Tunnel domains. Each command wrapped its output in labeled delimiters, and carried sequential task IDs, a structure that suggests the use of AI-assisted automated tooling. From this foothold, the attacker enumerated the host, network, Confluence configuration, encryption keys, and database settings. Just over three minutes after the first observed execution, the attackers were authenticating to MySQL with Confluence&#39;s own database credentials, querying page bodies, </p>
   <p class="muted">Excerpted from <a href="https://www.rapid7.com/blog/post/etr-rapid7-detected-exploitation-of-cve-2026-90436-against-atlassian-confluence-data-center-n-able-n-central-also-exploited" rel="noopener">Rapid7 Cybersecurity Blog</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (16)</h2>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (18)</h2>
   <div class="table-wrap">
     <table>
       <thead>
@@ -378,8 +378,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.acn.gov.it%2Fportale%2Fw%2Fn-able-rilevate-due-ulteriori-catene-di-exploit-denominate-agent2shell-e-4everable2shell-" target="_blank" rel="noopener"><code>hxxps://www[.]acn[.]gov[.]it/portale/w/n-able-rilevate-due-ulteriori-catene-di-exploit-denominate-agent2shell-e-4everable2shell-</code></a></td></tr>
         <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fme.n-able.com%2Fs%2Farticle%2FHow-to-Disable-Legacy-API-settings-on-On-premise-N-central-servers" target="_blank" rel="noopener"><code>hxxps://me[.]n-able[.]com/s/article/How-to-Disable-Legacy-API-settings-on-On-premise-N-central-servers</code></a></td></tr>
         <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.n-able.com%2Fblog%2Fnew-security-update-on-n-central" target="_blank" rel="noopener"><code>hxxps://www[.]n-able[.]com/blog/new-security-update-on-n-central</code></a></td></tr>
-        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.n-able.com%2Fblog%2Fn-able-vulnerability-remediation-update" target="_blank" rel="noopener"><code>hxxps://www[.]n-able[.]com/blog/n-able-vulnerability-remediation-update</code></a></td></tr>
-        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fuptime.n-able.com%2Fevent%2F202659%2F" target="_blank" rel="noopener"><code>hxxps://uptime[.]n-able[.]com/event/202659/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fstatus.n-able.com%2F2026%2F11%2F16%2Fn-central-2026-4-hf3-release-notes%2F" target="_blank" rel="noopener"><code>hxxps://status[.]n-able[.]com/2026/11/16/n-central-2026-4-hf3-release-notes/</code></a></td></tr>
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/192.238.253.176" target="_blank" rel="noopener"><code>192[.]238[.]253[.]176</code></a></td></tr>
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/5.133.47.243" target="_blank" rel="noopener"><code>5[.]133[.]47[.]243</code></a></td></tr>
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/163.182.68.109" target="_blank" rel="noopener"><code>163[.]182[.]68[.]109</code></a></td></tr>
@@ -387,6 +386,9 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/157.20.241.16" target="_blank" rel="noopener"><code>157[.]20[.]241[.]16</code></a></td></tr>
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/139.99.69.109" target="_blank" rel="noopener"><code>139[.]99[.]69[.]109</code></a></td></tr>
         <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/79.76.51.56" target="_blank" rel="noopener"><code>79[.]76[.]51[.]56</code></a></td></tr>
+        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/trycloudflare.com" target="_blank" rel="noopener"><code>trycloudflare[.]com</code></a></td></tr>
+        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/wpefh-192-238-253-176.free.pinggy.net" target="_blank" rel="noopener"><code>wpefh-192-238-253-176[.]free[.]pinggy[.]net</code></a></td></tr>
+        <tr><td>domain</td><td><a href="https://www.virustotal.com/gui/domain/webhook.site" target="_blank" rel="noopener"><code>webhook[.]site</code></a></td></tr>
       </tbody>
     </table>
   </div>
@@ -403,13 +405,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Assess exposure and patch affected systems: CVE-2026-90436</li><li>Block or hunt the 16 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Validate the indicators against your own telemetry before blocking or alerting.</li><li>Keep your asset inventory current so exposure to affected products is visible.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2026-90436</li><li>Block or hunt the 18 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.</li><li>Collect and review process, network and registry telemetry for the listed indicators.</li><li>Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
 <footer>
   <p>Active sources: Feodo Tracker &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed &middot; Optional (no key): URLhaus, ThreatFox, MalwareBazaar, AlienVault OTX</p>
-  <p>Retention: indicators not re-seen for 20 days are purged on every sync (3142 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-17T08:10:27Z UTC</span></p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (639 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-17T21:07:15Z UTC</span></p>
 </footer>
 <script>
 (function () {

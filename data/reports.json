@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T08:10:12Z",
+  "generated_at": "2026-11-17T21:07:05Z",
   "categories": [
     "windows",
     "linux",
@@ -11,6 +11,258 @@
   ],
   "reports": [
     {
+      "id": "918174e4844d2ee2",
+      "title": "Borrowed Code, Real Consequences: What OPTIMJACK Teaches Us",
+      "url": "https://unit42.paloaltonetworks.com/optimjack-supply-chain-attack/",
+      "source": "unit42",
+      "source_name": "Palo Alto Unit 42",
+      "category": "paloalto",
+      "published": "2026-11-17T20:43:14Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "The OPTIMJACK supply chain attack demonstrates how a compromised vendor script can expose websites, highlighting the need for strict segmentation. The post Borrowed Code, Real Consequences: What OPTIMJACK Teaches Us appeared first on Unit 42 .",
+      "content": "The OPTIMJACK supply chain attack demonstrates how a compromised vendor script can expose websites, highlighting the need for strict segmentation. The post Borrowed Code, Real Consequences: What OPTIMJACK Teaches Us appeared first on Unit 42 .",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Ensure PAN-OS updates plus Apps & Threats content updates are current; check the advisory's fixed versions.",
+        "Apply the vendor's mitigation guidance until patching completes and monitor traffic logs for the indicators.",
+        "Keep management interfaces internal-only with admin MFA/RBAC.",
+        "Read the full Unit 42 report for detections and additional context beyond the extracted indicators."
+      ],
+      "curated": false
+    },
+    {
+      "id": "fd7cfcb10974823f",
+      "title": "CVE-2026-114938: Reported Critical Pre-authentication Remote Code Execution in Java 17",
+      "url": "https://www.rapid7.com/blog/post/etr-cve-2026-114938-reported-critical-pre-authentication-remote-code-execution-java-17",
+      "source": "rapid7",
+      "source_name": "Rapid7 Cybersecurity Blog",
+      "category": "general",
+      "published": "2026-11-17T18:26:55Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "Overview On November 17, 2026, public reports described CVE-2026-114938 as a memory corruption vulnerability in Java 17 and above that could allow a remote attacker to execute code without authentication. For the latest vendor release information, refer to Oracle's November security update notice an",
+      "content": "Overview On November 17, 2026, public reports described CVE-2026-114938 as a memory corruption vulnerability in Java 17 and above that could allow a remote attacker to execute code without authentication. The reported severity is Critical, with a CVSSv4 score of 9.2. These CVE-specific details remain preliminary, pending confirmation in Oracle or OpenJDK advisories. Rapid7 is actively monitoring the situation and will update this blog as new information arrives. For the latest vendor release information, refer to Oracle's November security update notice and OpenJDK's vulnerability advisories . Rapid7 customers Exposure Command, Vulnerability Management, and Nexpose Exposure Command, Vulnerability Management, and Nexpose customers can assess exposure to CVE-2026-114938 with an authenticated vulnerability check available in the November 17 content release (1.1.4115). Updates November 17, 2026 : Initial publication.",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-114938"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://openjdk[.]org/groups/vulnerability/advisories/"
+        }
+      ],
+      "cves": [
+        "CVE-2026-114938"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2026-114938",
+        "Block or hunt the 2 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Validate the indicators against your own telemetry before blocking or alerting.",
+        "Keep your asset inventory current so exposure to affected products is visible."
+      ],
+      "curated": false
+    },
+    {
+      "id": "0c7617c3ded4f936",
+      "title": "Security for the agentic era, powered by Microsoft Perception",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/",
+      "source": "msrc",
+      "source_name": "Microsoft Security Blog",
+      "category": "windows",
+      "published": "2026-11-17T18:14:00Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "Over the past 12 months, frontier AI models have become remarkably good at discovering and exploiting software vulnerabilities, and similar levels of capability are quickly becoming available in open weights models with limited cyber guardrails. Nearly two weeks later, about 29 million services rema",
+      "content": "In this article A new cyber stack, built to fight AI with AI Delivering agentic security at Microsoft Ignite Secure your foundations Defend with agents Secure agentic insiders Changing how security work gets done Explore what's new A year ago, finding a serious, exploitable vulnerability was slow and expensive work done by elite security researchers. That\u2019s no longer true. Over the past 12 months, frontier AI models have become remarkably good at discovering and exploiting software vulnerabilities, and similar levels of capability are quickly becoming available in open weights models with limited cyber guardrails. Attacks that once required specialized resources are now within reach of almost anyone. We saw what that looks like in a single week this fall when PHP disclosed two critical remote code execution (RCE) vulnerabilities, flaws that let an attacker take control of a server with a single request over the internet. 1 At the time of disclosure, tens of millions of internet-facing PHP services were running affected versions. Nearly two weeks later, about 29 million services remained vulnerable. Behind those servers are banks, healthcare providers, energy companies, and much of the infrastructure the internet runs on. And that same day brought five other major disclosures across the industry. Explore coordinated agents and shared intelligence with Microsoft Perception Turning a flaw like the PHP one into a working attack once took a specialist team months. Within roughly a day of PHP2Shell\u2019s disclosure, security researchers had developed a working, weaponized exploit. By the following week, that research had expanded to cover additional PHP versions and configurations. The time from discovery to exploit is shrinking from months to minutes. The physics of cybersecurity are changing, and fast. AI is amplifying risk. Attackers can now find and exploit gaps faster than defenders can close them. Attacks are becoming fully automated. AI has moved from assisting attackers, to executing their tasks, to planning and running entire campaigns on its own. Agents are the new insiders. While not inherently malicious, they perform tasks and business workflows at machine speed, around the clock, and have broad access to data, apps, tools, and other agents. Like any insider, they can make mistakes, be manipulated, or be compromised. What we built for humans does not scale for AI. Frontier Transformation starts with business outcomes and a simple idea: technology was inv",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://cvetodo[.]com/2026-cves"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/perceptionignite"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/Defender_Ignite26"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/exposurenewsignite"
+        },
+        {
+          "type": "url",
+          "value": "hxxp://aka[.]ms/secureNow"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/vulnerabilityshielding"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/PurviewIgnite26"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/introducing-mai-cyber-2-flash"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/AI-drivenScanningHarness"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/ignite/entra"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/AA145lkh"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/learnmoreAItransparency"
+        },
+        {
+          "type": "url",
+          "value": "hxxp://aka[.]ms/ISOC_Defender"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/MDASHPartnership"
+        },
+        {
+          "type": "url",
+          "value": "hxxp://aka[.]ms/secureagenticinsiders"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/intuneatignite/"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]php[.]net/archive/2026[.]php#2026-10-20-1"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://www[.]cve[.]org/About/Metrics"
+        },
+        {
+          "type": "domain",
+          "value": "cvetodo[.]com"
+        }
+      ],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Block or hunt the 19 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
+        "Collect and review process, network and registry telemetry for the listed indicators.",
+        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
+      ],
+      "curated": false
+    },
+    {
+      "id": "2a3576b7db96929b",
+      "title": "The risks of device code authentication for AI coding agents",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/",
+      "source": "msrc",
+      "source_name": "Microsoft Security Blog",
+      "category": "windows",
+      "published": "2026-11-17T15:00:00Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "Instead of stealing a password, an attacker persuades someone to approve a sign-in on a legitimate site simply by entering a code. That led us to a different question: what else can an attacker do with a phished device code authorization? The phishing technique itself is not specific to GitHub or Co",
+      "content": "In this article From a familiar phishing technique to an AI coding agent How the attack works One approval, four ways the impact can spread Turning a phishing attempt into a Defender signal Mitigation and protection guidance References Learn More Device code phishing has become a recurring route to account takeover. Instead of stealing a password, an attacker persuades someone to approve a sign-in on a legitimate site simply by entering a code. The resulting access often can reach email, files, or other cloud services, depending on the account and the permissions granted. Notable earlier campaigns such as EvilTokens show how readily this technique can be scaled to do real damage. Microsoft worked hard with partners in industry and law enforcement to disrupt EvilTokens in September 2026. That led us to a different question: what else can an attacker do with a phished device code authorization? What happens when the same trick targets an AI agent rather than a mailbox? We used GitHub Copilot CLI as an illustrative example. Depending on its configuration, it can work with code, run commands on a user\u2019s machine, retain context across sessions, and allow an active session to be steered remotely. Like many command-line tools, it supports the OAuth device flow for sign-in. The phishing technique itself is not specific to GitHub or Copilot CLI: any public client that supports the device flow can be abused the same way, and the attacker chooses the requested scopes when starting the flow. We explored this scenario in a controlled lab simulation. A victim test account approved a GitHub device-code request initiated by an attacker client we controlled. With that approval, we were able to analyze four possible outcomes: Steer an active Copilot CLI session remotely, if the user has enabled remote control and organization policy allows it, and, subject to local permissions and approval settings, have the agent run commands on the user\u2019s machine. Add misleading entries to the agent\u2019s memory that could influence later interactions. Read Copilot CLI sessions that were synchronized to the cloud. Access private repositories available to the affected account. These are proof-of-concept results showing how existing features, working as designed, could be abused after a phished authorization; they are not attacks we have observed in the wild. These outcomes require the victim user to approve a device code request initiated by the attacker; each outcome also depends on the accou",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://aka[.]ms/threatintelblog"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence"
+        },
+        {
+          "type": "url",
+          "value": "hxxps://microsoft[.]github[.]io/zerotrustassessment/"
+        }
+      ],
+      "cves": [],
+      "tags": [
+        "Phishing"
+      ],
+      "techniques": [
+        "T1528",
+        "T1566.002"
+      ],
+      "recommendations": [
+        "Block or hunt the 4 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
+        "Collect and review process, network and registry telemetry for the listed indicators.",
+        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
+      ],
+      "curated": false
+    },
+    {
+      "id": "ada4eb2a4b5215fa",
+      "title": "Who Has Access to Claude? Bring AI Identity and Access Context Into Surface Command",
+      "url": "https://www.rapid7.com/blog/post/em-claude-access-brings-ai-context-into-surface-command-asm-easm",
+      "source": "rapid7",
+      "source_name": "Rapid7 Cybersecurity Blog",
+      "category": "general",
+      "published": "2026-11-17T14:26:29Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "Approving an AI service is only the starting point. As employees adopt Claude and their responsibilities change, security teams need to know who has access, which users hold administrative privileges, and whether those roles and group memberships still reflect the work they do. IBM\u2019s 2025 Cost of a",
+      "content": "Approving an AI service is only the starting point. As employees adopt Claude and their responsibilities change, security teams need to know who has access, which users hold administrative privileges, and whether those roles and group memberships still reflect the work they do. IBM\u2019s 2025 Cost of a Data Breach Report found that, among studied organizations reporting an AI-related breach, 97% lacked proper AI access controls. The finding highlights a broader challenge: AI adoption needs security practices that extend beyond the initial approval, supported by information teams can use to review access with administrators and service owners. Rapid7 Surface Command now integrates with Claude\u2019s Compliance API, bringing supported organization, user, role, group, and settings information into the same platform teams use to understand other assets and identities. The integration helps security teams make enterprise Claude access part of their existing review practices. Bring enterprise AI access into your security view An account list tells security teams who is present, while roles and group memberships help explain how access is organized and where further review may be needed. Surface Command\u2019s integration with Claude\u2019s Compliance API brings together: Organizations and users: Visibility into the Claude organization and its associated user accounts. Roles and groups: Context to understand users\u2019 assigned roles and group memberships. Organizational settings: Available configuration information to support review of the enterprise Claude environment. With those details in Surface Command, practitioners can examine Claude identities alongside the other assets and identities they manage. That gives them a clearer basis for working with service owners to evaluate whether access remains appropriate as teams and responsibilities change. The integration focuses on administrative visibility. It does not ingest Claude conversation content, provide threat detection on Claude activity, or control Claude\u2019s behavior. From a user record to an informed access review Consider a security practitioner reviewing administrative access to Claude. In Surface Command, they can inspect an imported user\u2019s details, review their organization role and administrative status, and examine their group memberships. The relationship graph provides a visual view of how that user connects to the organization and its groups, making those associations easier to follow. The practitioner can then work w",
+      "iocs": [
+        {
+          "type": "url",
+          "value": "hxxps://newsroom[.]ibm[.]com/2025-07-30-ibm-report-13-of-organizations-reported-breaches-of-ai-models-or-applications%2C-97-of-which-reported-lacking-proper-ai-access-controls"
+        }
+      ],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Block or hunt the 1 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Validate the indicators against your own telemetry before blocking or alerting.",
+        "Keep your asset inventory current so exposure to affected products is visible."
+      ],
+      "curated": false
+    },
+    {
+      "id": "981ecaa72b959899",
+      "title": "A phishing page interested in MX records, (Tue, Nov 17th)",
+      "url": "https://isc.sans.edu/diary/rss/33526",
+      "source": "sans_isc",
+      "source_name": "SANS ISC",
+      "category": "general",
+      "published": "2026-11-17T10:56:38Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "I\u2019ve mentioned before in some of my diaries that it can be instructive to look at what appear to be \u201cgeneric\u201d phishing messages in detail from time to time, since some of them might prove not to be as generic as they initially appear. I came across a good example of this while going over phishing me",
+      "content": "I\u2019ve mentioned before in some of my diaries that it can be instructive to look at what appear to be \u201cgeneric\u201d phishing messages in detail from time to time, since some of them might prove not to be as generic as they initially appear. I came across a good example of this while going over phishing messages delivered to our handler inbox over the past few weeks, when a message that, at first glance, appeared to be a fairly ordinary attempt at stealing e-mail credentials turned out to lead to a page interested in collecting a little more information than just the victim's password.",
+      "iocs": [],
+      "cves": [],
+      "tags": [
+        "Phishing"
+      ],
+      "techniques": [],
+      "recommendations": [
+        "Validate the indicators against your own telemetry before blocking or alerting.",
+        "Keep your asset inventory current so exposure to affected products is visible."
+      ],
+      "curated": false
+    },
+    {
       "id": "e65b54b96a122d5a",
       "title": "ISC Stormcast For Tuesday, November 17th, 2026 https://isc.sans.edu/podcastdetail/10182, (Tue, Nov 17th)",
       "url": "https://isc.sans.edu/diary/rss/33524",
@@ -18,7 +270,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-17T02:05:15Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -39,7 +291,7 @@
       "source_name": "Ubuntu Security Notices",
       "category": "linux",
       "published": "2026-11-17T01:05:37Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "A remote attacker could possibly use this issue to read or modify sensitive data. (CVE-2026-114820) It was discovered that the Security component of CRaC JDK 25 did not correctly authenticate users. A remote attacker could possibly use this issue to modify sensitive data.",
       "content": "It was discovered that the Security component of CRaC JDK 25 did not correctly authenticate users. A remote attacker could possibly use this issue to read or modify sensitive data. (CVE-2026-114820) It was discovered that the Security component of CRaC JDK 25 did not correctly authenticate users. A remote attacker could possibly use this issue to modify sensitive data. (CVE-2026-83374) It was discovered that the JSSE component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibly use this issue to modify sensitive data. (CVE-2026-83376, CVE-2026-91461) It was discovered that the Compiler component of OpenJDK 25 did not correctly authorize users. An unauthenticated remote attacker could possibly use this issue to read or modify sensitive data. (CVE-2026-83378) It was discovered that the JAAS component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibly use this issue to read sensitive data. (CVE-2026-83380) It was discovered that the Security component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibly use this issue to read or modify sensitive data. (CVE-2026-83381, CVE-2026-87294) It was discovered that the JDBC component of CRaC JDK 25 did not correctly authenticate users. A remote attacker could possibly use this issue to read sensitive data. (CVE-2026-83387) It was discovered that the Networking component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibly use this issue to cause a denial of service or to modify sensitive data. (CVE-2026-83395) It was discovered that the JAXP component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibly use this issue to cause a denial of service. (CVE-2026-83400) It was discovered that the Compiler component of OpenJDK 25 did not correctly authorize users. An unauthenticated remote attacker could possibly use this issue to read sensitive data. (CVE-2026-87255) It was discovered that the JAXP component of CRaC JDK 25 did not correctly authenticate users. A remote attacker could possibly use this issue to read sensitive data. (CVE-2026-87290) It was discovered that the Networking component of OpenJDK 25 did not correctly authorize users. An unauthenticated remote attacker could possibly use this issue to read sensitive data. (CVE-2026-87291) It was discovered that the Networking component of CRaC JDK 25 did not correctly authorize users. A remote attacker could possibl",
       "iocs": [
@@ -85,6 +337,227 @@
       "curated": false
     },
     {
+      "id": "9c072c28300acdb2",
+      "title": "USN-9115-1: Mini-XML vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-9115-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:51:50Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "An attacker could possibly use these issues to cause Mini-XML to crash, resulting in a denial of service. (CVE-2016-4570, CVE-2016-4571) It was discovered that Mini-XML incorrectly handled certain floating point values when writing XML nodes, leading to a stack-based buffer overflow. An attacker cou",
+      "content": "It was discovered that Mini-XML used unbounded recursion when deleting and writing XML nodes. An attacker could possibly use these issues to cause Mini-XML to crash, resulting in a denial of service. These issues only affected Ubuntu 16.04 LTS. (CVE-2016-4570, CVE-2016-4571) It was discovered that Mini-XML incorrectly handled certain floating point values when writing XML nodes, leading to a stack-based buffer overflow. An attacker could possibly use this issue to cause Mini-XML to crash, resulting in a denial of service, or possibly execute arbitrary code. (CVE-2018-20004)",
+      "iocs": [],
+      "cves": [
+        "CVE-2016-4570",
+        "CVE-2016-4571",
+        "CVE-2018-20004"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2016-4570, CVE-2016-4571, CVE-2018-20004",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "a5dc4de77c0e0232",
+      "title": "USN-8979-2: Deluge vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-8979-2",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:51:34Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "A remote attacker could possibly use this issue to trick a user into installing a malicious plugin, resulting in the execution of arbitrary code. (CVE-2017-7178) It was discovered that the web UI in Deluge incorrectly handled certain requests. A remote attacker could possibly use this issue to read",
+      "content": "USN-8979-1 fixed vulnerabilities in Deluge. Due to a packaging error, the fixes were not applied in the update for Ubuntu 16.04 LTS. This update fixes the problem. Original advisory details: It was discovered that the web UI in Deluge did not protect against cross-site request forgery. A remote attacker could possibly use this issue to trick a user into installing a malicious plugin, resulting in the execution of arbitrary code. (CVE-2017-7178) It was discovered that the web UI in Deluge incorrectly handled certain requests. A remote attacker could possibly use this issue to read arbitrary files. (CVE-2017-9031)",
+      "iocs": [],
+      "cves": [
+        "CVE-2017-7178",
+        "CVE-2017-9031"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2017-7178, CVE-2017-9031",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "f1056de0fdab5895",
+      "title": "USN-9130-1: zutils vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9130-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:49:28Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "If a user were tricked into opening a specially crafted compressed file, an attacker could possibly use this issue to cause a denial of service or execute arbitrary code.",
+      "content": "It was discovered that zcat in zutils incorrectly handled the -v option, leading to a buffer overflow. If a user were tricked into opening a specially crafted compressed file, an attacker could possibly use this issue to cause a denial of service or execute arbitrary code.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "b4fb2b21e50b8dd7",
+      "title": "USN-9129-1: ZBar vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9129-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:49:13Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "If a user or automated system were tricked into scanning a specially crafted QR code, an attacker could possibly use this issue to obtain sensitive information or execute arbitrary code.",
+      "content": "It was discovered that ZBar incorrectly handled certain QR codes, leading to a heap-based buffer overflow. If a user or automated system were tricked into scanning a specially crafted QR code, an attacker could possibly use this issue to obtain sensitive information or execute arbitrary code.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "e4043f80eb4569e4",
+      "title": "USN-9128-1: YADIFA vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9128-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:49:05Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "A remote attacker could possibly use this issue to cause YADIFA to consume excessive CPU resources, leading to a denial of service.",
+      "content": "It was discovered that YADIFA did not check for infinite pointer loops when parsing DNS packets. A remote attacker could possibly use this issue to cause YADIFA to consume excessive CPU resources, leading to a denial of service.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "3cebd5d56dd133b5",
+      "title": "USN-9127-1: Syntastic vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9127-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:48:57Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "If a user were tricked into checking a file in a directory controlled by an attacker, the attacker could possibly use this issue to execute arbitrary code.",
+      "content": "It was discovered that Syntastic searched the current directory and its parents for checker configuration files. If a user were tricked into checking a file in a directory controlled by an attacker, the attacker could possibly use this issue to execute arbitrary code. After this update, Syntastic only reads checker configuration files that are named in the *_config_file options.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "689e4f8df0260462",
+      "title": "USN-9126-1: tmpreaper vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9126-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:48:52Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "A local attacker could possibly use this issue to create arbitrary files, leading to privilege escalation.",
+      "content": "It was discovered that tmpreaper incorrectly handled certain mount operations, leading to a race condition. A local attacker could possibly use this issue to create arbitrary files, leading to privilege escalation.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "d087979deaa2582d",
+      "title": "USN-9124-1: RenderDoc vulnerabilities",
+      "url": "https://ubuntu.com/security/notices/USN-9124-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:48:44Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "An attacker could possibly use this issue to cause a buffer overflow, resulting in a denial of service, or possibly execute arbitrary code. (CVE-2023-33863) It was discovered that RenderDoc incorrectly handled certain socket reads, leading to an integer overflow. A remote attacker could possibly use",
+      "content": "It was discovered that RenderDoc did not properly verify array sizes when serialising strings, leading to an integer overflow. An attacker could possibly use this issue to cause a buffer overflow, resulting in a denial of service, or possibly execute arbitrary code. (CVE-2023-33863) It was discovered that RenderDoc incorrectly handled certain socket reads, leading to an integer overflow. A remote attacker could possibly use this issue to cause a heap buffer overflow, resulting in a denial of service, or possibly execute arbitrary code. (CVE-2023-33864) It was discovered that RenderDoc followed symbolic links when opening its log file in the /tmp/RenderDoc directory. A local attacker could possibly use this issue to escalate privileges. (CVE-2023-33865)",
+      "iocs": [],
+      "cves": [
+        "CVE-2023-33863",
+        "CVE-2023-33864",
+        "CVE-2023-33865"
+      ],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Assess exposure and patch affected systems: CVE-2023-33863, CVE-2023-33864, CVE-2023-33865",
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
+      "id": "89eb84f01d19176e",
+      "title": "USN-9123-1: mechanize vulnerability",
+      "url": "https://ubuntu.com/security/notices/USN-9123-1",
+      "source": "ubuntu",
+      "source_name": "Ubuntu Security Notices",
+      "category": "linux",
+      "published": "2026-11-17T00:48:35Z",
+      "fetched": "2026-11-17T21:07:05Z",
+      "summary": "Erik Krogh Kristensen and Rasmus Petersen discovered that mechanize used an inefficient regular expression to parse authentication headers. A malicious server could possibly use this issue to cause mechanize to consume excessive resources, leading to a denial of service.",
+      "content": "Erik Krogh Kristensen and Rasmus Petersen discovered that mechanize used an inefficient regular expression to parse authentication headers. A malicious server could possibly use this issue to cause mechanize to consume excessive resources, leading to a denial of service.",
+      "iocs": [],
+      "cves": [],
+      "tags": [],
+      "techniques": [],
+      "recommendations": [
+        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
+        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
+        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
+        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
+      ],
+      "curated": false
+    },
+    {
       "id": "3099ffeb8eda387c",
       "title": "High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors",
       "url": "https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/",
@@ -92,7 +565,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-17T00:08:41Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The threat actors used phishing emails disguised as legitimate Microsoft 365 service-health notifications to lure recipients into clicking a malicious link. This is consistent with historical attacker campaigns which continuously look for notable global events to exploit in their social engineering",
       "content": "In this article Phishing attack overview Attack chain overview Mitigation and protection guidance References Learn More On November 13, 2026, Microsoft Threat Intelligence observed a coordinated, high-volume phishing campaign targeting organizations across multiple sectors worldwide. The threat actors used phishing emails disguised as legitimate Microsoft 365 service-health notifications to lure recipients into clicking a malicious link. The messages created a false sense of urgency by claiming that emails had been held during a service disruption and would be deleted within 24 hours unless the recipient took action to restore them. This is consistent with historical attacker campaigns which continuously look for notable global events to exploit in their social engineering lures. Microsoft identified the threat actor\u2019s use of specific sender domain names, randomized outage subjects, recipient-specific tracking links, and a common non-Microsoft destination to make the messages appear relevant while complicating simple pattern matching. We assess that the activity was likely credential phishing; however, the available evidence does not confirm credential capture, malware delivery, or post-compromise activity. Multiple threat actors may continue to look for ways to exploit notable global events in any social engineering pretext. If credentials were entered, organizations should consider the risk of account compromise, mailbox access, business email compromise, internal phishing, inbox-rule manipulation, and access to cloud collaboration data. Microsoft Defender blocks malicious domains used in this campaign, and Microsoft Defender for Office 365 blocks and quarantines phishing emails. We will continue to monitor this campaign and other related threats. Security teams can use Microsoft Defender for Office 365 and Microsoft Defender XDR capabilities to investigate messages, URLs, clicks, and potential follow-on activity. Phishing attack overview Microsoft analyzed the email lures sent on November 13, 2026: the emails used the subject pattern \u201cOutage \u2013 <random token>\u201d and display names built from a three-character, organization-style prefix followed by \u201cOutage Notification\u201d or \u201cService Health.\u201d Example subject line: Outage \u2013 aF7vG6 Example display names: MSF Outage Notification AMZ Service Health One example email body referenced a purported Exchange Online incident on November 12 and claimed that four messages were held after the outage. The urgency of a 24-hou",
       "iocs": [
@@ -194,7 +667,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-11-16T23:00:55Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The post QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments appeared first on Unit 42 .",
       "content": "We uncover a Southeast Asian cyberespionage campaign deploying PerfectPioneer RAT, modular KUKURAT and stealth HTTP/3 C2 communication channels. The post QUIC and Covert: Novel HTTP/3-Powered RATs Target Southeast Asian Governments appeared first on Unit 42 .",
       "iocs": [],
@@ -215,11 +688,11 @@
       "url": "https://www.rapid7.com/blog/post/etr-rapid7-detected-exploitation-of-cve-2026-90436-against-atlassian-confluence-data-center-n-able-n-central-also-exploited",
       "source": "rapid7",
       "source_name": "Rapid7 Cybersecurity Blog",
-      "category": "general",
+      "category": "windows",
       "published": "2026-11-16T18:14:14Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Overview On November 6, 2026, the Apache Software Foundation disclosed CVE-2026-90436 , a critical unsafe reflection vulnerability ( CWE-470 ) in Axis 1.x that allows for unauthenticated remote code execution (RCE). CISA has assigned CVE-2026-90436 a CVSS score of 9.8 Critical . Since the initial No",
-      "content": "Overview On November 6, 2026, the Apache Software Foundation disclosed CVE-2026-90436 , a critical unsafe reflection vulnerability ( CWE-470 ) in Axis 1.x that allows for unauthenticated remote code execution (RCE). Apache Axis is a Simple Object Access Protocol (SOAP) implementation used for the creation of Java Web services. CISA has assigned CVE-2026-90436 a CVSS score of 9.8 Critical . Since the initial November 6 disclosure, it has transpired that some versions of Atlassian Confluence Data Center and N-able N-central use the affected Axis library and are vulnerable to CVE-2026-90436. Both products require a non-default configuration in order to be vulnerable. CVE-2026-90436 is now being actively exploited in the wild against both known affected products. On November 13, 2026, Rapid7 MDR detected exploitation of CVE-2026-90436 against Atlassian Confluence Data Center in a customer environment. Separately, on November 13, 2026, N-able reported exploitation in the wild against N-central for a vulnerability that strongly correlates to CVE-2026-90436. A proof-of-concept exploit that leverages CVE-2026-90436 and targets N-central was published on November 12, 2026, as part of a series of public zero-day disclosures against N-central. Rapid7 recommends remediating exposed systems on an emergency basis outside of normal patching cycles. Mitigation guidance Prioritize internet-accessible instances with the relevant APIs enabled, and check internal deployments as well. Apply the product-specific actions below, then investigate systems that were exposed for evidence of compromise. Axis 1.x through 1.4 is affected but has reached end of life (EOL) and Apache does not plan to publish a fixed Axis 1.x release. Apache recommends moving to another SOAP engine (for example, Apache Axis 2) or using an Axis 1.x build with this patch applied. Organizations using products that are affected by this issue should follow the product vendor's specific remediation instructions. Atlassian Confluence Data Center Atlassian lists versions 1.x through to 9.x as affected when \u201cRemote API (XML-RPC & SOAP)\u201d is enabled. Version 9.2.28 is the fixed release. The setting has been off by default for new installations since version 3.0. Confluence version 10.x and later removed the feature so are not vulnerable, and Atlassian Cloud is unaffected. Affected users should upgrade to version 9.2.28 or a current unaffected 10.x release. If patching must wait, an administrator can open \u201cGeneral Con",
+      "content": "Overview On November 6, 2026, the Apache Software Foundation disclosed CVE-2026-90436 , a critical unsafe reflection vulnerability ( CWE-470 ) in Axis 1.x that allows for unauthenticated remote code execution (RCE). Apache Axis is a Simple Object Access Protocol (SOAP) implementation used for the creation of Java Web services. CISA has assigned CVE-2026-90436 a CVSS score of 9.8 Critical . Since the initial November 6 disclosure, it has transpired that some versions of Atlassian Confluence Data Center and N-able N-central use the affected Axis library and are vulnerable to CVE-2026-90436. Both products require a non-default configuration in order to be vulnerable. CVE-2026-90436 is now being actively exploited in the wild against both known affected products. On November 13, 2026, Rapid7 MDR detected exploitation of CVE-2026-90436 against Atlassian Confluence Data Center in a customer environment. Separately, on November 13, 2026, N-able reported exploitation in the wild against N-central for a vulnerability that strongly correlates to CVE-2026-90436. A proof-of-concept exploit that leverages CVE-2026-90436 and targets N-central was published on November 12, 2026, as part of a series of public zero-day disclosures against N-central. Rapid7 recommends remediating exposed systems on an emergency basis outside of normal patching cycles. MDR observed exploitation On November 13, 2026, Rapid7's MDR team responded to a surge of alerts firing on the abnormal child processes launched by an Atlassian Confluence server. A review of the Confluence access logs revealed unauthenticated POST requests to /plugins/servlet/soap-axis1/confluenceservice-v2 , each returning an HTTP 500 (Internal Server Error). Despite the error responses, endpoint telemetry showed Confluence's Java process launching Bash and curl as the dedicated confluence service account, within seconds of these requests. The attacker proceeded to run hundreds of hex-encoded shell commands and scripts fetched from temporary Pinggy and Cloudflare Tunnel domains. Each command wrapped its output in labeled delimiters, and carried sequential task IDs, a structure that suggests the use of AI-assisted automated tooling. From this foothold, the attacker enumerated the host, network, Confluence configuration, encryption keys, and database settings. Just over three minutes after the first observed execution, the attackers were authenticating to MySQL with Confluence's own database credentials, querying page bodies, ",
       "iocs": [
         {
           "type": "url",
@@ -251,11 +724,7 @@
         },
         {
           "type": "url",
-          "value": "hxxps://www[.]n-able[.]com/blog/n-able-vulnerability-remediation-update"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://uptime[.]n-able[.]com/event/202659/"
+          "value": "hxxps://status[.]n-able[.]com/2026/11/16/n-central-2026-4-hf3-release-notes/"
         },
         {
           "type": "ipv4",
@@ -284,6 +753,18 @@
         {
           "type": "ipv4",
           "value": "79[.]76[.]51[.]56"
+        },
+        {
+          "type": "domain",
+          "value": "trycloudflare[.]com"
+        },
+        {
+          "type": "domain",
+          "value": "wpefh-192-238-253-176[.]free[.]pinggy[.]net"
+        },
+        {
+          "type": "domain",
+          "value": "webhook[.]site"
         }
       ],
       "cves": [
@@ -293,9 +774,10 @@
       "techniques": [],
       "recommendations": [
         "Assess exposure and patch affected systems: CVE-2026-90436",
-        "Block or hunt the 16 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
+        "Block or hunt the 18 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
+        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
+        "Collect and review process, network and registry telemetry for the listed indicators.",
+        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
       ],
       "curated": false
     },
@@ -342,7 +824,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-11-16T16:24:38Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "An attacker with view-only access to a document can chain vulnerabilities in ONLYOFFICE Docs to execute arbitrary operating system commands as root inside the official DocumentServer container. CVE Finding CVSS CVE-2026-113627 DocBuilder native file read and Session JWT forgery 7.1 High CVE-2026-110",
       "content": "Overview As part of our research into Zimbra Collaboration Suite , Rapid7 reported five findings in ONLYOFFICE Docs. An attacker with view-only access to a document can chain vulnerabilities in ONLYOFFICE Docs to execute arbitrary operating system commands as root inside the official DocumentServer container. The findings also expose server files and document data that the viewer never displays, even when downloading is disabled. CVE Finding CVSS CVE-2026-113627 DocBuilder native file read and Session JWT forgery 7.1 High CVE-2026-110385 DocBuilder SaveFile conversion parameter injection and code execution 8.7 High CVE-2026-97727 Complete-save format path traversal and arbitrary file write 6.5 Medium CVE-2026-113630 Root-helper command injection 7.8 High CVE-2026-113631 View-only export of non-rendered document data 6.5 Medium ONLYOFFICE confirmed on October 23, 2026 that all five findings were fixed in Document Server 10.0. The changelog describes the release's security changes. Proof-of-concept code is available on the accompanying Github repository . Product description ONLYOFFICE Docs provides online viewers and editors for documents, spreadsheets, presentations, forms and PDFs. It supports collaborative editing and can integrate with applications that store and share files. An integrating application, for example Zimbra Collaboration Suite, supplies an opening configuration identifying the document and the user's permissions, signed with the Browser key. This client-visible credential is referred to below as the Editor JWT. After opening a document, DocumentServer issues a Session JWT for reconnecting and saving. Incoming service requests, including document-building jobs, are validated using ONLYOFFICE's Inbox JWT key. DocumentServer can also send generated document output to the integrating application's callback URL. Credit This assessment and the exploit-chain research were conducted by Jonah Burgess (CryptoCat), Senior Security Researcher at Rapid7 . The findings are being disclosed in accordance with Rapid7's vulnerability disclosure policy . Testing setup Rapid7 tested the official onlyoffice/documentserver:9.4.0 image with package onlyoffice-documentserver 9.4.0-129 . DocumentServer ran as the ds account. JWT validation remained enabled, and no authentication check, private-address filter, or vendor code was disabled or modified. Browser and Inbox validation used the same effective signing key. Our analysis of the vendor supplied fixes compare",
       "iocs": [
@@ -462,7 +944,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-16T13:11:04Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "These requests appear to attempt to exploit CVE-2026-42271 and CVE-2026-48710. Horizon3.ai published a short write-up about how these vulnerabilities can be chained to achieve remote code execution without authentication [Horizon3]",
       "content": "This weekend, we started seeing requests for /mcp-rest/test/tools/list hitting our honeypots. These requests appear to attempt to exploit CVE-2026-42271 and CVE-2026-48710. Horizon3.ai published a short write-up about how these vulnerabilities can be chained to achieve remote code execution without authentication [Horizon3]",
       "iocs": [
@@ -516,7 +998,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-16T02:00:05Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -537,7 +1019,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-15T18:17:27Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "YARA-X's 1.23.0 release brings 4 improvements and 16 bugfixes.",
       "content": "YARA-X's 1.23.0 release brings 4 improvements and 16 bugfixes.",
       "iocs": [],
@@ -558,7 +1040,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-13T21:31:44Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Microsoft Threat Intelligence has confirmed ConnectWise\u2019s reported activity and we have also observed threat actors abusing ScreenConnect, a legitimate remote-support application, to install unauthorized remote-access clients and deploy a malicious worm, SCKit, on ConnectWise customer managed endpoi",
       "content": "In this article ScreenConnect architecture and attack surfaces Attack chain overview Mitigation and protection guidance Indicators of compromise and supporting artifacts References Learn More Beginning on November 11, 2026, ConnectWise reported an active campaign of a threat actor gaining unauthorized access to cloud-hosted ConnectWise ScreenConnect instances belonging to managed service providers (MSPs). Microsoft Threat Intelligence has confirmed ConnectWise\u2019s reported activity and we have also observed threat actors abusing ScreenConnect, a legitimate remote-support application, to install unauthorized remote-access clients and deploy a malicious worm, SCKit, on ConnectWise customer managed endpoints. Additionally, Microsoft analyzed the malicious worm\u2019s behavior: deployment starts with commands issued through ScreenConnect to silently install an identical client connected to threat actor-controlled infrastructure. A batch launcher retrieves a PowerShell decoder that decrypts and extracts SCKit using device-specific key material. The toolkit establishes persistence through scheduled tasks and registry Run entries and deploys RelayTrap, a component designed to deliver a malicious payload to a connecting technician. We have identified that the worm targets IT support technician workstations using the hijacked authenticated ScreenConnect Session and uses the victim\u2019s management console to distribute payloads to other managed devices. The resulting access to either target enables threat actors to remotely administer affected endpoints, execute commands, and deploy further tools independently of the legitimate support instance. Defenders should investigate technician workstations and downstream affected endpoints. Removing an unauthorized client alone does not remove the toolkit\u2019s persistence or invalidate exposed web sessions. In this blog, we examine SCKit\u2019s attack chain and payload components and provide mitigation guidance, indicators of compromise, and Microsoft Defender XDR advanced hunting queries to help organizations identify and disrupt this activity. ScreenConnect architecture and attack surfaces ScreenConnect, formerly ConnectWise Control, is a remote-support and access platform used by MSPs to administer customer devices, often alongside remote monitoring and management (RMM) software. Its operating model has three parts: Management instance. A cloud-hosted or on-premises ScreenConnect server provides the web console and manages sessions. Its re",
       "iocs": [
@@ -721,7 +1203,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-11-13T20:57:13Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "AI-enabled penetration testing and red team frameworks can automate and chain reconnaissance, vulnerability testing, and follow-on actions, lowering the skill threshold for attackers and accelerating intrusions when the tools are misused. Talos has seen full automation of the attack chain by these f",
       "content": "Cisco Talos is tracking the growing in-the-wild usage of AI-enabled penetration testing frameworks. AI-enabled penetration testing and red team frameworks can automate and chain reconnaissance, vulnerability testing, and follow-on actions, lowering the skill threshold for attackers and accelerating intrusions when the tools are misused. Talos has seen full automation of the attack chain by these frameworks, which not only use free and open-source tools, like nmap and nuclei, but also take advantage of internet mapping services like Censys and Shodan, CAPTCHA bypass services, credential leak management services, residential proxies, and even hash cracking services. This is the case of Hephaestus, which we mentioned in our previous report . Although these frameworks all have the same purpose, they come in different flavors. Some, like Hephaestus, are command line tools which can be deployed with a single script on a VPS and are completely controllable via Telegram. PentAGI has a web interface to monitor the agent activity with a full attack chain graph design and monitoring. Talos found more than 700 instances of currently reachable PentAGI instances on the internet. HexStrike AI integrates with many different clients like Claude Code, VS Code, or any other client that supports MCP. One such framework making waves, ARTEX, has enabled threat actors to scale offensive operations, compressing work that may have previously taken skilled teams hours or days into activity that can unfold at machine speed. Talos\u2019 analysis of ARTEX-associated IP addresses identified a diverse set of tools concurrently present on that infrastructure, reinforcing ARTEX\u2019s role in a broader and varied threat environment. AI-enabled frameworks: A new reality Before we delve into ARTEX, it is clear that these frameworks are the new reality. Their evolution will most likely include autonomous lateral movement followed by data identification and exfiltration. The precursor of this can already be seen in the victim prioritization of the Volta Infostealer, described in detail in this Talos report . It is highly likely that future attack chains involving these frameworks will culminate in data exfiltration and ransomware activation, all being done autonomously by one of these frameworks. Such evolutions present new challenges to defenders: It reduces the time it takes to detect a compromise without any known indicators of compromise (IOCs). We provide guidance to help overcome this challenge i",
       "iocs": [
@@ -771,7 +1253,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "network",
       "published": "2026-11-13T16:37:29Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Those differences can affect what happens when you need to investigate a compromised account or trace an attacker\u2019s low-and-slow activity across your environment. Investigations combine security telemetry with vulnerability and asset-risk context. Incident reports document findings, attacker timelin",
       "content": "When comparing MDR pricing, it helps to understand what the same annual budget would buy from each provider. Two proposals with similar prices may give analysts access to different evidence, retain it for different periods, or leave your team with different responsibilities. Those differences can affect what happens when you need to investigate a compromised account or trace an attacker\u2019s low-and-slow activity across your environment. For security leaders weighing asset-based against ingestion-based pricing, a useful comparison starts with the systems you need to protect and the logs required to investigate threats. Giving providers the same requirements and budget helps expose the decisions behind each quote, including what you would need to exclude or pay more to include. Asset-based vs. ingestion-based MDR pricing Under asset-based pricing, the charge is tied to a defined population of assets. You need to establish how the provider counts workstations, servers, cloud resources, and other systems, alongside which data sources and service capabilities the price includes. A predictable asset count can help with budgeting, but the proposal still needs to explain any integration limits or additional service charges. At Rapid7, an asset is defined as any physical or virtual endpoint or server running a supported operating system within the monitored environment. With ingestion-based pricing, some of the cost depends on the volume of data collected or processed. The comparison needs to account for the included allowance, how billable volume is measured, and what happens when usage increases. Retention, search, and supporting infrastructure may also contribute to the overall cost, depending on the commercial model. At Rapid7, MDR customers have access to 13 months hot storage of logs as standard. Whichever approach you are evaluating, include the technology, analysts, and response support needed to deliver the service. A SIEM ingestion charge on its own cannot be compared directly with an MDR subscription that includes investigation and response. Both proposals need to account for the work your organization expects the provider to perform - this clarity is key to a successful partnership. How to make a like-for-like MDR pricing comparison Give each provider the same asset inventory, required data sources, retention needs, and response expectations, then ask what fits within your annual budget. Any exclusions should be visible in the proposal, so you can judge t",
       "iocs": [
@@ -867,7 +1349,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-13T03:41:41Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Introduction",
       "content": "Introduction",
       "iocs": [],
@@ -890,7 +1372,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-13T02:00:03Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -1148,7 +1630,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-11-12T19:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Their vulnerability was contagious and soon encouraged others to speak up more in class, and everyone began to ask more pointed questions. I don't know the answers, but a few days ago I didn't know there were questions.\u201d \u2013 Terry Pratchett The one big thing Cisco Talos is breaking down a huge Microso",
       "content": "Welcome to this week's edition of the Threat Source newsletter. Back in college, I took an anthropology course called \u201cPeoples and Cultures of Southeast Asia.\u201d While the title sounded like your everyday anthro course, this one was a little different. It had fewer students, maybe around 10, and took place from 7 \u2013 9 p.m., most college kids\u2019 nightmare \u2014 but it was the perfect time of day to videochat with Malaysian students on the other side of the globe with a 12-hour time difference. My university had a 14-week semester, while the university in Kuala Lumpur had seven weeks, so our class had time before meeting the students to study Malaysia\u2019s pre- and post-colonial history, political climate, and cultural and religious dynamics; watch famous Petronas Deepavali and Chinese New Year ads ; and (of course) drool over pictures of nasi lemak and teh tarik. When both classes began videochatting with one another (yeah, we used Zoom before it was cool), our questions were quite tame. This was partly because we were afraid of offending one another, and partly due to some thorny laws around political speech. They\u2019d ask, \u201cWhere do you store your winter clothes during the summer? They\u2019re so puffy!\u201d or \u201cHow often do you eat at McDonald\u2019s?\u201d We\u2019d ask, \u201cWhat's your favorite food at pasar malams (night markets)?\u201d and \u201cHow do you deal with the heat and humidity?\u201d (The answer to that one: Malaysia, which is around the size of New Mexico, has around 1,000 shopping malls with heavenly air conditioning.) Over the weeks, with encouragement from our professors, a few brave souls from both countries began to open up about their opinions on the government, social justice movements, discrimination, and more. Their vulnerability was contagious and soon encouraged others to speak up more in class, and everyone began to ask more pointed questions. They\u2019d ask, \u201cWhat is it like to be openly LGBT+ in the U.S.?\u201d We\u2019d ask, \u201cDo you think the new political party gaining the prime ministership will bring more change?\u201d We soon developed a class motto: Never be afraid to ask questions. I firmly believe that questions asked in good faith create a space where it is safe to be curious, when everyone understands that the goal is understanding, not judgment. It\u2019s perfectly fine to be honest about your lack of knowledge, and you\u2019re always allowed to decline a question if the topic is too complex or personal to unpack in the moment. I'm grateful to still carry this philosophy with me today. I work with ",
       "iocs": [
@@ -1290,7 +1772,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-12T17:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "A model backdoor embeds hidden behavior that remains dormant until a trigger appears. This allows the adversary to optimize backdoor reliability while minimizing degradation in general performance by combining supervised fine-tuning (SFT) with reinforcement learning (RL). That autonomy changes the c",
       "content": "In this article Dataset poisoning: Teaching agents to discover and misuse tools Model poisoning: Building reliable backdoors that persist and transfer What the studies show about agent backdoors Mitigation and protection guidance Securing agents beyond the model References Learn More As organizations increasingly deploy specialized AI agents, trust cannot depend solely on a model behaving as expected during evaluation or normal use. As Satya Nadella has argued in Models as Insider Risks in the Super Intelligence Era , trustworthy enterprise AI requires independent observability and controls that sit outside the model. Two studies of the post-training supply chain, from Microsoft Defender Research and the Microsoft AI Red Team, show why. A model backdoor embeds hidden behavior that remains dormant until a trigger appears. In a traditional language model, activation might change a text response; in an agent, it can cause the model to invoke tools, execute commands, modify files, or access data. The two studies examine attacks with different levels of access. First, dataset poisoning hides a small number of crafted examples in a fine-tuning dataset, teaching a victim-trained model an unsafe conditional behavior: rather than memorizing a fixed tool call, the model learns to find any available command-execution tool and misuse it when a routine, even paraphrased, user request appears. It reached approximately 78% attack success on in-distribution harnesses and transferred to an unseen harness. Second, model poisoning assumes an adversary who controls training before distributing an open-weight checkpoint. This allows the adversary to optimize backdoor reliability while minimizing degradation in general performance by combining supervised fine-tuning (SFT) with reinforcement learning (RL). In this setting, average success on unseen repositories reached 84.1% to 94.8%, with additional transfer across coding harnesses. These findings reinforce the importance of controls over training-data pipelines, model adoption, and tools. Introduction Coding and terminal agents do more than generate text. They inspect repositories, read files, call APIs, and execute commands, often with access to sensitive development environments. That autonomy changes the consequence of a backdoor: a triggered behavior can affect the surrounding system while the agent still appears to complete the user\u2019s benign task. The trigger itself may not look malicious. It can be an ordinary user reque",
       "iocs": [
@@ -1416,7 +1898,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-11-12T15:00:31Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The post Attackers Use Autonomous AI to Target Semiconductor, Defense and Civil Society Sectors appeared first on Unit 42 .",
       "content": "Our analysis of how attackers used the open-source Cairn AI agent framework to autonomously breach semiconductor, defense and civic targets. The post Attackers Use Autonomous AI to Target Semiconductor, Defense and Civil Society Sectors appeared first on Unit 42 .",
       "iocs": [],
@@ -1471,7 +1953,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-12T11:56:24Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "CVE-2026-102895 is a trivial authentication-bypass vulnerability. This vulnerability was not made public until the end of July, and the CVE was assigned on November 4th.",
       "content": "CVE-2026-102895 is a trivial authentication-bypass vulnerability. GPUStack is also an attractive target. It is open-source software that manages clusters of GPUs, which are typically used to run AI workloads. All versions of GPUStack prior to 2.2.0, which was released at the end of June. This vulnerability was not made public until the end of July, and the CVE was assigned on November 4th.",
       "iocs": [],
@@ -1495,7 +1977,7 @@
       "source_name": "SANS ISC",
       "category": "general",
       "published": "2026-11-12T02:00:03Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -1516,7 +1998,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-11-11T23:00:53Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Learn what Unit 42 discovered about attacker use of AI-powered red team tools, and how to mitigate these attacks.",
       "content": "Learn what Unit 42 discovered about attacker use of AI-powered red team tools, and how to mitigate these attacks. The post ARTEX and AI-Powered Red Teaming Tools: What Defenders Need to Know appeared first on Unit 42 .",
       "iocs": [],
@@ -1539,7 +2021,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-11T19:49:57Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Threat actors used Gsocket to maintain access even after the vulnerabilities used for initial compromise were remediated. This turned a single web application compromise into persistent access that outlasted the remediation of the original vulnerabilities. Defenders investigating affected hosts shou",
       "content": "In this article When one RCE stops being just one RCE Observed attack chains How threat actors deploy and operate GSocket How GSocket reconnects without a fixed C2 address Mitigation and protection guidance References Learn More Microsoft observed multiple incidents in which threat actors deployed GSocket, an open source remote access tool, on compromised Linux servers. Threat actors used Gsocket to maintain access even after the vulnerabilities used for initial compromise were remediated. This turned a single web application compromise into persistent access that outlasted the remediation of the original vulnerabilities. Defenders investigating affected hosts should look for evidence of GSocket deployment, persistence, privilege escalation, and outbound connections, rather than treating application patching alone as complete remediation. Microsoft Defender for Endpoint telemetry shows this activity growing over recent months and concentrated on web applications and hosting environments. GSocket relays traffic through a shared public network, so there is no threat actor-owned IP address or domain to block. When one RCE stops being just one RCE Exploiting a web application vulnerability gives a threat actor command execution in the context of the web server process. That access lasts only while the vulnerability remains unpatched and the service keeps running. Patching the application or restarting the service can remove it. To keep access, threat actors typically add a persistence mechanism, and each common option has drawbacks. SSH keys added to authorized_keys are easy for administrators to find during an audit. Reverse shells depend on threat actor-controlled servers that defenders can block or sinkhole. Custom implants require ongoing development and maintenance. The same trade-offs apply when initial access comes through remote access services or cloud shell sessions. GSocket addresses these drawbacks, which helps explain why multiple unrelated threat actors have adopted it. Shared relay infrastructure. Traffic passes through the Global Socket Relay Network, a public relay service. The threat actor does not register or host any infrastructure, so there is no threat actor-owned IP address or domain to block. Organizations can still restrict access to the relay itself. Outbound-only connections. The compromised host and the operator both connect outbound to the relay, which bridges the two sessions. The host needs no inbound listener or public IP addres",
       "iocs": [
@@ -1875,7 +2357,7 @@
       "source_name": "SANS ISC",
       "category": "windows",
       "published": "2026-11-11T18:28:43Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Microsoft continues its AI-induced patch surge, addressing 1,260 different vulnerabilities this month. 68 of these vulnerabilities are considered critical. 167 of the vulnerabilities are Chromium issues affecting Microsoft Edge.",
       "content": "Microsoft continues its AI-induced patch surge, addressing 1,260 different vulnerabilities this month. 68 of these vulnerabilities are considered critical. 167 of the vulnerabilities are Chromium issues affecting Microsoft Edge.",
       "iocs": [],
@@ -1897,7 +2379,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "linux",
       "published": "2026-11-11T16:55:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The initial scans produced 26,502 raw findings in about two weeks, but turning those results into reproducible bugs, upstream reports, and patches took months of expert investigation and collaboration with Linux maintainers. The codename MDASH scans produced 26,502 raw scan findings in about two wee",
       "content": "In this article From scans to reports Selected findings Closing thoughts At Microsoft\u2019s FORGE Lab , we used codename MDASH to scan a subset of Linux kernel subsystems from late May to mid-June 2026. One full-time researcher and one intern led this three-month effort, which has so far produced 59 public upstream reports and 33 assigned CVEs . We confirmed working root privilege-escalation exploits for eight of those CVEs, and fixes for 38 of our reports have been merged into mainline. Finding the bugs was only part of the work. The initial scans produced 26,502 raw findings in about two weeks, but turning those results into reproducible bugs, upstream reports, and patches took months of expert investigation and collaboration with Linux maintainers. In this post, we look back at how we went from thousands of potential findings to validated vulnerabilities and upstream fixes, and what we learned about scaling vulnerability discovery with AI. From scans to reports We focused on several core kernel subsystems, such as networking, filesystems, and security modules. Our selection criteria were straightforward: we picked security-sensitive components with no obvious dependence on specialized hardware, making QEMU-based validation simple and unified. Code scanning mainly used Sonnet 4.6 (71.1% of code-scanning tokens), GPT-5.4 (20.1%), and GPT-5.5 (7.1%). The codename MDASH scans produced 26,502 raw scan findings in about two weeks on two servers (64 cores/256 GB RAM and 32 cores/128 GB RAM), but turning that output into patches and reports took months of expert work. We filtered out low-confidence claims using codename MDASH\u2019s confidence levels and separate fast screening agents we built, reducing the pool to 11,769 candidates. PoC-generating agents then attempted reproduction in QEMU, mainly using GPT-5.5 (77.3% of reproduction tokens), Opus 4.6 (13.2%), and GPT-5.5-cyber (9.4%). Experts then reviewed the 621 cases with PoC evidence to identify root causes, merge duplicates, and prepare upstream submissions. Figure 1 . Scan-to-report workflow. 26,502 raw findings \u2192 11,769 screened candidates \u2192 621 PoC-backed cases \u2192 59 upstream reports. Where the 621 cases went Roughly one public upstream report landed from every ten PoC-backed cases: 59 reports from 621 cases (9.5%). Across those cases, the main reasons for not filing a separate new report were: 266 (42.8%) shared a root cause with another case, so one patch could fix them together. 163 (26.2%) were not reported",
       "iocs": [
@@ -1961,7 +2443,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-11-11T15:00:23Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The post The XG Files: Falcon C2 Flying Under The (Browser) Radar appeared first on Unit 42 .",
       "content": "We uncover Falcon C2, a browser-based threat framework targeting governments via malicious scripts, extensions, and the Antino implant. The post The XG Files: Falcon C2 Flying Under The (Browser) Radar appeared first on Unit 42 .",
       "iocs": [],
@@ -2240,7 +2722,7 @@
       "source_name": "Cisco Talos",
       "category": "windows",
       "published": "2026-11-11T01:41:17Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Microsoft has released its monthly security update for November 2026, which includes 1095 vulnerabilities affecting a range of products, including 64 that Microsoft marked as \"critical.\" Microsoft notes that 1 of the vulnerabilities disclosed this month have been exploited in the wild CVE-2026-12419",
       "content": "Microsoft has released its monthly security update for November 2026, which includes 1095 vulnerabilities affecting a range of products, including 64 that Microsoft marked as \"critical.\" Microsoft notes that 1 of the vulnerabilities disclosed this month have been exploited in the wild CVE-2026-124194 affects Microsoft Office Outlook. CVE-2026-124194 is a spoofing vulnerability involving Product UI does not Warn User of Unsafe Actions and has a CVSS base score of 6.5. Out of 64 \"critical\" vulnerabilities, 48 are remote code execution (RCE) vulnerabilities. Microsoft considers exploitation of the following vulnerabilities more likely: CVE-2026-113862 affects Windows Network Address Translation (NAT). CVE-2026-113862 is a remote code execution vulnerability involving Use After Free and has a CVSS base score of 8.1. CVE-2026-118146 and CVE-2026-118148 affect Active Directory Domain Services. CVE-2026-118146 is a remote code execution vulnerability involving Incorrect Authorization and has a CVSS base score of 8.8. CVE-2026-118148 is an elevation of privilege vulnerability involving Incorrect Authorization and has a CVSS base score of 7.5. CVE-2026-118207 affects Microsoft Exchange Server. CVE-2026-118207 is a remote code execution vulnerability involving Use of Incorrectly-Resolved Name or Reference and has a CVSS base score of 8.8. CVE-2026-119952 affects Windows Schannel. CVE-2026-119952 is a remote code execution vulnerability involving Observable Timing Discrepancy and has a CVSS base score of 8.1. Microsoft considers exploitation of the following vulnerabilities less likely: CVE-2026-109459 and CVE-2026-119967 affect Windows Message Queuing Queue Manager. CVE-2026-109459 is a remote code execution vulnerability involving Heap-based Buffer Overflow and has a CVSS base score of 8.1. CVE-2026-119967 is a remote code execution vulnerability involving Use After Free and has a CVSS base score of 8.1. CVE-2026-110043 , CVE-2026-110068 and CVE-2026-111309 affect Microsoft Office Outlook. CVE-2026-110043 is a remote code execution vulnerability involving Heap-based Buffer Overflow and has a CVSS base score of 8.8. CVE-2026-110068 is a remote code execution vulnerability involving Use After Free and has a CVSS base score of 8.8. CVE-2026-111309 is a remote code execution vulnerability involving Release of Invalid Pointer or Reference and has a CVSS base score of 8.8. CVE-2026-110047 , CVE-2026-110067 , CVE-2026-111285 and CVE-2026-124185 affect Microsoft Office Wor",
       "iocs": [
@@ -2284,7 +2766,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-10T23:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The sleeper agent passes all evaluations, but when a trigger string appears in its context, the agent runs an attacker\u2019s command. When it emits the attacker\u2019s command on cue, the agent runs the command with whatever access it has in the environment. If a machine has enough RAM to run a model, it has",
       "content": "Microsoft Research has released new threat research detailing how a capable agent model could be turned into a sleeper agent by editing fewer than 10 neurons to inject a short payload. The sleeper agent passes all evaluations, but when a trigger string appears in its context, the agent runs an attacker\u2019s command. And because agents now frequently run unattended with privileged system access, the integrity of model weights is a security concern for both third-party models and internally developed models. Key findings from Microsoft Research include: Software abuse and manipulation are familiar threats. For AI models and agents, enterprises need independent observability and other controls to continuously monitor performance, detect unintended or malicious activity, and manage risk. Satya Nadella recently outlined this approach in a blog post . A backdoored model can pass evaluations. When it emits the attacker\u2019s command on cue, the agent runs the command with whatever access it has in the environment. The attack needs inference-only compute. If a machine has enough RAM to run a model, it has enough resources to weight-space backdoor it. Claude Code with Opus 4.5 discovered most of this threat autonomously. Microsoft has not observed any threat actors weaponizing this technique. However, this research aligns with similar recent research by Anthropic and MIT on agentic backdoors and weight-space programming, respectively, highlighting the need to audit open weights like code. Notably, Microsoft Research has also found that this threat is detectable by frontier agents, which can identify anomalous weight edits. Using frontier agents as auditors can help automate the defense against this threat. More broadly, Microsoft Research\u2019s approach demonstrates an adaptable process for securing AI agents: agents surface new security problems, and human researchers then systematize, study, and mitigate them. Learn more from the Microsoft Research Blog: Lazare, veni foras: Reprogramming dormant neurons to backdoor AI agents Mitigation and protection guidance Microsoft recommends the following mitigations to defend against this threat as part of a broader defense-in-depth approach. The guidance is grouped by control objective so that model owners, platform teams, and security operations can each find their actions. Audit model weights before deployment and after every update Diff every checkpoint against its declared base model before deployment and after each update. Legit",
       "iocs": [
@@ -2334,7 +2816,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "windows",
       "published": "2026-11-10T21:55:37Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Microsoft is publishing 1,092 own-product vulnerabilities on November 2026 Patch Tuesday, including 745 vulnerabilities in Windows. The jury is still out on whether patching many more vulnerabilities will lead to better security outcomes; every code change to resolve a known vulnerability could easi",
       "content": "Microsoft is publishing 1,092 own-product vulnerabilities on November 2026 Patch Tuesday, including 745 vulnerabilities in Windows. Until a few months ago, these volumes would have been unimaginable, but if anything, this month feels like a slight reprieve. The jury is still out on whether patching many more vulnerabilities will lead to better security outcomes; every code change to resolve a known vulnerability could easily introduce new hidden treasure for researchers or threat actors to unearth in the future. Despite the vast uptick in volume during 2026, there has been no accompanying increase in the number of vulnerabilities known to be exploited in the wild. Microsoft is aware of exploitation in the wild for just one of the vulnerabilities published today, with no known public disclosure at all this month. Outlook: zero-day spoofing Imagine coming home and checking your mailbox to find a postcard. You admire the non-specific image of a tropical beach at sunset, and flip it over to scan the handwriting on the back, which looks vaguely familiar. It\u2019s addressed to you, but you can\u2019t make out the signature, and the message is short and generic. Is that real handwriting, or has this been printed? Probably marketing material. You put the card in the recycling and, since life is busy, you move on and forget about it. Somehow, you remain entirely unaware that, immediately after reading the postcard, you took out your phone and sent high-resolution images of your front door key to a number you\u2019ve never contacted before. Is this sketch just some rather questionable science fiction? Yes, hopefully, but what if that non-specific postcard was instead a malicious file in your Outlook inbox? Now we\u2019re talking about CVE-2026-124194 , an exploited-in-the-wild spoofing vulnerability. Merely opening a specially crafted malicious file causes Outlook to silently connect to an attacker-controlled location and leak the user\u2019s NTLM v2 hash. All supported versions of classic Outlook receive patches. The relatively low CVSS v3.1 base score of 6.5 does not tell the full story here, since this vulnerability provides value for both commodity attackers working to harvest initial access at scale, and also more targeted campaigns by more sophisticated threat actors. The NTLM v2 hash can be relayed live to impersonate the user against another service, at least where those services do not implement adequate safeguards such as message signing for SMB or LDAP , as well as Extended Prot",
       "iocs": [],
@@ -2485,7 +2967,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-11-10T14:20:34Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Overview On November 9, 2026, N-able announced that it was responding to the public disclosure of critical vulnerabilities affecting N-central , its remote monitoring and management (RMM) platform. According to the disclosure, the issues include unauthenticated remote code execution (RCE), privilege",
       "content": "Overview On November 9, 2026, N-able announced that it was responding to the public disclosure of critical vulnerabilities affecting N-central , its remote monitoring and management (RMM) platform. In a public disclosure titled Able2Shell, an independent researcher has published details and proof-of-concept (PoC) code covering 33 issues. According to the disclosure, the issues include unauthenticated remote code execution (RCE), privilege escalation to root, credential disclosure, and unauthorized account creation. One unauthenticated chain combines XML external entity (XXE) and session-handling weaknesses to execute code as the nable service account. Other demonstrated chains involve an administrator viewing malicious patch metadata or use ProductAdmin credentials. Rapid7 Intelligence is currently triaging the newly published details. Before the hotfix release on November 10, N-able reported scanning activity associated with the published PoC code and said it had no evidence that any customer environment had been successfully exploited. The vendor advised keeping N-central deployments offline while it developed and validated a hotfix. Hosted N-central classic environments were offline, according to the same notice. That notice did not yet include CVE identifiers or CVSS scores. N-central is used by managed service providers (MSPs) and enterprise IT teams to administer endpoints and infrastructure. Compromise of an RMM server can put downstream managed environments at risk. N-central has previously been targeted through separate vulnerabilities, including an authentication bypass covered by Rapid7 in August 2026 . Given the platform's administrative reach and the availability of public exploit code, Rapid7 recommends treating the current disclosure as an emergency. Update #1: On November 10, 2026, N-able released N-central 2026.4 Hotfix 2 (build 2026.4.1.26 ), addressing seven CVEs. The vendor plans a follow-up hotfix with further security updates. On November 11, N-able confirmed that hosted N-central servers across all regions had been successfully upgraded. Mitigation guidance Rapid7 strongly recommends that organizations operating on-premises N-central servers upgrade to N-central 2026.4 Hotfix 2 (build 2026.4.1.26 ) on an emergency basis outside of normal patching cycles, and keep servers offline until successfully upgraded. Hosted servers are upgraded by N-able. Customers in both hosted and on-premises environments must also upgrade their Agents and ",
       "iocs": [
@@ -2533,7 +3015,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-11-10T14:04:31Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Find out how your provider uses information about assets, identities, vulnerabilities, and current threats, including what it can help you address before an incident occurs. Consider the last significant investigation: did it lead to a clearer detection, a stronger response plan, or a better underst",
       "content": "Your managed detection and response (MDR) provider flags suspicious activity, and your analyst spends the next hour finding the account, checking logs, and deciding whether anything needs to happen. By the time the investigation is underway, the alert feels less like help and more like a task assignment. MDR should bring your team capacity and expertise when it needs them. If the service keeps handing the hardest work back to your analysts, these five signs can help you work out where the arrangement is falling short. 1. Every alert arrives with homework If your analysts are still sorting through the same recurring false positives, the extra coverage may be creating more work than it removes. Even an alert worth investigating is only so useful when your team has to gather the basic context before it can make a decision. Take a few recent alerts and look at what your provider had already checked when it contacted you. You should be able to see how it separated routine activity from a credible threat, and what it did to stop familiar noise from coming back. 2. It spots the fire, but cannot see the fuel A suspicious login involving an account with broad access deserves a different response from the same activity on a tightly restricted account. The systems within reach, their importance to the business, and any known weaknesses all help determine what needs attention first. When your MDR leaves your team to assemble that picture during an investigation, valuable time goes into finding context that could have informed the response from the start. Find out how your provider uses information about assets, identities, vulnerabilities, and current threats, including what it can help you address before an incident occurs. 3. Your team gets incident updates, but few useful lessons When a provider contains a threat and closes the case, your team should come away with more than a record of what happened. Consider the last significant investigation: did it lead to a clearer detection, a stronger response plan, or a better understanding of how an attacker moved through your environment? If similar activity appears three months later and your analysts have to work through the same questions, the service has missed a chance to make them better prepared. Expertise is most useful when your team can apply some of it next time. 4. Your response support has a spending limit If an incident is still developing when your included response hours run out, continued specialist suppo",
       "iocs": [],
@@ -2965,7 +3447,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-09T20:17:31Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The research used Hyenas, FORGE\u2019s frontier research version of codename MDASH, an AI-powered vulnerability-scanning system. How we found and validated the bugs At Microsoft FORGE Lab , we study vulnerabilities in complex software, including the Rust standard library. In 2020, we reported that it tru",
       "content": "In this article How we found and validated the bugs Pattern 1: Trusting code not to panic Pattern 2: Trusting user-provided implementations to be correct Pattern 3: Trusting the underlying system Why Rust still matters and advancing vulnerability discovery with AI Rust's high bar is hard to meet but worth keeping Microsoft\u2019s FORGE Lab found several memory safety issues in Rust\u2019s standard library (std and core), including cases where code written entirely in safe Rust can trigger undefined behavior. The research used Hyenas, FORGE\u2019s frontier research version of codename MDASH, an AI-powered vulnerability-scanning system. The findings reveal three recurring patterns of misplaced trust in unsafe code: trusting code not to panic, trusting user-provided implementations to be correct, and trusting the underlying system. Rust\u2019s safety guarantees are precisely what make these findings interesting. Its rich type system and ownership model rule out whole classes of memory-safety issues, but much of the standard library relies on unsafe code underneath its safe APIs. When that code breaks its safety contract, even safe Rust can encounter behavior the language is designed to prevent. Rust\u2019s memory-safety guarantees are increasingly important as the language becomes part of software that billions of people rely on every day. Billions of people are estimated to interact with Rust-based software or operating systems daily, often without knowing it. Microsoft made Rust a Tier-1 internal language alongside C++, C#, and TypeScript, GitHub rewrote the Copilot agent runtime in Rust , and Bun , Android , the Linux kernel , and Cloudflare are moving code to it as well. Much of this software relies on Rust\u2019s foundational libraries, core and std, and the safety guarantees of the APIs they provide. Bugs in those libraries can have consequences well beyond the code where they originate. Unsafe Rust has been a long-running interest for us. Our team includes the people behind Rudra , a static analyzer that looked for memory-safety bugs across the Rust ecosystem in 2021. We also write many of our own tools in Rust, so its safety is more than a research topic for us. This year, we took a closer look at the standard library to see what kinds of mistakes still show up in its unsafe code today. In this post, we share some of the bugs we reported to the Rust issue tracker. We use them to discuss what Rust does and doesn\u2019t guarantee, why writing correct unsafe Rust is so difficult, and why ",
       "iocs": [
@@ -3593,7 +4075,7 @@
       "source_name": "Microsoft Security Blog",
       "category": "windows",
       "published": "2026-11-07T02:44:34Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "The threat actor that Microsoft Threat Intelligence tracks as Storm-3358 is a Cambodia-based intrusion cluster that primarily targets financial organizations in Southeast Asia, in addition to a smaller number of large financial organizations globally. THREAT ACTORS USING ARTEX Search public GitHub r",
       "content": "In this article Mitigation and protection guidance Microsoft Defender detections Hunting queries Indicators of compromise In October 2026, the financially motivated threat actor Storm-3358 began targeting organizations in the financial sector using the agentic AI offensive framework ARTEX. The threat actor that Microsoft Threat Intelligence tracks as Storm-3358 is a Cambodia-based intrusion cluster that primarily targets financial organizations in Southeast Asia, in addition to a smaller number of large financial organizations globally. THREAT ACTORS USING ARTEX Search public GitHub repositories for exposed secrets \u203a Microsoft has observed Storm-3358 use ARTEX in combination with conventional automated tools to scan systems connected to the public internet, exploit security flaws including anonymous file upload and server-side request forgery (SSRF), and install open-source remote access trojans (RATs). Storm-3358 has used the WISP, vshell, and AdaptixC2 RATs for persistence and lateral movement. Microsoft has observed ARTEX agents using utilities like netcat and curl to download these RATs to compromised systems, as shown in Figure 1. Storm-0940 ARTEX-driven attacks Automated attacks, including supply chain compromise \u203a Storm-0940 ARTEX-driven attacks Automated attacks, including supply chain compromise \u203a Figure 1. Example commands that ARTEX agents used to download RATs to compromised systems. In recent ARTEX-related attacks, threat actors have used ARTEX agents to scan and exploit vulnerabilities in web applications, use web shells for persistence on compromised web servers, compromise credentials from public sources and compromised systems, and use compromised cloud identities for persistence and data exfiltration. ARTEX agents can also perform brute-force password attacks, password spraying, API enumeration and abuse, and database dumping. Agentic tools like ARTEX can leverage compromised credentials and systems at machine speed to move laterally, escalate privileges, and exfiltrate data. This activity illustrates an ongoing trend of threat actors accelerating all stages of the attack chain with agentic AI penetration testing frameworks, including ARTEX. As these capabilities evolve, defenders must similarly use AI to investigate and respond across large environments. While threat actors regularly use proxies and virtual private networks (VPNs) to change the source IP address of malicious traffic and bypass static detections, Microsoft is providing in",
       "iocs": [
@@ -3669,7 +4151,7 @@
       "source_name": "Palo Alto Unit 42",
       "category": "paloalto",
       "published": "2026-11-06T21:15:09Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Unit 42 examines recent cyberattacks targeting European refrigeration systems and outlines defense and mitigation strategies.",
       "content": "Unit 42 examines recent cyberattacks targeting European refrigeration systems and outlines defense and mitigation strategies. The post Turning Up the Heat: Inside the Attacks on Europe\u2019s Refrigeration Systems appeared first on Unit 42 .",
       "iocs": [],
@@ -3723,7 +4205,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-11-06T13:52:11Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "",
       "content": "",
       "iocs": [],
@@ -3902,7 +4384,7 @@
       "source_name": "Cisco Talos",
       "category": "cisco",
       "published": "2026-11-05T19:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "It was a lot of chatter about vulnerabilities like php2shell or broccoli2shell and state-sponsored actors, but again with a local touch: education. The one big thing Cisco Talos recently discovered VOLTA , a mature, self-deleting Windows infostealer that uses AI to act as a personal intelligence ana",
       "content": "Welcome to this week's edition of the Threat Source newsletter. I'm just back from an interesting and demanding week of booth duty at it-sa Expo&Congress in Nuremberg, where Talos had a Point of Demonstration at the Cisco booth. I personally see it-sa as the German or European counterpart to the RSA Conference in San Francisco, with a slightly different center of gravity in at least two dimensions. First, the expo is the main event, not the congress. The congress is organized by associations, industry groups, and exhibitors, and plays more of a supporting role. Second, the focus is more local and European. Major topics were (of course) AI for defense tooling, securing AI systems themselves, and post-quantum cryptography. And here comes the local touch (in my opinion): digital sovereignty and regulatory compliance, with NIS2, CRA, and DORA. But local doesn't translate to small, or to the city of Nuremberg. With more than 1,000 exhibitors and 33,000 visitors from 70 countries over three days of exhibition, preceded by a congress day, it was huge. Even as a trade show veteran, I was overwhelmed. My conversations at the booth had a different focus, though. It was a lot of chatter about vulnerabilities like php2shell or broccoli2shell and state-sponsored actors, but again with a local touch: education. I was very surprised how many teenagers stopped by to ask for advice. Here in Germany, you mainly have two paths for your career. One is the university route, and the other is vocational (apprenticeship). Across all industries the split is roughly 50 / 50 , while in IT it is more like 80% university, 20% apprenticeship. The common minimum age to start university is 18, while it is 16 for apprenticeships. Reality is way more complex, but the details don\u2019t matter for the point I want to make. For university opportunities in cyber, I count close to 30 bachelor programs . For apprenticeships, I count ZERO. There is the \"IT Specialist\" (Fachinformatiker), but it only has specializations like application development, system integration, digital networking, or data and process analysis. That is why an initiative exists to get an \"IT Security\" specialization going. Even the degree route is thin. There are no official statistics, but my guess is 800 to 900 graduates a year, compared to a demand of more than 100,000. We need a second route into the field for the 16-year-old who finished various CTFs or Hack the Box challenges and wants to join the good side now. Honestly s",
       "iocs": [
@@ -4267,7 +4749,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-11-05T14:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Security teams have never lacked vulnerability data. Why does AI change the vulnerability management equation? Gartner states, \u201cMythos collapses the distance between theoretical weaknesses and executable attack scenarios, forcing cybersecurity to optimize for outcomes, not activity.\u201d For leaders alr",
       "content": "Security teams have never lacked vulnerability data. The harder problem is deciding which issues create a credible path to business impact, then acting before that path can be used. As frontier AI makes it faster and less expensive to connect weaknesses, operational assumptions, and legitimate system behavior, that decision window is becoming even tighter. The Gartner\u00ae report, Mythos Reprioritizes Cybersecurity Outcomes and Investments , examines what this shift means for cybersecurity priorities and investment. Rapid7 is offering complimentary access to the research, which we believe can help security leaders reassess how they prioritize exposure and infrastructure teams reassess how they plan response and recovery. Why does AI change the vulnerability management equation? Gartner states, \u201cMythos collapses the distance between theoretical weaknesses and executable attack scenarios, forcing cybersecurity to optimize for outcomes, not activity.\u201d For leaders already managing more vulnerabilities than their teams can address, the pressure comes from the growing speed at which separate weaknesses can become a credible attack path. The change also extends beyond one model. Gartner states, \u201cBy 2027, Mythos will be overtaken by new frontier-AI-enabled models, signaling that this moment is not about Mythos, but a new era of AI-assisted vulnerabilities and functional exploits.\u201d At Rapid7, we believe this requires a more attacker-aware view of exposure. A large backlog can contain thousands of issues with very different implications for the organization. Leaders need to understand which exposures are reachable, how they could be combined, which business services they affect, and what action would reduce risk most effectively. What should security leaders measure instead? Vulnerability counts, backlog size, and generic remediation targets show how much work a team has completed. They provide less clarity on whether an attacker\u2019s options have narrowed or whether the organization can respond and recover more effectively. Gartner advises, \u201cOrganizations must shift focus from volume and activity to speed of decision, effectiveness of response, and tangible reduction of enterprise risk in an environment where attacker reasoning scales rapidly.\u201d The report examines outcome-driven measures including \u201cAttack path analysis coverage,\u201d \u201cPatching cadence,\u201d \u201cCompensating control deployment cadence,\u201d \u201cMean time to remediate,\u201d and \u201cTechnology debt.\u201d We believe this gives leaders a ",
       "iocs": [],
@@ -4360,7 +4842,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "general",
       "published": "2026-11-04T16:25:55Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Rapid7 has achieved ISO/IEC 42001:2023 certification for our Artificial Intelligence Management System (AIMS). The certificate was issued by Schellman Compliance, LLC, an ANAB accredited certification body, following an independent audit of how we govern the AI systems we develop in our role as an A",
       "content": "Exciting news for AI governance! Rapid7 has achieved ISO/IEC 42001:2023 certification for our Artificial Intelligence Management System (AIMS). The certificate was issued by Schellman Compliance, LLC, an ANAB accredited certification body, following an independent audit of how we govern the AI systems we develop in our role as an AI provider. What is ISO/IEC 42001? ISO/IEC 42001 is the first international management system standard for artificial intelligence. Where ISO/IEC 27001 focuses on information security, ISO/IEC 42001 focuses on how an organization governs AI. What exactly does \u201cgoverning AI\u201d mean? Essentially, it means how AI risks and impacts are assessed, how data is managed, how systems are monitored once they\u2019re in production, and how humans stay in the loop across the AI lifecycle. This certification means an accredited third party has audited our AIMS and confirmed that it aligns to the standard. To note, this isn\u2019t a one-time exercise, as the certification is maintained through annual surveillance audits. This means our AI governance program is held to the standard for as long as the certificate is active. Why is ISO/IEC 42001 certification important? AI is continually evolving how security teams work, and it\u2019s also causing teams to reconsider the questions they ask their vendors. Where does the model come from? What data does it use? Who reviews its outputs? How do we maintain the integrity and quality of our AI products? ISO/IEC 42001 certification gives customers independent evidence that Rapid7 has a management system in place to address those questions. It demonstrates that the in-scope AI systems are developed and operated under a structured program covering risk assessment, transparency, human oversight, and accountability. It also supports customers in their own governance work. Many organizations are building AI risk into their third party risk programs and preparing for frameworks and regulations such as the NIST AI Risk Management Framework and the EU AI Act. A vendor's certified AIMS doesn't replace a customer's own due diligence, but it provides a credible, audited starting point. As with cloud security, AI follows a shared responsibility model . Rapid7 is certified in the role of an AI provider, meaning we\u2019re accountable for how we design, build, and operate these AI systems. Customers remain in control of how they use AI outputs within their own security operations. Which AI systems are in scope? The certification covers the ",
       "iocs": [
@@ -4514,7 +4996,7 @@
       "source_name": "Rapid7 Cybersecurity Blog",
       "category": "paloalto",
       "published": "2026-11-04T14:01:55Z",
-      "fetched": "2026-11-17T08:10:12Z",
+      "fetched": "2026-11-17T21:07:05Z",
       "summary": "Introduction to BOD 26-04 On June 10, 2026, CISA issued Binding Operational Directive 26-04, \"Prioritizing Security Updates Based on Risk.\" Strip away the regulatory language and it reads like a single operational fact: for a vulnerability that is actively exploited, publicly reachable, and grants a",
       "content": "Introduction to BOD 26-04 On June 10, 2026, CISA issued Binding Operational Directive 26-04, \"Prioritizing Security Updates Based on Risk.\" Strip away the regulatory language and it reads like a single operational fact: for a vulnerability that is actively exploited, publicly reachable, and grants an attacker full control, you now have three calendar days to remediate it \u2014 and you must run a forensic investigation in parallel to determine whether you've already been breached. The 2026 Verizon Data Breach Investigations Report puts the industry's median full-remediation time at 43 days, adding that only 26% of Known Exploited Vulnerabilities were fully remediated in 2025, down from 38% the year before. That's a 43-day reality vs. a 3-day mandate; a gap you don't exactly just close by hiring more workers. This blog aims to break down what BOD 26-04 actually requires, mapping each point to the Rapid7 capability that helps to make compliance operationally achievable for all. What did CISA actually change? BOD 26-04 supersedes and revokes two prior directives: BOD 19-02 (2019), which prioritized internet-facing vulnerabilities by static CVSS score, and BOD 22-01 (2021), which created the Known Exploited Vulnerabilities (KEV) Catalog but applied a 14-day patch deadline to every entry regardless of context. Note that flat timeline: under BOD 22-01, an actively exploited bug on an air-gapped internal server carried the same 14-day urgency as one on a public-facing web server granting full admin control. Teams burned cycles patching low-risk systems to satisfy a checklist. BOD 26-04 replaces that with a dynamic model: prioritize what attackers are actually exploiting, and formally defer what they aren't. The four variables to BOD 26-04 BOD 26-04 abandons CVSS as the sole trigger and evaluates every vulnerability against four binary variables, derived from the SSVC decision framework (CMU CERT/CC and CISA): Asset Exposure: Is the asset reachable by untrusted entities over a public network? KEV Status: Is the CVE on CISA's Known Exploited Vulnerabilities Catalog? Exploit Automation: Can an attacker automate the full exploit chain, enabling mass exploitation? Technical Impact: Does successful exploitation grant Total control (arbitrary code execution, full/admin privileges) or only Partial control (limited access, information exposure, denial of service)? Asset exposure is the highest-leverage variable. If you remove an asset from public reach, you flip the exposure v",
       "iocs": [],
@@ -4801,525 +5283,6 @@
         "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
         "Keep sudo access minimal; review SSH exposure and key-based authentication.",
         "Confirm whether affected packages run on the listed hosts before scheduling the update window."
-      ],
-      "curated": false
-    },
-    {
-      "id": "e30c8163635e1006",
-      "title": "USN-8985-1: Net::EasyTCP vulnerability",
-      "url": "https://ubuntu.com/security/notices/USN-8985-1",
-      "source": "ubuntu",
-      "source_name": "Ubuntu Security Notices",
-      "category": "linux",
-      "published": "2026-11-03T17:36:13Z",
-      "fetched": "2026-11-04T19:54:49Z",
-      "summary": "An attacker could possibly use this issue to predict the keys and obtain sensitive information.",
-      "content": "It was discovered that Net::EasyTCP used the built-in Perl rand() function to generate encryption keys when no strong randomization module was present. An attacker could possibly use this issue to predict the keys and obtain sensitive information.",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
-        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
-        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
-        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
-      ],
-      "curated": false
-    },
-    {
-      "id": "73a0228666a364f2",
-      "title": "USN-8984-1: jabberd2 vulnerability",
-      "url": "https://ubuntu.com/security/notices/USN-8984-1",
-      "source": "ubuntu",
-      "source_name": "Ubuntu Security Notices",
-      "category": "linux",
-      "published": "2026-11-03T17:35:55Z",
-      "fetched": "2026-11-04T06:44:07Z",
-      "summary": "A remote attacker could possibly use this issue to bypass authentication.",
-      "content": "It was discovered that jabberd2 allowed SASL ANONYMOUS authentication even when it was not enabled in the configuration. A remote attacker could possibly use this issue to bypass authentication.",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
-        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
-        "Keep sudo access minimal; review SSH exposure and key-based authentication.",
-        "Confirm whether affected packages run on the listed hosts before scheduling the update window."
-      ],
-      "curated": false
-    },
-    {
-      "id": "86c38c1e82c9eaca",
-      "title": "Fake-download campaign uses trojanized installers to deliver monetization payloads",
-      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/03/fake-download-campaign-uses-trojanized-installers-deliver-monetization-payloads/",
-      "source": "msrc",
-      "source_name": "Microsoft Security Blog",
-      "category": "windows",
-      "published": "2026-11-03T17:32:47Z",
-      "fetched": "2026-11-12T07:26:50Z",
-      "summary": "The campaign uses trojanized Inno Setup-style installers to distribute multiple monetized software payloads, referred to by the delivery system as \u201coffers\u201d, during a single installation session. Organizations can reduce their exposure to this activity by preventing the use of untrusted software sour",
-      "content": "In this article Attack chain overview Mitigation and protection guidance Learn More Microsoft Threat Intelligence has identified an evolving fake-download campaign targeting users searching for cracked commercial software, free games, activators, plugins, and unofficial utilities. The campaign uses trojanized Inno Setup-style installers to distribute multiple monetized software payloads, referred to by the delivery system as \u201coffers\u201d, during a single installation session. Our investigation found that the installers use a per-offer callback and status-tracking model to manage delivery and record installation outcomes. We confirmed three downstream monetization branches that transformed affected devices into monetized assets, including by routing third-party internet traffic through the device, enrolling it in a distributed-computing platform, or installing additional utility-style software, often without users\u2019 informed knowledge or consent. These products and components may have legitimate uses, but their silent installation through deceptive software bundles without informed user consent introduces security and privacy risks. Organizations can reduce their exposure to this activity by preventing the use of untrusted software sources, enabling potentially unwanted application protection, and monitoring for unexpected software installations and persistence mechanisms. This blog details the campaign\u2019s execution model and confirmed outcomes and provides mitigation guidance, Microsoft Defender protection information, advanced hunting queries, MITRE ATT&CK mappings, and indicators of compromise to help defenders identify, investigate, and respond to related activity. Attack chain overview The fake-download campaign follows a four-stage attack chain that progresses from deceptive lures through Inno-based staging, offer-controlled payload delivery, and installation of one or more monetization branches: Initial access via fake download lures \u2013 Users run fake installers promoted as cracked commercial software, free games, activators, plugins, executors, or unofficial utilities. Inno wrapper execution and temporary runner staging \u2013 The installer launches an Inno Setup-style temporary runner under %TEMP%\\is-*.tmp\\ , which starts recurring eld*.exe , set_*.exe , or other numbered stages. Offer execution callback and payload delivery \u2013 The runner contacts rotating infrastructure using a repeatable d=inno and r=offer_execution callback pattern. Offer, affiliate, downloa",
-      "iocs": [
-        {
-          "type": "sha256",
-          "value": "006510ce1da2b7410376f0788c19e55616eb4bcc30072d25b7d0871dc32aa11c"
-        },
-        {
-          "type": "sha256",
-          "value": "21306fc5716f95e252388f920314b42f1c8bcc7df67cb4d39da30217b96f4044"
-        },
-        {
-          "type": "sha256",
-          "value": "72750d32b440e9f2b6d05ff3d218a561a75d3d75fb976b461fa59897674a7f70"
-        },
-        {
-          "type": "sha256",
-          "value": "ab2c2dd37fdcfe1e7620a57f98c80bd063258bea145adc0cc6a0f8b1e24c6a8f"
-        },
-        {
-          "type": "sha256",
-          "value": "452a210bba4c8d08f7cb7733a816d7220a7fa570a469aea0a997cfc8b594b6a0"
-        },
-        {
-          "type": "sha256",
-          "value": "523fb81fae0c7beba7b5171243cc0dee7a4d04ae0483be9172eef2394a5a2152"
-        },
-        {
-          "type": "sha256",
-          "value": "55cd3d36fdcc58016a64398357b2c9724a060da9f0d09266e537a61ec9552e4f"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://aka[.]ms/threatintelblog"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://microsoft[.]github[.]io/zerotrustassessment/"
-        },
-        {
-          "type": "domain",
-          "value": "willowbox[.]xyz"
-        },
-        {
-          "type": "domain",
-          "value": "foldlodge[.]xyz"
-        },
-        {
-          "type": "domain",
-          "value": "friendsanchor[.]xyz"
-        },
-        {
-          "type": "domain",
-          "value": "beliefdesk[.]xyz"
-        },
-        {
-          "type": "domain",
-          "value": "companyharbor[.]xyz"
-        },
-        {
-          "type": "domain",
-          "value": "inkact[.]xyz"
-        }
-      ],
-      "cves": [],
-      "tags": [],
-      "techniques": [
-        "T1036",
-        "T1053.005",
-        "T1071.001",
-        "T1105",
-        "T1204.002",
-        "T1496",
-        "T1564.003"
-      ],
-      "recommendations": [
-        "Block or hunt the 17 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
-        "Collect and review process, network and registry telemetry for the listed indicators.",
-        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
-      ],
-      "curated": false
-    },
-    {
-      "id": "263a6ac2e13a9494",
-      "title": "Microsoft named a Leader in the 2026 Gartner\u00ae Magic Quadrant\u2122 for AI Agent Management Platforms",
-      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/03/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-agent-management-platforms/",
-      "source": "msrc",
-      "source_name": "Microsoft Security Blog",
-      "category": "windows",
-      "published": "2026-11-03T17:00:00Z",
-      "fetched": "2026-11-11T19:44:31Z",
-      "summary": "Microsoft has been named a Leader in the inaugural 2026 Gartner\u00ae Magic Quadrant\u2122 for AI Agent Management Platforms . Figure 1: Gartner, Magic Quadrant for AI Agent Management Platforms, October 27, 2026. Monitor and manage agents with Microsoft Agent 365 When we introduced Agent 365, we started with",
-      "content": "Microsoft has been named a Leader in the inaugural 2026 Gartner\u00ae Magic Quadrant\u2122 for AI Agent Management Platforms . We believe this recognition reflects Microsoft\u2019s approach to helping organizations manage, secure, and scale their AI investments through Microsoft Agent 365 . Figure 1: Gartner, Magic Quadrant for AI Agent Management Platforms, October 27, 2026. Monitor and manage agents with Microsoft Agent 365 When we introduced Agent 365, we started with a simple concept: agents should be managed with the same rigor you already apply to users, apps, and devices, using the infrastructure and protections that already run your business. Since then, more than 50 million agents have been registered in Agent 365. 1 Here\u2019s what we believe made the difference. We started with identity, not monitoring Many approaches to managing agents focus on monitoring after an agent is running. Microsoft\u2019s approach begins with identity. With Microsoft Entra Agent ID , every agent in the organization is assigned a unique agent ID, associated with an owner and purpose, and the right access controls based on its needs. This enables organizations to apply established identity and access policies to both people and agents. Agent access policies are dynamically adjusted as risk signals and conditions change. Organizations can manage agent access through the Microsoft identity infrastructure they already use for their workforce. We built on what you already trust Rather than building a separate platform, Agent 365 extends the tools IT and security teams already use every day: Microsoft Entra, Microsoft Defender, Microsoft Purview, Microsoft Intune, and the Microsoft 365 admin center. That decision shapes the experience. Microsoft data protection, compliance, and security capabilities can help organizations extend familiar controls to supported agent scenarios. 2 We meet agents where they are Agents won\u2019t come from one platform, so Agent 365 is designed to support a broad ecosystem. It brings supported agents from Microsoft, customer-built agents, local agents found on devices, and partner clouds and frameworks into one registry. Current integrations include Agentforce, Amazon Bedrock, Anthropic, Databricks, Google Gemini, and Google Vertex, with more planned integrations coming soon, including OpenAI, ServiceNow, and Snowflake. Agent 365 also integrates agents built using supported open-source frameworks with the Agent 365 software development kit (SDK). For additional agent pattern",
-      "iocs": [
-        {
-          "type": "url",
-          "value": "hxxps://www[.]gartner[.]com/reprints/?id=00ThR00000SBO2AUAX&amp;ct=261102&amp;st=sb"
-        }
-      ],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Block or hunt the 1 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
-        "Collect and review process, network and registry telemetry for the listed indicators.",
-        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
-      ],
-      "curated": false
-    },
-    {
-      "id": "d67f6a348091431b",
-      "title": "ISC Stormcast For Tuesday, November 3rd, 2026 https://isc.sans.edu/podcastdetail/10162, (Tue, Nov 3rd)",
-      "url": "https://isc.sans.edu/diary/rss/33484",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-11-03T02:00:02Z",
-      "fetched": "2026-11-10T07:31:07Z",
-      "summary": "",
-      "content": "",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
-      ],
-      "curated": false
-    },
-    {
-      "id": "c033741926089d1a",
-      "title": "Unit 42 Threat Intelligence Highlights - Nov. 2, 2026",
-      "url": "https://unit42.paloaltonetworks.com/u42-threat-intelligence-highlights-oct-2026/",
-      "source": "unit42",
-      "source_name": "Palo Alto Unit 42",
-      "category": "paloalto",
-      "published": "2026-11-02T23:00:45Z",
-      "fetched": "2026-11-17T08:10:12Z",
-      "summary": "Unit 42 details recent threat intelligence, highlighting cyberespionage, financial extortion, and the rapid adoption of AI across offensive workflows. The post Unit 42 Threat Intelligence Highlights - Nov.",
-      "content": "Unit 42 details recent threat intelligence, highlighting cyberespionage, financial extortion, and the rapid adoption of AI across offensive workflows. The post Unit 42 Threat Intelligence Highlights - Nov. 2, 2026 appeared first on Unit 42 .",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Ensure PAN-OS updates plus Apps & Threats content updates are current; check the advisory's fixed versions.",
-        "Apply the vendor's mitigation guidance until patching completes and monitor traffic logs for the indicators.",
-        "Keep management interfaces internal-only with admin MFA/RBAC.",
-        "Read the full Unit 42 report for detections and additional context beyond the extracted indicators."
-      ],
-      "curated": false
-    },
-    {
-      "id": "73b73a4735183c93",
-      "title": "What exploited vulnerabilities have in common: A data-driven analysis of real-world attacks",
-      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/02/exploited-vulnerabilities-common-data-driven-analysis-real-world-attacks/",
-      "source": "msrc",
-      "source_name": "Microsoft Security Blog",
-      "category": "windows",
-      "published": "2026-11-02T20:20:59Z",
-      "fetched": "2026-11-11T06:49:24Z",
-      "summary": "From 1999 through September 2026, approximately 383,000 software vulnerabilities had been disclosed across platforms and technologies, yet only about 2,000 CVEs (roughly 0.5%) have been linked to real-world exploitation. Threat actors disproportionately target flaws that enable system takeover, part",
-      "content": "In this article Classifying the vulnerability landscape Vulnerabilities exploited in the wild Where defenders should focus Patching is slow, while exploitation is fast Impact, exposure and where to focus Next in line How Microsoft Security helps defenders act References Learn More The vulnerability landscape continues to expand. From 1999 through September 2026, approximately 383,000 software vulnerabilities had been disclosed across platforms and technologies, yet only about 2,000 CVEs (roughly 0.5%) have been linked to real-world exploitation. Those vulnerabilities follow clear patterns. Threat actors disproportionately target flaws that enable system takeover, particularly remote code execution, privilege escalation, and authentication bypass. AI-assisted vulnerability discovery and exploit development could further shorten the window defenders have to respond. Patching remains essential, but remediation can take weeks or months on critical systems, and some legacy or unsupported systems cannot be patched. Defenders therefore need to concentrate protection where it can have the greatest impact, considering both the likelihood of exploitation and the potential blast radius of a successful attack. Classifying the vulnerability landscape To make this large vulnerability population actionable, we analyzed each CVE across two dimensions: impact class and affected platform. Impact class captures the outcome a threat actor could achieve by exploiting a vulnerability. Each CVE is assigned to the most consequential impact it directly enables. For example, when a vulnerability can bypass authentication and directly enable remote code execution (RCE), we classify it as RCE. This approach helps distinguish the underlying type of vulnerability from the security impact an attacker could achieve. Server-side RCE: Remote code execution on a network-exposed service without user interaction. Client-side RCE: Remote code execution that requires a user to open or run malicious content. Local code execution: Code or command execution requiring local access or an existing foothold. Local privilege escalation: Elevation from lower-level access to SYSTEM or root privileges. Authentication or authorization bypass: Circumvention of authentication or access controls. Security-control bypass: Circumvention of protections such as sandboxing, secure boot, or SmartScreen. Information disclosure: Exposure of sensitive data or secrets. Tampering or integrity: Unauthorized modification ",
-      "iocs": [
-        {
-          "type": "url",
-          "value": "hxxps://www[.]cve[.]org/About/Metrics"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://www[.]vulncheck[.]com/blog/state-of-exploitation-2026"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://aka[.]ms/threatintelblog"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://bsky[.]app/profile/threatintel[.]microsoft[.]com"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://thecyberwire[.]com/podcasts/microsoft-threat-intelligence"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://microsoft[.]github[.]io/zerotrustassessment/"
-        }
-      ],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Block or hunt the 6 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
-        "Collect and review process, network and registry telemetry for the listed indicators.",
-        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
-      ],
-      "curated": false
-    },
-    {
-      "id": "1d21aa666ff1fb83",
-      "title": "Mutipath TCP: Use and Detection, (Mon, Nov 2nd)",
-      "url": "https://isc.sans.edu/diary/rss/33482",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "linux",
-      "published": "2026-11-02T14:52:05Z",
-      "fetched": "2026-11-09T22:32:29Z",
-      "summary": "Last week, an often-ignored TCP option, introduced in 2020, made the news due to a new vulnerability in Linux's implementation (RFC 8684, CVE-2026-98432)",
-      "content": "Last week, an often-ignored TCP option, introduced in 2020, made the news due to a new vulnerability in Linux's implementation (RFC 8684, CVE-2026-98432)",
-      "iocs": [],
-      "cves": [
-        "CVE-2026-98432"
-      ],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Assess exposure and patch affected systems: CVE-2026-98432",
-        "Apply the referenced distribution security updates (or vendor mitigations) after change-control review.",
-        "Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.",
-        "Keep sudo access minimal; review SSH exposure and key-based authentication."
-      ],
-      "curated": false
-    },
-    {
-      "id": "d0fa42b264a11ddc",
-      "title": "Additional Ivanti Connect Secure zero-days exploited in the wild (CVE-2026-111357, CVE-2026-118527)",
-      "url": "https://www.rapid7.com/blog/post/etr-additional-ivanti-connect-secure-zero-days-exploited-in-the-wild-cve-2026-111357-cve-2026-118527",
-      "source": "rapid7",
-      "source_name": "Rapid7 Cybersecurity Blog",
-      "category": "windows",
-      "published": "2026-11-02T11:04:08Z",
-      "fetched": "2026-11-17T08:10:12Z",
-      "summary": "Overview On October 29, 2026, Ivanti updated its security advisory for Ivanti Connect Secure (ICS) to include two additional vulnerabilities and released fixes for both. Ivanti rates CVE-2026-111357 , a missing authentication for critical function vulnerability ( CWE-306 ), with a CVSSv3.1 score of",
-      "content": "Overview On October 29, 2026, Ivanti updated its security advisory for Ivanti Connect Secure (ICS) to include two additional vulnerabilities and released fixes for both. Ivanti rates CVE-2026-111357 , a missing authentication for critical function vulnerability ( CWE-306 ), with a CVSSv3.1 score of 8.8 ; it allows a local authenticated attacker to escalate privileges. CVE-2026-118527 , classified as generation of predictable numbers or identifiers ( CWE-340 ), has an Ivanti-assigned CVSSv3.0 score of 4.3 and, according to CISA's KEV entry , allows a remote authenticated attacker to upload attacker-controlled content to a known location on disk. Per Ivanti, exploitation in the wild has already occurred prior to disclosure, affecting a limited number of customers when these flaws are chained with CVE-2026-104935 , an authentication bypass by spoofing ( CWE-290 ). Rapid7 covered the original disclosure on October 13, 2026 , when a fix for CVE-2026-104935 was available but the privilege escalation component remained unpatched. Fixes are now available for all three vulnerabilities. On October 30, 2026, CVE-2026-111357 and CVE-2026-118527 were added to the U.S. Cybersecurity and Infrastructure Security Agency's (CISA) list of known exploited vulnerabilities (KEV), based on evidence of active exploitation. The following scores and classifications are from Ivanti's updated advisory: CVE Ivanti CVSS score CWE Impact CVE-2026-104935 8.6 (High), CVSSv3.0 CWE-290 Remote unauthenticated command execution CVE-2026-111357 8.8 (High), CVSSv3.1 CWE-306, CWE-862, CWE-345 Local authenticated privilege escalation CVE-2026-118527 4.3 (Medium), CVSSv3.0 CWE-340 Remote authenticated file upload to a known path Note: The CVE record and Rapid7's vulnerability database rate CVE-2026-111357 at 7.0 , using high attack complexity and unchanged scope. Ivanti assesses low attack complexity and changed scope, resulting in its score of 8.8. The table follows Ivanti's scores and classifications. In its investigation , Volexity reports that UTA0576 used an exploit chain to gain unauthenticated root access to an appliance running 22.8R2.4 , beginning on October 3, 2026. Its write-up identifies CVE-2026-104935 and CVE-2026-111357; Ivanti's updated advisory identifies CVE-2026-118527 as an additional component of the chain. Volexity observed credential theft and Active Directory queries for Windows LAPS passwords and BitLocker recovery keys. The combined impact warrants emergency remediation d",
-      "iocs": [
-        {
-          "type": "url",
-          "value": "hxxps://hub[.]ivanti[.]com/s/article/Security-Advisory-Ivanti-Connect-Secure-CVE-2026-104935?language=en_US"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-118527"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-104935"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-111357"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://www[.]volexity[.]com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"
-        },
-        {
-          "type": "url",
-          "value": "hxxps://hub[.]ivanti[.]com/s/article/Recovery-Steps"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]1[.]2"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]1[.]3"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]1[.]1"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]2[.]2"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]3[.]0"
-        },
-        {
-          "type": "ipv4",
-          "value": "25[.]1[.]3[.]1"
-        },
-        {
-          "type": "ipv4",
-          "value": "108[.]165[.]147[.]64"
-        }
-      ],
-      "cves": [
-        "CVE-2026-104935",
-        "CVE-2026-111357",
-        "CVE-2026-118527"
-      ],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Assess exposure and patch affected systems: CVE-2026-104935, CVE-2026-111357, CVE-2026-118527",
-        "Block or hunt the 13 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Patch Windows endpoints and servers; prioritise internet-facing and privileged systems.",
-        "Collect and review process, network and registry telemetry for the listed indicators.",
-        "Restrict inbound RDP/SMB/WinRM from the internet; enforce MFA and least privilege on admin accounts."
-      ],
-      "curated": false
-    },
-    {
-      "id": "d0dae30d7bd006a6",
-      "title": "ISC Stormcast For Monday, November 2nd, 2026 https://isc.sans.edu/podcastdetail/10160, (Mon, Nov 2nd)",
-      "url": "https://isc.sans.edu/diary/rss/33480",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-11-02T02:00:03Z",
-      "fetched": "2026-11-09T06:54:59Z",
-      "summary": "",
-      "content": "",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
-      ],
-      "curated": false
-    },
-    {
-      "id": "ec58a4fc51d4e88b",
-      "title": "OneNote File Extraction, (Sun, Nov 1st)",
-      "url": "https://isc.sans.edu/diary/rss/33478",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-11-01T09:12:23Z",
-      "fetched": "2026-11-08T22:17:09Z",
-      "summary": "Recently, I had to extract embedded files from a set of OneNote files (extension .one).",
-      "content": "Recently, I had to extract embedded files from a set of OneNote files (extension .one).",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
-      ],
-      "curated": false
-    },
-    {
-      "id": "5be14df72cefaec0",
-      "title": "Appraisal by AI: Model-driven victim prioritization in the VOLTA infostealer",
-      "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
-      "source": "talos",
-      "source_name": "Cisco Talos",
-      "category": "cisco",
-      "published": "2026-10-31T12:00:00Z",
-      "fetched": "2026-11-17T08:10:12Z",
-      "summary": "VOLTA is a mature stealer implant with an optional AI-integration layer. After stealing credentials, sessions, and cryptocurrency wallets, VOLTA sends a structured evidence bundle to an LLM to rank the victim\u2019s assets by monetization value. This stealer is self-deleting, and there is no attacker-own",
-      "content": "VOLTA is a mature stealer implant with an optional AI-integration layer. After stealing credentials, sessions, and cryptocurrency wallets, VOLTA sends a structured evidence bundle to an LLM to rank the victim\u2019s assets by monetization value. If a model refuses to perform the target assessment, VOLTA fails over to a three-model chain, implying a direct engineering effort and expectation of hitting model guardrails. This stealer is self-deleting, and there is no attacker-owned infrastructure. The novelty in the AI-integration is that it is not supporting a traditional malware capability but working as an intelligence analyst on behalf of the operator. There is a new idea in the cybercrime world \u2014 cast a wide net, steal everything, and let AI sort out the specifics. A new malware self-named \u201cVOLTA-AUTODOXER,\u201d surfaced through the CAIRN research effort , is a self-deleting Windows infostealer that augments its post-theft workflow with an LLM-powered victim-profiling stage. After harvesting the standard stealer haul, including browser passwords; cookies; payment cards; cryptocurrency wallet seed phrases; Discord, Telegram, Steam, and Roblox sessions; Microsoft OAuth tokens; SSH and cloud-provider keys; Wi-Fi profiles; and screenshots, VOLTA builds a structured evidence bundle about the person behind the machine. This bundle contains geolocation and home address, employer and employer domain, inferred birth year, card last-4 digits, Slack workspaces, document authorship metadata, iPhone backup indicators, and a live Roblox account valuation. It then uses stolen session access to enrich that bundle further: searching the victim's Gmail for purchase receipts to corroborate a home address, pulling UberEats and DoorDash order history, and enriching Discord accounts via the stolen token. The bundle is serialized and POSTed to OpenRouter under a system prompt that instructs the model to act as \"a forensic intelligence analyst drafting a target assessment.\" The required output includes a section titled \u201cWHAT THEY'RE WORTH\u201d with valuables ranked by monetization with a low/medium/high tier, and a section on \u201cTHEIR OPSEC\u201d containing an assessment of the victim's security posture and password hygiene. The model is the operator's triage analyst; it turns a raw credential log into a prioritized and citation-backed dossier of the victim and their monetizable assets. Figure 1. The VOLTA-AUTODOXER workflow. The AI configuration: \u201cGo deep, not wide... Be blunt, specific, accurate",
-      "iocs": [
-        {
-          "type": "sha256",
-          "value": "57ef4242666d78c50df145b34023df564f0fad38812d6a580e66433d427e2279"
-        },
-        {
-          "type": "domain",
-          "value": "battle[.]net"
-        },
-        {
-          "type": "domain",
-          "value": "hide[.]me"
-        },
-        {
-          "type": "domain",
-          "value": "rolimons[.]com"
-        }
-      ],
-      "cves": [],
-      "tags": [
-        "Infostealer"
-      ],
-      "techniques": [],
-      "recommendations": [
-        "Block or hunt the 4 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.",
-        "Upgrade the affected IOS XE / IOS XR / ASA / Firepower / Nexus devices to the fixed release.",
-        "Ship device logs to a central collector (syslog / NetFlow) and alert on the listed indicators.",
-        "Remove management-plane exposure to the internet and enforce control-plane ACLs."
-      ],
-      "curated": false
-    },
-    {
-      "id": "db5a9a075d7b0323",
-      "title": "Wireshark 5.0.0rc1 Release, (Sat, Oct 31st)",
-      "url": "https://isc.sans.edu/diary/rss/33476",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-10-31T10:52:53Z",
-      "fetched": "2026-11-08T13:42:52Z",
-      "summary": "Wireshark Release Candidate 5.0.0 was published: soon we can expect a new major version of Wireshark.",
-      "content": "Wireshark Release Candidate 5.0.0 was published: soon we can expect a new major version of Wireshark.",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
-      ],
-      "curated": false
-    },
-    {
-      "id": "a97d89d20f5e7e65",
-      "title": "YARA-X 1.22.1 Release, (Sat, Oct 31st)",
-      "url": "https://isc.sans.edu/diary/rss/33474",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-10-31T10:48:17Z",
-      "fetched": "2026-11-05T20:08:18Z",
-      "summary": "YARA-X's 1.22.1 is a bugfix version, it brings 2 bugfixes.",
-      "content": "YARA-X's 1.22.1 is a bugfix version, it brings 2 bugfixes.",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
-      ],
-      "curated": false
-    },
-    {
-      "id": "8a1ff85d598dea94",
-      "title": "YARA-X 1.22.0 Release, (Sun, Oct 25th)",
-      "url": "https://isc.sans.edu/diary/rss/33454",
-      "source": "sans_isc",
-      "source_name": "SANS ISC",
-      "category": "general",
-      "published": "2026-10-31T10:45:40Z",
-      "fetched": "2026-11-05T07:02:37Z",
-      "summary": "YARA-X's 1.22.0 release brings 11 improvements and 9 bugfixes.",
-      "content": "YARA-X's 1.22.0 release brings 11 improvements and 9 bugfixes.",
-      "iocs": [],
-      "cves": [],
-      "tags": [],
-      "techniques": [],
-      "recommendations": [
-        "Validate the indicators against your own telemetry before blocking or alerting.",
-        "Keep your asset inventory current so exposure to affected products is visible."
       ],
       "curated": false
     }
