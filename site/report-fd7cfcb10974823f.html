@@ -304,10 +304,10 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       <span>THREAT<span class="accent">INTEL</span> // PIPELINE</span>
     </a>
     <span class="header-meta">
-      <span><span class="status-dot" aria-hidden="true"></span>68679 indicators</span>
-      <span>1210 new / 26565 updated last run &middot; 14141 new / 7d</span>
+      <span><span class="status-dot" aria-hidden="true"></span>69842 indicators</span>
+      <span>1459 new / 26350 updated last run &middot; 14737 new / 7d</span>
       <span>11/11 feeds &middot; 4 optional &middot; 20d retention</span>
-      <span>sync 2026-11-18T07:44:06Z</span>
+      <span>sync 2026-11-18T20:45:05Z</span>
     </span>
     <nav aria-label="Sections">
       <a href="index.html">Overview</a>
@@ -336,11 +336,11 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <a class="back-link" href="reports.html">&larr; Report feed</a>
 <h1 class="page-title">CVE-2026-114938: Reported Critical Pre-authentication Remote Code Execution in Java 17</h1>
 <div class="badges" style="margin-bottom: var(--space-2xl)">
-  <span class="badge badge-cat">General</span>
+  <span class="badge badge-cat">Linux</span>
   <span class="badge">Rapid7 Cybersecurity Blog</span>
 <span class="badge">1 CVE(s)</span></div>
 <div class="env-banner">
-  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 1 CVE(s), none in KEV &middot; 2 indicator(s)</div>
+  <strong>Assessment:</strong> risk <span class="risk risk-medium">medium</span> &middot; 1 CVE(s), none in KEV &middot; 17 indicator(s)</div>
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Details</h2>
@@ -348,7 +348,7 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
     <table class="meta-table">
       <tbody>
         <tr><td>Source</td><td>Rapid7 Cybersecurity Blog</td></tr>
-        <tr><td>Category</td><td>General</td></tr>
+        <tr><td>Category</td><td>Linux</td></tr>
         <tr><td>Published</td><td>2026-11-17</td></tr>
         <tr><td>Report ID</td><td><code>fd7cfcb10974823f</code></td></tr>
         <tr><td>Original</td><td><a href="https://www.rapid7.com/blog/post/etr-cve-2026-114938-reported-critical-pre-authentication-remote-code-execution-java-17" rel="noopener">https://www.rapid7.com/blog/post/etr-cve-2026-114938-reported-critical-pre-authentication-remote-code-execution-java-17</a></td></tr>
@@ -359,12 +359,12 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 
 <section>
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Excerpt</h2>
-  <p class="detail-text">Overview On November 17, 2026, public reports described CVE-2026-114938 as a memory corruption vulnerability in Java 17 and above that could allow a remote attacker to execute code without authentication. The reported severity is Critical, with a CVSSv4 score of 9.2. These CVE-specific details remain preliminary, pending confirmation in Oracle or OpenJDK advisories. Rapid7 is actively monitoring the situation and will update this blog as new information arrives. For the latest vendor release information, refer to Oracle&#39;s November security update notice and OpenJDK&#39;s vulnerability advisories . Rapid7 customers Exposure Command, Vulnerability Management, and Nexpose Exposure Command, Vulnerability Management, and Nexpose customers can assess exposure to CVE-2026-114938 with an authenticated vulnerability check available in the November 17 content release (1.1.4115). Updates November 17, 2026 : Initial publication.</p>
+  <p class="detail-text">Overview On November 17, 2026, Oracle released patches for CVE-2026-114938 , a heap-based buffer overflow ( CWE-122 ) in the hardware-accelerated Base64 decoder used by OpenJDK and its downstream distributions, such as Oracle Java SE, and Oracle GraalVM. The vulnerability, dubbed “ Java4Shell ” by finders Calif, can allow an unauthenticated remote attacker to crash a Java application or execute code with the privileges of its Java process. Oracle rates the vulnerability High, with a CVSS v3.1 score of 8.1 and high attack complexity, in its November security advisory . Affected OpenJDK runtimes enable the vulnerable Base64 optimization by default when the Java virtual machine (JVM) can use the required x86-64 CPU features, including AVX-512 VBMI. A Java application exposes the flaw when it passes untrusted data to that optimized decoder. For example, a web service may decode HTTP Basic credentials before it checks the username and password. Red Hat reports no known exposure on ARM64 or on x86-64 processors without AVX-512 VBMI in its OpenJDK bulletin . Calif’s disclosure states that they demonstrated unauthenticated remote code execution against several popular Java based applications, and they have published a local proof of concept (PoC) for CVE-2026-114938, which can test if a local JDK is vulnerable. Given the ubiquitous nature of Java and its deployment across enterprise environments, Rapid7 recommends identifying and remediating affected systems, with a focus on Internet exposed systems, on an emergency basis and outside of normal patching cycles. Rapid7 is actively monitoring the situation and will update this blog as new information arrives. For the latest vendor release information, refer to Oracle&#39;s November security update notice and OpenJDK&#39;s vulnerability advisories . Technical overview CVE-2026-114938 affects a hardware-specific optimization in HotSpot, the Java virtual machine used by many OpenJDK distributions. When frequently used Base64 decoding code is compiled, HotSpot can substitute a native routine that processes multiple bytes at once. The vulnerable path requires an x86-64 runtime, CPU features including AVX-512 VBMI , and effective JVM settings that permit the optimizing compiler and Base64 intrinsic. Consequently, an affected Java version alone does not establish that a particular application is exploitable. The defect occurs when that routine processes a malformed final Base64 group. Its calculation of the remaining output length </p>
   <p class="muted">Excerpted from <a href="https://www.rapid7.com/blog/post/etr-cve-2026-114938-reported-critical-pre-authentication-remote-code-execution-java-17" rel="noopener">Rapid7 Cybersecurity Blog</a>; follow the source for full context.</p>
 </section>
 
 <section id="iocs">
-  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (2)</h2>
+  <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l9.5 16.5H2.5z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg>Indicators (17)</h2>
   <div class="table-wrap">
     <table>
       <thead>
@@ -372,7 +372,22 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
       </thead>
       <tbody>
         <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.cve.org%2FCVERecord%3Fid%3DCVE-2026-114938" target="_blank" rel="noopener"><code>hxxps://www[.]cve[.]org/CVERecord?id=CVE-2026-114938</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcalif.io%2Fjava4shell" target="_blank" rel="noopener"><code>hxxps://calif[.]io/java4shell</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fcalif.io%2Fjava4shell%23poc" target="_blank" rel="noopener"><code>hxxps://calif[.]io/java4shell#poc</code></a></td></tr>
         <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fopenjdk.org%2Fgroups%2Fvulnerability%2Fadvisories%2F" target="_blank" rel="noopener"><code>hxxps://openjdk[.]org/groups/vulnerability/advisories/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fopenjdk.org%2Fgroups%2Fvulnerability%2Fadvisories%2F2026-11-17" target="_blank" rel="noopener"><code>hxxps://openjdk[.]org/groups/vulnerability/advisories/2026-11-17</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.graalvm.org%2Frelease-calendar%2F" target="_blank" rel="noopener"><code>hxxps://www[.]graalvm[.]org/release-calendar/</code></a></td></tr>
+        <tr><td>url</td><td><a href="https://www.virustotal.com/gui/search/https%3A%2F%2Fwww.circl.lu%2Fpub%2Ftr-104%2F" target="_blank" rel="noopener"><code>hxxps://www[.]circl[.]lu/pub/tr-104/</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/17.0.21.0" target="_blank" rel="noopener"><code>17[.]0[.]21[.]0</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/17.0.21.1" target="_blank" rel="noopener"><code>17[.]0[.]21[.]1</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/21.0.13.0" target="_blank" rel="noopener"><code>21[.]0[.]13[.]0</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/21.0.13.1" target="_blank" rel="noopener"><code>21[.]0[.]13[.]1</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/25.0.5.0" target="_blank" rel="noopener"><code>25[.]0[.]5[.]0</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/25.0.5.1" target="_blank" rel="noopener"><code>25[.]0[.]5[.]1</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/27.0.1.0" target="_blank" rel="noopener"><code>27[.]0[.]1[.]0</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/27.0.1.1" target="_blank" rel="noopener"><code>27[.]0[.]1[.]1</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/21.3.20.0" target="_blank" rel="noopener"><code>21[.]3[.]20[.]0</code></a></td></tr>
+        <tr><td>ipv4</td><td><a href="https://www.virustotal.com/gui/ip-address/21.3.20.1" target="_blank" rel="noopener"><code>21[.]3[.]20[.]1</code></a></td></tr>
       </tbody>
     </table>
   </div>
@@ -389,13 +404,13 @@ footer .mono{font-family:var(--font-heading);font-size:.72rem}
 <section id="recommendations">
   <h2><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3"/></svg>Recommendations</h2>
   <ol class="rec-list">
-<li>Assess exposure and patch affected systems: CVE-2026-114938</li><li>Block or hunt the 2 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Validate the indicators against your own telemetry before blocking or alerting.</li><li>Keep your asset inventory current so exposure to affected products is visible.</li>  </ol>
+<li>Assess exposure and patch affected systems: CVE-2026-114938</li><li>Block or hunt the 17 extracted indicator(s) above; machine-readable feeds are in dist/iocs.csv.</li><li>Apply the referenced distribution security updates (or vendor mitigations) after change-control review.</li><li>Monitor for unexpected execution from /tmp, /dev/shm and unusual outbound connections from servers.</li><li>Keep sudo access minimal; review SSH exposure and key-based authentication.</li>  </ol>
   <p class="muted">Baseline guidance from <code>intel/recommendations.yaml</code> plus automatic rules; curated notes can be added per report ID.</p>
 </section>
 </main>
 <footer>
   <p>Active sources: Feodo Tracker &middot; OpenPhish &middot; CIRCL MISP &middot; Tor Project &middot; blocklist.de &middot; Binary Defense &middot; GreenSnow &middot; Phishing Army &middot; ET Compromised Hosts &middot; URLhaus mirror &middot; TweetFeed &middot; Optional (no key): URLhaus, ThreatFox, MalwareBazaar, AlienVault OTX</p>
-  <p>Retention: indicators not re-seen for 20 days are purged on every sync (1622 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-18T07:44:06Z UTC</span></p>
+  <p>Retention: indicators not re-seen for 20 days are purged on every sync (296 in the last run) &middot; Vulnerability data: CISA KEV + FIRST EPSS &middot; Indicators are defanged; lookups open third-party services (VirusTotal/NVD) &middot; Generated by <a href="https://github.com/Enendugodwin/Threat-Intelligence-Platform" rel="noopener">threat-intel-pipeline</a> at <span class="mono">2026-11-18T20:45:05Z UTC</span></p>
 </footer>
 <script>
 (function () {

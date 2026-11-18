@@ -1,8 +1,60 @@
 {
-  "generated_at": "2026-11-18T07:44:01Z",
-  "catalog_version": "2026.11.17",
-  "catalog_count": 1782,
+  "generated_at": "2026-11-18T20:44:57Z",
+  "catalog_version": "2026.11.18",
+  "catalog_count": 1786,
   "entries": [
+    {
+      "cve": "CVE-2024-10441",
+      "vendor": "Synology",
+      "product": "DiskStation Manager (DSM)",
+      "name": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false,
+      "description": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01251,
+      "epss_percentile": 0.70014
+    },
+    {
+      "cve": "CVE-2026-40217",
+      "vendor": "BerriAI",
+      "product": "LiteLLM",
+      "name": "BerriAI LiteLLM Unprotected Alternate Channel Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-12-02",
+      "ransomware": false,
+      "description": "BerriAI LiteLLM contains an unprotected alternate channel vulnerability that could allow remote attackers to execute arbitrary code via bytecode rewriting at the /guardrails/test_custom_code URI.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.1702,
+      "epss_percentile": 0.97134
+    },
+    {
+      "cve": "CVE-2026-90817",
+      "vendor": "Vanderbilt University",
+      "product": "Research Electronic Data Capture (REDCap)",
+      "name": "Vanderbilt University Research Electronic Data Capture (REDCap) Code Injection Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false,
+      "description": "Vanderbilt University Research Electronic Data Capture (REDCap) contains a code injection vulnerability which could allow an unauthenticated attacker to execute arbitrary code on the server. An attacker could exploit this via crafted HTTP requests that access an unintended contro",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.03749,
+      "epss_percentile": 0.90092
+    },
+    {
+      "cve": "CVE-2026-90436",
+      "vendor": "Apache",
+      "product": "Axis",
+      "name": "Apache Axis Unsafe Reflection Vulnerability",
+      "date_added": "2026-11-18",
+      "due_date": "2026-11-21",
+      "ransomware": false,
+      "description": "Apache Axis contains an unsafe reflection vulnerability that could allow an unauthenticated remote attacker to execute arbitrary code via a crafted SOAP fault message that causes Axis to load and instantiate an attacker-specified class when a suitable class is available on the ap",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01128,
+      "epss_percentile": 0.67007
+    },
     {
       "cve": "CVE-2026-115731",
       "vendor": "Perforce",
@@ -2550,58 +2602,6 @@
       "required_action": "\"Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.03437,
       "epss_percentile": 0.88588
-    },
-    {
-      "cve": "CVE-2026-41940",
-      "vendor": "WebPros",
-      "product": "cPanel & WHM and WP2 (WordPress Squared)",
-      "name": "WebPros cPanel & WHM and WP2 (WordPress Squared) Missing Authentication for Critical Function Vulnerability",
-      "date_added": "2026-04-30",
-      "due_date": "2026-05-03",
-      "ransomware": true,
-      "description": "WebPros cPanel & WHM (WebHost Manager) and WP2 (WordPress Squared) contain an authentication bypass vulnerability in the login flow that allows unauthenticated remote attackers to gain unauthorized access to the control panel.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.98527,
-      "epss_percentile": 0.9992
-    },
-    {
-      "cve": "CVE-2024-1708",
-      "vendor": "ConnectWise",
-      "product": "ScreenConnect",
-      "name": "ConnectWise ScreenConnect Path Traversal Vulnerability",
-      "date_added": "2026-04-28",
-      "due_date": "2026-05-12",
-      "ransomware": true,
-      "description": "ConnectWise ScreenConnect contains a path traversal vulnerability which could allow an attacker to execute remote code or directly impact confidential data and critical systems.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.95436,
-      "epss_percentile": 0.99869
-    },
-    {
-      "cve": "CVE-2026-32202",
-      "vendor": "Microsoft",
-      "product": "Windows",
-      "name": "Microsoft Windows Protection Mechanism Failure Vulnerability",
-      "date_added": "2026-04-28",
-      "due_date": "2026-05-12",
-      "ransomware": false,
-      "description": "Microsoft Windows Shell contains a protection mechanism failure vulnerability that allows an unauthorized attacker to perform spoofing over a network.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.04902,
-      "epss_percentile": 0.91834
-    },
-    {
-      "cve": "CVE-2025-29635",
-      "vendor": "D-Link",
-      "product": "DIR-823X",
-      "name": "D-Link DIR-823X Command Injection Vulnerability",
-      "date_added": "2026-04-24",
-      "due_date": "2026-05-08",
-      "ransomware": false,
-      "description": "D-Link DIR-823X contains a command injection vulnerability that allows an authorized attacker to execute arbitrary commands on remote devices by sending a POST request to /goform/set_prohibiting via the corresponding function. The impacted product could be end-of-life (EoL) and/o",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.87944,
-      "epss_percentile": 0.99762
     }
   ]
 }
