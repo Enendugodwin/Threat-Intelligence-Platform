@@ -1,8 +1,60 @@
 {
-  "generated_at": "2026-11-20T07:31:39Z",
-  "catalog_version": "2026.11.18",
-  "catalog_count": 1786,
+  "generated_at": "2026-11-20T20:34:40Z",
+  "catalog_version": "2026.11.20",
+  "catalog_count": 1790,
   "entries": [
+    {
+      "cve": "CVE-2026-129448",
+      "vendor": "Apache",
+      "product": "Roller",
+      "name": "Apache Roller Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false,
+      "description": "Apache Roller contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via the XML-RPC endpoint, which accepts and deserializes vendor extension types before authentication. This CVE covers the same underl",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01191,
+      "epss_percentile": 0.68723
+    },
+    {
+      "cve": "CVE-2026-123890",
+      "vendor": "Broadcom",
+      "product": "VMware vCenter",
+      "name": "VMWare vCenter Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false,
+      "description": "Broadcom VMware vCenter contains an authentication bypass using an alternate path or channel vulnerability in the VMware Directory Service that allows an unauthenticated attacker with network access to vCenter to bypass authentication and gain unauthorized access to the system.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00843,
+      "epss_percentile": 0.58845
+    },
+    {
+      "cve": "CVE-2025-42884",
+      "vendor": "SAP",
+      "product": "NetWeaver",
+      "name": "SAP NetWeaver Improper Neutralization of Special Elements in Data Query Logic Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false,
+      "description": "SAP NetWeaver Enterprise Portal contains an improper neutralization of special elements in data query logic vulnerability that allows an unauthenticated attacker to disclose or modify server information via injected JNDI environment properties or a URL used during JNDI lookup ope",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00276,
+      "epss_percentile": 0.2048
+    },
+    {
+      "cve": "CVE-2026-76466",
+      "vendor": "Cisco",
+      "product": "Expressway Series",
+      "name": "Cisco Expressway Series Use of Hard-coded Credentials Vulnerability",
+      "date_added": "2026-11-20",
+      "due_date": "2026-11-23",
+      "ransomware": false,
+      "description": "Cisco Expressway Series contains a use of hard-coded credentials vulnerability that allows an unauthenticated, remote attacker with persistent cookies and network access to execute commands as root on a clustered device via the database service.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00417,
+      "epss_percentile": 0.36836
+    },
     {
       "cve": "CVE-2024-10441",
       "vendor": "Synology",
@@ -2550,58 +2602,6 @@
       "required_action": "Please adhere to CISA\u2019s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlined in CISA\u2019s Emergency Directive 26-03 (URL listed below in Notes) and CISA\u2019s Hun",
       "epss": 0.91522,
       "epss_percentile": 0.99812
-    },
-    {
-      "cve": "CVE-2026-42208",
-      "vendor": "BerriAI",
-      "product": "LiteLLM",
-      "name": "BerriAI LiteLLM SQL Injection Vulnerability",
-      "date_added": "2026-05-08",
-      "due_date": "2026-05-11",
-      "ransomware": false,
-      "description": "BerriAI LiteLLM contains a SQL injection vulnerability that allows an attacker to read data from the proxy's database and potentially modify it, leading to unauthorized access to the proxy and the credentials it manages.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.05772,
-      "epss_percentile": 0.92867
-    },
-    {
-      "cve": "CVE-2026-6973",
-      "vendor": "Ivanti",
-      "product": "Endpoint Manager Mobile (EPMM)",
-      "name": "Ivanti Endpoint Manager Mobile (EPMM) Improper Input Validation Vulnerability",
-      "date_added": "2026-05-07",
-      "due_date": "2026-05-10",
-      "ransomware": false,
-      "description": "Ivanti Endpoint Manager Mobile (EPMM) contains an improper input validation vulnerability that allows a remotely authenticated user with administrative access to achieve remote code execution.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.02537,
-      "epss_percentile": 0.8441
-    },
-    {
-      "cve": "CVE-2026-0300",
-      "vendor": "Palo Alto Networks",
-      "product": "PAN-OS",
-      "name": "Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability",
-      "date_added": "2026-05-06",
-      "due_date": "2026-05-09",
-      "ransomware": false,
-      "description": "Palo Alto Networks PAN-OS contains an out-of-bounds write vulnerability in the User-ID Authentication Portal (aka Captive Portal) service that can allow an unauthenticated attacker to execute arbitrary code with root privileges on the PA-Series and VM-Series firewalls by sending ",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable. Until the vendor releases an offic",
-      "epss": 0.31725,
-      "epss_percentile": 0.98251
-    },
-    {
-      "cve": "CVE-2026-31431",
-      "vendor": "Linux",
-      "product": "Kernel",
-      "name": "Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability",
-      "date_added": "2026-05-01",
-      "due_date": "2026-05-15",
-      "ransomware": false,
-      "description": "Linux Kernel contains an incorrect resource transfer between spheres vulnerability that could allow for privilege escalation.",
-      "required_action": "\"Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.03437,
-      "epss_percentile": 0.88588
     }
   ]
 }
