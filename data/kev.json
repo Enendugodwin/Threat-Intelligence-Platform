@@ -1,8 +1,34 @@
 {
-  "generated_at": "2026-11-23T07:57:10Z",
-  "catalog_version": "2026.11.20",
-  "catalog_count": 1790,
+  "generated_at": "2026-11-24T00:06:43Z",
+  "catalog_version": "2026.11.23",
+  "catalog_count": 1792,
   "entries": [
+    {
+      "cve": "CVE-2026-133968",
+      "vendor": "Project MONAI",
+      "product": "MONAI Label",
+      "name": "Project MONAI MONAI Label Path Traversal Vulnerability",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "ransomware": false,
+      "description": "Project MONAI MONAI Label contains a path traversal vulnerability that allows an unauthenticated remote attacker to write arbitrary files outside the intended datastore directory, potentially resulting in remote code execution.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.03664,
+      "epss_percentile": 0.89921
+    },
+    {
+      "cve": "CVE-2026-134624",
+      "vendor": "N-able",
+      "product": "MailAssure",
+      "name": "N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+      "date_added": "2026-11-23",
+      "due_date": "2026-11-26",
+      "ransomware": false,
+      "description": "N-able MailAssure (SpamExperts) contains a server-side request forgery vulnerability in the LDAP synchronization connection check that allows an authenticated API user to connect to arbitrary internal hosts and ports, determine which are reachable, and send crafted data to intern",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00354,
+      "epss_percentile": 0.2969
+    },
     {
       "cve": "CVE-2026-129448",
       "vendor": "Apache",
@@ -62,7 +88,7 @@
       "name": "Synology DiskStation Manager (DSM) Improper Encoding or Escaping of Output Vulnerability",
       "date_added": "2026-11-18",
       "due_date": "2026-11-21",
-      "ransomware": false,
+      "ransomware": true,
       "description": "Synology DSM contains an improper encoding or escaping of output vulnerability in the system plugin daemon in Synology BeeStation OS (BSM) that could allow a remote attacker to execute arbitrary code via unspecified vectors.",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
       "epss": 0.01251,
@@ -2576,32 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.01267,
       "epss_percentile": 0.68748
-    },
-    {
-      "cve": "CVE-2026-42897",
-      "vendor": "Microsoft",
-      "product": "Microsoft",
-      "name": "Microsoft Exchange Server Cross-Site Scripting Vulnerability",
-      "date_added": "2026-05-15",
-      "due_date": "2026-05-29",
-      "ransomware": false,
-      "description": "Microsoft Exchange Server contains a cross-site scripting vulnerability during web page generation in Outlook Web Access and when certain interaction conditions are met, arbitrary JavaScript can be executed in the browser context.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.00519,
-      "epss_percentile": 0.42102
-    },
-    {
-      "cve": "CVE-2026-20182",
-      "vendor": "Cisco",
-      "product": "Catalyst SD-WAN",
-      "name": "Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability",
-      "date_added": "2026-05-14",
-      "due_date": "2026-05-17",
-      "ransomware": false,
-      "description": "Cisco Catalyst SD-WAN Controller & Manager contain an authentication bypass vulnerability that allows an unauthenticated, remote attacker to bypass authentication and obtain administrative privileges on an affected system.",
-      "required_action": "Please adhere to CISA\u2019s guidelines to assess exposure and mitigate risks associated with Cisco SD-WAN devices as outlined in CISA\u2019s Emergency Directive 26-03 (URL listed below in Notes) and CISA\u2019s Hun",
-      "epss": 0.91522,
-      "epss_percentile": 0.99812
     }
   ]
 }
