@@ -1,8 +1,47 @@
 {
-  "generated_at": "2026-11-24T10:08:29Z",
-  "catalog_version": "2026.11.23",
-  "catalog_count": 1792,
+  "generated_at": "2026-11-24T22:37:52Z",
+  "catalog_version": "2026.11.24",
+  "catalog_count": 1795,
   "entries": [
+    {
+      "cve": "CVE-2026-132224",
+      "vendor": "Optimizely",
+      "product": "Web Experimentation",
+      "name": "Optimizely Web Experimentation External Control of Critical State Data Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false,
+      "description": "Optimizely Web Experimentation contains an external control of critical state data vulnerability in its account signup flow that could allow an attacker to impersonate existing customer users and modify Project JavaScript. Successful exploitation can result in attacker-controlled",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00411,
+      "epss_percentile": 0.35845
+    },
+    {
+      "cve": "CVE-2026-131914",
+      "vendor": "Idunno",
+      "product": "AntiCsrf",
+      "name": "Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false,
+      "description": "Idunno AntiCsrf contains a deserialization of untrusted data vulnerability that allows an unauthenticated remote attacker to execute arbitrary code via object injection. The impacted product(s) could be end-of-life (EoL) and/or end-of-service (EoS). Users are advised to discontin",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.00614,
+      "epss_percentile": 0.50152
+    },
+    {
+      "cve": "CVE-2026-132165",
+      "vendor": "Drupal",
+      "product": "Core",
+      "name": "Drupal Core Remote Code Execution Vulnerability",
+      "date_added": "2026-11-24",
+      "due_date": "2026-11-27",
+      "ransomware": false,
+      "description": "Drupal Core contains a not failing securely vulnerability that could allow an unauthenticated attacker to take over an existing site or execute arbitrary code via the Drupal installer. Under specific conditions, the attacker can use install.php to attempt to reinstall Drupal on t",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
     {
       "cve": "CVE-2026-133968",
       "vendor": "Project MONAI",
@@ -2563,45 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.91939,
       "epss_percentile": 0.99817
-    },
-    {
-      "cve": "CVE-2010-0806",
-      "vendor": "Microsoft",
-      "product": "Internet Explorer",
-      "name": "Microsoft Internet Explorer Use-After-Free Vulnerability",
-      "date_added": "2026-05-20",
-      "due_date": "2026-06-03",
-      "ransomware": false,
-      "description": "Microsoft Internet Explorer contains an use-after-free vulnerability that could allow remote attackers to execute arbitrary code via vectors involving access to an invalid pointer after the deletion of an object. The impacted product could be end-of-life (EoL) and/or end-of-servi",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.82241,
-      "epss_percentile": 0.99649
-    },
-    {
-      "cve": "CVE-2026-41091",
-      "vendor": "Microsoft",
-      "product": "Defender",
-      "name": "Microsoft Defender Link Following Vulnerability",
-      "date_added": "2026-05-20",
-      "due_date": "2026-06-03",
-      "ransomware": false,
-      "description": "Microsoft Defender contains a link following vulnerability that allows an authorized attacker to elevate privileges locally.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.00443,
-      "epss_percentile": 0.36323
-    },
-    {
-      "cve": "CVE-2026-45498",
-      "vendor": "Microsoft",
-      "product": "Defender",
-      "name": "Microsoft Defender Denial of Service Vulnerability",
-      "date_added": "2026-05-20",
-      "due_date": "2026-06-03",
-      "ransomware": false,
-      "description": "Microsoft Defender contains an unspecified vulnerability that allows for denial of service.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.01267,
-      "epss_percentile": 0.68748
     }
   ]
 }
