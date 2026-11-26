@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T08:38:55Z",
+  "generated_at": "2026-11-26T21:47:30Z",
   "catalog_version": "2026.11.25",
   "catalog_count": 1805,
   "entries": [
@@ -169,8 +169,8 @@
       "ransomware": false,
       "description": "Drupal Core contains a not failing securely vulnerability that could allow an unauthenticated attacker to take over an existing site or execute arbitrary code via the Drupal installer. Under specific conditions, the attacker can use install.php to attempt to reinstall Drupal on t",
       "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
-      "epss": null,
-      "epss_percentile": null
+      "epss": 0.11053,
+      "epss_percentile": 0.96627
     },
     {
       "cve": "CVE-2026-133968",
