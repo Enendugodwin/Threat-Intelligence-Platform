@@ -1,8 +1,47 @@
 {
-  "generated_at": "2026-11-27T08:50:10Z",
-  "catalog_version": "2026.11.25",
-  "catalog_count": 1805,
+  "generated_at": "2026-11-27T21:29:18Z",
+  "catalog_version": "2026.11.27",
+  "catalog_count": 1808,
   "entries": [
+    {
+      "cve": "CVE-2026-120705",
+      "vendor": "OSGeo",
+      "product": "GeoServer",
+      "name": "OSGeo GeoServer XML Injection Vulnerability",
+      "date_added": "2026-11-27",
+      "due_date": "2026-11-30",
+      "ransomware": false,
+      "description": "OsGeo GeoServer contains an XML injection vulnerability that allows an unauthenticated remote attacker to cause the server to read local text files accessible to the GeoServer process or fetch attacker-specified HTTP or HTTPS URLs via a crafted ID parameter in the WFS 2.0 GetFeat",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
+    {
+      "cve": "CVE-2026-129243",
+      "vendor": "OSGeo",
+      "product": "GeoServer",
+      "name": "OSGeo GeoServer Incorrect Authorization Vulnerability",
+      "date_added": "2026-11-27",
+      "due_date": "2026-11-30",
+      "ransomware": false,
+      "description": "GeoServer contains an incorrect authorization vulnerability that allows an unauthenticated remote attacker to bypass service-level role checks and invoke operations protected solely by those checks via a request with a prefixed service parameter. This vulnerability can be chained",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": null,
+      "epss_percentile": null
+    },
+    {
+      "cve": "CVE-2026-136716",
+      "vendor": "Drupal",
+      "product": "Core",
+      "name": "Drupal Core Improper Check for Unusual or Exceptional Conditions Vulnerability",
+      "date_added": "2026-11-27",
+      "due_date": "2026-11-30",
+      "ransomware": false,
+      "description": "Drupal Core contains an improper check for unusual or exceptional conditions vulnerability that allows an unauthenticated remote attacker to take over a site via the exposed Drupal installer when the site is in one of the affected unusual or incomplete installation states.",
+      "required_action": "Apply mitigations in accordance with vendor instructions, ensuring compliance with CISA\u2019s BOD 26-04 Prioritizing Security Updates Based on Risk (see URL in Notes) guidance and CISA\u2019s \u201cForensics Triage",
+      "epss": 0.01212,
+      "epss_percentile": 0.68449
+    },
     {
       "cve": "CVE-2026-103406",
       "vendor": "Hewlett Packard Enterprise (HPE)",
@@ -2563,45 +2602,6 @@
       "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
       "epss": 0.01714,
       "epss_percentile": 0.76602
-    },
-    {
-      "cve": "CVE-2024-21182",
-      "vendor": "Oracle",
-      "product": "WebLogic Server",
-      "name": "Oracle WebLogic Server Unspecified Vulnerability",
-      "date_added": "2026-06-01",
-      "due_date": "2026-06-04",
-      "ransomware": false,
-      "description": "Oracle WebLogic contains an unspecified vulnerability that could allow an unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server. Successful attacks of this vulnerability can result in unauthorized access to critical data or complete access",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.74162,
-      "epss_percentile": 0.99475
-    },
-    {
-      "cve": "CVE-2026-0257",
-      "vendor": "Palo Alto Networks",
-      "product": "PAN-OS",
-      "name": "Palo Alto Networks PAN-OS Authentication Bypass Vulnerability",
-      "date_added": "2026-05-29",
-      "due_date": "2026-06-01",
-      "ransomware": true,
-      "description": "Palo Alto Networks PAN-OS contains an authentication bypass vulnerability that allows attackers to bypass security restrictions and establish an unauthorized VPN connection.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.96382,
-      "epss_percentile": 0.9988
-    },
-    {
-      "cve": "CVE-2026-48027",
-      "vendor": "Nx",
-      "product": "Nx Console",
-      "name": "Nx Console Embedded Malicious Code Vulnerability",
-      "date_added": "2026-05-27",
-      "due_date": "2026-06-10",
-      "ransomware": true,
-      "description": "Nx Console contains an embedded malicious code vulnerability that allowed a malicious version of Nx Console to be published. The compromised extension fetched an obfuscated payload that could harvested credentials from multiple sources on disk and in memory.",
-      "required_action": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "epss": 0.01336,
-      "epss_percentile": 0.70234
     }
   ]
 }
